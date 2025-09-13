@@ -29,14 +29,14 @@ jobs:
       - name: Create archive
         run: |
           cd publish
-          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}.zip .
+          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip .
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-archive
-          path: ${{ github.event.repository.name }}-${{ github.ref_name }}.zip
+          path: ${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip
 
   release:
     needs: build
@@ -52,6 +52,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.event.repository.name }}-${{ github.ref_name }}.zip
+          files: ${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
