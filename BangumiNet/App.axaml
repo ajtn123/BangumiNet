@@ -1,0 +1,25 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="BangumiNet.App"
+             xmlns:local="using:BangumiNet"
+			 xmlns:utils="using:BangumiNet.Utils"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+		<Style Selector="Border.Card">
+			<Setter Property="BorderBrush" Value="Gray"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
+		</Style>
+		<Style Selector="TextBlock">
+			<Setter Property="utils:TextBlockHelpers.DecodeHtml" Value="True"/>
+		</Style>
+    </Application.Styles>
+</Application>

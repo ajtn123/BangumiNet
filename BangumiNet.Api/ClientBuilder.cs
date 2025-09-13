@@ -1,0 +1,46 @@
+﻿using BangumiNet.Shared;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Authentication;
+using Microsoft.Kiota.Http.HttpClientLibrary;
+
+namespace BangumiNet.Api;
+
+public static class ClientBuilder
+{
+    public static V0.ApiClient GetV0Client(ApiSetting setting) => new(GetRequestAdapter(setting));
+    public static Legacy.ApiClient GetLegacyClient(ApiSetting setting) => new(GetRequestAdapter(setting));
+
+    private static IRequestAdapter GetRequestAdapter(ApiSetting setting)
+    {
+        var authProvider = new AnonymousAuthenticationProvider();
+        var httpClient = new HttpClient();
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", setting.UserAgent);
+        if (!string.IsNullOrWhiteSpace(setting.AuthToken))
+            httpClient.DefaultRequestHeaders.Authorization = new("Bearer", setting.AuthToken);
+
+        return new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
+    }
+
+    public static Clients Build(ApiSetting setting)
+    {
+        var authProvider = new AnonymousAuthenticationProvider();
+        var httpClient = new HttpClient();
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", setting.UserAgent);
+        if (!string.IsNullOrWhiteSpace(setting.AuthToken))
+            httpClient.DefaultRequestHeaders.Authorization = new("Bearer", setting.AuthToken);
+        var requestAdapter = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
+        var v0Client = new V0.ApiClient(requestAdapter);
+        var legacyClient = new Legacy.ApiClient(requestAdapter);
+
+        return new() { AuthenticationProvider = authProvider, HttpClient = httpClient, RequestAdapter = requestAdapter, V0Client = v0Client, LegacyClient = legacyClient };
+    }
+}
+
+public class Clients
+{
+    public required IAuthenticationProvider AuthenticationProvider { get; set; }
+    public required HttpClient HttpClient { get; set; }
+    public required IRequestAdapter RequestAdapter { get; set; }
+    public required V0.ApiClient V0Client { get; set; }
+    public required Legacy.ApiClient LegacyClient { get; set; }
+}

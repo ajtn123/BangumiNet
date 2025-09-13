@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:calendar="using:BangumiNet.Api.Legacy.Calendar"
+             xmlns:legmodel="using:BangumiNet.Api.Legacy.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 ClipToBounds="False"
+             x:DataType="calendar:Calendar"
+             x:Class="BangumiNet.Views.CalendarView">
+	<UserControl.Styles>
+		<Style Selector="TextBlock.Title">
+			<Setter Property="TextWrapping" Value="Wrap"/>
+		</Style>
+	</UserControl.Styles>
+    <StackPanel>
+        <Border Classes="Card">
+            <TextBlock Text="{Binding Weekday.Cn}" Margin="5,0,0,0"/>
+        </Border>
+        <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl.DataTemplates>
+                <DataTemplate DataType="legmodel:Legacy_SubjectSmall">
+					<StackPanel Margin="0,0,0,2">
+						<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}" Classes="Title"/>
+						<Separator Margin="0" Background="LightGray"/>
+					</StackPanel>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

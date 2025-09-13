@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:calendar="using:BangumiNet.Api.Legacy.Calendar"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:AiringViewModel"
+             x:Class="BangumiNet.Views.AiringView">
+	<UserControl.DataContext>
+		<vm:AiringViewModel/>
+	</UserControl.DataContext>
+    <ScrollViewer>
+        <StackPanel Margin="5" Spacing="5">
+            <Border Classes="Card" Padding="5">
+                <TextBlock FontSize="30"><Svg Path="/Assets/wifi_tethering.svg" VerticalAlignment="Stretch"/> 每日放送</TextBlock>
+            </Border>
+			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding Calendars}">
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate DataType="calendar:Calendar">
+                            <v:CalendarView DataContext="{Binding .}" Width="200"/>
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+				    <ItemsControl.ItemsPanel>
+					    <ItemsPanelTemplate>
+						    <StackPanel Orientation="Horizontal" Spacing="5"/>
+					    </ItemsPanelTemplate>
+				    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+			</ScrollViewer>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
