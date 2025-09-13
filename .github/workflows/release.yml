@@ -24,14 +24,14 @@ jobs:
       - name: Create archive
         run: |
           cd publish
-          zip -r ../${{ github.ref_name }}.zip .
+          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}.zip .
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-archive
-          path: ${{ github.ref_name }}.zip
+          path: ${{ github.event.repository.name }}-${{ github.ref_name }}.zip
 
   release:
     needs: build
