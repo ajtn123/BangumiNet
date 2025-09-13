@@ -24,7 +24,7 @@ jobs:
       - name: Publish
         run: |
           cd BangumiNet
-          dotnet publish -c Release -r win-x64 -p:Version=${GITHUB_REF_NAME#v} -o ./publish
+          dotnet publish -c Release -r win-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish
 
       - name: Create archive
         run: |
