@@ -4,24 +4,45 @@ namespace BangumiNet.Shared;
 
 public static class SettingProvider
 {
-    public static Settings CurrentSettings { get; set; } = LoadSettings().Result;
+    public static Settings CurrentSettings { get; set; } = LoadSettings();
 
-    public static ApiSettings ApiSetting => CurrentSettings.ApiSettings;
-    public static LocaleSettings LocaleSetting => CurrentSettings.LocaleSettings;
-
-    private static Settings GetNewSettings() => new() { ApiSettings = new(), LocaleSettings = new() };
-    public static async Task<Settings> LoadSettings()
+    public static Settings LoadSettings()
     {
-        if (!File.Exists(Constants.SettingJsonPath)) return GetNewSettings();
+        Settings defaults = new();
 
-        var json = await File.ReadAllTextAsync(Constants.SettingJsonPath);
-        var settings = JsonSerializer.Deserialize<Settings>(json);
-        return settings ?? GetNewSettings();
+        if (!File.Exists(Constants.SettingJsonPath)) return defaults;
+
+        var json = File.ReadAllText(Constants.SettingJsonPath);
+        var overrides = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
+
+        if (overrides != null)
+            foreach (var uc in overrides)
+            {
+                var prop = typeof(Settings).GetProperty(uc.Key);
+                if (prop != null)
+                {
+                    var value = uc.Value.Deserialize(prop.PropertyType);
+                    prop.SetValue(defaults, value);
+                }
+            }
+
+        return defaults;
     }
-    public static async Task<Settings> Save(this Settings settings)
+
+    public static void Save(this Settings current)
     {
-        var json = JsonSerializer.Serialize(settings);
-        await File.WriteAllTextAsync(Constants.SettingJsonPath, json);
-        return settings;
+        Settings defaults = new();
+        Dictionary<string, object?> overrides = [];
+
+        foreach (var prop in typeof(Settings).GetProperties())
+        {
+            var currentValue = prop.GetValue(current);
+            var defaultValue = prop.GetValue(defaults);
+
+            if (!Equals(currentValue, defaultValue))
+                overrides[prop.Name] = currentValue;
+        }
+
+        File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(overrides));
     }
 }

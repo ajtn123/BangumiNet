@@ -18,7 +18,7 @@ public class NameCnConverter : IValueConverter
         var nameCnProp = type.GetProperty("NameCn", BindingFlags.Public | BindingFlags.Instance);
         var nameCn = nameCnProp?.GetValue(subject)?.ToString();
 
-        return !string.IsNullOrWhiteSpace(nameCn) && SettingProvider.LocaleSetting.PreferChineseNames ? nameCn : nameProp?.GetValue(subject);
+        return !string.IsNullOrWhiteSpace(nameCn) && SettingProvider.CurrentSettings.PreferChineseNames ? nameCn : nameProp?.GetValue(subject);
     }
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
