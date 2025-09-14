@@ -1,4 +1,6 @@
 ﻿using BangumiNet.Shared;
+using Microsoft.Extensions.Caching.Abstractions;
+using Microsoft.Extensions.Caching.InMemory;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
@@ -24,7 +26,10 @@ public static class ClientBuilder
     public static Clients Build(IApiSettings setting)
     {
         var authProvider = new AnonymousAuthenticationProvider();
-        var httpClient = new HttpClient();
+        var httpClientHandler = new HttpClientHandler();
+        var cacheExpirationPerHttpResponseCode = CacheExpirationProvider.CreateSimple(TimeSpan.MaxValue, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(10));
+        var handler = new InMemoryCacheHandler(httpClientHandler, cacheExpirationPerHttpResponseCode);
+        var httpClient = new HttpClient(handler);
         httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", setting.UserAgent);
         if (!string.IsNullOrWhiteSpace(setting.AuthToken))
             httpClient.DefaultRequestHeaders.Authorization = new("Bearer", setting.AuthToken);
