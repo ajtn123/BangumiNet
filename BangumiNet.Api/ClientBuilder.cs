@@ -7,10 +7,10 @@ namespace BangumiNet.Api;
 
 public static class ClientBuilder
 {
-    public static V0.ApiClient GetV0Client(Settings setting) => new(GetRequestAdapter(setting));
-    public static Legacy.ApiClient GetLegacyClient(Settings setting) => new(GetRequestAdapter(setting));
+    public static V0.ApiClient GetV0Client(IApiSettings setting) => new(GetRequestAdapter(setting));
+    public static Legacy.ApiClient GetLegacyClient(IApiSettings setting) => new(GetRequestAdapter(setting));
 
-    private static IRequestAdapter GetRequestAdapter(Settings setting)
+    private static IRequestAdapter GetRequestAdapter(IApiSettings setting)
     {
         var authProvider = new AnonymousAuthenticationProvider();
         var httpClient = new HttpClient();
@@ -21,7 +21,7 @@ public static class ClientBuilder
         return new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
     }
 
-    public static Clients Build(Settings setting)
+    public static Clients Build(IApiSettings setting)
     {
         var authProvider = new AnonymousAuthenticationProvider();
         var httpClient = new HttpClient();

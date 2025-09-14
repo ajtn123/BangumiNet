@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace BangumiNet.Shared;
+﻿namespace BangumiNet.Shared;
 
 public static class Constants
 {
