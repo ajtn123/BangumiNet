@@ -1,7 +1,4 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using System.ComponentModel.DataAnnotations;
 
 namespace BangumiNet.Views;
 

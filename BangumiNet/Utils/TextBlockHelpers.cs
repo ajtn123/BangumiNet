@@ -4,6 +4,7 @@ using System;
 using System.Net;
 
 namespace BangumiNet.Utils;
+
 public static class TextBlockHelpers
 {
     public static readonly AttachedProperty<bool> DecodeHtmlProperty =

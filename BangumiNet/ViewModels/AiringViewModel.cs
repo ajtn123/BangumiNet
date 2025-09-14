@@ -1,12 +1,10 @@
-﻿using System;
+﻿using ReactiveUI.SourceGenerators;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using ReactiveUI.SourceGenerators;
 
 namespace BangumiNet.ViewModels;
 
-public partial class AiringViewModel:ViewModelBase
+public partial class AiringViewModel : ViewModelBase
 {
     public AiringViewModel() => _ = Init();
     private async Task Init()

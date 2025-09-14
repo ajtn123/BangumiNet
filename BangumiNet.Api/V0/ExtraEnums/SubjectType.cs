@@ -16,7 +16,7 @@ public enum SubjectType
     /// <summary>
     /// 音乐
     /// </summary>
-    Music =3,
+    Music = 3,
     /// <summary>
     /// 游戏
     /// </summary>
