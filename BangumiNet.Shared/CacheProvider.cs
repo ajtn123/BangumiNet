@@ -1,78 +1,66 @@
-﻿using System.Text.Json;
-
-namespace BangumiNet.Shared;
+﻿namespace BangumiNet.Shared;
 
 public static class CacheProvider
 {
-    public static List<CacheFileInfo>? CacheFiles { get; set; }
-    private static readonly JsonSerializerOptions options = new() { IgnoreReadOnlyProperties = true };
-    public static void LoadCacheList()
+    public static string CacheDirPath => Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, Constants.DiskCacheDirectory);
+    public static string GetAbsolutePath(string relativePath) => Path.Combine(CacheDirPath, relativePath);
+
+    public static long CacheSize { get; set; } = 0;
+    public static void CalculateCacheSize()
+    {
+        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) CleanUpCache();
+        else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
+    }
+
+    public static void WriteCache(string id, Stream content)
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return;
 
-        var path = GetAbsolutePath(Constants.CacheJsonName);
-        if (!File.Exists(path))
-        {
-            CacheFiles = [];
-            return;
-        }
+        var l = content.Length;
+        if (l > SettingProvider.CurrentSettings.DiskCacheSizeLimit) return;
+        if (CacheSize + l > SettingProvider.CurrentSettings.DiskCacheSizeLimit) CleanUpCache();
 
-        var json = File.ReadAllText(path);
-        var list = JsonSerializer.Deserialize<List<CacheFileInfo>>(json, options);
-        if (list is null)
-        {
-            CacheFiles = [];
-            return;
-        }
-        else
-        {
-            CacheFiles = [.. list.Where(c => c.Validate())];
-            return;
-        }
-    }
+        var idHash = Utils.GetHash(id);
+        var path = GetAbsolutePath(idHash);
+        var dir = Path.GetDirectoryName(path);
+        if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(idHash) || string.IsNullOrWhiteSpace(dir)) return;
 
-    public static void SaveCacheList()
-    {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return;
-
-        var json = JsonSerializer.Serialize(CacheFiles?.Where(c => c.Validate()).ToList(), options);
-        var path = GetAbsolutePath(Constants.CacheJsonName);
-        Directory.CreateDirectory(SettingProvider.CurrentSettings.DiskCacheDirectory);
-        File.WriteAllText(path, json);
-    }
-
-    private static uint writes = 0;
-    public static void WriteCache(Stream content, CacheFileInfo info)
-    {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled || CacheFiles is null) return;
-
-        CacheFiles.Add(info);
-        info.RelativePath = Path.Combine(info.Type.ToString(), Utils.GetHash(info.Id));
-        var dir = Path.GetDirectoryName(info.AbsolutePath);
-        if (string.IsNullOrWhiteSpace(dir)) return;
         Directory.CreateDirectory(dir);
-        using var file = File.OpenWrite(info.AbsolutePath);
+        using var file = File.OpenWrite(path);
         content.CopyTo(file);
         content.Position = 0;
 
-        writes++;
-        if (writes > SettingProvider.CurrentSettings.IndexSaveFrequency)
-        {
-            writes = 0;
-            SaveCacheList();
-        }
+        CacheSize += l;
     }
 
     public static FileStream? ReadCache(string id)
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled || CacheFiles is null) return null;
+        var idHash = Utils.GetHash(id);
+        var path = GetAbsolutePath(idHash);
 
-        var existing = CacheFiles.Where(c => c.Id.Equals(id)).FirstOrDefault(defaultValue: null);
-        if (existing?.Validate() ?? false)
-            return existing!.GetFileStream();
+        if (File.Exists(path))
+            return File.OpenRead(path);
         else return null;
     }
 
-    public static string GetAbsolutePath(string relativePath)
-        => Path.Combine(SettingProvider.CurrentSettings.DiskCacheDirectory, relativePath);
+
+    private readonly static DirectoryInfo CacheDirInfo = new(CacheDirPath);
+    public static void CleanUpCache()
+    {
+        var files = CacheDirInfo.EnumerateFiles();
+
+        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled)
+        {
+            foreach (var file in files)
+                file.Delete();
+            return;
+        }
+
+        foreach (var file in files.OrderBy(c => c.LastAccessTimeUtc).Take(files.Count() / 4))
+            file.Delete();
+
+        CacheSize = files.Sum(f => f.Length);
+        if (CacheSize > SettingProvider.CurrentSettings.DiskCacheSizeLimit)
+            CleanUpCache();
+    }
 }

@@ -17,12 +17,11 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
-            desktop.Exit += (s, e) => { CacheProvider.SaveCacheList(); };
         }
 
         Resources["NameCnConverter"] = NameCnConverter.Instance;
 
-        CacheProvider.LoadCacheList();
+        CacheProvider.CalculateCacheSize();
 
         base.OnFrameworkInitializationCompleted();
     }

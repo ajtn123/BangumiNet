@@ -1,7 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
 using BangumiNet.Shared;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -22,7 +21,7 @@ public class ApiC
             return new Bitmap(cacheStream);
 
         var stream = (await HttpClient.GetStreamAsync(url)).Clone();
-        CacheProvider.WriteCache(stream, new() { Id = url, InitiateTime = DateTime.UtcNow, Type = CacheType.Image });
+        CacheProvider.WriteCache(url, stream);
         return new Bitmap(stream);
     }
 }
