@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:calendar="using:BangumiNet.Api.Legacy.Calendar"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:AiringViewModel"
              x:Class="BangumiNet.Views.AiringView">
@@ -19,7 +18,7 @@
 			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding Calendars}">
                     <ItemsControl.DataTemplates>
-                        <DataTemplate DataType="calendar:Calendar">
+                        <DataTemplate DataType="vm:CalendarViewModel">
                             <v:CalendarView DataContext="{Binding .}" Width="200"/>
                         </DataTemplate>
                     </ItemsControl.DataTemplates>

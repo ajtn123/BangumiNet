@@ -1,5 +1,7 @@
-﻿using ReactiveUI.SourceGenerators;
-using System.Collections.Generic;
+﻿using BangumiNet.Utils;
+using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BangumiNet.ViewModels;
@@ -9,8 +11,8 @@ public partial class AiringViewModel : ViewModelBase
     public AiringViewModel() => _ = Init();
     private async Task Init()
     {
-        Calendars = await ApiC.Clients.LegacyClient.Calendar.GetAsync();
+        Calendars = (await ApiC.Clients.LegacyClient.Calendar.GetAsync())?.Select(c => new CalendarViewModel(c)).ToObservableCollection();
     }
 
-    [Reactive] public partial List<Api.Legacy.Calendar.Calendar>? Calendars { get; set; }
+    [Reactive] public partial ObservableCollection<CalendarViewModel>? Calendars { get; set; }
 }

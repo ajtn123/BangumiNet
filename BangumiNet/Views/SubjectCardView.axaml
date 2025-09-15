@@ -13,7 +13,7 @@
 		</Style>
 	</UserControl.Styles>
 	<Grid>
-		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}"/>
+		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}" Classes="Title"/>
 
 		<Grid.ContextFlyout>
 			<Flyout>

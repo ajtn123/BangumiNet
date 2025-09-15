@@ -16,6 +16,7 @@ public partial class SubjectViewModel : ViewModelBase
 {
     public SubjectViewModel(SlimSubject subject)
     {
+        Source = subject;
         SourceType = subject.GetType();
         CollectionTotal = subject.CollectionTotal;
         Rank = subject.Rank;
@@ -33,6 +34,7 @@ public partial class SubjectViewModel : ViewModelBase
     }
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
+        Source = subject;
         SourceType = subject.GetType();
         Eps = subject.Eps;
         Rank = subject.Rank;
@@ -45,8 +47,13 @@ public partial class SubjectViewModel : ViewModelBase
         Name = subject.Name;
         NameCn = subject.NameCn;
         Collection = subject.Collection;
+        Weekday = Common.ParseDayOfWeek(subject.AirWeekday);
+        Score = subject.Rating?.Score;
+        RatingCount = subject.Rating?.Count;
+        RatingTotal = subject.Rating?.Total;
     }
 
+    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial Type? SourceType { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
@@ -60,6 +67,8 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial DateOnly? Date { get; set; }
     [Reactive] public partial DayOfWeek? Weekday { get; set; }
     [Reactive] public partial double? Score { get; set; }
+    [Reactive] public partial int? RatingTotal { get; set; }
+    [Reactive] public partial IRatingCount? RatingCount { get; set; }
     [Reactive] public partial SubjectType? Type { get; set; }
     [Reactive] public partial ObservableCollection<Collections>? Tags { get; set; }
     [Reactive] public partial IImages? Images { get; set; }

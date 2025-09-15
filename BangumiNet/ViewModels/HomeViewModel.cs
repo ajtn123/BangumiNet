@@ -26,8 +26,8 @@ public partial class HomeViewModel : ViewModelBase
 
     [Reactive] public partial string? Greeting { get; set; }
     [Reactive] public partial IImage? Avatar { get; set; }
-    [Reactive] public partial List<Api.Legacy.Calendar.Calendar>? Calendars { get; set; }
-    [Reactive] public partial Api.Legacy.Calendar.Calendar? Today { get; set; }
+    [Reactive] public partial IEnumerable<CalendarViewModel>? Calendars { get; set; }
+    [Reactive] public partial CalendarViewModel? Today { get; set; }
     [Reactive] public partial Paged_UserCollection? MyCollection { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
 
@@ -71,7 +71,7 @@ public partial class HomeViewModel : ViewModelBase
 
     private async Task LoadCalendar()
     {
-        Calendars = await ApiC.Clients.LegacyClient.Calendar.GetAsync();
-        Today = Calendars?.ElementAt(DateTime.Today.DayOfWeek.ToInt());
+        Calendars = (await ApiC.Clients.LegacyClient.Calendar.GetAsync())?.Select(c => new CalendarViewModel(c));
+        Today = Calendars?.Where(c => c.Weekday == DateTime.Today.DayOfWeek).First();
     }
 }

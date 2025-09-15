@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace BangumiNet.Utils;
 
@@ -16,5 +14,14 @@ public static class Common
         if (DateOnly.TryParseExact(date, "", out DateOnly result))
             return result;
         else return null;
+    }
+
+    public static DayOfWeek? ParseDayOfWeek(int? day, DayOfWeek startingDay = DayOfWeek.Monday, int startingIndex = 1)
+    {
+        if (day is not { } d) return null;
+
+        int i = d - startingIndex + (int)startingDay;
+        if (i > 6) i -= 7;
+        return (DayOfWeek)i;
     }
 }

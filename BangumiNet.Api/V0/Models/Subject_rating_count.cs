@@ -5,11 +5,12 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using BangumiNet.Api.Interfaces;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Subject_rating_count : IAdditionalDataHolder, IParsable
+    public partial class Subject_rating_count : IAdditionalDataHolder, IParsable, IRatingCount
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
