@@ -5,13 +5,20 @@
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:SubjectCollectionViewModel"
-             x:Class="BangumiNet.Views.SubjectCollectionView">
-	<ItemsControl ItemsSource="{Binding Collections}">
-		<ItemsControl.DataTemplates>
-			<DataTemplate DataType="vm:SubjectViewModel">
-				<v:SubjectCardView DataContext="{Binding .}"/>
-			</DataTemplate>
-		</ItemsControl.DataTemplates>
-	</ItemsControl>
+             x:DataType="vm:SubjectViewModel"
+             x:Class="BangumiNet.Views.SubjectCardView">
+	<UserControl.Styles>
+		<Style Selector="TextBlock.Title">
+			<Setter Property="TextWrapping" Value="Wrap"/>
+		</Style>
+	</UserControl.Styles>
+	<Grid>
+		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}"/>
+
+		<Grid.ContextFlyout>
+			<Flyout>
+				<TextBlock Text="{Binding ShortSummary}"/>
+			</Flyout>
+		</Grid.ContextFlyout>
+	</Grid>
 </UserControl>

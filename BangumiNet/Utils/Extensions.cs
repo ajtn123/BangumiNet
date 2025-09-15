@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace BangumiNet.Utils;
@@ -22,4 +24,7 @@ public static class Extensions
         if (i < 0) i += 7;
         return i += startingIndex;
     }
+
+    public static ObservableCollection<T>? ToObservableCollection<T>(this IEnumerable<T>? enumerable)
+        => enumerable is not null ? [.. enumerable] : null;
 }

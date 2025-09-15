@@ -66,8 +66,7 @@ public partial class HomeViewModel : ViewModelBase
         });
 
         if (MyCollection?.Data is not null)
-            foreach (var item in MyCollection.Data)
-                SubjectCollectionViewModel?.Collections.Add(item);
+            SubjectCollectionViewModel?.Collections = MyCollection.Data.Select(c => new SubjectViewModel(c.Subject!)).ToObservableCollection();
     }
 
     private async Task LoadCalendar()
