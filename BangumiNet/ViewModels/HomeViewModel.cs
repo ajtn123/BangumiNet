@@ -1,5 +1,4 @@
 ﻿using Avalonia.Media;
-using Avalonia.Media.Imaging;
 using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
@@ -46,12 +45,7 @@ public partial class HomeViewModel : ViewModelBase
     }
 
     private async Task LoadAvatar()
-    {
-        if (Me?.Avatar is not { } avatar) return;
-
-        var avatarStream = (await ApiC.HttpClient.GetStreamAsync(avatar.Small)).Clone();
-        Avatar = new Bitmap(avatarStream);
-    }
+        => Avatar = await ApiC.GetImageAsync(Me?.Avatar?.Small);
 
     private async Task LoadMyCollection()
     {
@@ -72,6 +66,6 @@ public partial class HomeViewModel : ViewModelBase
     private async Task LoadCalendar()
     {
         Calendars = (await ApiC.Clients.LegacyClient.Calendar.GetAsync())?.Select(c => new CalendarViewModel(c));
-        Today = Calendars?.Where(c => c.Weekday == DateTime.Today.DayOfWeek).First();
+        Today = Calendars?.Where(c => c.DayOfWeek == DateTime.Today.DayOfWeek).First();
     }
 }

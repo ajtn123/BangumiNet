@@ -11,7 +11,7 @@
 
     <StackPanel>
         <Border Classes="Card">
-            <TextBlock Text="{Binding Weekday}" Margin="5,0,0,0"/>
+            <TextBlock Text="{Binding Weekday.Cn}" Margin="5,0,0,0"/>
         </Border>
         <ItemsControl ItemsSource="{Binding Subjects}">
             <ItemsControl.DataTemplates>

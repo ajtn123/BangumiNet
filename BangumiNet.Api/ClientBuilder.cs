@@ -12,7 +12,7 @@ public static class ClientBuilder
     public static V0.ApiClient GetV0Client(IApiSettings setting) => new(GetRequestAdapter(setting));
     public static Legacy.ApiClient GetLegacyClient(IApiSettings setting) => new(GetRequestAdapter(setting));
 
-    private static IRequestAdapter GetRequestAdapter(IApiSettings setting)
+    private static HttpClientRequestAdapter GetRequestAdapter(IApiSettings setting)
     {
         var authProvider = new AnonymousAuthenticationProvider();
         var httpClient = new HttpClient();

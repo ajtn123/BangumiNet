@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.Interfaces;
+﻿using Avalonia.Media.Imaging;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.Legacy.Models;
 using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
@@ -6,6 +7,7 @@ using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace BangumiNet.ViewModels;
 
@@ -75,4 +77,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial ICollection? Collection { get; set; }
 
     [Reactive] public partial string? Url { get; set; }
+
+    public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
 }

@@ -12,8 +12,9 @@
 			<Setter Property="TextWrapping" Value="Wrap"/>
 		</Style>
 	</UserControl.Styles>
-	<Grid>
-		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}" Classes="Title"/>
+	<Grid ColumnDefinitions="30,*">
+		<Image Source="{Binding ImageGrid^}"/>
+		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}" Classes="Title" Grid.Column="1"/>
 
 		<Grid.ContextFlyout>
 			<Flyout>
