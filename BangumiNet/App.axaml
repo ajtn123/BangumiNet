@@ -2,28 +2,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="BangumiNet.App"
              xmlns:local="using:BangumiNet"
-			 xmlns:utils="using:BangumiNet.Utils"
+			 xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:sty="using:FluentAvalonia.Styling"
+             xmlns:utils="using:BangumiNet.Utils"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
   
     <Application.Styles>
-        <FluentTheme />
+		<sty:FluentAvaloniaTheme />
 		<Style Selector="Border.Card">
-			<Setter Property="BorderBrush" Value="Gray"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
+        </Style>
+        <Style Selector="Button.Icon">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style Selector="Button.Icon ic|FluentIcon">
+			<Setter Property="FontSize" Value="24"/>
 		</Style>
-		<Style Selector="Button.Icon">
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="Padding" Value="0"/>
+        <Style Selector="TextBlock">
+            <Setter Property="utils:TextBlockHelpers.DecodeHtml" Value="True"/>
+        </Style>
+		<Style Selector="ic|FluentIcon">
+			<Setter Property="FontSize" Value="12"/>
 		</Style>
-		<Style Selector="TextBlock">
-			<Setter Property="utils:TextBlockHelpers.DecodeHtml" Value="True"/>
+		<Style Selector="Window">
+			<Setter Property="FontFamily" Value="Microsoft Yahei"/>
+		</Style>
+		<Style Selector="FlyoutPresenter">
+			<Setter Property="Padding" Value="5"/>
+		</Style>
+		<Style Selector="TextBlock.Title">
+			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="16"/>
 		</Style>
     </Application.Styles>
 </Application>

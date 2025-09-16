@@ -35,6 +35,8 @@ public static class CacheProvider
 
     public static FileStream? ReadCache(string id)
     {
+        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return null;
+
         var idHash = Utils.GetHash(id);
         var path = GetAbsolutePath(idHash);
 

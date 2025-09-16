@@ -4,39 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="50"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
-	<UserControl.Styles>
-		<Style Selector="TextBlock.Title">
-			<Setter Property="TextWrapping" Value="Wrap"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="FontSize" Value="16"/>
-		</Style>
-	</UserControl.Styles>
-	<Grid ColumnDefinitions="50,*">
-		<Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
-			<Image Source="{Binding ImageGrid^}"/>
-		</Border>
+    <Grid ColumnDefinitions="50,*">
+        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
+            <Image Source="{Binding ImageGrid^}"/>
+        </Border>
 
-		<StackPanel Grid.Column="1" Margin="3,0,0,0">
-			<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter},Mode=OneWay}" Classes="Title"/>
-			<TextBlock>
-				<Run Text="{Binding Score,Converter={StaticResource ScoreConverter},Mode=OneWay}"/>
-				<Run Text="{Binding ShortSummary,Mode=OneWay}"/>
-			</TextBlock>
-		</StackPanel>
+        <StackPanel Grid.Column="1" Margin="3,0,0,0">
+            <TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter},Mode=OneWay}" Classes="Title"/>
+			<StackPanel Orientation="Horizontal" Spacing="5">
+			    <TextBlock IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
+			    <TextBlock IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
+			</StackPanel>
+        </StackPanel>
 
-		<Grid.ContextFlyout>
-			<Flyout>
-				<StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<Button Classes="Icon" Command="{Binding OpenInBrowserCommand}"><Svg Path="/Assets/open_in_new.svg"/></Button>
-					
-					</StackPanel>
-					<TextBlock Text="{Binding ShortSummary,Mode=OneWay}"/>
-				</StackPanel>
-			</Flyout>
-		</Grid.ContextFlyout>
-	</Grid>
+        <Grid.ContextFlyout>    
+            <Flyout>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    </StackPanel>
+                </StackPanel>
+            </Flyout>
+        </Grid.ContextFlyout>
+    </Grid>
 </UserControl>

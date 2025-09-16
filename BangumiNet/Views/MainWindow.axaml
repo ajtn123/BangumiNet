@@ -7,6 +7,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BangumiNet.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
         Icon="/Assets/BangumiNet.ico"
         Title="BangumiNet">
 
@@ -20,8 +22,8 @@
         <TabItem Header="主页">
             <v:HomeView/>
         </TabItem>
-		<TabItem Header="每日放送">
-			<v:AiringView/>
-		</TabItem>
+        <TabItem Header="每日放送">
+            <v:AiringView/>
+        </TabItem>
     </TabControl>
 </Window>

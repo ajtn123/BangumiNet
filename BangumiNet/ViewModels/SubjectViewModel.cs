@@ -5,10 +5,12 @@ using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Shared;
 using BangumiNet.Utils;
+using BangumiNet.Views;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -37,7 +39,7 @@ public partial class SubjectViewModel : ViewModelBase
         Tags = subject.Tags.ToObservableCollection();
         Images = subject.Images;
 
-        InitCommands();
+        Init();
     }
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
@@ -59,12 +61,31 @@ public partial class SubjectViewModel : ViewModelBase
         RatingCount = subject.Rating?.Count;
         RatingTotal = subject.Rating?.Total;
 
-        InitCommands();
+        Init();
+    }
+    public SubjectViewModel(Subject subject)
+    {
+        Source = subject;
+        SourceType = subject.GetType();
+        Eps = subject.Eps;
+        Volumes = subject.Volumes;
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Date = Common.ParseDate(subject.Date);
+        Id = subject.Id;
+        Type = (SubjectType?)subject.Type;
+        Images = subject.Images;
+
+        Init();
     }
 
-    public void InitCommands()
+    public void Init()
     {
+        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
+
+        if (Rank == 0) Rank = null;
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -90,7 +111,13 @@ public partial class SubjectViewModel : ViewModelBase
 
     [Reactive] public partial string? Url { get; set; }
 
-    public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-
+    public ICommand? OpenInNewWindowCommand { get; private set; }
+    public ICommand? SearchGoogleCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
+
+    public Task<Bitmap?> ImageCommon => ApiC.GetImageAsync(Images?.Common);
+    public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
+    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
+    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
+    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 }

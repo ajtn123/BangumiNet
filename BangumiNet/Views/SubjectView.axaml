@@ -2,7 +2,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectView">
-  Welcome to Avalonia!
+    <ScrollViewer Padding="5">
+        <Grid ColumnDefinitions="150,*" RowDefinitions="Auto,*">
+            <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
+                <Image Source="{Binding ImageLarge^}"/>
+            </Border>
+
+            <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                <TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}"
+                           Classes="Title" FontSize="30"/>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
+                    <TextBlock IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
+                </StackPanel>
+				<StackPanel>
+					<StackPanel Orientation="Horizontal" Spacing="5">
+						<Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+						<Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
+						<Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+					</StackPanel>
+				</StackPanel>
+				<TextBlock Text="{Binding Summary}"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

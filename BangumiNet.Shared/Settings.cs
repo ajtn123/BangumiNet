@@ -8,6 +8,7 @@ public class Settings : IApiSettings
     public string? AuthToken { get; set; } = null;
 
     public string BangumiTvUrlBase { get; set; } = "https://bgm.tv";
+    public string GoogleQueryUrlBase { get; set; } = "https://www.google.com/search?q=";
 
     public string LocalDataDirectory { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName);
 

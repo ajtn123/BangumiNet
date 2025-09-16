@@ -19,11 +19,14 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
         }
 
-        Resources[nameof(NameCnConverter)] = NameCnConverter.Instance;
-        Resources[nameof(ScoreConverter)] = ScoreConverter.Instance;
+        AddResources(NameCnConverter.Instance);
+        AddResources(NullCvt.Instance);
 
         CacheProvider.CalculateCacheSize();
 
         base.OnFrameworkInitializationCompleted();
     }
+
+    private void AddResources(object res)
+        => Resources[res.GetType().Name] = res;
 }

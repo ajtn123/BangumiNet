@@ -22,4 +22,6 @@ public class CalendarViewModel : ViewModelBase
     [Reactive] public DayOfWeek? DayOfWeek { get; set; }
     [Reactive] public IWeekday? Weekday { get; set; }
     [Reactive] public ObservableCollection<SubjectViewModel>? Subjects { get; set; }
+
+    public bool IsToday => DayOfWeek == DateTime.Today.DayOfWeek;
 }
