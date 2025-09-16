@@ -19,7 +19,8 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
         }
 
-        Resources["NameCnConverter"] = NameCnConverter.Instance;
+        Resources[nameof(NameCnConverter)] = NameCnConverter.Instance;
+        Resources[nameof(ScoreConverter)] = ScoreConverter.Instance;
 
         CacheProvider.CalculateCacheSize();
 

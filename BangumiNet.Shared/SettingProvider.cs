@@ -6,6 +6,11 @@ public static class SettingProvider
 {
     public static Settings CurrentSettings { get; set; } = LoadSettings();
 
+    private static readonly JsonSerializerOptions options = new()
+    {
+        IgnoreReadOnlyFields = true,
+        IgnoreReadOnlyProperties = true,
+    };
     public static Settings LoadSettings()
     {
         Settings defaults = new();
@@ -13,7 +18,7 @@ public static class SettingProvider
         if (!File.Exists(Constants.SettingJsonPath)) return defaults;
 
         var json = File.ReadAllText(Constants.SettingJsonPath);
-        var overrides = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
+        var overrides = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json, options);
 
         if (overrides != null)
             foreach (var uc in overrides)
@@ -43,6 +48,6 @@ public static class SettingProvider
                 overrides[prop.Name] = currentValue;
         }
 
-        File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(overrides));
+        File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(overrides, options));
     }
 }

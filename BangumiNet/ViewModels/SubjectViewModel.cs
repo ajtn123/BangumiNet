@@ -3,11 +3,14 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.Legacy.Models;
 using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Shared;
 using BangumiNet.Utils;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -33,6 +36,8 @@ public partial class SubjectViewModel : ViewModelBase
         Type = (SubjectType?)subject.Type;
         Tags = subject.Tags.ToObservableCollection();
         Images = subject.Images;
+
+        InitCommands();
     }
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
@@ -53,6 +58,13 @@ public partial class SubjectViewModel : ViewModelBase
         Score = subject.Rating?.Score;
         RatingCount = subject.Rating?.Count;
         RatingTotal = subject.Rating?.Total;
+
+        InitCommands();
+    }
+
+    public void InitCommands()
+    {
+        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -79,4 +91,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial string? Url { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
+
+    public ICommand? OpenInBrowserCommand { get; private set; }
 }

@@ -18,6 +18,10 @@
 			<Setter Property="CornerRadius" Value="10"/>
 			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
 		</Style>
+		<Style Selector="Button.Icon">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Padding" Value="0"/>
+		</Style>
 		<Style Selector="TextBlock">
 			<Setter Property="utils:TextBlockHelpers.DecodeHtml" Value="True"/>
 		</Style>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace BangumiNet.Utils;
 
@@ -24,4 +25,11 @@ public static class Common
         if (i > 6) i -= 7;
         return (DayOfWeek)i;
     }
+
+    public static void OpenUrlInBrowser(string url)
+        => Process.Start(new ProcessStartInfo()
+        {
+            FileName = url,
+            UseShellExecute = true,
+        });
 }

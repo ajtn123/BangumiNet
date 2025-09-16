@@ -9,7 +9,7 @@
              x:DataType="vm:CalendarViewModel"
              x:Class="BangumiNet.Views.CalendarView">
 
-    <StackPanel>
+    <StackPanel Spacing="5">
         <Border Classes="Card">
             <TextBlock Text="{Binding Weekday.Cn}" Margin="5,0,0,0"/>
         </Border>
@@ -19,6 +19,11 @@
 					<v:SubjectCardView DataContext="{Binding .}"/>
                 </DataTemplate>
             </ItemsControl.DataTemplates>
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Spacing="3"/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
         </ItemsControl>
     </StackPanel>
 </UserControl>

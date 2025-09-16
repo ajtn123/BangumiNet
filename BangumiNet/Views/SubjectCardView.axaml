@@ -4,21 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
 	<UserControl.Styles>
 		<Style Selector="TextBlock.Title">
 			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="16"/>
 		</Style>
 	</UserControl.Styles>
-	<Grid ColumnDefinitions="30,*">
-		<Image Source="{Binding ImageGrid^}"/>
-		<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}" Classes="Title" Grid.Column="1"/>
+	<Grid ColumnDefinitions="50,*">
+		<Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
+			<Image Source="{Binding ImageGrid^}"/>
+		</Border>
+
+		<StackPanel Grid.Column="1" Margin="3,0,0,0">
+			<TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter},Mode=OneWay}" Classes="Title"/>
+			<TextBlock>
+				<Run Text="{Binding Score,Converter={StaticResource ScoreConverter},Mode=OneWay}"/>
+				<Run Text="{Binding ShortSummary,Mode=OneWay}"/>
+			</TextBlock>
+		</StackPanel>
 
 		<Grid.ContextFlyout>
 			<Flyout>
-				<TextBlock Text="{Binding ShortSummary}"/>
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Button Classes="Icon" Command="{Binding OpenInBrowserCommand}"><Svg Path="/Assets/open_in_new.svg"/></Button>
+					
+					</StackPanel>
+					<TextBlock Text="{Binding ShortSummary,Mode=OneWay}"/>
+				</StackPanel>
 			</Flyout>
 		</Grid.ContextFlyout>
 	</Grid>

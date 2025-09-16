@@ -7,7 +7,6 @@ public static class Constants
     public const string SettingJsonName = "BNSettings.json";
     public const string DiskCacheDirectory = "Cache";
 
-
     public static string AppData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ApplicationName);
     public static string SettingJsonPath { get; } = Path.Combine(AppData, SettingJsonName);
 }
