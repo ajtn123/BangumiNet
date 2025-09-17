@@ -19,6 +19,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
+			<Setter Property="Background" Value="White"/>
         </Style>
         <Style Selector="Button.Icon">
             <Setter Property="Padding" Value="0"/>
@@ -26,9 +27,6 @@
         <Style Selector="Button.Icon ic|FluentIcon">
 			<Setter Property="FontSize" Value="24"/>
 		</Style>
-        <Style Selector="TextBlock">
-            <Setter Property="utils:TextBlockHelpers.DecodeHtml" Value="True"/>
-        </Style>
 		<Style Selector="ic|FluentIcon">
 			<Setter Property="FontSize" Value="12"/>
 		</Style>
@@ -38,6 +36,10 @@
 		</Style>
 		<Style Selector="FlyoutPresenter">
 			<Setter Property="Padding" Value="5"/>
+		</Style>
+		<Style Selector="ToolTip">
+			<Setter Property="Padding" Value="2,0"/>
+			<Setter Property="CornerRadius" Value="5"/>
 		</Style>
 		<Style Selector="TextBlock.Title">
 			<Setter Property="TextWrapping" Value="Wrap"/>

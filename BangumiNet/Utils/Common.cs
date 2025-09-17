@@ -6,13 +6,13 @@ namespace BangumiNet.Utils;
 public static class Common
 {
     /// <summary>
-    /// Parse date string to <see cref="DateOnly"/>.
+    /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly"/>.
     /// </summary>
-    /// <param name="date"><c>yyyy-MM-DD</c></param>
+    /// <param name="date"><c>yyyy-MM-dd</c></param>
     /// <returns></returns>
     public static DateOnly? ParseDate(string? date)
     {
-        if (DateOnly.TryParseExact(date, "", out DateOnly result))
+        if (DateOnly.TryParseExact(date, "yyyy-MM-dd", out DateOnly result))
             return result;
         else return null;
     }
@@ -32,4 +32,28 @@ public static class Common
             FileName = url,
             UseShellExecute = true,
         });
+
+    public static int? NumberToInt(object? number)
+    {
+        if (number is decimal de)
+            return decimal.ConvertToInteger<int>(de);
+        else if (number is double d)
+            return double.ConvertToInteger<int>(d);
+        else if (number is float f)
+            return float.ConvertToInteger<int>(f);
+        else if (number is long l)
+            return (int)l;
+        else if (number is int i)
+            return i;
+        else if (number is short s)
+            return s;
+        else if (number is byte by)
+            return by;
+        else if (number is bool b)
+            return b ? 1 : 0;
+        else if (number is string str && int.TryParse(str, out int iStr))
+            return iStr;
+
+        return null;
+    }
 }

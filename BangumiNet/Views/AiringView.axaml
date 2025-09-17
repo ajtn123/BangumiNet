@@ -20,7 +20,7 @@
                 <ItemsControl ItemsSource="{Binding Calendars}">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
-                            <v:CalendarView DataContext="{Binding .}" Width="200"/>
+                            <v:CalendarView DataContext="{Binding .}" Width="220"/>
                         </DataTemplate>
                     </ItemsControl.DataTemplates>
 				    <ItemsControl.ItemsPanel>

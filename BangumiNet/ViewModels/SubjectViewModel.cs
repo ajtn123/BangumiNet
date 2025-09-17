@@ -14,6 +14,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -78,8 +79,7 @@ public partial class SubjectViewModel : ViewModelBase
         Date = Common.ParseDate(subject.Date);
         Platform = subject.Platform;
         Images = subject.Images;
-        //TODO: process p.Value.SubjectsValueMember1
-        Infobox = subject.Infobox?.Select(p => (p.Key, p.Value?.String)).ToObservableCollection();
+        Infobox = subject.Infobox?.Select(p => new InfoboxItem(p)).ToObservableCollection();
         Volumes = subject.Volumes;
         Eps = subject.Eps;
         TotalEps = subject.TotalEpisodes;
@@ -88,7 +88,8 @@ public partial class SubjectViewModel : ViewModelBase
         RatingCount = subject.Rating?.Count;
         Score = subject.Rating?.Score;
         Collection = subject.Collection;
-        Tags = subject.Tags?.Select(t => new Tag() { Name = t.AdditionalData["name"].ToString(), Count = t.AdditionalData["count"] }).ToObservableCollection<ITag>();
+        CollectionTotal = Collection?.GetTotal();
+        Tags = subject.Tags?.Select(t => new Tag(t)).ToObservableCollection<ITag>();
         MetaTags = subject.MetaTags.ToObservableCollection();
 
         Init();
@@ -99,6 +100,8 @@ public partial class SubjectViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
+
+        this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e=>this.RaisePropertyChanged(nameof(ParentWindowTitle)));
 
         if (Rank == 0) Rank = null;
     }
@@ -128,7 +131,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial bool? IsLocked { get; set; }
     [Reactive] public partial string? Platform { get; set; }
-    [Reactive] public partial ObservableCollection<(string? Key, string? Value)>? Infobox { get; set; }
+    [Reactive] public partial ObservableCollection<InfoboxItem>? Infobox { get; set; }
 
     [Reactive] public partial string? Url { get; set; }
 
@@ -142,6 +145,6 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
-    public string DetailWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
+    public string ParentWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
     public bool IsLegacy => Source is Legacy_SubjectSmall;
 }

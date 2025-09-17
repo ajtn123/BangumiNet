@@ -1,10 +1,13 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
 using BangumiNet.Converters;
 using BangumiNet.Shared;
 using BangumiNet.ViewModels;
 using BangumiNet.Views;
+using System.Net;
 
 namespace BangumiNet;
 
@@ -19,14 +22,17 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
         }
 
-        AddResources(NameCnConverter.Instance);
-        AddResources(NullCvt.Instance);
+        AddConverter(NameCnConverter.Instance);
+        AddConverter(NullCvt.Instance);
+        AddConverter(InNullCvt.Instance);
 
         CacheProvider.CalculateCacheSize();
+
+        TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
 
         base.OnFrameworkInitializationCompleted();
     }
 
-    private void AddResources(object res)
+    private void AddConverter(IValueConverter res)
         => Resources[res.GetType().Name] = res;
 }

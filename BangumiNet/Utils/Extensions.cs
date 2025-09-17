@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BangumiNet.Api.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -15,4 +16,7 @@ public static class Extensions
 
     public static ObservableCollection<T>? ToObservableCollection<T>(this IEnumerable<T>? enumerable)
         => enumerable is not null ? [.. enumerable] : null;
+
+    public static int? GetTotal(this ICollection c)
+        => c.Collect + c.Wish + c.Doing + c.Dropped + c.OnHold;
 }

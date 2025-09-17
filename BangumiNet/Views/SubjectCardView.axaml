@@ -6,7 +6,8 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
-			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="50"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
@@ -17,9 +18,12 @@
 
         <StackPanel Grid.Column="1" Margin="3,0,0,0">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter},Mode=OneWay}" Classes="Title"/>
-			<StackPanel Orientation="Horizontal" Spacing="5">
-			    <TextBlock IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
-			    <TextBlock IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
+            <StackPanel Orientation="Horizontal" Spacing="5">
+				<TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
+				<TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
+				<TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
+				<TextBlock ToolTip.Tip="在看" IsVisible="{Binding CollectionTotal,Converter={StaticResource InNullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
+				<Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=12}" ToolTip.Tip="在新窗口显示"/>
 			</StackPanel>
         </StackPanel>
 

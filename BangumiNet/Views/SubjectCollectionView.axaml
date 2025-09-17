@@ -13,5 +13,10 @@
 				<v:SubjectCardView DataContext="{Binding .}"/>
 			</DataTemplate>
 		</ItemsControl.DataTemplates>
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<StackPanel Spacing="5"/>
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
 	</ItemsControl>
 </UserControl>
