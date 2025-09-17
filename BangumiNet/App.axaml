@@ -3,6 +3,7 @@
              x:Class="BangumiNet.App"
              xmlns:local="using:BangumiNet"
 			 xmlns:ic="using:FluentIcons.Avalonia"
+			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:utils="using:BangumiNet.Utils"
              RequestedThemeVariant="Default">
@@ -10,9 +11,9 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+
     <Application.Styles>
-		<sty:FluentAvaloniaTheme />
+		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
 		<Style Selector="Border.Card">
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -20,7 +21,6 @@
             <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
         </Style>
         <Style Selector="Button.Icon">
-            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Padding" Value="0"/>
         </Style>
         <Style Selector="Button.Icon ic|FluentIcon">
@@ -33,6 +33,7 @@
 			<Setter Property="FontSize" Value="12"/>
 		</Style>
 		<Style Selector="Window">
+			<Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
 			<Setter Property="FontFamily" Value="Microsoft Yahei"/>
 		</Style>
 		<Style Selector="FlyoutPresenter">
@@ -42,6 +43,10 @@
 			<Setter Property="TextWrapping" Value="Wrap"/>
 			<Setter Property="FontWeight" Value="Bold"/>
 			<Setter Property="FontSize" Value="16"/>
+		</Style>
+		<Style Selector="Expander /template/ ToggleButton /template/ TextBlock#ExpandCollapseChevron">
+			<Setter Property="Text" Value="&#xe70d;"/>
+			<Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
 		</Style>
     </Application.Styles>
 </Application>

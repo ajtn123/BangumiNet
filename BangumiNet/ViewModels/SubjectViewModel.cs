@@ -3,6 +3,8 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.Legacy.Models;
 using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Converters;
+using BangumiNet.Models;
 using BangumiNet.Shared;
 using BangumiNet.Utils;
 using BangumiNet.Views;
@@ -10,6 +12,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,7 +27,6 @@ public partial class SubjectViewModel : ViewModelBase
     public SubjectViewModel(SlimSubject subject)
     {
         Source = subject;
-        SourceType = subject.GetType();
         CollectionTotal = subject.CollectionTotal;
         Rank = subject.Rank;
         Eps = subject.Eps;
@@ -36,7 +38,7 @@ public partial class SubjectViewModel : ViewModelBase
         Id = subject.Id;
         Score = subject.Score;
         Type = (SubjectType?)subject.Type;
-        Tags = subject.Tags.ToObservableCollection();
+        Tags = subject.Tags.ToObservableCollection<ITag>();
         Images = subject.Images;
 
         Init();
@@ -44,7 +46,6 @@ public partial class SubjectViewModel : ViewModelBase
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
         Source = subject;
-        SourceType = subject.GetType();
         Eps = subject.Eps;
         Rank = subject.Rank;
         Date = Common.ParseDate(subject.AirDate);
@@ -66,15 +67,29 @@ public partial class SubjectViewModel : ViewModelBase
     public SubjectViewModel(Subject subject)
     {
         Source = subject;
-        SourceType = subject.GetType();
-        Eps = subject.Eps;
-        Volumes = subject.Volumes;
-        Name = subject.Name;
-        NameCn = subject.NameCn;
-        Date = Common.ParseDate(subject.Date);
         Id = subject.Id;
         Type = (SubjectType?)subject.Type;
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Summary = subject.Summary;
+        IsSeries = subject.Series;
+        IsNsfw = subject.Nsfw;
+        IsLocked = subject.Locked;
+        Date = Common.ParseDate(subject.Date);
+        Platform = subject.Platform;
         Images = subject.Images;
+        //TODO: process p.Value.SubjectsValueMember1
+        Infobox = subject.Infobox?.Select(p => (p.Key, p.Value?.String)).ToObservableCollection();
+        Volumes = subject.Volumes;
+        Eps = subject.Eps;
+        TotalEps = subject.TotalEpisodes;
+        Rank = subject.Rating?.Rank;
+        RatingTotal = subject.Rating?.Total;
+        RatingCount = subject.Rating?.Count;
+        Score = subject.Rating?.Score;
+        Collection = subject.Collection;
+        Tags = subject.Tags?.Select(t => new Tag() { Name = t.AdditionalData["name"].ToString(), Count = t.AdditionalData["count"] }).ToObservableCollection<ITag>();
+        MetaTags = subject.MetaTags.ToObservableCollection();
 
         Init();
     }
@@ -89,10 +104,10 @@ public partial class SubjectViewModel : ViewModelBase
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial Type? SourceType { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
     [Reactive] public partial int? Eps { get; set; }
+    [Reactive] public partial int? TotalEps { get; set; }
     [Reactive] public partial int? Volumes { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Summary { get; set; }
@@ -105,9 +120,15 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial int? RatingTotal { get; set; }
     [Reactive] public partial IRatingCount? RatingCount { get; set; }
     [Reactive] public partial SubjectType? Type { get; set; }
-    [Reactive] public partial ObservableCollection<Collections>? Tags { get; set; }
+    [Reactive] public partial ObservableCollection<ITag>? Tags { get; set; }
+    [Reactive] public partial ObservableCollection<string>? MetaTags { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
+    [Reactive] public partial bool? IsSeries { get; set; }
+    [Reactive] public partial bool? IsNsfw { get; set; }
+    [Reactive] public partial bool? IsLocked { get; set; }
+    [Reactive] public partial string? Platform { get; set; }
+    [Reactive] public partial ObservableCollection<(string? Key, string? Value)>? Infobox { get; set; }
 
     [Reactive] public partial string? Url { get; set; }
 
@@ -115,9 +136,12 @@ public partial class SubjectViewModel : ViewModelBase
     public ICommand? SearchGoogleCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
 
-    public Task<Bitmap?> ImageCommon => ApiC.GetImageAsync(Images?.Common);
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
-    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
+    public Task<Bitmap?> ImageCommon => ApiC.GetImageAsync(Images?.Common, !IsLegacy);
+    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small, !IsLegacy);
+    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
+    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large, !IsLegacy);
+
+    public string DetailWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
+    public bool IsLegacy => Source is Legacy_SubjectSmall;
 }
