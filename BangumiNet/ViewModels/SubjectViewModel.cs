@@ -14,7 +14,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -101,7 +100,7 @@ public partial class SubjectViewModel : ViewModelBase
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
 
-        this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e=>this.RaisePropertyChanged(nameof(ParentWindowTitle)));
+        this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e => this.RaisePropertyChanged(nameof(ParentWindowTitle)));
 
         if (Rank == 0) Rank = null;
     }

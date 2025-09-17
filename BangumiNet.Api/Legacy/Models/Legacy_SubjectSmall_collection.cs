@@ -12,7 +12,7 @@ namespace BangumiNet.Api.Legacy.Models
     /// 收藏人数
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Legacy_SubjectSmall_collection : IAdditionalDataHolder, IParsable, ICollection
+    public partial class Legacy_SubjectSmall_collection : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

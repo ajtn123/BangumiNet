@@ -12,7 +12,7 @@ namespace BangumiNet.Api.Legacy.Models
     /// 封面
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Legacy_SubjectSmall_images : IAdditionalDataHolder, IParsable, IImages
+    public partial class Legacy_SubjectSmall_images : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
