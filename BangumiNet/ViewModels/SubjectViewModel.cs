@@ -45,6 +45,7 @@ public partial class SubjectViewModel : ViewModelBase
     }
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
+        IsLegacy = true;
         Source = subject;
         Eps = subject.Eps;
         Rank = subject.Rank;
@@ -106,6 +107,7 @@ public partial class SubjectViewModel : ViewModelBase
     }
 
     [Reactive] public partial object? Source { get; set; }
+    [Reactive] public bool IsLegacy { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
     [Reactive] public partial int? Eps { get; set; }
@@ -131,7 +133,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial bool? IsLocked { get; set; }
     [Reactive] public partial string? Platform { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItem>? Infobox { get; set; }
-
     [Reactive] public partial string? Url { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
@@ -139,11 +140,10 @@ public partial class SubjectViewModel : ViewModelBase
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-    public Task<Bitmap?> ImageCommon => ApiC.GetImageAsync(Images?.Common, !IsLegacy);
-    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small, !IsLegacy);
-    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large, !IsLegacy);
+    public Task<Bitmap?> ImageCommon => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Common, !IsLegacy);
+    public Task<Bitmap?> ImageSmall => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Small, !IsLegacy);
+    public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
+    public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
     public string ParentWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
-    public bool IsLegacy => Source is Legacy_SubjectSmall;
 }
