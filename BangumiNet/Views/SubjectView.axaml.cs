@@ -18,7 +18,9 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
             var fullSubject = await ApiC.V0.Subjects[id].GetAsync();
             if (fullSubject == null) return;
             dataContextChanges += 1;
-            DataContext = new SubjectViewModel(fullSubject);
+            var vm = new SubjectViewModel(fullSubject);
+            _ = vm.LoadEpisodes();
+            DataContext = vm;
         };
     }
 

@@ -31,6 +31,7 @@
                         <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
 						<TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
                     </StackPanel>
+					<v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
 					<TextBlock Text="{Binding Summary}" TextWrapping="Wrap"/>
 					<v:TagListView DataContext="{Binding TagListViewModel}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">

@@ -112,6 +112,17 @@ public partial class SubjectViewModel : ViewModelBase
         if (Rank == 0) Rank = null;
     }
 
+    public async Task LoadEpisodes()
+    {
+        EpisodeListViewModel = new(await ApiC.V0.Episodes.GetAsync(config =>
+        {
+            config.QueryParameters.Limit = 100;
+            config.QueryParameters.Offset = 0;
+            config.QueryParameters.Type = null;
+            config.QueryParameters.SubjectId = Id;
+        }));
+    }
+
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public bool IsLegacy { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
@@ -140,6 +151,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial string? Platform { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItem>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
+    [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchGoogleCommand { get; private set; }

@@ -14,7 +14,7 @@ public enum EpisodeType
     /// <summary>PV/预告 CM/宣传 AD/广告</summary>
     Advertisement = 4,
     /// <summary>MAD</summary>
-    Mad =5,
+    Mad = 5,
     /// <summary>其他</summary>
-    Other =6,
+    Other = 6,
 }
