@@ -1,4 +1,4 @@
-﻿namespace BangumiNet.Api.V0.ExtraEnums;
+﻿namespace BangumiNet.Api.ExtraEnums;
 
 /// <summary>
 /// 收藏状态

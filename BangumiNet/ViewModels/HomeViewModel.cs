@@ -1,5 +1,5 @@
 ﻿using Avalonia.Media;
-using BangumiNet.Api.V0.ExtraEnums;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
 using BangumiNet.Utils;

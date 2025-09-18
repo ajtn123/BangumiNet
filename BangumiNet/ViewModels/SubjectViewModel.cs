@@ -1,7 +1,7 @@
 ﻿using Avalonia.Media.Imaging;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.Legacy.Models;
-using BangumiNet.Api.V0.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using BangumiNet.Models;

@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             ClipToBounds="False"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:EpisodeListViewModel"
+             x:Class="BangumiNet.EpisodeListView">
+	<ItemsControl ItemsSource="{Binding EpisodeViewModels}">
+		<ItemsControl.DataTemplates>
+			<DataTemplate DataType="vm:EpisodeViewModel">
+				<v:EpisodeBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
+			</DataTemplate>
+		</ItemsControl.DataTemplates>
+		<ItemsControl.ItemsPanel>
+			<ItemsPanelTemplate>
+				<WrapPanel Orientation="Horizontal"/>
+			</ItemsPanelTemplate>
+		</ItemsControl.ItemsPanel>
+	</ItemsControl>
+</UserControl>

@@ -1,4 +1,4 @@
-﻿namespace BangumiNet.Api.V0.ExtraEnums;
+﻿namespace BangumiNet.Api.ExtraEnums;
 
 /// <summary>
 /// 条目类型，没有 <c>5</c>

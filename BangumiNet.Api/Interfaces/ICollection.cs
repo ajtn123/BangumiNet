@@ -1,4 +1,4 @@
-﻿using BangumiNet.Api.V0.ExtraEnums;
+﻿using BangumiNet.Api.ExtraEnums;
 
 namespace BangumiNet.Api.Interfaces;
 
