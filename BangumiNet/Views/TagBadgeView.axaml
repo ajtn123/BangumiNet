@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="20"
-			 ClipToBounds="False"
+             ClipToBounds="False"
              x:DataType="vm:TagViewModel"
              x:Class="BangumiNet.Views.TagBadgeView">
     <UserControl.Styles>
         <Style Selector="Border.Card">
-			<Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
-		</Style>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
+        </Style>
         <Style Selector="Border.Card[Tag=True]">
             <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
             <Style Selector="^ TextBlock">

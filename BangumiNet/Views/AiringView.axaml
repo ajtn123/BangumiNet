@@ -4,32 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-			 xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:AiringViewModel"
              x:Class="BangumiNet.Views.AiringView">
-	<UserControl.DataContext>
-		<vm:AiringViewModel/>
-	</UserControl.DataContext>
+    <UserControl.DataContext>
+        <vm:AiringViewModel/>
+    </UserControl.DataContext>
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
             <Border Classes="Card" Padding="5">
                 <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4"/> 每日放送</TextBlock>
             </Border>
-			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <ItemsControl ItemsSource="{Binding Calendars}">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
                             <v:CalendarView DataContext="{Binding .}" Width="230"/>
                         </DataTemplate>
                     </ItemsControl.DataTemplates>
-				    <ItemsControl.ItemsPanel>
-					    <ItemsPanelTemplate>
-						    <StackPanel Orientation="Horizontal" Spacing="5"/>
-					    </ItemsPanelTemplate>
-				    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="5"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
                 </ItemsControl>
-			</ScrollViewer>
+            </ScrollViewer>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

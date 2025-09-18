@@ -7,9 +7,9 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              ClipToBounds="False"
              mc:Ignorable="d" d:DesignWidth="22" d:DesignHeight="22"
-			 x:DataType="vm:EpisodeViewModel"
+             x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeBadgeView">
-	<Border Classes="Card" Background="#3F7FFF7F" MinWidth="22" CornerRadius="5">
-		<TextBlock Text="{Binding Sort}" HorizontalAlignment="Center"/>
-	</Border>
+    <Border Classes="Card" Background="#3F7FFF7F" MinWidth="22" CornerRadius="5">
+        <TextBlock Text="{Binding Sort}" HorizontalAlignment="Center"/>
+    </Border>
 </UserControl>

@@ -7,16 +7,16 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCollectionView">
-	<ItemsControl ItemsSource="{Binding Collections}">
-		<ItemsControl.DataTemplates>
-			<DataTemplate DataType="vm:SubjectViewModel">
-				<v:SubjectCardView DataContext="{Binding .}"/>
-			</DataTemplate>
-		</ItemsControl.DataTemplates>
-		<ItemsControl.ItemsPanel>
-			<ItemsPanelTemplate>
-				<StackPanel Spacing="5"/>
-			</ItemsPanelTemplate>
-		</ItemsControl.ItemsPanel>
-	</ItemsControl>
+    <ItemsControl ItemsSource="{Binding Collections}">
+        <ItemsControl.DataTemplates>
+            <DataTemplate DataType="vm:SubjectViewModel">
+                <v:SubjectCardView DataContext="{Binding .}"/>
+            </DataTemplate>
+        </ItemsControl.DataTemplates>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Spacing="5"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
 </UserControl>

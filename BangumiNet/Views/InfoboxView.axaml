@@ -2,27 +2,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:col="using:System.Collections.ObjectModel"
-			 xmlns:m="using:BangumiNet.Models"
+             xmlns:col="using:System.Collections.ObjectModel"
+             xmlns:m="using:BangumiNet.Models"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="800"
-			 x:DataType="col:ObservableCollection`1"
+             x:DataType="col:ObservableCollection`1"
              x:Class="BangumiNet.Views.InfoboxView"
-			 ClipToBounds="False">
-	<Border Classes="Card">
-		<ItemsControl ItemsSource="{Binding .}" Margin="5,0">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate DataType="m:InfoboxItem">
-					<TextBlock TextWrapping="Wrap">
-						<Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
-						<Run Text="{Binding Value}"/>
-					</TextBlock>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Spacing="5"/>
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
-	</Border>
+             ClipToBounds="False">
+    <Border Classes="Card">
+        <ItemsControl ItemsSource="{Binding .}" Margin="5,0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="m:InfoboxItem">
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
+                        <Run Text="{Binding Value}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Spacing="5"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Border>
 </UserControl>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-			 xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              ClipToBounds="False"
              x:DataType="vm:CalendarViewModel"
@@ -14,7 +14,7 @@
         <Border Classes="Card">
             <Grid ColumnDefinitions="*,*" Margin="5,0">
                 <TextBlock Text="{Binding Weekday.Cn}"/>
-				<TextBlock IsVisible="{Binding IsToday}" Grid.Column="1" HorizontalAlignment="Right"><ic:FluentIcon Icon="Pin"/> 今天</TextBlock>
+                <TextBlock IsVisible="{Binding IsToday}" Grid.Column="1" HorizontalAlignment="Right"><ic:FluentIcon Icon="Pin"/> 今天</TextBlock>
             </Grid>
         </Border>
         <ItemsControl ItemsSource="{Binding Subjects}">

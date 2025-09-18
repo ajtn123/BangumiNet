@@ -7,18 +7,18 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              ClipToBounds="False"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 x:DataType="vm:EpisodeListViewModel"
+             x:DataType="vm:EpisodeListViewModel"
              x:Class="BangumiNet.Views.EpisodeListView">
-	<ItemsControl ItemsSource="{Binding EpisodeViewModels}" ClipToBounds="False">
-		<ItemsControl.DataTemplates>
-			<DataTemplate DataType="vm:EpisodeViewModel">
-				<v:EpisodeBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
-			</DataTemplate>
-		</ItemsControl.DataTemplates>
-		<ItemsControl.ItemsPanel>
-			<ItemsPanelTemplate>
-				<WrapPanel Orientation="Horizontal"/>
-			</ItemsPanelTemplate>
-		</ItemsControl.ItemsPanel>
-	</ItemsControl>
+    <ItemsControl ItemsSource="{Binding EpisodeViewModels}" ClipToBounds="False">
+        <ItemsControl.DataTemplates>
+            <DataTemplate DataType="vm:EpisodeViewModel">
+                <v:EpisodeBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
+            </DataTemplate>
+        </ItemsControl.DataTemplates>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
 </UserControl>

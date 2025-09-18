@@ -2,22 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:v="using:BangumiNet.Views"
-			 xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 ClipToBounds="False"
-			 x:DataType="vm:TagListViewModel"
+             ClipToBounds="False"
+             x:DataType="vm:TagListViewModel"
              x:Class="BangumiNet.Views.TagListView">
-	<ItemsControl ItemsSource="{Binding TagViewModels}" ClipToBounds="False">
-		<ItemsControl.DataTemplates>
-			<DataTemplate DataType="vm:TagViewModel">
-				<v:TagBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
-			</DataTemplate>
-		</ItemsControl.DataTemplates>
-		<ItemsControl.ItemsPanel>
-			<ItemsPanelTemplate>
-				<WrapPanel Orientation="Horizontal" />
-			</ItemsPanelTemplate>
-		</ItemsControl.ItemsPanel>
-	</ItemsControl>
+    <ItemsControl ItemsSource="{Binding TagViewModels}" ClipToBounds="False">
+        <ItemsControl.DataTemplates>
+            <DataTemplate DataType="vm:TagViewModel">
+                <v:TagBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
+            </DataTemplate>
+        </ItemsControl.DataTemplates>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
 </UserControl>
