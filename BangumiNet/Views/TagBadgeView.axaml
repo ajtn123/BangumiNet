@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="20"
+			 ClipToBounds="False"
+             x:DataType="vm:TagViewModel"
+             x:Class="BangumiNet.Views.TagBadgeView">
+    <UserControl.Styles>
+        <Style Selector="Border.Card">
+			<Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
+		</Style>
+        <Style Selector="Border.Card[Tag=True]">
+            <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
+            <Style Selector="^ TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
+            </Style>
+        </Style>
+    </UserControl.Styles>
+    <Border Classes="Card" Tag="{Binding IsMeta}">
+        <TextBlock Margin="5,0">
+            <Run Text="{Binding Name}"/>
+            <Run Text="{Binding Count}"/>
+        </TextBlock>
+    </Border>
+</UserControl>

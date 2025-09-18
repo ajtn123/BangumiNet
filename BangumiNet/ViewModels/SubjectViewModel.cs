@@ -102,6 +102,12 @@ public partial class SubjectViewModel : ViewModelBase
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
 
         this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e => this.RaisePropertyChanged(nameof(ParentWindowTitle)));
+        this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
+        {
+            this.RaisePropertyChanged(nameof(TagListViewModel));
+            Tags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
+            MetaTags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
+        });
 
         if (Rank == 0) Rank = null;
     }
@@ -146,4 +152,5 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
     public string ParentWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
+    public TagListViewModel? TagListViewModel => new(Tags, MetaTags);
 }
