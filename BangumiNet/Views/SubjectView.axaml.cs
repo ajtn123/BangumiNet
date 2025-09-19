@@ -19,7 +19,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
             if (fullSubject == null) return;
             dataContextChanges += 1;
             var vm = new SubjectViewModel(fullSubject);
-            _ = vm.LoadEpisodes();
+            _ = vm.EpisodeListViewModel?.LoadEpisodes();
             DataContext = vm;
         };
     }

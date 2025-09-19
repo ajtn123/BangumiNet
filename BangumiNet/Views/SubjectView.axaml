@@ -32,7 +32,7 @@
                         <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
                     </StackPanel>
                     <v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
-                    <TextBlock Text="{Binding Summary}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <v:TagListView DataContext="{Binding TagListViewModel}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

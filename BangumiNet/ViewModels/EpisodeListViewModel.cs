@@ -1,33 +1,52 @@
 ﻿using BangumiNet.Api.V0.Models;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BangumiNet.ViewModels;
 
 public partial class EpisodeListViewModel : ViewModelBase
 {
-    public EpisodeListViewModel(Paged_Episode? episodes)
+    public EpisodeListViewModel(int? subjectId)
     {
+        SubjectId = subjectId;
         EpisodeViewModels = [];
-        PageItems = [];
-
-        AddEpisodes(episodes);
+        Sources = [];
     }
 
-    public void AddEpisodes(Paged_Episode? episodes)
+    private int lastOffset = 0;
+    /// <param name="offset">分页 offset</param>
+    /// <param name="limit">每页集数</param>
+    /// <returns>是否已取得全部集数</returns>
+    public async Task<bool?> LoadEpisodes(int? offset = null, int limit = 100)
     {
-        if (episodes?.Data != null)
-            for (int i = 0; i < episodes.Data.Count; i++)
-            {
-                if (episodes.Offset is int offset)
-                    if (PageItems.Contains(offset + 1)) continue;
-                    else PageItems.Add(offset + i);
+        offset ??= lastOffset;
+        if (offset >= EpTotal) return true;
+        lastOffset += limit;
 
-                EpisodeViewModels.Add(new(episodes.Data[i]));
-            }
+        var epPage = await ApiC.V0.Episodes.GetAsync(config =>
+        {
+            config.QueryParameters.Limit = limit;
+            config.QueryParameters.Offset = 0;
+            config.QueryParameters.Type = null;
+            config.QueryParameters.SubjectId = SubjectId;
+        });
+
+        if (epPage == null) return null;
+        Sources.Add(epPage);
+        EpTotal = epPage.Total;
+
+        if (epPage.Data is { } episodes)
+            for (int i = 0; i < episodes.Count; i++)
+                if (!EpisodeViewModels.Any(x => x.Id == episodes[i].Id))
+                    EpisodeViewModels.Add(new(episodes[i]));
+
+        return EpisodeViewModels.Count >= EpTotal;
     }
 
+    [Reactive] public partial ObservableCollection<Paged_Episode> Sources { get; set; }
     [Reactive] public partial ObservableCollection<EpisodeViewModel> EpisodeViewModels { get; set; }
-
-    public ObservableCollection<int> PageItems { get; }
+    [Reactive] public partial int? SubjectId { get; set; }
+    [Reactive] public partial int? EpTotal { get; set; }
 }

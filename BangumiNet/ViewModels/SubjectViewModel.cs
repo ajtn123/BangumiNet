@@ -97,6 +97,8 @@ public partial class SubjectViewModel : ViewModelBase
 
     public void Init()
     {
+        EpisodeListViewModel = new(Id);
+
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
@@ -110,17 +112,6 @@ public partial class SubjectViewModel : ViewModelBase
         });
 
         if (Rank == 0) Rank = null;
-    }
-
-    public async Task LoadEpisodes()
-    {
-        EpisodeListViewModel = new(await ApiC.V0.Episodes.GetAsync(config =>
-        {
-            config.QueryParameters.Limit = 100;
-            config.QueryParameters.Offset = 0;
-            config.QueryParameters.Type = null;
-            config.QueryParameters.SubjectId = Id;
-        }));
     }
 
     [Reactive] public partial object? Source { get; set; }
