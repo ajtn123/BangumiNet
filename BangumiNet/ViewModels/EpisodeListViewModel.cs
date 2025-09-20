@@ -39,7 +39,7 @@ public partial class EpisodeListViewModel : ViewModelBase
         EpTotal = epPage.Total;
 
         if (epPage.Data is { } episodes)
-            EpisodeViewModels= EpisodeViewModels.UnionBy(episodes.Select(p => new EpisodeViewModel(p)), e => e.Id).ToArray().LinkNeighbors().ToObservableCollection()!;
+            EpisodeViewModels = EpisodeViewModels.UnionBy(episodes.Select(p => new EpisodeViewModel(p)), e => e.Id).ToArray().LinkNeighbors().ToObservableCollection()!;
 
         return EpisodeViewModels.Count >= EpTotal;
     }

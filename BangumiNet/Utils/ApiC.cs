@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BangumiNet;
+namespace BangumiNet.Utils;
 
 public class ApiC
 {
