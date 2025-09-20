@@ -9,7 +9,7 @@
         xmlns:vm="using:BangumiNet.ViewModels"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:shared="using:BangumiNet.Shared"
-		xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
         Title="{x:Static shared:Constants.ApplicationName}">
 
     <Design.DataContext>
@@ -25,10 +25,13 @@
         <TabItem Header="每日放送">
             <v:AiringView/>
         </TabItem>
-		<TabItem>
-			<TabItem.Header>
-				<Button x:Name="NavigatorButton" Content="{ice:FluentIcon Icon=CompassNorthwest}" Classes="Icon" Height="30" Width="30"/>
-			</TabItem.Header>
-		</TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+					<TextBlock>搜索</TextBlock>
+                    <Button x:Name="NavigatorButton" Content="{ice:FluentIcon Icon=CompassNorthwest}" Classes="Icon" Height="30" Width="30"/>
+                </StackPanel>
+            </TabItem.Header>
+        </TabItem>
     </TabControl>
 </Window>

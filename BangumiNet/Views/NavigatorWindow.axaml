@@ -13,6 +13,7 @@
         x:DataType="vm:NavigatorViewModel"
         x:Class="BangumiNet.Views.NavigatorWindow"
         SizeToContent="WidthAndHeight"
+		Topmost="True"
 		ExtendClientAreaToDecorationsHint="True"
 		ExtendClientAreaChromeHints="NoChrome"
 		WindowStartupLocation="CenterOwner"

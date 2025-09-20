@@ -16,7 +16,7 @@
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*">
                 <StackPanel Spacing="5">
-                    <Border CornerRadius="5" ClipToBounds="True">
+                    <Border CornerRadius="10" ClipToBounds="True">
                         <Image Source="{Binding ImageLarge^}"/>
                     </Border>
                     <v:InfoboxView DataContext="{Binding Infobox}" />

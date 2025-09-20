@@ -16,7 +16,8 @@
             <Border Classes="Card" Padding="5">
                 <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4"/> 每日放送</TextBlock>
             </Border>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
+						  MaxWidth="1640" HorizontalAlignment="Center">
                 <ItemsControl ItemsSource="{Binding Calendars}">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
