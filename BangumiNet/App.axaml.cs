@@ -22,9 +22,10 @@ public partial class App : Application
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
         }
 
-        AddConverter(NameCnConverter.Instance);
+        AddConverter(NameCnCvt.Instance);
         AddConverter(NullCvt.Instance);
         AddConverter(InNullCvt.Instance);
+        AddConverter(EpBrushCvt.Instance);
 
         CacheProvider.CalculateCacheSize();
 

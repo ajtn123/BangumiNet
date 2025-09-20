@@ -23,7 +23,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="5,0,0,0">
-                    <TextBlock Text="{Binding .,Converter={StaticResource NameCnConverter}}"
+                    <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
@@ -32,7 +32,8 @@
                         <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
                     </StackPanel>
                     <v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
-                    <TextBlock Text="{Binding Summary}" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
+							   TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <v:TagListView DataContext="{Binding TagListViewModel}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

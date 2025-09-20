@@ -6,14 +6,14 @@ using System.Reflection;
 
 namespace BangumiNet.Converters;
 
-public class NameCnConverter : IValueConverter
+public class NameCnCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => Convert(value);
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
-    public static NameCnConverter Instance { get; } = new();
+    public static NameCnCvt Instance { get; } = new();
     public static string? Convert(object? obj)
     {
         if (obj is not { } subject) return "Null";

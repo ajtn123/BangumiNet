@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.V0.Models;
+using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -38,9 +39,7 @@ public partial class EpisodeListViewModel : ViewModelBase
         EpTotal = epPage.Total;
 
         if (epPage.Data is { } episodes)
-            for (int i = 0; i < episodes.Count; i++)
-                if (!EpisodeViewModels.Any(x => x.Id == episodes[i].Id))
-                    EpisodeViewModels.Add(new(episodes[i]));
+            EpisodeViewModels= EpisodeViewModels.UnionBy(episodes.Select(p => new EpisodeViewModel(p)), e => e.Id).ToArray().LinkNeighbors().ToObservableCollection()!;
 
         return EpisodeViewModels.Count >= EpTotal;
     }

@@ -31,7 +31,7 @@ public partial class SubjectViewModel : ViewModelBase
         Rank = subject.Rank;
         Eps = subject.Eps;
         Volumes = subject.Volumes;
-        ShortSummary = subject.ShortSummary;
+        Summary = subject.ShortSummary;
         Name = subject.Name;
         NameCn = subject.NameCn;
         Date = Common.ParseDate(subject.Date);
@@ -112,6 +112,7 @@ public partial class SubjectViewModel : ViewModelBase
         });
 
         if (Rank == 0) Rank = null;
+        if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -123,7 +124,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial int? Volumes { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Summary { get; set; }
-    [Reactive] public partial string? ShortSummary { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial DateOnly? Date { get; set; }
@@ -154,6 +154,6 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
-    public string ParentWindowTitle => $"{NameCnConverter.Convert(this)} - {Constants.ApplicationName}";
+    public string ParentWindowTitle => $"{NameCnCvt.Convert(this)} - {Constants.ApplicationName}";
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags);
 }

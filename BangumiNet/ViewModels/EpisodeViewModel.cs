@@ -1,12 +1,13 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Shared.Interfaces;
 using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
 using System;
 
 namespace BangumiNet.ViewModels;
 
-public partial class EpisodeViewModel : ViewModelBase
+public partial class EpisodeViewModel : ViewModelBase, INeighboring
 {
     public EpisodeViewModel(Episode episode)
     {
@@ -38,4 +39,7 @@ public partial class EpisodeViewModel : ViewModelBase
     [Reactive] public partial string? Desc { get; set; }
     [Reactive] public partial int? Disc { get; set; }
     [Reactive] public partial int? DurationSecond { get; set; }
+
+    [Reactive] public partial INeighboring? Prev { get; set; }
+    [Reactive] public partial INeighboring? Next { get; set; }
 }
