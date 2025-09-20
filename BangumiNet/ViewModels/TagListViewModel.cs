@@ -1,9 +1,6 @@
 ﻿using BangumiNet.Api.Interfaces;
-using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace BangumiNet.ViewModels;
 

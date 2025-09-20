@@ -1,6 +1,5 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
-using BangumiNet.Utils;
 
 namespace BangumiNet.Models;
 

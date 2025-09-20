@@ -4,7 +4,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
 using BangumiNet.Converters;
-using BangumiNet.Shared;
 using BangumiNet.ViewModels;
 using BangumiNet.Views;
 using System.Net;
@@ -18,9 +17,7 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
-        }
 
         AddConverter(NameCnCvt.Instance);
         AddConverter(NullCvt.Instance);

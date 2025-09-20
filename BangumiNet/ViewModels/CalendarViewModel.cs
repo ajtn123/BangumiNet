@@ -1,10 +1,7 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.Legacy.Calendar;
-using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace BangumiNet.ViewModels;
 

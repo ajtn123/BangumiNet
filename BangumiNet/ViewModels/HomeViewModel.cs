@@ -2,11 +2,7 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BangumiNet.ViewModels;

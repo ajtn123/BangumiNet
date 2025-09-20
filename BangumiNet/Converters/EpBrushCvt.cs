@@ -1,8 +1,6 @@
 ﻿using Avalonia.Data.Converters;
 using Avalonia.Media;
 using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Shared;
-using System;
 using System.Globalization;
 
 namespace BangumiNet.Converters;

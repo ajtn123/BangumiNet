@@ -1,9 +1,7 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Shared.Interfaces;
-using BangumiNet.Utils;
 using ReactiveUI.SourceGenerators;
-using System;
 
 namespace BangumiNet.ViewModels;
 

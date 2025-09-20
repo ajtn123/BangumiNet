@@ -1,6 +1,4 @@
 ﻿using Avalonia.Data.Converters;
-using BangumiNet.Shared;
-using System;
 using System.Globalization;
 using System.Reflection;
 

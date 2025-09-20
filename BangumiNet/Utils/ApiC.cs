@@ -1,7 +1,5 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
-using BangumiNet.Shared;
-using System;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
