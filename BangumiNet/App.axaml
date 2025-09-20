@@ -50,5 +50,19 @@
 			<Setter Property="Text" Value="&#xe70d;"/>
 			<Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
 		</Style>
+		<Style Selector="Button.Cancel">
+			<Setter Property="Background" Value="#1FFF0000"/>
+			<Setter Property="BorderBrush" Value="#BFFF7F7F"/>
+		</Style>
+		<Style Selector="Button.Cancel:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#BFFF7F7F"/>
+		</Style>
+		<Style Selector="Button.Confirm">
+			<Setter Property="Background" Value="#1F00FF00"/>
+			<Setter Property="BorderBrush" Value="#BF7FFF7F"/>
+		</Style>
+		<Style Selector="Button.Confirm:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#BF7FFF7F"/>
+		</Style>
     </Application.Styles>
 </Application>

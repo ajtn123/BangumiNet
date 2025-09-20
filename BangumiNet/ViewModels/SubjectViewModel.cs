@@ -90,7 +90,7 @@ public partial class SubjectViewModel : ViewModelBase
 
         Init();
     }
-
+    public SubjectViewModel(int subjectId) => Id = subjectId;
     public void Init()
     {
         EpisodeListViewModel = new(Id);

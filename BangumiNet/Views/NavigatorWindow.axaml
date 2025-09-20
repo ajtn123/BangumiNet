@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:v="using:BangumiNet.Views"
+        xmlns:vm="using:BangumiNet.ViewModels"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        xmlns:ic="using:FluentIcons.Avalonia"
+        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+        xmlns:utils="using:BangumiNet.Utils"
+        utils:DraggableHelper.IsDraggable="True"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:DataType="vm:NavigatorViewModel"
+        x:Class="BangumiNet.Views.NavigatorWindow"
+        SizeToContent="WidthAndHeight"
+		ExtendClientAreaToDecorationsHint="True"
+		ExtendClientAreaChromeHints="NoChrome"
+		WindowStartupLocation="CenterOwner"
+        Title="导航 - BangumiNet">
+    <StackPanel Margin="5" Spacing="5">
+        <TextBox Text="{Binding Input}"/>
+        <Button Command="{Binding ToSubject}" IsVisible="{Binding CanToSubject}" Content="{Binding Input,StringFormat='转到项目 {0} >'}"/>
+    </StackPanel>
+</Window>
