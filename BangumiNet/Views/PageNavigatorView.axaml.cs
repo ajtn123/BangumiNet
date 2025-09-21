@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace BangumiNet.Views;
 
-public partial class SubjectCollectionView : UserControl
+public partial class PageNavigatorView : UserControl
 {
-    public SubjectCollectionView()
+    public PageNavigatorView()
     {
         InitializeComponent();
     }

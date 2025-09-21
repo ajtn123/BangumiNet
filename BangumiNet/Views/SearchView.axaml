@@ -1,0 +1,199 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:utils="using:BangumiNet.Utils"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
+             x:DataType="vm:SearchViewModel"
+             x:Class="BangumiNet.Views.SearchView">
+    <ScrollViewer>
+        <StackPanel Margin="5" Spacing="5">
+			<Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+				<ComboBox x:Name="SearchTypeBox" SelectedItem="{Binding SearchType}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Converter={StaticResource SearchTypeCvt}}" />
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<TextBox Text="{Binding Keyword}" x:Name="Input" Grid.Column="1">
+					<TextBox.InnerRightContent>
+						<Button Content="{ice:FluentIcon Icon=Search}" Command="{Binding SearchCommand}" Classes="Icon" Margin="2" HotKey="Enter"/>
+					</TextBox.InnerRightContent>
+				</TextBox>
+			</Grid>
+            <Grid ColumnDefinitions="*,*,3*,*,*" ColumnSpacing="5">
+                <Grid.Styles>
+                    <Style Selector="StackPanel">
+                        <Setter Property="Spacing" Value="5"/>
+                    </Style>
+                    <Style Selector="Border.Card">
+                        <Setter Property="Padding" Value="5,0"/>
+                    </Style>
+                </Grid.Styles>
+                <Grid.Resources>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">Transparent</SolidColorBrush>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver">Transparent</SolidColorBrush>
+                </Grid.Resources>
+                <StackPanel Grid.Column="0">
+                    <Border Classes="Card" Padding="5,0,0,0">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3"/>排序</TextBlock>
+							<ComboBox Grid.Column="1" HorizontalAlignment="Right" x:Name="SortComboBox"
+                                      Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                      SelectedItem="{Binding Sort}">
+								<ComboBox.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Converter={StaticResource SearchSortCvt}}" />
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+							</ComboBox>
+                        </Grid>
+                    </Border>
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3"/>包含 NSFW</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding Nsfw}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding ErrorMessage,Converter={StaticResource NEWCvt}}">
+                        <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsAirDateValid}">
+                        <TextBlock TextWrapping="Wrap">结束日期必须大于开始日期。</TextBlock>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsRatingValid}">
+                        <TextBlock TextWrapping="Wrap">最高评分必须大于最低评分。</TextBlock>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsRankValid}">
+                        <TextBlock TextWrapping="Wrap">最高排名必须大于最低排名。</TextBlock>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalResults,Converter={StaticResource NullCvt}}">
+                        <TextBlock TextWrapping="Wrap" Text="{Binding TotalResults,StringFormat='共 {0} 条结果'}" ToolTip.Tip="{Binding ResultOffsetMessage}"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Classes="Card">
+                        <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3"/>类型</TextBlock>
+                    </Border>
+                    <ItemsControl ItemsSource="{Binding Type}" Padding="5,0">
+                        <ItemsControl.DataTemplates>
+                            <DataTemplate DataType="vm:SubjectTypeOptionViewModel">
+                                <Grid ColumnDefinitions="Auto,*">
+                                    <TextBlock Text="{Binding DisplayName}"/>
+                                    <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                        <CheckBox IsChecked="{Binding IsSelected}" Padding="0"/>
+                                    </Viewbox>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.DataTemplates>
+                    </ItemsControl>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Spacing="3">
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="Calendar" FontSize="16" Margin="0,0,0,-3"/>放送开始</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding IsAirDateEnabled}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsAirDateEnabled}">
+                        <DatePicker SelectedDate="{Binding AirDateStart}" Padding="0" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0">-</TextBlock>
+                        <DatePicker SelectedDate="{Binding AirDateEnd}" Padding="0" HorizontalAlignment="Stretch" Grid.Column="2"/>
+                    </Grid>
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="Star" FontSize="16" Margin="0,0,0,-3"/>评分</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding IsRatingEnabled}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <ui:RangeSlider RangeStart="{Binding RatingLowerLimit}" RangeEnd="{Binding RatingUpperLimit}"
+                                    Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}"/>
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="NumberSymbol" FontSize="16" Margin="0,0,0,-3"/>排名</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding IsRankEnabled}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsRankEnabled}">
+                        <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
+                                       FormatString="N0" ParsingNumberStyle="Integer"
+                                       Value="{Binding RankLowerLimit}" Minimum="1"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0">-</TextBlock>
+                        <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
+                                       FormatString="N0" ParsingNumberStyle="Integer" Grid.Column="2"
+                                       Value="{Binding RankUpperLimit}" Minimum="1"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Spacing="3">
+                    <TextBox Watermark="标签" Text="{Binding TagInput}" HorizontalAlignment="Stretch" Padding="2,0">
+                        <TextBox.InnerRightContent>
+                            <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddTagCommand}" />
+                        </TextBox.InnerRightContent>
+                    </TextBox>
+                    <ItemsControl ItemsSource="{Binding Tag}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+								<Border Classes="Card" Margin="0,0,3,3" BoxShadow="0 0 0 transparent" BorderBrush="#3f000000">
+									<Grid ColumnDefinitions="Auto,Auto">
+										<TextBlock Text="{Binding}" VerticalAlignment="Center" />
+										<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
+												Command="{Binding ViewModel.DelTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>
+									</Grid>
+								</Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+                <StackPanel Grid.Column="4" Spacing="3">
+					<TextBox Watermark="元标签" Text="{Binding MetaTagInput}" HorizontalAlignment="Stretch" Padding="2,0">
+						<TextBox.InnerRightContent>
+							<Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddMetaTagCommand}" />
+						</TextBox.InnerRightContent>
+					</TextBox>
+					<ItemsControl ItemsSource="{Binding MetaTag}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border Classes="Card" Margin="0,0,3,3" BoxShadow="0 0 0 transparent" BorderBrush="#3f000000">
+									<Grid ColumnDefinitions="Auto,Auto">
+										<TextBlock Text="{Binding}" VerticalAlignment="Center" />
+										<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
+												Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+					</ItemsControl>
+				</StackPanel>
+            </Grid>
+            <StackPanel Spacing="5" IsVisible="{Binding SubjectsPostRequestBody,Converter={StaticResource NullCvt}}">
+                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+                <v:SubjectListView DataContext="{Binding SubjectListViewModel}"/>
+                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

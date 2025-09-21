@@ -1,9 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
-using BangumiNet.Converters;
+using Avalonia.Media;
 using BangumiNet.ViewModels;
 using BangumiNet.Views;
 using System.Net;
@@ -19,10 +18,8 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
 
-        AddConverter(NameCnCvt.Instance);
-        AddConverter(NullCvt.Instance);
-        AddConverter(InNullCvt.Instance);
-        AddConverter(EpBrushCvt.Instance);
+        Resources["ErrorBg"] = Brush.Parse(SettingProvider.CurrentSettings.ErrorBg);
+        Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);
 
         CacheProvider.CalculateCacheSize();
 
@@ -30,7 +27,4 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
-
-    private void AddConverter(IValueConverter res)
-        => Resources[res.GetType().Name] = res;
 }

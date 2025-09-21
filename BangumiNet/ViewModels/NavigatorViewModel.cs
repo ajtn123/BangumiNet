@@ -21,6 +21,6 @@ public partial class NavigatorViewModel : ViewModelBase
     [Reactive] public partial string? Input { get; set; }
 
 
-    [Reactive] public partial bool CanToSubject {  get; set; }
+    [Reactive] public partial bool CanToSubject { get; set; }
     public ICommand ToSubject { get; set; }
 }

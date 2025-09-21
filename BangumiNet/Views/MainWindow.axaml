@@ -9,29 +9,35 @@
         xmlns:vm="using:BangumiNet.ViewModels"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:shared="using:BangumiNet.Shared"
+        xmlns:ic="using:FluentIcons.Avalonia"
         xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
         Title="{x:Static shared:Constants.ApplicationName}">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
     <TabControl>
-        <TabItem Header="主页">
+        <TabItem>
+			<TabItem.Header>
+				<TextBlock><ic:FluentIcon Icon="Home" FontSize="24" Margin="0,0,0,-4"/>主页</TextBlock>
+			</TabItem.Header>
             <v:HomeView/>
         </TabItem>
-        <TabItem Header="每日放送">
+        <TabItem>
+			<TabItem.Header>
+				<TextBlock><ic:FluentIcon Icon="Live" FontSize="24" Margin="0,0,0,-4"/>每日放送</TextBlock>
+			</TabItem.Header>
             <v:AiringView/>
         </TabItem>
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal" Spacing="5">
-					<TextBlock>搜索</TextBlock>
+					<TextBlock><ic:FluentIcon Icon="Search" FontSize="24" Margin="0,0,0,-4"/>搜索</TextBlock>
                     <Button x:Name="NavigatorButton" Content="{ice:FluentIcon Icon=CompassNorthwest}" Classes="Icon" Height="30" Width="30"/>
                 </StackPanel>
             </TabItem.Header>
+			<v:SearchView/>
         </TabItem>
     </TabControl>
 </Window>

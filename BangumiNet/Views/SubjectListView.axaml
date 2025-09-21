@@ -5,9 +5,9 @@
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:SubjectCollectionViewModel"
-             x:Class="BangumiNet.Views.SubjectCollectionView">
-    <ItemsControl ItemsSource="{Binding Collections}">
+             x:DataType="vm:SubjectListViewModel"
+             x:Class="BangumiNet.Views.SubjectListView">
+    <ItemsControl ItemsSource="{Binding SubjectViewModels}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="vm:SubjectViewModel">
                 <v:SubjectCardView DataContext="{Binding .}"/>

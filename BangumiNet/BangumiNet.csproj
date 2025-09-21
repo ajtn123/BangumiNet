@@ -35,11 +35,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.0.4" />
+    <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\SubjectListView.axaml.cs">
+      <DependentUpon>SubjectListView.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

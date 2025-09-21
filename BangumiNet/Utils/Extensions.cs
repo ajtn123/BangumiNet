@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Shared.Interfaces;
+using BangumiNet.ViewModels;
 using System.Collections.ObjectModel;
 
 namespace BangumiNet.Utils;
@@ -34,4 +35,22 @@ public static class Extensions
 
         return list;
     }
+
+    public static string ToSymbol(this SearchFilterRelation relation)
+        => relation switch
+        {
+            SearchFilterRelation.GreaterThan => ">",
+            SearchFilterRelation.GreaterThanOrEqualTo => ">=",
+            SearchFilterRelation.LessThan => "<",
+            SearchFilterRelation.LessThanOrEqualTo => "<=",
+            SearchFilterRelation.EqualTo => "=",
+            _ => throw new NotImplementedException(),
+        };
+
+    /// <summary>
+    /// 将 <see cref="DateOnly"/> 转换为Bangumi 的日期 string.
+    /// </summary>
+    /// <returns><c>yyyy-MM-dd</c></returns>
+    public static string ToBangumiString(this DateTimeOffset date)
+        => date.ToString("yyyy-MM-dd");
 }

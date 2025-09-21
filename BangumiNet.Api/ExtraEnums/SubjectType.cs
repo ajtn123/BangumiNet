@@ -26,3 +26,17 @@ public enum SubjectType
     /// </summary>
     RealLife = 6,
 }
+
+public static partial class EnumExtensions
+{
+    public static string ToStringSC(this SubjectType type)
+        => type switch
+        {
+            SubjectType.Book => "书籍",
+            SubjectType.Anime => "动画",
+            SubjectType.Music => "音乐",
+            SubjectType.Game => "游戏",
+            SubjectType.RealLife => "三次元",
+            _ => throw new NotImplementedException(),
+        };
+}

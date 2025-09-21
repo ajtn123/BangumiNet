@@ -6,6 +6,7 @@
 			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:utils="using:BangumiNet.Utils"
+			 xmlns:cvt="using:BangumiNet.Converters"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
@@ -15,7 +16,7 @@
     <Application.Styles>
 		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
 		<Style Selector="Border.Card">
-            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderBrush" Value="#7f000000"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
 			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
@@ -65,4 +66,18 @@
 			<Setter Property="Background" Value="#BF7FFF7F"/>
 		</Style>
     </Application.Styles>
+
+	<Application.Resources>
+		<cvt:NEWCvt x:Key="NEWCvt"/>
+		<cvt:EpBrushCvt x:Key="EpBrushCvt"/>
+		<cvt:InNullCvt x:Key="InNullCvt"/>
+		<cvt:NullCvt x:Key="NullCvt"/>
+		<cvt:NameCnCvt x:Key="NameCnCvt"/>
+		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
+		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
+		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
+		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
+		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
+		<Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
+	</Application.Resources>
 </Application>

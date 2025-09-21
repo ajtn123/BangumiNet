@@ -12,7 +12,6 @@ public class EpBrushCvt : IValueConverter
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
-    public static EpBrushCvt Instance { get; } = new();
     public static IBrush? Convert(object? obj)
         => (obj as EpisodeType?) switch
         {
@@ -23,7 +22,7 @@ public class EpBrushCvt : IValueConverter
             EpisodeType.Advertisement => Brush.Parse(SettingProvider.CurrentSettings.EpCmBg),
             EpisodeType.Mad => Brush.Parse(SettingProvider.CurrentSettings.EpMadBg),
             EpisodeType.Other => Brush.Parse(SettingProvider.CurrentSettings.EpOtherBg),
-            null => Brush.Parse(SettingProvider.CurrentSettings.EpNullBg),
+            null => Brush.Parse(SettingProvider.CurrentSettings.ErrorBg),
             _ => throw new NotImplementedException(),
         };
 }

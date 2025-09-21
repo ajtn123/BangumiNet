@@ -13,18 +13,19 @@ public partial class HomeViewModel : ViewModelBase
     private async Task Init()
     {
         LoadGreeting();
+        _ = LoadCalendar();
         Me = await ApiC.V0.Me.GetAsMeGetResponseAsync();
-        SubjectCollectionViewModel = new();
+        MyCollectionSubjectListViewModel = new();
     }
 
-    public MeGetResponse? Me { get; set { field = value; LoadGreeting(); _ = LoadAvatar(); _ = LoadCalendar(); _ = LoadMyCollection(); } }
+    public MeGetResponse? Me { get; set { field = value; LoadGreeting(); _ = LoadAvatar(); _ = LoadMyCollection(); } }
 
     [Reactive] public partial string? Greeting { get; set; }
     [Reactive] public partial IImage? Avatar { get; set; }
     [Reactive] public partial IEnumerable<CalendarViewModel>? Calendars { get; set; }
     [Reactive] public partial CalendarViewModel? Today { get; set; }
     [Reactive] public partial Paged_UserCollection? MyCollection { get; set; }
-    [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
+    [Reactive] public partial SubjectListViewModel? MyCollectionSubjectListViewModel { get; set; }
 
     private void LoadGreeting()
     {
@@ -56,7 +57,7 @@ public partial class HomeViewModel : ViewModelBase
         });
 
         if (MyCollection?.Data is not null)
-            SubjectCollectionViewModel?.Collections = MyCollection.Data.Select(c => new SubjectViewModel(c.Subject!)).ToObservableCollection();
+            MyCollectionSubjectListViewModel?.SubjectViewModels = MyCollection.Data.Select(c => new SubjectViewModel(c.Subject!)).ToObservableCollection();
     }
 
     private async Task LoadCalendar()

@@ -8,8 +8,7 @@ public static class Common
     /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly"/>.
     /// </summary>
     /// <param name="date"><c>yyyy-MM-dd</c></param>
-    /// <returns></returns>
-    public static DateOnly? ParseDate(string? date)
+    public static DateOnly? ParseBangumiDate(string? date)
     {
         if (DateOnly.TryParseExact(date, "yyyy-MM-dd", out DateOnly result))
             return result;

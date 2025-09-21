@@ -25,7 +25,7 @@ public class Settings : IApiSettings
     public string EpCmBg { get; set; } = "#7f7f7f7f";
     public string EpMadBg { get; set; } = "#7f7f7f7f";
     public string EpOtherBg { get; set; } = "#7f7f7f7f";
-    public string EpNullBg { get; set; } = "#ffff0000";
 
-    public string ConfirmBg { get; set; } = "";
+    public string ErrorBg { get; set; } = "#7fff7f7f";
+    public string OkBg { get; set; } = "#7f7fff7f";
 }

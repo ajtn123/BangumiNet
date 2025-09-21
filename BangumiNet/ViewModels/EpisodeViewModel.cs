@@ -16,7 +16,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         NameCn = episode.NameCn;
         Sort = episode.Sort;
         Ep = episode.Ep;
-        AirDate = Common.ParseDate(episode.Airdate);
+        AirDate = Common.ParseBangumiDate(episode.Airdate);
         Comment = episode.Comment;
         Duration = episode.Duration;
         Desc = episode.Desc;

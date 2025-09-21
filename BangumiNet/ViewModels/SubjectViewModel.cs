@@ -30,7 +30,7 @@ public partial class SubjectViewModel : ViewModelBase
         Summary = subject.ShortSummary;
         Name = subject.Name;
         NameCn = subject.NameCn;
-        Date = Common.ParseDate(subject.Date);
+        Date = Common.ParseBangumiDate(subject.Date);
         Id = subject.Id;
         Score = subject.Score;
         Type = (SubjectType?)subject.Type;
@@ -45,7 +45,7 @@ public partial class SubjectViewModel : ViewModelBase
         Source = subject;
         Eps = subject.Eps;
         Rank = subject.Rank;
-        Date = Common.ParseDate(subject.AirDate);
+        Date = Common.ParseBangumiDate(subject.AirDate);
         Id = subject.Id;
         Url = subject.Url;
         Type = (SubjectType?)subject.Type;
@@ -72,7 +72,7 @@ public partial class SubjectViewModel : ViewModelBase
         IsSeries = subject.Series;
         IsNsfw = subject.Nsfw;
         IsLocked = subject.Locked;
-        Date = Common.ParseDate(subject.Date);
+        Date = Common.ParseBangumiDate(subject.Date);
         Platform = subject.Platform;
         Images = subject.Images;
         Infobox = subject.Infobox?.Select(p => new InfoboxItem(p)).ToObservableCollection();

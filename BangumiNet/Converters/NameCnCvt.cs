@@ -11,7 +11,6 @@ public class NameCnCvt : IValueConverter
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
-    public static NameCnCvt Instance { get; } = new();
     public static string? Convert(object? obj)
     {
         if (obj is not { } subject) return "Null";
