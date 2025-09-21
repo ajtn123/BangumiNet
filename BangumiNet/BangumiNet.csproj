@@ -26,8 +26,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.3.6" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.6" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.6" />
-    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="11.3.6" Condition="'$(Configuration)' == 'Debug'" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.6" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.0" />
     <PackageReference Include="FluentIcons.Avalonia" Version="1.1.310" />
@@ -41,11 +40,5 @@
   <ItemGroup>
     <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Views\SubjectListView.axaml.cs">
-      <DependentUpon>SubjectListView.axaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 </Project>

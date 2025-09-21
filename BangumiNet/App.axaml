@@ -16,7 +16,7 @@
     <Application.Styles>
 		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
 		<Style Selector="Border.Card">
-            <Setter Property="BorderBrush" Value="#7f000000"/>
+            <Setter Property="BorderBrush" Value="#7f7f7f7f"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
 			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
