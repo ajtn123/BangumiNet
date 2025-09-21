@@ -75,6 +75,7 @@
 		<cvt:NameCnCvt x:Key="NameCnCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
 		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
+		<cvt:DateCvt x:Key="DateCvt"/>
 		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
 		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
 		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>

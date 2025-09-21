@@ -26,14 +26,16 @@ namespace BangumiNet.Api.Legacy
 namespace BangumiNet.Api.V0.Models
 {
     public partial class Subject_collection : ICollection { }
-    public partial class Images : IImages { }
+    public partial class Images : IImagesCommon { }
     public partial class Subject_rating_count : IRatingCount { }
     public partial class Collections : ITag { }
+    public partial class Person_images : IImages { }
+    public partial class Character_images : IImages { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {
     public partial class Legacy_SubjectSmall_collection : ICollection { }
-    public partial class Legacy_SubjectSmall_images : IImages { }
+    public partial class Legacy_SubjectSmall_images : IImagesCommon { }
     public partial class Legacy_SubjectSmall_rating_count : IRatingCount { }
 }
 namespace BangumiNet.Api.Legacy.Calendar

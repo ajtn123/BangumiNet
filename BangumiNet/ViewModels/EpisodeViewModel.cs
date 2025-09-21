@@ -22,10 +22,12 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         Desc = episode.Desc;
         Disc = episode.Disc;
         DurationSecond = episode.DurationSeconds != 0 ? episode.DurationSeconds : null;
+        if (episode.AdditionalData.TryGetValue("subject_id", out var sid) && sid is int si) SubjectId = si;
     }
 
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Id { get; set; }
+    [Reactive] public partial int? SubjectId { get; set; }
     [Reactive] public partial EpisodeType? Type { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? NameCn { get; set; }

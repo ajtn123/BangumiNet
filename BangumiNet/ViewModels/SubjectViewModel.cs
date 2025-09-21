@@ -75,7 +75,7 @@ public partial class SubjectViewModel : ViewModelBase
         Date = Common.ParseBangumiDate(subject.Date);
         Platform = subject.Platform;
         Images = subject.Images;
-        Infobox = subject.Infobox?.Select(p => new InfoboxItem(p)).ToObservableCollection();
+        Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
         Volumes = subject.Volumes;
         Eps = subject.Eps;
         TotalEps = subject.TotalEpisodes;
@@ -130,13 +130,13 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial SubjectType? Type { get; set; }
     [Reactive] public partial ObservableCollection<ITag>? Tags { get; set; }
     [Reactive] public partial ObservableCollection<string>? MetaTags { get; set; }
-    [Reactive] public partial IImages? Images { get; set; }
+    [Reactive] public partial IImagesCommon? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
     [Reactive] public partial bool? IsSeries { get; set; }
     [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial bool? IsLocked { get; set; }
     [Reactive] public partial string? Platform { get; set; }
-    [Reactive] public partial ObservableCollection<InfoboxItem>? Infobox { get; set; }
+    [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
 

@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:col="using:System.Collections.ObjectModel"
-             xmlns:m="using:BangumiNet.Models"
+             xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="800"
              x:DataType="col:ObservableCollection`1"
              x:Class="BangumiNet.Views.InfoboxView"
@@ -11,11 +11,23 @@
     <Border Classes="Card" IsVisible="{Binding .,Converter={StaticResource NullCvt}}">
         <ItemsControl ItemsSource="{Binding .}" Margin="5,0">
             <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="m:InfoboxItem">
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
-                        <Run Text="{Binding Value}"/>
-                    </TextBlock>
+                <DataTemplate DataType="vm:InfoboxItemViewModel">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
+                            <Run Text="{Binding Value}"/>
+                        </TextBlock>
+                        <ItemsControl ItemsSource="{Binding SubValues}" Margin="5,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="vm:InfoboxItemViewModel">
+                                    <TextBlock TextWrapping="Wrap" Margin="0,3,0,0">
+                                        <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
+                                        <Run Text="{Binding Value}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
