@@ -54,7 +54,7 @@ public static class Extensions
     public static string ToBangumiString(this DateTimeOffset date)
         => date.ToString("yyyy-MM-dd");
 
-    public static T? TryGet<T>(this IDictionary<string,T> dict, string key)
+    public static T? TryGet<T>(this IDictionary<string, T> dict, string key)
     {
         if (dict.TryGetValue(key, out var value))
             return value;

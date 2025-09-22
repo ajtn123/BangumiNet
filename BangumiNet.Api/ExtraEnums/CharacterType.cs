@@ -2,9 +2,13 @@
 
 public enum CharacterType
 {
+    /// <summary>角色</summary>
     Individual = 1,
+    /// <summary>机体</summary>
     Bot = 2,
+    /// <summary>舰船</summary>
     Ship = 3,
+    /// <summary>组织</summary>
     Organization = 4,
 }
 public static partial class EnumExtensions

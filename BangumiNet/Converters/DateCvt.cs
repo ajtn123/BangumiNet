@@ -7,7 +7,7 @@ public class DateCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if(value is not DateOnly date) return null;
+        if (value is not DateOnly date) return null;
         if (date.Year == 1) return date.ToString("MM/dd");
         else return date.ToString();
     }
