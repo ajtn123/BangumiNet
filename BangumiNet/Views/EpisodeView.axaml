@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+			 xmlns:utils="using:BangumiNet.Utils"
+			 utils:UserControlHelpers.ParentTitle="{Binding .,Converter={StaticResource NameCnCvt},StringFormat='\{0} - BangumiNet',FallbackValue='单话 - BangumiNet'}"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+			 x:DataType="vm:EpisodeViewModel"
+             x:Class="BangumiNet.Views.EpisodeView">
+    <ScrollViewer ClipToBounds="False">
+        <StackPanel Margin="5">
+            <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
+                        Classes="Title" FontSize="30"/>
+            <WrapPanel Orientation="Horizontal">
+                <WrapPanel.Styles>
+                    <Style Selector="WrapPanel > TextBlock">
+                        <Setter Property="Margin" Value="0,0,5,0"/>
+						<Style Selector="^ ic|FluentIcon">
+							<Setter Property="FontSize" Value="16"/>
+							<Setter Property="Margin" Value="0,0,2,-3"/>
+						</Style>
+                    </Style>
+                </WrapPanel.Styles>
+                <TextBlock ToolTip.Tip="时长" IsVisible="{Binding Duration,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding Duration}"/></TextBlock>
+                <TextBlock ToolTip.Tip="时长" IsVisible="{Binding ShouldDisplayDurationString}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding DurationString}"/></TextBlock>
+                <TextBlock ToolTip.Tip="放送日期" IsVisible="{Binding AirDate,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding AirDate}"/></TextBlock>
+                <TextBlock ToolTip.Tip="评论" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding Comment}"/></TextBlock>
+                <TextBlock ToolTip.Tip="音乐碟片" IsVisible="{Binding Disc,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Cd" IconSize="Size16"/><Run Text="{Binding Disc}"/></TextBlock>
+				<TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource EpisodeTypeCvt},Mode=OneWay}"/></TextBlock>
+				<TextBlock ToolTip.Tip="集排序" IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare"/><Run Text="{Binding Ep,StringFormat='第 {0} 集'}"/></TextBlock>
+				<TextBlock ToolTip.Tip="集排序" IsVisible="{Binding Sort,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare" IconVariant="Filled"/><Run Text="{Binding Sort}"/></TextBlock>
+                <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                <TextBlock ToolTip.Tip="所属项目 ID" IsVisible="{Binding SubjectId,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideTextMultiple"/><Run Text="{Binding SubjectId}"/></TextBlock>
+            </WrapPanel>
+            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,5"
+						IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal" Spacing="5">
+					<Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+					<Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
+					<Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+					<Button Classes="Icon" Command="{Binding ShowPrevCommand}" Content="{ice:FluentIcon Icon=ArrowLeft}" ToolTip.Tip="前一集"/>
+					<Button Classes="Icon" Command="{Binding ShowNextCommand}" Content="{ice:FluentIcon Icon=ArrowRight}" ToolTip.Tip="下一集"/>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+    </ScrollViewer>
+</UserControl>

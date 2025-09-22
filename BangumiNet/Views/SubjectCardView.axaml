@@ -27,7 +27,7 @@
             </StackPanel>
         </StackPanel>
 
-        <Grid.ContextFlyout>    
+        <Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">

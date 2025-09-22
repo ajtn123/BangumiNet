@@ -44,6 +44,7 @@
                         <TextBlock ToolTip.Tip="册数" IsVisible="{Binding Volumes,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding Volumes,StringFormat='\{0} 册'}"/></TextBlock>
                         <TextBlock ToolTip.Tip="放送开始" IsVisible="{Binding Date,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Date}"/></TextBlock>
                         <TextBlock ToolTip.Tip="放送日" IsVisible="{Binding Weekday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarWeekNumbers"/><Run Text="{Binding Weekday,Converter={StaticResource DayOfWeekCvt},Mode=OneWay}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource SubjectTypeCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="平台" IsVisible="{Binding Platform,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Apps"/><Run Text="{Binding Platform}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>

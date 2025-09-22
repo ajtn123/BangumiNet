@@ -18,3 +18,18 @@ public enum EpisodeType
     /// <summary>其他</summary>
     Other = 6,
 }
+public static partial class EnumExtensions
+{
+    public static string ToStringSC(this EpisodeType type)
+        => type switch
+        {
+            EpisodeType.Mainline => "本篇",
+            EpisodeType.Special => "SP",
+            EpisodeType.Opening => "OP",
+            EpisodeType.Ending => "ED",
+            EpisodeType.Advertisement => "PV/CM/AD",
+            EpisodeType.Mad => "MAD",
+            EpisodeType.Other => "其他",
+            _ => throw new NotImplementedException(),
+        };
+}

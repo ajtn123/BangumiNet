@@ -1,4 +1,5 @@
 ﻿using Avalonia.Data.Converters;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.V0.Search.Subjects;
 using BangumiNet.ViewModels;
 using System.Globalization;
@@ -51,6 +52,20 @@ public class DayOfWeekCvt : IValueConverter
             null => null,
             _ => throw new NotImplementedException(),
         };
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class SubjectTypeCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is SubjectType type ? type.ToStringSC() : null;
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class EpisodeTypeCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is EpisodeType type ? type.ToStringSC() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
