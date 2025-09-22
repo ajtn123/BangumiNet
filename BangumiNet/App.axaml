@@ -78,6 +78,7 @@
 		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
 		<cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
 		<cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
+		<cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
 		<cvt:DateCvt x:Key="DateCvt"/>
 		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
 		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>

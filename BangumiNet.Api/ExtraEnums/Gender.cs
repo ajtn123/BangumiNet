@@ -13,22 +13,12 @@ public enum Gender
 
 public static partial class EnumExtensions
 {
-    public static Gender? TryParseGender(string? str, out string? gStr)
-    {
-        if (string.IsNullOrWhiteSpace(str))
+    public static Gender? TryParseGender(string? str)
+        => str switch
         {
-            gStr = null;
-            return null;
-        }
-        else
-        {
-            gStr = str;
-            return str switch
-            {
-                "男" => Gender.Male,
-                "女" => Gender.Female,
-                _ => Gender.Other,
-            };
-        }
-    }
+            "男" => Gender.Male,
+            "女" => Gender.Female,
+            null => null,
+            _ => Gender.Other,
+        };
 }

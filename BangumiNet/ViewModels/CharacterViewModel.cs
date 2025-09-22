@@ -2,9 +2,13 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Views;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -21,8 +25,8 @@ public partial class CharacterViewModel : ViewModelBase
             Birthday = bd;
         }
         BloodType = (BloodType?)character.BloodType;
-        Gender = EnumExtensions.TryParseGender(character.Gender, out string? gStr);
-        GenderString = gStr;
+        Gender = EnumExtensions.TryParseGender(character.Gender);
+        GenderString = character.Gender;
         Id = character.Id;
         Images = character.Images;
         IsLocked = character.Locked;
@@ -31,8 +35,12 @@ public partial class CharacterViewModel : ViewModelBase
         CommentCount = character.Stat?.Comments;
         CollectionTotal = character.Stat?.Collects;
         Summary = character.Summary;
-        CharacterType = (CharacterType?)character.Type;
-        Nsfw = (bool?)character.AdditionalData["nsfw"];
+        Type = (CharacterType?)character.Type;
+        IsNsfw = (bool?)character.AdditionalData["nsfw"];
+
+        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
     }
 
     [Reactive] public partial int? Id { get; set; }
@@ -42,11 +50,11 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial Gender? Gender { get; set; }
     [Reactive] public partial string? GenderString { get; set; }
     [Reactive] public partial BloodType? BloodType { get; set; }
-    [Reactive] public partial CharacterType? CharacterType { get; set; }
+    [Reactive] public partial CharacterType? Type { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
     [Reactive] public partial bool? IsLocked { get; set; }
-    [Reactive] public partial bool? Nsfw { get; set; }
+    [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
 
@@ -54,4 +62,8 @@ public partial class CharacterViewModel : ViewModelBase
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
+
+    public ICommand? OpenInNewWindowCommand { get; private set; }
+    public ICommand? SearchGoogleCommand { get; private set; }
+    public ICommand? OpenInBrowserCommand { get; private set; }
 }
