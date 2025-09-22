@@ -29,10 +29,28 @@ public class SearchTypeCvt : IValueConverter
             SearchType.Subject => "项目",
             SearchType.Character => "角色",
             SearchType.Person => "人物",
-            null => string.Empty,
+            null => null,
             _ => throw new NotImplementedException(),
         };
 
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class DayOfWeekCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => (DayOfWeek?)value switch
+        {
+            DayOfWeek.Sunday => "星期日",
+            DayOfWeek.Monday => "星期一",
+            DayOfWeek.Tuesday => "星期二",
+            DayOfWeek.Wednesday => "星期三",
+            DayOfWeek.Thursday => "星期四",
+            DayOfWeek.Friday => "星期五",
+            DayOfWeek.Saturday => "星期六",
+            null => null,
+            _ => throw new NotImplementedException(),
+        };
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
+using BangumiNet.Views;
 
 namespace BangumiNet.Utils;
 
@@ -11,8 +12,8 @@ public class UserControlHelpers
 
     static UserControlHelpers()
     {
-        ParentTitleProperty.Changed.AddClassHandler<UserControl>((uc, e) => uc.GetLogicalParent<Window>()?.Title = e.NewValue?.ToString());
-        StyledElement.ParentProperty.Changed.AddClassHandler<UserControl>((uc, e) => uc.GetLogicalParent<Window>()?.Title = uc.GetValue(ParentTitleProperty)?.ToString());
+        ParentTitleProperty.Changed.AddClassHandler<UserControl>((uc, e) => uc.GetLogicalParent<SecondaryWindow>()?.Title = e.NewValue?.ToString());
+        StyledElement.ParentProperty.Changed.AddClassHandler<UserControl>((uc, e) => uc.GetLogicalParent<SecondaryWindow>()?.Title = uc.GetValue(ParentTitleProperty)?.ToString());
     }
 
     public static void SetParentTitle(UserControl element, string value)

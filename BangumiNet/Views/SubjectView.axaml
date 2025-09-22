@@ -25,15 +25,37 @@
                 <StackPanel Grid.Column="1" Margin="5,0,0,0">
                     <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/> <Run Text="{Binding Score}"/></TextBlock>
+                    <WrapPanel Orientation="Horizontal">
+                        <WrapPanel.Styles>
+                            <Style Selector="WrapPanel > TextBlock">
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+								<Style Selector="^ ic|FluentIcon">
+									<Setter Property="FontSize" Value="16"/>
+									<Setter Property="Margin" Value="0,0,2,-3"/>
+								</Style>
+                            </Style>
+                        </WrapPanel.Styles>
+                        <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
                         <TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
                         <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
-                    </StackPanel>
+                        <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection?.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="话数" IsVisible="{Binding Eps,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding Eps,StringFormat='\{0} 话'}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="总话数" IsVisible="{Binding TotalEps,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer" IconVariant="Filled"/><Run Text="{Binding TotalEps,StringFormat='共 {0} 话'}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="册数" IsVisible="{Binding Volumes,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding Volumes,StringFormat='\{0} 册'}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="放送开始" IsVisible="{Binding Date,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Date}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="放送日" IsVisible="{Binding Weekday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarWeekNumbers"/><Run Text="{Binding Weekday,Converter={StaticResource DayOfWeekCvt},Mode=OneWay}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="平台" IsVisible="{Binding Platform,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Apps"/><Run Text="{Binding Platform}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                        <TextBlock>
+                            <ic:FluentIcon ToolTip.Tip="本条目是一个系列的主条目" Icon="LayerDiagonal" IsVisible="{Binding IsSeries}"/>
+                            <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
+                            <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
+                            <ic:FluentIcon ToolTip.Tip="加载中" Icon="ArrowClockwiseDashes" IsVisible="{Binding !IsFull}"/>
+                        </TextBlock>
+                    </WrapPanel>
                     <v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
                     <TextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
-							   TextWrapping="Wrap" Margin="0,0,0,5"/>
+                               TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <v:TagListView DataContext="{Binding TagListViewModel}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

@@ -41,7 +41,6 @@ public partial class SubjectViewModel : ViewModelBase
     }
     public SubjectViewModel(Legacy_SubjectSmall subject)
     {
-        IsLegacy = true;
         Source = subject;
         Eps = subject.Eps;
         Rank = subject.Rank;
@@ -99,6 +98,8 @@ public partial class SubjectViewModel : ViewModelBase
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
 
+        this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
+        this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
         this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e => this.RaisePropertyChanged(nameof(ParentWindowTitle)));
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
         {
@@ -108,11 +109,13 @@ public partial class SubjectViewModel : ViewModelBase
         });
 
         if (Rank == 0) Rank = null;
+        if (Eps == 0) Eps = null;
+        if (TotalEps == 0) TotalEps = null;
+        if (Volumes == 0) Volumes = null;
         if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public bool IsLegacy { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
     [Reactive] public partial int? Eps { get; set; }
@@ -151,5 +154,7 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
     public string ParentWindowTitle => $"{NameCnCvt.Convert(this)} - {Constants.ApplicationName}";
-    public TagListViewModel? TagListViewModel => new(Tags, MetaTags);
+    public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
+    public bool IsLegacy => Source is Legacy_SubjectSmall;
+    public bool IsFull => Source is Subject;
 }

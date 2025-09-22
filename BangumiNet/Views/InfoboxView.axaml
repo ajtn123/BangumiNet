@@ -13,17 +13,17 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:InfoboxItemViewModel">
                     <StackPanel>
-                        <TextBlock TextWrapping="Wrap">
-                            <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
-                            <Run Text="{Binding Value}"/>
-                        </TextBlock>
+						<SelectableTextBlock TextWrapping="Wrap">
+							<Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
+							<Run Text="{Binding Value}"/>
+						</SelectableTextBlock>
                         <ItemsControl ItemsSource="{Binding SubValues}" Margin="5,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="vm:InfoboxItemViewModel">
-                                    <TextBlock TextWrapping="Wrap" Margin="0,3,0,0">
+                                    <SelectableTextBlock TextWrapping="Wrap" Margin="0,3,0,0">
                                         <Run Text="{Binding Key}" Foreground="Gray"/><Run Foreground="Gray">:</Run>
                                         <Run Text="{Binding Value}"/>
-                                    </TextBlock>
+                                    </SelectableTextBlock>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

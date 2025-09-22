@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:BangumiNet.ViewModels"
+			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="20"
              ClipToBounds="False"
              x:DataType="vm:TagViewModel"
@@ -10,18 +11,33 @@
     <UserControl.Styles>
         <Style Selector="Border.Card">
             <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
-        </Style>
+			<Style Selector="^ > TextBlock > Run.Name">
+				<Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}"/>
+			</Style>
+		</Style>
         <Style Selector="Border.Card[Tag=True]">
             <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
-            <Style Selector="^ TextBlock">
+            <Style Selector="^ > TextBlock > Run.Name">
+                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}"/>
+            </Style>
+            <Style Selector="^ > TextBlock > Run.Count">
                 <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
             </Style>
         </Style>
     </UserControl.Styles>
     <Border Classes="Card" Tag="{Binding IsMeta}">
         <TextBlock Margin="5,0">
-            <Run Text="{Binding Name}"/>
-            <Run Text="{Binding Count}"/>
+            <Run Text="{Binding Name}" Classes="Name"/>
+            <Run Text="{Binding Count}" Classes="Count"/>
         </TextBlock>
+
+		<Border.ContextFlyout>
+			<Flyout>
+				<StackPanel Orientation="Horizontal" Spacing="5">
+					<Button Classes="Icon" Command="{Binding SearchTagCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索此标签"/>
+					<Button Classes="Icon" Command="{Binding SearchMetaTagCommand}" Content="{ice:FluentIcon Icon=SearchInfo}" ToolTip.Tip="搜索此元标签" IsVisible="{Binding IsMeta}"/>
+				</StackPanel>
+			</Flyout>
+		</Border.ContextFlyout>
     </Border>
 </UserControl>

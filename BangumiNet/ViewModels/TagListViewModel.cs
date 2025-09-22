@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.Interfaces;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Interfaces;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 
@@ -6,9 +7,10 @@ namespace BangumiNet.ViewModels;
 
 public partial class TagListViewModel : ViewModelBase
 {
-    public TagListViewModel(IEnumerable<ITag>? tags, IEnumerable<string>? meta)
+    public TagListViewModel(IEnumerable<ITag>? tags, IEnumerable<string>? meta, SubjectType? subjectType)
     {
-        TagViewModels = tags?.Select(t => new TagViewModel(t)).ToObservableCollection();
+        TagViewModels = tags?.Select(t => new TagViewModel(t, subjectType)).ToObservableCollection();
+        SubjectType = subjectType;
 
         if (meta is not null)
             foreach (var mT in meta)
@@ -16,4 +18,5 @@ public partial class TagListViewModel : ViewModelBase
     }
 
     [Reactive] public partial ObservableCollection<TagViewModel>? TagViewModels { get; set; }
+    [Reactive] public partial SubjectType? SubjectType { get; set; }
 }
