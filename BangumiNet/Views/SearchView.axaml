@@ -197,29 +197,35 @@
                     <v:PageNavigatorView DataContext="{Binding SubjectPageNavigatorViewModel}"/>
                 </StackPanel>
             </Grid>
-            <Grid RowDefinitions="Auto,*" RowSpacing="5"
-                  ColumnDefinitions="*,3*" ColumnSpacing="5"
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5"
+				  ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingPerson}">
-                <StackPanel>
                     <Border Classes="Card" Padding="5,0">
-                        <TextBlock>
-                            <ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3"/>职业
-                        </TextBlock>
+						<Grid ColumnDefinitions="*,Auto">
+							<TextBlock>
+								<ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
+							</TextBlock>
+                            <ic:FluentIcon Icon="Warning" FontSize="16" ToolTip.Tip="由于 API 原因，此过滤器目前没有效果。" Grid.Column="1"/>
+						</Grid>
                     </Border>
-                    <ItemsControl ItemsSource="{Binding Career}" Padding="5,0">
+                    <ItemsControl ItemsSource="{Binding Career}" Padding="5,0" Grid.Column="1">
                         <ItemsControl.DataTemplates>
                             <DataTemplate DataType="vm:PersonCareerOptionViewModel">
-                                <Grid ColumnDefinitions="Auto,*">
+                                <StackPanel Spacing="5" Orientation="Horizontal" Margin="10,0,0,0">
                                     <TextBlock Text="{Binding DisplayName}"/>
-                                    <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                    <Viewbox Height="19">
                                         <CheckBox IsChecked="{Binding IsSelected}" Padding="0"/>
                                     </Viewbox>
-                                </Grid>
+                                </StackPanel>
                             </DataTemplate>
                         </ItemsControl.DataTemplates>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
                     </ItemsControl>
-                </StackPanel>
-                <StackPanel Spacing="5" Grid.Column="1">
+                <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2">
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding SubjectErrorMessage,Converter={StaticResource NEWCvt}}" Padding="5,0">
                         <TextBlock Text="{Binding SubjectErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
@@ -230,7 +236,7 @@
                         </TextBlock>
                     </Border>
                 </StackPanel>
-                <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2"
+                <StackPanel Spacing="5" Grid.Row="2" Grid.ColumnSpan="2"
                             IsVisible="{Binding PersonsPostRequestBody,Converter={StaticResource NullCvt}}">
                     <v:PageNavigatorView DataContext="{Binding PersonPageNavigatorViewModel}"/>
                     <v:PersonListView DataContext="{Binding PersonListViewModel}"/>
