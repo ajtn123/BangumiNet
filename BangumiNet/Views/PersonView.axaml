@@ -7,7 +7,7 @@
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" Width="800" Height="400"
 			 x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonView">
   Welcome to Avalonia!

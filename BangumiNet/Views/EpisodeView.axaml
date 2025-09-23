@@ -9,13 +9,13 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
 			 xmlns:utils="using:BangumiNet.Utils"
 			 utils:UserControlHelpers.ParentTitle="{Binding .,Converter={StaticResource NameCnCvt},StringFormat='\{0} - BangumiNet',FallbackValue='单话 - BangumiNet'}"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+             mc:Ignorable="d" Width="600" Height="300"
 			 x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeView">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Margin="5">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
-                        Classes="Title" FontSize="30"/>
+                       Classes="Title" FontSize="30"/>
             <WrapPanel Orientation="Horizontal">
                 <WrapPanel.Styles>
                     <Style Selector="WrapPanel > TextBlock">

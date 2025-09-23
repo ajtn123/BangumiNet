@@ -18,8 +18,14 @@
 		<StackPanel Grid.Column="1" Margin="3,0,0,0">
 			<TextBlock Text="{Binding Name}" Classes="Title"/>
 			<StackPanel Orientation="Horizontal" Spacing="5">
-				<TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
-				<TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
+                <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
+                <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
+                <TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
+				<TextBlock>
+					<ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
+					<ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
+				</TextBlock>
+				<Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=12}" ToolTip.Tip="在新窗口显示"/>
 			</StackPanel>
 		</StackPanel>
 
@@ -31,6 +37,7 @@
 						<Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
 						<Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
 					</StackPanel>
+					<TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
 				</StackPanel>
 			</Flyout>
 		</Grid.ContextFlyout>
