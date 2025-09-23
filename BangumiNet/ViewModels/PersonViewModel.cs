@@ -60,15 +60,7 @@ public partial class PersonViewModel : ViewModelBase
             Infobox = list.Select(x => x is not Dictionary<string, object?> dict ? null : new InfoboxItemViewModel(dict))
                 .Where(y => y is not null).ToObservableCollection()!;
 
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
-
-        this.WhenAnyValue(x => x.Careers).Subscribe(x =>
-        {
-            this.RaisePropertyChanged(nameof(CareerString));
-            Careers?.ObserveCollectionChanges().Subscribe(x => this.RaisePropertyChanged(nameof(CareerString)));
-        });
+        Init();
     }
     public PersonViewModel(PersonDetail person)
     {
@@ -95,6 +87,24 @@ public partial class PersonViewModel : ViewModelBase
             Birthday = bd;
         }
 
+        Init();
+    }
+    public PersonViewModel(RelatedPerson person)
+    {
+        Source = person;
+        Name = person.Name;
+        Relation = person.Relation;
+        Careers = person.Career.ToObservableCollection();
+        Type = (PersonType?)person.Type;
+        Id = person.Id;
+        Eps = person.Eps;
+        Images = person.Images;
+
+        Init();
+    }
+
+    public void Init()
+    {
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
@@ -122,6 +132,9 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<PersonCareer?>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
+
+    [Reactive] public partial string? Relation { get; set; }
+    [Reactive] public partial string? Eps { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);

@@ -63,6 +63,7 @@
                         <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
+					<v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
                 </StackPanel>
             </Grid>
             <Expander Header="评分统计"  IsExpanded="True" HorizontalAlignment="Stretch">

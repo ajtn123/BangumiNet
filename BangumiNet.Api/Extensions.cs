@@ -32,6 +32,11 @@ namespace BangumiNet.Api.V0.Models
     public partial class Person_images : IImages { }
     public partial class Character_images : IImages { }
     public partial class PersonDetail_images : IImages { }
+    public partial class CharacterPerson_images : IImages { }
+    public partial class RelatedPerson_images : IImages { }
+    public partial class RelatedCharacter_images : IImages { }
+    public partial class UserCharacterCollection_images : IImages { }
+    public partial class UserPersonCollection_images : IImages { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {

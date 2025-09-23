@@ -93,6 +93,7 @@ public partial class SubjectViewModel : ViewModelBase
     public void Init()
     {
         EpisodeListViewModel = new(Id);
+        PersonBadgeListViewModel = new(ItemType.Subject, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
@@ -142,6 +143,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
+    [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchGoogleCommand { get; private set; }

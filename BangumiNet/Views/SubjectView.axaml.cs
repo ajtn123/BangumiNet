@@ -23,6 +23,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 DataContext = vm;
             }
             _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
+            _ = ViewModel?.PersonBadgeListViewModel?.LoadPersons();
         };
     }
 
