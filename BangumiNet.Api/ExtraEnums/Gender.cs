@@ -16,8 +16,8 @@ public static partial class EnumExtensions
     public static Gender? TryParseGender(string? str)
         => str switch
         {
-            "男" => Gender.Male,
-            "女" => Gender.Female,
+            "male" => Gender.Male,
+            "female" => Gender.Female,
             null => null,
             _ => Gender.Other,
         };

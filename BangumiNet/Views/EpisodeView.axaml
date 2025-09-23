@@ -29,7 +29,7 @@
                 <TextBlock ToolTip.Tip="时长" IsVisible="{Binding Duration,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding Duration}"/></TextBlock>
                 <TextBlock ToolTip.Tip="时长" IsVisible="{Binding ShouldDisplayDurationString}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding DurationString}"/></TextBlock>
                 <TextBlock ToolTip.Tip="放送日期" IsVisible="{Binding AirDate,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding AirDate}"/></TextBlock>
-                <TextBlock ToolTip.Tip="评论" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding Comment}"/></TextBlock>
+                <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
                 <TextBlock ToolTip.Tip="音乐碟片" IsVisible="{Binding Disc,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Cd" IconSize="Size16"/><Run Text="{Binding Disc}"/></TextBlock>
 				<TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource EpisodeTypeCvt},Mode=OneWay}"/></TextBlock>
 				<TextBlock ToolTip.Tip="集排序" IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare"/><Run Text="{Binding Ep,StringFormat='第 {0} 集'}"/></TextBlock>

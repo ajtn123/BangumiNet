@@ -23,7 +23,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         Sort = episode.Sort;
         Ep = episode.Ep;
         AirDate = Common.ParseBangumiDate(episode.Airdate);
-        Comment = episode.Comment;
+        CommentCount = episode.Comment;
         DurationString = episode.Duration;
         Description = episode.Desc;
         Disc = episode.Disc;
@@ -50,7 +50,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     [Reactive] public partial double? Sort { get; set; }
     [Reactive] public partial double? Ep { get; set; }
     [Reactive] public partial DateOnly? AirDate { get; set; }
-    [Reactive] public partial int? Comment { get; set; }
+    [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial string? DurationString { get; set; }
     [Reactive] public partial string? Description { get; set; }
     [Reactive] public partial int? Disc { get; set; }

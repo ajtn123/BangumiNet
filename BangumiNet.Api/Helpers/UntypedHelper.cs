@@ -37,10 +37,8 @@ public static class UntypedHelper
                     {
                         var dict = new Dictionary<string, object?>();
                         if (obj.GetValue() is IDictionary<string, UntypedNode> inner)
-                        {
                             foreach (var kvp in inner)
                                 dict[kvp.Key] = kvp.Value.ToObject();
-                        }
                         return dict;
                     }
                 default:

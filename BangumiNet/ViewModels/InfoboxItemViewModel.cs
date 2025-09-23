@@ -1,4 +1,6 @@
-﻿using BangumiNet.Api.V0.Models;
+﻿using BangumiNet.Api.Helpers;
+using BangumiNet.Api.V0.Models;
+using Microsoft.Kiota.Abstractions.Serialization;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
 
@@ -23,8 +25,20 @@ public partial class InfoboxItemViewModel : ViewModelBase
     }
     public InfoboxItemViewModel(Character_infobox ib)
     {
-        Key = ib.AdditionalData["key"].ToString();
-        if (ib.AdditionalData["value"] is string vStr) Value = vStr;
+        if (ib.AdditionalData.TryGetValue("key", out var key))
+            Key = key.ToString();
+        if (ib.AdditionalData.TryGetValue("value", out var value))
+            if (value is string vs)
+                Value = vs;
+            else if (value is UntypedArray vua)
+                SubValues = ((List<object?>?)vua.ToObject())?.Select(p =>
+                {
+                    if (p is not Dictionary<string, object?> dict) return null;
+                    dict.TryGetValue("k", out var k);
+                    dict.TryGetValue("v", out var v);
+                    return new InfoboxItemViewModel(k?.ToString(), v?.ToString());
+                }).Where(x => x is not null).ToObservableCollection()!;
+            else Value = value.ToString();
     }
     public InfoboxItemViewModel(string? key, string? value)
     {

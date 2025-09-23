@@ -36,7 +36,9 @@
                             </Style>
                         </WrapPanel.Styles>
                         <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
                         <TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="血型" IsVisible="{Binding BloodType,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Doctor"/><Run Text="{Binding BloodType}"/></TextBlock>
                         <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
