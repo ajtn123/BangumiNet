@@ -1,6 +1,6 @@
 {
-  "descriptionHash": "CA2413B1CFA1F40924833501DD6EC656C281648CABEDB2A70045D12653AD274A4AD123CA69AE2A2FD0732EFF43EC74E0540B81F548932601A2868AEC784D5774",
-  "descriptionLocation": "../v0.yaml",
+  "descriptionHash": "3A2DE57CA2DC774EBB1A55AA96A4141A9315F2AF20D06640024D72426416530EF9FF02CD8DE596DFFC2799970A58036C81FF9C278E6B9932B3CC4B5F817881A5",
+  "descriptionLocation": "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/v0.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.28.0",
   "clientClassName": "ApiClient",

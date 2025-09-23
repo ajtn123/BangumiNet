@@ -5,7 +5,6 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using BangumiNet.Api.Interfaces;
 namespace BangumiNet.Api.Legacy.Models
 {
     /// <summary>
