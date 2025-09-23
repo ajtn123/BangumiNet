@@ -14,6 +14,7 @@ public partial class NavigatorWindow : Window
             var y = (e.PreviousSize.Height - e.NewSize.Height) / 2 * Scaling;
             Position = new PixelPoint(Position.X + (int)x, Position.Y + (int)y);
         };
+        KeyDown += (s, e) => { if (e.Key == Avalonia.Input.Key.Escape) Close(); };
         Deactivated += (s, e) => Close();
     }
 

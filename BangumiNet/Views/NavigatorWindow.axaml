@@ -20,6 +20,9 @@
         Title="导航 - BangumiNet">
     <StackPanel Margin="5" Spacing="5">
         <TextBox Text="{Binding Input}"/>
-        <Button Command="{Binding ToSubject}" IsVisible="{Binding CanToSubject}" Content="{Binding Input,StringFormat='转到项目 {0} >'}"/>
+        <Button Command="{Binding ToSubject}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到项目 {0} >'}"/>
+        <Button Command="{Binding ToCharacter}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到角色 {0} >'}"/>
+        <Button Command="{Binding ToPerson}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到人物 {0} >'}"/>
+        <Button Command="{Binding ToEpisode}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到话 {0} >'}"/>
     </StackPanel>
 </Window>

@@ -69,11 +69,13 @@
 		<Style Selector="Button.Confirm:pointerover /template/ ContentPresenter">
 			<Setter Property="Background" Value="#BF7FFF7F"/>
 		</Style>
-		<Style Selector="WrapPanel.InfoBar > TextBlock">
-			<Setter Property="Margin" Value="0,0,5,0"/>
-			<Style Selector="^ ic|FluentIcon">
-				<Setter Property="FontSize" Value="16"/>
-				<Setter Property="Margin" Value="0,0,2,-3"/>
+		<Style Selector="WrapPanel.InfoBar">
+			<Setter Property="ItemSpacing" Value="5"/>
+			<Style Selector="^ > TextBlock">
+				<Style Selector="^ ic|FluentIcon">
+					<Setter Property="FontSize" Value="16"/>
+					<Setter Property="Margin" Value="0,0,2,-3"/>
+				</Style>
 			</Style>
 		</Style>
     </Application.Styles>
@@ -83,6 +85,7 @@
 		<cvt:EpBrushCvt x:Key="EpBrushCvt"/>
 		<cvt:InNullCvt x:Key="InNullCvt"/>
 		<cvt:NullCvt x:Key="NullCvt"/>
+		<cvt:EIECvt x:Key="EIECvt"/>
 		<cvt:NameCnCvt x:Key="NameCnCvt"/>
 		<cvt:NameAltCvt x:Key="NameAltCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
@@ -91,6 +94,8 @@
 		<cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
 		<cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
 		<cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
+		<cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
+		<cvt:CareerCvt x:Key="CareerCvt"/>
 		<cvt:DateCvt x:Key="DateCvt"/>
 		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
 		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>

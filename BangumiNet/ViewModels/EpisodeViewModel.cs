@@ -31,6 +31,35 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.NumberToInt(sid);
 
         if (Disc == 0) Disc = null;
+        if (Ep == 0) Ep = null;
+
+        this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
+
+        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new EpisodeView() { DataContext = this } }.Show());
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
+        ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
+        ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
+    }
+    public EpisodeViewModel(EpisodeDetail episode)
+    {
+        Source = episode;
+        Id = episode.Id;
+        Type = (EpisodeType?)episode.Type;
+        Name = episode.Name;
+        NameCn = episode.NameCn;
+        Sort = episode.Sort;
+        Ep = episode.Ep;
+        AirDate = Common.ParseBangumiDate(episode.Airdate);
+        CommentCount = episode.Comment;
+        DurationString = episode.Duration;
+        Description = episode.Desc;
+        Disc = episode.Disc;
+        // Duration = episode.DurationSeconds is not null or 0 ? TimeSpan.FromSeconds((long)episode.DurationSeconds) : null;
+        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.NumberToInt(sid);
+
+        if (Disc == 0) Disc = null;
+        if (Ep == 0) Ep = null;
 
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
 

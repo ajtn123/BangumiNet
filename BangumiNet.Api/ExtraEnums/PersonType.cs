@@ -26,4 +26,12 @@ public static partial class EnumExtensions
             PersonCareer.Actor => "演员",
             _ => throw new NotImplementedException(),
         };
+    public static string ToStringSC(this PersonType career)
+        => career switch
+        {
+            PersonType.Individual => "个人",
+            PersonType.Company => "公司",
+            PersonType.Group => "组合",
+            _ => throw new NotImplementedException(),
+        };
 }

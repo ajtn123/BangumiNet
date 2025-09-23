@@ -1,5 +1,6 @@
 ﻿using Avalonia.Data.Converters;
 using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
 using BangumiNet.ViewModels;
 using System.Globalization;
@@ -73,6 +74,20 @@ public class CharacterTypeCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => value is CharacterType type ? type.ToStringSC() : null;
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class PersonTypeCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is PersonType type ? type.ToStringSC() : null;
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class CareerCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is PersonCareer type ? type.ToStringSC() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
