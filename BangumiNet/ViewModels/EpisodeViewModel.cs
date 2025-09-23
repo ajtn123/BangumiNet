@@ -55,8 +55,9 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         DurationString = episode.Duration;
         Description = episode.Desc;
         Disc = episode.Disc;
-        // Duration = episode.DurationSeconds is not null or 0 ? TimeSpan.FromSeconds((long)episode.DurationSeconds) : null;
-        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.NumberToInt(sid);
+        SubjectId = episode.SubjectId;
+        if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && Common.NumberToInt(ds) is int t && t != 0)
+            Duration = TimeSpan.FromSeconds(t);
 
         if (Disc == 0) Disc = null;
         if (Ep == 0) Ep = null;

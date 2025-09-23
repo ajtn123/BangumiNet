@@ -19,7 +19,7 @@ public partial class NavigatorViewModel : ViewModelBase
                 var sm = await ApiC.V0.Subjects[id].GetAsync();
                 if (sm != null) new SecondaryWindow() { Content = new SubjectView() { DataContext = new SubjectViewModel(sm) } }.Show();
             }
-        }, this.WhenAnyValue(x => x.Input).Select(i => int.TryParse(i, out _)));
+        }, this.WhenAnyValue(x => x.CanToId));
 
         ToCharacter = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -28,7 +28,7 @@ public partial class NavigatorViewModel : ViewModelBase
                 var cm = await ApiC.V0.Characters[id].GetAsync();
                 if (cm != null) new SecondaryWindow() { Content = new CharacterView() { DataContext = new CharacterViewModel(cm) } }.Show();
             }
-        }, this.WhenAnyValue(x => x.Input).Select(i => int.TryParse(i, out _)));
+        }, this.WhenAnyValue(x => x.CanToId));
 
         ToPerson = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -37,7 +37,7 @@ public partial class NavigatorViewModel : ViewModelBase
                 var pm = await ApiC.V0.Persons[id].GetAsync();
                 if (pm != null) new SecondaryWindow() { Content = new PersonView() { DataContext = new PersonViewModel(pm) } }.Show();
             }
-        }, this.WhenAnyValue(x => x.Input).Select(i => int.TryParse(i, out _)));
+        }, this.WhenAnyValue(x => x.CanToId));
 
         ToEpisode = ReactiveCommand.CreateFromTask(async () =>
         {
@@ -46,7 +46,7 @@ public partial class NavigatorViewModel : ViewModelBase
                 var em = await ApiC.V0.Episodes[id].GetAsync();
                 if (em != null) new SecondaryWindow() { Content = new EpisodeView() { DataContext = new EpisodeViewModel(em) } }.Show();
             }
-        }, this.WhenAnyValue(x => x.Input).Select(i => int.TryParse(i, out _)));
+        }, this.WhenAnyValue(x => x.CanToId));
     }
 
     [Reactive] public partial string? Input { get; set; }

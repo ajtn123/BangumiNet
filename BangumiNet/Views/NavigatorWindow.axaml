@@ -19,7 +19,7 @@
 		WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
     <StackPanel Margin="5" Spacing="5">
-        <TextBox Text="{Binding Input}"/>
+        <TextBox Text="{Binding Input}" Watermark="转到 ID"/>
         <Button Command="{Binding ToSubject}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到项目 {0} >'}"/>
         <Button Command="{Binding ToCharacter}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到角色 {0} >'}"/>
         <Button Command="{Binding ToPerson}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到人物 {0} >'}"/>

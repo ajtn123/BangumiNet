@@ -80,35 +80,20 @@ public partial class PersonViewModel : ViewModelBase
         Images = person.Images;
         Summary = person.Summary;
         Type = (PersonType?)person.Type;
-
-        if (person.AdditionalData.TryGetValue("blood_type", out var bt) && bt is int bloodType)
-            BloodType = (BloodType?)bloodType;
-        person.AdditionalData.TryGetValue("birth_year", out var birthYear);
-        person.AdditionalData.TryGetValue("birth_mon", out var birthMon);
-        person.AdditionalData.TryGetValue("birth_day", out var birthDay);
-        if (birthYear != null || birthMon != null || birthDay != null)
+        BloodType = (BloodType?)person.BloodType;
+        Gender = EnumExtensions.TryParseGender(person.Gender);
+        GenderString = person.Gender;
+        CommentCount = person.Stat?.Comments;
+        CollectionTotal = person.Stat?.Collects;
+        Infobox = person.Infobox?.Select(x => new InfoboxItemViewModel(x)).ToObservableCollection();
+        if (person.BirthYear != null || person.BirthMon != null || person.BirthDay != null)
         {
             DateOnly bd = new();
-            if (Common.NumberToInt(birthYear) is int year) bd = bd.AddYears(year);
-            if (Common.NumberToInt(birthMon) is int mon) bd = bd.AddMonths(mon);
-            if (Common.NumberToInt(birthDay) is int day) bd = bd.AddDays(day);
+            if (person.BirthYear != null) bd = bd.AddYears((int)person.BirthYear);
+            if (person.BirthMon != null) bd = bd.AddMonths((int)person.BirthMon);
+            if (person.BirthDay != null) bd = bd.AddDays((int)person.BirthDay);
             Birthday = bd;
         }
-        if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
-        {
-            GenderString = gender;
-            Gender = EnumExtensions.TryParseGender(gender);
-        }
-        if (person.AdditionalData.TryGetValue("stat", out var statO) && statO is UntypedObject statUO && statUO.ToObject() is IDictionary<string, object?> stat)
-        {
-            stat.TryGetValue("collects", out var collectsNode);
-            stat.TryGetValue("comments", out var commentsNode);
-            CollectionTotal = (int?)collectsNode;
-            CommentCount = (int?)commentsNode;
-        }
-        if (person.AdditionalData.TryGetValue("infobox", out var ib) && ib is UntypedArray ua && ua.ToObject() is List<object?> list)
-            Infobox = list.Select(x => x is not Dictionary<string, object?> dict ? null : new InfoboxItemViewModel(dict))
-                .Where(y => y is not null).ToObservableCollection()!;
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
