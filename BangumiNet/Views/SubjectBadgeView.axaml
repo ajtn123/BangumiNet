@@ -17,7 +17,7 @@
                 <Image Source="{Binding ImageGrid^}" Name="Img"/>
             </Border>
         </Border>
-        <StackPanel Margin="5,0" Grid.Row="1" MaxWidth="{Binding #Img.Source.Size.Width}">
+        <StackPanel Grid.Row="1" MaxWidth="{Binding #Img.Source.Size.Width}">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}" Classes="Title"/>
             <TextBlock Text="{Binding Relation}"/>
         </StackPanel>
