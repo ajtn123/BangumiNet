@@ -7,6 +7,6 @@ version: 2
 updates:
   - package-ecosystem: "nuget"
     directories:
-      - "**/*"
+      - "/*"
     schedule:
       interval: "weekly"
