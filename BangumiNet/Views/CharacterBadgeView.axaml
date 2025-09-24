@@ -11,12 +11,13 @@
 			 x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterBadgeView">
     <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card" HorizontalAlignment="Left" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+				IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Border CornerRadius="9.35" ClipToBounds="True">
                 <Image Source="{Binding ImageGrid^}" Name="Img"/>
             </Border>
         </Border>
-        <StackPanel Margin="5,0" Grid.Row="1">
+        <StackPanel Margin="5,0" Grid.Row="1" MaxWidth="{Binding #Img.Source.Size.Width}">
             <TextBlock Text="{Binding Name}" Classes="Title"/>
             <TextBlock Text="{Binding Relation}"/>
         </StackPanel>

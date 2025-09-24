@@ -12,12 +12,12 @@
     <ItemsControl ItemsSource="{Binding EpisodeViewModels}" ClipToBounds="False">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="vm:EpisodeViewModel">
-                <v:EpisodeBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
+                <v:EpisodeBadgeView DataContext="{Binding .}"/>
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal"/>
+                <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

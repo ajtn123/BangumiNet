@@ -16,7 +16,7 @@
 		<Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
 				Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
 		<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-					  Grid.Row="1" Grid.ColumnSpan="2" Name="PersonScroll">
+					  Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding PersonViewModels}"
 						  ClipToBounds="False" Margin="0,5">
                 <ItemsControl.DataTemplates>

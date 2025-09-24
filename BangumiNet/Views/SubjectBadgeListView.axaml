@@ -10,5 +10,25 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 x:DataType="vm:SubjectBadgeListViewModel"
              x:Class="BangumiNet.Views.SubjectBadgeListView">
-  Welcome to Avalonia!
+	<Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+		<TextBlock FontSize="20" FontWeight="Bold">相关项目</TextBlock>
+		<Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
+				Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
+		<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
+					  Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
+			<ItemsControl ItemsSource="{Binding SubjectViewModels}"
+						  ClipToBounds="False" Margin="0,5">
+				<ItemsControl.DataTemplates>
+					<DataTemplate DataType="vm:SubjectViewModel">
+						<v:SubjectBadgeView DataContext="{Binding .}"/>
+					</DataTemplate>
+				</ItemsControl.DataTemplates>
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</ScrollViewer>
+	</Grid>
 </UserControl>

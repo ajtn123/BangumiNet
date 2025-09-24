@@ -25,6 +25,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
             _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
             _ = ViewModel?.PersonBadgeListViewModel?.LoadPersons();
             _ = ViewModel?.CharacterBadgeListViewModel?.LoadCharacters();
+            _ = ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
         };
     }
 

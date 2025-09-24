@@ -13,14 +13,14 @@ public partial class PersonBadgeListView : UserControl
 
     private void ChangeWrap(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (PersonScroll.HorizontalScrollBarVisibility == ScrollBarVisibility.Auto)
+        if (BadgeScroll.HorizontalScrollBarVisibility == ScrollBarVisibility.Auto)
         {
-            PersonScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            BadgeScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
             WrapButton.Content = new FluentIcon() { Icon = FluentIcons.Common.Icon.ArrowWrapOff };
         }
         else
         {
-            PersonScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            BadgeScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             WrapButton.Content = new FluentIcon() { Icon = FluentIcons.Common.Icon.ArrowWrap };
         }
     }
