@@ -1,5 +1,29 @@
-﻿namespace BangumiNet.ViewModels;
+﻿using BangumiNet.Api.ExtraEnums;
+using ReactiveUI.SourceGenerators;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
-public class SubjectBadgeListViewModel : ViewModelBase
+namespace BangumiNet.ViewModels;
+
+public partial class SubjectBadgeListViewModel : ViewModelBase
 {
+    public SubjectBadgeListViewModel(ItemType type, int? id)
+    {
+        ParentType = type;
+        Id = id;
+    }
+
+    public async Task LoadSubjects()
+    {
+        if (Id is not int id) return;
+        if (ParentType == ItemType.Subject)
+        {
+            var data = await ApiC.V0.Subjects[id].Subjects.GetAsync();
+            SubjectViewModels = data?.Select(x => new SubjectViewModel(x)).ToObservableCollection();
+        }
+    }
+
+    [Reactive] public partial ObservableCollection<SubjectViewModel>? SubjectViewModels { get; set; }
+    [Reactive] public partial ItemType ParentType { get; set; }
+    [Reactive] public partial int? Id { get; set; }
 }

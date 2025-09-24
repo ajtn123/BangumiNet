@@ -89,11 +89,25 @@ public partial class SubjectViewModel : ViewModelBase
 
         Init();
     }
+    public SubjectViewModel(V0_subject_relation subject)
+    {
+        Source = subject;
+        Id = subject.Id;
+        Type = (SubjectType?)subject.Type;
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Images = subject.Images;
+        Relation = subject.Relation;
+
+        Init();
+    }
     public SubjectViewModel(int subjectId) => Id = subjectId;
     public void Init()
     {
         EpisodeListViewModel = new(Id);
         PersonBadgeListViewModel = new(ItemType.Subject, Id);
+        CharacterBadgeListViewModel = new(ItemType.Subject, Id);
+        SubjectBadgeListViewModel = new(ItemType.Subject, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
@@ -144,6 +158,9 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
+    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial string? Relation { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchGoogleCommand { get; private set; }

@@ -11,21 +11,17 @@
              ClipToBounds="False"
              x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonBadgeView">
-    <Border Classes="Card">
-        <Border CornerRadius="9.35" ClipToBounds="True">
-            <Grid RowDefinitions="*,Auto">
-                <Image Source="{Binding ImageGrid^,FallbackValue={Binding Name}}"
-                       Name="Img" Grid.RowSpan="2"/>
-                <Panel Background="#7f7f7f7f" Grid.Row="1"
-                       IsVisible="{Binding #Img.Source,Converter={StaticResource InNullCvt}}">
-                    <StackPanel Margin="5,0">
-                        <TextBlock Text="{Binding Name}" Classes="Title"/>
-                        <TextBlock Text="{Binding Relation}"/>
-                    </StackPanel>
-                </Panel>
-            </Grid>
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto" RowSpacing="5">
+        <Border Classes="Card" HorizontalAlignment="Left" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+            <Border CornerRadius="9.35" ClipToBounds="True">
+                <Image Source="{Binding ImageGrid^}" Name="Img"/>
+            </Border>
         </Border>
-        <Border.ContextFlyout>
+        <StackPanel Margin="5,0" Grid.Row="1">
+            <TextBlock Text="{Binding Name}" Classes="Title"/>
+            <TextBlock Text="{Binding Relation}"/>
+        </StackPanel>
+        <Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">
@@ -33,7 +29,7 @@
                         <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
-                    <Separator Margin="0,5"/>
+                    <Separator/>
                     <TextBlock ToolTip.Tip="名称" Text="{Binding Name}" IsVisible="{Binding Name,Converter={StaticResource NEWCvt}}" Classes="Title"/>
                     <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
                     <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
@@ -41,6 +37,6 @@
                     <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
                 </StackPanel>
             </Flyout>
-        </Border.ContextFlyout>
-    </Border>
+        </Grid.ContextFlyout>
+    </Grid>
 </UserControl>

@@ -38,6 +38,21 @@ public partial class CharacterViewModel : ViewModelBase
         Type = (CharacterType?)character.Type;
         IsNsfw = (bool?)character.AdditionalData["nsfw"];
 
+        Init();
+    }
+    public CharacterViewModel(RelatedCharacter character)
+    {
+        Id = character.Id;
+        Relation = character.Relation;
+        PersonViewModels = character.Actors?.Select(x => new PersonViewModel(x)).ToObservableCollection();
+        Images = character.Images;
+        Name = character.Name;
+        Type = (CharacterType?)character.Type;
+
+        Init();
+    }
+    public void Init()
+    {
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
@@ -57,6 +72,8 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
+    [Reactive] public partial string? Relation { get; set; }
+    [Reactive] public partial ObservableCollection<PersonViewModel>? PersonViewModels { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);

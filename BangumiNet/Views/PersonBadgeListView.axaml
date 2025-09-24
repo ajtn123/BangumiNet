@@ -11,10 +11,14 @@
              ClipToBounds="False"
              x:DataType="vm:PersonBadgeListViewModel"
              x:Class="BangumiNet.Views.PersonBadgeListView">
-    <StackPanel>
+    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
 		<TextBlock FontSize="20" FontWeight="Bold">相关人物</TextBlock>
-		<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding PersonViewModels}" ClipToBounds="False" Margin="0,5">
+		<Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
+				Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
+		<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
+					  Grid.Row="1" Grid.ColumnSpan="2" Name="PersonScroll">
+            <ItemsControl ItemsSource="{Binding PersonViewModels}"
+						  ClipToBounds="False" Margin="0,5">
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:PersonViewModel">
                         <v:PersonBadgeView DataContext="{Binding .}"/>
@@ -22,10 +26,10 @@
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Spacing="5" Orientation="Horizontal"/>
+                        <WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
-    </StackPanel>
+    </Grid>
 </UserControl>

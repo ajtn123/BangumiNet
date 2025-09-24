@@ -40,6 +40,9 @@
 
 	<Application.Styles>
 		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
+		<Style Selector=":is(TopLevel)">
+			<Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+		</Style>
 		<Style Selector="Border.Card">
             <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -65,7 +68,6 @@
 		</Style>
 		<Style Selector="Window">
 			<Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
-			<Setter Property="FontFamily" Value="Microsoft Yahei"/>
 		</Style>
 		<Style Selector="FlyoutPresenter">
 			<Setter Property="Padding" Value="5"/>
@@ -109,6 +111,9 @@
 					<Setter Property="Margin" Value="0,0,2,-3"/>
 				</Style>
 			</Style>
+		</Style>
+		<Style Selector="Separator">
+			<Setter Property="Margin" Value="0,5"/>
 		</Style>
     </Application.Styles>
 </Application>
