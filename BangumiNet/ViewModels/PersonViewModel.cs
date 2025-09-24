@@ -146,4 +146,5 @@ public partial class PersonViewModel : ViewModelBase
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b?.ToStringSC()} ");
+    public bool IsFull => Source is Person or PersonDetail;
 }

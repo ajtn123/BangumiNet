@@ -11,9 +11,9 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
 
         DataContextChanged += async (s, e) =>
         {
-            if (dataContextChanges > 10) return;
+            if (dataContextChanges >= 1) return;
             if (DataContext is not SubjectViewModel viewModel) return;
-            if (viewModel.Source?.GetType() != typeof(Api.V0.Models.Subject))
+            if (!viewModel.IsFull)
             {
                 if (viewModel.Id is not int id) return;
                 var fullSubject = await ApiC.V0.Subjects[id].GetAsync();

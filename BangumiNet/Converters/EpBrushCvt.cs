@@ -1,4 +1,5 @@
-﻿using Avalonia.Data.Converters;
+﻿using Avalonia.Collections;
+using Avalonia.Data.Converters;
 using Avalonia.Media;
 using BangumiNet.Api.ExtraEnums;
 using System.Globalization;
@@ -25,4 +26,18 @@ public class EpBrushCvt : IValueConverter
             null => Brush.Parse(SettingProvider.CurrentSettings.ErrorBg),
             _ => throw new NotImplementedException(),
         };
+}
+public class EpDashCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => Convert(value);
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+
+    public static AvaloniaList<double>? Convert(object? obj)
+    {
+        if (obj is not DateOnly date) return null;
+        if (date.ToDateTime(TimeOnly.MaxValue) > DateTime.UtcNow) return [5, 2];
+        else return null;
+    }
 }

@@ -12,10 +12,9 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
 
         DataContextChanged += async (s, e) =>
         {
-            if (dataContextChanges > 10) return;
+            if (dataContextChanges >= 1) return;
             if (DataContext is not PersonViewModel viewModel) return;
-            var st = viewModel.Source?.GetType();
-            if (st != typeof(Person) && st != typeof(PersonDetail))
+            if (!viewModel.IsFull)
             {
                 if (viewModel.Id is not int id) return;
                 var fullPerson = await ApiC.V0.Persons[id].GetAsync();

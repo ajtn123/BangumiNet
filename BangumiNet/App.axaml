@@ -13,16 +13,48 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
 
-    <Application.Styles>
+	<Application.Resources>
+		<cvt:NEWCvt x:Key="NEWCvt"/>
+		<cvt:EpBrushCvt x:Key="EpBrushCvt"/>
+		<cvt:EpDashCvt x:Key="EpDashCvt"/>
+		<cvt:InNullCvt x:Key="InNullCvt"/>
+		<cvt:NullCvt x:Key="NullCvt"/>
+		<cvt:EIECvt x:Key="EIECvt"/>
+		<cvt:NameCnCvt x:Key="NameCnCvt"/>
+		<cvt:NameAltCvt x:Key="NameAltCvt"/>
+		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
+		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
+		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
+		<cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
+		<cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
+		<cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
+		<cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
+		<cvt:CareerCvt x:Key="CareerCvt"/>
+		<cvt:DateCvt x:Key="DateCvt"/>
+		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
+		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
+		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
+		<Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
+		<SolidColorBrush x:Key="CardBorderBrush">#7f7f7f7f</SolidColorBrush>
+	</Application.Resources>
+
+	<Application.Styles>
 		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
 		<Style Selector="Border.Card">
-            <Setter Property="BorderBrush" Value="#7f7f7f7f"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
 			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
 			<Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
         </Style>
-        <Style Selector="Button.Icon">
+		<Style Selector="Rectangle.Card">
+			<Setter Property="RadiusX" Value="5"/>
+			<Setter Property="RadiusY" Value="5"/>
+			<Setter Property="StrokeThickness" Value="1"/>
+			<Setter Property="Stroke" Value="{StaticResource CardBorderBrush}"/>
+			<Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+		</Style>
+		<Style Selector="Button.Icon">
             <Setter Property="Padding" Value="0"/>
         </Style>
         <Style Selector="Button.Icon ic|FluentIcon">
@@ -79,27 +111,4 @@
 			</Style>
 		</Style>
     </Application.Styles>
-
-	<Application.Resources>
-		<cvt:NEWCvt x:Key="NEWCvt"/>
-		<cvt:EpBrushCvt x:Key="EpBrushCvt"/>
-		<cvt:InNullCvt x:Key="InNullCvt"/>
-		<cvt:NullCvt x:Key="NullCvt"/>
-		<cvt:EIECvt x:Key="EIECvt"/>
-		<cvt:NameCnCvt x:Key="NameCnCvt"/>
-		<cvt:NameAltCvt x:Key="NameAltCvt"/>
-		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
-		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
-		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
-		<cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
-		<cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
-		<cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
-		<cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
-		<cvt:CareerCvt x:Key="CareerCvt"/>
-		<cvt:DateCvt x:Key="DateCvt"/>
-		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
-		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
-		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
-		<Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
-	</Application.Resources>
 </Application>
