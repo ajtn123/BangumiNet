@@ -2,28 +2,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:v="using:BangumiNet.Views"
+             xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 ClipToBounds="False"
-			 x:DataType="vm:PersonViewModel"
+             ClipToBounds="False"
+             x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonBadgeView">
-	<Border Classes="Card">
-		<Border CornerRadius="10" ClipToBounds="True">
-			<Grid RowDefinitions="*,Auto">
-				<Image Source="{Binding ImageGrid^}" Grid.RowSpan="2"/>
-				<Panel Background="#7f7f7f7f" Grid.Row="1">
-					<StackPanel Margin="5,0">
-						<TextBlock Text="{Binding Name}"/>
-						<TextBlock Text="{Binding Relation}"/>
-					</StackPanel>
-				</Panel>
-			</Grid>
-		</Border>
-		<Border.ContextFlyout>
+    <Border Classes="Card">
+        <Border CornerRadius="9.35" ClipToBounds="True">
+            <Grid RowDefinitions="*,Auto">
+                <Image Source="{Binding ImageGrid^,FallbackValue={Binding Name}}"
+                       Name="Img" Grid.RowSpan="2"/>
+                <Panel Background="#7f7f7f7f" Grid.Row="1"
+                       IsVisible="{Binding #Img.Source,Converter={StaticResource InNullCvt}}">
+                    <StackPanel Margin="5,0">
+                        <TextBlock Text="{Binding Name}" Classes="Title"/>
+                        <TextBlock Text="{Binding Relation}"/>
+                    </StackPanel>
+                </Panel>
+            </Grid>
+        </Border>
+        <Border.ContextFlyout>
             <Flyout>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">
@@ -31,13 +33,14 @@
                         <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
-					<TextBlock ToolTip.Tip="名称" Text="{Binding Name}" IsVisible="{Binding Name,Converter={StaticResource NEWCvt}}" Classes="Title"/>
-					<TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
+                    <Separator Margin="0,5"/>
+                    <TextBlock ToolTip.Tip="名称" Text="{Binding Name}" IsVisible="{Binding Name,Converter={StaticResource NEWCvt}}" Classes="Title"/>
+                    <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
                     <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
-					<TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
-					<TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
                 </StackPanel>
             </Flyout>
         </Border.ContextFlyout>
-	</Border>
+    </Border>
 </UserControl>
