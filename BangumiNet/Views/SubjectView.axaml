@@ -64,6 +64,8 @@
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
 					<Separator/>
+					<v:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
+					<Separator/>
 					<v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
                 </StackPanel>
             </Grid>

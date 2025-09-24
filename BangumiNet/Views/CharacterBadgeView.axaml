@@ -10,5 +10,33 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterBadgeView">
-  Welcome to Avalonia!
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto" RowSpacing="5">
+        <Border Classes="Card" HorizontalAlignment="Left" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+            <Border CornerRadius="9.35" ClipToBounds="True">
+                <Image Source="{Binding ImageGrid^}" Name="Img"/>
+            </Border>
+        </Border>
+        <StackPanel Margin="5,0" Grid.Row="1">
+            <TextBlock Text="{Binding Name}" Classes="Title"/>
+            <TextBlock Text="{Binding Relation}"/>
+        </StackPanel>
+        <Grid.ContextFlyout>
+            <Flyout>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    </StackPanel>
+                    <Separator/>
+                    <TextBlock ToolTip.Tip="名称" Text="{Binding Name}" IsVisible="{Binding Name,Converter={StaticResource NEWCvt}}" Classes="Title"/>
+                    <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
+                    <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
+					<Separator/>
+					<v:PersonListView DataContext="{Binding PersonListViewModel}"/>
+                </StackPanel>
+            </Flyout>
+        </Grid.ContextFlyout>
+    </Grid>
 </UserControl>

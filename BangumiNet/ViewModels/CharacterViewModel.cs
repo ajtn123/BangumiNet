@@ -16,6 +16,7 @@ public partial class CharacterViewModel : ViewModelBase
 {
     public CharacterViewModel(Character character)
     {
+        Source = character;
         if (character.BirthDay != null || character.BirthMon != null || character.BirthYear != null)
         {
             DateOnly bd = new();
@@ -42,9 +43,10 @@ public partial class CharacterViewModel : ViewModelBase
     }
     public CharacterViewModel(RelatedCharacter character)
     {
+        Source = character;
         Id = character.Id;
         Relation = character.Relation;
-        PersonViewModels = character.Actors?.Select(x => new PersonViewModel(x)).ToObservableCollection();
+        PersonListViewModel = new() { PersonViewModels = character.Actors?.Select(x => new PersonViewModel(x, fromRelation: true)).ToObservableCollection() };
         Images = character.Images;
         Name = character.Name;
         Type = (CharacterType?)character.Type;
@@ -58,6 +60,7 @@ public partial class CharacterViewModel : ViewModelBase
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
     }
 
+    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? Summary { get; set; }
@@ -73,7 +76,7 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial string? Relation { get; set; }
-    [Reactive] public partial ObservableCollection<PersonViewModel>? PersonViewModels { get; set; }
+    [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
@@ -83,4 +86,6 @@ public partial class CharacterViewModel : ViewModelBase
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchGoogleCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
+
+    public bool IsFull => Source is Character;
 }

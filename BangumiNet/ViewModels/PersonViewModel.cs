@@ -18,7 +18,7 @@ namespace BangumiNet.ViewModels;
 
 public partial class PersonViewModel : ViewModelBase
 {
-    public PersonViewModel(Person person)
+    public PersonViewModel(Person person, bool fromRelation = false)
     {
         Source = person;
         Id = person.Id;
@@ -28,6 +28,7 @@ public partial class PersonViewModel : ViewModelBase
         Images = person.Images;
         ShortSummary = person.ShortSummary;
         Type = (PersonType?)person.Type;
+        FromRelation = fromRelation;
 
         if (person.AdditionalData.TryGetValue("summary", out var summary))
             Summary = summary.ToString();
@@ -133,6 +134,7 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
 
+    [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
 
@@ -146,5 +148,5 @@ public partial class PersonViewModel : ViewModelBase
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b?.ToStringSC()} ");
-    public bool IsFull => Source is Person or PersonDetail;
+    public bool IsFull => !FromRelation && Source is Person or PersonDetail;
 }
