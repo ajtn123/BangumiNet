@@ -2,20 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="using:BangumiNet.ViewModels"
-			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="400" Height="30"
-			 x:DataType="vm:PageNavigatorViewModel"
+             x:DataType="vm:PageNavigatorViewModel"
              x:Class="BangumiNet.Views.PageNavigatorView">
-	<Grid ColumnDefinitions="*,*,Auto,*">
-		<Button Command="{Binding PrevPage}" Content="{ice:FluentIcon Icon=ArrowLeft}"/>
-		<NumericUpDown Value="{Binding PageIndexInput}" Grid.Column="1" Maximum="{Binding Total}" Minimum="1"
-					   FormatString="N0" ParsingNumberStyle="Integer" Margin="5,0">
-			<NumericUpDown.InnerLeftContent>
-				<Button Command="{Binding JumpPage}" Content="{ice:FluentIcon Icon=Checkmark}" Margin="3"/>
-			</NumericUpDown.InnerLeftContent>
-		</NumericUpDown>
-		<TextBlock Text="{Binding Total,StringFormat='/ {0} 页'}" VerticalAlignment="Center" Grid.Column="2" Margin="0,0,5,0"/>
-		<Button Command="{Binding NextPage}" Content="{ice:FluentIcon Icon=ArrowRight}" HorizontalAlignment="Right" Grid.Column="3"/>
-	</Grid>
+    <Grid ColumnDefinitions="*,*,Auto,*">
+        <Button Command="{Binding PrevPage}" Content="{ice:FluentIcon Icon=ArrowLeft}"/>
+        <NumericUpDown Value="{Binding PageIndexInput}" Grid.Column="1" Maximum="{Binding Total}" Minimum="1"
+                       FormatString="N0" ParsingNumberStyle="Integer" Margin="5,0">
+            <NumericUpDown.InnerLeftContent>
+                <Button Command="{Binding JumpPage}" Content="{ice:FluentIcon Icon=Checkmark}" Margin="3"/>
+            </NumericUpDown.InnerLeftContent>
+        </NumericUpDown>
+        <TextBlock Text="{Binding Total,StringFormat='/ {0} 页'}" VerticalAlignment="Center" Grid.Column="2" Margin="0,0,5,0"/>
+        <Button Command="{Binding NextPage}" Content="{ice:FluentIcon Icon=ArrowRight}" HorizontalAlignment="Right" Grid.Column="3"/>
+    </Grid>
 </UserControl>

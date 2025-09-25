@@ -13,10 +13,10 @@
         x:DataType="vm:NavigatorViewModel"
         x:Class="BangumiNet.Views.NavigatorWindow"
         SizeToContent="WidthAndHeight"
-		Topmost="True"
-		ExtendClientAreaToDecorationsHint="True"
-		ExtendClientAreaChromeHints="NoChrome"
-		WindowStartupLocation="CenterOwner"
+        Topmost="True"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
     <StackPanel Margin="5" Spacing="5">
         <TextBox Text="{Binding Input}" Watermark="转到 ID"/>

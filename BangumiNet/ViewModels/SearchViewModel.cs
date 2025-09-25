@@ -270,7 +270,7 @@ public partial class SearchViewModel : ViewModelBase
     }
     public List<string>? GetCareerFilter()
     {
-        var list = Career.Where(x => x.IsSelected).Select(x => x.PersonCareer.ToString()).ToList();
+        var list = Career.Where(x => x.IsSelected).Select(x => x.PersonCareer.ToString().ToLower()).ToList();
         if (list.Count > 0) return list;
         else return null;
     }

@@ -3,6 +3,8 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Converters;
+using BangumiNet.Models;
 using BangumiNet.Views;
 using DynamicData.Binding;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -103,6 +105,24 @@ public partial class PersonViewModel : ViewModelBase
 
         Init();
     }
+    public PersonViewModel(CharacterPerson person)
+    {
+        Source = person;
+        Name = person.Name;
+        Relation = $"{person.Staff} · {NameCnCvt.Convert(person.SubjectName, person.SubjectNameCn)}";
+        Type = (PersonType?)person.Type;
+        Id = person.Id;
+        Images = person.Images;
+        CharacterSubjectViewModel = new(new SubjectBasic()
+        {
+            Id = person.SubjectId,
+            Name = person.SubjectName,
+            NameCn = person.SubjectNameCn,
+            Type = (SubjectType?)person.SubjectType
+        });
+
+        Init();
+    }
 
     public void Init()
     {
@@ -137,6 +157,7 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
+    [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);

@@ -2,16 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:v="using:BangumiNet.Views"
+             xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
-			 xmlns:am="using:BangumiNet.Api.V0.Models"
+             xmlns:am="using:BangumiNet.Api.V0.Models"
              utils:UserControlHelpers.ParentTitle="{Binding Name,StringFormat='\{0} - BangumiNet',FallbackValue='人物 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 x:DataType="vm:PersonViewModel"
+             x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonView">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Spacing="5" Margin="5">
@@ -20,8 +20,8 @@
                     <Border CornerRadius="10" ClipToBounds="True">
                         <Image Source="{Binding ImageLarge^}"/>
                     </Border>
-					<v:InfoboxView DataContext="{Binding Infobox}" />
-				</StackPanel>
+                    <v:InfoboxView DataContext="{Binding Infobox}" />
+                </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="5,0,0,0">
                     <TextBlock Text="{Binding Name}" Classes="Title" FontSize="30"/>
@@ -31,7 +31,7 @@
                         <TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="血型" IsVisible="{Binding BloodType,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Doctor"/><Run Text="{Binding BloodType}"/></TextBlock>
                         <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
-						<TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>

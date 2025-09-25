@@ -24,6 +24,7 @@
 		<cvt:SubCvt x:Key="SubCvt"/>
 		<cvt:MulCvt x:Key="MulCvt"/>
 		<cvt:DivCvt x:Key="DivCvt"/>
+		<cvt:BoundCvt x:Key="BoundCvt"/>
 		<cvt:NameCnCvt x:Key="NameCnCvt"/>
 		<cvt:NameAltCvt x:Key="NameAltCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>

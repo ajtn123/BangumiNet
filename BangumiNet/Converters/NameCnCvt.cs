@@ -21,8 +21,10 @@ public class NameCnCvt : IValueConverter
         var name = nameProp?.GetValue(subject)?.ToString();
         var nameCn = nameCnProp?.GetValue(subject)?.ToString();
 
-        return string.IsNullOrWhiteSpace(nameCn) ? name : SettingProvider.CurrentSettings.PreferChineseNames ? nameCn : name;
+        return Convert(name, nameCn);
     }
+    public static string? Convert(string? name, string? nameCn)
+        => string.IsNullOrWhiteSpace(nameCn) ? name : SettingProvider.CurrentSettings.PreferChineseNames ? nameCn : name;
 }
 public class NameAltCvt : IValueConverter
 {
@@ -41,6 +43,8 @@ public class NameAltCvt : IValueConverter
         var name = nameProp?.GetValue(subject)?.ToString();
         var nameCn = nameCnProp?.GetValue(subject)?.ToString();
 
-        return string.IsNullOrWhiteSpace(nameCn) ? null : SettingProvider.CurrentSettings.PreferChineseNames ? name : nameCn;
+        return Convert(name, nameCn);
     }
+    public static string? Convert(string? name, string? nameCn)
+        => string.IsNullOrWhiteSpace(nameCn) ? null : SettingProvider.CurrentSettings.PreferChineseNames ? name : nameCn;
 }

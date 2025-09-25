@@ -13,18 +13,20 @@
              x:Class="BangumiNet.Views.PersonBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
         <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-				IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
-            <Border CornerRadius="9.35" ClipToBounds="True">
-                <Image Source="{Binding ImageGrid^}" Name="Img"/>
-            </Border>
+                IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+            <Image Source="{Binding ImageGrid^}" Name="Img">
+                <Image.Clip>
+                    <RectangleGeometry RadiusX="9.35" RadiusY="9.35" Rect="{Binding #Img.Bounds,Converter={StaticResource BoundCvt}}"/>
+                </Image.Clip>
+            </Image>
         </Border>
-		<Border Grid.Row="1" Margin="4,0,0,0" Padding="4,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource CardBorderBrush}"
-				MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
-			<StackPanel>
-				<TextBlock Text="{Binding Name}" Classes="Title"/>
-				<TextBlock Text="{Binding Relation}"/>
-			</StackPanel>
-		</Border>
+        <Border Grid.Row="1" Margin="4,0,0,0" Padding="4,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource CardBorderBrush}"
+                MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" Classes="Title"/>
+                <TextBlock Text="{Binding Relation}"/>
+            </StackPanel>
+        </Border>
         <Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
@@ -39,6 +41,9 @@
                     <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                     <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
                     <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
+                    <Separator IsVisible="{Binding CharacterSubjectViewModel,Converter={StaticResource NullCvt}}"/>
+                    <v:SubjectBadgeView DataContext="{Binding CharacterSubjectViewModel}"
+                                        IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"/>
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

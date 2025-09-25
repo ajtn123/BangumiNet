@@ -55,6 +55,9 @@ public partial class CharacterViewModel : ViewModelBase
     }
     public void Init()
     {
+        SubjectBadgeListViewModel = new(ItemType.Character, Id);
+        PersonBadgeListViewModel = new(ItemType.Character, Id);
+
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
@@ -77,6 +80,8 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);

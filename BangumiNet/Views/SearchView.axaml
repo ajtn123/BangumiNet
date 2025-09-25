@@ -8,7 +8,7 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
-			 utils:UserControlHelpers.ParentTitle="{Binding Keyword, StringFormat='搜索 {0} - BangumiNet',FallbackValue='搜索 - BangumiNet'}"
+             utils:UserControlHelpers.ParentTitle="{Binding Keyword, StringFormat='搜索 {0} - BangumiNet',FallbackValue='搜索 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
              x:DataType="vm:SearchViewModel"
              x:Class="BangumiNet.Views.SearchView">
@@ -199,15 +199,15 @@
                 </StackPanel>
             </Grid>
             <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5"
-				  ColumnDefinitions="*,3*" ColumnSpacing="5"
+                  ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingPerson}">
                     <Border Classes="Card" Padding="5,0">
-						<Grid ColumnDefinitions="*,Auto">
-							<TextBlock>
-								<ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
-							</TextBlock>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <TextBlock>
+                                <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
+                            </TextBlock>
                             <ic:FluentIcon Icon="Warning" FontSize="16" ToolTip.Tip="由于 API 原因，此过滤器目前没有效果。" Grid.Column="1"/>
-						</Grid>
+                        </Grid>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Career}" Padding="5,0" Grid.Column="1">
                         <ItemsControl.DataTemplates>
@@ -220,11 +220,11 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.DataTemplates>
-						<ItemsControl.ItemsPanel>
-							<ItemsPanelTemplate>
-								<WrapPanel Orientation="Horizontal" />
-							</ItemsPanelTemplate>
-						</ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2">
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding SubjectErrorMessage,Converter={StaticResource NEWCvt}}" Padding="5,0">

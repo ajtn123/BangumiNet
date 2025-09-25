@@ -8,28 +8,28 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 ClipToBounds="False"
-			 x:DataType="vm:CharacterBadgeListViewModel"
+             ClipToBounds="False"
+             x:DataType="vm:CharacterBadgeListViewModel"
              x:Class="BangumiNet.Views.CharacterBadgeListView">
-	<Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
-		<TextBlock FontSize="20" FontWeight="Bold">相关角色</TextBlock>
-		<Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
-				Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
-		<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-					  Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
-			<ItemsControl ItemsSource="{Binding CharacterViewModels}"
-						  ClipToBounds="False" Margin="0,5">
-				<ItemsControl.DataTemplates>
-					<DataTemplate DataType="vm:CharacterViewModel">
-						<v:CharacterBadgeView DataContext="{Binding .}"/>
-					</DataTemplate>
-				</ItemsControl.DataTemplates>
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal"/>
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-			</ItemsControl>
-		</ScrollViewer>
-	</Grid>
+    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+        <TextBlock FontSize="20" FontWeight="Bold">相关角色</TextBlock>
+        <Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
+                Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
+                      Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
+            <ItemsControl ItemsSource="{Binding CharacterViewModels}"
+                          ClipToBounds="False" Margin="0,5">
+                <ItemsControl.DataTemplates>
+                    <DataTemplate DataType="vm:CharacterViewModel">
+                        <v:CharacterBadgeView DataContext="{Binding .}"/>
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

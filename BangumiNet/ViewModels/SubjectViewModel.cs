@@ -101,7 +101,28 @@ public partial class SubjectViewModel : ViewModelBase
 
         Init();
     }
-    public SubjectViewModel(int subjectId) => Id = subjectId;
+    public SubjectViewModel(V0_RelatedSubject subject)
+    {
+        Source = subject;
+        Id = subject.Id;
+        Type = (SubjectType?)subject.Type;
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Images = new ImageSet() { Large = subject.Image };
+        Relation = subject.Staff;
+
+        Init();
+    }
+    public SubjectViewModel(SubjectBasic subject)
+    {
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Id = subject.Id;
+        Type = subject.Type;
+        Relation = subject.Type?.ToStringSC();
+
+        Init();
+    }
     public void Init()
     {
         EpisodeListViewModel = new(Id);

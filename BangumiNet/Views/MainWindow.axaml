@@ -19,25 +19,25 @@
 
     <TabControl>
         <TabItem>
-			<TabItem.Header>
-				<TextBlock><ic:FluentIcon Icon="Home" FontSize="24" Margin="0,0,0,-4"/>主页</TextBlock>
-			</TabItem.Header>
+            <TabItem.Header>
+                <TextBlock><ic:FluentIcon Icon="Home" FontSize="24" Margin="0,0,0,-4"/>主页</TextBlock>
+            </TabItem.Header>
             <v:HomeView/>
         </TabItem>
         <TabItem>
-			<TabItem.Header>
-				<TextBlock><ic:FluentIcon Icon="Live" FontSize="24" Margin="0,0,0,-4"/>每日放送</TextBlock>
-			</TabItem.Header>
+            <TabItem.Header>
+                <TextBlock><ic:FluentIcon Icon="Live" FontSize="24" Margin="0,0,0,-4"/>每日放送</TextBlock>
+            </TabItem.Header>
             <v:AiringView/>
         </TabItem>
         <TabItem>
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal" Spacing="5">
-					<TextBlock><ic:FluentIcon Icon="Search" FontSize="24" Margin="0,0,0,-4"/>搜索</TextBlock>
+                    <TextBlock><ic:FluentIcon Icon="Search" FontSize="24" Margin="0,0,0,-4"/>搜索</TextBlock>
                     <Button x:Name="NavigatorButton" Content="{ice:FluentIcon Icon=CompassNorthwest}" Classes="Icon" Height="30" Width="30"/>
                 </StackPanel>
             </TabItem.Header>
-			<v:SearchView/>
+            <v:SearchView/>
         </TabItem>
     </TabControl>
 </Window>

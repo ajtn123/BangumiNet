@@ -29,10 +29,10 @@
                         <WrapPanel.Styles>
                             <Style Selector="WrapPanel > TextBlock">
                                 <Setter Property="Margin" Value="0,0,5,0"/>
-								<Style Selector="^ ic|FluentIcon">
-									<Setter Property="FontSize" Value="16"/>
-									<Setter Property="Margin" Value="0,0,2,-3"/>
-								</Style>
+                                <Style Selector="^ ic|FluentIcon">
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="Margin" Value="0,0,2,-3"/>
+                                </Style>
                             </Style>
                         </WrapPanel.Styles>
                         <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
@@ -63,12 +63,12 @@
                         <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
-					<Separator/>
-					<v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-					<Separator/>
-					<v:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
-					<Separator/>
-					<v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <Separator/>
+                    <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
+                    <Separator/>
+                    <v:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
+                    <Separator/>
+                    <v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
                 </StackPanel>
             </Grid>
             <Expander Header="评分统计"  IsExpanded="True" HorizontalAlignment="Stretch">
