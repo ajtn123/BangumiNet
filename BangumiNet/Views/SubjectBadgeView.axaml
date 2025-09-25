@@ -10,9 +10,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectBadgeView">
-    <Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-				IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
+        <Border Classes="Card" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Border CornerRadius="9.35" ClipToBounds="True">
                 <Image Source="{Binding ImageGrid^}" Name="Img"/>
             </Border>
