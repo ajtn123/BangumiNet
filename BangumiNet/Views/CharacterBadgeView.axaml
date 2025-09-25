@@ -24,7 +24,7 @@
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
                 <TextBlock Text="{Binding Name}" Classes="Title"/>
-                <TextBlock Text="{Binding Relation}"/>
+                <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
         <Grid.ContextFlyout>
@@ -40,8 +40,12 @@
                     <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
                     <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                     <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
-                    <Separator/>
-                    <v:PersonListView DataContext="{Binding PersonListViewModel}"/>
+                    <Separator IsVisible="{Binding PersonListViewModel,Converter={StaticResource NullCvt}}"/>
+                    <v:PersonListView DataContext="{Binding PersonListViewModel}"
+                                      IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"/>
+                    <Separator IsVisible="{Binding CharacterSubjectViewModel,Converter={StaticResource NullCvt}}"/>
+                    <v:SubjectBadgeView DataContext="{Binding CharacterSubjectViewModel}"
+                                        IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"/>
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

@@ -2,6 +2,8 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Converters;
+using BangumiNet.Models;
 using BangumiNet.Views;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
@@ -53,6 +55,24 @@ public partial class CharacterViewModel : ViewModelBase
 
         Init();
     }
+    public CharacterViewModel(PersonCharacter character)
+    {
+        Source = character;
+        Id = character.Id;
+        Relation = $"{character.Staff} · {NameCnCvt.Convert(character.SubjectName, character.SubjectNameCn)}";
+        Images = character.Images;
+        Name = character.Name;
+        Type = (CharacterType?)character.Type;
+        CharacterSubjectViewModel = new(new SubjectBasic()
+        {
+            Id = character.SubjectId,
+            Name = character.SubjectName,
+            NameCn = character.SubjectNameCn,
+            Type = (SubjectType?)character.SubjectType
+        });
+
+        Init();
+    }
     public void Init()
     {
         SubjectBadgeListViewModel = new(ItemType.Character, Id);
@@ -82,6 +102,7 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);

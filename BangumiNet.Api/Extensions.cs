@@ -37,6 +37,7 @@ namespace BangumiNet.Api.V0.Models
     public partial class RelatedCharacter_images : IImages { }
     public partial class UserCharacterCollection_images : IImages { }
     public partial class UserPersonCollection_images : IImages { }
+    public partial class PersonImages : IImages { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {

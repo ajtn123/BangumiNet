@@ -126,6 +126,9 @@ public partial class PersonViewModel : ViewModelBase
 
     public void Init()
     {
+        SubjectBadgeListViewModel = new(ItemType.Person, Id);
+        CharacterBadgeListViewModel = new(ItemType.Person, Id);
+
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
@@ -153,6 +156,8 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<PersonCareer?>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
 
     [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }

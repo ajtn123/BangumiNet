@@ -22,6 +22,8 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
                 var vm = new PersonViewModel(fullPerson);
                 DataContext = vm;
             }
+            ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
+            ViewModel?.CharacterBadgeListViewModel?.LoadCharacters();
         };
     }
 

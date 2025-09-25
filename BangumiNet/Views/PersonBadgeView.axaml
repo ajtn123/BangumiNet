@@ -24,7 +24,7 @@
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
                 <TextBlock Text="{Binding Name}" Classes="Title"/>
-                <TextBlock Text="{Binding Relation}"/>
+                <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
         <Grid.ContextFlyout>

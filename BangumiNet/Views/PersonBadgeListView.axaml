@@ -18,7 +18,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
                       Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding PersonViewModels}"
-                          ClipToBounds="False" Margin="0,5">
+                          ClipToBounds="False" Margin="0,5,0,10">
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:PersonViewModel">
                         <v:PersonBadgeView DataContext="{Binding .}"/>
