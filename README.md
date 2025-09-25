@@ -2,4 +2,4 @@
 
 ## 鸣谢
 
-- [Bangumi API](/bangumi/api)
+- [Bangumi API](https://github.com/bangumi/api)
