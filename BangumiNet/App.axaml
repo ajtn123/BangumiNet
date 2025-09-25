@@ -20,6 +20,10 @@
 		<cvt:InNullCvt x:Key="InNullCvt"/>
 		<cvt:NullCvt x:Key="NullCvt"/>
 		<cvt:EIECvt x:Key="EIECvt"/>
+		<cvt:AddCvt x:Key="AddCvt"/>
+		<cvt:SubCvt x:Key="SubCvt"/>
+		<cvt:MulCvt x:Key="MulCvt"/>
+		<cvt:DivCvt x:Key="DivCvt"/>
 		<cvt:NameCnCvt x:Key="NameCnCvt"/>
 		<cvt:NameAltCvt x:Key="NameAltCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
@@ -33,6 +37,7 @@
 		<cvt:DateCvt x:Key="DateCvt"/>
 		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
 		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
+		<x:Double x:Key="BadgeFactor">2</x:Double>
 		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
 		<Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
 		<SolidColorBrush x:Key="CardBorderBrush">#7f7f7f7f</SolidColorBrush>

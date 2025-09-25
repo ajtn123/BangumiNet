@@ -8,19 +8,24 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 ClipToBounds="False"
 			 x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
+        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+				IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Border CornerRadius="9.35" ClipToBounds="True">
                 <Image Source="{Binding ImageGrid^}" Name="Img"/>
             </Border>
         </Border>
-        <StackPanel Grid.Row="1" MaxWidth="{Binding #Img.Source.Size.Width}">
-            <TextBlock Text="{Binding Name}" Classes="Title"/>
-            <TextBlock Text="{Binding Relation}"/>
-        </StackPanel>
-        <Grid.ContextFlyout>
+		<Border Grid.Row="1" Margin="4,0,0,0" Padding="4,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource CardBorderBrush}"
+				MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
+			<StackPanel>
+				<TextBlock Text="{Binding Name}" Classes="Title"/>
+				<TextBlock Text="{Binding Relation}"/>
+			</StackPanel>
+		</Border>
+		<Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">

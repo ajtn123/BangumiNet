@@ -8,6 +8,7 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 ClipToBounds="False"
 			 x:DataType="vm:SubjectBadgeListViewModel"
              x:Class="BangumiNet.Views.SubjectBadgeListView">
 	<Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
