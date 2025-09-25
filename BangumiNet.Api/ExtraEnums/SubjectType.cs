@@ -24,7 +24,7 @@ public enum SubjectType
     /// <summary>
     /// 三次元
     /// </summary>
-    RealLife = 6,
+    Real = 6,
 }
 
 public static partial class EnumExtensions
@@ -36,7 +36,7 @@ public static partial class EnumExtensions
             SubjectType.Anime => "动画",
             SubjectType.Music => "音乐",
             SubjectType.Game => "游戏",
-            SubjectType.RealLife => "三次元",
+            SubjectType.Real => "三次元",
             _ => throw new NotImplementedException(),
         };
 }

@@ -1,0 +1,170 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:SubjectBrowserViewModel"
+             x:Class="BangumiNet.Views.SubjectBrowserView">
+    <ScrollViewer>
+        <StackPanel Margin="5" Spacing="5">
+            <Grid ColumnDefinitions="*,*,*,*,2*,Auto" ColumnSpacing="5">
+                <Grid.Styles>
+                    <Style Selector="StackPanel">
+                        <Setter Property="Spacing" Value="5"/>
+                    </Style>
+                    <Style Selector="Border.Card">
+                        <Setter Property="Padding" Value="5,0"/>
+                    </Style>
+                </Grid.Styles>
+                <Grid.Resources>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">Transparent</SolidColorBrush>
+                    <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver">Transparent</SolidColorBrush>
+                </Grid.Resources>
+                <StackPanel Grid.Column="0">
+                    <Border Classes="Card" Padding="5,0,0,0">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3"/>类型</TextBlock>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="TypeComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding Type}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+                    <Border Classes="Card" Padding="5,0,0,0" IsVisible="{Binding !IsBrowsingMusic}">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="RowChild" FontSize="16" Margin="0,0,0,-3"/>分类</TextBlock>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="BookCatComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding BookCategory}" IsVisible="{Binding IsBrowsingBook}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource BookCatCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="AnimeCatComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding AnimeCategory}" IsVisible="{Binding IsBrowsingAnime}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource AnimeCatCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="GameCatComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding GameCategory}" IsVisible="{Binding IsBrowsingGame}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource GameCatCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="RealCatComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding RealCategory}" IsVisible="{Binding IsBrowsingReal}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource RealCatCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="CalendarAgenda" FontSize="16" Margin="0,0,0,-3"/>年份</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding IsYearEnabled}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <DatePicker MonthVisible="False" DayVisible="False"
+                                HorizontalAlignment="Stretch"
+                                IsEnabled="{Binding IsYearEnabled}"
+                                SelectedDate="{Binding Year}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="CalendarMonth" FontSize="16" Margin="0,0,0,-3"/>月份</TextBlock>
+                            <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
+                                <CheckBox IsChecked="{Binding IsMonthEnabled}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <DatePicker YearVisible="False" DayVisible="False"
+                                HorizontalAlignment="Stretch"
+                                IsEnabled="{Binding IsMonthEnabled}"
+                                SelectedDate="{Binding Month}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <Border Classes="Card" Padding="5,0,0,0">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3"/>排序</TextBlock>
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="SortComboBox"
+                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
+                                        SelectedItem="{Binding Sort}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource SubjectBrowserSortCvt}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+                    <Border Classes="Card" IsVisible="{Binding IsBrowsingBook}">
+                        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="3">
+                            <TextBlock><ic:FluentIcon Icon="BookmarkMultiple" FontSize="16" Margin="0,0,0,-3"/>书籍系列</TextBlock>
+                            <Button Content="{ice:FluentIcon Icon=Dismiss}" Padding="0" Grid.Column="1"
+                                    IsVisible="{Binding IsSeries,Converter={StaticResource NullCvt}}"
+                                    Click="ResetIsSeries"/>
+                            <Viewbox Height="19" Grid.Column="2">
+                                <CheckBox IsChecked="{Binding IsSeries}" Padding="0"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <TextBox Watermark="平台" Text="{Binding Platform}"
+                             HorizontalAlignment="Stretch" Padding="2,0"
+                             IsVisible="{Binding IsBrowsingGame}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="4">
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}"
+                            IsVisible="{Binding ErrorMessage,Converter={StaticResource NEWCvt}}">
+                        <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap"/>
+                    </Border>
+                    <Border Classes="Card" Background="{StaticResource OkBg}" Padding="5,0"
+                            IsVisible="{Binding TotalResults,Converter={StaticResource NullCvt}}">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="{Binding TotalResults,StringFormat='共 {0} 条结果，'}"/>
+                            <Run Text="{Binding ResultOffsetMessage}"/>
+                        </TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Column="5">
+                    <Button ToolTip.Tip="检索" Classes="Icon" Command="{Binding BrowseCommand}"
+                            Content="{ice:FluentIcon Icon=Search}"/>
+                    <Button ToolTip.Tip="重置" Classes="Icon" Click="ResetViewModel"
+                            Content="{ice:FluentIcon Icon=ArrowClockwise}" />
+                </StackPanel>
+            </Grid>
+            <StackPanel Spacing="5" IsVisible="{Binding RequestConfiguration,Converter={StaticResource NullCvt}}">
+                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+                <v:SubjectListView DataContext="{Binding SubjectListViewModel}"/>
+                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

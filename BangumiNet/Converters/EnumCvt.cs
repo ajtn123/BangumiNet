@@ -7,6 +7,20 @@ using System.Globalization;
 
 namespace BangumiNet.Converters;
 
+public class SubjectBrowserSortCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => (SubjectBrowserSort?)value switch
+        {
+            SubjectBrowserSort.Date => "日期",
+            SubjectBrowserSort.Rank => "排名",
+            null => "默认",
+            _ => throw new NotImplementedException(),
+        };
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
 public class SearchSortCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
@@ -88,6 +102,34 @@ public class CareerCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => value is PersonCareer type ? type.ToStringSC() : null;
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class AnimeCatCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is SubjectCategory.Anime type ? type.ToStringSC() : "全部";
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class BookCatCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is SubjectCategory.Book type ? type.ToStringSC() : "全部";
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class GameCatCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is SubjectCategory.Game type ? type.ToStringSC() : "全部";
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class RealCatCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is SubjectCategory.Real type ? type.ToStringSC() : "全部";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

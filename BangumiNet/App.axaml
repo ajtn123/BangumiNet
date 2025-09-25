@@ -27,6 +27,11 @@
 		<cvt:BoundCvt x:Key="BoundCvt"/>
 		<cvt:NameCnCvt x:Key="NameCnCvt"/>
 		<cvt:NameAltCvt x:Key="NameAltCvt"/>
+        <cvt:SubjectBrowserSortCvt x:Key="SubjectBrowserSortCvt"/>
+        <cvt:AnimeCatCvt x:Key="AnimeCatCvt"/>
+        <cvt:BookCatCvt x:Key="BookCatCvt"/>
+        <cvt:GameCatCvt x:Key="GameCatCvt"/>
+        <cvt:RealCatCvt x:Key="RealCatCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
 		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
 		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
