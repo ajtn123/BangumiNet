@@ -17,6 +17,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
+    <!--This TabControl should be replaced by another control.-->
     <TabControl>
         <TabItem>
             <TabItem.Header>
@@ -38,6 +39,12 @@
                 </StackPanel>
             </TabItem.Header>
             <v:SearchView/>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock><ic:FluentIcon Icon="Library" FontSize="24" Margin="0,0,0,-4"/>索引</TextBlock>
+            </TabItem.Header>
+            <v:SubjectBrowserView/>
         </TabItem>
     </TabControl>
 </Window>
