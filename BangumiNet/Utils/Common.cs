@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Net;
 
 namespace BangumiNet.Utils;
 
@@ -30,6 +30,14 @@ public static class Common
             FileName = url,
             UseShellExecute = true,
         });
+
+    public static void SearchWeb(string? keyword, string? searchEngine = null)
+    {
+        if (string.IsNullOrEmpty(keyword)) return;
+        searchEngine ??= SettingProvider.CurrentSettings.DefaultSearchEngine;
+        if (!SettingProvider.CurrentSettings.SearchQueryUrlBases.TryGetValue(searchEngine, out var ub)) return;
+        OpenUrlInBrowser(ub + WebUtility.UrlEncode(keyword));
+    }
 
     public static int? NumberToInt(object? number)
     {

@@ -4,7 +4,6 @@ using BangumiNet.Shared.Interfaces;
 using BangumiNet.Views;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using System.Net;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Input;
@@ -30,16 +29,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         Duration = episode.DurationSeconds is not null or 0 ? TimeSpan.FromSeconds((long)episode.DurationSeconds) : null;
         if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.NumberToInt(sid);
 
-        if (Disc == 0) Disc = null;
-        if (Ep == 0) Ep = null;
-
-        this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
-
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new EpisodeView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
-        ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
-        ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
+        Init();
     }
     public EpisodeViewModel(EpisodeDetail episode)
     {
@@ -59,13 +49,18 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && Common.NumberToInt(ds) is int t && t != 0)
             Duration = TimeSpan.FromSeconds(t);
 
+        Init();
+    }
+
+    public void Init()
+    {
         if (Disc == 0) Disc = null;
         if (Ep == 0) Ep = null;
 
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new EpisodeView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));

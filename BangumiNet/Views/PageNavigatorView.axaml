@@ -5,6 +5,7 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="400" Height="30"
+             DataContext="{x:Null}"
              x:DataType="vm:PageNavigatorViewModel"
              x:Class="BangumiNet.Views.PageNavigatorView">
     <Grid ColumnDefinitions="*,*,Auto,*">

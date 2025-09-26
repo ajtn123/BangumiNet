@@ -1,6 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.V0.Subjects;
-using Microsoft.Kiota.Abstractions;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Reactive;
@@ -49,9 +48,9 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             config.QueryParameters.Series = GetIsSeries();
             config.QueryParameters.Platform = GetPlatform();
             config.QueryParameters.Sort = GetSort();
-            RequestConfiguration = config;
+            QueryParameters = config.QueryParameters;
         });
-        if (response == null) { RequestConfiguration = null; return; }
+        if (response == null) { QueryParameters = null; return; }
         SubjectListViewModel = new();
         SubjectListViewModel.AddSubjects(response);
         PageNavigatorViewModel.PageIndex = 1;
@@ -63,14 +62,14 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     }
     public async Task BrowsePageAsync(int? i)
     {
-        if (RequestConfiguration == null) return;
+        if (QueryParameters == null) return;
         if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return;
         var response = await ApiC.V0.Subjects.GetAsync(config =>
         {
-            config = RequestConfiguration;
+            config.QueryParameters = QueryParameters;
             config.QueryParameters.Offset = (pageIndex - 1) * Limit;
         });
-        if (response == null) { RequestConfiguration = null; return; }
+        if (response == null) { QueryParameters = null; return; }
         SubjectListViewModel = new();
         SubjectListViewModel.AddSubjects(response);
         PageNavigatorViewModel.PageIndex = pageIndex;
@@ -100,7 +99,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     [Reactive] public partial string? ErrorMessage { get; set; }
     [Reactive] public partial string? ResultOffsetMessage { get; set; }
     [Reactive] public partial SubjectListViewModel? SubjectListViewModel { get; set; }
-    [Reactive] public RequestConfiguration<SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>? RequestConfiguration { get; set; }
+    [Reactive] public partial SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters? QueryParameters { get; set; }
 
     public ICommand BrowseCommand { get; set; }
     public ReactiveCommand<int?, Unit> BrowsePageCommand { get; }

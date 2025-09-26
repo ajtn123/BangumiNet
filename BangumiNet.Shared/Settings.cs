@@ -9,7 +9,12 @@ public class Settings : IApiSettings
     public string? AuthToken { get; set; } = null;
 
     public string BangumiTvUrlBase { get; set; } = "https://bgm.tv";
-    public string GoogleQueryUrlBase { get; set; } = "https://www.google.com/search?q=";
+    public Dictionary<string, string> SearchQueryUrlBases { get; set; } = new()
+    {
+        ["Google"] = "https://www.google.com/search?q=",
+        ["Bing"] = "https://www.bing.com/search?q="
+    };
+    public string DefaultSearchEngine { get; set; } = "Google";
 
     public string LocalDataDirectory { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName);
 

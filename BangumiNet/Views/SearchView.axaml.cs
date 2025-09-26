@@ -10,7 +10,11 @@ public partial class SearchView : ReactiveUserControl<SearchViewModel>
     {
         DataContext = new SearchViewModel();
         InitializeComponent();
-        Input.KeyDown += (s, e) => { if (e.Key is Avalonia.Input.Key.Enter) ViewModel?.SearchCommand.Execute(null); };
+        Input.KeyDown += (s, e) =>
+        {
+            if (e.Key is Avalonia.Input.Key.Enter && (ViewModel?.SearchCommand.CanExecute(null) ?? false))
+                ViewModel?.SearchCommand.Execute(null);
+        };
         SortComboBox.ItemsSource = Enum.GetValues<SubjectsPostRequestBody_sort>();
         SearchTypeBox.ItemsSource = Enum.GetValues<SearchType>();
     }

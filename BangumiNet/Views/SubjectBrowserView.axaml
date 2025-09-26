@@ -12,7 +12,7 @@
              x:Class="BangumiNet.Views.SubjectBrowserView">
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
-            <Grid ColumnDefinitions="*,*,*,*,2*,Auto" ColumnSpacing="5">
+            <Grid ColumnDefinitions="*,*,*,*,Auto,2*" ColumnSpacing="5">
                 <Grid.Styles>
                     <Style Selector="StackPanel">
                         <Setter Property="Spacing" Value="5"/>
@@ -140,7 +140,7 @@
                              HorizontalAlignment="Stretch" Padding="2,0"
                              IsVisible="{Binding IsBrowsingGame}"/>
                 </StackPanel>
-                <StackPanel Grid.Column="4">
+                <StackPanel Grid.Column="5">
                     <Border Classes="Card" Background="{StaticResource ErrorBg}"
                             IsVisible="{Binding ErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap"/>
@@ -153,14 +153,14 @@
                         </TextBlock>
                     </Border>
                 </StackPanel>
-                <StackPanel Grid.Column="5">
+                <StackPanel Grid.Column="4">
                     <Button ToolTip.Tip="检索" Classes="Icon" Command="{Binding BrowseCommand}"
                             Content="{ice:FluentIcon Icon=Search}"/>
                     <Button ToolTip.Tip="重置" Classes="Icon" Click="ResetViewModel"
                             Content="{ice:FluentIcon Icon=ArrowClockwise}" />
                 </StackPanel>
             </Grid>
-            <StackPanel Spacing="5" IsVisible="{Binding RequestConfiguration,Converter={StaticResource NullCvt}}">
+            <StackPanel Spacing="5" IsVisible="{Binding QueryParameters,Converter={StaticResource NullCvt}}">
                 <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
                 <v:SubjectListView DataContext="{Binding SubjectListViewModel}"/>
                 <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>

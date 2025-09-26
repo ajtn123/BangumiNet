@@ -7,6 +7,4 @@ public static class UrlProvider
     public static string BangumiTvEpisodeUrlBase => $"{BangumiTvUrlBase}/ep/";
     public static string BangumiTvCharacterUrlBase => $"{BangumiTvUrlBase}/character/";
     public static string BangumiTvPersonUrlBase => $"{BangumiTvUrlBase}/person/";
-
-    public static string GoogleQueryBase => SettingProvider.CurrentSettings.GoogleQueryUrlBase;
 }

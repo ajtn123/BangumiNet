@@ -2,6 +2,7 @@
 global using BangumiNet.Utils;
 global using System;
 global using System.Collections.Generic;
+global using System.Diagnostics;
 global using System.Linq;
 using Avalonia;
 using Avalonia.ReactiveUI;

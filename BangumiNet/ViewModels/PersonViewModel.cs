@@ -11,7 +11,6 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
-using System.Net;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -130,7 +129,7 @@ public partial class PersonViewModel : ViewModelBase
         CharacterBadgeListViewModel = new(ItemType.Person, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
 
         this.WhenAnyValue(x => x.Careers).Subscribe(x =>

@@ -21,7 +21,7 @@ public partial class PersonBadgeListViewModel : ViewModelBase
             var data = await ApiC.V0.Subjects[id].Persons.GetAsync();
             PersonViewModels = data?.Select(x => new PersonViewModel(x)).ToObservableCollection();
         }
-        else if(ParentType == ItemType.Character)
+        else if (ParentType == ItemType.Character)
         {
             var data = await ApiC.V0.Characters[id].Persons.GetAsync();
             PersonViewModels = data?.Select(x => new PersonViewModel(x)).ToObservableCollection();

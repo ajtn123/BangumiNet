@@ -8,7 +8,6 @@ using BangumiNet.Views;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System.Collections.ObjectModel;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -79,7 +78,7 @@ public partial class CharacterViewModel : ViewModelBase
         PersonBadgeListViewModel = new(ItemType.Character, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.GoogleQueryBase + WebUtility.UrlEncode(Name)));
+        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
     }
 
