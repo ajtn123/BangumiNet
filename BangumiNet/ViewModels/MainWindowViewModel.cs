@@ -1,5 +1,5 @@
 ﻿namespace BangumiNet.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase
 {
 }

@@ -17,34 +17,40 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <!--This TabControl should be replaced by another control.-->
-    <TabControl>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock><ic:FluentIcon Icon="Home" FontSize="24" Margin="0,0,0,-4"/>主页</TextBlock>
-            </TabItem.Header>
+
+    <Grid ColumnDefinitions="*">
+        <ui:NavigationView Grid.Column="1" Name="NavView"
+                           PaneDisplayMode="LeftCompact">
+            <ui:NavigationView.AutoCompleteBox>
+                <AutoCompleteBox/>
+            </ui:NavigationView.AutoCompleteBox>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="主页" IsSelected="True">
+                    <ui:NavigationViewItem.IconSource>
+                        <ui:SymbolIconSource Symbol="Home"/>
+                    </ui:NavigationViewItem.IconSource>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="每日放送">
+                    <ui:NavigationViewItem.IconSource>
+                        <ui:SymbolIconSource Symbol="Calendar"/>
+                    </ui:NavigationViewItem.IconSource>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="搜索">
+                    <ui:NavigationViewItem.IconSource>
+                        <ui:SymbolIconSource Symbol="Find"/>
+                    </ui:NavigationViewItem.IconSource>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="索引">
+                    <ui:NavigationViewItem.IconSource>
+                        <ui:SymbolIconSource Symbol="Filter"/>
+                    </ui:NavigationViewItem.IconSource>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            
             <v:HomeView/>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock><ic:FluentIcon Icon="Live" FontSize="24" Margin="0,0,0,-4"/>每日放送</TextBlock>
-            </TabItem.Header>
-            <v:AiringView/>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                    <TextBlock><ic:FluentIcon Icon="Search" FontSize="24" Margin="0,0,0,-4"/>搜索</TextBlock>
-                    <Button x:Name="NavigatorButton" Content="{ice:FluentIcon Icon=CompassNorthwest}" Classes="Icon" Height="30" Width="30"/>
-                </StackPanel>
-            </TabItem.Header>
-            <v:SearchView/>
-        </TabItem>
-        <TabItem>
-            <TabItem.Header>
-                <TextBlock><ic:FluentIcon Icon="Library" FontSize="24" Margin="0,0,0,-4"/>索引</TextBlock>
-            </TabItem.Header>
-            <v:SubjectBrowserView/>
-        </TabItem>
-    </TabControl>
+        </ui:NavigationView>
+    </Grid>
 </Window>
