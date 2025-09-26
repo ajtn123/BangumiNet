@@ -92,7 +92,7 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial BloodType? BloodType { get; set; }
     [Reactive] public partial CharacterType? Type { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
-    [Reactive] public partial IImages? Images { get; set; }
+    [Reactive] public partial IImagesGrid? Images { get; set; }
     [Reactive] public partial bool? IsLocked { get; set; }
     [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }

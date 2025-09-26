@@ -154,7 +154,7 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial string? GenderString { get; set; }
     [Reactive] public partial ObservableCollection<PersonCareer?>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
-    [Reactive] public partial IImages? Images { get; set; }
+    [Reactive] public partial IImagesGrid? Images { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace BangumiNet.Models;
 
-public class ImageSet : IImagesCommon
+public class ImageSet : IImagesFull
 {
     public string? Common { get; set; }
     public string? Large { get; set; }

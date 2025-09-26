@@ -26,23 +26,24 @@ namespace BangumiNet.Api.Legacy
 namespace BangumiNet.Api.V0.Models
 {
     public partial class Subject_collection : ICollection { }
-    public partial class Images : IImagesCommon { }
+    public partial class Images : IImagesFull { }
     public partial class Subject_rating_count : IRatingCount { }
     public partial class Collections : ITag { }
-    public partial class Person_images : IImages { }
-    public partial class Character_images : IImages { }
-    public partial class PersonDetail_images : IImages { }
-    public partial class CharacterPerson_images : IImages { }
-    public partial class RelatedPerson_images : IImages { }
-    public partial class RelatedCharacter_images : IImages { }
-    public partial class UserCharacterCollection_images : IImages { }
-    public partial class UserPersonCollection_images : IImages { }
-    public partial class PersonImages : IImages { }
+    public partial class Person_images : IImagesGrid { }
+    public partial class Character_images : IImagesGrid { }
+    public partial class PersonDetail_images : IImagesGrid { }
+    public partial class CharacterPerson_images : IImagesGrid { }
+    public partial class RelatedPerson_images : IImagesGrid { }
+    public partial class RelatedCharacter_images : IImagesGrid { }
+    public partial class UserCharacterCollection_images : IImagesGrid { }
+    public partial class UserPersonCollection_images : IImagesGrid { }
+    public partial class PersonImages : IImagesGrid { }
+    public partial class Avatar : IImages { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {
     public partial class Legacy_SubjectSmall_collection : ICollection { }
-    public partial class Legacy_SubjectSmall_images : IImagesCommon { }
+    public partial class Legacy_SubjectSmall_images : IImagesFull { }
     public partial class Legacy_SubjectSmall_rating_count : IRatingCount { }
 }
 namespace BangumiNet.Api.Legacy.Calendar

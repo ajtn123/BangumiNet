@@ -168,7 +168,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial SubjectType? Type { get; set; }
     [Reactive] public partial ObservableCollection<ITag>? Tags { get; set; }
     [Reactive] public partial ObservableCollection<string>? MetaTags { get; set; }
-    [Reactive] public partial IImagesCommon? Images { get; set; }
+    [Reactive] public partial IImagesFull? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
     [Reactive] public partial bool? IsSeries { get; set; }
     [Reactive] public partial bool? IsNsfw { get; set; }
