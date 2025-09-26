@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-
-namespace BangumiNet.ViewModels;
+﻿namespace BangumiNet.ViewModels;
 
 public class ViewModelBase : ReactiveObject
 {

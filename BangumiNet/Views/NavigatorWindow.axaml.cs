@@ -16,7 +16,9 @@ public partial class NavigatorWindow : Window
         };
         KeyDown += (s, e) => { if (e.Key == Avalonia.Input.Key.Escape) Close(); };
         Deactivated += (s, e) => Close();
+        Navigator.AsyncPopulator = navigatorViewModel.PopulateAsync;
     }
 
     private double Scaling => Screens.ScreenFromWindow(this)!.Scaling;
+    private NavigatorViewModel navigatorViewModel = new();
 }

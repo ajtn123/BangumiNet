@@ -2,7 +2,6 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
-using BangumiNet.ViewModels;
 using System.Globalization;
 
 namespace BangumiNet.Converters;

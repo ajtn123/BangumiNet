@@ -2,130 +2,145 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="BangumiNet.App"
              xmlns:local="using:BangumiNet"
-			 xmlns:ic="using:FluentIcons.Avalonia"
-			 xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:utils="using:BangumiNet.Utils"
-			 xmlns:cvt="using:BangumiNet.Converters"
+             xmlns:cvt="using:BangumiNet.Converters"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
 
-	<Application.Resources>
-		<cvt:NEWCvt x:Key="NEWCvt"/>
-		<cvt:EpBrushCvt x:Key="EpBrushCvt"/>
-		<cvt:EpDashCvt x:Key="EpDashCvt"/>
-		<cvt:InNullCvt x:Key="InNullCvt"/>
-		<cvt:NullCvt x:Key="NullCvt"/>
-		<cvt:EIECvt x:Key="EIECvt"/>
-		<cvt:AddCvt x:Key="AddCvt"/>
-		<cvt:SubCvt x:Key="SubCvt"/>
-		<cvt:MulCvt x:Key="MulCvt"/>
-		<cvt:DivCvt x:Key="DivCvt"/>
-		<cvt:BoundCvt x:Key="BoundCvt"/>
-		<cvt:NameCnCvt x:Key="NameCnCvt"/>
-		<cvt:NameAltCvt x:Key="NameAltCvt"/>
+    <Application.Resources>
+        <cvt:NEWCvt x:Key="NEWCvt"/>
+        <cvt:EpBrushCvt x:Key="EpBrushCvt"/>
+        <cvt:EpDashCvt x:Key="EpDashCvt"/>
+        <cvt:InNullCvt x:Key="InNullCvt"/>
+        <cvt:NullCvt x:Key="NullCvt"/>
+        <cvt:EIECvt x:Key="EIECvt"/>
+        <cvt:AddCvt x:Key="AddCvt"/>
+        <cvt:SubCvt x:Key="SubCvt"/>
+        <cvt:MulCvt x:Key="MulCvt"/>
+        <cvt:DivCvt x:Key="DivCvt"/>
+        <cvt:BoundCvt x:Key="BoundCvt"/>
+        <cvt:NameCnCvt x:Key="NameCnCvt"/>
+        <cvt:NameAltCvt x:Key="NameAltCvt"/>
         <cvt:SubjectBrowserSortCvt x:Key="SubjectBrowserSortCvt"/>
         <cvt:AnimeCatCvt x:Key="AnimeCatCvt"/>
         <cvt:BookCatCvt x:Key="BookCatCvt"/>
         <cvt:GameCatCvt x:Key="GameCatCvt"/>
         <cvt:RealCatCvt x:Key="RealCatCvt"/>
         <cvt:UserGroupCvt x:Key="UserGroupCvt"/>
-		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
-		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
-		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
-		<cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
-		<cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
-		<cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
-		<cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
-		<cvt:CareerCvt x:Key="CareerCvt"/>
-		<cvt:DateCvt x:Key="DateCvt"/>
-		<x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
-		<x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
-		<x:Double x:Key="BadgeFactor">2</x:Double>
-		<Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
-		<Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
-		<SolidColorBrush x:Key="CardBorderBrush">#7f7f7f7f</SolidColorBrush>
-	</Application.Resources>
+        <cvt:SearchSortCvt x:Key="SearchSortCvt"/>
+        <cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
+        <cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
+        <cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
+        <cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
+        <cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
+        <cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
+        <cvt:CareerCvt x:Key="CareerCvt"/>
+        <cvt:DateCvt x:Key="DateCvt"/>
+        <x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
+        <x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
+        <x:Double x:Key="BadgeFactor">2</x:Double>
+        <Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
+        <Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
+        <SolidColorBrush x:Key="CardBorderBrush">#7f7f7f7f</SolidColorBrush>
+        <DataTemplate x:Key="NavigatorTemplate" DataType="vm:AutoCompleteBoxItemViewModel">
+            <Button Command="{Binding Command}" Content="{Binding Text}"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Padding="0" Margin="0" BorderBrush="Transparent" Background="Transparent"/>
+        </DataTemplate>
+    </Application.Resources>
 
-	<Application.Styles>
-		<sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
-		<Style Selector=":is(TopLevel)">
-			<Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
-		</Style>
-		<Style Selector="Border.Card">
+    <Application.Styles>
+        <sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
+        <Style Selector=":is(TopLevel)">
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        </Style>
+        <Style Selector="Border.Card">
             <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
-			<Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
         </Style>
-		<Style Selector="Rectangle.Card">
-			<Setter Property="RadiusX" Value="5"/>
-			<Setter Property="RadiusY" Value="5"/>
-			<Setter Property="StrokeThickness" Value="1"/>
-			<Setter Property="Stroke" Value="{StaticResource CardBorderBrush}"/>
-			<Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
-		</Style>
-		<Style Selector="Button.Icon">
+        <Style Selector="Rectangle.Card">
+            <Setter Property="RadiusX" Value="5"/>
+            <Setter Property="RadiusY" Value="5"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Stroke" Value="{StaticResource CardBorderBrush}"/>
+            <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+        </Style>
+        <Style Selector="Button.Icon">
             <Setter Property="Padding" Value="0"/>
         </Style>
         <Style Selector="Button.Icon ic|FluentIcon">
-			<Setter Property="FontSize" Value="24"/>
-		</Style>
-		<Style Selector="ic|FluentIcon">
-			<Setter Property="FontSize" Value="12"/>
-		</Style>
-		<Style Selector="Window">
-			<Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
-		</Style>
-		<Style Selector="FlyoutPresenter">
-			<Setter Property="Padding" Value="5"/>
-			<Style Selector="^ TextBlock ic|FluentIcon">
-				<Setter Property="FontSize" Value="16"/>
-				<Setter Property="Margin" Value="0,0,2,-3"/>
-			</Style>
-		</Style>
-		<Style Selector="ToolTip">
-			<Setter Property="Padding" Value="2,0"/>
-			<Setter Property="CornerRadius" Value="5"/>
-		</Style>
-		<Style Selector="TextBlock.Title">
-			<Setter Property="TextWrapping" Value="Wrap"/>
-			<Setter Property="FontWeight" Value="Bold"/>
-			<Setter Property="FontSize" Value="16"/>
-		</Style>
-		<Style Selector="Expander /template/ ToggleButton /template/ TextBlock#ExpandCollapseChevron">
-			<Setter Property="Text" Value="&#xe70d;"/>
-			<Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
-		</Style>
-		<Style Selector="Button.Cancel">
-			<Setter Property="Background" Value="#1FFF0000"/>
-			<Setter Property="BorderBrush" Value="#BFFF7F7F"/>
-		</Style>
-		<Style Selector="Button.Cancel:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="#BFFF7F7F"/>
-		</Style>
-		<Style Selector="Button.Confirm">
-			<Setter Property="Background" Value="#1F00FF00"/>
-			<Setter Property="BorderBrush" Value="#BF7FFF7F"/>
-		</Style>
-		<Style Selector="Button.Confirm:pointerover /template/ ContentPresenter">
-			<Setter Property="Background" Value="#BF7FFF7F"/>
-		</Style>
-		<Style Selector="WrapPanel.InfoBar">
-			<Setter Property="ItemSpacing" Value="5"/>
-			<Style Selector="^ > TextBlock">
-				<Style Selector="^ ic|FluentIcon">
-					<Setter Property="FontSize" Value="16"/>
-					<Setter Property="Margin" Value="0,0,2,-3"/>
-				</Style>
-			</Style>
-		</Style>
-		<Style Selector="Separator">
-			<Setter Property="Margin" Value="0,5"/>
-		</Style>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style Selector="ic|FluentIcon">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style Selector="Window">
+            <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
+        </Style>
+        <Style Selector="FlyoutPresenter">
+            <Setter Property="Padding" Value="5"/>
+            <Style Selector="^ TextBlock ic|FluentIcon">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,0,2,-3"/>
+            </Style>
+        </Style>
+        <Style Selector="ToolTip">
+            <Setter Property="Padding" Value="2,0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style Selector="TextBlock.Title">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style Selector="Expander /template/ ToggleButton /template/ TextBlock#ExpandCollapseChevron">
+            <Setter Property="Text" Value="&#xe70d;"/>
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
+        </Style>
+        <Style Selector="Button.Cancel">
+            <Setter Property="Background" Value="#1FFF0000"/>
+            <Setter Property="BorderBrush" Value="#BFFF7F7F"/>
+        </Style>
+        <Style Selector="Button.Cancel:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#BFFF7F7F"/>
+        </Style>
+        <Style Selector="Button.Confirm">
+            <Setter Property="Background" Value="#1F00FF00"/>
+            <Setter Property="BorderBrush" Value="#BF7FFF7F"/>
+        </Style>
+        <Style Selector="Button.Confirm:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#BF7FFF7F"/>
+        </Style>
+        <Style Selector="WrapPanel.InfoBar">
+            <Setter Property="ItemSpacing" Value="5"/>
+            <Style Selector="^ > TextBlock">
+                <Style Selector="^ ic|FluentIcon">
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Margin" Value="0,0,2,-3"/>
+                </Style>
+            </Style>
+        </Style>
+        <Style Selector="Separator">
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+        <Style Selector="AutoCompleteBox#Navigator">
+            <Setter Property="FilterMode" Value="None"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource NavigatorTemplate}"/>
+            <Style Selector="^ /template/ ListBox ListBoxItem">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="MinHeight" Value="0"/>
+            </Style>
+        </Style>
     </Application.Styles>
 </Application>

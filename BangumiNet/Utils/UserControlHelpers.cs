@@ -1,7 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.LogicalTree;
-using BangumiNet.Views;
 
 namespace BangumiNet.Utils;
 

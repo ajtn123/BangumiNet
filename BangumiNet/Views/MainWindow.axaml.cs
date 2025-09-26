@@ -8,25 +8,29 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        //NavigatorButton.Click += (s, e) => new NavigatorWindow() { DataContext = new NavigatorViewModel() }.Show();
+        Navigator.AsyncPopulator = navigatorViewModel.PopulateAsync;
 
         NavView.ItemInvoked += (s, e) =>
         {
             if (e.InvokedItem is string tab)
-            {
-                if (tab == currentItem) return;
-                currentItem = tab;
-                NavView.Content = tab switch
-                {
-                    "主页" => new HomeView(),
-                    "每日放送" => new AiringView(),
-                    "搜索" => new SearchView(),
-                    "索引" => new SubjectBrowserView(),
-                    _ => throw new NotImplementedException(),
-                };
-            }
+                SwitchView(tab);
+        };
+    }
+    private string currentView = "主页";
+    public void SwitchView(string view)
+    {
+        if (view == currentView) return;
+        currentView = view;
+        NavView.Content = view switch
+        {
+            "主页" => new HomeView(),
+            "每日放送" => new AiringView(),
+            "搜索" => new SearchView(),
+            "索引" => new SubjectBrowserView(),
+            "设置" => throw new NotImplementedException(),
+            _ => throw new NotImplementedException(),
         };
     }
 
-    private string currentItem = "主页";
+    private readonly NavigatorViewModel navigatorViewModel = new();
 }

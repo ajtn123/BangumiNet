@@ -1,7 +1,5 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Shared.Interfaces;
-using BangumiNet.ViewModels;
-using System.Collections.ObjectModel;
 
 namespace BangumiNet.Utils;
 

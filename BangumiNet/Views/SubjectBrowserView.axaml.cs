@@ -1,6 +1,5 @@
 using Avalonia.ReactiveUI;
 using BangumiNet.Api.ExtraEnums;
-using BangumiNet.ViewModels;
 
 namespace BangumiNet.Views;
 

@@ -4,11 +4,6 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using BangumiNet.Models;
-using BangumiNet.Views;
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;

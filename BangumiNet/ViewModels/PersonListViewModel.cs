@@ -1,6 +1,4 @@
 ﻿using BangumiNet.Api.V0.Models;
-using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
 
 namespace BangumiNet.ViewModels;
 

@@ -3,12 +3,8 @@ using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Characters;
 using BangumiNet.Api.V0.V0.Search.Persons;
 using BangumiNet.Api.V0.V0.Search.Subjects;
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;

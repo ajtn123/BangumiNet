@@ -3,10 +3,6 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using BangumiNet.Views;
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;

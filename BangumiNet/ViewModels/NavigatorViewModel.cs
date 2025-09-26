@@ -1,7 +1,4 @@
-﻿using BangumiNet.Views;
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -60,6 +57,14 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (um != null) new SecondaryWindow() { Content = new UserView() { DataContext = new UserViewModel(um) } }.Show();
             }
         }, this.WhenAnyValue(x => x.CanToUser));
+
+        Items = [
+            new() { Name="ToSubject", Command=ToSubject,TextTemplate="转到项目 {0} >" },
+            new() { Name="ToCharacter", Command=ToCharacter,TextTemplate="转到角色 {0} >" },
+            new() { Name="ToPerson", Command=ToPerson,TextTemplate="转到人物 {0} >" },
+            new() { Name="ToEpisode", Command=ToEpisode,TextTemplate="转到话 {0} >" },
+            new() { Name="User", Command=ToUser,TextTemplate="转到用户 {0} >" },
+        ];
     }
 
     [Reactive] public partial string? Input { get; set; }
@@ -72,4 +77,23 @@ public partial class NavigatorViewModel : ViewModelBase
     public ICommand ToPerson { get; set; }
     public ICommand ToEpisode { get; set; }
     public ICommand ToUser { get; set; }
+
+    public readonly AutoCompleteBoxItemViewModel[] Items;
+
+#pragma warning disable CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
+    public async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
+#pragma warning restore CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
+    {
+        Input = searchText;
+        // await Task.Delay(TimeSpan.FromSeconds(0.1), cancellationToken);
+        return Items.Where(i => i.Command.CanExecute(null)).Select(x => { x.Text = x.TextTemplate.Replace("{0}", Input); return x; }).ToList();
+    }
+}
+
+public partial class AutoCompleteBoxItemViewModel : ViewModelBase
+{
+    public required string Name { get; set; }
+    public required string TextTemplate { get; set; }
+    [Reactive] public partial string Text { get; set; }
+    public required ICommand Command { get; set; }
 }

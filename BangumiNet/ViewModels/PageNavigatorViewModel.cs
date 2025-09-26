@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Reactive;
+﻿using System.Reactive;
 using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;

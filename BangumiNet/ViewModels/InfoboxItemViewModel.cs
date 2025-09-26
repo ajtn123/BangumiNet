@@ -1,8 +1,6 @@
 ﻿using BangumiNet.Api.Helpers;
 using BangumiNet.Api.V0.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
 
 namespace BangumiNet.ViewModels;
 

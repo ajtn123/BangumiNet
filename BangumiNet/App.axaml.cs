@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using BangumiNet.ViewModels;
-using BangumiNet.Views;
 using System.Net;
 
 namespace BangumiNet;

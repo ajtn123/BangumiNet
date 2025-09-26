@@ -1,9 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.V0.Subjects;
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
 using System.Reactive;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;

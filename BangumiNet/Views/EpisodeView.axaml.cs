@@ -1,6 +1,4 @@
 using Avalonia.ReactiveUI;
-using BangumiNet.ViewModels;
-using ReactiveUI;
 
 namespace BangumiNet.Views;
 

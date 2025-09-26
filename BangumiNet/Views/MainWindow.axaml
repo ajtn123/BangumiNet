@@ -22,8 +22,9 @@
         <ui:NavigationView Grid.Column="1" Name="NavView"
                            PaneDisplayMode="LeftCompact">
             <ui:NavigationView.AutoCompleteBox>
-                <AutoCompleteBox/>
+                <AutoCompleteBox Name="Navigator"/>
             </ui:NavigationView.AutoCompleteBox>
+
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Content="主页" IsSelected="True">
                     <ui:NavigationViewItem.IconSource>

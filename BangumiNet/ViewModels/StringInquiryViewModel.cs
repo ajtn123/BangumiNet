@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 

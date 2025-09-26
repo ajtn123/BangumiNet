@@ -1,8 +1,4 @@
-﻿using ReactiveUI.SourceGenerators;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-
-namespace BangumiNet.ViewModels;
+﻿namespace BangumiNet.ViewModels;
 
 public partial class AiringViewModel : ViewModelBase
 {

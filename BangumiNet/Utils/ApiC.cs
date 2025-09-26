@@ -1,7 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace BangumiNet.Utils;
 
