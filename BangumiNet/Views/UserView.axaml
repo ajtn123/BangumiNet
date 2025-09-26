@@ -8,22 +8,21 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
-             utils:UserControlHelpers.ParentTitle="{Binding Name,StringFormat='\{0} - BangumiNet',FallbackValue='角色 - BangumiNet'}"
+             utils:UserControlHelpers.ParentTitle="{Binding Nickname, StringFormat='\{0} - BangumiNet',FallbackValue='用户 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:CharacterViewModel"
-             x:Class="BangumiNet.Views.CharacterView">
+             x:DataType="vm:UserViewModel"
+             x:Class="BangumiNet.Views.UserView">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*">
                 <StackPanel Spacing="5">
                     <Border CornerRadius="10" ClipToBounds="True">
-                        <Image Source="{Binding ImageLarge^}"/>
+                        <Image Source="{Binding AvatarLarge^}"/>
                     </Border>
-                    <v:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="5,0,0,0">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Nickname}"
                                Classes="Title" FontSize="30"/>
                     <WrapPanel Orientation="Horizontal">
                         <WrapPanel.Styles>
@@ -35,28 +34,23 @@
                                 </Style>
                             </Style>
                         </WrapPanel.Styles>
-                        <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="血型" IsVisible="{Binding BloodType,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Doctor"/><Run Text="{Binding BloodType}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="用户名" Text="{Binding Username}" IsVisible="{Binding Username,Converter={StaticResource NEWCvt}}"/>
+                        <TextBlock ToolTip.Tip="用户组" IsVisible="{Binding UserGroup,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="注册时间" IsVisible="{Binding RegistrationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarDate"/><Run Text="{Binding RegistrationTime}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="时区" IsVisible="{Binding TimeOffset,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Globe"/><Run Text="{Binding TimeOffset}"/></TextBlock>
+                        <TextBlock ToolTip.Tip="电子邮件" IsVisible="{Binding Email,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Mail"/><Run Text="{Binding Email}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
-                            <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
+                            <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
                         </TextBlock>
                     </WrapPanel>
-                    <TextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
+                    <TextBlock Text="{Binding Sign}" IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
                                TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
-                    <Separator/>
-                    <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-                    <Separator/>
-                    <v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

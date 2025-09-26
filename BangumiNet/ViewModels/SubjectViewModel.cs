@@ -130,7 +130,7 @@ public partial class SubjectViewModel : ViewModelBase
         SubjectBadgeListViewModel = new(ItemType.Subject, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
+        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
 
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
@@ -183,7 +183,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial string? Relation { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchGoogleCommand { get; private set; }
+    public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);

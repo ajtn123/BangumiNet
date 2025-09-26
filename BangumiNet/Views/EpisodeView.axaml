@@ -42,7 +42,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                    <Button Classes="Icon" Command="{Binding SearchGoogleCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="使用 Google 搜索"/>
                     <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     <Button Classes="Icon" Command="{Binding ShowPrevCommand}" Content="{ice:FluentIcon Icon=ArrowLeft}" ToolTip.Tip="前一话"/>
                     <Button Classes="Icon" Command="{Binding ShowNextCommand}" Content="{ice:FluentIcon Icon=ArrowRight}" ToolTip.Tip="后一话"/>

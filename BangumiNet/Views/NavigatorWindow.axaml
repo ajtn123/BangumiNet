@@ -19,10 +19,17 @@
         WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
     <StackPanel Margin="5" Spacing="5">
-        <TextBox Text="{Binding Input}" Watermark="转到 ID"/>
+        <TextBox Text="{Binding Input}" Watermark="转到 ID"/>        
         <Button Command="{Binding ToSubject}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到项目 {0} >'}"/>
         <Button Command="{Binding ToCharacter}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到角色 {0} >'}"/>
         <Button Command="{Binding ToPerson}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到人物 {0} >'}"/>
         <Button Command="{Binding ToEpisode}" IsVisible="{Binding CanToId}" Content="{Binding Input,StringFormat='转到话 {0} >'}"/>
+        <Button Command="{Binding ToUser}" IsVisible="{Binding CanToUser}" Content="{Binding Input,StringFormat='转到用户 {0} >'}"/>
+
+        <StackPanel.Styles>
+            <Style Selector="Button">
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+        </StackPanel.Styles>
     </StackPanel>
 </Window>

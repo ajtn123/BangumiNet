@@ -32,6 +32,7 @@
         <cvt:BookCatCvt x:Key="BookCatCvt"/>
         <cvt:GameCatCvt x:Key="GameCatCvt"/>
         <cvt:RealCatCvt x:Key="RealCatCvt"/>
+        <cvt:UserGroupCvt x:Key="UserGroupCvt"/>
 		<cvt:SearchSortCvt x:Key="SearchSortCvt"/>
 		<cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
 		<cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>

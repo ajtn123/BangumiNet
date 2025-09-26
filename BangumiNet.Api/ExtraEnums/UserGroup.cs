@@ -21,3 +21,20 @@ public enum UserGroup
     /// <summary>维基人</summary>
     Wikipedian = 11,
 }
+
+public static partial class EnumExtensions
+{
+    public static string? ToStringSC(this UserGroup group) => group switch
+    {
+        UserGroup.Administrator => "管理员",
+        UserGroup.BangumiAdministrator => "Bangumi 管理猿",
+        UserGroup.DoujinAdministrator => "天窗管理猿",
+        UserGroup.MutedUser => "禁言用户",
+        UserGroup.BannedUser => "禁止访问用户",
+        UserGroup.PersonAdministrator => "人物管理猿",
+        UserGroup.WikiAdministrator => "维基条目管理猿",
+        UserGroup.User => "用户",
+        UserGroup.Wikipedian => "维基人",
+        _ => throw new NotImplementedException(),
+    };
+}

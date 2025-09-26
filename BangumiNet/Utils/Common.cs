@@ -1,8 +1,9 @@
 ﻿using System.Net;
+using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
 
-public static class Common
+public static partial class Common
 {
     /// <summary>
     /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly"/>.
@@ -62,4 +63,10 @@ public static class Common
 
         return null;
     }
+
+    public static bool IsAlphaNumeric(string? input)
+        => AlphaNumeric().IsMatch(input ?? string.Empty);
+
+    [GeneratedRegex(@"^[a-zA-Z0-9_]+$")]
+    public static partial Regex AlphaNumeric();
 }

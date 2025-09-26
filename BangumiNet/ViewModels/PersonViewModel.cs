@@ -129,7 +129,7 @@ public partial class PersonViewModel : ViewModelBase
         CharacterBadgeListViewModel = new(ItemType.Person, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
+        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
 
         this.WhenAnyValue(x => x.Careers).Subscribe(x =>
@@ -169,7 +169,7 @@ public partial class PersonViewModel : ViewModelBase
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchGoogleCommand { get; private set; }
+    public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b?.ToStringSC()} ");

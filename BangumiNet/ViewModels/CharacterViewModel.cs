@@ -78,7 +78,7 @@ public partial class CharacterViewModel : ViewModelBase
         PersonBadgeListViewModel = new(ItemType.Character, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
+        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
     }
 
@@ -109,7 +109,7 @@ public partial class CharacterViewModel : ViewModelBase
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchGoogleCommand { get; private set; }
+    public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
 
     public bool IsFull => Source is Character;

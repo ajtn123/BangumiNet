@@ -1,8 +1,13 @@
-﻿using BangumiNet.Api.ExtraEnums;
+﻿using Avalonia.Media.Imaging;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
+using BangumiNet.Views;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -10,6 +15,7 @@ public partial class UserViewModel : ViewModelBase
 {
     public UserViewModel(User user)
     {
+        Source = user;
         Avatar = user.Avatar;
         Sign = user.Sign;
         Username = user.Username;
@@ -24,6 +30,7 @@ public partial class UserViewModel : ViewModelBase
     }
     public UserViewModel(MeGetResponse user)
     {
+        Source = user;
         Avatar = user.Avatar;
         Sign = user.Sign;
         Nickname = user.Nickname;
@@ -43,8 +50,15 @@ public partial class UserViewModel : ViewModelBase
     public void Init()
     {
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
+
+        this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
+
+        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = this } }.Show());
+        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
     }
 
+    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial IImages? Avatar { get; set; }
     [Reactive] public partial string? Sign { get; set; }
     [Reactive] public partial string? Url { get; set; }
@@ -55,4 +69,14 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial DateTimeOffset? RegistrationTime { get; set; }
     [Reactive] public partial string? Email { get; set; }
     [Reactive] public partial int? TimeOffset { get; set; }
+
+    public bool IsMe => Source is MeGetResponse;
+
+    public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
+    public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);
+    public Task<Bitmap?> AvatarLarge => ApiC.GetImageAsync(Avatar?.Large);
+
+    public ICommand? OpenInNewWindowCommand { get; private set; }
+    public ICommand? SearchWebCommand { get; private set; }
+    public ICommand? OpenInBrowserCommand { get; private set; }
 }

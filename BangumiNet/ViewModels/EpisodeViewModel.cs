@@ -60,7 +60,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new EpisodeView() { DataContext = this } }.Show());
-        SearchGoogleCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
+        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
@@ -85,7 +85,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     [Reactive] public partial INeighboring? Next { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchGoogleCommand { get; private set; }
+    public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
