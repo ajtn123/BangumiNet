@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using Avalonia.ReactiveUI;
+using System.Reflection;
 
 namespace BangumiNet.Views;
 
@@ -11,7 +12,9 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
     {
         if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
         InitializeComponent();
-
+        VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+        Deps.ItemsSource = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName())
+            .Where(x => x.Name != "Anonymously Hosted DynamicMethods Assembly").OrderBy(x => x.Name);
         this.WhenAnyValue(x => x.ViewModel).Subscribe(y =>
         {
             y?.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.CurrentSettings.AuthToken }));
@@ -22,6 +25,8 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
 
     private void LocalDataPickDir(object? sender, RoutedEventArgs e)
         => _ = LocalDataPickDirAsync();
+    private void OpenGitHub(object? sender, RoutedEventArgs e)
+        => Common.OpenUrlInBrowser(Constants.SourceRepository);
 
     private async Task LocalDataPickDirAsync()
     {

@@ -8,6 +8,8 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
+             xmlns:shared="using:BangumiNet.Shared"
+             xmlns:refl="using:System.Reflection"
              utils:UserControlHelpers.ParentTitle="设置 - BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1600"
              x:DataType="vm:SettingViewModel"
@@ -22,6 +24,37 @@
     <Grid RowDefinitions="*,Auto">
         <ScrollViewer>
             <StackPanel Margin="5" Spacing="5">
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5"
+                      RowDefinitions="Auto,*" RowSpacing="5" Height="210">
+                    <Svg Path="/Assets/BangumiNet.svg" Height="200" Width="200"
+                         VerticalAlignment="Top" Grid.RowSpan="2"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
+                        <TextBlock Classes="Title" FontSize="30" Text="{x:Static shared:Constants.ApplicationName}"/>
+                        <WrapPanel Classes="InfoBar" ItemSpacing="10">
+                            <TextBlock ToolTip.Tip="应用程序版本">
+                                <ic:FluentIcon Icon="Info"/><Run Name="VersionText"/>
+                            </TextBlock>
+                            <TextBlock ToolTip.Tip="{x:Static shared:Constants.License}">
+                                <Run Text="MIT © 2025 aoi"/>
+                            </TextBlock>
+                            <Button ToolTip.Tip="打开 GitHub 仓库" Click="OpenGitHub" Padding="0" FontSize="12">
+                                <TextBlock><ic:FluentIcon Icon="Code" FontSize="15"/><Run Text="GitHub"/></TextBlock>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                    <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch">
+                        <ItemsControl Name="Deps">
+                            <ItemsControl.DataTemplates>
+                                <DataTemplate DataType="refl:AssemblyName">
+                                    <SelectableTextBlock ToolTip.Tip="{Binding FullName}">
+                                        <Run Text="{Binding Name}"/>
+                                        - <Run Text="{Binding Version}"/>
+                                    </SelectableTextBlock>
+                                </DataTemplate>
+                            </ItemsControl.DataTemplates>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
                 <ui:SettingsExpander Header="User Agent">
                     <ui:SettingsExpander.IconSource>
                         <ui:ImageIconSource>
