@@ -14,7 +14,8 @@
              utils:UserControlHelpers.ParentTitle="{Binding ParentWindowTitle}">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Spacing="5" Margin="5">
-            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*">
+            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
+                  Classes="ViewRoot">
                 <StackPanel Spacing="5">
                     <Border CornerRadius="10" ClipToBounds="True">
                         <Image Source="{Binding ImageLarge^}"/>
@@ -22,19 +23,10 @@
                     <v:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
-                    <WrapPanel Orientation="Horizontal">
-                        <WrapPanel.Styles>
-                            <Style Selector="WrapPanel > TextBlock">
-                                <Setter Property="Margin" Value="0,0,5,0"/>
-                                <Style Selector="^ ic|FluentIcon">
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="Margin" Value="0,0,2,-3"/>
-                                </Style>
-                            </Style>
-                        </WrapPanel.Styles>
+                    <WrapPanel Classes="InfoBar">
                         <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
                         <TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
                         <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
@@ -55,8 +47,8 @@
                         </TextBlock>
                     </WrapPanel>
                     <v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
-                    <TextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
-                               TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <SelectableTextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
+                                         TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <v:TagListView DataContext="{Binding TagListViewModel}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

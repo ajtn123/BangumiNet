@@ -124,6 +124,7 @@
         </Style>
         <Style Selector="WrapPanel.InfoBar">
             <Setter Property="ItemSpacing" Value="5"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
             <Style Selector="^ > TextBlock">
                 <Style Selector="^ ic|FluentIcon">
                     <Setter Property="FontSize" Value="16"/>
@@ -142,6 +143,10 @@
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="MinHeight" Value="0"/>
             </Style>
+        </Style>
+        <Style Selector="Grid.ViewRoot">
+            <Setter Property="ColumnSpacing" Value="5"/>
+            <Setter Property="RowSpacing" Value="5"/>
         </Style>
     </Application.Styles>
 </Application>

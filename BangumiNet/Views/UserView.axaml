@@ -14,26 +14,18 @@
              x:Class="BangumiNet.Views.UserView">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Spacing="5" Margin="5">
-            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*">
+            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
+                  Classes="ViewRoot">
                 <StackPanel Spacing="5">
                     <Border CornerRadius="10" ClipToBounds="True">
                         <Image Source="{Binding AvatarLarge^}"/>
                     </Border>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="{Binding Nickname}"
                                Classes="Title" FontSize="30"/>
-                    <WrapPanel Orientation="Horizontal">
-                        <WrapPanel.Styles>
-                            <Style Selector="WrapPanel > TextBlock">
-                                <Setter Property="Margin" Value="0,0,5,0"/>
-                                <Style Selector="^ ic|FluentIcon">
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="Margin" Value="0,0,2,-3"/>
-                                </Style>
-                            </Style>
-                        </WrapPanel.Styles>
+                    <WrapPanel Classes="InfoBar">
                         <TextBlock ToolTip.Tip="用户名" Text="{Binding Username}" IsVisible="{Binding Username,Converter={StaticResource NEWCvt}}"/>
                         <TextBlock ToolTip.Tip="用户组" IsVisible="{Binding UserGroup,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="注册时间" IsVisible="{Binding RegistrationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarDate"/><Run Text="{Binding RegistrationTime}"/></TextBlock>
@@ -44,8 +36,8 @@
                             <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
                         </TextBlock>
                     </WrapPanel>
-                    <TextBlock Text="{Binding Sign}" IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
-                               TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <SelectableTextBlock Text="{Binding Sign}" IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
+                                         TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>

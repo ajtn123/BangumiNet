@@ -9,23 +9,14 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
              utils:UserControlHelpers.ParentTitle="{Binding .,Converter={StaticResource NameCnCvt},StringFormat='\{0} - BangumiNet',FallbackValue='单话 - BangumiNet'}"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
              x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeView">
     <ScrollViewer ClipToBounds="False">
         <StackPanel Margin="5">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
                        Classes="Title" FontSize="30"/>
-            <WrapPanel Orientation="Horizontal">
-                <WrapPanel.Styles>
-                    <Style Selector="WrapPanel > TextBlock">
-                        <Setter Property="Margin" Value="0,0,5,0"/>
-                        <Style Selector="^ ic|FluentIcon">
-                            <Setter Property="FontSize" Value="16"/>
-                            <Setter Property="Margin" Value="0,0,2,-3"/>
-                        </Style>
-                    </Style>
-                </WrapPanel.Styles>
+            <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="时长" IsVisible="{Binding Duration,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding Duration}"/></TextBlock>
                 <TextBlock ToolTip.Tip="时长" IsVisible="{Binding ShouldDisplayDurationString}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding DurationString}"/></TextBlock>
                 <TextBlock ToolTip.Tip="放送日期" IsVisible="{Binding AirDate,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding AirDate}"/></TextBlock>
@@ -37,8 +28,8 @@
                 <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                 <TextBlock ToolTip.Tip="所属项目 ID" IsVisible="{Binding SubjectId,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideTextMultiple"/><Run Text="{Binding SubjectId}"/></TextBlock>
             </WrapPanel>
-            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,5"
-                        IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
+            <SelectableTextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,5"
+                                 IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
