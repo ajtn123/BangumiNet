@@ -27,7 +27,7 @@ public partial class MainWindow : Window
             "每日放送" => new AiringView(),
             "搜索" => new SearchView(),
             "索引" => new SubjectBrowserView(),
-            "设置" => throw new NotImplementedException(),
+            "设置" => new SettingView() { DataContext = new SettingViewModel(SettingProvider.CurrentSettings) },
             _ => throw new NotImplementedException(),
         };
     }

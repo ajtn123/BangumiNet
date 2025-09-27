@@ -41,6 +41,8 @@ public static class SettingProvider
     }
 
     private static void Save(this Settings current)
+        => File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(current.GetOverrides(), options));
+    public static Dictionary<string, object?> GetOverrides(this Settings current)
     {
         Settings defaults = new();
         Dictionary<string, object?> overrides = [];
@@ -54,6 +56,6 @@ public static class SettingProvider
                 overrides[prop.Name] = currentValue;
         }
 
-        File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(overrides, options));
+        return overrides;
     }
 }

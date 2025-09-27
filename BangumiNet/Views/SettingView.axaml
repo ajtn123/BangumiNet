@@ -9,8 +9,148 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
              utils:UserControlHelpers.ParentTitle="设置 - BangumiNet"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1600"
              x:DataType="vm:SettingViewModel"
              x:Class="BangumiNet.Views.SettingView">
-
+    <UserControl.Styles>
+        <Style Selector="ui|SettingsExpander">
+            <Style Selector="^ TextBox">
+                <Setter Property="MinWidth" Value="200"/>
+            </Style>
+        </Style>
+    </UserControl.Styles>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollViewer>
+            <StackPanel Margin="5" Spacing="5">
+                <ui:SettingsExpander Header="User Agent">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Agents"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <TextBox Text="{Binding UserAgent}"
+                                 Watermark="{Binding DefaultSettings.UserAgent}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="用户个人令牌">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Key"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <Button Command="{Binding GetTokenCommand}">
+                                <TextBlock><ic:FluentIcon Icon="Link" FontSize="16" Margin="0,0,3,-3"/>前往获取</TextBlock>
+                            </Button>
+                            <TextBox Text="{Binding AuthToken}"
+                                     Watermark="{Binding DefaultSettings.AuthToken}"/>
+                        </StackPanel>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="Bangumi 地址">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Server"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <TextBox Text="{Binding BangumiTvUrlBase}"
+                                 Watermark="{Binding DefaultSettings.BangumiTvUrlBase}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="搜索引擎">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Search"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <ComboBox SelectedItem="{Binding DefaultSearchEngine}"
+                                  ItemsSource="{Binding SearchEngineSuggestions}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="本地缓存" IsExpanded="True">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Document"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <CheckBox IsChecked="{Binding IsDiskCacheEnabled}"/>
+                    </ui:SettingsExpander.Footer>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Location"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>本地缓存位置</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding LocalDataDirectory}"
+                                        Watermark="{Binding DefaultSettings.LocalDataDirectory}">
+                                <TextBox.InnerLeftContent>
+                                    <Button Click="LocalDataPickDir" Content="{ice:FluentIcon Icon=Folder,FontSize=13}"
+                                            Margin="2" Padding="5"/>
+                                </TextBox.InnerLeftContent>
+                            </TextBox>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Save"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>本地缓存大小</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding DiskCacheSizeLimit}"
+                                     Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}">
+                                <TextBox.InnerRightContent>
+                                    <TextBlock VerticalAlignment="Center" Margin="5">字节</TextBlock>
+                                </TextBox.InnerRightContent>
+                            </TextBox>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="倾向中文标题" IsExpanded="True">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Translate"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpander.Footer>
+                        <CheckBox IsChecked="{Binding PreferChineseNames}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="颜色主题" IsExpanded="True"
+                                     ItemsSource="{Binding PaletteItems}">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Color"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                
+                </ui:SettingsExpander>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="5">
+            <Button Command="{Binding RestoreCommand}">
+                <TextBlock>
+                    <ic:FluentIcon Icon="ArrowCounterclockwise" FontSize="16" Margin="0,0,3,-3"/>重置默认
+                </TextBlock>
+            </Button>
+            <Button Command="{Binding UndoChangesCommand}">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Dismiss" FontSize="16" Margin="0,0,3,-3"/>取消更改
+                </TextBlock>
+            </Button>
+            <Button Command="{Binding SaveCommand}">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Save" FontSize="16" Margin="0,0,3,-3"/>保存
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
 </UserControl>
