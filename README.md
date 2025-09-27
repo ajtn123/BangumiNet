@@ -1,6 +1,11 @@
 # BangumiNet
 
+![license](https://img.shields.io/github/license/ajtn123/BangumiNet)
+![release](https://img.shields.io/github/release/ajtn123/BangumiNet)
+![framework](https://img.shields.io/badge/.NET-10-blue)
+![framework](https://img.shields.io/badge/Avalonia-11-blue)
+
 ## 鸣谢
 
-- [Bangumi](https://bgm.tv)
+- [Bangumi](https://bangumi.tv)
 - [Bangumi API](https://github.com/bangumi/api)
