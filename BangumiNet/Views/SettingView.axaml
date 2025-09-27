@@ -44,8 +44,7 @@
                             <Button Command="{Binding GetTokenCommand}">
                                 <TextBlock><ic:FluentIcon Icon="Link" FontSize="16" Margin="0,0,3,-3"/>前往获取</TextBlock>
                             </Button>
-                            <TextBox Text="{Binding AuthToken}"
-                                     Watermark="{Binding DefaultSettings.AuthToken}"/>
+                            <TextBox Text="{Binding AuthToken}" />
                         </StackPanel>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
@@ -124,18 +123,32 @@
                         <CheckBox IsChecked="{Binding PreferChineseNames}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="颜色主题" IsExpanded="True"
+                <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
                                      ItemsSource="{Binding PaletteItems}">
                     <ui:SettingsExpander.IconSource>
                         <ui:ImageIconSource>
                             <ic:FluentImage Icon="Color"/>
                         </ui:ImageIconSource>
                     </ui:SettingsExpander.IconSource>
-                
+                    <ui:SettingsExpander.DataTemplates>
+                        <DataTemplate DataType="vm:PaletteItemViewModel">
+                            <ui:SettingsExpanderItem>
+                                <TextBlock>
+                                    <Run Text="{Binding Name}"/>
+                                    <Run Text="{Binding Key}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                </TextBlock>
+                                <ui:SettingsExpanderItem.Footer>
+                                    <ColorPicker Color="{Binding Color,Converter={StaticResource HexColorCvt}}"
+                                                 ColorModel="Rgba"/>
+                                </ui:SettingsExpanderItem.Footer>
+                            </ui:SettingsExpanderItem>
+                        </DataTemplate>
+                    </ui:SettingsExpander.DataTemplates>
                 </ui:SettingsExpander>
             </StackPanel>
         </ScrollViewer>
-        <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="5">
+        <StackPanel Spacing="5" Orientation="Horizontal" HorizontalAlignment="Right"
+                    Grid.Row="1" Margin="5">
             <Button Command="{Binding RestoreCommand}">
                 <TextBlock>
                     <ic:FluentIcon Icon="ArrowCounterclockwise" FontSize="16" Margin="0,0,3,-3"/>重置默认

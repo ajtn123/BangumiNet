@@ -23,14 +23,18 @@ public partial class MainWindow : Window
         currentView = view;
         NavView.Content = view switch
         {
-            "主页" => new HomeView(),
-            "每日放送" => new AiringView(),
-            "搜索" => new SearchView(),
-            "索引" => new SubjectBrowserView(),
+            "主页" => homeView ??= new HomeView(),
+            "每日放送" => airingView ??= new AiringView(),
+            "搜索" => searchView ??= new SearchView(),
+            "索引" => subjectBrowserView ??= new SubjectBrowserView(),
             "设置" => new SettingView() { DataContext = new SettingViewModel(SettingProvider.CurrentSettings) },
             _ => throw new NotImplementedException(),
         };
     }
 
     private readonly NavigatorViewModel navigatorViewModel = new();
+    private HomeView? homeView;
+    private SearchView? searchView;
+    private SubjectBrowserView? subjectBrowserView;
+    private AiringView? airingView;
 }

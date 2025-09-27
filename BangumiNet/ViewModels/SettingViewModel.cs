@@ -10,23 +10,26 @@ public partial class SettingViewModel : ViewModelBase
         Settings = settings;
         Overrides = settings.GetOverrides();
 
-        UserAgent = Overrides.TryGet(nameof(Settings.UserAgent))?.ToString() ?? "";
-        AuthToken = Overrides.TryGet(nameof(Settings.AuthToken))?.ToString() ?? "";
-        BangumiTvUrlBase = Overrides.TryGet(nameof(Settings.BangumiTvUrlBase))?.ToString() ?? "";
+        UserAgent = GetOverride(nameof(Settings.UserAgent));
+        AuthToken = settings.AuthToken;
+        BangumiTvUrlBase = GetOverride(nameof(Settings.BangumiTvUrlBase));
         DefaultSearchEngine = settings.DefaultSearchEngine;
-        LocalDataDirectory = Overrides.TryGet(nameof(Settings.LocalDataDirectory))?.ToString() ?? "";
+        LocalDataDirectory = GetOverride(nameof(Settings.LocalDataDirectory));
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
         DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Settings.DiskCacheSizeLimit));
         PreferChineseNames = settings.PreferChineseNames;
 
-        EpMainBg = Overrides.TryGet(nameof(Settings.EpMainBg))?.ToString() ?? "";
-        EpOpBg = Overrides.TryGet(nameof(Settings.EpOpBg))?.ToString() ?? "";
-        EpEdBg = Overrides.TryGet(nameof(Settings.EpEdBg))?.ToString() ?? "";
-        EpCmBg = Overrides.TryGet(nameof(Settings.EpCmBg))?.ToString() ?? "";
-        EpMadBg = Overrides.TryGet(nameof(Settings.EpMadBg))?.ToString() ?? "";
-        EpOtherBg = Overrides.TryGet(nameof(Settings.EpOtherBg))?.ToString() ?? "";
-        ErrorBg = Overrides.TryGet(nameof(Settings.ErrorBg))?.ToString() ?? "";
-        OkBg = Overrides.TryGet(nameof(Settings.OkBg))?.ToString() ?? "";
+        PaletteItems = [
+            new() { Name = "", Color = settings.EpMainBg, Key = nameof(settings.EpMainBg) },
+            new() { Name = "", Color = settings.EpSpBg, Key = nameof(settings.EpSpBg) },
+            new() { Name = "", Color = settings.EpOpBg, Key = nameof(settings.EpOpBg) },
+            new() { Name = "", Color = settings.EpEdBg, Key = nameof(settings.EpEdBg) },
+            new() { Name = "", Color = settings.EpCmBg, Key = nameof(settings.EpCmBg) },
+            new() { Name = "", Color = settings.EpMadBg, Key = nameof(settings.EpMadBg) },
+            new() { Name = "", Color = settings.EpOtherBg, Key = nameof(settings.EpOtherBg) },
+            new() { Name = "", Color = settings.ErrorBg, Key = nameof(settings.ErrorBg) },
+            new() { Name = "", Color = settings.OkBg, Key = nameof(settings.OkBg) },
+        ];
 
         SaveCommand = ReactiveCommand.Create(() => SettingProvider.UpdateSettings(ToSettings()));
         UndoChangesCommand = ReactiveCommand.Create(() => { });
@@ -39,23 +42,32 @@ public partial class SettingViewModel : ViewModelBase
 
     public Settings ToSettings() => new()
     {
-        UserAgent = UserAgent,
+        UserAgent = GetValue(UserAgent, DefaultSettings.UserAgent),
         AuthToken = AuthToken,
-        BangumiTvUrlBase = BangumiTvUrlBase,
+        BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
         DefaultSearchEngine = DefaultSearchEngine,
-        LocalDataDirectory = LocalDataDirectory,
+        LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
         IsDiskCacheEnabled = IsDiskCacheEnabled,
-        DiskCacheSizeLimit = DiskCacheSizeLimit ?? 0,
+        DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
         PreferChineseNames = PreferChineseNames,
-        EpMainBg = EpMainBg,
-        EpOpBg = EpOpBg,
-        EpEdBg = EpEdBg,
-        EpCmBg = EpCmBg,
-        EpMadBg = EpMadBg,
-        EpOtherBg = EpOtherBg,
-        ErrorBg = ErrorBg,
-        OkBg = OkBg,
+        EpMainBg = GetColor(nameof(Settings.EpMainBg)),
+        EpSpBg = GetColor(nameof(Settings.EpSpBg)),
+        EpOpBg = GetColor(nameof(Settings.EpOpBg)),
+        EpEdBg = GetColor(nameof(Settings.EpEdBg)),
+        EpCmBg = GetColor(nameof(Settings.EpCmBg)),
+        EpMadBg = GetColor(nameof(Settings.EpMadBg)),
+        EpOtherBg = GetColor(nameof(Settings.EpOtherBg)),
+        ErrorBg = GetColor(nameof(Settings.ErrorBg)),
+        OkBg = GetColor(nameof(Settings.OkBg)),
+        SearchQueryUrlBases = DefaultSettings.SearchQueryUrlBases,
     };
+
+    public string GetColor(string key)
+        => PaletteItems.First(x => x.Key == key).Color;
+    public static string GetValue(string? value, string defaultValue)
+        => string.IsNullOrWhiteSpace(value) ? defaultValue : value;
+    public string GetOverride(string key)
+        => Overrides.TryGet(key)?.ToString() ?? "";
 
     [Reactive] public partial Settings Settings { get; set; }
     [Reactive] public partial Dictionary<string, object?> Overrides { get; set; }
@@ -68,27 +80,18 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial bool IsDiskCacheEnabled { get; set; }
     [Reactive] public partial long? DiskCacheSizeLimit { get; set; }
     [Reactive] public partial bool PreferChineseNames { get; set; }
-    [Reactive] public partial string EpMainBg { get; set; }
-    [Reactive] public partial string EpOpBg { get; set; }
-    [Reactive] public partial string EpEdBg { get; set; }
-    [Reactive] public partial string EpCmBg { get; set; }
-    [Reactive] public partial string EpMadBg { get; set; }
-    [Reactive] public partial string EpOtherBg { get; set; }
-    [Reactive] public partial string ErrorBg { get; set; }
-    [Reactive] public partial string OkBg { get; set; }
 
     [Reactive] public partial List<string> SearchEngineSuggestions { get; set; }
-    [Reactive] public partial List<PaletteItem> PaletteItems { get; set; }
+    [Reactive] public partial List<PaletteItemViewModel> PaletteItems { get; set; }
 
     public ReactiveCommand<Unit, Unit> SaveCommand { get; set; }
     public ReactiveCommand<Unit, Unit> UndoChangesCommand { get; set; }
     public ReactiveCommand<Unit, Unit> RestoreCommand { get; set; }
     public ReactiveCommand<Unit, Unit> GetTokenCommand { get; set; }
-
-    public class PaletteItem
-    {
-        public required string Name { get; set; }
-        public required string Color { get; set; }
-        public required string Key { get; set; }
-    }
+}
+public class PaletteItemViewModel : ViewModelBase
+{
+    public required string Name { get; set; }
+    public required string Color { get; set; }
+    public required string Key { get; set; }
 }
