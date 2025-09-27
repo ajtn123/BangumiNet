@@ -4,14 +4,20 @@ namespace BangumiNet.Shared;
 
 public static class SettingProvider
 {
-    public static Settings CurrentSettings { get; set; } = LoadSettings();
+    public static Settings CurrentSettings { get; private set; } = LoadSettings();
+
+    public static void UpdateSettings(Settings settings)
+    {
+        CurrentSettings = settings;
+        CurrentSettings.Save();
+    }
 
     private static readonly JsonSerializerOptions options = new()
     {
         IgnoreReadOnlyFields = true,
         IgnoreReadOnlyProperties = true,
     };
-    public static Settings LoadSettings()
+    private static Settings LoadSettings()
     {
         Settings defaults = new();
 
@@ -34,7 +40,7 @@ public static class SettingProvider
         return defaults;
     }
 
-    public static void Save(this Settings current)
+    private static void Save(this Settings current)
     {
         Settings defaults = new();
         Dictionary<string, object?> overrides = [];
