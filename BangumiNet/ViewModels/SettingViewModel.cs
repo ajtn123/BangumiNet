@@ -65,7 +65,7 @@ public partial class SettingViewModel : ViewModelBase
         EpOtherBg = GetColor(nameof(Settings.EpOtherBg)),
         ErrorBg = GetColor(nameof(Settings.ErrorBg)),
         OkBg = GetColor(nameof(Settings.OkBg)),
-        SearchQueryUrlBases = DefaultSettings.SearchQueryUrlBases,
+        SearchQueryUrlBases = Settings.SearchQueryUrlBases,
     };
 
     public string GetColor(string key)

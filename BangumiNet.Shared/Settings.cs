@@ -12,7 +12,13 @@ public class Settings : IApiSettings
     public Dictionary<string, string> SearchQueryUrlBases { get; set; } = new()
     {
         ["Google"] = "https://www.google.com/search?q=",
-        ["Bing"] = "https://www.bing.com/search?q="
+        ["Bing"] = "https://www.bing.com/search?q=",
+        ["百度"] = "https://www.baidu.com/s?wd=",
+        ["DuckDuckGo"] = "https://duckduckgo.com/?q=",
+        ["Bangumi"] = "https://bgm.tv/subject_search/",
+        ["维基百科"] = "https://zh.wikipedia.org/w/index.php?search=",
+        ["Wikipedia"] = "https://en.wikipedia.org/w/index.php?search=",
+        ["ウィキペディア"] = "https://ja.wikipedia.org/w/index.php?search="
     };
     public string DefaultSearchEngine { get; set; } = "Google";
 

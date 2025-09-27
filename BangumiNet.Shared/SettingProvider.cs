@@ -52,6 +52,9 @@ public static class SettingProvider
             var currentValue = prop.GetValue(current);
             var defaultValue = prop.GetValue(defaults);
 
+            // https://stackoverflow.com/a/3804852
+            if (currentValue is Dictionary<string, string> dic1 && defaultValue is Dictionary<string, string> dic2 && dic1.Count == dic2.Count && !dic1.Except(dic2).Any())
+                continue;
             if (!Equals(currentValue, defaultValue))
                 overrides[prop.Name] = currentValue;
         }
