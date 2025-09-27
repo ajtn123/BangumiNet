@@ -31,10 +31,16 @@ public partial class SettingViewModel : ViewModelBase
             new() { Name = "", Color = settings.OkBg, Key = nameof(settings.OkBg) },
         ];
 
-        SaveCommand = ReactiveCommand.Create(() => SettingProvider.UpdateSettings(ToSettings()));
         UndoChangesCommand = ReactiveCommand.Create(() => { });
         RestoreCommand = ReactiveCommand.Create(() => { });
         GetTokenCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Constants.BangumiTokenManagerUrl));
+        SaveCommand = ReactiveCommand.Create(() =>
+        {
+            var newSettings = ToSettings();
+            SettingProvider.UpdateSettings(newSettings);
+            if (newSettings.AuthToken != Settings.AuthToken || newSettings.UserAgent != Settings.UserAgent)
+                ApiC.RebuildClients();
+        });
 
         SearchEngineSuggestions = [];
         this.WhenAnyValue(x => x.Settings).Subscribe(x => SearchEngineSuggestions = [.. x.SearchQueryUrlBases.Keys]);

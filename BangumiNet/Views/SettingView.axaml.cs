@@ -16,6 +16,7 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
         {
             y?.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new()));
             y?.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings));
+            y?.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings));
         });
     }
 
