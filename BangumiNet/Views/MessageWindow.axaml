@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:v="using:BangumiNet.Views"
+        xmlns:vm="using:BangumiNet.ViewModels"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        xmlns:shared="using:BangumiNet.Shared"
+        xmlns:ic="using:FluentIcons.Avalonia"
+        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="150"
+        x:Class="BangumiNet.Views.MessageWindow"
+        x:DataType="vm:MessageWindowViewModel"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Title,StringFormat='\{0} - BangumiNet'}">
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto"
+          ColumnSpacing="5" RowSpacing="5" Margin="10">
+        <ic:FluentIcon Icon="{Binding Icon}" FontSize="60"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <ScrollViewer Grid.Column="1">
+            <SelectableTextBlock Text="{Binding Message}"/>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">
+            <Button Name="OkButton">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Checkmark"/>确定
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

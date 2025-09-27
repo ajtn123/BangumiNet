@@ -42,7 +42,7 @@
                     <ui:SettingsExpander.Footer>
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <Button Command="{Binding GetTokenCommand}">
-                                <TextBlock><ic:FluentIcon Icon="Link" FontSize="16" Margin="0,0,3,-3"/>前往获取</TextBlock>
+                                <TextBlock><ic:FluentIcon Icon="Link"/>前往获取</TextBlock>
                             </Button>
                             <TextBox Text="{Binding AuthToken}" />
                         </StackPanel>
@@ -151,17 +151,17 @@
                     Grid.Row="1" Margin="5">
             <Button Command="{Binding RestoreCommand}">
                 <TextBlock>
-                    <ic:FluentIcon Icon="ArrowCounterclockwise" FontSize="16" Margin="0,0,3,-3"/>重置默认
+                    <ic:FluentIcon Icon="ArrowCounterclockwise" />重置默认
                 </TextBlock>
             </Button>
             <Button Command="{Binding UndoChangesCommand}">
                 <TextBlock>
-                    <ic:FluentIcon Icon="Dismiss" FontSize="16" Margin="0,0,3,-3"/>取消更改
+                    <ic:FluentIcon Icon="Dismiss" />取消更改
                 </TextBlock>
             </Button>
             <Button Command="{Binding SaveCommand}">
                 <TextBlock>
-                    <ic:FluentIcon Icon="Save" FontSize="16" Margin="0,0,3,-3"/>保存
+                    <ic:FluentIcon Icon="Save" />保存
                 </TextBlock>
             </Button>
         </StackPanel>

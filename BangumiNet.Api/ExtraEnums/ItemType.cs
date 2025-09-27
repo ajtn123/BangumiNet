@@ -5,5 +5,6 @@ public enum ItemType
     Subject,
     Episode,
     Character,
-    Person
+    Person,
+    User,
 }

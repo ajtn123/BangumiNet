@@ -8,4 +8,14 @@ public partial class UserView : UserControl
     {
         InitializeComponent();
     }
+
+    public UserView(bool loadMe)
+    {
+        InitializeComponent();
+
+        if (loadMe) _ = LoadMe();
+    }
+
+    private async Task LoadMe()
+        => DataContext = await ApiC.GetViewModelAsync<UserViewModel>();
 }

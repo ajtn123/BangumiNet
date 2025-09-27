@@ -17,8 +17,9 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var sm = await ApiC.V0.Subjects[id].GetAsync();
-                if (sm != null) new SecondaryWindow() { Content = new SubjectView() { DataContext = new SubjectViewModel(sm) } }.Show();
+                var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
+                if (svm != null) new SecondaryWindow() { Content = new SubjectView() { DataContext = svm } }.Show();
+                else MessageWindow.ShowMessage($"未找到项目 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -26,8 +27,9 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var cm = await ApiC.V0.Characters[id].GetAsync();
-                if (cm != null) new SecondaryWindow() { Content = new CharacterView() { DataContext = new CharacterViewModel(cm) } }.Show();
+                var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id);
+                if (cvm != null) new SecondaryWindow() { Content = new CharacterView() { DataContext = cvm } }.Show();
+                else MessageWindow.ShowMessage($"未找到角色 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -35,8 +37,9 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var pm = await ApiC.V0.Persons[id].GetAsync();
-                if (pm != null) new SecondaryWindow() { Content = new PersonView() { DataContext = new PersonViewModel(pm) } }.Show();
+                var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id);
+                if (pvm != null) new SecondaryWindow() { Content = new PersonView() { DataContext = pvm } }.Show();
+                else MessageWindow.ShowMessage($"未找到人物 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -44,8 +47,9 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var em = await ApiC.V0.Episodes[id].GetAsync();
-                if (em != null) new SecondaryWindow() { Content = new EpisodeView() { DataContext = new EpisodeViewModel(em) } }.Show();
+                var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id);
+                if (evm != null) new SecondaryWindow() { Content = new EpisodeView() { DataContext = evm } }.Show();
+                else MessageWindow.ShowMessage($"未找到话 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -53,17 +57,18 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (Common.IsAlphaNumeric(Input))
             {
-                var um = await ApiC.V0.Users[Input].GetAsync();
-                if (um != null) new SecondaryWindow() { Content = new UserView() { DataContext = new UserViewModel(um) } }.Show();
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: Input);
+                if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
+                else MessageWindow.ShowMessage($"未找到用户 {Input}");
             }
         }, this.WhenAnyValue(x => x.CanToUser));
 
         Items = [
-            new() { Name="ToSubject", Command=ToSubject,TextTemplate="转到项目 {0} >" },
-            new() { Name="ToCharacter", Command=ToCharacter,TextTemplate="转到角色 {0} >" },
-            new() { Name="ToPerson", Command=ToPerson,TextTemplate="转到人物 {0} >" },
-            new() { Name="ToEpisode", Command=ToEpisode,TextTemplate="转到话 {0} >" },
-            new() { Name="User", Command=ToUser,TextTemplate="转到用户 {0} >" },
+            new() { Name="ToSubject", Command=ToSubject, TextTemplate="转到项目 {0} >" },
+            new() { Name="ToCharacter", Command=ToCharacter, TextTemplate="转到角色 {0} >" },
+            new() { Name="ToPerson", Command=ToPerson, TextTemplate="转到人物 {0} >" },
+            new() { Name="ToEpisode", Command=ToEpisode, TextTemplate="转到话 {0} >" },
+            new() { Name="User", Command=ToUser, TextTemplate="转到用户 {0} >" },
         ];
     }
 

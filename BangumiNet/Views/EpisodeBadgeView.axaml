@@ -14,7 +14,7 @@
         <Rectangle Classes="Card"
                    StrokeDashArray="{Binding AirDate,Converter={StaticResource EpDashCvt}}"
                    Fill="{Binding Type,Converter={StaticResource EpBrushCvt}}"/>
-        <TextBlock Text="{Binding Sort}" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding Sort}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid.ContextFlyout>
             <Flyout>
                 <v:EpisodeView DataContext="{Binding}" MaxWidth="440"/>

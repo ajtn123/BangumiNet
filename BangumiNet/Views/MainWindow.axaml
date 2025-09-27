@@ -50,6 +50,16 @@
                     </ui:NavigationViewItem.IconSource>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>
+
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="我">
+                    <ui:NavigationViewItem.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="Person"/>
+                        </ui:ImageIconSource>
+                    </ui:NavigationViewItem.IconSource>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
             
             <v:HomeView/>
         </ui:NavigationView>
