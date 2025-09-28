@@ -2,7 +2,8 @@
 
 public static class CacheProvider
 {
-    public static string CacheDirPath => Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, Constants.DiskCacheDirectory);
+    public static string CacheDirPath => PathProvider.GetAbsolutePathForLocalData(Constants.DiskCacheDirectory);
+    public static DirectoryInfo CacheDirInfo => new(CacheDirPath);
     public static string GetAbsolutePath(string relativePath) => Path.Combine(CacheDirPath, relativePath);
 
     public static long CacheSize { get; set; } = 0;
@@ -53,8 +54,6 @@ public static class CacheProvider
         if (File.Exists(path)) File.Delete(path);
     }
 
-
-    private readonly static DirectoryInfo CacheDirInfo = new(CacheDirPath);
     public static void CleanUpCache()
     {
         var files = CacheDirInfo.EnumerateFiles();

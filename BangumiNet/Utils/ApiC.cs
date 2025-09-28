@@ -132,6 +132,15 @@ public class ApiC
     public static async Task<bool> GetIsCollected(ItemType type, int? id)
     {
         if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return false;
+
+        if (type switch
+        {
+            ItemType.Subject => CollectionCacheProvider.SubjectCollectionStates.TryGetRecord(i),
+            ItemType.Character => CollectionCacheProvider.CharacterCollectionStates.TryGetRecord(i),
+            ItemType.Person => CollectionCacheProvider.PersonCollectionStates.TryGetRecord(i),
+            _ => throw new NotImplementedException(),
+        } is bool cachedState) return cachedState;
+
         var uc = V0.Users[CurrentUsername].Collections;
         try
         {
@@ -142,9 +151,10 @@ public class ApiC
                 ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
                 _ => throw new NotImplementedException(),
             };
-            if(r != null) return true;
+            if (r != null) return true;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
+
         return false;
     }
 }

@@ -23,6 +23,12 @@ public partial class App : Application
 
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
 
+        // 程序关闭时
+        ((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)
+        {
+            CollectionCacheProvider.Save();
+        };
+
         base.OnFrameworkInitializationCompleted();
     }
 }

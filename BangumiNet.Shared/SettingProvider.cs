@@ -14,6 +14,8 @@ public static class SettingProvider
 
     private static readonly JsonSerializerOptions options = new()
     {
+        WriteIndented = true,
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
         IgnoreReadOnlyFields = true,
         IgnoreReadOnlyProperties = true,
     };
