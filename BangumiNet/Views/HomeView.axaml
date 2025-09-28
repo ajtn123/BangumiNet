@@ -13,7 +13,7 @@
                 <Grid ColumnDefinitions="*,Auto" Height="50" Margin="5">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
                     <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="5" ClipToBounds="True">
-                        <Image Source="{Binding Avatar}"/>
+                        <Image Source="{Binding Me?.AvatarSmall^}"/>
                     </Border>
                 </Grid>
             </Border>

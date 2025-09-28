@@ -1,7 +1,4 @@
-﻿using Avalonia.Media;
-using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.V0.Models;
-using BangumiNet.Api.V0.V0.Me;
+﻿using BangumiNet.Api.ExtraEnums;
 
 namespace BangumiNet.ViewModels;
 
@@ -11,18 +8,20 @@ public partial class HomeViewModel : ViewModelBase
     private async Task Init()
     {
         LoadGreeting();
-        _ = LoadCalendar();
-        Me = await ApiC.V0.Me.GetAsMeGetResponseAsync();
+        Today = await ApiC.GetViewModelAsync<CalendarViewModel>();
+        Me = await ApiC.GetViewModelAsync<UserViewModel>();
         MyCollectionSubjectListViewModel = new();
+
+        this.WhenAnyValue(x => x.Me).Subscribe(x =>
+        {
+            _ = LoadMyCollection();
+            LoadGreeting();
+        });
     }
 
-    public MeGetResponse? Me { get; set { field = value; LoadGreeting(); _ = LoadAvatar(); _ = LoadMyCollection(); } }
-
+    [Reactive] public partial UserViewModel? Me { get; set; }
     [Reactive] public partial string? Greeting { get; set; }
-    [Reactive] public partial IImage? Avatar { get; set; }
-    [Reactive] public partial IEnumerable<CalendarViewModel>? Calendars { get; set; }
     [Reactive] public partial CalendarViewModel? Today { get; set; }
-    [Reactive] public partial Paged_UserCollection? MyCollection { get; set; }
     [Reactive] public partial SubjectListViewModel? MyCollectionSubjectListViewModel { get; set; }
 
     private void LoadGreeting()
@@ -39,14 +38,11 @@ public partial class HomeViewModel : ViewModelBase
         Greeting = greeting;
     }
 
-    private async Task LoadAvatar()
-        => Avatar = await ApiC.GetImageAsync(Me?.Avatar?.Small);
-
     private async Task LoadMyCollection()
     {
         if (Me?.Username is not { } username) return;
 
-        MyCollection = await ApiC.V0.Users[username].Collections.GetAsync(config =>
+        var MyCollection = await ApiC.V0.Users[username].Collections.GetAsync(config =>
         {
             config.QueryParameters.SubjectType = (int)SubjectType.Anime;
             config.QueryParameters.Type = ((int)CollectionType.Wish).ToString();
@@ -56,11 +52,5 @@ public partial class HomeViewModel : ViewModelBase
 
         if (MyCollection?.Data is not null)
             MyCollectionSubjectListViewModel?.SubjectViewModels = MyCollection.Data.Select(c => new SubjectViewModel(c.Subject!)).ToObservableCollection();
-    }
-
-    private async Task LoadCalendar()
-    {
-        Calendars = (await ApiC.Clients.LegacyClient.Calendar.GetAsync())?.Select(c => new CalendarViewModel(c));
-        Today = Calendars?.Where(c => c.DayOfWeek == DateTime.Today.DayOfWeek).First();
     }
 }

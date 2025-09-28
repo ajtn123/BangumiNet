@@ -1,5 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
+using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
 using System.Net.Http;
@@ -11,6 +12,8 @@ public class ApiC
     public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.CurrentSettings);
     public static Api.V0.V0.V0RequestBuilder V0 => Clients.V0Client.V0;
     public static HttpClient HttpClient => Clients.HttpClient;
+
+    public static string? CurrentUsername { get; private set; }
 
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true)
     {
@@ -44,7 +47,7 @@ public class ApiC
     /// <typeparam name="T">ViewModel 的类型</typeparam>
     /// <param name="id">ID (如果需求)</param>
     /// <returns>ViewModel</returns>
-    public static async Task<T?> GetViewModelAsync<T>(int? id = null, string? username = null) where T : ViewModelBase
+    public static async Task<T?> GetViewModelAsync<T>(object? id = null) where T : ViewModelBase
     {
         if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
         {
@@ -82,7 +85,7 @@ public class ApiC
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && username is string uid)
+        else if (typeof(T) == typeof(UserViewModel) && id is string uid)
         {
             User? user = null;
             try { user = await V0.Users[uid].GetAsync(); }
@@ -91,14 +94,35 @@ public class ApiC
             if (user is null) return null;
             else return new UserViewModel(user) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && username is null)
+        else if (typeof(T) == typeof(UserViewModel) && id is null)
         {
             MeGetResponse? me = null;
             try { me = await V0.Me.GetAsMeGetResponseAsync(); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
+            CurrentUsername = me?.Username;
+
             if (me is null) return null;
             else return new UserViewModel(me) as T;
+        }
+        else if (typeof(T) == typeof(CalendarViewModel))
+        {
+            List<Calendar>? calendars = null;
+            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (calendars is null) return null;
+            var day = (id as DayOfWeek?) ?? DateTime.Today.DayOfWeek;
+            return new CalendarViewModel(calendars.Where(x => Common.ParseDayOfWeek(x.Weekday?.Id) == day).First()) as T;
+        }
+        else if (typeof(T) == typeof(AiringViewModel))
+        {
+            List<Calendar>? calendars = null;
+            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (calendars is null) return null;
+            else return new AiringViewModel(calendars) as T;
         }
 
         else return null;

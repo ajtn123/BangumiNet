@@ -1,11 +1,12 @@
-﻿namespace BangumiNet.ViewModels;
+﻿using BangumiNet.Api.Legacy.Calendar;
+
+namespace BangumiNet.ViewModels;
 
 public partial class AiringViewModel : ViewModelBase
 {
-    public AiringViewModel() => _ = Init();
-    private async Task Init()
+    public AiringViewModel(IEnumerable<Calendar> calendars)
     {
-        Calendars = (await ApiC.Clients.LegacyClient.Calendar.GetAsync())?.Select(c => new CalendarViewModel(c)).ToObservableCollection();
+        Calendars = [.. calendars.Select(calendar => new CalendarViewModel(calendar))];
     }
 
     [Reactive] public partial ObservableCollection<CalendarViewModel>? Calendars { get; set; }

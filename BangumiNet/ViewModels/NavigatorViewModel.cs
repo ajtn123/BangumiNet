@@ -57,7 +57,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (Common.IsAlphaNumeric(Input))
             {
-                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: Input);
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(Input);
                 if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到用户 {Input}");
             }
@@ -91,14 +91,23 @@ public partial class NavigatorViewModel : ViewModelBase
     {
         Input = searchText;
         // await Task.Delay(TimeSpan.FromSeconds(0.1), cancellationToken);
-        return Items.Where(i => i.Command.CanExecute(null)).Select(x => { x.Text = x.TextTemplate.Replace("{0}", Input); return x; }).ToList();
+        return Items.Where(i => i.Command.CanExecute(null)).Select(x => { x.Prompt = Input; return x; });
     }
 }
 
 public partial class AutoCompleteBoxItemViewModel : ViewModelBase
 {
-    public required string Name { get; set; }
-    public required string TextTemplate { get; set; }
-    [Reactive] public partial string Text { get; set; }
-    public required ICommand Command { get; set; }
+    public AutoCompleteBoxItemViewModel()
+    {
+        this.WhenAnyValue(x => x.Prompt).Subscribe(x => Text = TextTemplate?.Replace("{0}", Prompt));
+    }
+
+    public required ICommand Command { get; init; }
+    public required string Name { get; init; }
+    public required string TextTemplate { get; init; }
+
+    [Reactive] public partial string? Prompt { get; set; }
+    [Reactive] public partial string? Text { get; private set; }
+
+    public override string? ToString() => Prompt;
 }
