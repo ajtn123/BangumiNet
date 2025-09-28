@@ -42,13 +42,35 @@ public static class CollectionCacheProvider
             PersonCollectionStates = JsonSerializer.Deserialize<Dictionary<int, bool>>(json) ?? [];
         }
     }
-}
-
-public static class CollectionCacheProviderExtension
-{
-    public static bool? TryGetRecord(this Dictionary<int, bool> stats, int key)
+    public static bool? TryGetRecord(ItemType type, int id) => type switch
     {
-        if (stats.TryGetValue(key, out var record)) return record;
-        else return null;
+        ItemType.Subject => SubjectCollectionStates.TryGetValue(id, out var record) ? record : null,
+        ItemType.Character => CharacterCollectionStates.TryGetValue(id, out var record) ? record : null,
+        ItemType.Person => PersonCollectionStates.TryGetValue(id, out var record) ? record : null,
+        _ => throw new NotImplementedException(),
+    };
+    public static bool TryGetRecord(ItemType type, int id, out bool record) => type switch
+    {
+        ItemType.Subject => SubjectCollectionStates.TryGetValue(id, out record),
+        ItemType.Character => CharacterCollectionStates.TryGetValue(id, out record),
+        ItemType.Person => PersonCollectionStates.TryGetValue(id, out record),
+        _ => throw new NotImplementedException(),
+    };
+    public static void UpdateRecord(ItemType type, int id, bool record)
+    {
+        switch (type)
+        {
+            case ItemType.Subject:
+                SubjectCollectionStates[id] = record;
+                break;
+            case ItemType.Character:
+                CharacterCollectionStates[id] = record;
+                break;
+            case ItemType.Person:
+                PersonCollectionStates[id] = record;
+                break;
+            default:
+                throw new NotImplementedException();
+        }
     }
 }

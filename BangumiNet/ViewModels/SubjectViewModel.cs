@@ -187,6 +187,8 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
+    public Task<bool> IsCollected => ApiC.GetIsCollected(ItemType.Subject, Id);
+
     public string ParentWindowTitle => $"{NameCnCvt.Convert(this)} - {Constants.ApplicationName}";
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsLegacy => Source is Legacy_SubjectSmall;

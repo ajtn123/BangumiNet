@@ -20,6 +20,7 @@ public partial class App : Application
         Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);
 
         CacheProvider.CalculateCacheSize();
+        _ = CollectionCacheProvider.Load();
 
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
 

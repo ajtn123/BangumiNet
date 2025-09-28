@@ -11,12 +11,12 @@
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="50"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
-    <Grid ColumnDefinitions="50,*">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
         <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
             <Image Source="{Binding ImageGrid^}"/>
         </Border>
 
-        <StackPanel Grid.Column="1" Margin="3,0,0,0">
+        <StackPanel Grid.Column="1">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title"/>
             <StackPanel Orientation="Horizontal" Spacing="5">
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
@@ -35,7 +35,12 @@
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
-                    <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                    <WrapPanel Classes="InfoBar">
+                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                        <TextBlock>
+                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^}"/>
+                        </TextBlock>
+                    </WrapPanel>
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

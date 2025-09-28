@@ -1,6 +1,4 @@
-﻿using BangumiNet.Api.ExtraEnums;
-
-namespace BangumiNet.ViewModels;
+﻿namespace BangumiNet.ViewModels;
 
 public partial class SubjectBadgeListViewModel : ViewModelBase
 {

@@ -1,4 +1,4 @@
-﻿namespace BangumiNet.Api.ExtraEnums;
+﻿namespace BangumiNet.Shared;
 
 public enum ItemType
 {

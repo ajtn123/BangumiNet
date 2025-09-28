@@ -1,6 +1,5 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
-using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
@@ -129,17 +128,11 @@ public class ApiC
         else return null;
     }
 
-    public static async Task<bool> GetIsCollected(ItemType type, int? id)
+    public static async Task<bool> GetIsCollected(ItemType type, int? id, bool useCache = true)
     {
         if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return false;
 
-        if (type switch
-        {
-            ItemType.Subject => CollectionCacheProvider.SubjectCollectionStates.TryGetRecord(i),
-            ItemType.Character => CollectionCacheProvider.CharacterCollectionStates.TryGetRecord(i),
-            ItemType.Person => CollectionCacheProvider.PersonCollectionStates.TryGetRecord(i),
-            _ => throw new NotImplementedException(),
-        } is bool cachedState) return cachedState;
+        if (useCache && CollectionCacheProvider.TryGetRecord(type, i, out var record)) return record;
 
         var uc = V0.Users[CurrentUsername].Collections;
         try
@@ -151,10 +144,15 @@ public class ApiC
                 ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
                 _ => throw new NotImplementedException(),
             };
-            if (r != null) return true;
+            if (r != null)
+            {
+                CollectionCacheProvider.UpdateRecord(type, i, true);
+                return true;
+            }
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
 
+        CollectionCacheProvider.UpdateRecord(type, i, false);
         return false;
     }
 }
