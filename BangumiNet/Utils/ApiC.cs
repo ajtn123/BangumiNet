@@ -1,5 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
@@ -126,5 +127,24 @@ public class ApiC
         }
 
         else return null;
+    }
+
+    public static async Task<bool> GetIsCollected(ItemType type, int? id)
+    {
+        if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return false;
+        var uc = V0.Users[CurrentUsername].Collections;
+        try
+        {
+            object? r = type switch
+            {
+                ItemType.Subject => await uc[i].GetAsync(),
+                ItemType.Character => await uc.Minus.Characters[i].GetAsync(),
+                ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
+                _ => throw new NotImplementedException(),
+            };
+            if(r != null) return true;
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        return false;
     }
 }
