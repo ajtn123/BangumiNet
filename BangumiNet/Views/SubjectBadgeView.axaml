@@ -12,7 +12,7 @@
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0"
                 IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Image Source="{Binding ImageGrid^}" Name="Img">
                 <Image.Clip>
@@ -20,7 +20,7 @@
                 </Image.Clip>
             </Image>
         </Border>
-        <Border Grid.Row="1" Margin="4,0,0,0" Padding="4,0,0,0" BorderThickness="1,0,0,0" BorderBrush="{StaticResource CardBorderBrush}"
+        <Border Grid.Row="1" Classes="Ref"
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
                 <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}" Classes="Title"/>

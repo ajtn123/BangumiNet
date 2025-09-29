@@ -35,9 +35,6 @@
                     <Style Selector="StackPanel">
                         <Setter Property="Spacing" Value="5"/>
                     </Style>
-                    <Style Selector="Border.Card">
-                        <Setter Property="Padding" Value="5,0"/>
-                    </Style>
                 </Grid.Styles>
                 <Grid.Resources>
                     <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">Transparent</SolidColorBrush>
@@ -150,7 +147,7 @@
                     <ItemsControl ItemsSource="{Binding Tag}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="Card" Margin="0,0,3,3" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
+                                <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
                                     <Grid ColumnDefinitions="Auto,Auto">
                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
@@ -161,7 +158,7 @@
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel/>
+                                <WrapPanel ItemSpacing="3" LineSpacing="3"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
@@ -175,7 +172,7 @@
                     <ItemsControl ItemsSource="{Binding MetaTag}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="Card" Margin="0,0,3,3" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
+                                <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
                                     <Grid ColumnDefinitions="Auto,Auto">
                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
@@ -186,7 +183,7 @@
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel/>
+                                <WrapPanel ItemSpacing="3" LineSpacing="3"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
@@ -201,7 +198,7 @@
             <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5"
                   ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingPerson}">
-                    <Border Classes="Card" Padding="5,0">
+                    <Border Classes="Card">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBlock>
                                 <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
@@ -227,10 +224,10 @@
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding SubjectErrorMessage,Converter={StaticResource NEWCvt}}" Padding="5,0">
-                        <TextBlock Text="{Binding SubjectErrorMessage}" TextWrapping="Wrap"/>
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding PersonErrorMessage,Converter={StaticResource NEWCvt}}">
+                        <TextBlock Text="{Binding PersonErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalPersonResults,Converter={StaticResource NullCvt}}" Padding="5,0">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalPersonResults,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="{Binding TotalPersonResults,StringFormat='共 {0} 条结果，'}"/>
                             <Run Text="{Binding PersonResultOffsetMessage}"/>
@@ -247,7 +244,7 @@
             <Grid RowDefinitions="Auto,*" RowSpacing="5"
                   ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingCharacter}">
-                <Border Classes="Card" Padding="5,0">
+                <Border Classes="Card">
                     <Grid ColumnDefinitions="Auto,*">
                         <TextBlock>
                             <ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3"/>包含 NSFW
@@ -258,10 +255,10 @@
                     </Grid>
                 </Border>
                 <StackPanel Spacing="5" Grid.Column="1">
-                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding CharacterErrorMessage,Converter={StaticResource NEWCvt}}" Padding="5,0">
+                    <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding CharacterErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding CharacterErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalCharacterResults,Converter={StaticResource NullCvt}}" Padding="5,0">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalCharacterResults,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="{Binding TotalCharacterResults,StringFormat='共 {0} 条结果，'}"/>
                             <Run Text="{Binding CharacterResultOffsetMessage}"/>

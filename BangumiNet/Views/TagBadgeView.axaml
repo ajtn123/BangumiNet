@@ -26,7 +26,7 @@
         </Style>
     </UserControl.Styles>
     <Border Classes="Card" Tag="{Binding IsMeta}">
-        <TextBlock Margin="5,0">
+        <TextBlock>
             <Run Text="{Binding Name}" Classes="Name"/>
             <Run Text="{Binding Count}" Classes="Count"/>
         </TextBlock>

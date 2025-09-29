@@ -175,6 +175,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
@@ -186,8 +187,6 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageSmall => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Small, !IsLegacy);
     public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
-
-    public Task<bool> IsCollected => ApiC.GetIsCollected(ItemType.Subject, Id);
 
     public string ParentWindowTitle => $"{NameCnCvt.Convert(this)} - {Constants.ApplicationName}";
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);

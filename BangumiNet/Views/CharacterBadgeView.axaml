@@ -12,7 +12,7 @@
              x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+        <Border Classes="Card" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                 IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Image Source="{Binding ImageGrid^}" Name="Img">
                 <Image.Clip>

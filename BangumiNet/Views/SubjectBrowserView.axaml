@@ -19,9 +19,6 @@
                     <Style Selector="StackPanel">
                         <Setter Property="Spacing" Value="5"/>
                     </Style>
-                    <Style Selector="Border.Card">
-                        <Setter Property="Padding" Value="5,0"/>
-                    </Style>
                 </Grid.Styles>
                 <Grid.Resources>
                     <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">Transparent</SolidColorBrush>

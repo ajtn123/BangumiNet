@@ -9,25 +9,25 @@
              x:Class="BangumiNet.Views.HomeView">
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
-            <Border Classes="Card">
-                <Grid ColumnDefinitions="*,Auto" Height="50" Margin="5">
+            <Border Classes="Card" Padding="5">
+                <Grid ColumnDefinitions="*,Auto" Height="50">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
                     <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="5" ClipToBounds="True">
                         <Image Source="{Binding Me?.AvatarSmall^}"/>
                     </Border>
                 </Grid>
             </Border>
-            <Grid ColumnDefinitions="*,*">
-                <StackPanel Margin="0,0,5,0" Spacing="5">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                <StackPanel Spacing="5">
                     <Border Classes="Card">
-                        <Grid ColumnDefinitions="Auto,*" Margin="5,0">
+                        <Grid ColumnDefinitions="Auto,*">
                             <TextBlock>收藏</TextBlock>
                             <TextBlock Grid.Column="1" HorizontalAlignment="Right">想看</TextBlock>
                         </Grid>
                     </Border>
                     <v:SubjectListView DataContext="{Binding MyCollectionSubjectListViewModel}"/>
                 </StackPanel>
-                <v:CalendarView DataContext="{Binding Today}" Grid.Column="1" Margin="5,0,0,0"/>
+                <v:CalendarView DataContext="{Binding Today}" Grid.Column="1"/>
             </Grid>
         </StackPanel>
     </ScrollViewer>

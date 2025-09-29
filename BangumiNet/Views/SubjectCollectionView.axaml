@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:utils="using:BangumiNet.Utils"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
+             x:DataType="vm:SubjectCollectionViewModel"
+             x:Class="BangumiNet.Views.SubjectCollectionView">
+    <Border Classes="Card">
+        <StackPanel Spacing="5">
+            <WrapPanel Classes="InfoBar">                
+                <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Status"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
+                <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
+                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话</TextBlock>
+                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册</TextBlock>
+                <TextBlock ToolTip.Tip="修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarDate"/><Run Text="{Binding UpdateTime}"/></TextBlock>
+                <TextBlock>
+                    <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
+                </TextBlock>
+            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding Tags}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
+                            <Grid ColumnDefinitions="Auto,Auto">
+                                <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                                <!--<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
+                                        Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>-->
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
+            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap"
+                       IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
+        </StackPanel>
+    </Border>
+</UserControl>
