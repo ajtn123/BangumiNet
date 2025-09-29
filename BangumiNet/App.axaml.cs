@@ -20,15 +20,13 @@ public partial class App : Application
         Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);
 
         CacheProvider.CalculateCacheSize();
-        _ = CollectionCacheProvider.Load();
 
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
 
         // 程序关闭时
-        ((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)
-        {
-            CollectionCacheProvider.Save();
-        };
+        //((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)
+        //{
+        //};
 
         base.OnFrameworkInitializationCompleted();
     }

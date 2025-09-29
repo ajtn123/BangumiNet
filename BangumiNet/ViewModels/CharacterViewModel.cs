@@ -103,6 +103,8 @@ public partial class CharacterViewModel : ViewModelBase
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
+    public Task<bool> IsCollected => ApiC.GetIsCollected(ItemType.Character, Id);
+
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }

@@ -40,7 +40,7 @@
                         <TextBlock ToolTip.Tip="平台" IsVisible="{Binding Platform,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Apps"/><Run Text="{Binding Platform}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^}"/>
+                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^,FallbackValue=False}"/>
                             <ic:FluentIcon ToolTip.Tip="本条目是一个系列的主条目" Icon="LayerDiagonal" IsVisible="{Binding IsSeries}"/>
                             <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>

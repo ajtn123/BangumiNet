@@ -128,11 +128,9 @@ public class ApiC
         else return null;
     }
 
-    public static async Task<bool> GetIsCollected(ItemType type, int? id, bool useCache = true)
+    public static async Task<bool> GetIsCollected(ItemType type, int? id)
     {
         if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return false;
-
-        if (useCache && CollectionCacheProvider.TryGetRecord(type, i, out var record)) return record;
 
         var uc = V0.Users[CurrentUsername].Collections;
         try
@@ -144,15 +142,11 @@ public class ApiC
                 ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
                 _ => throw new NotImplementedException(),
             };
-            if (r != null)
-            {
-                CollectionCacheProvider.UpdateRecord(type, i, true);
-                return true;
-            }
+            
+            if (r != null) return true;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
 
-        CollectionCacheProvider.UpdateRecord(type, i, false);
         return false;
     }
 }

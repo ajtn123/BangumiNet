@@ -37,9 +37,6 @@
                     </StackPanel>
                     <WrapPanel Classes="InfoBar">
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
-                        <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^}"/>
-                        </TextBlock>
                     </WrapPanel>
                 </StackPanel>
             </Flyout>

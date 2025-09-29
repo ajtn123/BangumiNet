@@ -34,6 +34,7 @@
                         <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
+                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^,FallbackValue=False}"/>
                             <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
                         </TextBlock>

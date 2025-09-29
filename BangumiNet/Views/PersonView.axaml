@@ -35,6 +35,7 @@
                         <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
+                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^,FallbackValue=False}"/>
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
                         </TextBlock>
                     </WrapPanel>
