@@ -11,12 +11,15 @@
              ClipToBounds="False"
              x:DataType="vm:PersonBadgeListViewModel"
              x:Class="BangumiNet.Views.PersonBadgeListView">
-    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto,Auto"
+          ColumnSpacing="5">
         <TextBlock FontSize="20" FontWeight="Bold">相关人物</TextBlock>
-        <Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap}"
+        <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                   Text="{Binding PersonViewModels.Count,StringFormat='共 {0} 个项目'}"/>
+        <Button Grid.Column="2" Content="{ice:FluentIcon Icon=ArrowWrap}"
                 Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
         <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-                      Grid.Row="1" Grid.ColumnSpan="2" Name="BadgeScroll">
+                      Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding PersonViewModels}"
                           ClipToBounds="False" Margin="0,5,0,10">
                 <ItemsControl.DataTemplates>
