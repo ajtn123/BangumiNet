@@ -18,10 +18,8 @@
                    Text="{Binding SubjectViewModels.Count,StringFormat='共 {0} 个项目'}"/>
         <Button Grid.Column="2" Content="{ice:FluentIcon Icon=ArrowWrap}"
                 Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
-        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto"
-                      Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
-            <ItemsControl ItemsSource="{Binding SubjectViewModels}"
-                          ClipToBounds="False" Margin="0,5,0,10">
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
+            <ItemsControl ItemsSource="{Binding SubjectViewModels}">
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:SubjectViewModel">
                         <v:SubjectBadgeView DataContext="{Binding .}"/>

@@ -50,7 +50,6 @@
         <x:Double x:Key="BadgeFactor">2</x:Double>
         <Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
         <Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
-        <SolidColorBrush x:Key="CardBorderBrush">#7f7f7f7f</SolidColorBrush>
         <DataTemplate x:Key="NavigatorTemplate" DataType="vm:AutoCompleteBoxItemViewModel">
             <Button Command="{Binding Command}" Content="{Binding Text}"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -64,34 +63,38 @@
             <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
         </Style>
         <Style Selector="Border.Card">
-            <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="5,0"/>
-            <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
             <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
             <Style Selector="^.Large">
                 <Setter Property="Padding" Value="5"/>
+            </Style>
+            <Style Selector="^.ItemBadge">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
             </Style>
         </Style>
         <Style Selector="Rectangle.Card">
             <Setter Property="RadiusX" Value="5"/>
             <Setter Property="RadiusY" Value="5"/>
             <Setter Property="StrokeThickness" Value="1"/>
-            <Setter Property="Stroke" Value="{StaticResource CardBorderBrush}"/>
+            <Setter Property="Stroke" Value="{DynamicResource ControlElevationBorderBrush}"/>
             <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
         </Style>
         <Style Selector="Border.Ref">
-            <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SurfaceStrokeColorDefault}"/>
             <Setter Property="BorderThickness" Value="1,0,0,0"/>
             <Setter Property="Margin" Value="4,0,0,0"/>
             <Setter Property="Padding" Value="4,0,0,0"/>
         </Style>
         <Style Selector="Button.Icon">
             <Setter Property="Padding" Value="0"/>
-        </Style>
-        <Style Selector="Button.Icon ic|FluentIcon">
-            <Setter Property="FontSize" Value="24"/>
+            <Style Selector="^ ic|FluentIcon">
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
         </Style>
         <Style Selector="ic|FluentIcon">
             <Setter Property="FontSize" Value="12"/>
@@ -183,6 +186,14 @@
         </Style>
         <Style Selector=":is(UserControl), ItemsControl">
             <Setter Property="ClipToBounds" Value="False"/>
+        </Style>
+        <Style Selector="ScrollViewer#BadgeScroll">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Margin" Value="-5,0"/>
+            <Style Selector="^ > ItemsControl">
+                <Setter Property="Margin" Value="5,5,5,10"/>
+            </Style>
         </Style>
     </Application.Styles>
 </Application>
