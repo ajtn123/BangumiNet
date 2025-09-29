@@ -8,7 +8,7 @@
              x:DataType="col:ObservableCollection`1"
              x:Class="BangumiNet.Views.InfoboxView"
              ClipToBounds="False">
-    <Border Classes="Card" IsVisible="{Binding .,Converter={StaticResource NullCvt}}">
+    <Border Classes="Card Large" IsVisible="{Binding .,Converter={StaticResource NullCvt}}">
         <ItemsControl ItemsSource="{Binding .}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:InfoboxItemViewModel">

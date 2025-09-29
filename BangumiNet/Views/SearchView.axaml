@@ -24,7 +24,7 @@
                 </ComboBox>
                 <TextBox Text="{Binding Keyword}" x:Name="Input" Grid.Column="1">
                     <TextBox.InnerRightContent>
-                        <Button Content="{ice:FluentIcon Icon=Search}" Command="{Binding SearchCommand}" Classes="Icon" Margin="2" HotKey="Enter"/>
+                        <Button Content="{ice:FluentIcon Icon=Search}" Command="{Binding SearchCommand}" Classes="Icon" Margin="2"/>
                     </TextBox.InnerRightContent>
                 </TextBox>
             </Grid>
@@ -144,11 +144,11 @@
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddTagCommand}" />
                         </TextBox.InnerRightContent>
                     </TextBox>
-                    <ItemsControl ItemsSource="{Binding Tag}">
+                    <ItemsControl ItemsSource="{Binding Tag}" ClipToBounds="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
-                                    <Grid ColumnDefinitions="Auto,Auto">
+                                <Border Classes="Card TagBadge">
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
                                                 Command="{Binding ViewModel.DelTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>
@@ -169,11 +169,11 @@
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddMetaTagCommand}" />
                         </TextBox.InnerRightContent>
                     </TextBox>
-                    <ItemsControl ItemsSource="{Binding MetaTag}">
+                    <ItemsControl ItemsSource="{Binding MetaTag}" ClipToBounds="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
-                                    <Grid ColumnDefinitions="Auto,Auto">
+                                <Border Classes="Card TagBadge Meta">
+                                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
                                                 Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>

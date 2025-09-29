@@ -10,7 +10,7 @@
              x:Class="BangumiNet.Views.AiringView">
     <ScrollViewer>
         <StackPanel>
-            <Border Classes="Card" Padding="5" Margin="5,5,5,0">
+            <Border Classes="Card Large" Margin="5,5,5,0">
                 <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4"/> 每日放送</TextBlock>
             </Border>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"

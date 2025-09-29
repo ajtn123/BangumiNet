@@ -9,12 +9,13 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
+             ClipToBounds="False"
              x:DataType="vm:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCollectionView">
-    <Border Classes="Card">
+    <Border Classes="Card Large">
         <StackPanel Spacing="5">
             <WrapPanel Classes="InfoBar">                
-                <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Status"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
+                <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Bookmark"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
                 <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话</TextBlock>
                 <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册</TextBlock>
@@ -23,11 +24,11 @@
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
                 </TextBlock>
             </WrapPanel>
-            <ItemsControl ItemsSource="{Binding Tags}">
+            <ItemsControl ItemsSource="{Binding Tags}" ClipToBounds="False">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Classes="Card" BoxShadow="0 0 0 transparent" BorderBrush="#3f7f7f7f">
-                            <Grid ColumnDefinitions="Auto,Auto">
+                        <Border Classes="Card TagBadge">
+                            <Grid ColumnDefinitions="Auto" ColumnSpacing="5">
                                 <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                 <!--<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
                                         Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>-->
@@ -42,8 +43,10 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
             <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
-            <TextBlock Text="{Binding Comment}" TextWrapping="Wrap"
-                       IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
+            <TextBlock TextWrapping="Wrap" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}">
+                <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Status" Margin="0,0,0,-3" FontSize="16"/>
+                <Run Text="{Binding Comment}"/>
+            </TextBlock>
         </StackPanel>
     </Border>
 </UserControl>

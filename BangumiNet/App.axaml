@@ -20,7 +20,6 @@
         <cvt:EpDashCvt x:Key="EpDashCvt"/>
         <cvt:InNullCvt x:Key="InNullCvt"/>
         <cvt:NullCvt x:Key="NullCvt"/>
-        <cvt:EIECvt x:Key="EIECvt"/>
         <cvt:AddCvt x:Key="AddCvt"/>
         <cvt:SubCvt x:Key="SubCvt"/>
         <cvt:MulCvt x:Key="MulCvt"/>
@@ -71,6 +70,9 @@
             <Setter Property="Padding" Value="5,0"/>
             <Setter Property="BoxShadow" Value="0 0 10 0 LightGray"/>
             <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Style Selector="^.Large">
+                <Setter Property="Padding" Value="5"/>
+            </Style>
         </Style>
         <Style Selector="Rectangle.Card">
             <Setter Property="RadiusX" Value="5"/>
@@ -160,6 +162,24 @@
         <Style Selector="Button > TextBlock ic|FluentIcon">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Margin" Value="0,0,2,-3"/>
+        </Style>
+        <Style Selector="Border.TagBadge">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
+            <Style Selector="^ > TextBlock > Run.Name">
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}"/>
+            </Style>
+            <Style Selector="^.Meta">
+                <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
+                <Style Selector="^ > TextBlock, ^ > Grid > TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
+                    <Style Selector="^ > Run.Name">
+                        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}"/>
+                    </Style>
+                    <Style Selector="^ > Run.Count">
+                        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
+                    </Style>
+                </Style>
+            </Style>
         </Style>
     </Application.Styles>
 </Application>

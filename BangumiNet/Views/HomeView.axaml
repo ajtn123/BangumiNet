@@ -9,7 +9,7 @@
              x:Class="BangumiNet.Views.HomeView">
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
-            <Border Classes="Card" Padding="5">
+            <Border Classes="Card Large">
                 <Grid ColumnDefinitions="*,Auto" Height="50">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
                     <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="5" ClipToBounds="True">

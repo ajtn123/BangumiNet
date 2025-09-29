@@ -8,24 +8,7 @@
              ClipToBounds="False"
              x:DataType="vm:TagViewModel"
              x:Class="BangumiNet.Views.TagBadgeView">
-    <UserControl.Styles>
-        <Style Selector="Border.Card">
-            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
-            <Style Selector="^ > TextBlock > Run.Name">
-                <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}"/>
-            </Style>
-        </Style>
-        <Style Selector="Border.Card[Tag=True]">
-            <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
-            <Style Selector="^ > TextBlock > Run.Name">
-                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}"/>
-            </Style>
-            <Style Selector="^ > TextBlock > Run.Count">
-                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
-            </Style>
-        </Style>
-    </UserControl.Styles>
-    <Border Classes="Card" Tag="{Binding IsMeta}">
+    <Border Classes="Card TagBadge" Classes.Meta="{Binding IsMeta}">
         <TextBlock>
             <Run Text="{Binding Name}" Classes="Name"/>
             <Run Text="{Binding Count}" Classes="Count"/>
