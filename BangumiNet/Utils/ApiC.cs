@@ -46,8 +46,9 @@ public class ApiC
     /// </summary>
     /// <typeparam name="T">ViewModel 的类型</typeparam>
     /// <param name="id">ID (如果需求)</param>
+    /// <param name="username">用户名 (如果需求)</param>
     /// <returns>ViewModel</returns>
-    public static async Task<T?> GetViewModelAsync<T>(object? id = null) where T : ViewModelBase
+    public static async Task<T?> GetViewModelAsync<T>(object? id = null, string? username = null) where T : ViewModelBase
     {
         if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
         {
@@ -85,7 +86,7 @@ public class ApiC
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && id is string uid)
+        else if (typeof(T) == typeof(UserViewModel) && username is string uid)
         {
             User? user = null;
             try { user = await V0.Users[uid].GetAsync(); }
@@ -94,7 +95,7 @@ public class ApiC
             if (user is null) return null;
             else return new UserViewModel(user) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && id is null)
+        else if (typeof(T) == typeof(UserViewModel) && username is null)
         {
             MeGetResponse? me = null;
             try { me = await V0.Me.GetAsMeGetResponseAsync(); }
@@ -104,6 +105,15 @@ public class ApiC
 
             if (me is null) return null;
             else return new UserViewModel(me) as T;
+        }
+        else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1)
+        {
+            UserSubjectCollection? subjectCollection = null;
+            try { subjectCollection = await V0.Users[username ?? CurrentUsername].Collections[subjectId1].GetAsync(); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (subjectCollection is null) return null;
+            else return new SubjectCollectionViewModel(subjectCollection) as T;
         }
         else if (typeof(T) == typeof(CalendarViewModel))
         {

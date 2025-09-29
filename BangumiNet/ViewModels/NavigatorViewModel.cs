@@ -57,7 +57,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (Common.IsAlphaNumeric(Input))
             {
-                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(Input);
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: Input);
                 if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到用户 {Input}");
             }
