@@ -36,9 +36,9 @@ public partial class PersonViewModel : ViewModelBase
         if (birthYear != null || birthMon != null || birthDay != null)
         {
             DateOnly bd = new();
-            if (Common.NumberToInt(birthYear) is int year) bd = bd.AddYears(year);
-            if (Common.NumberToInt(birthMon) is int mon) bd = bd.AddMonths(mon);
-            if (Common.NumberToInt(birthDay) is int day) bd = bd.AddDays(day);
+            if (Common.NumberToInt(birthYear) is int year) bd = bd.AddYears(year - 1);
+            if (Common.NumberToInt(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
+            if (Common.NumberToInt(birthDay) is int day) bd = bd.AddDays(day - 1);
             Birthday = bd;
         }
         if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
@@ -78,9 +78,9 @@ public partial class PersonViewModel : ViewModelBase
         if (person.BirthYear != null || person.BirthMon != null || person.BirthDay != null)
         {
             DateOnly bd = new();
-            if (person.BirthYear != null) bd = bd.AddYears((int)person.BirthYear);
-            if (person.BirthMon != null) bd = bd.AddMonths((int)person.BirthMon);
-            if (person.BirthDay != null) bd = bd.AddDays((int)person.BirthDay);
+            if (person.BirthYear != null) bd = bd.AddYears((int)person.BirthYear - 1);
+            if (person.BirthMon != null) bd = bd.AddMonths((int)person.BirthMon - 1);
+            if (person.BirthDay != null) bd = bd.AddDays((int)person.BirthDay - 1);
             Birthday = bd;
         }
 

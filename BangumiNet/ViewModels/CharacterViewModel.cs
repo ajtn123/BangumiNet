@@ -16,9 +16,9 @@ public partial class CharacterViewModel : ViewModelBase
         if (character.BirthDay != null || character.BirthMon != null || character.BirthYear != null)
         {
             DateOnly bd = new();
-            if (character.BirthYear != null) bd = bd.AddYears((int)character.BirthYear);
-            if (character.BirthMon != null) bd = bd.AddMonths((int)character.BirthMon);
-            if (character.BirthDay != null) bd = bd.AddDays((int)character.BirthDay);
+            if (character.BirthYear != null) bd = bd.AddYears((int)character.BirthYear - 1);
+            if (character.BirthMon != null) bd = bd.AddMonths((int)character.BirthMon - 1);
+            if (character.BirthDay != null) bd = bd.AddDays((int)character.BirthDay - 1);
             Birthday = bd;
         }
         BloodType = (BloodType?)character.BloodType;
