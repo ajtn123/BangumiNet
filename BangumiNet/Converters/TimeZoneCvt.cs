@@ -1,5 +1,4 @@
-﻿using Avalonia.Data;
-using Avalonia.Data.Converters;
+﻿using Avalonia.Data.Converters;
 using System.Globalization;
 
 namespace BangumiNet.Converters;
@@ -10,7 +9,7 @@ public class TimeZoneCvt : IValueConverter
     {
         if (value is int timeOffset)
             return $"UTC{timeOffset:+0;-#}";
-        else return BindingOperations.DoNothing;
+        else return null;
     }
 
     object? IValueConverter.ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

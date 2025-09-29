@@ -21,6 +21,7 @@
                 <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
                 <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
                 <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
+                <TextBlock ToolTip.Tip="生日" IsVisible="{Binding Birthday,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding Birthday,Converter={StaticResource DateCvt},Mode=OneWay}"/></TextBlock>
                 <TextBlock>
                     <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
                 </TextBlock>

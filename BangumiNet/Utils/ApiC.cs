@@ -142,7 +142,7 @@ public class ApiC
                 ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
                 _ => throw new NotImplementedException(),
             };
-            
+
             if (r != null) return true;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
