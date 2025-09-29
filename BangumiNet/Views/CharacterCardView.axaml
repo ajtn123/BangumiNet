@@ -10,12 +10,12 @@
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
              x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterCardView">
-    <Grid ColumnDefinitions="50,*">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
         <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
             <Image Source="{Binding ImageGrid^}"/>
         </Border>
 
-        <StackPanel Grid.Column="1" Margin="3,0,0,0">
+        <StackPanel Grid.Column="1">
             <TextBlock Text="{Binding Name}" Classes="Title"/>
             <StackPanel Orientation="Horizontal" Spacing="5">
                 <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>

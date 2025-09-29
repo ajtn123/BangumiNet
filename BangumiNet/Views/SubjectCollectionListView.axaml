@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:utils="using:BangumiNet.Utils"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:SubjectCollectionListViewModel"
+             x:Class="BangumiNet.Views.SubjectCollectionListView">
+    <ItemsControl ItemsSource="{Binding SubjectCollectionViewModels}">
+        <ItemsControl.DataTemplates>
+            <DataTemplate DataType="vm:SubjectCollectionViewModel">
+                <v:SubjectCollectionCardView DataContext="{Binding}"/>
+            </DataTemplate>
+        </ItemsControl.DataTemplates>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Spacing="5"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>

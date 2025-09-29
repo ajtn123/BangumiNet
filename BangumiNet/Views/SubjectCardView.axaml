@@ -16,7 +16,7 @@
             <Image Source="{Binding ImageGrid^}"/>
         </Border>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Name="MainStackPanel">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title"/>
             <StackPanel Orientation="Horizontal" Spacing="5">
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>

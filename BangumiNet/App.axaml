@@ -181,5 +181,8 @@
                 </Style>
             </Style>
         </Style>
+        <Style Selector=":is(UserControl), ItemsControl">
+            <Setter Property="ClipToBounds" Value="False"/>
+        </Style>
     </Application.Styles>
 </Application>

@@ -10,7 +10,7 @@ public partial class HomeViewModel : ViewModelBase
         LoadGreeting();
         Today = await ApiC.GetViewModelAsync<CalendarViewModel>();
         Me = await ApiC.GetViewModelAsync<UserViewModel>();
-        MyCollectionSubjectListViewModel = new();
+        CollectionListViewModel = new();
 
         this.WhenAnyValue(x => x.Me).Subscribe(x =>
         {
@@ -22,7 +22,7 @@ public partial class HomeViewModel : ViewModelBase
     [Reactive] public partial UserViewModel? Me { get; set; }
     [Reactive] public partial string? Greeting { get; set; }
     [Reactive] public partial CalendarViewModel? Today { get; set; }
-    [Reactive] public partial SubjectListViewModel? MyCollectionSubjectListViewModel { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? CollectionListViewModel { get; set; }
 
     private void LoadGreeting()
     {
@@ -45,12 +45,12 @@ public partial class HomeViewModel : ViewModelBase
         var MyCollection = await ApiC.V0.Users[username].Collections.GetAsync(config =>
         {
             config.QueryParameters.SubjectType = (int)SubjectType.Anime;
-            config.QueryParameters.Type = ((int)CollectionType.Wish).ToString();
+            config.QueryParameters.Type = ((int)CollectionType.Doing).ToString();
             config.QueryParameters.Offset = 0;
             config.QueryParameters.Limit = 30;
         });
 
         if (MyCollection?.Data is not null)
-            MyCollectionSubjectListViewModel?.SubjectViewModels = MyCollection.Data.Select(c => new SubjectViewModel(c.Subject!)).ToObservableCollection();
+            CollectionListViewModel?.AddSubjects(MyCollection);
     }
 }
