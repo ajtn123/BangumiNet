@@ -9,14 +9,7 @@ namespace BangumiNet.Converters;
 public class SubjectBrowserSortCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => (SubjectBrowserSort?)value switch
-        {
-            SubjectBrowserSort.Date => "日期",
-            SubjectBrowserSort.Rank => "排名",
-            null => "默认",
-            _ => throw new NotImplementedException(),
-        };
-
+        => value is SubjectBrowserSort type ? type.ToStringSC() : "默认";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
@@ -136,6 +129,13 @@ public class UserGroupCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => value is UserGroup group ? group.ToStringSC() : null;
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+}
+public class CollectionTypeCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => value is CollectionType type ? type.ToStringSC() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

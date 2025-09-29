@@ -26,3 +26,17 @@ public enum CollectionType
     /// </summary>
     Dropped = 5,
 }
+
+public static partial class EnumExtensions
+{
+    public static string ToStringSC(this CollectionType type)
+        => type switch
+        {
+            CollectionType.Wish => "想看",
+            CollectionType.Done => "看过",
+            CollectionType.Doing => "在看",
+            CollectionType.OnHold => "搁置",
+            CollectionType.Dropped => "抛弃",
+            _ => throw new NotImplementedException(),
+        };
+}

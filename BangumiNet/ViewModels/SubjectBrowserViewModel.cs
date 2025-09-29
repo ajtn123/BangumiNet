@@ -126,8 +126,3 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     public string? GetSort()
         => Sort?.ToString()?.ToLower();
 }
-public enum SubjectBrowserSort
-{
-    Date,
-    Rank
-}
