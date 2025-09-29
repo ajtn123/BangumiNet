@@ -5,20 +5,27 @@
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ic="using:FluentIcons.Avalonia"
-             ClipToBounds="False"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="100"
              x:DataType="vm:EpisodeListViewModel"
              x:Class="BangumiNet.Views.EpisodeListView">
-    <ItemsControl ItemsSource="{Binding EpisodeViewModels}" ClipToBounds="False">
-        <ItemsControl.DataTemplates>
-            <DataTemplate DataType="vm:EpisodeViewModel">
-                <v:EpisodeBadgeView DataContext="{Binding .}"/>
-            </DataTemplate>
-        </ItemsControl.DataTemplates>
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+    <Grid ColumnDefinitions="*,Auto">
+        <ItemsControl ItemsSource="{Binding EpisodeViewModels}" Grid.ColumnSpan="2">
+            <ItemsControl.DataTemplates>
+                <DataTemplate DataType="vm:EpisodeViewModel">
+                    <v:EpisodeBadgeView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <Button Grid.Column="1" VerticalAlignment="Bottom" Height="22" Width="22"
+                Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
+                Command="{Binding LoadEpisodesCommand}"
+                IsVisible="{Binding !IsAllEpisodesLoaded}"/>
+    </Grid>
 </UserControl>

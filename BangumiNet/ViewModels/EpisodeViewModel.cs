@@ -50,6 +50,13 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         Init();
     }
 
+    public static EpisodeViewModel InitFormCollection(UserEpisodeCollection collection)
+        => new(collection.Episode ?? new())
+        {
+            Status = (EpisodeCollectionType?)collection.Type,
+            StatusUpdateTime = (collection.UpdatedAt == null || collection.UpdatedAt == 0) ? null : DateTimeOffset.FromUnixTimeSeconds((long)collection.UpdatedAt).ToLocalTime(),
+        };
+
     public void Init()
     {
         if (Duration?.TotalSeconds == 0) Duration = null;
@@ -63,6 +70,10 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
+        UncollectCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected));
+        WishCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish));
+        DoneCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done));
+        DropCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -79,6 +90,8 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     [Reactive] public partial string? Description { get; set; }
     [Reactive] public partial int? Disc { get; set; }
     [Reactive] public partial TimeSpan? Duration { get; set; }
+    [Reactive] public partial EpisodeCollectionType? Status { get; set; }
+    [Reactive] public partial DateTimeOffset? StatusUpdateTime { get; set; }
 
     [Reactive] public partial INeighboring? Prev { get; set; }
     [Reactive] public partial INeighboring? Next { get; set; }
@@ -88,6 +101,33 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     public ICommand? OpenInBrowserCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
+    public ICommand? UncollectCommand { get; private set; }
+    public ICommand? WishCommand { get; private set; }
+    public ICommand? DoneCommand { get; private set; }
+    public ICommand? DropCommand { get; private set; }
 
     public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
+
+    public async Task UpdateStatus(EpisodeCollectionType type)
+    {
+        if (Id == null) return;
+        var result = await ApiC.UpdateEpisodeCollection((int)Id, type);
+        switch (result)
+        {
+            case 204:
+                Status = type;
+                StatusUpdateTime = DateTimeOffset.Now;
+                break;
+            case 400:
+                MessageWindow.ShowMessage("未收藏本话所属项目。");
+                break;
+            case 401:
+                MessageWindow.ShowMessage("未登录。");
+                break;
+            case 404:
+                MessageWindow.ShowMessage("条目或者章节不存在。");
+                break;
+            default: break;
+        }
+    }
 }

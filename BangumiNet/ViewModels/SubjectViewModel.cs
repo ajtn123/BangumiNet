@@ -119,10 +119,13 @@ public partial class SubjectViewModel : ViewModelBase
     }
     public void Init()
     {
-        EpisodeListViewModel = new(Id);
-        PersonBadgeListViewModel = new(ItemType.Subject, Id);
-        CharacterBadgeListViewModel = new(ItemType.Subject, Id);
-        SubjectBadgeListViewModel = new(ItemType.Subject, Id);
+        if (Id != null)
+        {
+            EpisodeListViewModel = new((int)Id);
+            PersonBadgeListViewModel = new(ItemType.Subject, Id);
+            CharacterBadgeListViewModel = new(ItemType.Subject, Id);
+            SubjectBadgeListViewModel = new(ItemType.Subject, Id);
+        }
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));

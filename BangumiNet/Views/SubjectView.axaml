@@ -24,8 +24,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt}}"
+                    <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
+                    <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                               Classes="TitleAlt"/>
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
                         <StackPanel Spacing="5">
                             <WrapPanel Classes="InfoBar">

@@ -42,6 +42,7 @@
         <cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
         <cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
         <cvt:CareerCvt x:Key="CareerCvt"/>
+        <cvt:EpisodeCollectionTypeCvt x:Key="EpisodeCollectionTypeCvt"/>
         <cvt:DateCvt x:Key="DateCvt"/>
         <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
         <cvt:HexColorCvt x:Key="HexColorCvt"/>
@@ -117,6 +118,10 @@
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style Selector="TextBlock.TitleAlt">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
         <Style Selector="Expander /template/ ToggleButton /template/ TextBlock#ExpandCollapseChevron">
             <Setter Property="Text" Value="&#xe70d;"/>

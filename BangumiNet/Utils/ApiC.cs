@@ -1,8 +1,10 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
+using System.Net;
 using System.Net.Http;
 
 namespace BangumiNet.Utils;
@@ -14,6 +16,8 @@ public class ApiC
     public static HttpClient HttpClient => Clients.HttpClient;
 
     public static string? CurrentUsername { get; private set; }
+    public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
+    public static Task<UserViewModel?> RefreshAuthState() => GetViewModelAsync<UserViewModel>();
 
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true)
     {
@@ -60,14 +64,24 @@ public class ApiC
             else return new SubjectViewModel(subject) as T;
         }
         else if (typeof(T) == typeof(EpisodeViewModel) && id is int episodeId)
-        {
-            EpisodeDetail? episode = null;
-            try { episode = await V0.Episodes[episodeId].GetAsync(); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            if (IsAuthenticated)
+            {
+                UserEpisodeCollection? episode = null;
+                try { episode = await V0.Users.Minus.Collections.Minus.Episodes[episodeId].GetAsync(); }
+                catch (Exception e) { Trace.TraceError(e.Message); }
 
-            if (episode is null) return null;
-            else return new EpisodeViewModel(episode) as T;
-        }
+                if (episode is null) return null;
+                else return EpisodeViewModel.InitFormCollection(episode) as T;
+            }
+            else
+            {
+                EpisodeDetail? episode = null;
+                try { episode = await V0.Episodes[episodeId].GetAsync(); }
+                catch (Exception e) { Trace.TraceError(e.Message); }
+
+                if (episode is null) return null;
+                else return new EpisodeViewModel(episode) as T;
+            }
         else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
         {
             Character? character = null;
@@ -158,5 +172,19 @@ public class ApiC
         catch (Exception e) { Trace.TraceError(e.Message); }
 
         return false;
+    }
+
+    public static async Task<int> UpdateEpisodeCollection(int id, EpisodeCollectionType type)
+    {
+        try
+        {
+            await V0.Users.Minus.Collections.Minus.Episodes[id].PutAsync(new() { Type = (int)type });
+            return 204;
+        }
+        catch (ErrorDetail e)
+        {
+            Trace.TraceError(e.Message);
+            return e.ResponseStatusCode;
+        }
     }
 }
