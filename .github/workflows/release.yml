@@ -24,19 +24,25 @@ jobs:
       - name: Publish
         run: |
           cd BangumiNet
-          dotnet publish -c Release -r win-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish
+          dotnet publish -c Release -r win-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-win-x64
+          dotnet publish -c Release -r linux-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-linux-x64
+          dotnet publish -c Release -r osx-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-osx-x64
 
       - name: Create archive
         run: |
-          cd publish
-          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip .
+          cd publish-win-x64
+          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-win-x64.zip .
+          cd ../publish-linux-x64
+          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-linux-x64.zip .
+          cd ../publish-osx-x64
+          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-osx-x64.zip .
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-archive
-          path: ${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip
+          path: ${{ github.event.repository.name }}-${{ github.ref_name }}-*.zip
 
   release:
     needs: build
@@ -44,7 +50,7 @@ jobs:
 
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: app-archive
           path: .
@@ -52,6 +58,9 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.event.repository.name }}-${{ github.ref_name }}-win64.zip
+          files: |
+            ${{ github.event.repository.name }}-${{ github.ref_name }}-win-x64.zip
+            ${{ github.event.repository.name }}-${{ github.ref_name }}-linux-x64.zip
+            ${{ github.event.repository.name }}-${{ github.ref_name }}-osx-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
