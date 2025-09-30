@@ -4,7 +4,6 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using System.Net;
 using System.Net.Http;
 
 namespace BangumiNet.Utils;

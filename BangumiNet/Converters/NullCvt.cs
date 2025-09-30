@@ -1,6 +1,4 @@
 ﻿using Avalonia.Data.Converters;
-using FluentAvalonia.Core;
-using System.Collections;
 using System.Globalization;
 
 namespace BangumiNet.Converters;
