@@ -12,7 +12,7 @@
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
              x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeView">
-    <ScrollViewer ClipToBounds="False">
+    <ScrollViewer>
         <StackPanel Margin="5">
             <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
                        Classes="Title" FontSize="30"/>

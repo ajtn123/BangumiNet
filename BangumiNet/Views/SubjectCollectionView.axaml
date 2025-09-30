@@ -23,7 +23,7 @@
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
                 </TextBlock>
             </WrapPanel>
-            <ItemsControl ItemsSource="{Binding Tags}" ClipToBounds="False">
+            <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Classes="Card TagBadge">

@@ -13,7 +13,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonView">
-    <ScrollViewer ClipToBounds="False">
+    <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">

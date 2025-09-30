@@ -6,7 +6,6 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             ClipToBounds="False"
              x:DataType="vm:CalendarViewModel"
              x:Class="BangumiNet.Views.CalendarView">
 

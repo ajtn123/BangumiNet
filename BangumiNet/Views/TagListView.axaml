@@ -5,10 +5,9 @@
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             ClipToBounds="False"
              x:DataType="vm:TagListViewModel"
              x:Class="BangumiNet.Views.TagListView">
-    <ItemsControl ItemsSource="{Binding TagViewModels}" ClipToBounds="False">
+    <ItemsControl ItemsSource="{Binding TagViewModels}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="vm:TagViewModel">
                 <v:TagBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>

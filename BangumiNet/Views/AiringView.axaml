@@ -15,7 +15,7 @@
             </Border>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
                           MaxWidth="1650" HorizontalAlignment="Center">
-                <ItemsControl ItemsSource="{Binding Calendars}" Margin="5" ClipToBounds="False">
+                <ItemsControl ItemsSource="{Binding Calendars}" Margin="5">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
                             <v:CalendarView DataContext="{Binding .}" Width="230"/>

@@ -144,7 +144,7 @@
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddTagCommand}" />
                         </TextBox.InnerRightContent>
                     </TextBox>
-                    <ItemsControl ItemsSource="{Binding Tag}" ClipToBounds="False">
+                    <ItemsControl ItemsSource="{Binding Tag}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Classes="Card TagBadge">
@@ -169,7 +169,7 @@
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddMetaTagCommand}" />
                         </TextBox.InnerRightContent>
                     </TextBox>
-                    <ItemsControl ItemsSource="{Binding MetaTag}" ClipToBounds="False">
+                    <ItemsControl ItemsSource="{Binding MetaTag}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Classes="Card TagBadge Meta">

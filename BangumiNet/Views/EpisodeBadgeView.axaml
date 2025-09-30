@@ -6,7 +6,6 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             ClipToBounds="False"
              mc:Ignorable="d" d:DesignWidth="22" d:DesignHeight="22"
              x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeBadgeView">

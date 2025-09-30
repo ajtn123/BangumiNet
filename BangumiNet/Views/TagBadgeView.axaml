@@ -5,7 +5,6 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="20"
-             ClipToBounds="False"
              x:DataType="vm:TagViewModel"
              x:Class="BangumiNet.Views.TagBadgeView">
     <Border Classes="Card TagBadge" Classes.Meta="{Binding IsMeta}">

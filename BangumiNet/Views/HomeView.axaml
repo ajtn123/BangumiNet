@@ -20,9 +20,9 @@
             <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
                 <StackPanel Spacing="5">
                     <Border Classes="Card">
-                        <Grid ColumnDefinitions="Auto,*">
+                        <Grid ColumnDefinitions="*,Auto">
                             <TextBlock>收藏</TextBlock>
-                            <TextBlock Grid.Column="1" HorizontalAlignment="Right">想看</TextBlock>
+                            <TextBlock Grid.Column="1">在看</TextBlock>
                         </Grid>
                     </Border>
                     <v:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>

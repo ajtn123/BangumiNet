@@ -12,7 +12,7 @@
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectView"
              utils:UserControlHelpers.ParentTitle="{Binding ParentWindowTitle}">
-    <ScrollViewer ClipToBounds="False">
+    <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
