@@ -15,9 +15,10 @@
     <ScrollViewer>
         <StackPanel Margin="5">
             <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
+                       IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
                        Classes="Title" FontSize="30"/>
             <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
-                       IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                       IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
                        Classes="TitleAlt"/>
             <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="时长" IsVisible="{Binding Duration,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding Duration}"/></TextBlock>
@@ -31,7 +32,7 @@
                 <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                 <TextBlock ToolTip.Tip="所属项目 ID" IsVisible="{Binding SubjectId,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideTextMultiple"/><Run Text="{Binding SubjectId}"/></TextBlock>
             </WrapPanel>
-            <Border Classes="Card" HorizontalAlignment="Left">
+            <Border Classes="Card" HorizontalAlignment="Left" Margin="0,5">
                 <WrapPanel Classes="InfoBar" IsVisible="{Binding Status,Converter={StaticResource NullCvt}}">
                     <TextBlock ToolTip.Tip="收藏状态"><ic:FluentIcon Icon="Bookmark"/><Run Text="{Binding Status,Converter={StaticResource EpisodeCollectionTypeCvt},Mode=OneWay}"/></TextBlock>
                     <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding StatusUpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding StatusUpdateTime}"/></TextBlock>

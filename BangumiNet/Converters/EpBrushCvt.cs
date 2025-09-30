@@ -34,10 +34,27 @@ public class EpDashCvt : IValueConverter
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
-    public static AvaloniaList<double>? Convert(object? obj)
+    public static AvaloniaList<double>? Convert(object? obj) => (EpisodeCollectionType?)obj switch
+    {
+        EpisodeCollectionType.Uncollected => [0.000001, 2],
+        EpisodeCollectionType.Wish => [5, 2],
+        EpisodeCollectionType.Done => null,
+        EpisodeCollectionType.Dropped => [2, 5],
+        null => [0.000001, 2],
+        _ => throw new NotImplementedException(),
+    };
+}
+public class EpUnairedCvt : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => Convert(value);
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+
+    public static bool? Convert(object? obj)
     {
         if (obj is not DateOnly date) return null;
-        if (date.ToDateTime(TimeOnly.MaxValue) > DateTime.UtcNow) return [5, 2];
-        else return null;
+        if (date.ToDateTime(TimeOnly.MaxValue) > DateTime.UtcNow) return true;
+        else return false;
     }
 }

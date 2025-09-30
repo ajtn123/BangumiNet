@@ -30,7 +30,7 @@
 
         <Border Classes="Card" Grid.Row="1">
             <Grid ColumnDefinitions="*,Auto">
-                <TextBlock>
+                <TextBlock ToolTip.Tip="{Binding StandardDeviation,StringFormat='σ = {0:N3}'}">
                     平均
                     <ic:FluentIcon Icon="Star" IconVariant="Color" Margin="0,0,0,-3" FontSize="16"/>
                     <Run Text="{Binding Average,StringFormat={}{0:N3}}"/>

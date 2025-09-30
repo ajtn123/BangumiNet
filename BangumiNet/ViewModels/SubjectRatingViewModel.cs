@@ -11,7 +11,6 @@ public partial class SubjectRatingViewModel : ViewModelBase
     public SubjectRatingViewModel(IRatingCount ratings)
     {
         Source = ratings;
-        Ratings = [.. rs.Select(r => r.ToString()).Reverse()];
         int[] counts = [
             ratings.One ?? 0,
             ratings.Two ?? 0,
@@ -24,8 +23,12 @@ public partial class SubjectRatingViewModel : ViewModelBase
             ratings.Nine ?? 0,
             ratings.OneZero ?? 0
         ];
+
         Total = counts.Sum();
         Average = counts.Select((c, r) => c * (r + 1)).Sum() / Total;
+        StandardDeviation = Math.Sqrt(counts.Select((c, r) => (c, r)).Sum(x => x.c * Math.Pow(x.r + 1 - Average, 2)) / Total);
+
+        Ratings = [.. rs.Select(r => r.ToString()).Reverse()];
         Series = [
             new ColumnSeries<int>
             {
@@ -42,6 +45,7 @@ public partial class SubjectRatingViewModel : ViewModelBase
     [Reactive] public partial IRatingCount Source { get; set; }
     [Reactive] public partial double Total { get; set; }
     [Reactive] public partial double Average { get; set; }
+    [Reactive] public partial double StandardDeviation { get; set; }
     [Reactive] public partial string[] Ratings { get; set; }
     [Reactive] public partial ISeries[] Series { get; set; }
 }

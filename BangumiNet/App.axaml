@@ -18,6 +18,7 @@
         <cvt:NEWCvt x:Key="NEWCvt"/>
         <cvt:EpBrushCvt x:Key="EpBrushCvt"/>
         <cvt:EpDashCvt x:Key="EpDashCvt"/>
+        <cvt:EpUnairedCvt x:Key="EpUnairedCvt"/>
         <cvt:InNullCvt x:Key="InNullCvt"/>
         <cvt:NullCvt x:Key="NullCvt"/>
         <cvt:AddCvt x:Key="AddCvt"/>
@@ -58,6 +59,12 @@
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                     Padding="0" Margin="0" BorderBrush="Transparent" Background="Transparent"/>
         </DataTemplate>
+        <LinearGradientBrush x:Key="UnairedBrush" StartPoint="0%,0%" EndPoint="33.33%,33.33%" SpreadMethod="Repeat">
+            <GradientStop Color="Transparent" Offset="0.0"/>
+            <GradientStop Color="Transparent" Offset="0.5"/>
+            <GradientStop Color="#BFFFFFFF" Offset="0.5"/>
+            <GradientStop Color="#BFFFFFFF" Offset="1.0"/>
+        </LinearGradientBrush>
     </Application.Resources>
 
     <Application.Styles>
