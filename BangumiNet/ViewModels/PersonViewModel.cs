@@ -126,7 +126,10 @@ public partial class PersonViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
+        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
+        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
 
+        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
         this.WhenAnyValue(x => x.Careers).Subscribe(x =>
         {
             this.RaisePropertyChanged(nameof(CareerString));
@@ -150,25 +153,51 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<PersonCareer?>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
-    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
 
     [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
+
+    [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
-    public Task<bool> IsCollected => ApiC.GetIsCollected(ItemType.Person, Id);
+    public bool IsCollected => CollectionTime != null;
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
+    public ICommand? CollectCommand { get; private set; }
+    public ICommand? UncollectCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b?.ToStringSC()} ");
     public bool IsFull => !FromRelation && Source is Person or PersonDetail;
+
+    public async Task UpdateCollection(bool target)
+    {
+        if (Id == null) return;
+        var result = await ApiC.UpdateCollection(ItemType.Person, (int)Id, target);
+        switch (result)
+        {
+            case 204:
+                CollectionTime = target ? DateTimeOffset.Now : null;
+                break;
+            case 400:
+                MessageWindow.ShowMessage("非法 ID。");
+                break;
+            case 401:
+                MessageWindow.ShowMessage("未登录。");
+                break;
+            case 404:
+                MessageWindow.ShowMessage("人物不存在。");
+                break;
+            default: break;
+        }
+    }
 }

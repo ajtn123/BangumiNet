@@ -34,7 +34,7 @@
                         <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                         <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected^,FallbackValue=False}"/>
+                            <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected}"/>
                             <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
                         </TextBlock>
@@ -45,6 +45,14 @@
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                        <Button Command="{Binding CollectCommand}"
+                                IsVisible="{Binding !IsCollected}"
+                                Content="{ice:FluentIcon Icon=Collections}"
+                                ToolTip.Tip="收藏" Classes="Icon"/>
+                        <Button Command="{Binding UncollectCommand}"
+                                IsVisible="{Binding IsCollected}"
+                                Content="{ice:FluentIcon Icon=DismissSquareMultiple}"
+                                ToolTip.Tip="取消收藏" Classes="Icon"/>
                     </StackPanel>
                     <Separator/>
                     <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>

@@ -4,6 +4,7 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
+using System.ComponentModel;
 using System.Net.Http;
 
 namespace BangumiNet.Utils;
@@ -151,26 +152,58 @@ public class ApiC
         else return null;
     }
 
-    public static async Task<bool> GetIsCollected(ItemType type, int? id)
+    /// <summary>
+    /// 获取当前用户是否收藏项目
+    /// </summary>
+    /// <param name="type">Subject/Character/Person</param>
+    /// <param name="id">项目 ID</param>
+    /// <returns>收藏时间，未收藏或出错时为 null</returns>
+    public static async Task<DateTimeOffset?> GetIsCollected(ItemType type, int? id)
     {
-        if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return false;
+        if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return null;
 
         var uc = V0.Users[CurrentUsername].Collections;
         try
         {
-            object? r = type switch
+            return type switch
             {
-                ItemType.Subject => await uc[i].GetAsync(),
-                ItemType.Character => await uc.Minus.Characters[i].GetAsync(),
-                ItemType.Person => await uc.Minus.Persons[i].GetAsync(),
-                _ => throw new NotImplementedException(),
+                ItemType.Subject => (await uc[i].GetAsync())?.UpdatedAt,
+                ItemType.Character => (await uc.Minus.Characters[i].GetAsync())?.CreatedAt,
+                ItemType.Person => (await uc.Minus.Persons[i].GetAsync())?.CreatedAt,
+                _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
             };
-
-            if (r != null) return true;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
 
-        return false;
+        return null;
+    }
+
+    public static async Task<int> UpdateCollection(ItemType type, int id, bool target)
+    {
+        try
+        {
+            Task task = type switch
+            {
+                ItemType.Character => target switch
+                {
+                    true => V0.Characters[id].Collect.PostAsync(),
+                    false => V0.Characters[id].Collect.DeleteAsync(),
+                },
+                ItemType.Person => target switch
+                {
+                    true => V0.Persons[id].Collect.PostAsync(),
+                    false => V0.Persons[id].Collect.DeleteAsync(),
+                },
+                _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
+            };
+            await task;
+            return 204;
+        }
+        catch (ErrorDetail e)
+        {
+            Trace.TraceError(e.Message);
+            return e.ResponseStatusCode;
+        }
     }
 
     public static async Task<int> UpdateEpisodeCollection(int id, EpisodeCollectionType type)

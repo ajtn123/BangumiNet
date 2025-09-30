@@ -4,6 +4,7 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using BangumiNet.Models;
+using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -75,6 +76,10 @@ public partial class CharacterViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
+        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
+        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
+
+        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -92,22 +97,49 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial bool? IsNsfw { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
+
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
 
+    [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
+
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
-    public Task<bool> IsCollected => ApiC.GetIsCollected(ItemType.Character, Id);
+    public bool IsCollected => CollectionTime != null;
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
+    public ICommand? CollectCommand { get; private set; }
+    public ICommand? UncollectCommand { get; private set; }
 
     public bool IsFull => Source is Character;
+
+    public async Task UpdateCollection(bool target)
+    {
+        if (Id == null) return;
+        var result = await ApiC.UpdateCollection(ItemType.Character, (int)Id, target);
+        switch (result)
+        {
+            case 204:
+                CollectionTime = target ? DateTimeOffset.Now : null;
+                break;
+            case 400:
+                MessageWindow.ShowMessage("非法 ID。");
+                break;
+            case 401:
+                MessageWindow.ShowMessage("未登录。");
+                break;
+            case 404:
+                MessageWindow.ShowMessage("角色不存在。");
+                break;
+            default: break;
+        }
+    }
 }

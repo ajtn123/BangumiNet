@@ -111,6 +111,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
 
     public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
 
+    // 尽管对非正片或SP话更新收藏状态会导致完成度显示异常，还是应该允许这么做。
     public async Task UpdateStatus(EpisodeCollectionType type)
     {
         if (Id == null) return;
