@@ -14,7 +14,9 @@
         <Border Classes="Card ItemBadge" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
             <Image Source="{Binding ImageGrid^}" Name="Img">
                 <Image.Clip>
-                    <RectangleGeometry RadiusX="9.35" RadiusY="9.35" Rect="{Binding #Img.Bounds,Converter={StaticResource BoundCvt}}"/>
+                    <RectangleGeometry RadiusX="{StaticResource CardInnerRadius}"
+                                       RadiusY="{StaticResource CardInnerRadius}"
+                                       Rect="{Binding #Img.Bounds,Converter={StaticResource BoundCvt}}"/>
                 </Image.Clip>
             </Image>
         </Border>

@@ -40,6 +40,7 @@
                     <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
                     <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
                     <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
+                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
                 </WrapPanel>
             </Border>
             <SelectableTextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,5"

@@ -47,6 +47,7 @@ public partial class EpisodeListViewModel : ViewModelBase
                 Offset += episodes.Count;
                 EpisodeViewModels = EpisodeViewModels
                     .UnionBy(episodes.Select(EpisodeViewModel.InitFormCollection), e => e.Id)
+                    .Select(x => { x.Parent = this; return x; })
                     .ToArray().LinkNeighbors().ToObservableCollection()!;
             }
         }

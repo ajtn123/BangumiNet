@@ -46,6 +46,8 @@
         <cvt:DateCvt x:Key="DateCvt"/>
         <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
         <cvt:HexColorCvt x:Key="HexColorCvt"/>
+        <CornerRadius x:Key="CardInnerCornerRadius">9.35</CornerRadius>
+        <x:Double x:Key="CardInnerRadius">9.35</x:Double>
         <x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
         <x:Double x:Key="DatePickerThemeMinWidth">100</x:Double>
         <x:Double x:Key="BadgeFactor">2</x:Double>

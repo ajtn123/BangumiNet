@@ -186,4 +186,17 @@ public class ApiC
             return e.ResponseStatusCode;
         }
     }
+    public static async Task<int> UpdateEpisodeCollection(int subjectId, IEnumerable<int> eps, EpisodeCollectionType type)
+    {
+        try
+        {
+            await V0.Users.Minus.Collections[subjectId].Episodes.PatchAsync(new() { EpisodeId = [.. eps], Type = (int)type });
+            return 204;
+        }
+        catch (ErrorDetail e)
+        {
+            Trace.TraceError(e.Message);
+            return e.ResponseStatusCode;
+        }
+    }
 }

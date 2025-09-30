@@ -71,9 +71,10 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
         UncollectCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected));
-        WishCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish));
-        DoneCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done));
-        DropCommand = ReactiveCommand.Create(() => UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
+        WishCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish));
+        DoneCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done));
+        DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
+        DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done));
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -95,6 +96,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
 
     [Reactive] public partial INeighboring? Prev { get; set; }
     [Reactive] public partial INeighboring? Next { get; set; }
+    [Reactive] public partial EpisodeListViewModel? Parent { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }
@@ -105,6 +107,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     public ICommand? WishCommand { get; private set; }
     public ICommand? DoneCommand { get; private set; }
     public ICommand? DropCommand { get; private set; }
+    public ICommand? DoneUntilCommand { get; private set; }
 
     public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
 
@@ -117,6 +120,35 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
             case 204:
                 Status = type;
                 StatusUpdateTime = DateTimeOffset.Now;
+                break;
+            case 400:
+                MessageWindow.ShowMessage("未收藏本话所属项目。");
+                break;
+            case 401:
+                MessageWindow.ShowMessage("未登录。");
+                break;
+            case 404:
+                MessageWindow.ShowMessage("条目或者章节不存在。");
+                break;
+            default: break;
+        }
+    }
+    public async Task UpdateStatusUntilThis(EpisodeCollectionType type)
+    {
+        if (Ep == null || Parent == null) return;
+
+        var affectedEps = Parent.EpisodeViewModels.Where(x => x.Ep != null && x.Ep <= Ep && x.Id != null);
+
+        var result = await ApiC.UpdateEpisodeCollection(Parent.SubjectId,
+            affectedEps.Select(x => (int)x.Id!), type);
+        switch (result)
+        {
+            case 204:
+                foreach (var ep in affectedEps)
+                {
+                    ep.Status = type;
+                    ep.StatusUpdateTime = DateTimeOffset.Now;
+                }
                 break;
             case 400:
                 MessageWindow.ShowMessage("未收藏本话所属项目。");

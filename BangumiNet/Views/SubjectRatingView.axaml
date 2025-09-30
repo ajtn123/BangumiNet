@@ -13,7 +13,7 @@
              x:Class="BangumiNet.Views.SubjectRatingView">
     <Grid RowDefinitions="*,Auto" RowSpacing="5">
         <Border Classes="Card" Padding="0">
-            <Border CornerRadius="9.35" ClipToBounds="True">
+            <Border CornerRadius="{StaticResource CardInnerCornerRadius}" ClipToBounds="True">
                 <lvc:CartesianChart Series="{Binding Series}" Name="Chart"
                                     DrawMargin="{lvc:Margin Value='5,5,5,35'}"
                                     Background="{DynamicResource ControlSolidFillColorDefaultBrush}"
