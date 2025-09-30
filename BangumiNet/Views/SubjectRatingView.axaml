@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:v="using:BangumiNet.Views"
+             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
+             x:DataType="vm:SubjectRatingViewModel"
+             x:Class="BangumiNet.Views.SubjectRatingView">
+    <Grid RowDefinitions="*,Auto" RowSpacing="5">
+        <Border Classes="Card" Padding="0">
+            <Border CornerRadius="9.35" ClipToBounds="True">
+                <lvc:CartesianChart Series="{Binding Series}" Name="Chart"
+                                    DrawMargin="{lvc:Margin Value='5,5,5,35'}"
+                                    Background="{DynamicResource ControlSolidFillColorDefaultBrush}"
+                                    Margin="0,0,0,-15" ClipToBounds="True">
+                    <lvc:CartesianChart.XAxes>
+                        <lvc:XamlAxis Labels="{Binding Ratings}" MinStep="1" ForceStepToMin="True"/>
+                    </lvc:CartesianChart.XAxes>
+                    <lvc:CartesianChart.YAxes>
+                        <lvc:XamlAxis IsVisible="False"/>
+                    </lvc:CartesianChart.YAxes>
+                </lvc:CartesianChart>
+            </Border>
+        </Border>
+
+        <Border Classes="Card" Grid.Row="1">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock>
+                    平均
+                    <ic:FluentIcon Icon="Star" IconVariant="Color" Margin="0,0,0,-3" FontSize="16"/>
+                    <Run Text="{Binding Average,StringFormat={}{0:N3}}"/>
+                </TextBlock>
+                <TextBlock Text="{Binding Total,StringFormat='共 {0} 人评分'}"
+                           Grid.Column="1"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

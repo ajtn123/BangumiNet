@@ -133,6 +133,7 @@ public partial class SubjectViewModel : ViewModelBase
 
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
+        this.WhenAnyValue(x => x.RatingCount).Subscribe(e => SubjectRatingViewModel = e == null ? null : new(e));
         this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e => this.RaisePropertyChanged(nameof(ParentWindowTitle)));
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
         {
@@ -179,6 +180,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
+    [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }

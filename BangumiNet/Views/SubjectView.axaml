@@ -62,10 +62,15 @@
                                 <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                             </StackPanel>
                         </StackPanel>
-                        
-                        <v:SubjectCollectionView DataContext="{Binding SubjectCollectionViewModel}"
+
+                        <StackPanel Grid.Column="1" Spacing="5">
+                            <v:SubjectCollectionView DataContext="{Binding SubjectCollectionViewModel}"
+                                                     IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
+                                                     Width="250"/>
+                            <v:SubjectRatingView DataContext="{Binding SubjectRatingViewModel}"
                                                  IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
-                                                 Width="250" Grid.Column="1" VerticalAlignment="Top"/>
+                                                 Width="250" Height="200"/>
+                        </StackPanel>
                     </Grid>
                     <Separator/>
                     <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
