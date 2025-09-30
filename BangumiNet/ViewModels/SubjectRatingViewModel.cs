@@ -25,7 +25,7 @@ public partial class SubjectRatingViewModel : ViewModelBase
             ratings.OneZero ?? 0
         ];
         Total = counts.Sum();
-        Average = Total == 0 ? 0 : counts.Select((c, r) => c * (r + 1)).Sum() / Total;
+        Average = counts.Select((c, r) => c * (r + 1)).Sum() / Total;
         Series = [
             new ColumnSeries<int>
             {
@@ -40,8 +40,8 @@ public partial class SubjectRatingViewModel : ViewModelBase
     }
 
     [Reactive] public partial IRatingCount Source { get; set; }
-    [Reactive] public partial decimal Total { get; set; }
-    [Reactive] public partial decimal Average { get; set; }
+    [Reactive] public partial double Total { get; set; }
+    [Reactive] public partial double Average { get; set; }
     [Reactive] public partial string[] Ratings { get; set; }
     [Reactive] public partial ISeries[] Series { get; set; }
 }
