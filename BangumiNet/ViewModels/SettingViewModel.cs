@@ -17,6 +17,10 @@ public partial class SettingViewModel : ViewModelBase
         LocalDataDirectory = GetOverride(nameof(Settings.LocalDataDirectory));
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
         DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Settings.DiskCacheSizeLimit));
+        CollectionPageSize = (int?)Overrides.TryGet(nameof(Settings.CollectionPageSize));
+        SearchPageSize = (int?)Overrides.TryGet(nameof(Settings.SearchPageSize));
+        EpisodePageSize = (int?)Overrides.TryGet(nameof(Settings.EpisodePageSize));
+        SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Settings.SubjectBrowserPageSize));
         PreferChineseNames = settings.PreferChineseNames;
 
         PaletteItems = [
@@ -55,6 +59,10 @@ public partial class SettingViewModel : ViewModelBase
         LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
         IsDiskCacheEnabled = IsDiskCacheEnabled,
         DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
+        CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
+        SearchPageSize = SearchPageSize ?? DefaultSettings.SearchPageSize,
+        EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
+        SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
         PreferChineseNames = PreferChineseNames,
         EpMainBg = GetColor(nameof(Settings.EpMainBg)),
         EpSpBg = GetColor(nameof(Settings.EpSpBg)),
@@ -85,6 +93,10 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial string LocalDataDirectory { get; set; }
     [Reactive] public partial bool IsDiskCacheEnabled { get; set; }
     [Reactive] public partial long? DiskCacheSizeLimit { get; set; }
+    [Reactive] public partial int? CollectionPageSize { get; set; }
+    [Reactive] public partial int? SearchPageSize { get; set; }
+    [Reactive] public partial int? EpisodePageSize { get; set; }
+    [Reactive] public partial int? SubjectBrowserPageSize { get; set; }
     [Reactive] public partial bool PreferChineseNames { get; set; }
 
     [Reactive] public partial List<string> SearchEngineSuggestions { get; set; }

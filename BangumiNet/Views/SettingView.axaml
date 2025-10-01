@@ -122,7 +122,7 @@
                         <TextBlock>本地缓存位置</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <TextBox Text="{Binding LocalDataDirectory}"
-                                        Watermark="{Binding DefaultSettings.LocalDataDirectory}">
+                                     Watermark="{Binding DefaultSettings.LocalDataDirectory}">
                                 <TextBox.InnerLeftContent>
                                     <Button Click="LocalDataPickDir" Content="{ice:FluentIcon Icon=Folder,FontSize=13}"
                                             Margin="2" Padding="5"/>
@@ -144,6 +144,61 @@
                                     <TextBlock VerticalAlignment="Center" Margin="5">字节</TextBlock>
                                 </TextBox.InnerRightContent>
                             </TextBox>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="请求页大小" IsExpanded="False">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="AppsList"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Collections"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>收藏项目</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding CollectionPageSize}"
+                                     Watermark="{Binding DefaultSettings.CollectionPageSize}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Search"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>搜索结果</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding SearchPageSize}"
+                                     Watermark="{Binding DefaultSettings.SearchPageSize}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Layer"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>话列表</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding EpisodePageSize}"
+                                     Watermark="{Binding DefaultSettings.EpisodePageSize}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="TextNumberList"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>索引结果</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding SubjectBrowserPageSize}"
+                                     Watermark="{Binding DefaultSettings.SubjectBrowserPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>

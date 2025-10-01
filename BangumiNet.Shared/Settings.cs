@@ -29,6 +29,11 @@ public class Settings : IApiSettings
 
     public bool PreferChineseNames { get; set; } = false;
 
+    public int CollectionPageSize { get; set; } = 30;
+    public int SearchPageSize { get; set; } = 10;
+    public int EpisodePageSize { get; set; } = 100;
+    public int SubjectBrowserPageSize { get; set; } = 30;
+
     public string EpMainBg { get; set; } = "#7f7fff7f";
     public string EpSpBg { get; set; } = "#7fffff7f";
     public string EpOpBg { get; set; } = "#7f7fffff";
