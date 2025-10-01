@@ -138,7 +138,9 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Spacing="3">
-                    <TextBox Watermark="标签" Text="{Binding TagInput}" HorizontalAlignment="Stretch" Padding="2,0">
+                    <TextBox Watermark="标签" Text="{Binding TagInput}"
+                             HorizontalAlignment="Stretch" Padding="2,0"
+                             Name="TagInputBox">
                         <TextBox.InnerRightContent>
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddTagCommand}" />
                         </TextBox.InnerRightContent>
@@ -163,7 +165,9 @@
                     </ItemsControl>
                 </StackPanel>
                 <StackPanel Grid.Column="4" Spacing="3">
-                    <TextBox Watermark="元标签" Text="{Binding MetaTagInput}" HorizontalAlignment="Stretch" Padding="2,0">
+                    <TextBox Watermark="元标签" Text="{Binding MetaTagInput}"
+                             HorizontalAlignment="Stretch" Padding="2,0"
+                             Name="MetaTagInputBox">
                         <TextBox.InnerRightContent>
                             <Button Content="{ice:FluentIcon Icon=Add}" Height="17" Width="17" Margin="1,0" Padding="0" Command="{Binding AddMetaTagCommand}" />
                         </TextBox.InnerRightContent>

@@ -16,5 +16,16 @@ public partial class SearchView : ReactiveUserControl<SearchViewModel>
         };
         SortComboBox.ItemsSource = Enum.GetValues<SubjectsPostRequestBody_sort>();
         SearchTypeBox.ItemsSource = Enum.GetValues<SearchType>();
+
+        TagInputBox.KeyDown += (s, e) =>
+        {
+            if (e.Key == Avalonia.Input.Key.Enter)
+                ViewModel?.AddTagCommand?.Execute().Subscribe();
+        };
+        MetaTagInputBox.KeyDown += (s, e) =>
+        {
+            if (e.Key == Avalonia.Input.Key.Enter)
+                ViewModel?.AddMetaTagCommand?.Execute().Subscribe();
+        };
     }
 }
