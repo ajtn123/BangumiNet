@@ -107,7 +107,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     public bool IsBrowsingReal => Type == SubjectType.Real;
     public bool IsBrowsingMusic => Type == SubjectType.Music;
 
-    public const int Limit = 30;
+    public static int Limit => SettingProvider.CurrentSettings.SubjectBrowserPageSize;
 
     public int? GetCategory()
         => Type switch

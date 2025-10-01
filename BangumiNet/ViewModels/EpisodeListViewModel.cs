@@ -16,11 +16,11 @@ public partial class EpisodeListViewModel : ViewModelBase
 
         this.WhenAnyValue(x => x.Offset, x => x.EpTotal).Subscribe(x => IsAllEpisodesLoaded = Offset >= EpTotal);
 
-        LoadEpisodesCommand = ReactiveCommand.CreateFromTask(async () => await LoadEpisodes(), this.WhenAnyValue(x => x.IsAllEpisodesLoaded).Select(x => !x));
+        LoadEpisodesCommand = ReactiveCommand.CreateFromTask(LoadEpisodes, this.WhenAnyValue(x => x.IsAllEpisodesLoaded).Select(x => !x));
     }
 
     /// <returns>是否已取得全部集数</returns>
-    public async Task<bool?> LoadEpisodes(int limit = 100)
+    public async Task<bool?> LoadEpisodes()
     {
         if (Offset >= EpTotal) return true;
 
@@ -31,7 +31,7 @@ public partial class EpisodeListViewModel : ViewModelBase
             {
                 epCole = await ApiC.V0.Users.Minus.Collections[SubjectId].Episodes.GetAsEpisodesGetResponseAsync(config =>
                 {
-                    config.QueryParameters.Limit = limit;
+                    config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = Offset;
                     config.QueryParameters.EpisodeType = null;
                 });
@@ -58,7 +58,7 @@ public partial class EpisodeListViewModel : ViewModelBase
             {
                 epPage = await ApiC.V0.Episodes.GetAsync(config =>
                 {
-                    config.QueryParameters.Limit = limit;
+                    config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = Offset;
                     config.QueryParameters.Type = null;
                     config.QueryParameters.SubjectId = SubjectId;
@@ -90,4 +90,6 @@ public partial class EpisodeListViewModel : ViewModelBase
     [Reactive] public partial bool IsAllEpisodesLoaded { get; set; }
 
     public ReactiveCommand<Unit, bool?> LoadEpisodesCommand { get; }
+
+    public static int Limit => SettingProvider.CurrentSettings.EpisodePageSize;
 }

@@ -206,7 +206,7 @@ public partial class SearchViewModel : ViewModelBase
         else CharacterPageNavigatorViewModel.Total = null;
     }
 
-    public const int Limit = 10;
+    public static int Limit => SettingProvider.CurrentSettings.SearchPageSize;
 
     [Reactive] public partial string? SubjectErrorMessage { get; set; }
     [Reactive] public partial string? PersonErrorMessage { get; set; }
