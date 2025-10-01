@@ -10,11 +10,11 @@ public partial class HomeViewModel : ViewModelBase
         LoadGreeting();
         Today = await ApiC.GetViewModelAsync<CalendarViewModel>();
         Me = await ApiC.GetViewModelAsync<UserViewModel>();
-        CollectionListViewModel = new();
+        CollectionListViewModel = new(SubjectType.Anime, CollectionType.Doing);
+        _ = CollectionListViewModel.LoadPageAsync(1);
 
         this.WhenAnyValue(x => x.Me).Subscribe(x =>
         {
-            _ = LoadMyCollection();
             LoadGreeting();
         });
     }
@@ -36,21 +36,5 @@ public partial class HomeViewModel : ViewModelBase
         greeting += $"今天是{DateTime.Now:D}。";
 
         Greeting = greeting;
-    }
-
-    private async Task LoadMyCollection()
-    {
-        if (Me?.Username is not { } username) return;
-
-        var MyCollection = await ApiC.V0.Users[username].Collections.GetAsync(config =>
-        {
-            config.QueryParameters.SubjectType = (int)SubjectType.Anime;
-            config.QueryParameters.Type = ((int)CollectionType.Doing).ToString();
-            config.QueryParameters.Offset = 0;
-            config.QueryParameters.Limit = 30;
-        });
-
-        if (MyCollection?.Data is not null)
-            CollectionListViewModel?.AddSubjects(MyCollection);
     }
 }

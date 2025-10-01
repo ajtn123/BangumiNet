@@ -52,6 +52,17 @@ public partial class UserViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
+
+        if (Username != null)
+        {
+            WishList = new(null, CollectionType.Wish, Username);
+            DoingList = new(null, CollectionType.Doing, Username);
+            DoneList = new(null, CollectionType.Done, Username);
+
+            _ = WishList.LoadPageAsync(1);
+            _ = DoingList.LoadPageAsync(1);
+            _ = DoneList.LoadPageAsync(1);
+        }
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -65,6 +76,9 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial DateTimeOffset? RegistrationTime { get; set; }
     [Reactive] public partial string? Email { get; set; }
     [Reactive] public partial int? TimeOffset { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? WishList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? DoingList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? DoneList { get; set; }
 
     public bool IsMe => Source is MeGetResponse;
 

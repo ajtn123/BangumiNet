@@ -18,15 +18,7 @@
                 </Grid>
             </Border>
             <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
-                <StackPanel Spacing="5">
-                    <Border Classes="Card">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <TextBlock>收藏</TextBlock>
-                            <TextBlock Grid.Column="1">在看</TextBlock>
-                        </Grid>
-                    </Border>
-                    <v:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
-                </StackPanel>
+                <v:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
                 <v:CalendarView DataContext="{Binding Today}" Grid.Column="1"/>
             </Grid>
         </StackPanel>

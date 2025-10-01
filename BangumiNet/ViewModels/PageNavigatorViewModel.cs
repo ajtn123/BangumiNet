@@ -23,7 +23,8 @@ public partial class PageNavigatorViewModel : ViewModelBase
 
     public bool IsInRange(int? d)
     {
-        if (d == null || PageIndex == null || Total == null) return false;
+        if (d == 1) return true;
+        else if (d == null || PageIndex == null || Total == null) return false;
         else return d > 0 && d <= Total;
     }
 }

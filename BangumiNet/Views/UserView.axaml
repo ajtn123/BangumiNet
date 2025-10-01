@@ -2,24 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:utils="using:BangumiNet.Utils"
-             utils:UserControlHelpers.ParentTitle="{Binding Nickname, StringFormat='\{0} - BangumiNet',FallbackValue='用户 - BangumiNet'}"
+             bn:UserControlHelpers.ParentTitle="{Binding Nickname, StringFormat='\{0} - BangumiNet',FallbackValue='用户 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:UserViewModel"
+             x:DataType="bn:UserViewModel"
              x:Class="BangumiNet.Views.UserView">
     <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
-                    <Border CornerRadius="10" ClipToBounds="True">
-                        <Image Source="{Binding AvatarLarge^}"/>
-                    </Border>
+                    <MainImage Source="{Binding AvatarLarge^}" Tag="{Binding Avatar.Large}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -44,6 +39,15 @@
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
                 </StackPanel>
+
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5"
+                      Grid.Row="1" Grid.ColumnSpan="2">
+                    <bn:SubjectCollectionListView DataContext="{Binding WishList}"/>
+                    <bn:SubjectCollectionListView DataContext="{Binding DoingList}"
+                                                  Grid.Column="1"/>
+                    <bn:SubjectCollectionListView DataContext="{Binding DoneList}"
+                                                  Grid.Column="2"/>
+                </Grid>
             </Grid>
         </StackPanel>
     </ScrollViewer>

@@ -8,7 +8,7 @@
              DataContext="{x:Null}"
              x:DataType="vm:PageNavigatorViewModel"
              x:Class="BangumiNet.Views.PageNavigatorView">
-    <Grid ColumnDefinitions="*,*,Auto,*">
+    <Grid ColumnDefinitions="*,3*,Auto,*">
         <Button Command="{Binding PrevPage}" Content="{ice:FluentIcon Icon=ArrowLeft}"/>
         <NumericUpDown Value="{Binding PageIndexInput}" Grid.Column="1" Maximum="{Binding Total}" Minimum="1"
                        FormatString="N0" ParsingNumberStyle="Integer" Margin="5,0">
