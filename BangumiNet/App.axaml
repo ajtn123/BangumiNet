@@ -15,6 +15,11 @@
     </Application.DataTemplates>
 
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Templates/MainImage.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
         <cvt:NEWCvt x:Key="NEWCvt"/>
         <cvt:EpBrushCvt x:Key="EpBrushCvt"/>
         <cvt:EpDashCvt x:Key="EpDashCvt"/>

@@ -2,25 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
-             x:DataType="vm:SubjectViewModel"
+             x:DataType="bn:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectView"
-             utils:UserControlHelpers.ParentTitle="{Binding ParentWindowTitle}">
+             bn:UserControlHelpers.ParentTitle="{Binding ParentWindowTitle}">
     <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
-                    <Border CornerRadius="10" ClipToBounds="True">
-                        <Image Source="{Binding ImageLarge^}"/>
-                    </Border>
-                    <v:InfoboxView DataContext="{Binding Infobox}" />
+                    <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images.Large}"/>
+                    <bn:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -52,10 +47,10 @@
                                     <ic:FluentIcon ToolTip.Tip="加载中" Icon="ArrowClockwiseDashes" IsVisible="{Binding !IsFull}"/>
                                 </TextBlock>
                             </WrapPanel>
-                            <v:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
+                            <bn:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
                             <SelectableTextBlock Text="{Binding Summary}" TextWrapping="Wrap"
                                                  IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"/>
-                            <v:TagListView DataContext="{Binding TagListViewModel}"/>
+                            <bn:TagListView DataContext="{Binding TagListViewModel}"/>
                             <StackPanel Orientation="Horizontal" Spacing="5">
                                 <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                                 <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
@@ -64,20 +59,20 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Spacing="5">
-                            <v:SubjectCollectionView DataContext="{Binding SubjectCollectionViewModel}"
+                            <bn:SubjectCollectionView DataContext="{Binding SubjectCollectionViewModel}"
                                                      IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
                                                      Width="250"/>
-                            <v:SubjectRatingView DataContext="{Binding SubjectRatingViewModel}"
+                            <bn:SubjectRatingView DataContext="{Binding SubjectRatingViewModel}"
                                                  IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
                                                  Width="250" Height="200"/>
                         </StackPanel>
                     </Grid>
                     <Separator/>
-                    <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
+                    <bn:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
                     <Separator/>
-                    <v:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
+                    <bn:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
                     <Separator/>
-                    <v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <bn:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
                 </StackPanel>
             </Grid>
             <Expander Header="评分统计"  IsExpanded="True" HorizontalAlignment="Stretch">

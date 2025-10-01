@@ -46,6 +46,18 @@ public static class CacheProvider
         else return null;
     }
 
+    public static string? GetCacheFile(string id)
+    {
+        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return null;
+
+        var idHash = Utils.GetHash(id);
+        var path = GetAbsolutePath(idHash);
+
+        if (File.Exists(path))
+            return path;
+        else return null;
+    }
+
     public static void DeleteCache(string id)
     {
         var idHash = Utils.GetHash(id);

@@ -18,9 +18,7 @@
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
-                    <Border CornerRadius="10" ClipToBounds="True">
-                        <Image Source="{Binding ImageLarge^}"/>
-                    </Border>
+                    <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images.Large}"/>
                     <v:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 

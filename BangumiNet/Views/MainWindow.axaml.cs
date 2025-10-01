@@ -8,6 +8,9 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
+        homeView = new();
+        NavView.Content = homeView;
+
         Navigator.AsyncPopulator = navigatorViewModel.PopulateAsync;
 
         NavView.ItemInvoked += (s, e) =>

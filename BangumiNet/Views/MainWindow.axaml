@@ -60,8 +60,6 @@
                     </ui:NavigationViewItem.IconSource>
                 </ui:NavigationViewItem>
             </ui:NavigationView.FooterMenuItems>
-            
-            <v:HomeView/>
         </ui:NavigationView>
     </Grid>
 </Window>

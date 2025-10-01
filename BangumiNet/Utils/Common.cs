@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
@@ -69,4 +70,12 @@ public static partial class Common
 
     [GeneratedRegex(@"^[a-zA-Z0-9_]+$")]
     public static partial Regex AlphaNumeric();
+
+    public static void CleanUpTempFolder()
+    {
+        if (!Path.Exists(PathProvider.TempFolderPath)) return;
+        foreach (var file in Directory.EnumerateFiles(PathProvider.TempFolderPath))
+            try { File.Delete(file); }
+            catch (Exception e) { Trace.TraceWarning(e.Message); }
+    }
 }

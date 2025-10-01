@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <StackPanel Width="400" Spacing="10">
+            <StackPanel Background="{DynamicResource SystemRegionBrush}">
+                <MainImage />
+            </StackPanel>
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type MainImage}" TargetType="MainImage">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border ClipToBounds="True" CornerRadius="10"
+                        IsVisible="{TemplateBinding Source,Converter={StaticResource NullCvt}}">
+                    <Image Source="{TemplateBinding Source}">
+                        <Image.ContextFlyout>
+                            <Flyout>
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    <Button Classes="Icon" Content="{ice:FluentIcon Icon=Open}"
+                                            ToolTip.Tip="使用外部程序打开图片"
+                                            Name="PART_OpenImageButton"/>
+                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                </StackPanel>
+                            </Flyout>
+                        </Image.ContextFlyout>
+                    </Image>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

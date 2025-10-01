@@ -21,6 +21,8 @@ public partial class App : Application
 
         CacheProvider.CalculateCacheSize();
 
+        Common.CleanUpTempFolder();
+
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
 
         // 程序关闭时
