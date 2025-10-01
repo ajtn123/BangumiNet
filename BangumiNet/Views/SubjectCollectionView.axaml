@@ -16,13 +16,12 @@
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
                 <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话</TextBlock>
                 <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册</TextBlock>
-                <TextBlock ToolTip.Tip="修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="CalendarDate"/><Run Text="{Binding UpdateTime}"/></TextBlock>
+                <TextBlock ToolTip.Tip="修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding UpdateTime}"/></TextBlock>
                 <TextBlock>
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
                 </TextBlock>
                 <Button ToolTip.Tip="编辑收藏信息" Command="{Binding OpenEditWindowCommand}"
-                        Classes="Icon" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"
-                        BorderBrush="{DynamicResource ControlElevationBorderBrush}"/>
+                        Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"/>
             </WrapPanel>
             <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemTemplate>
