@@ -36,10 +36,10 @@ public partial class MainWindow : Window
         };
     }
 
-    private readonly NavigatorViewModel navigatorViewModel = new();
-    private HomeView? homeView;
-    private SearchView? searchView;
-    private SubjectBrowserView? subjectBrowserView;
-    private AiringView? airingView;
-    private UserView? meView;
+    public readonly NavigatorViewModel navigatorViewModel = new();
+    public HomeView? homeView;
+    public SearchView? searchView;
+    public SubjectBrowserView? subjectBrowserView;
+    public AiringView? airingView;
+    public UserView? meView;
 }
