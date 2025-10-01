@@ -1,5 +1,5 @@
 using Avalonia.ReactiveUI;
-using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
 
@@ -9,27 +9,24 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
     {
         InitializeComponent();
 
-        Init();
+        _ = Init();
     }
 
     public UserView(bool loadMe)
     {
         InitializeComponent();
 
-        if (loadMe) _ = LoadMe();
-
-        Init();
+        _ = Init(loadMe);
     }
 
-    public void Init()
+    public async Task Init(bool loadMe = false)
     {
-        this.WhenActivated(d =>
+        if (loadMe) await LoadMe();
+
+        CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(static async y =>
         {
-            CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(static y =>
-            {
-                if (y is SubjectCollectionListView v && v.ViewModel?.Total == null)
-                    _ = v.ViewModel?.LoadPageAsync(1);
-            }).DisposeWith(d);
+            if (y is SubjectCollectionListView v && v.ViewModel != null && v.ViewModel.Total == null && !await v.ViewModel.LoadPageCommand.IsExecuting.FirstAsync())
+                _ = v.ViewModel.LoadPageCommand.Execute(1).Subscribe();
         });
     }
 
