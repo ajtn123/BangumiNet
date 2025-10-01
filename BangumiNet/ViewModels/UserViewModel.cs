@@ -58,10 +58,8 @@ public partial class UserViewModel : ViewModelBase
             WishList = new(null, CollectionType.Wish, Username);
             DoingList = new(null, CollectionType.Doing, Username);
             DoneList = new(null, CollectionType.Done, Username);
-
-            _ = WishList.LoadPageAsync(1);
-            _ = DoingList.LoadPageAsync(1);
-            _ = DoneList.LoadPageAsync(1);
+            DropList = new(null, CollectionType.Dropped, Username);
+            HoldList = new(null, CollectionType.OnHold, Username);
         }
     }
 
@@ -79,6 +77,8 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? WishList { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? DoingList { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? DoneList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? DropList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? HoldList { get; set; }
 
     public bool IsMe => Source is MeGetResponse;
 

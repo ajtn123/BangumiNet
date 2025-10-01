@@ -40,14 +40,31 @@
                     </StackPanel>
                 </StackPanel>
 
-                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5"
-                      Grid.Row="1" Grid.ColumnSpan="2">
-                    <bn:SubjectCollectionListView DataContext="{Binding WishList}"/>
-                    <bn:SubjectCollectionListView DataContext="{Binding DoingList}"
-                                                  Grid.Column="1"/>
-                    <bn:SubjectCollectionListView DataContext="{Binding DoneList}"
-                                                  Grid.Column="2"/>
-                </Grid>
+                <TabControl Grid.Row="1" Grid.ColumnSpan="2"
+                            SelectedIndex="1"
+                            Name="CollectionTabs">
+                    <TabItem Header="想看">
+                        <bn:SubjectCollectionListView DataContext="{Binding WishList}"/>
+                    </TabItem>
+                    <TabItem Header="在看">
+                        <bn:SubjectCollectionListView DataContext="{Binding DoingList}"/>
+                    </TabItem>
+                    <TabItem Header="看过">
+                        <bn:SubjectCollectionListView DataContext="{Binding DoneList}"/>
+                    </TabItem>
+                    <TabItem Header="抛弃">
+                        <bn:SubjectCollectionListView DataContext="{Binding DropList}"/>
+                    </TabItem>
+                    <TabItem Header="搁置">
+                        <bn:SubjectCollectionListView DataContext="{Binding HoldList}"/>
+                    </TabItem>
+                    <TabItem Header="角色">
+                        <TextBlock FontSize="50">未实现</TextBlock>
+                    </TabItem>
+                    <TabItem Header="人物">
+                        <TextBlock FontSize="50">未实现</TextBlock>
+                    </TabItem>
+                </TabControl>
             </Grid>
         </StackPanel>
     </ScrollViewer>
