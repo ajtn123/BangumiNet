@@ -127,7 +127,7 @@ public class ApiC
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (subjectCollection is null) return null;
-            else return new SubjectCollectionViewModel(subjectCollection) as T;
+            else return new SubjectCollectionViewModel(subjectCollection) { IsMy = username == null } as T;
         }
         else if (typeof(T) == typeof(CalendarViewModel))
         {

@@ -24,6 +24,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Type = CollectionType.Wish;
         SubjectType = subject.Type;
 
+        IsMy = true;
+
         Init();
     }
     public SubjectCollectionViewModel(UserSubjectCollection collection)
@@ -41,6 +43,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         SubjectType = (SubjectType?)collection.SubjectType;
         if (collection.Subject != null)
             Subject = new(collection.Subject);
+
+        IsMy = true;
 
         Init();
     }
@@ -60,6 +64,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Type = collection.Type;
         SubjectType = collection.SubjectType;
         Subject = collection.Subject;
+        IsMy = collection.IsMy;
 
         Init();
     }
@@ -103,6 +108,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
     [Reactive] public partial ObservableCollection<string>? RecommendedTags { get; set; }
+    [Reactive] public partial bool IsMy { get; set; }
 
     [Reactive] public partial string? TagInput { get; set; }
     [Reactive] public partial bool IsEpStatusEditable { get; set; }

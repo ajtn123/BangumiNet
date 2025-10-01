@@ -21,7 +21,8 @@
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
                 </TextBlock>
                 <Button ToolTip.Tip="编辑收藏信息" Command="{Binding OpenEditWindowCommand}"
-                        Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"/>
+                        Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"
+                        IsVisible="{Binding IsMy}"/>
             </WrapPanel>
             <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemTemplate>
