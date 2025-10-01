@@ -35,6 +35,9 @@
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
+                    <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                               Classes="TitleAlt"/>
                     <WrapPanel Classes="InfoBar">
                         <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                     </WrapPanel>
