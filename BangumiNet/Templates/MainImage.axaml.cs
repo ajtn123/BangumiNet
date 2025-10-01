@@ -22,7 +22,9 @@ public class MainImage : ContentControl
         if (Tag is string url)
             if (CacheProvider.GetCacheFile(url) is string path)
             {
-                var extension = url.Split('.').LastOrDefault(defaultValue: "png");
+                var extension = url.Contains("png") ? "png"
+                    : url.Contains("jpg") || url.Contains("jpeg") ? "jpg"
+                    : "jpg";
                 string tempFilePath = Path.Combine(PathProvider.TempFolderPath, Path.GetFileName(path) + "." + extension);
 
                 Directory.CreateDirectory(PathProvider.TempFolderPath);
