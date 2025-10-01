@@ -44,9 +44,8 @@
                     <Border Classes="Card" Padding="5,0,0,0">
                         <Grid ColumnDefinitions="Auto,*">
                             <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3"/>排序</TextBlock>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" x:Name="SortComboBox"
-                                      Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                      SelectedItem="{Binding Sort}">
+                            <ComboBox Grid.Column="1" HorizontalAlignment="Right"
+                                      x:Name="SortComboBox" SelectedItem="{Binding Sort}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource SearchSortCvt}}" />

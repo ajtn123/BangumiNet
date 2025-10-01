@@ -8,7 +8,9 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
     {
         SubjectCollectionViewModels ??= [];
         if (subjects?.Data != null)
-            SubjectCollectionViewModels = SubjectCollectionViewModels?.UnionBy(subjects.Data.Select(x => new SubjectCollectionViewModel(x)), s => s.Id).ToObservableCollection();
+            SubjectCollectionViewModels = SubjectCollectionViewModels?
+                .UnionBy(subjects.Data.Select(x => new SubjectCollectionViewModel(x) { ParentList = this }), s => s.Id)
+                .ToObservableCollection();
     }
 
     [Reactive] public partial ObservableCollection<SubjectCollectionViewModel>? SubjectCollectionViewModels { get; set; }

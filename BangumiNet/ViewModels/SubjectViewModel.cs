@@ -5,6 +5,7 @@ using BangumiNet.Api.Legacy.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using BangumiNet.Models;
+using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -131,6 +132,8 @@ public partial class SubjectViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
+        CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
+            this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
 
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
@@ -186,6 +189,7 @@ public partial class SubjectViewModel : ViewModelBase
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }
     public ICommand? OpenInBrowserCommand { get; private set; }
+    public ICommand? CollectCommand { get; private set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
     public Task<Bitmap?> ImageCommon => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Common, !IsLegacy);

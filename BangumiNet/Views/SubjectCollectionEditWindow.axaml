@@ -4,44 +4,109 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bn="https://github.com/ajtn123/BangumiNet"
         xmlns:ic="using:FluentIcons.Avalonia"
+        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
         mc:Ignorable="d" Width="400"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen"
         x:Class="BangumiNet.Views.SubjectCollectionEditWindow"
         x:DataType="bn:SubjectCollectionViewModel"
         Title="{Binding Subject,Converter={StaticResource NameCnCvt},StringFormat='编辑收藏 - {0} - BangumiNet'}">
-    <StackPanel Spacing="5">
-        <WrapPanel Classes="InfoBar">
-            <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon Icon="Bookmark"/>
-                <Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/>
-            </TextBlock>
-            <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon Icon="Star" IconVariant="Color"/>
-                <Run Text="{Binding Rating}"/>
-            </TextBlock>
-            <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话
-            </TextBlock>
-            <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册
-            </TextBlock>
-            <TextBlock ToolTip.Tip="修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon Icon="CalendarDate"/>
-                <Run Text="{Binding UpdateTime}"/>
-            </TextBlock>
-            <TextBlock>
-                <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
-            </TextBlock>
-        </WrapPanel>
+    <StackPanel Spacing="5" Margin="5">
+        <Border Classes="Card">
+            <WrapPanel Classes="InfoBar">
+                <TextBlock ToolTip.Tip="收藏状态"><ic:FluentIcon Icon="Bookmark"/></TextBlock>
+                <ComboBox x:Name="StatusComboBox" SelectedItem="{Binding Type}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource CollectionTypeCvt}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Separator IsVisible="{Binding IsEpStatusReadonly}"/>
+                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding IsEpStatusReadonly}">
+                    <ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话
+                </TextBlock>
+                <Separator IsVisible="{Binding IsVolStatusReadonly}"/>
+                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding IsVolStatusReadonly}">
+                    <ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册
+                </TextBlock>
+
+
+                <Separator IsVisible="{Binding IsEpStatusEditable}"/>
+                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding IsEpStatusEditable}">
+                    <ic:FluentIcon Icon="Layer"/>
+                </TextBlock>
+                <TextBox Padding="2,0" Height="18" MinWidth="20"
+                         IsVisible="{Binding IsEpStatusEditable}"
+                         Text="{Binding EpisodeStatus,Converter={StaticResource NullIntCvt}}"
+                         Watermark="{Binding EpisodeStatus,Mode=OneTime}"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                <TextBlock IsVisible="{Binding IsEpStatusEditable}">
+                    /<Run Text="{Binding Subject.Eps}"/> 话
+                </TextBlock>
+
+                <Separator IsVisible="{Binding IsVolStatusEditable}"/>
+                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding IsVolStatusEditable}">
+                    <ic:FluentIcon Icon="Book"/>
+                </TextBlock>
+                <TextBox Padding="2,0" Height="18" MinWidth="20"
+                         IsVisible="{Binding IsVolStatusEditable}"
+                         Text="{Binding VolumeStatus,Converter={StaticResource NullIntCvt}}"
+                         Watermark="{Binding VolumeStatus,Mode=OneTime}"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                <TextBlock IsVisible="{Binding IsVolStatusEditable}">
+                    /<Run Text="{Binding Subject.Volumes}"/> 册
+                </TextBlock>
+                
+                <Separator/>
+                <TextBlock ToolTip.Tip="私有收藏"><ic:FluentIcon Icon="Incognito"/></TextBlock>
+                <Viewbox Height="19">
+                    <CheckBox IsChecked="{Binding IsPrivate}" Padding="0"/>
+                </Viewbox>
+
+                <Separator/>
+                <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}"/>
+                <Button Command="{Binding DoingCommand}" ToolTip.Tip="在看" Classes="Icon" Content="{ice:FluentIcon Icon=Tv,FontSize=16}"/>
+                <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}"/>
+                <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}"/>
+                <Button Command="{Binding HoldCommand}" ToolTip.Tip="搁置" Classes="Icon" Content="{ice:FluentIcon Icon=CalendarNote,FontSize=16}"/>
+
+                <Separator IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"/>
+                <TextBlock ToolTip.Tip="上次修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}">
+                    <ic:FluentIcon Icon="CalendarDate"/>
+                    <Run Text="{Binding UpdateTime}"/>
+                </TextBlock>
+            </WrapPanel>
+        </Border>
+
+        <Separator Margin="0"/>
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+            <ic:FluentIcon ToolTip.Tip="用户评价" Name="RatingIcon" FontSize="16"/>
+            <Slider Value="{Binding Rating}" Minimum="0" Maximum="10"
+                    Grid.Column="1" TickPlacement="BottomRight"
+                    Height="40" Margin="0,-15,0,0" Name="RatingSlider"
+                    TickFrequency="1" IsSnapToTickEnabled="True"/>
+        </Grid>
+
+        <Separator Margin="0"/>
+        <TextBox Watermark="标签" Text="{Binding TagInput}" Name="TagInputBox"
+                 HorizontalAlignment="Stretch" Padding="2,0">
+            <TextBox.InnerRightContent>
+                <Button Content="{ice:FluentIcon Icon=Add}" Name="TagAddButton"
+                        Height="17" Width="17" Margin="1,0" Padding="0"
+                        Command="{Binding AddTagCommand}" />
+            </TextBox.InnerRightContent>
+        </TextBox>
         <ItemsControl ItemsSource="{Binding Tags}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Classes="Card TagBadge">
-                        <Grid ColumnDefinitions="Auto" ColumnSpacing="5">
-                            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
-                            <!--<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
-                                        Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>-->
+                        <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                            <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1"
+                                    CommandParameter="{Binding}" Padding="0"
+                                    Command="{Binding ViewModel.DelTagCommand, RelativeSource={RelativeSource AncestorType=bn:SubjectCollectionEditWindow}}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -52,7 +117,56 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
+
+        <Separator Margin="0"/>
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
+            <Button Grid.Column="1" Content="{ice:FluentIcon Icon=ArrowWrap,FontSize=16}"
+                    Click="ChangeWrap" Name="WrapButton" Classes="Icon"
+                    Height="19" VerticalAlignment="Top"/>
+            <ScrollViewer Name="TagScoll" Margin="-5,0"
+                          VerticalScrollBarVisibility="Disabled"
+                          HorizontalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding RecommendedTags}" Margin="5,0,5,10">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Classes="Card TagBadge">
+                                <Button Content="{Binding}" Grid.Column="1"
+                                        BorderThickness="0" Background="Transparent"
+                                        CommandParameter="{Binding}" Padding="0"
+                                        Command="{Binding ViewModel.AddRecommendedTagCommand, RelativeSource={RelativeSource AncestorType=bn:SubjectCollectionEditWindow}}"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+        <Separator Margin="0"/>
         <TextBox Text="{Binding Comment}" MinHeight="100" TextWrapping="Wrap"/>
+
+        <Separator Margin="0"/>
+        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+            <Button Click="ButtonExit" Grid.Column="0" HorizontalAlignment="Stretch">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Dismiss" />退出
+                </TextBlock>
+            </Button>
+            <Button Click="ButtonUndo" Grid.Column="1" HorizontalAlignment="Stretch">
+                <TextBlock>
+                    <ic:FluentIcon Icon="ArrowCounterclockwise" />放弃更改
+                </TextBlock>
+            </Button>
+            <Button Command="{Binding SaveCommand}" Name="SaveButton"
+                    Grid.Column="2" HorizontalAlignment="Stretch">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Save" Name="SaveIcon"/>保存
+                </TextBlock>
+            </Button>
+        </Grid>
     </StackPanel>
 </Window>
