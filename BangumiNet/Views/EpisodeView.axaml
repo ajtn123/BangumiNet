@@ -37,11 +37,11 @@
                     <TextBlock ToolTip.Tip="收藏状态"><ic:FluentIcon Icon="Bookmark"/><Run Text="{Binding Status,Converter={StaticResource EpisodeCollectionTypeCvt},Mode=OneWay}"/></TextBlock>
                     <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding StatusUpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding StatusUpdateTime}"/></TextBlock>
 
-                    <Button Command="{Binding UncollectCommand}" ToolTip.Tip="取消收藏" Classes="Icon" Content="{ice:FluentIcon Icon=Delete,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
-                    <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" Width="18" Height="18" BorderBrush="Transparent"
+                    <Button Command="{Binding UncollectCommand}" ToolTip.Tip="取消收藏" Classes="Icon" Content="{ice:FluentIcon Icon=Delete,FontSize=16}" BorderBrush="Transparent"/>
+                    <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" BorderBrush="Transparent"/>
+                    <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" BorderBrush="Transparent"/>
+                    <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" BorderBrush="Transparent"/>
+                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" BorderBrush="Transparent"
                             IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"/>
                 </WrapPanel>
             </Border>

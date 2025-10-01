@@ -4,10 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="100"
              x:DataType="vm:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCollectionView">
@@ -22,6 +20,8 @@
                 <TextBlock>
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
                 </TextBlock>
+                <Button ToolTip.Tip="编辑收藏信息" Command="{Binding OpenEditWindowCommand}"
+                        Classes="Icon" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"/>
             </WrapPanel>
             <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemTemplate>
@@ -29,8 +29,6 @@
                         <Border Classes="Card TagBadge">
                             <Grid ColumnDefinitions="Auto" ColumnSpacing="5">
                                 <TextBlock Text="{Binding}" VerticalAlignment="Center" />
-                                <!--<Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
-                                        Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>-->
                             </Grid>
                         </Border>
                     </DataTemplate>
@@ -43,7 +41,7 @@
             </ItemsControl>
             <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
             <TextBlock TextWrapping="Wrap" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}">
-                <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Status" Margin="0,0,0,-3" FontSize="16"/>
+                <ic:FluentIcon Icon="Status" Margin="0,0,0,-3" FontSize="16"/>
                 <Run Text="{Binding Comment}"/>
             </TextBlock>
         </StackPanel>
