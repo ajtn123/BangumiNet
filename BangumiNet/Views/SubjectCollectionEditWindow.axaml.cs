@@ -25,21 +25,15 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
             }
         });
 
-        this.WhenAnyValue(x => x.DataContext).Subscribe(d =>
+        this.WhenAnyObservable(x => x.ViewModel!.SaveCommand).Subscribe(async r =>
         {
-            ViewModel?.WhenAnyValue(x => x.SaveCommand).Subscribe(c =>
-            {
-                c?.Subscribe(async r =>
-                {
-                    SaveButton.IsEnabled = !r;
-                    SaveIcon.Icon = r ? FluentIcons.Common.Icon.Checkmark : FluentIcons.Common.Icon.Dismiss;
+            SaveButton.IsEnabled = !r;
+            SaveIcon.Icon = r ? FluentIcons.Common.Icon.Checkmark : FluentIcons.Common.Icon.Dismiss;
 
-                    await Task.Delay(5000);
+            await Task.Delay(5000);
 
-                    SaveButton.IsEnabled = true;
-                    SaveIcon.Icon = FluentIcons.Common.Icon.Save;
-                });
-            });
+            SaveButton.IsEnabled = true;
+            SaveIcon.Icon = FluentIcons.Common.Icon.Save;
         });
 
         TagInputBox.KeyDown += (s, e) =>
