@@ -10,7 +10,7 @@ public partial class NavigatorViewModel : ViewModelBase
         this.WhenAnyValue(x => x.Input).Subscribe(x =>
         {
             CanToId = int.TryParse(x, out _);
-            CanToUser = Common.IsAlphaNumeric(x);
+            CanToUser = Common.IsAlphaNumeric(x?.Trim());
         });
 
         ToSubject = ReactiveCommand.CreateFromTask(async () =>
@@ -55,9 +55,10 @@ public partial class NavigatorViewModel : ViewModelBase
 
         ToUser = ReactiveCommand.CreateFromTask(async () =>
         {
-            if (Common.IsAlphaNumeric(Input))
+            var username = Input?.Trim();
+            if (Common.IsAlphaNumeric(username))
             {
-                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: Input);
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username);
                 if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到用户 {Input}");
             }
@@ -99,7 +100,7 @@ public partial class AutoCompleteBoxItemViewModel : ViewModelBase
 {
     public AutoCompleteBoxItemViewModel()
     {
-        this.WhenAnyValue(x => x.Prompt).Subscribe(x => Text = TextTemplate?.Replace("{0}", Prompt));
+        this.WhenAnyValue(x => x.Prompt).Subscribe(x => Text = TextTemplate?.Replace("{0}", Prompt?.Trim()));
     }
 
     public required ICommand Command { get; init; }
