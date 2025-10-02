@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Converters;
 using DynamicData;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -91,6 +92,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         DropCommand = ReactiveCommand.Create(() => Type = CollectionType.Dropped, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.Dropped));
         HoldCommand = ReactiveCommand.Create(() => Type = CollectionType.OnHold, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.OnHold));
         SaveCommand = ReactiveCommand.CreateFromTask(UpdateCollection);
+
+        Title = $"修改收藏 - {NameCnCvt.Convert(Subject) ?? "项目"} - {Title}";
     }
 
     [Reactive] public partial UserSubjectCollection? Source { get; set; }

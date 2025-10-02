@@ -146,6 +146,8 @@ public partial class PersonViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(CareerString));
             Careers?.ObserveCollectionChanges().Subscribe(x => this.RaisePropertyChanged(nameof(CareerString)));
         });
+
+        Title = $"{Name ?? "人物"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }

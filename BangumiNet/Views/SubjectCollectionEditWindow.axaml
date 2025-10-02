@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         x:Class="BangumiNet.Views.SubjectCollectionEditWindow"
         x:DataType="bn:SubjectCollectionViewModel"
-        Title="{Binding Subject,Converter={StaticResource NameCnCvt},StringFormat='编辑收藏 - {0} - BangumiNet'}">
+        Title="{Binding Title}">
     <StackPanel Spacing="5" Margin="5">
         <Border Classes="Card">
             <WrapPanel Classes="InfoBar">

@@ -8,7 +8,7 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
-             utils:UserControlHelpers.ParentTitle="{Binding Name,StringFormat='\{0} - BangumiNet',FallbackValue='角色 - BangumiNet'}"
+             utils:UserControlHelpers.ParentTitle="{Binding Title}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterView">

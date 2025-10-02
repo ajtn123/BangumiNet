@@ -137,7 +137,6 @@ public partial class SubjectViewModel : ViewModelBase
 
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
-        this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(e => this.RaisePropertyChanged(nameof(ParentWindowTitle)));
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
         {
             this.RaisePropertyChanged(nameof(TagListViewModel));
@@ -150,6 +149,8 @@ public partial class SubjectViewModel : ViewModelBase
         if (TotalEps == 0) TotalEps = null;
         if (Volumes == 0) Volumes = null;
         if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
+
+        Title = $"{NameCnCvt.Convert(this) ?? "项目"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -197,7 +198,6 @@ public partial class SubjectViewModel : ViewModelBase
     public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
     public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
 
-    public string ParentWindowTitle => $"{NameCnCvt.Convert(this)} - {Constants.ApplicationName}";
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsLegacy => Source is Legacy_SubjectSmall;
     public bool IsFull => Source is Subject;

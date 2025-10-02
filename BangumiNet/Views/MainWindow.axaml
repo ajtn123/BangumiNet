@@ -11,7 +11,7 @@
         xmlns:shared="using:BangumiNet.Shared"
         xmlns:ic="using:FluentIcons.Avalonia"
         xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-        Title="{x:Static shared:Constants.ApplicationName}">
+        Title="{Binding Title}">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>

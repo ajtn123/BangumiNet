@@ -91,6 +91,8 @@ public partial class CharacterViewModel : ViewModelBase
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
 
         this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
+
+        Title = $"{Name ?? "角色"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }
