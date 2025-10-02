@@ -1,8 +1,8 @@
-using Avalonia.Controls;
+using FluentAvalonia.UI.Windowing;
 
 namespace BangumiNet.Views;
 
-public partial class SecondaryWindow : Window
+public partial class SecondaryWindow : AppWindow
 {
     public SecondaryWindow()
     {
