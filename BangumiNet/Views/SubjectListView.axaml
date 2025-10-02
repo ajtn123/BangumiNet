@@ -2,15 +2,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:SubjectListViewModel"
+             x:DataType="bn:SubjectListViewModel"
              x:Class="BangumiNet.Views.SubjectListView">
     <ItemsControl ItemsSource="{Binding SubjectViewModels}">
         <ItemsControl.DataTemplates>
-            <DataTemplate DataType="vm:SubjectViewModel">
-                <v:SubjectCardView DataContext="{Binding .}"/>
+            <DataTemplate DataType="bn:SubjectViewModel">
+                <bn:SubjectCardView DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="bn:SubjectCollectionViewModel">
+                <bn:SubjectCollectionCardView DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="bn:CharacterViewModel">
+                <bn:CharacterCardView DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="bn:PersonViewModel">
+                <bn:PersonCardView DataContext="{Binding}"/>
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>

@@ -16,18 +16,7 @@
             </Grid>
         </Border>
         <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-        <ItemsControl ItemsSource="{Binding SubjectCollectionViewModels}">
-            <ItemsControl.DataTemplates>
-                <DataTemplate DataType="bn:SubjectCollectionViewModel">
-                    <bn:SubjectCollectionCardView DataContext="{Binding}"/>
-                </DataTemplate>
-            </ItemsControl.DataTemplates>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="5"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <bn:SubjectListView DataContext="{Binding SubjectList}"/>
         <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
     </StackPanel>
 </UserControl>

@@ -55,11 +55,11 @@ public partial class UserViewModel : ViewModelBase
 
         if (Username != null)
         {
-            WishList = new(null, CollectionType.Wish, Username);
-            DoingList = new(null, CollectionType.Doing, Username);
-            DoneList = new(null, CollectionType.Done, Username);
-            DropList = new(null, CollectionType.Dropped, Username);
-            HoldList = new(null, CollectionType.OnHold, Username);
+            WishList = new(ItemType.Subject, null, CollectionType.Wish, Username);
+            DoingList = new(ItemType.Subject, null, CollectionType.Doing, Username);
+            DoneList = new(ItemType.Subject, null, CollectionType.Done, Username);
+            DropList = new(ItemType.Subject, null, CollectionType.Dropped, Username);
+            HoldList = new(ItemType.Subject, null, CollectionType.OnHold, Username);
         }
     }
 

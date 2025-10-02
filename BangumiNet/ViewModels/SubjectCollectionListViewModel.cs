@@ -6,13 +6,15 @@ namespace BangumiNet.ViewModels;
 
 public partial class SubjectCollectionListViewModel : ViewModelBase
 {
-    public SubjectCollectionListViewModel(SubjectType? subjectType, CollectionType? collectionType, string? username = null)
+    public SubjectCollectionListViewModel(ItemType itemType, SubjectType? subjectType, CollectionType? collectionType, string? username = null)
     {
+        ItemType = itemType;
         SubjectType = subjectType;
         CollectionType = collectionType;
         Username = username ?? ApiC.CurrentUsername;
         Offset = 0;
         Sources = [];
+        SubjectList = new();
         PageNavigatorViewModel = new();
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
@@ -50,8 +52,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         }
         if (collection is null) return;
         Sources.Add(collection);
-        SubjectCollectionViewModels = [];
-        AddSubjects(collection);
+        UpdateItems(collection);
         PageNavigatorViewModel.PageIndex = pageIndex;
         Total = collection.Total;
         Offset = collection.Offset;
@@ -60,16 +61,15 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         else PageNavigatorViewModel.Total = null;
     }
 
-    public void AddSubjects(Paged_UserCollection? subjects)
+    public void UpdateItems(Paged_UserCollection? subjects)
     {
         if (subjects?.Data != null)
-            SubjectCollectionViewModels = SubjectCollectionViewModels?
-                .UnionBy(subjects.Data.Select(x => new SubjectCollectionViewModel(x) { ParentList = this, IsMy = Username == ApiC.CurrentUsername }), s => s.Id)
-                .ToObservableCollection()!;
+            SubjectList.SubjectViewModels = [.. subjects.Data.Select(x => new SubjectCollectionViewModel(x) { ParentList = this, IsMy = Username == ApiC.CurrentUsername })];
     }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
-    [Reactive] public partial ObservableCollection<SubjectCollectionViewModel>? SubjectCollectionViewModels { get; set; }
+    [Reactive] public partial SubjectListViewModel SubjectList { get; set; }
+    [Reactive] public partial ItemType? ItemType { get; set; }
     [Reactive] public partial SubjectType? SubjectType { get; set; }
     [Reactive] public partial CollectionType? CollectionType { get; set; }
     [Reactive] public partial string? Username { get; set; }

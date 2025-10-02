@@ -10,7 +10,7 @@ public partial class HomeViewModel : ViewModelBase
         LoadGreeting();
         Today = await ApiC.GetViewModelAsync<CalendarViewModel>();
         Me = await ApiC.GetViewModelAsync<UserViewModel>();
-        CollectionListViewModel = new(SubjectType.Anime, CollectionType.Doing);
+        CollectionListViewModel = new(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
         _ = CollectionListViewModel.LoadPageAsync(1);
 
         this.WhenAnyValue(x => x.Me).Subscribe(x =>

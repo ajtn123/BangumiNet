@@ -19,6 +19,7 @@ public partial class SearchViewModel : ViewModelBase
         SubjectPageNavigatorViewModel = new PageNavigatorViewModel();
         PersonPageNavigatorViewModel = new PageNavigatorViewModel();
         CharacterPageNavigatorViewModel = new PageNavigatorViewModel();
+        SubjectListViewModel = new SubjectListViewModel();
         Tag = []; MetaTag = [];
 
         SearchCommand = ReactiveCommand.CreateFromTask(SearchAsync, this.WhenAnyValue(x => x.IsFilterValidR));
@@ -93,8 +94,7 @@ public partial class SearchViewModel : ViewModelBase
             config.QueryParameters.Limit = Limit;
         });
         if (response == null) { SubjectsPostRequestBody = null; return; }
-        SubjectListViewModel = new();
-        SubjectListViewModel.AddSubjects(response);
+        SubjectListViewModel.UpdateSubjects(response);
         SubjectPageNavigatorViewModel.PageIndex = 1;
         TotalSubjectResults = response.Total;
         SubjectResultOffset = response.Offset;
@@ -112,8 +112,7 @@ public partial class SearchViewModel : ViewModelBase
             config.QueryParameters.Limit = Limit;
         });
         if (response == null) { SubjectsPostRequestBody = null; return; }
-        SubjectListViewModel = new();
-        SubjectListViewModel.AddSubjects(response);
+        SubjectListViewModel.UpdateSubjects(response);
         SubjectPageNavigatorViewModel.PageIndex = pageIndex;
         TotalSubjectResults = response.Total;
         SubjectResultOffset = response.Offset;
@@ -230,7 +229,7 @@ public partial class SearchViewModel : ViewModelBase
     [Reactive] public partial double? RatingLowerLimit { get; set; }
     [Reactive] public partial double? RatingUpperLimit { get; set; }
     [Reactive] public partial bool? Nsfw { get; set; }
-    [Reactive] public partial SubjectListViewModel? SubjectListViewModel { get; set; }
+    [Reactive] public partial SubjectListViewModel SubjectListViewModel { get; set; }
     [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
     [Reactive] public partial CharacterListViewModel? CharacterListViewModel { get; set; }
     [Reactive] public partial SubjectsPostRequestBody? SubjectsPostRequestBody { get; set; }

@@ -10,6 +10,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     public SubjectBrowserViewModel()
     {
         Type = SubjectType.Anime;
+        SubjectListViewModel = new SubjectListViewModel();
         PageNavigatorViewModel = new PageNavigatorViewModel();
 
         this.WhenAnyValue(x => x.Type).Subscribe(x =>
@@ -48,8 +49,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             QueryParameters = config.QueryParameters;
         });
         if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel = new();
-        SubjectListViewModel.AddSubjects(response);
+        SubjectListViewModel.UpdateSubjects(response);
         PageNavigatorViewModel.PageIndex = 1;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
@@ -67,8 +67,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             config.QueryParameters.Offset = (pageIndex - 1) * Limit;
         });
         if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel = new();
-        SubjectListViewModel.AddSubjects(response);
+        SubjectListViewModel.UpdateSubjects(response);
         PageNavigatorViewModel.PageIndex = pageIndex;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
@@ -95,7 +94,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
     [Reactive] public partial string? ErrorMessage { get; set; }
     [Reactive] public partial string? ResultOffsetMessage { get; set; }
-    [Reactive] public partial SubjectListViewModel? SubjectListViewModel { get; set; }
+    [Reactive] public partial SubjectListViewModel SubjectListViewModel { get; set; }
     [Reactive] public partial SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters? QueryParameters { get; set; }
 
     public ICommand BrowseCommand { get; set; }
