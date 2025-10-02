@@ -212,6 +212,35 @@
                         <CheckBox IsChecked="{Binding PreferChineseNames}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
+                <ui:SettingsExpander Header="外观" IsExpanded="False">
+                    <ui:SettingsExpander.IconSource>
+                        <ui:ImageIconSource>
+                            <ic:FluentImage Icon="AppGeneric"/>
+                        </ui:ImageIconSource>
+                    </ui:SettingsExpander.IconSource>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="FullScreenMaximize"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>主窗口显示启动画面</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="FullScreenMaximize"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>次要窗口显示启动画面</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                </ui:SettingsExpander>
                 <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
                                      ItemsSource="{Binding PaletteItems}">
                     <ui:SettingsExpander.IconSource>

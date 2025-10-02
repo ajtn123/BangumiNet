@@ -28,6 +28,8 @@ public class Settings : IApiSettings
     public long DiskCacheSizeLimit { get; set; } = 1 << 27;
 
     public bool PreferChineseNames { get; set; } = false;
+    public bool ShowSplashScreenOnAppStartup { get; set; } = false;
+    public bool ShowSplashScreenOnWindowStartup { get; set; } = false;
 
     public int CollectionPageSize { get; set; } = 30;
     public int SearchPageSize { get; set; } = 10;

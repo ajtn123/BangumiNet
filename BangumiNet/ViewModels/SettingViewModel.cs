@@ -24,6 +24,8 @@ public partial class SettingViewModel : ViewModelBase
         EpisodePageSize = (int?)Overrides.TryGet(nameof(Settings.EpisodePageSize));
         SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Settings.SubjectBrowserPageSize));
         PreferChineseNames = settings.PreferChineseNames;
+        ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
+        ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
 
         PaletteItems = [
             new() { Name = "", Color = settings.EpMainBg, Key = nameof(settings.EpMainBg) },
@@ -74,6 +76,8 @@ public partial class SettingViewModel : ViewModelBase
         EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
         SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
         PreferChineseNames = PreferChineseNames,
+        ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
+        ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
         EpMainBg = GetColor(nameof(Settings.EpMainBg)),
         EpSpBg = GetColor(nameof(Settings.EpSpBg)),
         EpOpBg = GetColor(nameof(Settings.EpOpBg)),
@@ -108,6 +112,8 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial int? EpisodePageSize { get; set; }
     [Reactive] public partial int? SubjectBrowserPageSize { get; set; }
     [Reactive] public partial bool PreferChineseNames { get; set; }
+    [Reactive] public partial bool ShowSplashScreenOnAppStartup { get; set; }
+    [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
 
     [Reactive] public partial List<string> SearchEngineSuggestions { get; set; }
     [Reactive] public partial List<PaletteItemViewModel> PaletteItems { get; set; }

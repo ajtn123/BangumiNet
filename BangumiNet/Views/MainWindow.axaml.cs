@@ -8,6 +8,9 @@ public partial class MainWindow : AppWindow
     {
         InitializeComponent();
 
+        if (SettingProvider.CurrentSettings.ShowSplashScreenOnAppStartup)
+            SplashScreen = new WindowSplashScreen(this);
+
         homeView = new();
         NavView.Content = homeView;
 

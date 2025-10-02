@@ -81,10 +81,11 @@
         </Border>
 
         <Separator Margin="0"/>
-        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-            <ic:FluentIcon ToolTip.Tip="用户评价" Name="RatingIcon" FontSize="16"/>
+        <Grid ColumnDefinitions="Auto,Auto,*" ColumnSpacing="5">
+            <ic:FluentIcon ToolTip.Tip="用户评价" Name="RatingIcon" FontSize="16" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Rating}" Grid.Column="1" Width="17" VerticalAlignment="Center"/>
             <Slider Value="{Binding Rating}" Minimum="0" Maximum="10"
-                    Grid.Column="1" TickPlacement="BottomRight"
+                    Grid.Column="2" TickPlacement="BottomRight"
                     Height="40" Margin="0,-15,0,0" Name="RatingSlider"
                     TickFrequency="1" IsSnapToTickEnabled="True"/>
         </Grid>
