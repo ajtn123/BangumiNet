@@ -18,13 +18,14 @@
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title"/>
-            <StackPanel Orientation="Horizontal" Spacing="5">
+            <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
                 <TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
                 <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
                 <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection?.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
-                <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=12}" ToolTip.Tip="在新窗口显示"/>
-            </StackPanel>
+                <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource SubjectTypeCvt},Mode=OneWay}"/></TextBlock>
+                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
+            </WrapPanel>
         </StackPanel>
 
         <Grid.ContextFlyout>

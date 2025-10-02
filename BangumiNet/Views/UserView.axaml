@@ -59,10 +59,10 @@
                         <bn:SubjectCollectionListView DataContext="{Binding HoldList}"/>
                     </TabItem>
                     <TabItem Header="角色">
-                        <TextBlock FontSize="50">未实现</TextBlock>
+                        <bn:SubjectCollectionListView DataContext="{Binding CharacterList}"/>
                     </TabItem>
                     <TabItem Header="人物">
-                        <TextBlock FontSize="50">未实现</TextBlock>
+                        <bn:SubjectCollectionListView DataContext="{Binding PersonList}"/>
                     </TabItem>
                 </TabControl>
             </Grid>

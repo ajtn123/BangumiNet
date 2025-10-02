@@ -27,14 +27,14 @@ public partial class CharacterViewModel : ViewModelBase
         GenderString = character.Gender;
         Id = character.Id;
         Images = character.Images;
-        IsLocked = character.Locked;
+        IsLocked = character.Locked ?? false;
         Infobox = character.Infobox?.Select(x => new InfoboxItemViewModel(x)).ToObservableCollection();
         Name = character.Name;
         CommentCount = character.Stat?.Comments;
         CollectionTotal = character.Stat?.Collects;
         Summary = character.Summary;
         Type = (CharacterType?)character.Type;
-        IsNsfw = (bool?)character.AdditionalData["nsfw"];
+        IsNsfw = (bool?)character.AdditionalData["nsfw"] ?? false;
 
         Init();
     }
@@ -68,6 +68,17 @@ public partial class CharacterViewModel : ViewModelBase
 
         Init();
     }
+    public CharacterViewModel(UserCharacterCollection character)
+    {
+        Source = character;
+        CollectionTime = character.CreatedAt;
+        Id = character.Id;
+        Name = character.Name;
+        Type = (CharacterType?)character.Type;
+        Images = character.Images;
+
+        Init();
+    }
     public void Init()
     {
         SubjectBadgeListViewModel = new(ItemType.Character, Id);
@@ -93,8 +104,8 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial CharacterType? Type { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }
-    [Reactive] public partial bool? IsLocked { get; set; }
-    [Reactive] public partial bool? IsNsfw { get; set; }
+    [Reactive] public partial bool IsLocked { get; set; }
+    [Reactive] public partial bool IsNsfw { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
 

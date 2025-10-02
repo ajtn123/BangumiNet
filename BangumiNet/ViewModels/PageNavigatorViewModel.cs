@@ -1,4 +1,5 @@
-﻿using System.Reactive;
+﻿using BangumiNet.Api.Interfaces;
+using System.Reactive;
 using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
@@ -11,6 +12,17 @@ public partial class PageNavigatorViewModel : ViewModelBase
         PrevPage = ReactiveCommand.Create(() => (int)PageIndex! - 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex - 1)));
         NextPage = ReactiveCommand.Create(() => (int)PageIndex! + 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex + 1)));
         JumpPage = ReactiveCommand.Create(() => (int)PageIndexInput!, this.WhenAnyValue(x => x.Total, x => x.PageIndexInput).Select(y => IsInRange(PageIndexInput)));
+    }
+
+    public void UpdatePageInfo(IPagedResponse response)
+    {
+        if (response.Offset != null && response.Limit != null)
+            PageIndex = response.Offset / response.Limit + 1;
+        else PageIndex = null;
+
+        if (response.Total != null && response.Limit != null)
+            Total = (int)Math.Ceiling((double)response.Total / (double)response.Limit);
+        else Total = null;
     }
 
     [Reactive] public partial int? PageIndex { get; set; }

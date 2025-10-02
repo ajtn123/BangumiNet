@@ -20,7 +20,7 @@ public partial class PersonViewModel : ViewModelBase
         Id = person.Id;
         Name = person.Name;
         Careers = person.Career.ToObservableCollection();
-        IsLocked = person.Locked;
+        IsLocked = person.Locked ?? false;
         Images = person.Images;
         ShortSummary = person.ShortSummary;
         Type = (PersonType?)person.Type;
@@ -65,7 +65,7 @@ public partial class PersonViewModel : ViewModelBase
         Id = person.Id;
         Name = person.Name;
         Careers = person.Career.ToObservableCollection();
-        IsLocked = person.Locked;
+        IsLocked = person.Locked ?? false;
         Images = person.Images;
         Summary = person.Summary;
         Type = (PersonType?)person.Type;
@@ -117,7 +117,18 @@ public partial class PersonViewModel : ViewModelBase
 
         Init();
     }
+    public PersonViewModel(UserPersonCollection person)
+    {
+        Source = person;
+        Name = person.Name;
+        Id = person.Id;
+        Images = person.Images;
+        Type = (PersonType?)person.Type;
+        CollectionTime = person.CreatedAt;
+        Careers = person.Career.ToObservableCollection();
 
+        Init();
+    }
     public void Init()
     {
         SubjectBadgeListViewModel = new(ItemType.Person, Id);
@@ -144,7 +155,7 @@ public partial class PersonViewModel : ViewModelBase
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? ShortSummary { get; set; }
-    [Reactive] public partial bool? IsLocked { get; set; }
+    [Reactive] public partial bool IsLocked { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
     [Reactive] public partial PersonType? Type { get; set; }
     [Reactive] public partial BloodType? BloodType { get; set; }

@@ -55,11 +55,13 @@ public partial class UserViewModel : ViewModelBase
 
         if (Username != null)
         {
-            WishList = new(ItemType.Subject, null, CollectionType.Wish, Username);
-            DoingList = new(ItemType.Subject, null, CollectionType.Doing, Username);
-            DoneList = new(ItemType.Subject, null, CollectionType.Done, Username);
-            DropList = new(ItemType.Subject, null, CollectionType.Dropped, Username);
-            HoldList = new(ItemType.Subject, null, CollectionType.OnHold, Username);
+            WishList = new(ItemType.Subject, collectionType: CollectionType.Wish, username: Username);
+            DoingList = new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
+            DoneList = new(ItemType.Subject, collectionType: CollectionType.Done, username: Username);
+            DropList = new(ItemType.Subject, collectionType: CollectionType.Dropped, username: Username);
+            HoldList = new(ItemType.Subject, collectionType: CollectionType.OnHold, username: Username);
+            CharacterList = new(ItemType.Character, username: Username);
+            PersonList = new(ItemType.Person, username: Username);
         }
     }
 
@@ -79,6 +81,8 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? DoneList { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? DropList { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? HoldList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? CharacterList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
 
     public bool IsMe => Source is MeGetResponse;
 

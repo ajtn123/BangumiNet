@@ -63,9 +63,9 @@ public partial class SubjectViewModel : ViewModelBase
         Name = subject.Name;
         NameCn = subject.NameCn;
         Summary = subject.Summary;
-        IsSeries = subject.Series;
-        IsNsfw = subject.Nsfw;
-        IsLocked = subject.Locked;
+        IsSeries = subject.Series ?? false;
+        IsNsfw = subject.Nsfw ?? false;
+        IsLocked = subject.Locked ?? false;
         Date = Common.ParseBangumiDate(subject.Date);
         Platform = subject.Platform;
         Images = subject.Images;
@@ -172,9 +172,9 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<string>? MetaTags { get; set; }
     [Reactive] public partial IImagesFull? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
-    [Reactive] public partial bool? IsSeries { get; set; }
-    [Reactive] public partial bool? IsNsfw { get; set; }
-    [Reactive] public partial bool? IsLocked { get; set; }
+    [Reactive] public partial bool IsSeries { get; set; }
+    [Reactive] public partial bool IsNsfw { get; set; }
+    [Reactive] public partial bool IsLocked { get; set; }
     [Reactive] public partial string? Platform { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
