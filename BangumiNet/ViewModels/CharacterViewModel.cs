@@ -43,7 +43,7 @@ public partial class CharacterViewModel : ViewModelBase
         Source = character;
         Id = character.Id;
         Relation = character.Relation;
-        PersonListViewModel = new() { PersonViewModels = character.Actors?.Select(x => new PersonViewModel(x, fromRelation: true)).ToObservableCollection() };
+        PersonListViewModel = new() { SubjectViewModels = character.Actors?.Select<Person, ViewModelBase>(x => new PersonViewModel(x, fromRelation: true)).ToObservableCollection() };
         Images = character.Images;
         Name = character.Name;
         Type = (CharacterType?)character.Type;
@@ -99,7 +99,7 @@ public partial class CharacterViewModel : ViewModelBase
     [Reactive] public partial int? CommentCount { get; set; }
 
     [Reactive] public partial string? Relation { get; set; }
-    [Reactive] public partial PersonListViewModel? PersonListViewModel { get; set; }
+    [Reactive] public partial SubjectListViewModel? PersonListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }

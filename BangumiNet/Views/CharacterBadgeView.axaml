@@ -41,7 +41,7 @@
                     <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
                     <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CharacterTypeCvt},Mode=OneWay}"/></TextBlock>
                     <Separator IsVisible="{Binding PersonListViewModel,Converter={StaticResource NullCvt}}"/>
-                    <v:PersonListView DataContext="{Binding PersonListViewModel}"
+                    <v:SubjectListView DataContext="{Binding PersonListViewModel}"
                                       IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"/>
                     <Separator IsVisible="{Binding CharacterSubjectViewModel,Converter={StaticResource NullCvt}}"/>
                     <v:SubjectBadgeView DataContext="{Binding CharacterSubjectViewModel}"

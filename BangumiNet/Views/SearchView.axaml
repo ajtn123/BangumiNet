@@ -240,7 +240,7 @@
                 <StackPanel Spacing="5" Grid.Row="2" Grid.ColumnSpan="2"
                             IsVisible="{Binding PersonsPostRequestBody,Converter={StaticResource NullCvt}}">
                     <v:PageNavigatorView DataContext="{Binding PersonPageNavigatorViewModel}"/>
-                    <v:PersonListView DataContext="{Binding PersonListViewModel}"/>
+                    <v:SubjectListView DataContext="{Binding PersonListViewModel}"/>
                     <v:PageNavigatorView DataContext="{Binding PersonPageNavigatorViewModel}"/>
                 </StackPanel>
             </Grid>
@@ -271,7 +271,7 @@
                 <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2"
                             IsVisible="{Binding CharactersPostRequestBody,Converter={StaticResource NullCvt}}">
                     <v:PageNavigatorView DataContext="{Binding CharacterPageNavigatorViewModel}"/>
-                    <v:CharacterListView DataContext="{Binding CharacterListViewModel}"/>
+                    <v:SubjectListView DataContext="{Binding CharacterListViewModel}"/>
                     <v:PageNavigatorView DataContext="{Binding CharacterPageNavigatorViewModel}"/>
                 </StackPanel>
             </Grid>

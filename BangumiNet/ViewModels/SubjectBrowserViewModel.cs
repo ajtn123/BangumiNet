@@ -49,7 +49,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             QueryParameters = config.QueryParameters;
         });
         if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel.UpdateSubjects(response);
+        SubjectListViewModel.UpdateItems(response);
         PageNavigatorViewModel.PageIndex = 1;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
@@ -67,7 +67,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             config.QueryParameters.Offset = (pageIndex - 1) * Limit;
         });
         if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel.UpdateSubjects(response);
+        SubjectListViewModel.UpdateItems(response);
         PageNavigatorViewModel.PageIndex = pageIndex;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
