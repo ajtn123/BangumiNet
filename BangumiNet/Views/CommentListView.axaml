@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:CommentListViewModel"
+             x:Class="BangumiNet.Views.CommentListView">
+    <StackPanel Spacing="5">
+        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+        <ItemsControl ItemsSource="{Binding Comments}">
+            <ItemsControl.DataTemplates>
+                <DataTemplate DataType="bn:SubjectCollectionViewModel">
+                    <bn:SubjectCommentView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Spacing="5"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:SubjectCollectionViewModel"
+             x:Class="BangumiNet.Views.SubjectCommentView">
+    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+        <MainImage Source="{Binding User.AvatarSmall^}"
+                   Tag="{Binding User.Avatar.Small}"
+                   VerticalAlignment="Top" Width="75">
+            <Button Command="{Binding ShowUserCommand}"
+                    Content="{ice:FluentIcon Icon=Person}"
+                    Classes="Icon" ToolTip.Tip="显示用户"/>
+        </MainImage>
+
+        <Border Classes="Card Large" Grid.Column="1"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left">
+            <StackPanel Spacing="3">
+                <WrapPanel Classes="InfoBar">
+                    <TextBlock ToolTip.Tip="昵称" Text="{Binding User.Nickname}" IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}" Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+                    <TextBlock ToolTip.Tip="用户名" Text="{Binding User.Username}" IsVisible="{Binding User.Username,Converter={StaticResource NEWCvt}}" Classes="Sec"/>
+                    <Button Command="{Binding ShowUserCommand}"
+                            Content="{ice:FluentIcon Icon=Open,FontSize=16}"
+                            Classes="Icon Distinct" ToolTip.Tip="显示用户"/>
+                    <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="收藏时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding UpdateTime}"/></TextBlock>
+                    <TextBlock ToolTip.Tip="收藏时间" IsVisible="{Binding UpdateTime,Converter={StaticResource InNullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding UpdateTimeString}"/></TextBlock>
+                </WrapPanel>
+                <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

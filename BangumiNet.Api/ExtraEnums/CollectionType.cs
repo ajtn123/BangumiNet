@@ -39,4 +39,14 @@ public static partial class EnumExtensions
             CollectionType.Dropped => "抛弃",
             _ => throw new NotImplementedException(),
         };
+    public static CollectionType? ParseCollectionType(string str)
+        => str.Trim() switch
+        {
+            "想看" => CollectionType.Wish,
+            "在看" => CollectionType.Doing,
+            "看过" => CollectionType.Done,
+            "抛弃" => CollectionType.Dropped,
+            "搁置" => CollectionType.OnHold,
+            _ => null,
+        };
 }

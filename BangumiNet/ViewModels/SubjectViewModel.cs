@@ -127,6 +127,7 @@ public partial class SubjectViewModel : ViewModelBase
             PersonBadgeListViewModel = new(ItemType.Subject, Id);
             CharacterBadgeListViewModel = new(ItemType.Subject, Id);
             SubjectBadgeListViewModel = new(ItemType.Subject, Id);
+            CommentListViewModel = new(ItemType.Subject, Id);
         }
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
@@ -186,6 +187,7 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }
+    [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; private set; }
     public ICommand? SearchWebCommand { get; private set; }

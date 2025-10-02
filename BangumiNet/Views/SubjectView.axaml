@@ -75,11 +75,13 @@
                     <bn:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
                     <Separator/>
                     <bn:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    
+                    <Expander Header="评论" HorizontalAlignment="Stretch"
+                              Name="CommentExpander" IsExpanded="True">
+                        <bn:CommentListView DataContext="{Binding CommentListViewModel}" Name="CommentView"/>
+                    </Expander>
                 </StackPanel>
             </Grid>
-            <Expander Header="评分统计"  IsExpanded="True" HorizontalAlignment="Stretch">
-                <TextBlock>Statistics</TextBlock>
-            </Expander>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

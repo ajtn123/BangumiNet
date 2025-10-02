@@ -33,7 +33,7 @@ public partial class MainWindow : AppWindow
             "每日放送" => airingView ??= new AiringView(),
             "搜索" => searchView ??= new SearchView(),
             "索引" => subjectBrowserView ??= new SubjectBrowserView(),
-            "我" => meView ??= new UserView(loadMe: true),
+            "我" => meView ??= new UserView() { DataContext = new UserViewModel(username: null)},
             "设置" => new SettingView() { DataContext = new SettingViewModel(SettingProvider.CurrentSettings) },
             _ => throw new NotImplementedException(),
         };

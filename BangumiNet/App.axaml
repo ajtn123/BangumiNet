@@ -235,5 +235,8 @@
                 <Setter Property="Margin" Value="5,5,5,10"/>
             </Style>
         </Style>
+        <Style Selector="TextBlock.Sec">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </Style>
     </Application.Styles>
 </Application>

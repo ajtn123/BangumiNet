@@ -1,8 +1,10 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Html.Models;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
+using BangumiNet.Models;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -42,7 +44,15 @@ public partial class UserViewModel : ViewModelBase
 
         Init();
     }
+    public UserViewModel(Comment comment)
+    {
+        Source = comment;
+        Username = comment.Username;
+        Nickname = comment.Nickname;
+        Avatar = new ImageSet() { Small = comment.AvatarUrl };
 
+        Init();
+    }
     public void Init()
     {
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
@@ -63,6 +73,11 @@ public partial class UserViewModel : ViewModelBase
             CharacterList = new(ItemType.Character, username: Username);
             PersonList = new(ItemType.Person, username: Username);
         }
+    }
+    public UserViewModel(string? username)
+    {
+        Source = username;
+        Username = username;
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -85,6 +100,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
 
     public bool IsMe => Source is MeGetResponse;
+    public bool IsFull => Source is User or MeGetResponse;
 
     public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
     public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);

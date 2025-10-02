@@ -9,19 +9,20 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
     {
         InitializeComponent();
 
-        _ = Init();
-    }
-
-    public UserView(bool loadMe)
-    {
-        InitializeComponent();
-
-        _ = Init(loadMe);
-    }
-
-    public async Task Init(bool loadMe = false)
-    {
-        if (loadMe) await LoadMe();
+        DataContextChanged += async (s, e) =>
+        {
+            if (dataContextChanges >= 1) return;
+            if (DataContext is not UserViewModel viewModel) return;
+            if (!viewModel.IsFull)
+            {
+                var fullUser = await ApiC.GetViewModelAsync<UserViewModel>(username: viewModel.Username);
+                if (fullUser == null) return;
+                dataContextChanges += 1;
+                DataContext = fullUser;
+                if (CollectionTabs.SelectedContent is SubjectCollectionListView v && v.ViewModel != null && v.ViewModel.Total == null && !await v.ViewModel.LoadPageCommand.IsExecuting.FirstAsync())
+                    _ = v.ViewModel.LoadPageCommand.Execute(1).Subscribe();
+            }
+        };
 
         CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(static async y =>
         {
@@ -30,6 +31,5 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
         });
     }
 
-    private async Task LoadMe()
-        => DataContext = await ApiC.GetViewModelAsync<UserViewModel>();
+    private uint dataContextChanges = 0;
 }

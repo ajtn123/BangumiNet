@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Html.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using DynamicData;
@@ -69,6 +70,17 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 
         Init();
     }
+    public SubjectCollectionViewModel(Comment comment)
+    {
+        Comment = comment.Content;
+        UpdateTime = comment.CollectionTime;
+        UpdateTimeString = comment.CollectionTimeString;
+        Type = comment.CollectionType;
+        Rating = comment.Score;
+        User = new(comment);
+
+        Init();
+    }
 
     private void Init()
     {
@@ -92,6 +104,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         DropCommand = ReactiveCommand.Create(() => Type = CollectionType.Dropped, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.Dropped));
         HoldCommand = ReactiveCommand.Create(() => Type = CollectionType.OnHold, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.OnHold));
         SaveCommand = ReactiveCommand.CreateFromTask(UpdateCollection);
+        ShowUserCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = User } }.Show());
 
         Title = $"修改收藏 - {NameCnCvt.Convert(Subject) ?? "项目"} - {Title}";
     }
@@ -112,6 +125,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
     [Reactive] public partial ObservableCollection<string>? RecommendedTags { get; set; }
     [Reactive] public partial bool IsMy { get; set; }
+    [Reactive] public partial UserViewModel? User { get; set; }
+    [Reactive] public partial string? UpdateTimeString { get; set; }
 
     [Reactive] public partial string? TagInput { get; set; }
     [Reactive] public partial bool IsEpStatusEditable { get; set; }
@@ -131,6 +146,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     public ICommand? HoldCommand { get; private set; }
 
     public ReactiveCommand<Unit, bool>? SaveCommand { get; private set; }
+    public ICommand? ShowUserCommand { get; private set; }
 
     public async Task<bool> UpdateCollection()
     {
