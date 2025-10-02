@@ -150,7 +150,7 @@ public partial class SubjectViewModel : ViewModelBase
         if (Volumes == 0) Volumes = null;
         if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
 
-        Title = $"{NameCnCvt.Convert(this) ?? "项目"} - {Title}";
+        Title = $"{NameCnCvt.Convert(this) ?? $"项目 {Id}"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }

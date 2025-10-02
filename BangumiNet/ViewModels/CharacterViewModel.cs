@@ -92,7 +92,7 @@ public partial class CharacterViewModel : ViewModelBase
 
         this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
 
-        Title = $"{Name ?? "角色"} - {Title}";
+        Title = $"{Name ?? $"角色 {Id}"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }

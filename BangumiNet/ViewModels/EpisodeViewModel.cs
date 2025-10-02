@@ -60,6 +60,8 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
 
     public void Init()
     {
+        if (string.IsNullOrWhiteSpace(Name)) Name = null;
+        if (string.IsNullOrWhiteSpace(NameCn)) NameCn = null;
         if (Duration?.TotalSeconds == 0) Duration = null;
         if (Disc == 0) Disc = null;
         if (Ep == 0) Ep = null;
@@ -77,7 +79,7 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
         DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
         DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done));
 
-        Title = $"{NameCnCvt.Convert(this) ?? "话"} - {Title}";
+        Title = $"{NameCnCvt.Convert(this) ?? $"话 {Id}"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }
