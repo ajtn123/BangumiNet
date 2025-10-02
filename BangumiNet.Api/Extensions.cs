@@ -39,6 +39,14 @@ namespace BangumiNet.Api.V0.Models
     public partial class UserPersonCollection_images : IImagesGrid { }
     public partial class PersonImages : IImagesGrid { }
     public partial class Avatar : IImages { }
+    public partial class Paged_Character : IPagedResponse { }
+    public partial class Paged_Episode : IPagedResponse { }
+    public partial class Paged_Person : IPagedResponse { }
+    public partial class Paged_Revision : IPagedResponse { }
+    public partial class Paged_Subject : IPagedResponse { }
+    public partial class Paged_UserCharacterCollection : IPagedResponse { }
+    public partial class Paged_UserCollection : IPagedResponse { }
+    public partial class Paged_UserPersonCollection : IPagedResponse { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {
