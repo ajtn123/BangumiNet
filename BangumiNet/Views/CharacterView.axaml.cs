@@ -23,7 +23,7 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
             }
             _ = ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
             _ = ViewModel?.PersonBadgeListViewModel?.LoadPersons();
-            ViewModel?.CollectionTime = await ApiC.GetIsCollected(ItemType.Character, ViewModel.Id);
+            ViewModel?.CollectionTime ??= await ApiC.GetIsCollected(ItemType.Character, ViewModel.Id);
         };
     }
 
