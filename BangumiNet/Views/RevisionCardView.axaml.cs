@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace BangumiNet.Views;
 
-public partial class SubjectCommentView : UserControl
+public partial class RevisionCardView : UserControl
 {
-    public SubjectCommentView()
+    public RevisionCardView()
     {
         InitializeComponent();
     }

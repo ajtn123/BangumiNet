@@ -47,6 +47,11 @@ namespace BangumiNet.Api.V0.Models
     public partial class Paged_UserCharacterCollection : IPagedResponse { }
     public partial class Paged_UserCollection : IPagedResponse { }
     public partial class Paged_UserPersonCollection : IPagedResponse { }
+    public partial class SubjectRevision : IRevision { }
+    public partial class CharacterRevision : IRevision { }
+    public partial class PersonRevision : IRevision { }
+    public partial class DetailedRevision : IRevision { }
+    public partial class Revision : IRevision { }
 }
 namespace BangumiNet.Api.Legacy.Models
 {
