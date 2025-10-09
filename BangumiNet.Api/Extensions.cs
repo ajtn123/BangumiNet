@@ -1,9 +1,21 @@
 ﻿using BangumiNet.Api.Interfaces;
+namespace BangumiNet.Api.P1
+{
+    public partial class ApiClient : IApiClient
+    {
+        /// <summary>server-private 仓库的最后 commit</summary>
+        public const string Commit = "0e7da899e84dc4c19df61966ab1e9cd708493350";
+        /// <summary>OpenAPI 定义文件的 URL</summary>
+        public const string DefinitionUrl = "https://next.bgm.tv/p1/openapi.yaml";
+        /// <summary>生成本 API 客户端的命令</summary>
+        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.P1 -o .\P1 --co";
+    }
+}
 namespace BangumiNet.Api.V0
 {
     public partial class ApiClient : IApiClient
     {
-        /// <summary>OpenAPI 定义文件的版本</summary>
+        /// <summary>OpenAPI 定义文件的最后 commit</summary>
         public const string Commit = "4433d6a0265e23a12324180569ac4abc964e682b";
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/v0.yaml";
@@ -15,7 +27,7 @@ namespace BangumiNet.Api.Legacy
 {
     public partial class ApiClient : IApiClient
     {
-        /// <summary>OpenAPI 定义文件的版本</summary>
+        /// <summary>OpenAPI 定义文件的最后 commit</summary>
         public const string Commit = "9b4e4267c008218b51c275d640fab292637ca7ae";
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/api.yml";
