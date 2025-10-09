@@ -8,7 +8,7 @@ namespace BangumiNet.Api.V0
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/v0.yaml";
         /// <summary>生成本 API 客户端的命令</summary>
-        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.V0 -o .\V0 -co";
+        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.V0 -o .\V0 --co";
     }
 }
 namespace BangumiNet.Api.Legacy
@@ -20,7 +20,7 @@ namespace BangumiNet.Api.Legacy
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/api.yml";
         /// <summary>生成本 API 客户端的命令</summary>
-        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.Legacy -o .\Legacy -co";
+        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.Legacy -o .\Legacy --co";
     }
 }
 namespace BangumiNet.Api.V0.Models
