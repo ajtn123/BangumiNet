@@ -10,6 +10,7 @@ public static class CacheProvider
     public static void CalculateCacheSize()
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) CleanUpCache();
+        else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
         else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
     }
 
