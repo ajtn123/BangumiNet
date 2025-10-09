@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class CharacterViewModel : ViewModelBase
+public partial class CharacterViewModel : ItemViewModelBase
 {
     public CharacterViewModel(Character character)
     {
@@ -83,6 +83,7 @@ public partial class CharacterViewModel : ViewModelBase
     {
         SubjectBadgeListViewModel = new(ItemType.Character, Id);
         PersonBadgeListViewModel = new(ItemType.Character, Id);
+        RevisionListViewModel = new(ItemType.Character, Id);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
@@ -96,7 +97,6 @@ public partial class CharacterViewModel : ViewModelBase
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
@@ -126,9 +126,6 @@ public partial class CharacterViewModel : ViewModelBase
 
     public bool IsCollected => CollectionTime != null;
 
-    public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchWebCommand { get; private set; }
-    public ICommand? OpenInBrowserCommand { get; private set; }
     public ICommand? CollectCommand { get; private set; }
     public ICommand? UncollectCommand { get; private set; }
 
