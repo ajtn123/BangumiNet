@@ -136,6 +136,23 @@
             <Setter Property="Padding" Value="2,0"/>
             <Setter Property="CornerRadius" Value="5"/>
         </Style>
+        <Style Selector="HyperlinkButton">
+            <Setter Property="ContentTemplate">
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" TextDecorations="{x:Null}" TextWrapping="Wrap"/>
+                </DataTemplate>
+            </Setter>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>  
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter#ContentPresenter">
+                <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+            </Style>
+        </Style>
+        <Style Selector="HyperlinkButton.Title">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
         <Style Selector="TextBlock.Title">
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="FontWeight" Value="Bold"/>

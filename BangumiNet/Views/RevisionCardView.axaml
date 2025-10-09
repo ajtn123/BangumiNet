@@ -5,18 +5,22 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:ht="clr-namespace:HyperText.Avalonia.Controls;assembly=HyperText.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:RevisionViewModel"
              x:Class="BangumiNet.Views.RevisionCardView">
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-        <Button ToolTip.Tip="在新窗口显示修订"
-                Classes="Icon" Content="{ice:FluentIcon Icon=Open}"
-                Command=""
-                VerticalAlignment="Top"/>
+        <Ellipse Width="10" Height="10" Margin="5" ZIndex="1"
+                 Stroke="{DynamicResource SystemFillColorAttentionBrush}"
+                 StrokeThickness="1"
+                 VerticalAlignment="Top"/>
 
+        <Rectangle Fill="{DynamicResource SystemFillColorAttentionBrush}"
+                   VerticalAlignment="Stretch"
+                   Width="1" Margin="0,20,0,-5"/>
+        
         <StackPanel Grid.Column="1">
-            <TextBlock Classes="Title" Text="{Binding Summary}"/>
+            <TextBlock Classes="Title" Text="{Binding Summary}"
+                       IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"/>
             <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="昵称" Text="{Binding Creator.Nickname}" IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}" Classes="Pri"/>
                 <TextBlock ToolTip.Tip="用户名" Text="{Binding Creator.Username}" IsVisible="{Binding Creator.Username,Converter={StaticResource NEWCvt}}" Classes="Sec"/>

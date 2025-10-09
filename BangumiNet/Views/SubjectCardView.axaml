@@ -17,7 +17,7 @@
         </Border>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
-            <TextBlock Text="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title"/>
+            <HyperlinkButton Content="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
                 <TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>

@@ -16,7 +16,7 @@
         </Border>
 
         <StackPanel Grid.Column="1">
-            <TextBlock Text="{Binding Name}" Classes="Title"/>
+            <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
                 <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
                 <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
