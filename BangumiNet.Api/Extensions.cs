@@ -35,6 +35,10 @@ namespace BangumiNet.Api.Legacy
         public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.Legacy -o .\Legacy --co";
     }
 }
+namespace BangumiNet.Api.P1.Models
+{
+    public partial class Avatar : IImages { }
+}
 namespace BangumiNet.Api.V0.Models
 {
     public partial class Subject_collection : ICollection { }

@@ -12,6 +12,7 @@ namespace BangumiNet.Utils;
 public class ApiC
 {
     public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.CurrentSettings);
+    public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
     public static Api.V0.V0.V0RequestBuilder V0 => Clients.V0Client.V0;
     public static HttpClient HttpClient => Clients.HttpClient;
 

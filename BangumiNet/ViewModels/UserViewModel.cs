@@ -44,6 +44,20 @@ public partial class UserViewModel : ViewModelBase
 
         Init();
     }
+    public UserViewModel(Api.P1.Models.Profile user)
+    {
+        Source = user;
+        Avatar = user.Avatar;
+        Sign = user.Sign;
+        Nickname = user.Nickname;
+        Username = user.Username;
+        Id = user.Id;
+        UserGroup = (UserGroup?)user.Group;
+        if (user.JoinedAt != null)
+            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds((long)user.JoinedAt);
+
+        Init();
+    }
     public UserViewModel(Comment comment)
     {
         Source = comment;
