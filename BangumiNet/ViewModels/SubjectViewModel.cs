@@ -13,7 +13,7 @@ namespace BangumiNet.ViewModels;
 /// <summary>
 /// 通用 Subject 视图模型
 /// </summary>
-public partial class SubjectViewModel : ViewModelBase
+public partial class SubjectViewModel : ItemViewModelBase
 {
     public SubjectViewModel(SlimSubject subject)
     {
@@ -128,6 +128,7 @@ public partial class SubjectViewModel : ViewModelBase
             CharacterBadgeListViewModel = new(ItemType.Subject, Id);
             SubjectBadgeListViewModel = new(ItemType.Subject, Id);
             CommentListViewModel = new(ItemType.Subject, Id);
+            RevisionListViewModel = new(ItemType.Subject, Id);
         }
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
@@ -160,7 +161,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial int? Eps { get; set; }
     [Reactive] public partial int? TotalEps { get; set; }
     [Reactive] public partial int? Volumes { get; set; }
-    [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? NameCn { get; set; }
@@ -189,9 +189,6 @@ public partial class SubjectViewModel : ViewModelBase
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
-    public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchWebCommand { get; private set; }
-    public ICommand? OpenInBrowserCommand { get; private set; }
     public ICommand? CollectCommand { get; private set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);

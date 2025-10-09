@@ -2,7 +2,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ht="clr-namespace:HyperText.Avalonia.Controls;assembly=HyperText.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:RevisionViewModel"
              x:Class="BangumiNet.Views.RevisionCardView">
-  Welcome to Avalonia!
+    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+        <Button ToolTip.Tip="在新窗口显示修订"
+                Classes="Icon" Content="{ice:FluentIcon Icon=Open}"
+                Command=""
+                VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Classes="Title" Text="{Binding Summary}"/>
+            <WrapPanel Classes="InfoBar">
+                <TextBlock ToolTip.Tip="昵称" Text="{Binding Creator.Nickname}" IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}" Classes="Pri"/>
+                <TextBlock ToolTip.Tip="用户名" Text="{Binding Creator.Username}" IsVisible="{Binding Creator.Username,Converter={StaticResource NEWCvt}}" Classes="Sec"/>
+                <Button ToolTip.Tip="在新窗口显示用户" Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Open,FontSize=16}" Command="{Binding ShowUserCommand}"/>
+                <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding CreationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding CreationTime}"/></TextBlock>
+                <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type}"/></TextBlock>
+                <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

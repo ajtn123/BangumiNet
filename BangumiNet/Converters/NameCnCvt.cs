@@ -13,7 +13,7 @@ public class NameCnCvt : IValueConverter
 
     public static string? Convert(object? obj)
     {
-        if (obj is not { } subject) return "Null";
+        if (obj is not { } subject) return null;
 
         var type = subject.GetType();
         var nameProp = type.GetProperty("Name", BindingFlags.Public | BindingFlags.Instance);
@@ -35,7 +35,7 @@ public class NameAltCvt : IValueConverter
 
     public static string? Convert(object? obj)
     {
-        if (obj is not { } subject) return "Null";
+        if (obj is not { } subject) return null;
 
         var type = subject.GetType();
         var nameProp = type.GetProperty("Name", BindingFlags.Public | BindingFlags.Instance);

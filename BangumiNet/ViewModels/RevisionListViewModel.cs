@@ -1,17 +1,21 @@
 ﻿using BangumiNet.Api.V0.Models;
+using BangumiNet.Converters;
 using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
 public partial class RevisionListViewModel : ViewModelBase
 {
-    public RevisionListViewModel(ItemType itemType)
+    public RevisionListViewModel(ItemType itemType, int? id)
     {
         ItemType = itemType;
+        ItemId = id;
         Offset = 0;
         Sources = [];
         RevisionList = new();
         PageNavigatorViewModel = new();
+
+        Title = $"{NameCnCvt.Convert(Parent) ?? $"{ItemType} {ItemId}"} - {Title}";
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
 
@@ -78,6 +82,7 @@ public partial class RevisionListViewModel : ViewModelBase
         Sources.Add(revs);
     }
 
+    [Reactive] public partial object? Parent { get; set; }
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial SubjectListViewModel RevisionList { get; set; }
     [Reactive] public partial ItemType ItemType { get; set; }
@@ -89,5 +94,5 @@ public partial class RevisionListViewModel : ViewModelBase
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
 
-    public static int Limit => SettingProvider.CurrentSettings.CollectionPageSize;
+    public static int Limit => CurrentSettings.CollectionPageSize;
 }

@@ -55,6 +55,7 @@
                                 <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                                 <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
                                 <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                                <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
                                 <Button Classes="Icon" Command="{Binding CollectCommand}" Content="{ice:FluentIcon Icon=AddSquare}" ToolTip.Tip="收藏"
                                         IsVisible="{Binding SubjectCollectionViewModel,Converter={StaticResource InNullCvt}}"/>
                             </StackPanel>

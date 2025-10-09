@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class EpisodeViewModel : ViewModelBase, INeighboring
+public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 {
     public EpisodeViewModel(Episode episode)
     {
@@ -60,6 +60,8 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
 
     public void Init()
     {
+        RevisionListViewModel = new(ItemType.Episode, Id);
+
         if (string.IsNullOrWhiteSpace(Name)) Name = null;
         if (string.IsNullOrWhiteSpace(NameCn)) NameCn = null;
         if (Duration?.TotalSeconds == 0) Duration = null;
@@ -83,7 +85,6 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? SubjectId { get; set; }
     [Reactive] public partial EpisodeType? Type { get; set; }
     [Reactive] public partial string? Name { get; set; }
@@ -103,9 +104,6 @@ public partial class EpisodeViewModel : ViewModelBase, INeighboring
     [Reactive] public partial INeighboring? Next { get; set; }
     [Reactive] public partial EpisodeListViewModel? Parent { get; set; }
 
-    public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchWebCommand { get; private set; }
-    public ICommand? OpenInBrowserCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
     public ICommand? UncollectCommand { get; private set; }
