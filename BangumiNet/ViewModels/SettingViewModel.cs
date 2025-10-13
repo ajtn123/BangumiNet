@@ -20,6 +20,8 @@ public partial class SettingViewModel : ViewModelBase
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
         DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Settings.DiskCacheSizeLimit));
         CollectionPageSize = (int?)Overrides.TryGet(nameof(Settings.CollectionPageSize));
+        RevisionPageSize = (int?)Overrides.TryGet(nameof(_settings.RevisionPageSize));
+        CommentPageSize = (int?)Overrides.TryGet(nameof(settings.CommentPageSize));
         SearchPageSize = (int?)Overrides.TryGet(nameof(Settings.SearchPageSize));
         EpisodePageSize = (int?)Overrides.TryGet(nameof(Settings.EpisodePageSize));
         SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Settings.SubjectBrowserPageSize));
@@ -72,6 +74,8 @@ public partial class SettingViewModel : ViewModelBase
         IsDiskCacheEnabled = IsDiskCacheEnabled,
         DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
         CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
+        RevisionPageSize = RevisionPageSize ?? DefaultSettings.RevisionPageSize,
+        CommentPageSize = CommentPageSize ?? DefaultSettings.CommentPageSize,
         SearchPageSize = SearchPageSize ?? DefaultSettings.SearchPageSize,
         EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
         SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
@@ -108,6 +112,8 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial bool IsDiskCacheEnabled { get; set; }
     [Reactive] public partial long? DiskCacheSizeLimit { get; set; }
     [Reactive] public partial int? CollectionPageSize { get; set; }
+    [Reactive] public partial int? RevisionPageSize { get; set; }
+    [Reactive] public partial int? CommentPageSize { get; set; }
     [Reactive] public partial int? SearchPageSize { get; set; }
     [Reactive] public partial int? EpisodePageSize { get; set; }
     [Reactive] public partial int? SubjectBrowserPageSize { get; set; }

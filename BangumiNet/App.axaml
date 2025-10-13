@@ -7,7 +7,6 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:utils="using:BangumiNet.Utils"
-             xmlns:cvt="using:BangumiNet.Converters"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>

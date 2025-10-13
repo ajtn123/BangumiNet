@@ -55,5 +55,5 @@ public partial class CommentListViewModel : ViewModelBase
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
 
-    public static int Limit => 20;
+    public static int Limit => CurrentSettings.CommentPageSize;
 }

@@ -168,6 +168,30 @@
                     <ui:SettingsExpanderItem>
                         <ui:SettingsExpanderItem.IconSource>
                             <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Circle"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>修订</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding RevisionPageSize}"
+                                     Watermark="{Binding DefaultSettings.RevisionPageSize}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
+                                <ic:FluentImage Icon="Comment"/>
+                            </ui:ImageIconSource>
+                        </ui:SettingsExpanderItem.IconSource>
+                        <TextBlock>评论</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding CommentPageSize}"
+                                     Watermark="{Binding DefaultSettings.CommentPageSize}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem>
+                        <ui:SettingsExpanderItem.IconSource>
+                            <ui:ImageIconSource>
                                 <ic:FluentImage Icon="Search"/>
                             </ui:ImageIconSource>
                         </ui:SettingsExpanderItem.IconSource>

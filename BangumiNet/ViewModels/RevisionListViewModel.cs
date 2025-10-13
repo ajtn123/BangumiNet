@@ -94,5 +94,5 @@ public partial class RevisionListViewModel : ViewModelBase
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
 
-    public static int Limit => CurrentSettings.CollectionPageSize;
+    public static int Limit => CurrentSettings.RevisionPageSize;
 }
