@@ -17,44 +17,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Converters/Converters.axaml"/>
                 <ResourceInclude Source="/Templates/MainImage.axaml" />
                 <ResourceInclude Source="/Templates/InfoItem.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        <cvt:NEWCvt x:Key="NEWCvt"/>
-        <cvt:EpBrushCvt x:Key="EpBrushCvt"/>
-        <cvt:EpDashCvt x:Key="EpDashCvt"/>
-        <cvt:EpUnairedCvt x:Key="EpUnairedCvt"/>
-        <cvt:InNullCvt x:Key="InNullCvt"/>
-        <cvt:NullCvt x:Key="NullCvt"/>
-        <cvt:NullIntCvt x:Key="NullIntCvt"/>
-        <cvt:ZeroCvt x:Key="ZeroCvt"/>
-        <cvt:AddCvt x:Key="AddCvt"/>
-        <cvt:SubCvt x:Key="SubCvt"/>
-        <cvt:MulCvt x:Key="MulCvt"/>
-        <cvt:DivCvt x:Key="DivCvt"/>
-        <cvt:BoundCvt x:Key="BoundCvt"/>
-        <cvt:NameCnCvt x:Key="NameCnCvt"/>
-        <cvt:NameAltCvt x:Key="NameAltCvt"/>
-        <cvt:SubjectBrowserSortCvt x:Key="SubjectBrowserSortCvt"/>
-        <cvt:AnimeCatCvt x:Key="AnimeCatCvt"/>
-        <cvt:BookCatCvt x:Key="BookCatCvt"/>
-        <cvt:GameCatCvt x:Key="GameCatCvt"/>
-        <cvt:RealCatCvt x:Key="RealCatCvt"/>
-        <cvt:UserGroupCvt x:Key="UserGroupCvt"/>
-        <cvt:CollectionTypeCvt x:Key="CollectionTypeCvt"/>
-        <cvt:SearchSortCvt x:Key="SearchSortCvt"/>
-        <cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
-        <cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
-        <cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
-        <cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>
-        <cvt:CharacterTypeCvt x:Key="CharacterTypeCvt"/>
-        <cvt:PersonTypeCvt x:Key="PersonTypeCvt"/>
-        <cvt:CareerCvt x:Key="CareerCvt"/>
-        <cvt:EpisodeCollectionTypeCvt x:Key="EpisodeCollectionTypeCvt"/>
-        <cvt:DateCvt x:Key="DateCvt"/>
-        <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
-        <cvt:HexColorCvt x:Key="HexColorCvt"/>
         <CornerRadius x:Key="CardInnerCornerRadius">9.35</CornerRadius>
         <x:Double x:Key="CardInnerRadius">9.35</x:Double>
         <x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
