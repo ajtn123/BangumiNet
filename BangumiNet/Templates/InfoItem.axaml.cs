@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using FluentIcons.Common;
 
@@ -8,7 +9,8 @@ public class InfoItem : TemplatedControl
 {
     public InfoItem()
     {
-        this.WhenAnyValue(x => x.Text).Subscribe(t => IsVisible = !string.IsNullOrWhiteSpace(t));
+        if (Design.IsDesignMode) Text = "DInfo";
+        this.WhenAnyValue(x => x.Text).Subscribe(t => { if (!Design.IsDesignMode) IsVisible = !string.IsNullOrWhiteSpace(t); });
     }
 
     public static readonly StyledProperty<Icon?> IconProperty =
@@ -17,6 +19,14 @@ public class InfoItem : TemplatedControl
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
+    }
+
+    public static readonly StyledProperty<IconVariant?> IconVariantProperty =
+        AvaloniaProperty.Register<InfoItem, IconVariant?>(nameof(IconVariant));
+    public IconVariant? IconVariant
+    {
+        get => GetValue(IconVariantProperty);
+        set => SetValue(IconVariantProperty, value);
     }
 
     public static readonly StyledProperty<string?> TextProperty =

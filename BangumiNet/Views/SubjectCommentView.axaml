@@ -27,9 +27,9 @@
                     <Button Command="{Binding ShowUserCommand}"
                             Content="{ice:FluentIcon Icon=Open,FontSize=16}"
                             Classes="Icon Distinct" ToolTip.Tip="显示用户"/>
-                    <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
-                    <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
-                    <TextBlock ToolTip.Tip="收藏时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding UpdateTime}"/></TextBlock>
+                    <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color"/>
+                    <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
+                    <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
                 </WrapPanel>
                 <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap"/>
             </StackPanel>

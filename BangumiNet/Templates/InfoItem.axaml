@@ -15,6 +15,7 @@
             <ControlTemplate>
                 <TextBlock ToolTip.Tip="{TemplateBinding Tip}">
                     <ic:FluentIcon Icon="{TemplateBinding Icon}"
+                                   IconVariant="{TemplateBinding IconVariant}"
                                    IsVisible="{TemplateBinding Icon,Converter={StaticResource NullCvt}}"
                                    Margin="0,0,3,-3"
                                    FontSize="16"
