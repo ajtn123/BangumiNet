@@ -73,7 +73,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
             var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Characters.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
-            collection = await ApiC.Clients.RequestAdapter.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue);
+            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue);
         }
         catch (ErrorDetail e)
         {
@@ -91,7 +91,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
             var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Persons.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
-            collection = await ApiC.Clients.RequestAdapter.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue);
+            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue);
         }
         catch (ErrorDetail e)
         {

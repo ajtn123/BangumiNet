@@ -3,7 +3,6 @@ using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
-using BangumiNet.Api.V0.V0.Me;
 using System.ComponentModel;
 using System.Net.Http;
 
@@ -112,8 +111,8 @@ public class ApiC
         }
         else if (typeof(T) == typeof(UserViewModel) && username is null)
         {
-            MeGetResponse? me = null;
-            try { me = await V0.Me.GetAsMeGetResponseAsync(); }
+            Api.P1.Models.Profile? me = null;
+            try { me = await P1.Me.GetAsync(); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             CurrentUsername = me?.Username;
