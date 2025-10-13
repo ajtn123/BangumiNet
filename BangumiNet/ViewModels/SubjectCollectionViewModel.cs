@@ -1,5 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.Html.Models;
+using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using DynamicData;
@@ -70,14 +70,17 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 
         Init();
     }
-    public SubjectCollectionViewModel(Comment comment)
+    public SubjectCollectionViewModel(SubjectInterestComment comment)
     {
-        Comment = comment.Content;
-        UpdateTime = comment.CollectionTime;
-        UpdateTimeString = comment.CollectionTimeString;
-        Type = comment.CollectionType;
-        Rating = comment.Score;
-        User = new(comment);
+        Comment = comment.Comment;
+        if (comment.UpdatedAt is int ut)
+            UpdateTime = DateTimeOffset.FromUnixTimeSeconds(ut);
+        Type = (CollectionType?)comment.Type;
+        Rating = comment.Rate;
+        if (comment.User != null)
+            User = new(comment.User);
+        //Id = comment.Id;
+        //comment.Reactions
 
         Init();
     }
@@ -126,7 +129,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<string>? RecommendedTags { get; set; }
     [Reactive] public partial bool IsMy { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
-    [Reactive] public partial string? UpdateTimeString { get; set; }
 
     [Reactive] public partial string? TagInput { get; set; }
     [Reactive] public partial bool IsEpStatusEditable { get; set; }

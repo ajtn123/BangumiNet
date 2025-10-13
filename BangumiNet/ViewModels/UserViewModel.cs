@@ -1,10 +1,9 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.Html.Models;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using BangumiNet.Models;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -58,12 +57,17 @@ public partial class UserViewModel : ViewModelBase
 
         Init();
     }
-    public UserViewModel(Comment comment)
+    public UserViewModel(Api.P1.Models.SlimUser user)
     {
-        Source = comment;
-        Username = comment.Username;
-        Nickname = comment.Nickname;
-        Avatar = new ImageSet() { Small = comment.AvatarUrl };
+        Source = user;
+        Username = user.Username;
+        Nickname = user.Nickname;
+        Avatar = user.Avatar;
+        Id = user.Id;
+        UserGroup = (UserGroup?)user.Group;
+        Sign = user.Sign;
+        if (user.JoinedAt is int jt)
+            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds(jt);
 
         Init();
     }

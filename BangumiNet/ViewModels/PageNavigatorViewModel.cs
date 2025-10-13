@@ -24,6 +24,16 @@ public partial class PageNavigatorViewModel : ViewModelBase
             Total = (int)Math.Ceiling((double)response.Total / (double)response.Limit);
         else Total = null;
     }
+    public void UpdatePageInfo(int? limit, int? offset, int? total)
+    {
+        if (offset != null && limit != null)
+            PageIndex = offset / limit + 1;
+        else PageIndex = null;
+
+        if (total != null && limit != null)
+            Total = (int)Math.Ceiling((double)total / (double)limit);
+        else Total = null;
+    }
 
     [Reactive] public partial int? PageIndex { get; set; }
     [Reactive] public partial int? PageIndexInput { get; set; }
