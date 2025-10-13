@@ -18,6 +18,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Templates/MainImage.axaml" />
+                <ResourceInclude Source="/Templates/InfoItem.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <cvt:NEWCvt x:Key="NEWCvt"/>

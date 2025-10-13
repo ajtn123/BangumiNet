@@ -21,12 +21,12 @@
                     <TextBlock Text="{Binding Nickname}"
                                Classes="Title" FontSize="30"/>
                     <WrapPanel Classes="InfoBar">
-                        <TextBlock ToolTip.Tip="用户名" Text="{Binding Username}" IsVisible="{Binding Username,Converter={StaticResource NEWCvt}}"/>
-                        <TextBlock ToolTip.Tip="用户组" IsVisible="{Binding UserGroup,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="注册时间" IsVisible="{Binding RegistrationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding RegistrationTime}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="时区" IsVisible="{Binding TimeOffset,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Globe"/><Run Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="电子邮件" IsVisible="{Binding Email,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Mail"/><Run Text="{Binding Email}"/></TextBlock>
-                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                        <InfoItem Tip="用户名" Text="{Binding Username}"/>
+                        <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
+                        <InfoItem Tip="注册时间" Text="{Binding RegistrationTime}" Icon="Calendar"/>
+                        <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
+                        <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail"/>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                         <TextBlock>
                             <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
                         </TextBlock>

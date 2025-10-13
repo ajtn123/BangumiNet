@@ -113,7 +113,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? CharacterList { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
 
-    public bool IsMe => Source is MeGetResponse;
+    public bool IsMe => Username == ApiC.CurrentUsername;
     public bool IsFull => Source is User or MeGetResponse;
 
     public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);

@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:ic="using:FluentIcons.Avalonia"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.PreviewWith>
+        <StackPanel Width="400" Spacing="10">
+            <WrapPanel Classes="InfoBar" Background="{DynamicResource SystemRegionBrush}">
+                <InfoItem Icon="Home" Text="信息" Tip="提示"/>
+            </WrapPanel>
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="{x:Type InfoItem}" TargetType="InfoItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <TextBlock ToolTip.Tip="{TemplateBinding Tip}">
+                    <ic:FluentIcon Icon="{TemplateBinding Icon}"
+                                   IsVisible="{TemplateBinding Icon,Converter={StaticResource NullCvt}}"
+                                   Margin="0,0,3,-3"
+                                   FontSize="16"
+                    /><Run Text="{TemplateBinding Text}"/>
+                </TextBlock>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
