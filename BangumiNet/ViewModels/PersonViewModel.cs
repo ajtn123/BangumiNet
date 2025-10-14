@@ -131,9 +131,11 @@ public partial class PersonViewModel : ItemViewModelBase
     }
     public void Init()
     {
-        SubjectBadgeListViewModel = new(ItemType.Person, Id);
-        CharacterBadgeListViewModel = new(ItemType.Person, Id);
-        RevisionListViewModel = new(ItemType.Person, Id);
+        ItemTypeEnum = ItemType.Person;
+
+        SubjectBadgeListViewModel = new(ItemTypeEnum, Id);
+        CharacterBadgeListViewModel = new(ItemTypeEnum, Id);
+        RevisionListViewModel = new(this);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));

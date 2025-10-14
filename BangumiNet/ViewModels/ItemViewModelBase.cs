@@ -16,4 +16,6 @@ public partial class ItemViewModelBase : ViewModelBase
     public ICommand? SearchWebCommand { get; set; }
     public ICommand? OpenInBrowserCommand { get; set; }
     public ICommand? ShowRevisionsCommand { get; set; }
+
+    public ItemType ItemTypeEnum { get; set; }
 }

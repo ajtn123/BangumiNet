@@ -120,15 +120,17 @@ public partial class SubjectViewModel : ItemViewModelBase
     }
     public void Init()
     {
+        ItemTypeEnum = ItemType.Subject;
+
         if (IsFull && RatingCount != null) SubjectRatingViewModel = new(RatingCount);
         if (Id != null)
         {
             EpisodeListViewModel = new((int)Id);
-            PersonBadgeListViewModel = new(ItemType.Subject, Id);
-            CharacterBadgeListViewModel = new(ItemType.Subject, Id);
-            SubjectBadgeListViewModel = new(ItemType.Subject, Id);
-            CommentListViewModel = new(ItemType.Subject, Id);
-            RevisionListViewModel = new(ItemType.Subject, Id);
+            PersonBadgeListViewModel = new(ItemTypeEnum, Id);
+            CharacterBadgeListViewModel = new(ItemTypeEnum, Id);
+            SubjectBadgeListViewModel = new(ItemTypeEnum, Id);
+            CommentListViewModel = new(ItemTypeEnum, Id);
+            RevisionListViewModel = new(this);
         }
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());

@@ -60,7 +60,9 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
     public void Init()
     {
-        RevisionListViewModel = new(ItemType.Episode, Id);
+        ItemTypeEnum = ItemType.Episode;
+
+        RevisionListViewModel = new(this);
 
         if (string.IsNullOrWhiteSpace(Name)) Name = null;
         if (string.IsNullOrWhiteSpace(NameCn)) NameCn = null;

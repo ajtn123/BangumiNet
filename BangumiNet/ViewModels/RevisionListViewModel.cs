@@ -6,16 +6,17 @@ namespace BangumiNet.ViewModels;
 
 public partial class RevisionListViewModel : ViewModelBase
 {
-    public RevisionListViewModel(ItemType itemType, int? id)
+    public RevisionListViewModel(ItemViewModelBase item)
     {
-        ItemType = itemType;
-        ItemId = id;
+        Parent = item;
+        ItemType = item.ItemTypeEnum;
+        ItemId = item.Id;
         Offset = 0;
         Sources = [];
         RevisionList = new();
         PageNavigatorViewModel = new();
 
-        Title = $"{NameCnCvt.Convert(Parent) ?? $"{ItemType} {ItemId}"} - {Title}";
+        Title = $"修订历史 - {NameCnCvt.Convert(Parent) ?? $"{ItemType} {ItemId}"} - {Title}";
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
 
@@ -82,7 +83,7 @@ public partial class RevisionListViewModel : ViewModelBase
         Sources.Add(revs);
     }
 
-    [Reactive] public partial object? Parent { get; set; }
+    [Reactive] public partial ItemViewModelBase? Parent { get; set; }
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial SubjectListViewModel RevisionList { get; set; }
     [Reactive] public partial ItemType ItemType { get; set; }
