@@ -10,12 +10,12 @@
     <ItemsControl ItemsSource="{Binding TagViewModels}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="vm:TagViewModel">
-                <v:TagBadgeView DataContext="{Binding .}" Margin="0,0,5,5"/>
+                <v:TagBadgeView DataContext="{Binding .}"/>
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal" />
+                <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

@@ -19,7 +19,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Id = person.Id;
         Name = person.Name;
-        Careers = person.Career.ToObservableCollection();
+        Careers = person.Career?.ToObservableCollection();
         IsLocked = person.Locked ?? false;
         Images = person.Images;
         ShortSummary = person.ShortSummary;
@@ -64,7 +64,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Id = person.Id;
         Name = person.Name;
-        Careers = person.Career.ToObservableCollection();
+        Careers = person.Career?.ToObservableCollection();
         IsLocked = person.Locked ?? false;
         Images = person.Images;
         Summary = person.Summary;
@@ -91,7 +91,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Name = person.Name;
         Relation = person.Relation;
-        Careers = person.Career.ToObservableCollection();
+        Careers = person.Career?.ToObservableCollection();
         Type = (PersonType?)person.Type;
         Id = person.Id;
         Eps = person.Eps;
@@ -125,7 +125,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Images = person.Images;
         Type = (PersonType?)person.Type;
         CollectionTime = person.CreatedAt;
-        Careers = person.Career.ToObservableCollection();
+        Careers = person.Career?.ToObservableCollection();
 
         Init();
     }

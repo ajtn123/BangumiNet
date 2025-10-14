@@ -3,7 +3,6 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -71,6 +70,15 @@ public partial class UserViewModel : ViewModelBase
 
         Init();
     }
+    public UserViewModel(Api.P1.Models.SimpleUser user)
+    {
+        Source = user;
+        Username = user.Username;
+        Nickname = user.Nickname;
+        Id = user.Id;
+
+        Init();
+    }
     public void Init()
     {
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
@@ -118,7 +126,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
 
     public bool IsMe => Username == ApiC.CurrentUsername;
-    public bool IsFull => Source is User or MeGetResponse;
+    public bool IsFull => Source is User or Api.P1.Models.Profile;
 
     public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
     public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);

@@ -18,12 +18,20 @@ public class InfoItem : TemplatedControl
     public Icon? Icon
     {
         get => GetValue(IconProperty);
-        set => SetValue(IconProperty, value);
+        set { IconR = value ?? FluentIcons.Common.Icon.Dismiss; SetValue(IconProperty, value); }
     }
 
-    public static readonly StyledProperty<IconVariant?> IconVariantProperty =
-        AvaloniaProperty.Register<InfoItem, IconVariant?>(nameof(IconVariant));
-    public IconVariant? IconVariant
+    public static readonly StyledProperty<Icon> IconRProperty =
+        AvaloniaProperty.Register<InfoItem, Icon>(nameof(IconR));
+    public Icon IconR
+    {
+        get => GetValue(IconRProperty);
+        set => SetValue(IconRProperty, value);
+    }
+
+    public static readonly StyledProperty<IconVariant> IconVariantProperty =
+        AvaloniaProperty.Register<InfoItem, IconVariant>(nameof(IconVariant));
+    public IconVariant IconVariant
     {
         get => GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);

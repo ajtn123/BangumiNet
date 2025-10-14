@@ -11,8 +11,8 @@
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
         <MainImage Source="{Binding User.AvatarSmall^}"
                    Tag="{Binding User.Avatar.Small}"
-                   VerticalAlignment="Top" Width="75">
-            <Button Command="{Binding ShowUserCommand}"
+                   VerticalAlignment="Top" Width="50">
+            <Button Command="{Binding User.OpenInNewWindowCommand}"
                     Content="{ice:FluentIcon Icon=Person}"
                     Classes="Icon" ToolTip.Tip="显示用户"/>
         </MainImage>
@@ -24,13 +24,14 @@
                 <WrapPanel Classes="InfoBar">
                     <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
                                      IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
-                                     Classes="Pri" Command="{Binding ShowUserCommand}"/>
+                                     Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                     <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
                     <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color"/>
                     <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
                     <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
                 </WrapPanel>
                 <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap"/>
+                <bn:ReactionListView DataContext="{Binding ReactionListViewModel}"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -37,7 +37,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Id = collection.SubjectId;
         EpisodeStatus = collection.EpStatus;
         VolumeStatus = collection.VolStatus;
-        Tags = collection.Tags.ToObservableCollection() ?? [];
+        Tags = collection.Tags?.ToObservableCollection() ?? [];
         IsPrivate = collection.Private;
         Rating = collection.Rate;
         UpdateTime = collection.UpdatedAt;
@@ -59,7 +59,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Id = collection.Id;
         EpisodeStatus = collection.EpisodeStatus;
         VolumeStatus = collection.VolumeStatus;
-        Tags = collection.Tags.ToObservableCollection() ?? [];
+        Tags = collection.Tags?.ToObservableCollection() ?? [];
         IsPrivate = collection.IsPrivate;
         Rating = collection.Rating;
         UpdateTime = collection.UpdateTime;
@@ -74,13 +74,13 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     {
         Comment = comment.Comment;
         if (comment.UpdatedAt is int ut)
-            UpdateTime = DateTimeOffset.FromUnixTimeSeconds(ut);
+            UpdateTime = DateTimeOffset.FromUnixTimeSeconds(ut).ToLocalTime();
         Type = (CollectionType?)comment.Type;
         Rating = comment.Rate;
         if (comment.User != null)
             User = new(comment.User);
-        //Id = comment.Id;
-        //comment.Reactions
+        CommentId = comment.Id;
+        ReactionListViewModel = new(comment.Reactions, CommentId);
 
         Init();
     }
@@ -107,7 +107,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         DropCommand = ReactiveCommand.Create(() => Type = CollectionType.Dropped, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.Dropped));
         HoldCommand = ReactiveCommand.Create(() => Type = CollectionType.OnHold, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.OnHold));
         SaveCommand = ReactiveCommand.CreateFromTask(UpdateCollection);
-        ShowUserCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = User } }.Show());
 
         Title = $"修改收藏 - {NameCnCvt.Convert(Subject) ?? "项目"} - {Title}";
     }
@@ -119,6 +118,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial SubjectType? SubjectType { get; set; }
     [Reactive] public partial string? Comment { get; set; }
     [Reactive] public partial int? Id { get; set; }
+    [Reactive] public partial int? CommentId { get; set; }
+    [Reactive] public partial ReactionListViewModel? ReactionListViewModel {  get; set; }
     [Reactive] public partial CollectionType? Type { get; set; }
     [Reactive] public partial int? EpisodeStatus { get; set; }
     [Reactive] public partial int? VolumeStatus { get; set; }
@@ -148,7 +149,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     public ICommand? HoldCommand { get; private set; }
 
     public ReactiveCommand<Unit, bool>? SaveCommand { get; private set; }
-    public ICommand? ShowUserCommand { get; private set; }
 
     public async Task<bool> UpdateCollection()
     {

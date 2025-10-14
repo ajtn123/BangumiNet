@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             IsVisible="{Binding Reactions,Converter={StaticResource NullCvt}}"
+             x:DataType="bn:ReactionListViewModel"
+             x:Class="BangumiNet.Views.ReactionListView">
+    <ItemsControl ItemsSource="{Binding Reactions}">
+        <ItemsControl.DataTemplates>
+            <DataTemplate DataType="bn:ReactionViewModel">
+                <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">
+                    <TextBlock>
+                        <Run Text="{Binding Reaction}" Classes="Name"/>
+                        <Run Text="{Binding Users.Count}" Classes="Count"/>
+                    </TextBlock>
+
+                    <Border.ContextFlyout>
+                        <Flyout>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                    
+                                </StackPanel>
+                                <Separator/>
+                                <ItemsControl ItemsSource="{Binding Users}">
+                                    <ItemsControl.DataTemplates>
+                                        <DataTemplate DataType="bn:UserViewModel">
+                                            <WrapPanel Classes="InfoBar">
+                                                <HyperlinkButton Content="{Binding Nickname}" Classes="Pri"
+                                                                 Command="{Binding OpenInNewWindowCommand}"
+                                                                 ToolTip.Tip="在新窗口显示用户"
+                                                                 Margin="0,-1,0,0" Height="19"/>
+                                                <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.DataTemplates>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Spacing="5"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Flyout>
+                    </Border.ContextFlyout>
+                </Border>
+            </DataTemplate>
+        </ItemsControl.DataTemplates>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel ItemSpacing="5" LineSpacing="5"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>

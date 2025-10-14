@@ -29,7 +29,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         Id = subject.Id;
         Score = subject.Score;
         Type = (SubjectType?)subject.Type;
-        Tags = subject.Tags.ToObservableCollection<ITag>();
+        Tags = subject.Tags?.ToObservableCollection<ITag>();
         Images = subject.Images;
 
         Init();
@@ -80,7 +80,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         Collection = subject.Collection;
         CollectionTotal = Collection?.GetTotal();
         Tags = subject.Tags?.Select(t => new Tag(t)).ToObservableCollection<ITag>();
-        MetaTags = subject.MetaTags.ToObservableCollection();
+        MetaTags = subject.MetaTags?.ToObservableCollection();
 
         Init();
     }

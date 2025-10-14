@@ -12,8 +12,8 @@ public static class Extensions
         return i += startingIndex;
     }
 
-    public static ObservableCollection<T>? ToObservableCollection<T>(this IEnumerable<T>? enumerable)
-        => enumerable is not null ? [.. enumerable] : null;
+    public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> enumerable)
+        => [.. enumerable];
 
     public static int? GetTotal(this ICollection c)
         => c.Collect + c.Wish + c.Doing + c.Dropped + c.OnHold;

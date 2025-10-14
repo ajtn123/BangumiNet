@@ -24,8 +24,9 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
             }
         };
 
-        CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(static async y =>
+        CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(async y =>
         {
+            if (!(ViewModel?.IsFull ?? false)) return;
             if (y is SubjectCollectionListView v && v.ViewModel != null && v.ViewModel.Total == null && !await v.ViewModel.LoadPageCommand.IsExecuting.FirstAsync())
                 _ = v.ViewModel.LoadPageCommand.Execute(1).Subscribe();
         });
