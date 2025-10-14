@@ -29,6 +29,27 @@
                     <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"/>
                     <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
                     <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
+                    <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
+                            Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
+                        <Button.Flyout>
+                            <Flyout>
+                                <ItemsControl ItemsSource="{Binding ReactionListViewModel.ReactButtons}">
+                                    <ItemsControl.DataTemplates>
+                                        <DataTemplate DataType="bn:ReactionViewModel">
+                                            <Button Padding="3" Command="{Binding ReactCommand}">
+                                                <Image Source="{Binding ReactionImage}" Height="18"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </ItemsControl.DataTemplates>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="4" ColumnSpacing="5" RowSpacing="5"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
                 </WrapPanel>
                 <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap"/>
                 <bn:ReactionListView DataContext="{Binding ReactionListViewModel}"/>
