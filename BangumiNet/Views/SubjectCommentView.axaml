@@ -26,7 +26,7 @@
                                      IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                      Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                     <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
-                    <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color"/>
+                    <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"/>
                     <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
                     <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
                 </WrapPanel>

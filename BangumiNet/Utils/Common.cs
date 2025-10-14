@@ -78,4 +78,7 @@ public static partial class Common
             try { File.Delete(file); }
             catch (Exception e) { Trace.TraceWarning(e.Message); }
     }
+
+    public static Uri GetAssetUri(string path)
+        => new($"avares://BangumiNet/Assets/{path}");
 }
