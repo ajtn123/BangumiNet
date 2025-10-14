@@ -22,9 +22,10 @@
             <TextBlock Classes="Title" Text="{Binding Summary}"
                        IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"/>
             <WrapPanel Classes="InfoBar">
-                <TextBlock ToolTip.Tip="昵称" Text="{Binding Creator.Nickname}" IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}" Classes="Pri"/>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Command="{Binding ShowUserCommand}"
+                                 Content="{Binding Creator.Nickname}" Classes="Pri"
+                                 IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}"/>
                 <TextBlock ToolTip.Tip="用户名" Text="{Binding Creator.Username}" IsVisible="{Binding Creator.Username,Converter={StaticResource NEWCvt}}" Classes="Sec"/>
-                <Button ToolTip.Tip="在新窗口显示用户" Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Open,FontSize=16}" Command="{Binding ShowUserCommand}"/>
                 <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding CreationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding CreationTime}"/></TextBlock>
                 <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type}"/></TextBlock>
                 <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>

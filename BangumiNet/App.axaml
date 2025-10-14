@@ -169,6 +169,10 @@
                 <Setter Property="Margin" Value="0"/>
                 <Setter Property="Width" Value="1"/>
             </Style>
+            <Style Selector="^ > HyperlinkButton">
+                <Setter Property="Margin" Value="0,-2,0,0"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
         </Style>
         <Style Selector="Separator">
             <Setter Property="Margin" Value="0,5"/>
@@ -219,10 +223,13 @@
                 <Setter Property="Margin" Value="5,5,5,10"/>
             </Style>
         </Style>
-        <Style Selector="TextBlock.Pri">
+        <Style Selector="HyperlinkButton.Pri">
             <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
         </Style>
-        <Style Selector="TextBlock.Sec">
+        <Style Selector="TextBlock.Pri, .Pri > TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+        </Style>
+        <Style Selector="TextBlock.Sec, .Sec > TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
     </Application.Styles>

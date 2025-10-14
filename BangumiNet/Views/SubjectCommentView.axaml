@@ -22,11 +22,10 @@
                 HorizontalAlignment="Left">
             <StackPanel Spacing="3">
                 <WrapPanel Classes="InfoBar">
-                    <TextBlock ToolTip.Tip="昵称" Text="{Binding User.Nickname}" IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}" Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
-                    <TextBlock ToolTip.Tip="用户名" Text="{Binding User.Username}" IsVisible="{Binding User.Username,Converter={StaticResource NEWCvt}}" Classes="Sec"/>
-                    <Button Command="{Binding ShowUserCommand}"
-                            Content="{ice:FluentIcon Icon=Open,FontSize=16}"
-                            Classes="Icon Distinct" ToolTip.Tip="显示用户"/>
+                    <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
+                                     IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
+                                     Classes="Pri" Command="{Binding ShowUserCommand}"/>
+                    <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
                     <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color"/>
                     <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
                     <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
