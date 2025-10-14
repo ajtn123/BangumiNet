@@ -11,7 +11,7 @@ public static class ClientBuilder
 {
     public static Clients Build(IApiSettings setting)
     {
-        var authProvider = new BangumiAuthenticationProvider();
+        var authProvider = new BangumiAuthenticationProvider(setting.AuthToken);
         var httpClientHandler = new HttpClientHandler();
         var cacheExpirationPerHttpResponseCode = CacheExpirationProvider.CreateSimple(TimeSpan.MaxValue, TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(10));
         var handler = new InMemoryCacheHandler(httpClientHandler, cacheExpirationPerHttpResponseCode);

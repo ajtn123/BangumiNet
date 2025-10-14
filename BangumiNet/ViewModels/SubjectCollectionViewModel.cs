@@ -119,7 +119,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial string? Comment { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? CommentId { get; set; }
-    [Reactive] public partial ReactionListViewModel? ReactionListViewModel {  get; set; }
+    [Reactive] public partial ReactionListViewModel? ReactionListViewModel { get; set; }
     [Reactive] public partial CollectionType? Type { get; set; }
     [Reactive] public partial int? EpisodeStatus { get; set; }
     [Reactive] public partial int? VolumeStatus { get; set; }
