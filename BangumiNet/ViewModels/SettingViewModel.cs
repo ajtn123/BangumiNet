@@ -43,7 +43,7 @@ public partial class SettingViewModel : ViewModelBase
 
         UndoChangesCommand = ReactiveCommand.Create(() => { });
         RestoreCommand = ReactiveCommand.Create(() => { });
-        GetTokenCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Constants.BangumiTokenManagerUrl));
+        GetTokenCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Shared.Constants.BangumiTokenManagerUrl));
         SaveCommand = ReactiveCommand.Create(() =>
         {
             var newSettings = ToSettings();

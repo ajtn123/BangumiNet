@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using AvaloniaWebView;
 using System.Net;
 
 namespace BangumiNet;
@@ -31,5 +32,11 @@ public partial class App : Application
         //};
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    public override void RegisterServices()
+    {
+        base.RegisterServices();
+        AvaloniaWebViewBuilder.Initialize(default);
     }
 }

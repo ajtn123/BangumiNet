@@ -4,7 +4,7 @@ public partial class ViewModelBase : ReactiveObject
 {
     public ViewModelBase()
     {
-        Title = Constants.ApplicationName;
+        Title = Shared.Constants.ApplicationName;
     }
     public static Settings CurrentSettings => SettingProvider.CurrentSettings;
     [Reactive] public partial string Title { get; set; }

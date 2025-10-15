@@ -13,6 +13,7 @@ global using System.Linq;
 global using System.Threading;
 global using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.WebView.Desktop;
 
 namespace BangumiNet;
 
@@ -26,5 +27,6 @@ internal sealed class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace()
-            .UseReactiveUI();
+            .UseReactiveUI()
+            .UseDesktopWebView();
 }
