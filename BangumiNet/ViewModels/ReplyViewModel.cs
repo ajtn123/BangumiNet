@@ -1,4 +1,5 @@
 ﻿using System.Reactive;
+using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
@@ -8,9 +9,14 @@ public partial class ReplyViewModel : ViewModelBase
     {
         Content = string.Empty;
         Parent = parent;
-        SendCommand = ReactiveCommand.Create(() =>
+        SendCommand = ReactiveCommand.CreateFromTask(async () =>
         {
-
+            _ = ApiC.P1.Characters[(int)parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
+            {
+                Content = Content,
+                ReplyTo = parent.Id,
+                TurnstileToken = await GetTurnstileInteraction.Handle(default).FirstAsync()
+            });
         });
     }
     public ReplyViewModel(CommentListViewModel? ancestor)
@@ -21,6 +27,7 @@ public partial class ReplyViewModel : ViewModelBase
         {
 
         });
+
     }
 
     [Reactive] public partial string Content { get; set; }
@@ -29,4 +36,5 @@ public partial class ReplyViewModel : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> SendCommand { get; set; }
     public ReactiveCommand<Unit, Unit> DismissCommand { get; set; } = ReactiveCommand.Create(() => { });
+    public Interaction<Unit, string> GetTurnstileInteraction { get; set; } = new();
 }
