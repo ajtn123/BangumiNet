@@ -45,10 +45,18 @@ public partial class ReactionViewModel : ViewModelBase
         {
             try
             {
-                await ApiC.P1.Subjects.Minus.Collects[cid].Like.PutAsLikePutResponseAsync(new()
-                {
-                    Value = Reaction,
-                });
+                if (Parent.ItemType == ItemType.Subject)
+                    await ApiC.P1.Subjects.Minus.Collects[cid].Like.PutAsLikePutResponseAsync(new()
+                    {
+                        Value = Reaction,
+                    });
+                else if(Parent.ItemType == ItemType.Episode)
+                    await ApiC.P1.Episodes.Minus.Comments[cid].Like.PutAsLikePutResponseAsync(new()
+                    {
+                        Value = Reaction,
+                    });
+                else throw new NotImplementedException();
+
                 await Parent.UpdateMyReaction(Reaction);
             }
             catch (Exception e) { Trace.TraceError(e.Message); }
@@ -57,7 +65,12 @@ public partial class ReactionViewModel : ViewModelBase
         {
             try
             {
-                await ApiC.P1.Subjects.Minus.Collects[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                if (Parent.ItemType == ItemType.Subject)
+                    await ApiC.P1.Subjects.Minus.Collects[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                else if (Parent.ItemType == ItemType.Episode)
+                    await ApiC.P1.Episodes.Minus.Comments[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                else throw new NotImplementedException();
+
                 await Parent.UpdateMyReaction(null);
             }
             catch (Exception e) { Trace.TraceError(e.Message); }
