@@ -85,14 +85,8 @@ public partial class ReactionListViewModel : ViewModelBase
 
     public async Task UpdateMyReaction(int? sid)
     {
-        if (sid == null)
-        {
-            if (Reactions == null) return;
-            foreach (var reaction in Reactions)
-                reaction.Users = reaction.Users.Where(u => !u.IsMe).ToObservableCollection();
-            Reactions = Reactions.Where(r => r.Users.Any()).ToObservableCollection();
-            if (!Reactions.Any()) Reactions = null;
-        }
+        RemoveMeFromReactions();
+        if (sid == null) return;
         else
         {
             var user = await ApiC.GetViewModelAsync<UserViewModel>();
@@ -111,6 +105,14 @@ public partial class ReactionListViewModel : ViewModelBase
         }
 
         this.RaisePropertyChanged(nameof(HasMe));
+    }
+    public void RemoveMeFromReactions()
+    {
+        if (Reactions == null) return;
+        foreach (var reaction in Reactions)
+            reaction.Users = reaction.Users.Where(u => !u.IsMe).ToObservableCollection();
+        Reactions = Reactions.Where(r => r.Users.Any()).ToObservableCollection();
+        if (!Reactions.Any()) Reactions = null;
     }
 
     public bool HasMe => Reactions?.Any(r => r.Users.Any(u => u.Username == ApiC.CurrentUsername)) ?? false;

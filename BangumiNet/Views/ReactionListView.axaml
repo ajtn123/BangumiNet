@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="{Binding Reactions,Converter={StaticResource NullCvt}}"
              x:DataType="bn:ReactionListViewModel"
@@ -10,7 +11,7 @@
     <ItemsControl ItemsSource="{Binding Reactions}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:ReactionViewModel">
-                <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">
+                <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">                  
                     <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
                         <Image Source="{Binding ReactionImage}" Height="18"/>
                         <TextBlock Grid.Column="1">
@@ -22,7 +23,14 @@
                         <Flyout>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Spacing="5">
-                                    
+                                    <Button ToolTip.Tip="点赞" Classes="Icon"
+                                            Command="{Binding ReactCommand}"
+                                            Content="{ice:FluentIcon Icon=Add}"
+                                            IsVisible="{Binding !HasMe}"/>
+                                    <Button ToolTip.Tip="取消点赞" Classes="Icon"
+                                            Command="{Binding ReactCommand}"
+                                            Content="{ice:FluentIcon Icon=Dismiss}"
+                                            IsVisible="{Binding HasMe}"/>
                                 </StackPanel>
                                 <Separator/>
                                 <ItemsControl ItemsSource="{Binding Users}">
