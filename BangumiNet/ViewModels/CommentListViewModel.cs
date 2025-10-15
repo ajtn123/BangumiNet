@@ -30,7 +30,7 @@ public partial class CommentListViewModel : ViewModelBase
         return type switch
         {
             Shared.ItemType.Subject => LoadSubjectComment(i, offset),
-            Shared.ItemType.Episode => throw new NotImplementedException(),
+            Shared.ItemType.Episode => LoadEpisodeComment(i, offset),
             Shared.ItemType.Character => LoadCharacterComment(i, offset),
             Shared.ItemType.Person => LoadPersonComment(i, offset),
             _ => throw new NotImplementedException(),
@@ -84,6 +84,20 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
+    private async Task LoadEpisodeComment(int id, int offset)
+    {
+        List<Api.P1.P1.Episodes.Item.Comments.Comments>? response = null;
+        try
+        {
+            response = await ApiC.P1.Episodes[id].Comments.GetAsync();
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        Comments = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        Sources.Add(response);
+    }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial ObservableCollection<ViewModelBase>? Comments { get; set; }
@@ -94,7 +108,7 @@ public partial class CommentListViewModel : ViewModelBase
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
 
-    public bool IsSinglePage => ItemType == Shared.ItemType.Character || ItemType == Shared.ItemType.Person;
+    public bool IsSinglePage => ItemType == Shared.ItemType.Character || ItemType == Shared.ItemType.Person || ItemType == Shared.ItemType.Episode;
 
     public static int Limit => CurrentSettings.CommentPageSize;
 }

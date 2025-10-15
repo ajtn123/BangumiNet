@@ -52,6 +52,22 @@ public partial class CommentViewModel : ViewModelBase
         if (comment.CreatedAt is int ct)
             CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
     }
+    public CommentViewModel(Api.P1.P1.Episodes.Item.Comments.Comments comment)
+    {
+        ItemType = ItemType.Episode;
+        Content = comment.Content;
+        CreatorId = comment.CreatorID;
+        MainId = comment.MainID;
+        RelatedId = comment.RelatedID;
+        Id = comment.Id;
+        Reactions = new(comment.Reactions, Id, ItemType);
+        State = comment.State;
+        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
+        if (comment.User != null)
+            User = new(comment.User);
+        if (comment.CreatedAt is int ct)
+            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
+    }
 
     [Reactive] public partial ItemType ItemType { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }

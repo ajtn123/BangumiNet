@@ -74,16 +74,22 @@ public partial class ReactionListViewModel : ViewModelBase
         CommentId = commentId;
         ItemType = itemType;
         Reactions = reactions?.Select(r => new ReactionViewModel(r) { Parent = this }).ToObservableCollection();
-        ReactButtons = [.. ReactButtons.Select(r => { r.Parent = this; return r; })];
+        var rbs = ItemType switch
+        {
+            ItemType.Subject => StickerProvider.SubjectCommentReactions,
+            ItemType.Episode => StickerProvider.EpisodeCommentReactions,
+            ItemType.Character => [],
+            ItemType.Person => [],
+            _ => throw new NotImplementedException(),
+        };
+        ReactButtons = [.. rbs.Select(r => { r.Parent = this; return r; })];
     }
 
     [Reactive] public partial ObservableCollection<ReactionViewModel>? Reactions { get; set; }
     [Reactive] public partial int? CommentId { get; set; }
     [Reactive] public partial ItemType ItemType { get; set; }
 
-    public ReactionViewModel[] ReactButtons { get; } = [
-        new(0), new(104), new(54), new(140), new(122), new(90), new(88), new(80)
-    ];
+    public ReactionViewModel[] ReactButtons { get; }
 
     public async Task UpdateMyReaction(int? sid)
     {
