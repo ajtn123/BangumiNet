@@ -4,12 +4,12 @@ namespace BangumiNet.ViewModels;
 
 public partial class CommentViewModel : ViewModelBase
 {
+    public CommentViewModel() { }
     public CommentViewModel(CommentBase comment, CommentViewModel parent)
     {
         Parent = parent;
         ItemType = parent.ItemType;
         Content = comment.Content;
-        CreatorId = comment.CreatorID;
         MainId = comment.MainID;
         RelatedId = comment.RelatedID;
         Id = comment.Id;
@@ -24,7 +24,6 @@ public partial class CommentViewModel : ViewModelBase
     {
         ItemType = ItemType.Character;
         Content = comment.Content;
-        CreatorId = comment.CreatorID;
         MainId = comment.MainID;
         RelatedId = comment.RelatedID;
         Id = comment.Id;
@@ -40,7 +39,6 @@ public partial class CommentViewModel : ViewModelBase
     {
         ItemType = ItemType.Person;
         Content = comment.Content;
-        CreatorId = comment.CreatorID;
         MainId = comment.MainID;
         RelatedId = comment.RelatedID;
         Id = comment.Id;
@@ -56,7 +54,6 @@ public partial class CommentViewModel : ViewModelBase
     {
         ItemType = ItemType.Episode;
         Content = comment.Content;
-        CreatorId = comment.CreatorID;
         MainId = comment.MainID;
         RelatedId = comment.RelatedID;
         Id = comment.Id;
@@ -72,7 +69,6 @@ public partial class CommentViewModel : ViewModelBase
     [Reactive] public partial ItemType ItemType { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial string? Content { get; set; }
-    [Reactive] public partial int? CreatorId { get; set; }
     [Reactive] public partial int? MainId { get; set; }
     [Reactive] public partial int? RelatedId { get; set; }
     [Reactive] public partial int? Id { get; set; }

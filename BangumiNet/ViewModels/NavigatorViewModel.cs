@@ -48,7 +48,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id);
-                if (evm != null) new SecondaryWindow() { Content = new EpisodeView() { DataContext = evm } }.Show();
+                if (evm != null) new SecondaryWindow() { Content = new EpisodeFullView() { DataContext = evm } }.Show();
                 else MessageWindow.ShowMessage($"未找到话 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));

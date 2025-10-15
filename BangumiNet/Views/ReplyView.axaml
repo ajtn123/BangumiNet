@@ -12,7 +12,7 @@
         <TextBox Text="{Binding Content}" AcceptsReturn="True"
                  MinHeight="60" HorizontalAlignment="Stretch"/>
         <StackPanel Spacing="5" Orientation="Horizontal">
-            <Button>
+            <Button Command="{Binding SendCommand}">
                 <TextBlock>
                     <ic:FluentIcon Icon="Send" />发送
                 </TextBlock>

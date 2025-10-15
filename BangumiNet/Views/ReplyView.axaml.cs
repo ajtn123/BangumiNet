@@ -8,7 +8,8 @@ public partial class ReplyView : ReactiveUserControl<ReplyViewModel>
 
         DataContextChanged += (s, e) =>
         {
-            ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
+            getTurnstileInteractionHandler?.Dispose();
+            getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
             {
                 var tv = new TurnstileView();
                 MainVertical.Children.Add(tv);
@@ -20,4 +21,6 @@ public partial class ReplyView : ReactiveUserControl<ReplyViewModel>
             });
         };
     }
+
+    private IDisposable? getTurnstileInteractionHandler;
 }
