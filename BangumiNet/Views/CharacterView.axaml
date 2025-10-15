@@ -2,15 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:utils="using:BangumiNet.Utils"
-             utils:UserControlHelpers.ParentTitle="{Binding Title}"
+             bn:UserControlHelpers.ParentTitle="{Binding Title}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:CharacterViewModel"
+             x:DataType="bn:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterView">
     <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
@@ -18,7 +16,7 @@
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
                     <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images.Large}"/>
-                    <v:InfoboxView DataContext="{Binding Infobox}" />
+                    <bn:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -54,9 +52,14 @@
                                 ToolTip.Tip="取消收藏" Classes="Icon"/>
                     </StackPanel>
                     <Separator/>
-                    <v:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
+                    <bn:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
                     <Separator/>
-                    <v:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <bn:PersonBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+
+                    <Expander Header="评论" HorizontalAlignment="Stretch"
+                              Name="CommentExpander" IsExpanded="True">
+                        <bn:CommentListView DataContext="{Binding CommentListViewModel}" Name="CommentView"/>
+                    </Expander>
                 </StackPanel>
             </Grid>
         </StackPanel>

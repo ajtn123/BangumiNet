@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:CommentViewModel"
+             x:Class="BangumiNet.Views.CommentView">
+    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+        <MainImage Source="{Binding User.AvatarSmall^}"
+                   Tag="{Binding User.Avatar.Small}"
+                   VerticalAlignment="Top" Width="50">
+            <Button Command="{Binding User.OpenInNewWindowCommand}"
+                    Content="{ice:FluentIcon Icon=Person}"
+                    Classes="Icon" ToolTip.Tip="显示用户"/>
+        </MainImage>
+
+        <StackPanel Spacing="5" Grid.Column="1">
+            <Border Classes="Card Large"
+                    HorizontalAlignment="Left">
+                <StackPanel Spacing="3">
+                    <WrapPanel Classes="InfoBar">
+                        <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
+                                         IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
+                                         Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
+                        <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
+                        <InfoItem Tip="收藏时间" Text="{Binding CreationTime}" Icon="Calendar"/>
+                        <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
+                                IsVisible="{Binding !NoReaction}"
+                                Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
+                            <Button.Flyout>
+                                <Flyout>
+                                    <ItemsControl ItemsSource="{Binding Reactions.ReactButtons}">
+                                        <ItemsControl.DataTemplates>
+                                            <DataTemplate DataType="bn:ReactionViewModel">
+                                                <Button Padding="3" Command="{Binding ReactCommand}">
+                                                    <Image Source="{Binding ReactionImage}" Height="18"/>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.DataTemplates>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid Columns="4" ColumnSpacing="5" RowSpacing="5"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </WrapPanel>
+                    <SelectableTextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
+                    <bn:ReactionListView DataContext="{Binding Reactions}"/>
+                </StackPanel>
+            </Border>
+            <ItemsControl ItemsSource="{Binding Replies}">
+                <ItemsControl.DataTemplates>
+                    <DataTemplate DataType="bn:CommentViewModel">
+                        <bn:CommentView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Spacing="5"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</UserControl>

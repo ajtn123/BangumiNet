@@ -21,8 +21,9 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
                 var vm = new PersonViewModel(fullPerson);
                 DataContext = vm;
             }
-            ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
-            ViewModel?.CharacterBadgeListViewModel?.LoadCharacters();
+            _ = ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
+            _ = ViewModel?.CharacterBadgeListViewModel?.LoadCharacters();
+            _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
             ViewModel?.CollectionTime ??= await ApiC.GetIsCollected(ItemType.Person, ViewModel.Id);
         };
     }

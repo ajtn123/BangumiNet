@@ -85,6 +85,7 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         SubjectBadgeListViewModel = new(ItemTypeEnum, Id);
         PersonBadgeListViewModel = new(ItemTypeEnum, Id);
+        CommentListViewModel = new(ItemTypeEnum, Id);
         RevisionListViewModel = new(this);
 
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new CharacterView() { DataContext = this } }.Show());
@@ -118,6 +119,7 @@ public partial class CharacterViewModel : ItemViewModelBase
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
+    [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
 

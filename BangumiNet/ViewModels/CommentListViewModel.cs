@@ -22,15 +22,27 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.JumpPage.InvokeCommand(LoadPageCommand);
     }
 
-    public async Task LoadPageAsync(int? page)
+    public Task LoadPageAsync(int? page)
     {
-        if (ItemType is not ItemType type || Id is not int i || page is not int p) return;
+        if (ItemType is not ItemType type || Id is not int i || page is not int p) return Task.CompletedTask;
         int offset = (p - 1) * Limit;
 
+        return type switch
+        {
+            Shared.ItemType.Subject => LoadSubjectComment(i, offset),
+            Shared.ItemType.Episode => throw new NotImplementedException(),
+            Shared.ItemType.Character => LoadCharacterComment(i, offset),
+            Shared.ItemType.Person => LoadPersonComment(i, offset),
+            _ => throw new NotImplementedException(),
+        };
+    }
+
+    private async Task LoadSubjectComment(int id, int offset)
+    {
         CommentsGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Subjects[i].Comments.GetAsCommentsGetResponseAsync(config =>
+            response = await ApiC.P1.Subjects[id].Comments.GetAsCommentsGetResponseAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
@@ -44,6 +56,34 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.UpdatePageInfo(Limit, offset, response.Total);
         Sources.Add(response);
     }
+    private async Task LoadCharacterComment(int id, int offset)
+    {
+        List<Api.P1.P1.Characters.Item.Comments.Comments>? response = null;
+        try
+        {
+            response = await ApiC.P1.Characters[id].Comments.GetAsync();
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        Comments = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        Sources.Add(response);
+    }
+    private async Task LoadPersonComment(int id, int offset)
+    {
+        List<Api.P1.P1.Persons.Item.Comments.Comments>? response = null;
+        try
+        {
+            response = await ApiC.P1.Persons[id].Comments.GetAsync();
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        Comments = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        Sources.Add(response);
+    }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial ObservableCollection<ViewModelBase>? Comments { get; set; }
@@ -53,6 +93,8 @@ public partial class CommentListViewModel : ViewModelBase
     [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
+
+    public bool IsSinglePage => ItemType == Shared.ItemType.Character || ItemType == Shared.ItemType.Person;
 
     public static int Limit => CurrentSettings.CommentPageSize;
 }

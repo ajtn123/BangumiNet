@@ -7,11 +7,15 @@
              x:DataType="bn:CommentListViewModel"
              x:Class="BangumiNet.Views.CommentListView">
     <StackPanel Spacing="5">
-        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"
+                              IsVisible="{Binding !$parent.DataContext.IsSinglePage}"/>
         <ItemsControl ItemsSource="{Binding Comments}">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="bn:SubjectCollectionViewModel">
                     <bn:SubjectCommentView DataContext="{Binding}"/>
+                </DataTemplate>
+                <DataTemplate DataType="bn:CommentViewModel">
+                    <bn:CommentView DataContext="{Binding}"/>
                 </DataTemplate>
             </ItemsControl.DataTemplates>
             <ItemsControl.ItemsPanel>
@@ -20,6 +24,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"
+                              IsVisible="{Binding !$parent.DataContext.IsSinglePage}"/>
     </StackPanel>
 </UserControl>

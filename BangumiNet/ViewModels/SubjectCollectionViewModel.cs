@@ -80,7 +80,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         if (comment.User != null)
             User = new(comment.User);
         CommentId = comment.Id;
-        ReactionListViewModel = new(comment.Reactions, CommentId);
+        ReactionListViewModel = new(comment.Reactions, CommentId, ItemType.Subject);
 
         Init();
     }
