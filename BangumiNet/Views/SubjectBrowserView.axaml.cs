@@ -1,4 +1,3 @@
-using Avalonia.ReactiveUI;
 using BangumiNet.Api.ExtraEnums;
 
 namespace BangumiNet.Views;

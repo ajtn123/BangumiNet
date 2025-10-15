@@ -1,4 +1,3 @@
-using Avalonia.ReactiveUI;
 using BangumiNet.Api.V0.V0.Search.Subjects;
 
 namespace BangumiNet.Views;

@@ -1,7 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-using Avalonia.ReactiveUI;
 using System.Reflection;
 
 namespace BangumiNet.Views;

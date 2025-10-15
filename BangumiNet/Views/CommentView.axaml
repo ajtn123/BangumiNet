@@ -17,7 +17,7 @@
                     Classes="Icon" ToolTip.Tip="显示用户"/>
         </MainImage>
 
-        <StackPanel Spacing="5" Grid.Column="1">
+        <StackPanel Spacing="5" Grid.Column="1" Name="RightStackPanel">
             <Border Classes="Card Large"
                     HorizontalAlignment="Left">
                 <StackPanel Spacing="3">
@@ -49,6 +49,9 @@
                                 </Flyout>
                             </Button.Flyout>
                         </Button>
+                        <Button ToolTip.Tip="回复" Classes="Icon Distinct"
+                                Content="{ice:FluentIcon Icon=Comment,FontSize=16}"
+                                Click="ReplyButtonClick"/>
                     </WrapPanel>
                     <SelectableTextBlock Text="{Binding Content}" TextWrapping="Wrap"/>
                     <bn:ReactionListView DataContext="{Binding Reactions}"/>

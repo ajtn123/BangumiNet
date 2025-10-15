@@ -50,7 +50,7 @@ public partial class ReactionViewModel : ViewModelBase
                     {
                         Value = Reaction,
                     });
-                else if(Parent.ItemType == ItemType.Episode)
+                else if (Parent.ItemType == ItemType.Episode)
                     await ApiC.P1.Episodes.Minus.Comments[cid].Like.PutAsLikePutResponseAsync(new()
                     {
                         Value = Reaction,

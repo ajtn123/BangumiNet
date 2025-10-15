@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.ReactiveUI;
 
 namespace BangumiNet.Views;
 

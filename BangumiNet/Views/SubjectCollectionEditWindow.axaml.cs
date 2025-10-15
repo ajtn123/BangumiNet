@@ -1,5 +1,4 @@
 using Avalonia.Controls.Primitives;
-using Avalonia.ReactiveUI;
 using BangumiNet.Api.ExtraEnums;
 using FluentIcons.Avalonia;
 

@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:ReplyViewModel"
+             x:Class="BangumiNet.Views.ReplyView">
+    <StackPanel Spacing="5">
+        <TextBlock Text="{Binding Parent.User.Nickname,StringFormat='回复：{0}'}"/>
+        <TextBox Text="{Binding Content}" AcceptsReturn="True"
+                 MinHeight="60" HorizontalAlignment="Stretch"/>
+        <StackPanel Spacing="5" Orientation="Horizontal">
+            <Button>
+                <TextBlock>
+                    <ic:FluentIcon Icon="Send" />发送
+                </TextBlock>
+            </Button>
+            <Button Command="{Binding DismissCommand}">
+                <TextBlock>
+                    <ic:FluentIcon Icon="Dismiss" />取消
+                </TextBlock>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
