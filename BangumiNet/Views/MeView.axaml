@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:MeViewModel"
+             x:Class="BangumiNet.Views.MeView">
+    <Grid ColumnDefinitions="Auto,*">
+        <Border Classes="Card" Margin="5" Padding="0,5">
+            <StackPanel>
+                <Button Content="{ice:FluentIcon Icon=Mail}"
+                        Classes="Icon" BorderThickness="0"
+                        Command="{Binding ShowNotificationWindow}"/>
+            </StackPanel>
+        </Border>
+        <bn:UserView DataContext="{Binding User}" Grid.Column="2"/>
+    </Grid>
+</UserControl>

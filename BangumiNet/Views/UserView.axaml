@@ -33,6 +33,8 @@
                     </WrapPanel>
                     <SelectableTextBlock Text="{Binding Sign}" IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
                                          TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <SelectableTextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"
+                                         TextWrapping="Wrap" Margin="0,0,0,5"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>

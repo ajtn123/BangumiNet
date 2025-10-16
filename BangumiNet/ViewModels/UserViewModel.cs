@@ -1,6 +1,7 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
+using BangumiNet.Api.P1.P1;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
 using System.Windows.Input;
@@ -70,6 +71,21 @@ public partial class UserViewModel : ViewModelBase
 
         Init();
     }
+    public UserViewModel(Api.P1.Models.User user)
+    {
+        Source = user;
+        Username = user.Username;
+        Nickname = user.Nickname;
+        Avatar = user.Avatar;
+        Id = user.Id;
+        UserGroup = (UserGroup?)user.Group;
+        Sign = user.Sign;
+        Summary = user.Bio;
+        if (user.JoinedAt is int jt)
+            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds(jt);
+
+        Init();
+    }
     public UserViewModel(Api.P1.Models.SimpleUser user)
     {
         Source = user;
@@ -109,6 +125,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial IImages? Avatar { get; set; }
     [Reactive] public partial string? Sign { get; set; }
+    [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial string? Username { get; set; }
     [Reactive] public partial string? Nickname { get; set; }
@@ -126,7 +143,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
 
     public bool IsMe => Username == ApiC.CurrentUsername;
-    public bool IsFull => Source is User or Api.P1.Models.Profile;
+    public bool IsFull => Source is Api.P1.Models.User;
 
     public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
     public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);

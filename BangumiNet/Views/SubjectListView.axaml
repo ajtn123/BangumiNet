@@ -23,6 +23,9 @@
             <DataTemplate DataType="bn:RevisionViewModel">
                 <bn:RevisionCardView DataContext="{Binding}"/>
             </DataTemplate>
+            <DataTemplate DataType="bn:NotificationViewModel">
+                <bn:NotificationCardView DataContext="{Binding}"/>
+            </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

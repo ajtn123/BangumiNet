@@ -100,10 +100,10 @@ public class ApiC
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && username is string uid)
+        else if (typeof(T) == typeof(UserViewModel) && (username ?? CurrentUsername) is string uid)
         {
-            User? user = null;
-            try { user = await V0.Users[uid].GetAsync(); }
+            Api.P1.Models.User? user = null;
+            try { user = await P1.Users[uid].GetAsync(); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (user is null) return null;
