@@ -6,9 +6,6 @@ public static class Constants
     public const string SourceRepository = "https://github.com/ajtn123/BangumiNet";
     public const string SettingJsonName = "BNSettings.json";
     public const string DiskCacheDirectory = "Cache";
-    public const string SubjectCollectionCacheFileName = "SubjectCollection.json";
-    public const string CharacterCollectionCacheFileName = "CharacterCollection.json";
-    public const string PersonCollectionCacheFileName = "PersonCollection.json";
     public const string BangumiTokenManagerUrl = "https://next.bgm.tv/demo/access-token";
     public const string License = """
         MIT License
