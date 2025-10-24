@@ -53,7 +53,7 @@ public class EpUnairedCvt : IValueConverter
 
     public static bool? Convert(object? obj)
     {
-        if (obj is not DateOnly date) return null;
+        if (obj is not DateOnly date) return false;
         if (date.ToDateTime(TimeOnly.MaxValue) > DateTime.UtcNow) return true;
         else return false;
     }
