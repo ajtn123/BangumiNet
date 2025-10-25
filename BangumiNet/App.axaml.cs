@@ -6,6 +6,7 @@ using Avalonia.Media;
 using AvaloniaWebView;
 using System.IO;
 using System.Net;
+using TheArtOfDev.HtmlRenderer.Avalonia;
 
 namespace BangumiNet;
 
@@ -26,6 +27,14 @@ public partial class App : Application
         Common.CleanUpTempFolder();
 
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
+        HtmlPanel.TagProperty.Changed.AddClassHandler<HtmlPanel>((hp, e) =>
+        {
+            var html = Common.ParseBBCode(hp.Tag?.ToString());
+            object? brush = null;
+            Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
+            html = html.Replace("%SelectionBackground%", (brush as SolidColorBrush)?.Color.ToString().Replace("#ff", "#") ?? "#fff");
+            hp.Text = html;
+        });
 
         // 程序关闭时
         //((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)
