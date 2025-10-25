@@ -19,7 +19,7 @@
                                     Background="{DynamicResource ControlSolidFillColorDefaultBrush}"
                                     Margin="0,0,0,-15" ClipToBounds="True">
                     <lvc:CartesianChart.XAxes>
-                        <lvc:XamlAxis Labels="{Binding Ratings}" MinStep="1" ForceStepToMin="True"/>
+                        <lvc:XamlAxis Labels="{x:Static vm:SubjectRatingViewModel.Ratings}" MinStep="1" ForceStepToMin="True"/>
                     </lvc:CartesianChart.XAxes>
                     <lvc:CartesianChart.YAxes>
                         <lvc:XamlAxis IsVisible="False"/>

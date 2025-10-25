@@ -7,6 +7,7 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
              xmlns:utils="using:BangumiNet.Utils"
+             xmlns:sys="using:System"
              RequestedThemeVariant="Default">
 
     <Application.DataTemplates>
@@ -88,6 +89,7 @@
         </Style>
         <Style Selector="ic|FluentIcon">
             <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style Selector="Window">
             <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>

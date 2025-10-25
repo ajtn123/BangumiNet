@@ -5,6 +5,11 @@ namespace BangumiNet.ViewModels;
 
 public partial class NotificationListViewModel : ViewModelBase
 {
+    public NotificationListViewModel()
+    {
+        Title = $"通知 - {Title}";
+    }
+
     public async Task LoadNotifications()
     {
         NotifyGetResponse? response = null;

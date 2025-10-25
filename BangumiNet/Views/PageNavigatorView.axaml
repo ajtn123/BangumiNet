@@ -5,11 +5,14 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="400" Height="30"
-             DataContext="{x:Null}"
              x:DataType="vm:PageNavigatorViewModel"
              x:Class="BangumiNet.Views.PageNavigatorView">
     <Grid ColumnDefinitions="*,3*,Auto,*">
-        <Button Command="{Binding PrevPage}" Content="{ice:FluentIcon Icon=ArrowLeft}"/>
+        <Button Command="{Binding PrevPage}"
+                Content="{ice:FluentIcon Icon=ArrowLeft}"
+                HorizontalAlignment="Stretch"
+                Grid.Column="0"/>
+
         <NumericUpDown Value="{Binding PageIndexInput}" Grid.Column="1" Maximum="{Binding Total}" Minimum="1"
                        FormatString="N0" ParsingNumberStyle="Integer" Margin="5,0">
             <NumericUpDown.InnerLeftContent>
@@ -17,6 +20,10 @@
             </NumericUpDown.InnerLeftContent>
         </NumericUpDown>
         <TextBlock Text="{Binding Total,StringFormat='/ {0} 页'}" VerticalAlignment="Center" Grid.Column="2" Margin="0,0,5,0"/>
-        <Button Command="{Binding NextPage}" Content="{ice:FluentIcon Icon=ArrowRight}" HorizontalAlignment="Right" Grid.Column="3"/>
+
+        <Button Command="{Binding NextPage}"
+                Content="{ice:FluentIcon Icon=ArrowRight}"
+                HorizontalAlignment="Stretch"
+                Grid.Column="3"/>
     </Grid>
 </UserControl>
