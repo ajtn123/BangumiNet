@@ -9,7 +9,7 @@ public partial class NavigatorViewModel : ViewModelBase
     {
         this.WhenAnyValue(x => x.Input).Subscribe(x =>
         {
-            CanToId = int.TryParse(x, out _);
+            CanToId = int.TryParse(x, out int id) && id > 0;
             CanToUser = Common.IsAlphaNumeric(x?.Trim());
         });
 

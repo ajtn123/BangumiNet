@@ -1,7 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
-using BangumiNet.Api.P1.P1;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
 using System.Windows.Input;
@@ -120,6 +119,8 @@ public partial class UserViewModel : ViewModelBase
     {
         Source = username;
         Username = username;
+
+        Init();
     }
 
     [Reactive] public partial object? Source { get; set; }
