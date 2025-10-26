@@ -1,5 +1,4 @@
-﻿using BangumiNet.Api.Html;
-using BangumiNet.Shared.Interfaces;
+﻿using BangumiNet.Shared.Interfaces;
 using Microsoft.Extensions.Caching.Abstractions;
 using Microsoft.Extensions.Caching.InMemory;
 using Microsoft.Kiota.Abstractions;
@@ -22,7 +21,6 @@ public static class ClientBuilder
         var p1Client = new P1.ApiClient(requestAdapter1);
         var v0Client = new V0.ApiClient(requestAdapter0);
         var legacyClient = new Legacy.ApiClient(requestAdapter0);
-        var htmlClient = new HtmlClient(setting, httpClient);
 
         return new()
         {
@@ -32,7 +30,6 @@ public static class ClientBuilder
             P1Client = p1Client,
             V0Client = v0Client,
             LegacyClient = legacyClient,
-            HtmlClient = htmlClient
         };
     }
 }
@@ -45,5 +42,4 @@ public class Clients
     public required P1.ApiClient P1Client { get; set; }
     public required V0.ApiClient V0Client { get; set; }
     public required Legacy.ApiClient LegacyClient { get; set; }
-    public required HtmlClient HtmlClient { get; set; }
 }
