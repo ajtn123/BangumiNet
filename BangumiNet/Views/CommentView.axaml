@@ -19,8 +19,7 @@
         </MainImage>
 
         <StackPanel Spacing="5" Grid.Column="1" Name="RightStackPanel">
-            <Border Classes="Card Large"
-                    HorizontalAlignment="Left">
+            <Border Classes="Card Large">
                 <StackPanel Spacing="3">
                     <WrapPanel Classes="InfoBar">
                         <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
