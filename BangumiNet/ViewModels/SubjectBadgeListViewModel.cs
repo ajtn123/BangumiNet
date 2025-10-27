@@ -8,22 +8,22 @@ public partial class SubjectBadgeListViewModel : ViewModelBase
         Id = id;
     }
 
-    public async Task LoadSubjects()
+    public async Task LoadSubjects(CancellationToken cancellationToken = default)
     {
         if (Id is not int id) return;
         if (ParentType == ItemType.Subject)
         {
-            var data = await ApiC.V0.Subjects[id].Subjects.GetAsync();
+            var data = await ApiC.V0.Subjects[id].Subjects.GetAsync(cancellationToken: cancellationToken);
             SubjectViewModels = data?.Select(x => new SubjectViewModel(x)).ToObservableCollection();
         }
         else if (ParentType == ItemType.Character)
         {
-            var data = await ApiC.V0.Characters[id].Subjects.GetAsync();
+            var data = await ApiC.V0.Characters[id].Subjects.GetAsync(cancellationToken: cancellationToken);
             SubjectViewModels = data?.Select(x => new SubjectViewModel(x)).ToObservableCollection();
         }
         else if (ParentType == ItemType.Person)
         {
-            var data = await ApiC.V0.Persons[id].Subjects.GetAsync();
+            var data = await ApiC.V0.Persons[id].Subjects.GetAsync(cancellationToken: cancellationToken);
             SubjectViewModels = data?.Select(x => new SubjectViewModel(x)).ToObservableCollection();
         }
     }

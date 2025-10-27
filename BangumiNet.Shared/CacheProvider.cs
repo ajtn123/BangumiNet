@@ -14,7 +14,7 @@ public static class CacheProvider
         else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
     }
 
-    public static void WriteCache(string id, Stream content)
+    public static async Task WriteCache(string id, Stream content, CancellationToken cancellationToken = default)
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return;
 
@@ -29,7 +29,7 @@ public static class CacheProvider
 
         Directory.CreateDirectory(dir);
         using var file = File.OpenWrite(path);
-        content.CopyTo(file);
+        await content.CopyToAsync(file, cancellationToken);
         content.Position = 0;
 
         CacheSize += l;

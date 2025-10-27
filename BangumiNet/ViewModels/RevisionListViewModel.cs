@@ -31,7 +31,7 @@ public partial class RevisionListViewModel : ViewModelBase
         });
     }
 
-    public async Task LoadPageAsync(int? i)
+    public async Task LoadPageAsync(int? i, CancellationToken cancellationToken = default)
     {
         if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return;
 
@@ -45,25 +45,25 @@ public partial class RevisionListViewModel : ViewModelBase
                     config.QueryParameters.SubjectId = ItemId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
-                }),
+                }, cancellationToken),
                 ItemType.Episode => await ApiC.V0.Revisions.Episodes.GetAsync(config =>
                 {
                     config.QueryParameters.EpisodeId = ItemId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
-                }),
+                }, cancellationToken),
                 ItemType.Character => await ApiC.V0.Revisions.Characters.GetAsync(config =>
                 {
                     config.QueryParameters.CharacterId = ItemId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
-                }),
+                }, cancellationToken),
                 ItemType.Person => await ApiC.V0.Revisions.Persons.GetAsync(config =>
                 {
                     config.QueryParameters.PersonId = ItemId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
-                }),
+                }, cancellationToken),
                 _ => throw new NotImplementedException(),
             };
         }

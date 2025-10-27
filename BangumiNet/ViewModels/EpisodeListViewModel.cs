@@ -20,7 +20,7 @@ public partial class EpisodeListViewModel : ViewModelBase
     }
 
     /// <returns>是否已取得全部集数</returns>
-    public async Task<bool?> LoadEpisodes()
+    public async Task<bool?> LoadEpisodes(CancellationToken cancellationToken = default)
     {
         if (Offset >= EpTotal) return true;
 
@@ -34,7 +34,7 @@ public partial class EpisodeListViewModel : ViewModelBase
                     config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = Offset;
                     config.QueryParameters.EpisodeType = null;
-                });
+                }, cancellationToken);
             }
             catch (Exception e) { Trace.TraceError(e.Message); return null; }
 
@@ -62,7 +62,7 @@ public partial class EpisodeListViewModel : ViewModelBase
                     config.QueryParameters.Offset = Offset;
                     config.QueryParameters.Type = null;
                     config.QueryParameters.SubjectId = SubjectId;
-                });
+                }, cancellationToken);
             }
             catch (Exception e) { Trace.TraceError(e.Message); return null; }
 

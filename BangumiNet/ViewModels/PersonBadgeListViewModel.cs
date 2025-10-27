@@ -8,17 +8,17 @@ public partial class PersonBadgeListViewModel : ViewModelBase
         Id = id;
     }
 
-    public async Task LoadPersons()
+    public async Task LoadPersons(CancellationToken cancellationToken = default)
     {
         if (Id is not int id) return;
         if (ParentType == ItemType.Subject)
         {
-            var data = await ApiC.V0.Subjects[id].Persons.GetAsync();
+            var data = await ApiC.V0.Subjects[id].Persons.GetAsync(cancellationToken: cancellationToken);
             PersonViewModels = data?.Select(x => new PersonViewModel(x)).ToObservableCollection();
         }
         else if (ParentType == ItemType.Character)
         {
-            var data = await ApiC.V0.Characters[id].Persons.GetAsync();
+            var data = await ApiC.V0.Characters[id].Persons.GetAsync(cancellationToken: cancellationToken);
             PersonViewModels = data?.Select(x => new PersonViewModel(x)).ToObservableCollection();
         }
     }

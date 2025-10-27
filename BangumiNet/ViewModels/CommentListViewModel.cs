@@ -23,22 +23,22 @@ public partial class CommentListViewModel : ViewModelBase
         ReplyViewModel = new(this);
     }
 
-    public Task LoadPageAsync(int? page)
+    public Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
         if (ItemType is not ItemType type || Id is not int i || page is not int p) return Task.CompletedTask;
         int offset = (p - 1) * Limit;
 
         return type switch
         {
-            Shared.ItemType.Subject => LoadSubjectComment(i, offset),
-            Shared.ItemType.Episode => LoadEpisodeComment(i, offset),
-            Shared.ItemType.Character => LoadCharacterComment(i, offset),
-            Shared.ItemType.Person => LoadPersonComment(i, offset),
+            Shared.ItemType.Subject => LoadSubjectComment(i, offset, cancellationToken),
+            Shared.ItemType.Episode => LoadEpisodeComment(i, offset, cancellationToken),
+            Shared.ItemType.Character => LoadCharacterComment(i, offset, cancellationToken),
+            Shared.ItemType.Person => LoadPersonComment(i, offset, cancellationToken),
             _ => throw new NotImplementedException(),
         };
     }
 
-    private async Task LoadSubjectComment(int id, int offset)
+    private async Task LoadSubjectComment(int id, int offset, CancellationToken cancellationToken = default)
     {
         CommentsGetResponse? response = null;
         try
@@ -48,7 +48,7 @@ public partial class CommentListViewModel : ViewModelBase
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
                 config.QueryParameters.Type = (int?)CollectionType;
-            });
+            }, cancellationToken);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
@@ -57,12 +57,12 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.UpdatePageInfo(Limit, offset, response.Total);
         Sources.Add(response);
     }
-    private async Task LoadCharacterComment(int id, int offset)
+    private async Task LoadCharacterComment(int id, int offset, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Characters.Item.Comments.Comments>? response = null;
         try
         {
-            response = await ApiC.P1.Characters[id].Comments.GetAsync();
+            response = await ApiC.P1.Characters[id].Comments.GetAsync(cancellationToken: cancellationToken);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
@@ -71,12 +71,12 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
-    private async Task LoadPersonComment(int id, int offset)
+    private async Task LoadPersonComment(int id, int offset, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Persons.Item.Comments.Comments>? response = null;
         try
         {
-            response = await ApiC.P1.Persons[id].Comments.GetAsync();
+            response = await ApiC.P1.Persons[id].Comments.GetAsync(cancellationToken: cancellationToken);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
@@ -85,12 +85,12 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
-    private async Task LoadEpisodeComment(int id, int offset)
+    private async Task LoadEpisodeComment(int id, int offset, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Episodes.Item.Comments.Comments>? response = null;
         try
         {
-            response = await ApiC.P1.Episodes[id].Comments.GetAsync();
+            response = await ApiC.P1.Episodes[id].Comments.GetAsync(cancellationToken: cancellationToken);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;

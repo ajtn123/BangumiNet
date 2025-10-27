@@ -8,6 +8,10 @@ public partial class PageNavigatorViewModel : ViewModelBase
 {
     public PageNavigatorViewModel()
     {
+        PageIndex = 1;
+        PageIndexInput = 1;
+        Total = 1;
+
         this.WhenAnyValue(x => x.PageIndex).Subscribe(y => PageIndexInput = y);
         PrevPage = ReactiveCommand.Create(() => (int)PageIndex! - 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex - 1)));
         NextPage = ReactiveCommand.Create(() => (int)PageIndex! + 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex + 1)));

@@ -5,10 +5,10 @@ namespace BangumiNet.Shared;
 
 public static class Utils
 {
-    public static MemoryStream Clone(this Stream stream, bool disposeOriginal = true)
+    public static async Task<MemoryStream> Clone(this Stream stream, bool disposeOriginal = true, CancellationToken cancellationToken = default)
     {
         var memoryStream = new MemoryStream();
-        stream.CopyTo(memoryStream);
+        await stream.CopyToAsync(memoryStream, cancellationToken);
         if (disposeOriginal)
             stream.Dispose();
 

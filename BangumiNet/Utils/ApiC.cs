@@ -19,7 +19,7 @@ public class ApiC
     public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
     public static Task<UserViewModel?> RefreshAuthState() => GetViewModelAsync<UserViewModel>();
 
-    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true)
+    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url)) return null;
         useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
@@ -30,14 +30,14 @@ public class ApiC
             {
                 using var cacheStream = CacheProvider.ReadCache(url);
                 if (cacheStream is not null)
-                    result = new Bitmap(cacheStream);
+                    result = await Task.Run(() => new Bitmap(cacheStream), cancellationToken);
             }
             catch (Exception e) { Trace.TraceError(e.Message); CacheProvider.DeleteCache(url); }
         if (result != null) return result;
 
-        var stream = (await HttpClient.GetStreamAsync(url)).Clone();
-        if (useCache) CacheProvider.WriteCache(url, stream);
-        result = new Bitmap(stream);
+        var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
+        if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
+        result = await Task.Run(() => new Bitmap(responseStream), cancellationToken);
 
         return result;
     }
@@ -52,12 +52,12 @@ public class ApiC
     /// <param name="id">ID (如果需求)</param>
     /// <param name="username">用户名 (如果需求)</param>
     /// <returns>ViewModel</returns>
-    public static async Task<T?> GetViewModelAsync<T>(object? id = null, string? username = null) where T : ViewModelBase
+    public static async Task<T?> GetViewModelAsync<T>(object? id = null, string? username = null, CancellationToken cancellationToken = default) where T : ViewModelBase
     {
         if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
         {
             Subject? subject = null;
-            try { subject = await V0.Subjects[subjectId].GetAsync(); }
+            try { subject = await V0.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (subject is null) return null;
@@ -67,7 +67,7 @@ public class ApiC
             if (IsAuthenticated)
             {
                 UserEpisodeCollection? episode = null;
-                try { episode = await V0.Users.Minus.Collections.Minus.Episodes[episodeId].GetAsync(); }
+                try { episode = await V0.Users.Minus.Collections.Minus.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
                 catch (Exception e) { Trace.TraceError(e.Message); }
 
                 if (episode is null) return null;
@@ -76,7 +76,7 @@ public class ApiC
             else
             {
                 EpisodeDetail? episode = null;
-                try { episode = await V0.Episodes[episodeId].GetAsync(); }
+                try { episode = await V0.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
                 catch (Exception e) { Trace.TraceError(e.Message); }
 
                 if (episode is null) return null;
@@ -85,7 +85,7 @@ public class ApiC
         else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
         {
             Character? character = null;
-            try { character = await V0.Characters[characterId].GetAsync(); }
+            try { character = await V0.Characters[characterId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (character is null) return null;
@@ -94,7 +94,7 @@ public class ApiC
         else if (typeof(T) == typeof(PersonViewModel) && id is int personId)
         {
             PersonDetail? person = null;
-            try { person = await V0.Persons[personId].GetAsync(); }
+            try { person = await V0.Persons[personId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (person is null) return null;
@@ -103,7 +103,7 @@ public class ApiC
         else if (typeof(T) == typeof(UserViewModel) && (username ?? CurrentUsername) is string uid)
         {
             Api.P1.Models.User? user = null;
-            try { user = await P1.Users[uid].GetAsync(); }
+            try { user = await P1.Users[uid].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (user is null) return null;
@@ -112,7 +112,7 @@ public class ApiC
         else if (typeof(T) == typeof(UserViewModel) && username is null)
         {
             Api.P1.Models.Profile? me = null;
-            try { me = await P1.Me.GetAsync(); }
+            try { me = await P1.Me.GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             CurrentUsername = me?.Username;
@@ -123,7 +123,7 @@ public class ApiC
         else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1)
         {
             UserSubjectCollection? subjectCollection = null;
-            try { subjectCollection = await V0.Users[username ?? CurrentUsername].Collections[subjectId1].GetAsync(); }
+            try { subjectCollection = await V0.Users[username ?? CurrentUsername].Collections[subjectId1].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (subjectCollection is null) return null;
@@ -132,7 +132,7 @@ public class ApiC
         else if (typeof(T) == typeof(CalendarViewModel))
         {
             List<Calendar>? calendars = null;
-            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(); }
+            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (calendars is null) return null;
@@ -142,7 +142,7 @@ public class ApiC
         else if (typeof(T) == typeof(AiringViewModel))
         {
             List<Calendar>? calendars = null;
-            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(); }
+            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (calendars is null) return null;
@@ -158,7 +158,7 @@ public class ApiC
     /// <param name="type">Subject/Character/Person</param>
     /// <param name="id">项目 ID</param>
     /// <returns>收藏时间，未收藏或出错时为 null</returns>
-    public static async Task<DateTimeOffset?> GetIsCollected(ItemType type, int? id)
+    public static async Task<DateTimeOffset?> GetIsCollected(ItemType type, int? id, CancellationToken cancellationToken = default)
     {
         if (id is not int i || string.IsNullOrWhiteSpace(CurrentUsername)) return null;
 
@@ -167,9 +167,9 @@ public class ApiC
         {
             return type switch
             {
-                ItemType.Subject => (await uc[i].GetAsync())?.UpdatedAt,
-                ItemType.Character => (await uc.Minus.Characters[i].GetAsync())?.CreatedAt,
-                ItemType.Person => (await uc.Minus.Persons[i].GetAsync())?.CreatedAt,
+                ItemType.Subject => (await uc[i].GetAsync(cancellationToken: cancellationToken))?.UpdatedAt,
+                ItemType.Character => (await uc.Minus.Characters[i].GetAsync(cancellationToken: cancellationToken))?.CreatedAt,
+                ItemType.Person => (await uc.Minus.Persons[i].GetAsync(cancellationToken: cancellationToken))?.CreatedAt,
                 _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
             };
         }
@@ -178,7 +178,7 @@ public class ApiC
         return null;
     }
 
-    public static async Task<int> UpdateCollection(ItemType type, int id, bool target)
+    public static async Task<int> UpdateCollection(ItemType type, int id, bool target, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -186,13 +186,13 @@ public class ApiC
             {
                 ItemType.Character => target switch
                 {
-                    true => V0.Characters[id].Collect.PostAsync(),
-                    false => V0.Characters[id].Collect.DeleteAsync(),
+                    true => V0.Characters[id].Collect.PostAsync(cancellationToken: cancellationToken),
+                    false => V0.Characters[id].Collect.DeleteAsync(cancellationToken: cancellationToken),
                 },
                 ItemType.Person => target switch
                 {
-                    true => V0.Persons[id].Collect.PostAsync(),
-                    false => V0.Persons[id].Collect.DeleteAsync(),
+                    true => V0.Persons[id].Collect.PostAsync(cancellationToken: cancellationToken),
+                    false => V0.Persons[id].Collect.DeleteAsync(cancellationToken: cancellationToken),
                 },
                 _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
             };
@@ -206,11 +206,11 @@ public class ApiC
         }
     }
 
-    public static async Task<int> UpdateEpisodeCollection(int id, EpisodeCollectionType type)
+    public static async Task<int> UpdateEpisodeCollection(int id, EpisodeCollectionType type, CancellationToken cancellationToken = default)
     {
         try
         {
-            await V0.Users.Minus.Collections.Minus.Episodes[id].PutAsync(new() { Type = (int)type });
+            await V0.Users.Minus.Collections.Minus.Episodes[id].PutAsync(new() { Type = (int)type }, cancellationToken: cancellationToken);
             return 204;
         }
         catch (ErrorDetail e)
@@ -219,11 +219,11 @@ public class ApiC
             return e.ResponseStatusCode;
         }
     }
-    public static async Task<int> UpdateEpisodeCollection(int subjectId, IEnumerable<int> eps, EpisodeCollectionType type)
+    public static async Task<int> UpdateEpisodeCollection(int subjectId, IEnumerable<int> eps, EpisodeCollectionType type, CancellationToken cancellationToken = default)
     {
         try
         {
-            await V0.Users.Minus.Collections[subjectId].Episodes.PatchAsync(new() { EpisodeId = [.. eps], Type = (int)type });
+            await V0.Users.Minus.Collections[subjectId].Episodes.PatchAsync(new() { EpisodeId = [.. eps], Type = (int)type }, cancellationToken: cancellationToken);
             return 204;
         }
         catch (ErrorDetail e)
