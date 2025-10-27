@@ -13,11 +13,10 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
             if (!viewModel.IsFull)
             {
                 if (viewModel.Id is not int id) return;
-                var fullSubject = await ApiC.V0.Characters[id].GetAsync();
-                if (fullSubject == null) return;
+                var fullChar = await ApiC.GetViewModelAsync<CharacterViewModel>(id);
+                if (fullChar == null) return;
                 dataContextChanges += 1;
-                var vm = new CharacterViewModel(fullSubject);
-                DataContext = vm;
+                DataContext = fullChar;
             }
             _ = ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
             _ = ViewModel?.PersonBadgeListViewModel?.LoadPersons();

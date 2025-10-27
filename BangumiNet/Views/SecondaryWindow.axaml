@@ -24,5 +24,8 @@
 		<DataTemplate DataType="bn:RevisionViewModel">
 			<bn:RevisionView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate DataType="bn:NotificationListViewModel">
+			<bn:NotificationListView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.DataTemplates>
 </Window>

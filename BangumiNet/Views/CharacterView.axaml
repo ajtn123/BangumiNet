@@ -6,7 +6,6 @@
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             bn:UserControlHelpers.ParentTitle="{Binding Title}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:CharacterViewModel"
              x:Class="BangumiNet.Views.CharacterView">

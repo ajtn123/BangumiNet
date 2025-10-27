@@ -11,7 +11,7 @@ public partial class MeViewModel : ViewModelBase
         ShowNotificationWindow = ReactiveCommand.Create(() =>
         {
             NotificationListViewModel ??= new();
-            new SecondaryWindow() { Content = new NotificationListView() { DataContext = NotificationListViewModel } }.Show();
+            new SecondaryWindow() { Content = NotificationListViewModel }.Show();
         });
         User = await ApiC.GetViewModelAsync<UserViewModel>();
     }

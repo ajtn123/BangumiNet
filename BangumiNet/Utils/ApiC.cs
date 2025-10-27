@@ -153,14 +153,14 @@ public class ApiC
             object? revision = null;
             try
             {
-                if (rvm.Id is not int rid)
+                if (rvm.Id is not int revisionId)
                     throw new ArgumentException($"非法 RevisionId {rvm.Id}");
                 revision = rvm.Parent?.ItemTypeEnum switch
                 {
-                    ItemType.Subject => revision = await V0.Revisions.Subjects[rid].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Episode => revision = await V0.Revisions.Episodes[rid].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Character => revision = await V0.Revisions.Characters[rid].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Person => revision = await V0.Revisions.Persons[rid].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Subject => revision = await V0.Revisions.Subjects[revisionId].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Episode => revision = await V0.Revisions.Episodes[revisionId].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Character => revision = await V0.Revisions.Characters[revisionId].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Person => revision = await V0.Revisions.Persons[revisionId].GetAsync(cancellationToken: cancellationToken),
                     _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemTypeEnum}"),
                 };
             }

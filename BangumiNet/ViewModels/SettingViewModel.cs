@@ -60,6 +60,7 @@ public partial class SettingViewModel : ViewModelBase
             }
         });
 
+        Title = $"设置 - {Title}";
         SearchEngineSuggestions = [];
         this.WhenAnyValue(x => x.Settings).Subscribe(x => SearchEngineSuggestions = [.. x.SearchQueryUrlBases.Keys]);
     }

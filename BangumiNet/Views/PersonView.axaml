@@ -7,7 +7,6 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:am="using:BangumiNet.Api.V0.Models"
-             bn:UserControlHelpers.ParentTitle="{Binding Title}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:PersonViewModel"
              x:Class="BangumiNet.Views.PersonView">

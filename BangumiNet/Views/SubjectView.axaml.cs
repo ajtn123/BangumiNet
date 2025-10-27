@@ -13,11 +13,10 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
             if (!viewModel.IsFull)
             {
                 if (viewModel.Id is not int id) return;
-                var fullSubject = await ApiC.V0.Subjects[id].GetAsync();
+                var fullSubject = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
                 if (fullSubject == null) return;
                 dataContextChanges += 1;
-                var vm = new SubjectViewModel(fullSubject);
-                DataContext = vm;
+                DataContext = fullSubject;
             }
             _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
             _ = ViewModel?.PersonBadgeListViewModel?.LoadPersons();

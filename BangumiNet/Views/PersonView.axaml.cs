@@ -13,11 +13,10 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
             if (!viewModel.IsFull)
             {
                 if (viewModel.Id is not int id) return;
-                var fullPerson = await ApiC.V0.Persons[id].GetAsync();
+                var fullPerson = await ApiC.GetViewModelAsync<PersonViewModel>(id);
                 if (fullPerson == null) return;
                 dataContextChanges += 1;
-                var vm = new PersonViewModel(fullPerson);
-                DataContext = vm;
+                DataContext = fullPerson;
             }
             _ = ViewModel?.SubjectBadgeListViewModel?.LoadSubjects();
             _ = ViewModel?.CharacterBadgeListViewModel?.LoadCharacters();

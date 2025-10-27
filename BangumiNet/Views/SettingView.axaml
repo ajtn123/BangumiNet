@@ -10,7 +10,6 @@
              xmlns:utils="using:BangumiNet.Utils"
              xmlns:shared="using:BangumiNet.Shared"
              xmlns:refl="using:System.Reflection"
-             utils:UserControlHelpers.ParentTitle="设置 - BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1600"
              x:DataType="vm:SettingViewModel"
              x:Class="BangumiNet.Views.SettingView">

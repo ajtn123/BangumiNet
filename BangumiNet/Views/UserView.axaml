@@ -5,7 +5,6 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             bn:UserControlHelpers.ParentTitle="{Binding Nickname, StringFormat='\{0} - BangumiNet',FallbackValue='用户 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:UserViewModel"
              x:Class="BangumiNet.Views.UserView">

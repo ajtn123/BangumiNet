@@ -13,6 +13,7 @@ public partial class SearchViewModel : ViewModelBase
 {
     public SearchViewModel()
     {
+        Title = $"搜索 - {Title}";
         SearchType = SearchType.Subject;
         Type = SubjectTypeOptionViewModel.GetList();
         Career = PersonCareerOptionViewModel.GetList();

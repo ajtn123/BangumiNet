@@ -7,8 +7,7 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
              x:DataType="bn:SubjectViewModel"
-             x:Class="BangumiNet.Views.SubjectView"
-             bn:UserControlHelpers.ParentTitle="{Binding Title}">
+             x:Class="BangumiNet.Views.SubjectView">
     <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"

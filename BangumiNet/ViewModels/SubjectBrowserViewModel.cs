@@ -9,6 +9,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
 {
     public SubjectBrowserViewModel()
     {
+        Title = $"浏览项目 - {Title}";
         Type = SubjectType.Anime;
         SubjectListViewModel = new SubjectListViewModel();
         PageNavigatorViewModel = new PageNavigatorViewModel();

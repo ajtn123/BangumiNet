@@ -8,7 +8,6 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
-             utils:UserControlHelpers.ParentTitle="浏览项目 - BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:SubjectBrowserViewModel"
              x:Class="BangumiNet.Views.SubjectBrowserView">

@@ -96,6 +96,7 @@ public partial class UserViewModel : ViewModelBase
     }
     public void Init()
     {
+        Title = $"{Nickname ?? Username ?? "用户"} - {Title}";
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
