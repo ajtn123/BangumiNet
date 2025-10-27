@@ -138,7 +138,6 @@ public partial class PersonViewModel : ItemViewModelBase
         CommentListViewModel = new(ItemTypeEnum, Id);
         RevisionListViewModel = new(this);
 
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new PersonView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
         CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));

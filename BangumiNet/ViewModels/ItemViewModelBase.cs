@@ -6,7 +6,8 @@ public partial class ItemViewModelBase : ViewModelBase
 {
     public ItemViewModelBase()
     {
-        ShowRevisionsCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new RevisionListView() { DataContext = RevisionListViewModel } }.Show());
+        ShowRevisionsCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = RevisionListViewModel }.Show());
+        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = this }.Show());
     }
 
     [Reactive] public partial int? Id { get; set; }

@@ -2,6 +2,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:bn="https://github.com/ajtn123/BangumiNet"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BangumiNet.Views.SecondaryWindow">
+    <Window.DataTemplates>
+		<DataTemplate DataType="bn:SubjectViewModel">
+			<bn:SubjectView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:EpisodeViewModel">
+			<bn:EpisodeFullView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:CharacterViewModel">
+			<bn:CharacterView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:PersonViewModel">
+			<bn:PersonView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:RevisionListViewModel">
+			<bn:RevisionListView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:RevisionViewModel">
+			<bn:RevisionView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.DataTemplates>
 </Window>

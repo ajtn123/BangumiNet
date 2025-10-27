@@ -133,7 +133,6 @@ public partial class SubjectViewModel : ItemViewModelBase
             RevisionListViewModel = new(this);
         }
 
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new SubjectView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
