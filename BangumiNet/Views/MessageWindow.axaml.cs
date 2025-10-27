@@ -1,9 +1,9 @@
-using Avalonia.Controls;
+using FluentAvalonia.UI.Windowing;
 using FluentIcons.Common;
 
 namespace BangumiNet.Views;
 
-public partial class MessageWindow : Window
+public partial class MessageWindow : AppWindow
 {
     public MessageWindow()
     {
