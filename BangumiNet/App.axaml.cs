@@ -6,7 +6,6 @@ using Avalonia.Media;
 using AvaloniaWebView;
 using System.IO;
 using System.Net;
-using TheArtOfDev.HtmlRenderer.Avalonia;
 
 namespace BangumiNet;
 
@@ -27,7 +26,6 @@ public partial class App : Application
         Common.CleanUpTempFolder();
 
         TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
-        HtmlPanel.TagProperty.Changed.AddClassHandler<HtmlPanel>(BBCodeHelper.Parser);
 
         // 程序关闭时
         //((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)

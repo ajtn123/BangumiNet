@@ -2,38 +2,14 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 using System.Text.RegularExpressions;
-using TheArtOfDev.HtmlRenderer.Avalonia;
 
 namespace BangumiNet.Utils;
 
 public static partial class BBCodeHelper
 {
-    public const string ContentPos = "%CONTENT%";
-    public const string SelectionBackgroundPos = "%SELECTIONBACKGROUND%";
-    public static void Parser(HtmlPanel hp, AvaloniaPropertyChangedEventArgs e)
-    {
-        var bbcode = hp.Tag?.ToString();
-        if (string.IsNullOrWhiteSpace(bbcode)) return;
-
-        var html = ParseBBCode(bbcode);
-        object? brush = null;
-        Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
-        html = html.Replace(SelectionBackgroundPos, (brush as SolidColorBrush)?.Color.ToString().Replace("#ff", "#") ?? "#fff");
-        hp.Text = html;
-    }
-
-    public static string ParseBBCode(string? bbcode)
-    {
-        if (string.IsNullOrEmpty(bbcode)) return string.Empty;
-
-        string result = bbcode.Trim(' ', '\n', '\r');
-        foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
-        foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
-
-        return Html.Replace(ContentPos, result);
-    }
-
-    private static readonly string Html = $$"""
+    private const string ContentPos = "%CONTENT%";
+    private const string SelectionBackgroundPos = "%SELECTIONBACKGROUND%";
+    private const string HtmlFrame = $$"""
         <!DOCTYPE html>
         <html>
         <head>
@@ -48,10 +24,44 @@ public static partial class BBCodeHelper
         <body>{{ContentPos}}</body>
         </html>
         """;
+
+    public static string ParseBBCode(string? bbcode)
+    {
+        if (string.IsNullOrWhiteSpace(bbcode)) return string.Empty;
+
+        string result = bbcode.Trim(' ', '\n', '\r');
+        foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
+        foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
+
+        var html = HtmlFrame.Replace(ContentPos, result);
+
+        object? brush = null;
+        Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
+        var selectionBg = (brush as SolidColorBrush)?.Color.ToString().Replace("#ff", "#") ?? "#fff";
+        html = html.Replace(SelectionBackgroundPos, selectionBg);
+
+        return html;
+    }
+
+    public static bool ContainsBBCode(string? bbcode)
+    {
+        if (string.IsNullOrWhiteSpace(bbcode)) return false;
+
+        if (BBCodeReplacement
+            .Where(p => p.Value != HtmlNewLine)
+            .Any(p => bbcode.Contains(p.Key))) return true;
+        if (BBCodeRegexReplacement
+            .Any(r => r.Key.IsMatch(bbcode))) return true;
+
+        return false;
+    }
+
+    private const string HtmlNewLine = "<br/>";
     private static readonly Dictionary<string, string> BBCodeReplacement = new()
     {
-        ["\r\n"] = "<br/>",
-        ["\n"] = "<br/>",
+        ["\r\n"] = HtmlNewLine,
+        ["\r"] = HtmlNewLine,
+        ["\n"] = HtmlNewLine,
         ["[b]"] = "<b>",
         ["[/b]"] = "</b>",
         ["[i]"] = "<i>",
@@ -62,31 +72,29 @@ public static partial class BBCodeHelper
         ["[/s]"] = "</s>",
         ["[mask]"] = "<span class=\"mask\">",
         ["[/mask]"] = "</span>",
-        ["<br/>[quote]"] = "[quote]",
-        ["[/quote]<br/>"] = "[/quote]",
-        ["[quote]"] = "<blockquote>",
-        ["[/quote]"] = "</blockquote>",
         ["[/color]"] = "</span>",
         ["[/size]"] = "</span>",
-        ["[/url]"] = "</a>",
     };
     private static readonly Dictionary<Regex, string> BBCodeRegexReplacement = new()
     {
         [ColorOpen()] = "<span style=\"color: $1;\">",
         [SizeOpen()] = "<span style=\"font-size: $1px;\">",
         [LinkLiteral()] = "<a href=\"$1\">$1</a>",
-        [LinkOpen()] = "<a href=\"$1\">",
+        [LinkCovered()] = "<a href=\"$1\">$2</a>",
         [Image()] = "<img src=\"$1\"/>",
+        [Quote()] = "<blockquote>$2</blockquote>",
     };
 
     [GeneratedRegex(@"\[color=([#0-9a-zA-Z]*)\]")]
     private static partial Regex ColorOpen();
-    [GeneratedRegex(@"\[size=([0-9]*)\]")]
+    [GeneratedRegex(@"\[size=([\.0-9a-zA-Z]*)\]")]
     private static partial Regex SizeOpen();
-    [GeneratedRegex(@"\[url]([^\[\]]*)\[/url\]")]
+    [GeneratedRegex(@"\[url\](.*?)\[/url\]")]
     private static partial Regex LinkLiteral();
-    [GeneratedRegex(@"\[url=([^\[\]]*)\]")]
-    private static partial Regex LinkOpen();
-    [GeneratedRegex(@"\[img]([^\[\]]*)\[/img\]")]
+    [GeneratedRegex(@"\[url=(.*?)\](.*?)\[/url\]")]
+    private static partial Regex LinkCovered();
+    [GeneratedRegex(@"\[img\](.*?)\[/img\]")]
     private static partial Regex Image();
+    [GeneratedRegex(@"(<br/>)? *\[quote\](.*?)\[/quote\] *(<br/>)?")]
+    private static partial Regex Quote();
 }

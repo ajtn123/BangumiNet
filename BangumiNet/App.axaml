@@ -20,6 +20,7 @@
                 <ResourceInclude Source="/Converters/Converters.axaml"/>
                 <ResourceInclude Source="/Templates/MainImage.axaml" />
                 <ResourceInclude Source="/Templates/InfoItem.axaml" />
+                <ResourceInclude Source="/Templates/BBCode.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <CornerRadius x:Key="CardInnerCornerRadius">9.35</CornerRadius>

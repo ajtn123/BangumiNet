@@ -5,7 +5,6 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
-             xmlns:html="using:TheArtOfDev.HtmlRenderer.Avalonia"
              bn:UserControlHelpers.ParentTitle="{Binding Nickname, StringFormat='\{0} - BangumiNet',FallbackValue='用户 - BangumiNet'}"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:UserViewModel"
@@ -37,8 +36,8 @@
                         <SelectableTextBlock Text="{Binding Sign}"
                                              TextWrapping="Wrap"/>
                     </Border>
-                    <html:HtmlPanel Tag="{Binding Summary}"
-                                    IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
+                    <BBCode Text="{Binding Summary}"
+                            IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
