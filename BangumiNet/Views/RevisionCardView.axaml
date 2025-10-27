@@ -19,8 +19,10 @@
                    Width="1" Margin="0,20,0,-5"/>
         
         <StackPanel Grid.Column="1">
-            <TextBlock Classes="Title" Text="{Binding Summary}"
-                       IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"/>
+            <HyperlinkButton Content="{Binding Summary}"
+                             Classes="Title" FontSize="14"
+                             Command="{Binding OpenInNewWindowCommand}"
+                             IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"/>
             <WrapPanel Classes="InfoBar">
                 <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Command="{Binding Creator.OpenInNewWindowCommand}"
                                  Content="{Binding Creator.Nickname}" Classes="Pri"
@@ -29,6 +31,7 @@
                 <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding CreationTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding CreationTime}"/></TextBlock>
                 <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type}"/></TextBlock>
                 <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
         </StackPanel>
     </Grid>

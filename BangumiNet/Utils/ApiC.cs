@@ -148,6 +148,27 @@ public class ApiC
             if (calendars is null) return null;
             else return new AiringViewModel(calendars) as T;
         }
+        else if (typeof(T) == typeof(RevisionViewModel) && id is RevisionViewModel rvm)
+        {
+            object? revision = null;
+            try
+            {
+                if (rvm.Id is not int rid)
+                    throw new ArgumentException($"非法 RevisionId {rvm.Id}");
+                revision = rvm.Parent?.ItemTypeEnum switch
+                {
+                    ItemType.Subject => revision = await V0.Revisions.Subjects[rid].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Episode => revision = await V0.Revisions.Episodes[rid].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Character => revision = await V0.Revisions.Characters[rid].GetAsync(cancellationToken: cancellationToken),
+                    ItemType.Person => revision = await V0.Revisions.Persons[rid].GetAsync(cancellationToken: cancellationToken),
+                    _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemTypeEnum}"),
+                };
+            }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (revision is null) return null;
+            else return new RevisionViewModel(revision, rvm.Parent!) as T;
+        }
 
         else return null;
     }

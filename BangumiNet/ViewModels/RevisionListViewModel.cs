@@ -75,7 +75,7 @@ public partial class RevisionListViewModel : ViewModelBase
         if (revs is null) return;
 
         if (revs.Data != null)
-            RevisionList.SubjectViewModels = [.. revs.Data.Select(x => new RevisionViewModel(x))];
+            RevisionList.SubjectViewModels = [.. revs.Data.Select(x => new RevisionViewModel(x, Parent))];
 
         Total = revs.Total;
         Offset = revs.Offset;
