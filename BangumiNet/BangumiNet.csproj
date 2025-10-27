@@ -27,6 +27,7 @@
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.8" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.8" />
     <PackageReference Include="Avalonia.Diagnostics" Version="11.3.8" Condition="'$(Configuration)' == 'Debug'" />
+    <PackageReference Include="Avalonia.HtmlRenderer" Version="11.2.0" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.0" />
     <PackageReference Include="FluentIcons.Avalonia" Version="1.1.312" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc6.1" />
@@ -38,7 +39,6 @@
     <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.6.2" />
     <PackageReference Include="WebView.Avalonia" Version="11.0.0.1" />
     <PackageReference Include="WebView.Avalonia.Desktop" Version="11.0.0.1" />
-    <PackageReference Include="Avalonia.HtmlRenderer" Version="11.2.0" />
   </ItemGroup>
 
   <ItemGroup>

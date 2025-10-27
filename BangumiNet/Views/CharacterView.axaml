@@ -35,8 +35,8 @@
                             <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
                         </TextBlock>
                     </WrapPanel>
-                    <SelectableTextBlock Text="{Binding Summary}" IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"
-                                         TextWrapping="Wrap" Margin="0,0,0,5"/>
+                    <BBCode Text="{Binding Summary}" Margin="0,0,0,5"
+                            IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>

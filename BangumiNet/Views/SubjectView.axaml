@@ -48,8 +48,8 @@
                                 </TextBlock>
                             </WrapPanel>
                             <bn:EpisodeListView DataContext="{Binding EpisodeListViewModel}"/>
-                            <SelectableTextBlock Text="{Binding Summary}" TextWrapping="Wrap"
-                                                 IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"/>
+                            <BBCode Text="{Binding Summary}"
+                                    IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"/>
                             <bn:TagListView DataContext="{Binding TagListViewModel}"/>
                             <StackPanel Orientation="Horizontal" Spacing="5">
                                 <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

@@ -45,8 +45,8 @@
                             IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"/>
                 </WrapPanel>
             </Border>
-            <SelectableTextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,5"
-                                 IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
+            <BBCode Text="{Binding Description}" Margin="0,0,0,5"
+                    IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Spacing="5">
                     <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>

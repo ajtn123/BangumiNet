@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using TheArtOfDev.HtmlRenderer.Avalonia;
@@ -24,7 +25,7 @@ public class BBCode : TemplatedControl
             if (BBCodeHelper.ContainsBBCode(text))
                 contentPresenter?.Content = new HtmlPanel() { Text = BBCodeHelper.ParseBBCode(text) };
             else
-                contentPresenter?.Content = new SelectableTextBlock() { Text = text };
+                contentPresenter?.Content = new SelectableTextBlock() { Text = text, TextWrapping = TextWrapping.Wrap };
         }).DisposeWith(disposables);
     }
 
