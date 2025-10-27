@@ -7,6 +7,7 @@
              x:DataType="bn:CommentListViewModel"
              x:Class="BangumiNet.Views.CommentListView">
     <StackPanel Spacing="5">
+        <bn:ReplyView DataContext="{Binding ReplyViewModel}"/>
         <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"
                               IsVisible="{Binding !$parent.DataContext.IsSinglePage}"/>
         <ItemsControl ItemsSource="{Binding Comments}">

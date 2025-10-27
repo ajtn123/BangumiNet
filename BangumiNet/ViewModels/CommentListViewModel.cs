@@ -20,6 +20,7 @@ public partial class CommentListViewModel : ViewModelBase
         PageNavigatorViewModel.PrevPage.InvokeCommand(LoadPageCommand);
         PageNavigatorViewModel.NextPage.InvokeCommand(LoadPageCommand);
         PageNavigatorViewModel.JumpPage.InvokeCommand(LoadPageCommand);
+        ReplyViewModel = new(this);
     }
 
     public Task LoadPageAsync(int? page)
@@ -105,6 +106,7 @@ public partial class CommentListViewModel : ViewModelBase
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial CollectionType? CollectionType { get; set; }
     [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
+    [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
 
