@@ -8,4 +8,4 @@
 ## 鸣谢
 
 - [Bangumi](https://bangumi.tv)
-- [Bangumi API](https://github.com/bangumi/api)
+- [Bangumi 开源项目](https://github.com/bangumi)
