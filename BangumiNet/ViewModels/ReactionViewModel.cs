@@ -25,10 +25,13 @@ public partial class ReactionViewModel : ViewModelBase
     {
         ReactionImage = StickerProvider.GetStickerBitmap(Reaction);
         ReactCommand = ReactiveCommand.CreateFromTask(React);
-        Users.CollectionChanged += (s, e) =>
+        this.WhenAnyValue(x => x.Users).Subscribe(user =>
         {
-            this.RaisePropertyChanged(nameof(HasMe));
-        };
+            user.CollectionChanged += (s, e) =>
+            {
+                this.RaisePropertyChanged(nameof(HasMe));
+            };
+        });
     }
 
     [Reactive] public partial ReactionListViewModel? Parent { get; set; }
