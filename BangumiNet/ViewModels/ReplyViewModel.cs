@@ -9,7 +9,7 @@ public partial class ReplyViewModel : ViewModelBase
     {
         Content = string.Empty;
         Parent = parent;
-        SendCommand = ReactiveCommand.CreateFromTask(async _ =>
+        SendCommand = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (Parent?.MainId == null || Parent.Id == null || string.IsNullOrWhiteSpace(Content)) return false;
             string token = await GetTurnstileInteraction.Handle(default);
@@ -23,21 +23,21 @@ public partial class ReplyViewModel : ViewModelBase
                         Content = Content,
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Character)
                     ncid = (await ApiC.P1.Characters[(int)Parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
                     {
                         Content = Content,
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Episode)
                     ncid = (await ApiC.P1.Episodes[(int)Parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
                     {
                         Content = Content,
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else throw new NotImplementedException();
 
                 Parent.Replies ??= [];
@@ -61,7 +61,7 @@ public partial class ReplyViewModel : ViewModelBase
     {
         Content = string.Empty;
         Ancestor = ancestor;
-        SendCommand = ReactiveCommand.CreateFromTask(async _ =>
+        SendCommand = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (Ancestor?.Id == null || string.IsNullOrWhiteSpace(Content)) return false;
             string token = await GetTurnstileInteraction.Handle(default);
@@ -75,21 +75,21 @@ public partial class ReplyViewModel : ViewModelBase
                         Content = Content,
                         ReplyTo = 0,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Character)
                     ncid = (await ApiC.P1.Characters[(int)Ancestor.Id].Comments.PostAsCommentsPostResponseAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Episode)
                     ncid = (await ApiC.P1.Episodes[(int)Ancestor.Id].Comments.PostAsCommentsPostResponseAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,
                         TurnstileToken = token
-                    }))?.Id;
+                    }, cancellationToken: ct))?.Id;
                 else throw new NotImplementedException();
 
                 Ancestor.Comments ??= [];
