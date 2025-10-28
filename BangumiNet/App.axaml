@@ -1,19 +1,12 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="BangumiNet.App"
-             xmlns:local="using:BangumiNet"
-             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:sty="using:FluentAvalonia.Styling"
-             xmlns:utils="using:BangumiNet.Utils"
              xmlns:sys="using:System"
+             x:Class="BangumiNet.App"
              RequestedThemeVariant="Default">
-
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,7 +23,7 @@
         <x:Double x:Key="BadgeFactor">2</x:Double>
         <Thickness x:Key="DatePickerHostPadding">0,0,0,0</Thickness>
         <Thickness x:Key="DatePickerHostMonthPadding">5,0,0,0</Thickness>
-        <DataTemplate x:Key="NavigatorTemplate" DataType="vm:AutoCompleteBoxItemViewModel">
+        <DataTemplate x:Key="NavigatorTemplate" DataType="bn:AutoCompleteBoxItemViewModel">
             <Button Command="{Binding Command}" Content="{Binding Text}"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                     Padding="0" Margin="0" BorderBrush="Transparent" Background="Transparent"/>

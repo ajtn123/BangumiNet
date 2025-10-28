@@ -8,7 +8,7 @@ using System.Net.Http;
 
 namespace BangumiNet.Utils;
 
-public class ApiC
+public static class ApiC
 {
     public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.CurrentSettings);
     public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
