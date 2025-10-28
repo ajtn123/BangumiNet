@@ -56,4 +56,23 @@ public static class StickerProvider
     public static ReactionViewModel[] EpisodeCommentReactions => [
         new(0), new(79), new(54), new(140), new(62), new(122), new(104), new(80), new(141), new(88), new(85), new(90)
     ];
+
+    public static readonly string[] Emojis = [
+        "(=A=)",
+        "(=w=)",
+        "(-w=)",
+        "(S_S)",
+        "(=v=)",
+        "(@_@)",
+        "(=W=)",
+        "(TAT)",
+        "(T_T)",
+        "(='=)",
+        "(=3=)",
+        "(= =')",
+        "(=///=)",
+        "(=.,=)",
+        "(:P)",
+        "(LOL)",
+    ];
 }

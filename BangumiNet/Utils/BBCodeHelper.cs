@@ -32,6 +32,7 @@ public static partial class BBCodeHelper
         string result = bbcode.Trim(' ', '\n', '\r');
         foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
         foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
+        foreach (var (i, s) in StickerProvider.Emojis.Index()) result = result.Replace(s, $"<img src=\"bn://emoji/{i}\">");
 
         var html = HtmlFrame.Replace(ContentPos, result);
 
@@ -52,6 +53,8 @@ public static partial class BBCodeHelper
             .Any(p => bbcode.Contains(p.Key))) return true;
         if (BBCodeRegexReplacement
             .Any(r => r.Key.IsMatch(bbcode))) return true;
+        if (StickerProvider.Emojis
+            .Any(bbcode.Contains)) return true;
 
         return false;
     }
@@ -83,6 +86,7 @@ public static partial class BBCodeHelper
         [LinkCovered()] = "<a href=\"$1\">$2</a>",
         [Image()] = "<img src=\"$1\"/>",
         [Quote()] = "<blockquote>$2</blockquote>",
+        [Sticker()] = "<img src=\"bn://sticker/$1\"/>",
     };
 
     [GeneratedRegex(@"\[color=([#0-9a-zA-Z]*)\]")]
@@ -97,4 +101,6 @@ public static partial class BBCodeHelper
     private static partial Regex Image();
     [GeneratedRegex(@"(<br/>)? *\[quote\](.*?)\[/quote\] *(<br/>)?")]
     private static partial Regex Quote();
+    [GeneratedRegex(@"\(bgm([0-9]{1,3})\)")]
+    private static partial Regex Sticker();
 }

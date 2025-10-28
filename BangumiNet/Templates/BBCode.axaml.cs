@@ -23,10 +23,32 @@ public class BBCode : TemplatedControl
         this.WhenAnyValue(x => x.Text).Subscribe(text =>
         {
             if (BBCodeHelper.ContainsBBCode(text))
-                contentPresenter?.Content = new HtmlPanel() { Text = BBCodeHelper.ParseBBCode(text) };
+                contentPresenter?.Content = GetHtmlPanel(text);
             else
                 contentPresenter?.Content = new SelectableTextBlock() { Text = text, TextWrapping = TextWrapping.Wrap };
         }).DisposeWith(disposables);
+    }
+
+    public static HtmlPanel GetHtmlPanel(string? text)
+    {
+        HtmlPanel hp = new();
+        hp.ImageLoad += async (s, e) =>
+        {
+            if (e.Event.Handled) return;
+
+            var src = e.Event.Src;
+            if (src.StartsWith("http"))
+                e.Event.Callback(await ApiC.GetImageAsync(e.Event.Src));
+            else if (src.StartsWith("bn://emoji/") && int.TryParse(src[11..], out var emojiIndex))
+                e.Event.Callback(StickerProvider.GetStickerBitmap(emojiIndex + 1));
+            else if (src.StartsWith("bn://sticker/") && int.TryParse(src[13..], out var stickerIndex))
+                e.Event.Callback(StickerProvider.GetStickerBitmap(stickerIndex + StickerProvider.Emojis.Length));
+
+            e.Event.Handled = true;
+            e.Handled = true;
+        };
+        hp.Text = BBCodeHelper.ParseBBCode(text);
+        return hp;
     }
 
     public static readonly StyledProperty<string?> TextProperty =
