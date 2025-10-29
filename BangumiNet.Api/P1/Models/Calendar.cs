@@ -39,6 +39,13 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                ["1"] = n => Days[DayOfWeek.Monday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["2"] = n => Days[DayOfWeek.Tuesday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["3"] = n => Days[DayOfWeek.Wednesday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["4"] = n => Days[DayOfWeek.Thursday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["5"] = n => Days[DayOfWeek.Friday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["6"] = n => Days[DayOfWeek.Saturday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+                ["7"] = n => Days[DayOfWeek.Sunday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
             };
         }
         /// <summary>

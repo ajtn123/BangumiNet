@@ -38,6 +38,10 @@ namespace BangumiNet.Api.Legacy
 namespace BangumiNet.Api.P1.Models
 {
     public partial class Avatar : IImages { }
+    public partial class Calendar
+    {
+        public Dictionary<DayOfWeek, IEnumerable<CalendarItem>> Days { get; set; }
+    }
 }
 namespace BangumiNet.Api.V0.Models
 {
