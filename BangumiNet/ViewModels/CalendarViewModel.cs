@@ -6,7 +6,7 @@ namespace BangumiNet.ViewModels;
 
 public class CalendarViewModel : ViewModelBase
 {
-    [Obsolete("Use Api.P1.Models.Calendar from /p1/calendar instead.")]
+    [Obsolete]
     public CalendarViewModel(Api.Legacy.Calendar.Calendar calendar)
     {
         Source = calendar;

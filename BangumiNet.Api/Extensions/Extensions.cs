@@ -25,6 +25,7 @@ namespace BangumiNet.Api.V0
 }
 namespace BangumiNet.Api.Legacy
 {
+    [Obsolete]
     public partial class ApiClient : IApiClient
     {
         /// <summary>OpenAPI 定义文件的最后 commit</summary>

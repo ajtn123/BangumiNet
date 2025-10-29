@@ -20,7 +20,6 @@ public static class ClientBuilder
         var requestAdapter1 = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
         var p1Client = new P1.ApiClient(requestAdapter1);
         var v0Client = new V0.ApiClient(requestAdapter0);
-        var legacyClient = new Legacy.ApiClient(requestAdapter0);
 
         return new()
         {
@@ -29,7 +28,6 @@ public static class ClientBuilder
             RequestAdapter1 = requestAdapter1,
             P1Client = p1Client,
             V0Client = v0Client,
-            LegacyClient = legacyClient,
         };
     }
 }
@@ -41,5 +39,4 @@ public class Clients
     public required IRequestAdapter RequestAdapter1 { get; set; }
     public required P1.ApiClient P1Client { get; set; }
     public required V0.ApiClient V0Client { get; set; }
-    public required Legacy.ApiClient LegacyClient { get; set; }
 }

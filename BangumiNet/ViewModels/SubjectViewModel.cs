@@ -1,7 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
-using BangumiNet.Api.Legacy.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
 using BangumiNet.Models;
@@ -52,7 +51,8 @@ public partial class SubjectViewModel : ItemViewModelBase
 
         Init();
     }
-    public SubjectViewModel(Legacy_SubjectSmall subject)
+    [Obsolete]
+    public SubjectViewModel(Api.Legacy.Models.Legacy_SubjectSmall subject)
     {
         Source = subject;
         Eps = subject.Eps;
@@ -158,7 +158,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
             this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
 
-        this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsLegacy)));
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
         {
@@ -214,11 +213,10 @@ public partial class SubjectViewModel : ItemViewModelBase
     public ICommand? CollectCommand { get; private set; }
 
     public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-    public Task<Bitmap?> ImageSmall => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Small, !IsLegacy);
-    public Task<Bitmap?> ImageMedium => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Medium, !IsLegacy);
-    public Task<Bitmap?> ImageLarge => IsLegacy ? new(() => null) : ApiC.GetImageAsync(Images?.Large, !IsLegacy);
+    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
+    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
+    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
-    public bool IsLegacy => Source is Legacy_SubjectSmall;
     public bool IsFull => Source is Subject;
 }
