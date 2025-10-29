@@ -55,6 +55,7 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Data?.Select<SubjectInterestComment, ViewModelBase>(c => new SubjectCollectionViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(Limit, offset, response.Total);
+        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadCharacterComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -69,6 +70,7 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadPersonComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -83,6 +85,7 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadEpisodeComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -97,6 +100,7 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
 

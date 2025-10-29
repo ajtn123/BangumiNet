@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:UserViewModel"
+             x:Class="BangumiNet.Views.UserCardView">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
+        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
+            <Image Source="{Binding AvatarLarge^}"/>
+        </Border>
+
+        <StackPanel Grid.Column="1" Name="MainStackPanel">
+            <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
+                             Content="{Binding Nickname}" Classes="Title" 
+                             Command="{Binding OpenInNewWindowCommand}"/>
+            <WrapPanel Classes="InfoBar">
+                <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
+                <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
+                <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
+            </WrapPanel>
+            <Border Classes="Ref" Margin="5"
+                    IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
+                <SelectableTextBlock Text="{Binding Sign}"
+                                     TextWrapping="Wrap"/>
+            </Border>
+        </StackPanel>
+
+        <Grid.ContextFlyout>
+            <Flyout>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                               Classes="TitleAlt"/>
+                    <WrapPanel Classes="InfoBar">
+                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                    </WrapPanel>
+                </StackPanel>
+            </Flyout>
+        </Grid.ContextFlyout>
+    </Grid>
+</UserControl>

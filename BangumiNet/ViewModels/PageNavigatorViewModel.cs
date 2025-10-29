@@ -11,6 +11,7 @@ public partial class PageNavigatorViewModel : ViewModelBase
         PageIndex = 1;
         PageIndexInput = 1;
         Total = 1;
+        IsVisible = true;
 
         this.WhenAnyValue(x => x.PageIndex).Subscribe(y => PageIndexInput = y);
         PrevPage = ReactiveCommand.Create(() => (int)PageIndex! - 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex - 1)));
@@ -42,6 +43,8 @@ public partial class PageNavigatorViewModel : ViewModelBase
     [Reactive] public partial int? PageIndex { get; set; }
     [Reactive] public partial int? PageIndexInput { get; set; }
     [Reactive] public partial int? Total { get; set; }
+
+    [Reactive] public partial bool IsVisible { get; set; }
 
     public ReactiveCommand<Unit, int> PrevPage { get; set; }
     public ReactiveCommand<Unit, int> NextPage { get; set; }

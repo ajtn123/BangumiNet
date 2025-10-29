@@ -5,9 +5,5 @@ public partial class NotificationListView : ReactiveUserControl<NotificationList
     public NotificationListView()
     {
         InitializeComponent();
-        DataContextChanged += (s, e) =>
-        {
-            _ = ViewModel?.LoadNotifications();
-        };
     }
 }

@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:FriendViewModel"
+             x:Class="BangumiNet.Views.FriendCardView">
+    <StackPanel Spacing="3">
+        <bn:UserCardView DataContext="{Binding User}"/>
+        <WrapPanel Classes="InfoBar">
+			<InfoItem Tip="备注" Text="{Binding Description}"/>
+			<InfoItem Tip="等级" Text="{Binding Grade}" Icon="Layer"/>
+			<InfoItem Tip="添加时间" Text="{Binding CreationTime}" Icon="Calendar"/>
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

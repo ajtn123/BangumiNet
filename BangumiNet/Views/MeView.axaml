@@ -12,7 +12,20 @@
             <StackPanel>
                 <Button Content="{ice:FluentIcon Icon=Mail}"
                         Classes="Icon" BorderThickness="0"
+                        ToolTip.Tip="在新窗口显示通知"
                         Command="{Binding ShowNotificationWindow}"/>
+                <Button Content="{ice:FluentIcon Icon=People}"
+                        Classes="Icon" BorderThickness="0"
+                        ToolTip.Tip="在新窗口显示好友列表"
+                        Command="{Binding ShowFriendListWindow}"/>
+                <Button Content="{ice:FluentIcon Icon=PeopleStar}"
+                        Classes="Icon" BorderThickness="0"
+                        ToolTip.Tip="在新窗口显示关注者列表"
+                        Command="{Binding ShowFollowerListWindow}"/>
+                <Button Content="{ice:FluentIcon Icon=PeopleSubtract}"
+                        Classes="Icon" BorderThickness="0"
+                        ToolTip.Tip="在新窗口显示绝交列表"
+                        Command="{Binding ShowBlockListWindow}"/>
             </StackPanel>
         </Border>
         <bn:UserView DataContext="{Binding User}" Grid.Column="2"/>

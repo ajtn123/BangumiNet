@@ -27,5 +27,10 @@
         <DataTemplate DataType="bn:NotificationListViewModel">
 			<bn:NotificationListView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate DataType="bn:UserListViewModel">
+            <ScrollViewer>
+			    <bn:SubjectListPagedView DataContext="{Binding}" Margin="5"/>
+            </ScrollViewer>
+        </DataTemplate>
     </Window.DataTemplates>
 </Window>
