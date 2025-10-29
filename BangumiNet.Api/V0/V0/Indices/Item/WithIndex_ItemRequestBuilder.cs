@@ -87,7 +87,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
         public async Task<global::BangumiNet.Api.V0.Models.IndexObject> PutAsync(global::BangumiNet.Api.V0.Models.IndexBasicInfo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -131,7 +131,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
         public RequestInformation ToPutRequestInformation(global::BangumiNet.Api.V0.Models.IndexBasicInfo body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");

@@ -20,7 +20,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse();
         }
     }
