@@ -22,21 +22,17 @@ jobs:
           dotnet-version: '10'
 
       - name: Publish
-        run: |
-          cd BangumiNet
-          dotnet publish -c Release -r win-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-win-x64
-          dotnet publish -c Release -r linux-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-linux-x64
-          dotnet publish -c Release -r osx-x64 -p:Version=${GITHUB_REF_NAME#v} -o ../publish-osx-x64
+        run: dotnet msbuild BangumiNet -restore -p:Version=${GITHUB_REF_NAME#v} -t:PublishAllRuntimes
 
-      - name: Create archive
-        run: |
-          cd publish-win-x64
-          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-win-x64.zip .
-          cd ../publish-linux-x64
-          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-linux-x64.zip .
-          cd ../publish-osx-x64
-          zip -r ../${{ github.event.repository.name }}-${{ github.ref_name }}-osx-x64.zip .
+      - name: Archive
         shell: bash
+        run: |
+          for i in BangumiNet/bin/Release/net10.0/*/publish/; do
+            (
+              cd $i || exit
+              zip -r "../../../../../../${{ github.event.repository.name }}-${{ github.ref_name }}-${i:31:(${#i}-31-9)}.zip" .
+            )
+          done
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -49,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download build artifact
+      - name: Download artifact
         uses: actions/download-artifact@v5
         with:
           name: app-archive
@@ -58,9 +54,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            ${{ github.event.repository.name }}-${{ github.ref_name }}-win-x64.zip
-            ${{ github.event.repository.name }}-${{ github.ref_name }}-linux-x64.zip
-            ${{ github.event.repository.name }}-${{ github.ref_name }}-osx-x64.zip
+          files: ${{ github.event.repository.name }}-${{ github.ref_name }}-*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

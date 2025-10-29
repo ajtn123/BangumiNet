@@ -45,4 +45,6 @@
     <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
   </ItemGroup>
+
+  <Import Project="..\Publish.targets" />
 </Project>
