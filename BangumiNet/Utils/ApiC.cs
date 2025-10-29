@@ -1,7 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.Legacy.Calendar;
 using BangumiNet.Api.V0.Models;
 using System.ComponentModel;
 using System.Net.Http;
@@ -131,18 +130,18 @@ public static class ApiC
         }
         else if (typeof(T) == typeof(CalendarViewModel))
         {
-            List<Calendar>? calendars = null;
-            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(cancellationToken: cancellationToken); }
+            Api.P1.Models.Calendar? calendars = null;
+            try { calendars = await P1.Calendar.GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (calendars is null) return null;
             var day = (id as DayOfWeek?) ?? DateTime.Today.DayOfWeek;
-            return new CalendarViewModel(calendars.Where(x => Common.ParseDayOfWeek(x.Weekday?.Id) == day).First()) as T;
+            return new CalendarViewModel(calendars.Days.First(x => x.Key == day)) as T;
         }
         else if (typeof(T) == typeof(AiringViewModel))
         {
-            List<Calendar>? calendars = null;
-            try { calendars = await Clients.LegacyClient.Calendar.GetAsync(cancellationToken: cancellationToken); }
+            Api.P1.Models.Calendar? calendars = null;
+            try { calendars = await P1.Calendar.GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (calendars is null) return null;

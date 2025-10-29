@@ -3,11 +3,11 @@
 public interface IWeekday
 {
     /// <summary>中文名</summary>
-    string? Cn { get; set; }
+    string? Cn { get; }
     /// <summary>英文名</summary>
-    string? En { get; set; }
+    string? En { get; }
     /// <summary>日语</summary>
-    string? Ja { get; set; }
+    string? Ja { get; }
     /// <summary>从1与星期一开始的序号</summary>
-    int? Id { get; set; }
+    int? Id { get; }
 }

@@ -22,4 +22,17 @@ public interface IRatingCount
     int? Nine { get; set; }
     /// <summary>10 分</summary>
     int? OneZero { get; set; }
+
+    List<int> ToList() => [
+        One ?? 0,
+        Two ?? 0,
+        Three ?? 0,
+        Four ?? 0,
+        Five ?? 0,
+        Six ?? 0,
+        Seven ?? 0,
+        Eight ?? 0,
+        Nine ?? 0,
+        OneZero ?? 0
+    ];
 }
