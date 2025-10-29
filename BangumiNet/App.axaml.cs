@@ -21,7 +21,7 @@ public partial class App : Application
         Resources["ErrorBg"] = Brush.Parse(SettingProvider.CurrentSettings.ErrorBg);
         Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);
 
-        CacheProvider.CalculateCacheSize();
+        CacheProvider.InitializeCache();
 
         Common.CleanUpTempFolder();
 

@@ -7,7 +7,7 @@ public static class CacheProvider
     public static string GetAbsolutePath(string relativePath) => Path.Combine(CacheDirPath, relativePath);
 
     public static long CacheSize { get; set; } = 0;
-    public static void CalculateCacheSize()
+    public static void InitializeCache()
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) CleanUpCache();
         else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
