@@ -7,6 +7,7 @@ public partial class MeViewModel : ViewModelBase
     public MeViewModel() => _ = Load();
     public async Task Load()
     {
+        User = await ApiC.GetViewModelAsync<UserViewModel>();
         ShowNotificationWindow = ReactiveCommand.Create(() =>
         {
             NotificationListViewModel ??= new();
@@ -31,7 +32,6 @@ public partial class MeViewModel : ViewModelBase
             _ = BlockListViewModel.LoadPage(1);
             new SecondaryWindow() { Content = BlockListViewModel }.Show();
         });
-        User = await ApiC.GetViewModelAsync<UserViewModel>();
     }
 
     [Reactive] public partial UserViewModel? User { get; set; }
