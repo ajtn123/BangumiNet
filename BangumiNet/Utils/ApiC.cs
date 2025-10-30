@@ -77,24 +77,14 @@ public static partial class ApiC
             else return new SubjectViewModel(subject) as T;
         }
         else if (typeof(T) == typeof(EpisodeViewModel) && id is int episodeId)
-            if (IsAuthenticated)
-            {
-                Api.P1.Models.Episode? episode = null;
-                try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
-                catch (Exception e) { Trace.TraceError(e.Message); }
+        {
+            Api.P1.Models.Episode? episode = null;
+            try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
 
-                if (episode is null) return null;
-                else return new EpisodeViewModel(episode) as T;
-            }
-            else
-            {
-                Api.P1.Models.Episode? episode = null;
-                try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
-                catch (Exception e) { Trace.TraceError(e.Message); }
-
-                if (episode is null) return null;
-                else return new EpisodeViewModel(episode) as T;
-            }
+            if (episode is null) return null;
+            else return new EpisodeViewModel(episode) as T;
+        }
         else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
         {
             Character? character = null;
