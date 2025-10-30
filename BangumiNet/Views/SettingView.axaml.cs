@@ -12,8 +12,16 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
         if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
         InitializeComponent();
         VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-        Deps.ItemsSource = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName())
-            .Where(x => x.Name != "Anonymously Hosted DynamicMethods Assembly").OrderBy(x => x.Name);
+        Credits.ItemsSource = AppDomain.CurrentDomain.GetAssemblies().Select(x =>
+        {
+            var name = x.GetName();
+            return new CreditItem() { Name = $"{name.Name} - {name.Version}", Tooltip = name.FullName, Type = "依赖" };
+        }).Where(x => x.Name != "Anonymously Hosted DynamicMethods Assembly - 0.0.0.0").OrderBy(x => x.Name).Union([
+            new CreditItem() { Name = $"[PIXIV 22876424] 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
+            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
+            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
+            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
+        ]);
         this.WhenAnyValue(x => x.ViewModel).Subscribe(y =>
         {
             y?.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.CurrentSettings.AuthToken }));
@@ -41,4 +49,10 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
         if (pickedL != null && pickedL.Count > 0)
             ViewModel?.LocalDataDirectory = pickedL[0].TryGetLocalPath() ?? "";
     }
+}
+public record class CreditItem()
+{
+    public required string Type { get; set; }
+    public required string Name { get; set; }
+    public required string Tooltip { get; set; }
 }

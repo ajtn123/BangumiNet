@@ -41,12 +41,12 @@
                         </WrapPanel>
                     </StackPanel>
                     <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch">
-                        <ItemsControl Name="Deps">
+                        <ItemsControl Name="Credits">
                             <ItemsControl.DataTemplates>
-                                <DataTemplate DataType="refl:AssemblyName">
-                                    <SelectableTextBlock ToolTip.Tip="{Binding FullName}">
+                                <DataTemplate DataType="bn:CreditItem">
+                                    <SelectableTextBlock ToolTip.Tip="{Binding Tooltip}">
+                                        <Run Text="{Binding Type}"/>
                                         <Run Text="{Binding Name}"/>
-                                        - <Run Text="{Binding Version}"/>
                                     </SelectableTextBlock>
                                 </DataTemplate>
                             </ItemsControl.DataTemplates>
