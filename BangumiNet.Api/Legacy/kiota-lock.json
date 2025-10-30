@@ -1,8 +1,8 @@
 {
   "descriptionHash": "CBF6A31699A10E56205DE65E1169635E54E199654A1D28DCDD213F9B5005AF54EBE1C966CEBA90CD76E0178D2F66917D7FE4AD54883271FDE45596A13E4C6163",
-  "descriptionLocation": "https://raw.githubusercontent.com/bangumi/api/refs/heads/master/open-api/api.yml",
+  "descriptionLocation": "https://github.com/bangumi/api/raw/refs/heads/master/open-api/api.yml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.28.0",
+  "kiotaVersion": "1.29.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "BangumiNet.Api.Legacy",

@@ -85,7 +85,7 @@ namespace BangumiNet.Api.Legacy.Models
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.Legacy.Models.Legacy_MonoInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.Legacy.Models.Legacy_MonoInfo();
         }
         /// <summary>
@@ -111,7 +111,7 @@ namespace BangumiNet.Api.Legacy.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::BangumiNet.Api.Legacy.Models.Legacy_MonoInfo_alias>("alias", Alias);
             writer.WriteStringValue("birth", Birth);
             writer.WriteStringValue("cv", Cv);
@@ -150,7 +150,7 @@ namespace BangumiNet.Api.Legacy.Models
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.Legacy.Models.Legacy_MonoInfo.Legacy_MonoInfo_source CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::BangumiNet.Api.Legacy.Models.Legacy_MonoInfo.Legacy_MonoInfo_source();
                 if(parseNode.GetStringValue() is string legacyMonoInfoSourceStringValue)
@@ -177,7 +177,7 @@ namespace BangumiNet.Api.Legacy.Models
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(LegacyMonoInfoSourceString != null)
                 {
                     writer.WriteStringValue(null, LegacyMonoInfoSourceString);
