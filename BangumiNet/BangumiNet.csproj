@@ -9,8 +9,8 @@
     <ApplicationIcon>Assets\BangumiNet.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 	
   <ItemGroup>
