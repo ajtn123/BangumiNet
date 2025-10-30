@@ -28,7 +28,7 @@
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"
-                                 TextWrapping="Wrap"/>
+                                 Classes="Sec" TextWrapping="Wrap"/>
         </StackPanel>
 
         <Grid.ContextFlyout>
