@@ -20,7 +20,6 @@
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                 <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
-                <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
             <Border Classes="Ref" Margin="5"
@@ -42,7 +41,7 @@
                                IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
                                Classes="TitleAlt"/>
                     <WrapPanel Classes="InfoBar">
-                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                     </WrapPanel>
                 </StackPanel>
             </Flyout>

@@ -51,8 +51,7 @@ public partial class UserViewModel : ViewModelBase
         Username = user.Username;
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
-        if (user.JoinedAt != null)
-            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds((long)user.JoinedAt);
+        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }
@@ -65,8 +64,7 @@ public partial class UserViewModel : ViewModelBase
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
         Sign = user.Sign;
-        if (user.JoinedAt is int jt)
-            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds(jt);
+        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }
@@ -80,8 +78,7 @@ public partial class UserViewModel : ViewModelBase
         UserGroup = (UserGroup?)user.Group;
         Sign = user.Sign;
         Summary = user.Bio;
-        if (user.JoinedAt is int jt)
-            RegistrationTime = DateTimeOffset.FromUnixTimeSeconds(jt);
+        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }

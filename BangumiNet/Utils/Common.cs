@@ -26,6 +26,12 @@ public static partial class Common
         return (DayOfWeek)i;
     }
 
+    public static DateTimeOffset? ParseBangumiTime(int? time)
+    {
+        if (time is not int t) return null;
+        return DateTimeOffset.FromUnixTimeSeconds(t).ToLocalTime();
+    }
+
     public static void OpenUrlInBrowser(string url)
         => Process.Start(new ProcessStartInfo()
         {

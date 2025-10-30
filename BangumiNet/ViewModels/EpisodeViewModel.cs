@@ -55,7 +55,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         => new(collection.Episode ?? new())
         {
             Status = (EpisodeCollectionType?)collection.Type,
-            StatusUpdateTime = (collection.UpdatedAt == null || collection.UpdatedAt == 0) ? null : DateTimeOffset.FromUnixTimeSeconds((long)collection.UpdatedAt).ToLocalTime(),
+            StatusUpdateTime = collection.UpdatedAt == 0 ? null : Common.ParseBangumiTime(collection.UpdatedAt),
         };
 
     public void Init()

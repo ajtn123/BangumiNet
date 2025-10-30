@@ -1,4 +1,6 @@
-﻿namespace BangumiNet.ViewModels;
+﻿using Avalonia.Controls.Documents;
+
+namespace BangumiNet.ViewModels;
 
 /// <summary>
 /// For <see cref="SubjectListViewModel.SubjectViewModels"/>
@@ -7,8 +9,13 @@ public partial class TextViewModel : ViewModelBase
 {
     public TextViewModel(string? text)
     {
-        Text = text ?? string.Empty;
+        Text = text;
         this.WhenAnyValue(x => x.Text).Subscribe(t => IsVisible = !string.IsNullOrWhiteSpace(t));
     }
-    [Reactive] public partial string Text { get; set; }
+    public TextViewModel(InlineCollection inlines)
+    {
+        Inlines = inlines;
+    }
+    [Reactive] public partial string? Text { get; set; }
+    [Reactive] public partial InlineCollection? Inlines { get; set; }
 }

@@ -18,12 +18,11 @@ public partial class TimelineItemViewModel : ViewModelBase
         OperationSource = timeline.Source?.Name;
         OperationSourceUrl = timeline.Source?.Url;
         IsMy = ApiC.CurrentUsername != null && timeline.User?.Username == ApiC.CurrentUsername;
+        CreationTime = Common.ParseBangumiTime(timeline.CreatedAt);
         if (OperationSource == "web" && string.IsNullOrWhiteSpace(OperationSourceUrl))
             OperationSourceUrl = CurrentSettings.BangumiTvUrlBase;
         if (timeline.User != null)
             User = new(timeline.User);
-        if (timeline.CreatedAt is int ct)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct);
         if (timeline.Memo != null)
         {
             List<ViewModelBase> subjects = [];

@@ -8,8 +8,7 @@ public partial class FriendViewModel : ViewModelBase
     {
         if (friend.User != null)
             User = new(friend.User);
-        if (friend.CreatedAt != null)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds((long)friend.CreatedAt);
+        CreationTime = Common.ParseBangumiTime(friend.CreatedAt);
         Grade = friend.Grade;
         Description = friend.Description;
     }
