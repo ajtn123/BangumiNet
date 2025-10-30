@@ -49,6 +49,17 @@ public class BBCode : TemplatedControl
             e.Event.Handled = true;
             e.Handled = true;
         };
+        hp.LinkClicked += (s, e) =>
+        {
+            if (e.Event.Handled) return;
+
+            var url = new Uri(e.Event.Link);
+            if (url.Host == "bgm.tv" || url.Host == "bangumi.tv" || url.Host == "chii.in")
+            {
+                // e.Event.Handled = true;
+                // e.Handled = true;
+            }
+        };
         hp.Text = BBCodeHelper.ParseBBCode(text);
         return hp;
     }
