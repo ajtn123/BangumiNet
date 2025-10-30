@@ -23,7 +23,8 @@ public static partial class ApiC
     [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
     private static partial Regex DefaultUserAvatarUrl();
     public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(Common.GetAssetUri("DefaultAvatar.png")));
-    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, CancellationToken cancellationToken = default)
+    public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(Common.GetAssetUri("InternetError.png")));
+    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, bool fallback = false, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url)) return null;
         if (DefaultUserAvatarUrl().IsMatch(url))
@@ -42,10 +43,15 @@ public static partial class ApiC
             catch (Exception e) { Trace.TraceError(e.Message); CacheProvider.DeleteCache(url); }
         if (result != null) return result;
 
-        var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
-        if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
-        result = await Task.Run(() => new Bitmap(responseStream), cancellationToken);
+        try
+        {
+            var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
+            if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
+            result = await Task.Run(() => new Bitmap(responseStream), cancellationToken);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); CacheProvider.DeleteCache(url); }
 
+        if (fallback) result ??= InternetErrorFallback;
         return result;
     }
 
@@ -73,17 +79,17 @@ public static partial class ApiC
         else if (typeof(T) == typeof(EpisodeViewModel) && id is int episodeId)
             if (IsAuthenticated)
             {
-                UserEpisodeCollection? episode = null;
-                try { episode = await V0.Users.Minus.Collections.Minus.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
+                Api.P1.Models.Episode? episode = null;
+                try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
                 catch (Exception e) { Trace.TraceError(e.Message); }
 
                 if (episode is null) return null;
-                else return EpisodeViewModel.InitFormCollection(episode) as T;
+                else return new EpisodeViewModel(episode) as T;
             }
             else
             {
-                EpisodeDetail? episode = null;
-                try { episode = await V0.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
+                Api.P1.Models.Episode? episode = null;
+                try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
                 catch (Exception e) { Trace.TraceError(e.Message); }
 
                 if (episode is null) return null;

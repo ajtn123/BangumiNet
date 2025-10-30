@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.ExtraEnums;
+﻿using Avalonia.Controls;
+using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Converters;
 
@@ -34,10 +35,26 @@ public partial class TimelineItemViewModel : ViewModelBase
             //    Memo.SubjectViewModels.Add(new IndexViewModel(timeline.Memo.Index));
             //if (timeline.Memo.Mono != null)
             //    Memo.SubjectViewModels.Add(new MonoViewModel(timeline.Memo.Mono));
-            if (timeline.Memo.Progress?.Single?.Subject != null)
+            if (timeline.Memo.Progress?.Single != null)
             {
-                subjects.Add(new SubjectViewModel(timeline.Memo.Progress.Single.Subject));
-                subjects.Add(new TextViewModel($"已完成第 {timeline.Memo.Progress.Single.Episode?.Sort} 集 {NameCnCvt.Convert(timeline.Memo.Progress.Single.Episode)}"));
+                var single = timeline.Memo.Progress.Single;
+                if (single.Subject != null)
+                    subjects.Add(new SubjectViewModel(single.Subject));
+                if (single.Episode != null)
+                {
+                    var evm = new EpisodeViewModel(single.Episode);
+                    subjects.Add(
+                        new TextViewModel(
+                            $"已完成",
+                            new HyperlinkButton()
+                            {
+                                Content = $"第 {evm.Sort} 集 {NameCnCvt.Convert(evm)}",
+                                Command = ReactiveCommand.Create(() => new SecondaryWindow() { Content = evm }.Show()),
+                                ContextFlyout = new Flyout() { Content = new EpisodeView() { DataContext = evm } }
+                            }
+                        )
+                    );
+                }
             }
             if (timeline.Memo.Progress?.Batch?.Subject != null)
             {

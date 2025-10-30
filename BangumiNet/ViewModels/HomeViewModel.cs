@@ -10,7 +10,7 @@ public partial class HomeViewModel : ViewModelBase
         this.WhenAnyValue(x => x.Me).Subscribe(x => LoadGreeting());
         TimelineViewModel = new();
         CollectionListViewModel = new(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
-        _ = Task.Run(async () => await TimelineViewModel.Load(0));
+        TimelineViewModel.LoadCommand.Execute(null);
         _ = Task.Run(async () => Today = await ApiC.GetViewModelAsync<CalendarViewModel>());
         _ = Task.Run(async () =>
         {

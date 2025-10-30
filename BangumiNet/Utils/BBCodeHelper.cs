@@ -19,6 +19,7 @@ public static partial class BBCodeHelper
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             blockquote { margin: 0.5em; color: #777; }
             ::selection { background-color: {{SelectionBackgroundPos}}; color: #000; }
+            img { max-width: 98%; }
         </style>
         </head>
         <body>{{ContentPos}}</body>

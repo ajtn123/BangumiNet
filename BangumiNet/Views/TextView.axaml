@@ -7,5 +7,14 @@
              IsVisible="{Binding IsVisible}"
              x:DataType="bn:TextViewModel"
              x:Class="BangumiNet.Views.TextView">
-    <SelectableTextBlock Text="{Binding Text}"/>
+    <UserControl.Styles>
+		<Style Selector="HyperlinkButton">
+			<Setter Property="FontSize" Value="13"/>
+            <Setter Property="Classes.Pri" Value="True"/>
+        </Style>
+        <Style Selector=":is(Inline)">
+			<Setter Property="BaselineAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+    <SelectableTextBlock Text="{Binding Text}" Inlines="{Binding Inlines}"/>
 </UserControl>

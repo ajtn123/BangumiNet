@@ -50,6 +50,27 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
         Init();
     }
+    public EpisodeViewModel(Api.P1.Models.Episode episode)
+    {
+        Source = episode;
+        Id = episode.Id;
+        Type = (EpisodeType?)episode.Type;
+        Name = episode.Name;
+        NameCn = episode.NameCN;
+        Sort = episode.Sort;
+        AirDate = Common.ParseBangumiDate(episode.Airdate);
+        CommentCount = episode.Comment;
+        DurationString = episode.Duration;
+        Description = episode.Desc;
+        Disc = episode.Disc;
+        SubjectId = episode.SubjectID;
+        StatusUpdateTime = Common.ParseBangumiTime(episode.Collection?.UpdatedAt);
+        Status = (EpisodeCollectionType?)episode.Collection?.Status ?? EpisodeCollectionType.Uncollected;
+        if (episode.Subject != null)
+            SubjectViewModel = new(episode.Subject);
+
+        Init();
+    }
 
     public static EpisodeViewModel InitFormCollection(UserEpisodeCollection collection)
         => new(collection.Episode ?? new())
@@ -102,6 +123,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     [Reactive] public partial EpisodeCollectionType? Status { get; set; }
     [Reactive] public partial DateTimeOffset? StatusUpdateTime { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
+    [Reactive] public partial SubjectViewModel? SubjectViewModel { get; set; }
 
     [Reactive] public partial INeighboring? Prev { get; set; }
     [Reactive] public partial INeighboring? Next { get; set; }
