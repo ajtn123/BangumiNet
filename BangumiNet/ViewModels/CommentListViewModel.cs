@@ -13,14 +13,20 @@ public partial class CommentListViewModel : ViewModelBase
         Id = id;
 
         Sources = [];
-        PageNavigatorViewModel = new();
+        ReplyViewModel = new(this)
+        {
+            IsVisible = ItemType is not Shared.ItemType.Subject
+        };
+        PageNavigatorViewModel = new()
+        {
+            IsVisible = ItemType is Shared.ItemType.Subject
+        };
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
 
         PageNavigatorViewModel.PrevPage.InvokeCommand(LoadPageCommand);
         PageNavigatorViewModel.NextPage.InvokeCommand(LoadPageCommand);
         PageNavigatorViewModel.JumpPage.InvokeCommand(LoadPageCommand);
-        ReplyViewModel = new(this);
     }
 
     public Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
@@ -55,7 +61,6 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Data?.Select<SubjectInterestComment, ViewModelBase>(c => new SubjectCollectionViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(Limit, offset, response.Total);
-        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadCharacterComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -70,7 +75,6 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
-        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadPersonComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -85,7 +89,6 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
-        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
     private async Task LoadEpisodeComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -100,7 +103,6 @@ public partial class CommentListViewModel : ViewModelBase
 
         Comments = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
-        PageNavigatorViewModel.IsVisible = IsSinglePage;
         Sources.Add(response);
     }
 
@@ -113,8 +115,6 @@ public partial class CommentListViewModel : ViewModelBase
     [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
-
-    public bool IsSinglePage => ItemType == Shared.ItemType.Character || ItemType == Shared.ItemType.Person || ItemType == Shared.ItemType.Episode;
 
     public static int Limit => CurrentSettings.CommentPageSize;
 }

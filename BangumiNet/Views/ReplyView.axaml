@@ -5,6 +5,7 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             IsVisible="{Binding IsVisible}"
              x:DataType="bn:ReplyViewModel"
              x:Class="BangumiNet.Views.ReplyView">
     <StackPanel Spacing="5" Name="MainVertical">
