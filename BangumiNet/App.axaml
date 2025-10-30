@@ -222,11 +222,24 @@
         <Style Selector="HyperlinkButton.Pri">
             <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
         </Style>
+        <Style Selector="HyperlinkButton.Sec">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </Style>
         <Style Selector="TextBlock.Pri, .Pri > TextBlock, SelectableTextBlock.Pri, .Pri > SelectableTextBlock">
             <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
         </Style>
         <Style Selector="TextBlock.Sec, .Sec > TextBlock, SelectableTextBlock.Sec, .Sec > SelectableTextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
+        <Style Selector="ItemsControl:empty">
+			<Setter Property="IsVisible" Value="False"/>
+        </Style>
+        <Style Selector="Label">
+			<Setter Property="Padding" Value="0"/>
+        </Style>
     </Application.Styles>
+
+    <Application.DataTemplates>
+		<DataTemplate DataType="bn:ViewModelBase"/>
+    </Application.DataTemplates>
 </Application>

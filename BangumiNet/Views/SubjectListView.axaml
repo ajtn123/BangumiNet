@@ -32,6 +32,12 @@
             <DataTemplate DataType="bn:NotificationViewModel">
                 <bn:NotificationCardView DataContext="{Binding}"/>
             </DataTemplate>
+            <DataTemplate DataType="bn:TimelineItemViewModel">
+                <bn:TimelineItemView DataContext="{Binding}"/>
+            </DataTemplate>
+            <DataTemplate DataType="bn:TextViewModel">
+                <bn:TextView DataContext="{Binding}"/>
+            </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>

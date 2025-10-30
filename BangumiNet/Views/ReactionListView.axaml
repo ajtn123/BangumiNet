@@ -5,7 +5,7 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             IsVisible="{Binding Reactions,Converter={StaticResource NullCvt}}"
+             IsVisible="{Binding Reactions,Converter={StaticResource NullCvt},FallbackValue=False}"
              x:DataType="bn:ReactionListViewModel"
              x:Class="BangumiNet.Views.ReactionListView">
     <ItemsControl ItemsSource="{Binding Reactions}">

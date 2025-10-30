@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:controls="using:FluentAvalonia.UI.Controls"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:TimelineViewModel"
+             x:Class="BangumiNet.Views.TimelineView">
+    <StackPanel Spacing="5">
+        <Border Classes="Card">
+			<Grid ColumnDefinitions="Auto,*">
+				<TextBlock>时间线</TextBlock>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1" Spacing="5">
+                    <Label Target="OnlyFriendCheckBox">仅好友</Label>
+                    <Viewbox Height="18" Grid.Column="1">
+                        <CheckBox IsChecked="{Binding OnlyFriend}"
+                                  Name="OnlyFriendCheckBox" Padding="0"/>
+                    </Viewbox>
+                    <TextBox Text="{Binding Until}"
+                             Height="18" Padding="0"
+                             Watermark="位置"/>
+                    <Button ToolTip.Tip="前往" Classes="Icon" Height="18"
+                            Command="{Binding LoadCommand}"
+                            Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}"/>
+                    <Button ToolTip.Tip="返回顶部" Classes="Icon" Height="18"
+                            Command="{Binding LoadTopCommand}"
+                            Content="{ice:FluentIcon Icon=ArrowUpload, FontSize=16}"/>
+                    <Button ToolTip.Tip="下一页" Classes="Icon" Height="18"
+                            Command="{Binding LoadNextCommand}"
+                            Content="{ice:FluentIcon Icon=ArrowDown, FontSize=16}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+		<bn:SubjectListView DataContext="{Binding}"/>
+    </StackPanel>
+</UserControl>

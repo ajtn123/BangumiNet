@@ -40,11 +40,12 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-            <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}"/>
-            <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding Comment,Converter={StaticResource NullCvt}}">
+            <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NEWCvt}}"/>
+            <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding Comment,Converter={StaticResource NEWCvt}}">
                 <ic:FluentIcon Icon="Status" Margin="0,0,0,-3" FontSize="16"/>
                 <Run Text="{Binding Comment}"/>
             </SelectableTextBlock>
+            <v:ReactionListView DataContext="{Binding ReactionListViewModel}" />
         </StackPanel>
     </Border>
 </UserControl>

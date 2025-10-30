@@ -4,18 +4,18 @@ namespace BangumiNet.ViewModels;
 
 public partial class HomeViewModel : ViewModelBase
 {
-    public HomeViewModel() => _ = Init();
-    private async Task Init()
+    public HomeViewModel()
     {
         LoadGreeting();
-        Today = await ApiC.GetViewModelAsync<CalendarViewModel>();
-        Me = await ApiC.GetViewModelAsync<UserViewModel>();
+        this.WhenAnyValue(x => x.Me).Subscribe(x => LoadGreeting());
+        TimelineViewModel = new();
         CollectionListViewModel = new(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
-        _ = CollectionListViewModel.LoadPageAsync(1);
-
-        this.WhenAnyValue(x => x.Me).Subscribe(x =>
+        _ = Task.Run(async () => await TimelineViewModel.Load(0));
+        _ = Task.Run(async () => Today = await ApiC.GetViewModelAsync<CalendarViewModel>());
+        _ = Task.Run(async () =>
         {
-            LoadGreeting();
+            Me = await ApiC.GetViewModelAsync<UserViewModel>();
+            await CollectionListViewModel.LoadPageAsync(1);
         });
     }
 
@@ -23,6 +23,7 @@ public partial class HomeViewModel : ViewModelBase
     [Reactive] public partial string? Greeting { get; set; }
     [Reactive] public partial CalendarViewModel? Today { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? CollectionListViewModel { get; set; }
+    [Reactive] public partial TimelineViewModel TimelineViewModel { get; set; }
 
     private void LoadGreeting()
     {

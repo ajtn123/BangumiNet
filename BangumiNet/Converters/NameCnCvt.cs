@@ -11,13 +11,14 @@ public class NameCnCvt : IValueConverter
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 
+    public static BindingFlags GetPropFlags => BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance;
     public static string? Convert(object? obj)
     {
         if (obj is not { } subject) return null;
 
         var type = subject.GetType();
-        var nameProp = type.GetProperty("Name", BindingFlags.Public | BindingFlags.Instance);
-        var nameCnProp = type.GetProperty("NameCn", BindingFlags.Public | BindingFlags.Instance);
+        var nameProp = type.GetProperty("Name", GetPropFlags);
+        var nameCnProp = type.GetProperty("NameCn", GetPropFlags);
         var name = nameProp?.GetValue(subject)?.ToString();
         var nameCn = nameCnProp?.GetValue(subject)?.ToString();
 
@@ -38,8 +39,8 @@ public class NameAltCvt : IValueConverter
         if (obj is not { } subject) return null;
 
         var type = subject.GetType();
-        var nameProp = type.GetProperty("Name", BindingFlags.Public | BindingFlags.Instance);
-        var nameCnProp = type.GetProperty("NameCn", BindingFlags.Public | BindingFlags.Instance);
+        var nameProp = type.GetProperty("Name", NameCnCvt.GetPropFlags);
+        var nameCnProp = type.GetProperty("NameCn", NameCnCvt.GetPropFlags);
         var name = nameProp?.GetValue(subject)?.ToString();
         var nameCn = nameCnProp?.GetValue(subject)?.ToString();
 

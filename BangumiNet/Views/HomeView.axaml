@@ -2,10 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:HomeViewModel"
+             x:DataType="bn:HomeViewModel"
              x:Class="BangumiNet.Views.HomeView">
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
@@ -18,8 +17,11 @@
                 </Grid>
             </Border>
             <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
-                <v:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
-                <v:CalendarView DataContext="{Binding Today}" Grid.Column="1"/>
+                <StackPanel Spacing="5">
+                    <bn:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
+                    <bn:TimelineView DataContext="{Binding TimelineViewModel}"/>
+                </StackPanel>
+                <bn:CalendarView DataContext="{Binding Today}" Grid.Column="1"/>
             </Grid>
         </StackPanel>
     </ScrollViewer>

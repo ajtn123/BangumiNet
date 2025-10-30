@@ -62,11 +62,11 @@
 
                         <StackPanel Grid.Column="1" Spacing="5">
                             <bn:SubjectCollectionView DataContext="{Binding SubjectCollectionViewModel}"
-                                                     IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
-                                                     Width="250"/>
+                                                      IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
+                                                      Width="250"/>
                             <bn:SubjectRatingView DataContext="{Binding SubjectRatingViewModel}"
-                                                 IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
-                                                 Width="250" Height="200"/>
+                                                  IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"
+                                                  Width="250" Height="200"/>
                         </StackPanel>
                     </Grid>
                     <Separator/>

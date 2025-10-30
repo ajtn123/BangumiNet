@@ -33,6 +33,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
 
     public Task LoadPageAsync(int? i)
     {
+        Username ??= ApiC.CurrentUsername;
         if (string.IsNullOrWhiteSpace(Username)) return Task.CompletedTask;
         if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return Task.CompletedTask;
         return ItemType switch

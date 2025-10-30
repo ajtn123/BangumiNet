@@ -84,6 +84,20 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 
         Init();
     }
+    public SubjectCollectionViewModel(TimelineMemo_subject collection)
+    {
+        IsPrivate = false;
+        Comment = collection.Comment;
+        CommentId = collection.CollectID;
+        ReactionListViewModel = new(collection.Reactions, CommentId, ItemType.Subject);
+        Id = collection.Subject?.Id;
+        Rating = Common.NumberToInt(collection.Rate);
+        SubjectType = (SubjectType?)collection.Subject?.Type;
+        if (collection.Subject != null)
+            Subject = new(collection.Subject);
+
+        Init();
+    }
 
     private void Init()
     {

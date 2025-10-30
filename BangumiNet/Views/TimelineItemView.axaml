@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:TimelineItemViewModel"
+             x:Class="BangumiNet.Views.TimelineItemView">
+    <Border Classes="Card Large">
+        <StackPanel Spacing="3">
+            <WrapPanel Classes="InfoBar">
+                <InfoItem Tip="类别" Text="{Binding Category, Converter={StaticResource TimelineCategoryCvt}}"
+                          FontWeight="Bold" Classes="Pri"/>
+                <InfoItem Tip="时间" Text="{Binding CreationTime}" Icon="Calendar"/>
+                <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
+                <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                <HyperlinkButton ToolTip.Tip="源" Classes="Sec"
+                                 Content="{Binding OperationSource}"
+                                 NavigateUri="{Binding OperationSourceUrl}"
+                                 IsVisible="{Binding OperationSource, Converter={StaticResource NEWCvt}}"/>
+
+                <TextBlock>
+				    <ic:FluentIcon ToolTip.Tip="批量操作" Icon="DocumentMultiple" IsVisible="{Binding Batch}"/>
+                </TextBlock>
+            </WrapPanel>
+            <bn:UserCardView DataContext="{Binding User}"/>
+            <bn:SubjectListView DataContext="{Binding Memo}"/>
+        </StackPanel>
+    </Border>
+</UserControl>
