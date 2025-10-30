@@ -22,7 +22,7 @@ jobs:
           dotnet-version: '10'
 
       - name: Publish
-        run: dotnet msbuild BangumiNet -restore -p:Version=${GITHUB_REF_NAME#v} -t:PublishAllRuntimes
+        run: dotnet msbuild BangumiNet -restore -p:Configuration=Release -p:Version=${GITHUB_REF_NAME#v} -t:PublishAllRuntimes
 
       - name: Archive
         shell: bash

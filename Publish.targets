@@ -12,8 +12,7 @@
             <RuntimeIdentifierForPublish Include="$(RuntimeIdentifiers)" />
             <ProjectToPublish Include="@(RuntimeIdentifierForPublish->'$(MSBuildProjectFullPath)')">
                 <AdditionalProperties>
-                    RuntimeIdentifier=%(RuntimeIdentifierForPublish.Identity);
-                    Configuration=Release
+                    RuntimeIdentifier=%(RuntimeIdentifierForPublish.Identity)
                 </AdditionalProperties>
             </ProjectToPublish>
         </ItemGroup>
