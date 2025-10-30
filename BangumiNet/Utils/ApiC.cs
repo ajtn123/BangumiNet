@@ -1,13 +1,15 @@
 ﻿using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using System.ComponentModel;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
 
-public static class ApiC
+public static partial class ApiC
 {
     public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.CurrentSettings);
     public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
@@ -18,9 +20,15 @@ public static class ApiC
     public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
     public static Task<UserViewModel?> RefreshAuthState() => GetViewModelAsync<UserViewModel>();
 
+    [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
+    private static partial Regex DefaultUserAvatarUrl();
+    public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(Common.GetAssetUri("DefaultAvatar.png")));
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url)) return null;
+        if (DefaultUserAvatarUrl().IsMatch(url))
+            return DefaultUserAvatar;
+
         useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
         Bitmap? result = null;
 
