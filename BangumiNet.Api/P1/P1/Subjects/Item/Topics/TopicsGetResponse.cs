@@ -39,7 +39,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsGetResponse();
         }
         /// <summary>
@@ -60,7 +60,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Topic>("data", Data);
             writer.WriteIntValue("total", Total);
             writer.WriteAdditionalData(AdditionalData);

@@ -98,7 +98,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like
         public async Task<global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikePutResponse> PutAsLikePutResponseAsync(global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -126,7 +126,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like
         public async Task<global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikeResponse> PutAsync(global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -169,7 +169,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like
         public RequestInformation ToPutRequestInformation(global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikePutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");

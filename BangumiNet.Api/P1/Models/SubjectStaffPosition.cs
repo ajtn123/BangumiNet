@@ -14,6 +14,14 @@ namespace BangumiNet.Api.P1.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The appearEps property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AppearEps { get; set; }
+#nullable restore
+#else
+        public string AppearEps { get; set; }
+#endif
         /// <summary>The summary property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -44,7 +52,7 @@ namespace BangumiNet.Api.P1.Models
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.P1.Models.SubjectStaffPosition CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SubjectStaffPosition();
         }
         /// <summary>
@@ -55,6 +63,7 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "appearEps", n => { AppearEps = n.GetStringValue(); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SubjectStaffPositionType>(global::BangumiNet.Api.P1.Models.SubjectStaffPositionType.CreateFromDiscriminatorValue); } },
             };
@@ -65,7 +74,8 @@ namespace BangumiNet.Api.P1.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("appearEps", AppearEps);
             writer.WriteStringValue("summary", Summary);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SubjectStaffPositionType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

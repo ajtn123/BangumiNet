@@ -123,7 +123,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related
         public async Task<global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedPutResponse> PutAsRelatedPutResponseAsync(global::BangumiNet.Api.P1.Models.CreateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -149,7 +149,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related
         public async Task<global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedResponse> PutAsync(global::BangumiNet.Api.P1.Models.CreateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -191,7 +191,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related
         public RequestInformation ToPutRequestInformation(global::BangumiNet.Api.P1.Models.CreateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");

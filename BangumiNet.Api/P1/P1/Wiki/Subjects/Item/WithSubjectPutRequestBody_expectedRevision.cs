@@ -68,7 +68,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision();
         }
         /// <summary>
@@ -92,7 +92,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox>("infobox", Infobox);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags>("metaTags", MetaTags);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name>("name", Name);
@@ -129,7 +129,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox();
                 if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -158,7 +158,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(String != null)
                 {
                     writer.WriteStringValue(null, String);
@@ -197,7 +197,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags();
                 if(parseNode.GetCollectionOfPrimitiveValues<string>()?.AsList() is List<string> stringValue)
                 {
@@ -226,7 +226,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(String != null)
                 {
                     writer.WriteCollectionOfPrimitiveValues<string>(null, String);
@@ -265,7 +265,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name();
                 if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -294,7 +294,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(String != null)
                 {
                     writer.WriteStringValue(null, String);
@@ -327,7 +327,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform();
                 if(parseNode.GetIntValue() is int integerValue)
                 {
@@ -356,7 +356,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(Integer != null)
                 {
                     writer.WriteIntValue(null, Integer);
@@ -395,7 +395,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
             public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary CreateFromDiscriminatorValue(IParseNode parseNode)
             {
-                _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary();
                 if(parseNode.GetStringValue() is string stringValue)
                 {
@@ -424,7 +424,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             /// <param name="writer">Serialization writer to use to serialize this model</param>
             public virtual void Serialize(ISerializationWriter writer)
             {
-                _ = writer ?? throw new ArgumentNullException(nameof(writer));
+                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
                 if(String != null)
                 {
                     writer.WriteStringValue(null, String);

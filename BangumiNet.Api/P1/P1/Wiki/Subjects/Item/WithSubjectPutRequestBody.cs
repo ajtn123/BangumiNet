@@ -53,7 +53,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody();
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("commitMessage", CommitMessage);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision>("expectedRevision", ExpectedRevision);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SubjectEdit>("subject", Subject);

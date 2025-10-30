@@ -47,7 +47,7 @@ namespace BangumiNet.Api.P1.Models
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::BangumiNet.Api.P1.Models.SearchSubject CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SearchSubject();
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace BangumiNet.Api.P1.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SubjectSearchFilter>("filter", Filter);
             writer.WriteStringValue("keyword", Keyword);
             writer.WriteEnumValue<global::BangumiNet.Api.P1.Models.SubjectSearchSort>("sort", Sort);

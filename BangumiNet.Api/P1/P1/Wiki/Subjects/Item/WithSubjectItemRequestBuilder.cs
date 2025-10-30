@@ -91,7 +91,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public async Task<Stream> PatchAsync(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -118,7 +118,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public async Task<Stream> PutAsync(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -158,7 +158,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public RequestInformation ToPatchRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
@@ -180,7 +180,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public RequestInformation ToPutRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");

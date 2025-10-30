@@ -97,7 +97,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related.Item
         public async Task<global::BangumiNet.Api.P1.P1.Indexes.Item.Related.Item.RelatedPatchResponse> PatchAsRelatedPatchResponseAsync(global::BangumiNet.Api.P1.Models.UpdateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -123,7 +123,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related.Item
         public async Task<global::BangumiNet.Api.P1.P1.Indexes.Item.Related.Item.RelatedResponse> PatchAsync(global::BangumiNet.Api.P1.Models.UpdateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
@@ -165,7 +165,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item.Related.Item
         public RequestInformation ToPatchRequestInformation(global::BangumiNet.Api.P1.Models.UpdateIndexRelated body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
