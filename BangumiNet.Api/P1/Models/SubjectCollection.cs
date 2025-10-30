@@ -39,6 +39,11 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                ["1"] = n => Wish = n.GetIntValue(),
+                ["2"] = n => Collect = n.GetIntValue(),
+                ["3"] = n => Doing = n.GetIntValue(),
+                ["4"] = n => OnHold = n.GetIntValue(),
+                ["5"] = n => Dropped = n.GetIntValue(),
             };
         }
         /// <summary>

@@ -40,9 +40,18 @@ namespace BangumiNet.Api.P1.Models
 {
     public partial class Avatar : IImages { }
     public partial class SubjectImages : IImagesGrid { }
+    public partial class SubjectTag : ITag { }
     public partial class Calendar
     {
         public Dictionary<DayOfWeek, IEnumerable<CalendarItem>> Days { get; set; } = [];
+    }
+    public partial class SubjectCollection : ICollection
+    {
+        public int? Collect { get; set; }
+        public int? Doing { get; set; }
+        public int? Dropped { get; set; }
+        public int? OnHold { get; set; }
+        public int? Wish { get; set; }
     }
 }
 namespace BangumiNet.Api.V0.Models

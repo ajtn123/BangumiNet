@@ -55,8 +55,8 @@ public static class ApiC
     {
         if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
         {
-            Subject? subject = null;
-            try { subject = await V0.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken); }
+            Api.P1.Models.Subject? subject = null;
+            try { subject = await P1.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (subject is null) return null;

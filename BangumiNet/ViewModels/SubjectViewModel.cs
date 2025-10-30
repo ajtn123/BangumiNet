@@ -138,6 +138,35 @@ public partial class SubjectViewModel : ItemViewModelBase
 
         Init();
     }
+    public SubjectViewModel(Api.P1.Models.Subject subject)
+    {
+        Source = subject;
+        Id = subject.Id;
+        Type = (SubjectType?)subject.Type;
+        Name = subject.Name;
+        NameCn = subject.NameCN;
+        Summary = subject.Summary;
+        IsSeries = subject.Series ?? false;
+        IsNsfw = subject.Nsfw ?? false;
+        IsLocked = subject.Locked ?? false;
+        Date = Common.ParseBangumiDate(subject.Airtime?.Date);
+        Platform = subject.Platform?.TypeCN;
+        Images = subject.Images;
+        Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
+        Volumes = subject.Volumes;
+        // Eps = subject.Eps;
+        TotalEps = subject.Eps;
+        Rank = subject.Rating?.Rank;
+        RatingTotal = subject.Rating?.Total;
+        RatingCount = subject.Rating?.Count?.Select(c => c ?? 0).ToList();
+        Score = subject.Rating?.Score;
+        Collection = subject.Collection;
+        CollectionTotal = Collection?.GetTotal();
+        Tags = subject.Tags?.ToObservableCollection<ITag>();
+        MetaTags = subject.MetaTags?.ToObservableCollection();
+
+        Init();
+    }
     public void Init()
     {
         ItemTypeEnum = ItemType.Subject;
@@ -218,5 +247,5 @@ public partial class SubjectViewModel : ItemViewModelBase
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
-    public bool IsFull => Source is Subject;
+    public bool IsFull => Source is Api.P1.Models.Subject;
 }

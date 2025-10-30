@@ -21,6 +21,14 @@ public partial class InfoboxItemViewModel : ViewModelBase
             }
         }
     }
+    public InfoboxItemViewModel(Api.P1.Models.Subjects sub)
+    {
+        Key = sub.Key;
+        if (sub.Values?.Count == 1)
+            Value = sub.Values.First().V;
+        else if (sub.Values?.Count > 1)
+            SubValues = sub.Values?.Select(p => new InfoboxItemViewModel(p.K, p.V)).ToObservableCollection();
+    }
     public InfoboxItemViewModel(Character_infobox ib)
     {
         if (ib.AdditionalData.TryGetValue("key", out var key))
