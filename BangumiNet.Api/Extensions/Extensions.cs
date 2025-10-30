@@ -42,7 +42,7 @@ namespace BangumiNet.Api.P1.Models
     public partial class SubjectImages : IImagesGrid { }
     public partial class Calendar
     {
-        public Dictionary<DayOfWeek, IEnumerable<CalendarItem>> Days { get; set; }
+        public Dictionary<DayOfWeek, IEnumerable<CalendarItem>> Days { get; set; } = [];
     }
 }
 namespace BangumiNet.Api.V0.Models

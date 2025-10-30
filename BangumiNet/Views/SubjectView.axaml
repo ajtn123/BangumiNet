@@ -26,7 +26,7 @@
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
                         <StackPanel Spacing="5">
                             <WrapPanel Classes="InfoBar">
-                                <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
+                                <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Score,Converter={StaticResource ZeroCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Score}"/></TextBlock>
                                 <TextBlock ToolTip.Tip="排名" IsVisible="{Binding Rank,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbol"/><Run Text="{Binding Rank}"/></TextBlock>
                                 <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
                                 <TextBlock ToolTip.Tip="在看" IsVisible="{Binding Collection?.Doing,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Tv"/><Run Text="{Binding Collection.Doing}"/></TextBlock>
