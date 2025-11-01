@@ -5,13 +5,16 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             ClipToBounds="True"
              x:DataType="bn:ItemNetworkViewModel"
              x:Class="BangumiNet.Views.ItemNetworkView">
-    <lvc:CartesianChart x:Name="NetworkChart"
+    <lvc:CartesianChart x:Name="Chart"
                         Series="{Binding Series}"
                         DrawMarginFrame="{x:Null}"
                         DrawMargin="{x:Null}"
-                        ZoomMode="Both">
+                        ZoomMode="Both"
+                        AnimationsSpeed="{x:Static bn:ItemNetworkViewModel.AnimationSpeed}"
+                        VisualElements="{Binding Relationships}">
        <lvc:CartesianChart.XAxes>
             <lvc:XamlAxis Name="XAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
         </lvc:CartesianChart.XAxes>

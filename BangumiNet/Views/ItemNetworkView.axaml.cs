@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class ItemNetworkView : UserControl
+public partial class ItemNetworkView : ReactiveUserControl<ItemNetworkViewModel>
 {
     public ItemNetworkView()
     {
