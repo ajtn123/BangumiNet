@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:ItemNetworkViewModel"
+             x:Class="BangumiNet.Views.ItemNetworkView">
+    <lvc:CartesianChart x:Name="NetworkChart"
+                        Series="{Binding Series}"
+                        DrawMarginFrame="{x:Null}"
+                        DrawMargin="{x:Null}"
+                        ZoomMode="Both">
+       <lvc:CartesianChart.XAxes>
+            <lvc:XamlAxis Name="XAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
+        </lvc:CartesianChart.XAxes>
+        <lvc:CartesianChart.YAxes>
+            <lvc:XamlAxis Name="YAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
+        </lvc:CartesianChart.YAxes>
+    </lvc:CartesianChart>
+</UserControl>

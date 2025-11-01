@@ -87,4 +87,14 @@ public static partial class Common
 
     public static Uri GetAssetUri(string path)
         => new($"avares://BangumiNet/Assets/{path}");
+
+    public static double RandomDouble(double min, double max)
+    {
+        if (min > max) throw new ArgumentException("min is greater than max");
+        if (min == max) return min;
+
+        var range = max - min;
+        var offset = range * Random.Shared.NextDouble();
+        return min + offset;
+    }
 }

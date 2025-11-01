@@ -8,6 +8,7 @@ public partial class ItemViewModelBase : ViewModelBase
     {
         ShowRevisionsCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = RevisionListViewModel }.Show());
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = this }.Show());
+        ShowNetworkCommand = ReactiveCommand.Create(() => new SecondaryWindow { Content = new ItemNetworkViewModel(this) }.Show());
     }
 
     [Reactive] public partial int? Id { get; set; }
@@ -17,6 +18,7 @@ public partial class ItemViewModelBase : ViewModelBase
     public ICommand? SearchWebCommand { get; set; }
     public ICommand? OpenInBrowserCommand { get; set; }
     public ICommand? ShowRevisionsCommand { get; set; }
+    public ICommand? ShowNetworkCommand { get; set; }
 
     public ItemType ItemTypeEnum { get; set; }
 }

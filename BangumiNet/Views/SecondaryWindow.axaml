@@ -32,5 +32,8 @@
 			    <bn:SubjectListPagedView DataContext="{Binding}" Margin="5"/>
             </ScrollViewer>
         </DataTemplate>
+        <DataTemplate DataType="bn:ItemNetworkViewModel">
+			<bn:ItemNetworkView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.DataTemplates>
 </Window>
