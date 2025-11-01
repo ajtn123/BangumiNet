@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace BangumiNet.Converters;
 
-public class CommonCvt : IValueConverter
+public class CommonConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         => Convert(value);

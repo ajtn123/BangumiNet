@@ -5,21 +5,47 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             ClipToBounds="True"
              x:DataType="bn:ItemNetworkViewModel"
              x:Class="BangumiNet.Views.ItemNetworkView">
-    <lvc:CartesianChart x:Name="Chart"
-                        Series="{Binding Series}"
-                        DrawMarginFrame="{x:Null}"
-                        DrawMargin="{x:Null}"
-                        ZoomMode="Both"
-                        AnimationsSpeed="{x:Static bn:ItemNetworkViewModel.AnimationSpeed}"
-                        VisualElements="{Binding Relationships}">
-       <lvc:CartesianChart.XAxes>
-            <lvc:XamlAxis Name="XAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
-        </lvc:CartesianChart.XAxes>
-        <lvc:CartesianChart.YAxes>
-            <lvc:XamlAxis Name="YAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
-        </lvc:CartesianChart.YAxes>
-    </lvc:CartesianChart>
+    <Grid RowDefinitions="Auto,*">
+        <Border BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+                BorderThickness="0,0,0,1">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled"
+                          HorizontalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding InterestedItems}"
+                              HorizontalAlignment="Left" Margin="5,0,5,5">
+				    <ItemsControl.DataTemplates>
+					    <DataTemplate DataType="bn:SubjectViewModel">
+						    <bn:SubjectCardView DataContext="{Binding}"/>
+                        </DataTemplate>
+					    <DataTemplate DataType="bn:CharacterViewModel">
+						    <bn:CharacterCardView DataContext="{Binding}"/>
+                        </DataTemplate>
+					    <DataTemplate DataType="bn:PersonViewModel">
+						    <bn:PersonCardView DataContext="{Binding}"/>
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+                    <ItemsControl.ItemsPanel>
+					    <ItemsPanelTemplate>
+						    <StackPanel Spacing="5" Orientation="Horizontal" FlowDirection="RightToLeft"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+        <lvc:CartesianChart x:Name="Chart"
+                            Series="{Binding Series}"
+                            DrawMarginFrame="{x:Null}" DrawMargin="{x:Null}"
+                            ZoomMode="Both"
+                            Grid.Row="1" ClipToBounds="True"
+                            AnimationsSpeed="{x:Static bn:ItemNetworkViewModel.AnimationSpeed}"
+                            VisualElements="{Binding Relationships}">
+           <lvc:CartesianChart.XAxes>
+                <lvc:XamlAxis Name="XAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
+            </lvc:CartesianChart.XAxes>
+            <lvc:CartesianChart.YAxes>
+                <lvc:XamlAxis Name="YAxis" SeparatorsPaint="{lvc:SolidColorPaint Color='#64b4b4b4'}" />
+            </lvc:CartesianChart.YAxes>
+        </lvc:CartesianChart>
+    </Grid>
 </UserControl>

@@ -8,4 +8,8 @@ public partial class ItemNetworkView : ReactiveUserControl<ItemNetworkViewModel>
         XAxis.Labels = [];
         YAxis.Labels = [];
     }
+
+    private void StackPanel_ActualThemeVariantChanged(object? sender, System.EventArgs e)
+    {
+    }
 }

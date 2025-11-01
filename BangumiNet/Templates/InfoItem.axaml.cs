@@ -10,7 +10,7 @@ public class InfoItem : TemplatedControl
 {
     public InfoItem()
     {
-        this.WhenAnyValue(x => x.CommonText).Subscribe(obj => Text = CommonCvt.Convert(obj));
+        this.WhenAnyValue(x => x.CommonText).Subscribe(obj => Text = CommonConverter.Convert(obj));
         this.WhenAnyValue(x => x.Text).Subscribe(t => IsVisible = !string.IsNullOrWhiteSpace(t));
         if (Design.IsDesignMode) Text ??= "DInfo";
     }
@@ -58,7 +58,7 @@ public class InfoItem : TemplatedControl
     public static readonly StyledProperty<object?> CommonTextProperty =
         AvaloniaProperty.Register<InfoItem, object?>(nameof(CommonText));
     /// <summary>
-    /// Set <see cref="Text"/> with <see cref="CommonCvt.Convert(object?)"/>.
+    /// Set <see cref="Text"/> with <see cref="CommonConverter.Convert(object?)"/>.
     /// </summary>
     public object? CommonText
     {

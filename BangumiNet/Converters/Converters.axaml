@@ -33,7 +33,9 @@
     <cvt:CareerCvt x:Key="CareerCvt"/>
     <cvt:EpisodeCollectionTypeCvt x:Key="EpisodeCollectionTypeCvt"/>
     <cvt:TimelineCategoryCvt x:Key="TimelineCategoryCvt"/>
-    <cvt:CommonCvt x:Key="DateCvt"/>
+    <cvt:CommonConverter x:Key="DateCvt"/>
+    <cvt:CommonConverter x:Key="CommonCvt"/>
+    <cvt:CommonEnumConverter x:Key="EnumCvt"/>
     <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
     <cvt:HexColorCvt x:Key="HexColorCvt"/>
 </ResourceDictionary>

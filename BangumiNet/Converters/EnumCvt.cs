@@ -2,6 +2,7 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
+using BangumiNet.Shared.Extensions;
 using System.Globalization;
 
 namespace BangumiNet.Converters;
@@ -152,4 +153,17 @@ public class TimelineCategoryCvt : IValueConverter
         => value is TimelineCategory type ? type.ToStringSC() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
+}
+public class CommonEnumConverter : IValueConverter
+{
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => Convert(value);
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+        => throw new NotImplementedException();
+    public static string? Convert(object? value)
+    {
+        if (value == null) return null;
+        if (value is ItemType itemType) return itemType.ToStringSC();
+        else return value.ToString();
+    }
 }

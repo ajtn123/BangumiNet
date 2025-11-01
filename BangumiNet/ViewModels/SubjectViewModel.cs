@@ -123,7 +123,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         NameCn = subject.NameCn;
         Images = new ImageSet() { Large = subject.Image };
         Relation = subject.Staff;
-        if (string.IsNullOrWhiteSpace(subject.Eps))
+        if (!string.IsNullOrWhiteSpace(subject.Eps))
             Relation += $" < {subject.Eps}";
 
         Init();

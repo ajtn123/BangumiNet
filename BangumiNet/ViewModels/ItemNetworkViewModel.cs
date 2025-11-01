@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Converters;
 using BangumiNet.Models.ItemNetwork;
+using BangumiNet.Shared.Extensions;
 using LiveChartsCore;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.Kernel;
@@ -16,6 +17,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
 {
     public ItemNetworkViewModel(ItemViewModelBase item)
     {
+        Title = $"条目网络 - {NameCnCvt.Convert(item)} - {Title}";
         Origin = new Node { Item = item, X = 0, Y = 0 };
         SubjectSeries = new ScatterSeries<Node>
         {
@@ -28,7 +30,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
             DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Right,
             DataLabelsFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
             XToolTipLabelFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
-            YToolTipLabelFormatter = point => point.Model?.Item.ItemTypeEnum.ToString() ?? "",
+            YToolTipLabelFormatter = point => SubjectTip,
         };
         CharacterSeries = new ScatterSeries<Node>
         {
@@ -41,7 +43,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
             DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Right,
             DataLabelsFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
             XToolTipLabelFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
-            YToolTipLabelFormatter = point => point.Model?.Item.ItemTypeEnum.ToString() ?? "",
+            YToolTipLabelFormatter = point => CharacterTip,
         };
         PersonSeries = new ScatterSeries<Node>
         {
@@ -54,7 +56,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
             DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Right,
             DataLabelsFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
             XToolTipLabelFormatter = point => NameCnCvt.Convert(point.Model?.Item) ?? "",
-            YToolTipLabelFormatter = point => point.Model?.Item.ItemTypeEnum.ToString() ?? "",
+            YToolTipLabelFormatter = point => PersonTip,
         };
         SubjectSeries.ChartPointPointerDown += async (s, e) => await Load(e.Model!);
         CharacterSeries.ChartPointPointerDown += async (s, e) => await Load(e.Model!);
@@ -67,10 +69,12 @@ public partial class ItemNetworkViewModel : ViewModelBase
         if (item.ItemTypeEnum == ItemType.Person)
             PersonSeries.Values = [Origin];
         Relationships = [];
+        InterestedItems = [];
         _ = Load(Origin);
     }
     public async Task Load(Node node)
     {
+        InterestedItems.Add(node.Item);
         if (node.Item.ItemTypeEnum == ItemType.Subject)
         {
             await Load(node, ItemType.Subject);
@@ -139,6 +143,12 @@ public partial class ItemNetworkViewModel : ViewModelBase
     [Reactive] public partial ScatterSeries<Node> PersonSeries { get; set; }
     [Reactive] public partial IChartElement[] Relationships { get; set; }
     [Reactive] public partial Node Origin { get; set; }
+    [Reactive] public partial ObservableCollection<ItemViewModelBase> InterestedItems { get; set; }
+
+    private static readonly string SubjectTip = ItemType.Subject.ToStringSC();
+    private static readonly string CharacterTip = ItemType.Character.ToStringSC();
+    private static readonly string PersonTip = ItemType.Person.ToStringSC();
+
     public static TimeSpan AnimationSpeed { get; } = TimeSpan.FromSeconds(1);
     public static Dictionary<ItemType, SolidColorPaint> RelationshipColors { get; set; } = new()
     {
@@ -152,7 +162,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
         public RelationshipVisual(Node startingNode, Node endingNode)
         {
             Easing = EasingFunctions.ExponentialOut;
-            AnimationSpeed = TimeSpan.FromSeconds(1);
+            AnimationSpeed = ItemNetworkViewModel.AnimationSpeed;
             DrawnElement = new LineGeometry { Fill = RelationshipColors[endingNode.Item.ItemTypeEnum] };
             StartingNode = startingNode;
             EndingNode = endingNode;
