@@ -9,7 +9,8 @@
              mc:Ignorable="d" d:DesignWidth="22" d:DesignHeight="22"
              x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeBadgeView">
-    <Grid MinWidth="22" MinHeight="22" ToolTip.Tip="{Binding .,Converter={StaticResource NameCnCvt}}">
+    <Grid MinWidth="22" MinHeight="22" Name="EpBadgeGrid"
+          ToolTip.Tip="{Binding .,Converter={StaticResource NameCnCvt}}">
         <Rectangle Classes="Card"
                    StrokeDashArray="{Binding Status,Converter={StaticResource EpDashCvt}}"
                    Fill="{Binding Type,Converter={StaticResource EpBrushCvt}}"/>

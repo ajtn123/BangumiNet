@@ -103,7 +103,7 @@ public static partial class ApiC
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && (username ?? CurrentUsername) is string uid)
+        else if (typeof(T) == typeof(UserViewModel) && username is string uid)
         {
             Api.P1.Models.User? user = null;
             try { user = await P1.Users[uid].GetAsync(cancellationToken: cancellationToken); }

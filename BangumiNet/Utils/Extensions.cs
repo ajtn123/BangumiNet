@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.Interfaces;
+﻿using Avalonia.Media;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Shared.Interfaces;
 
 namespace BangumiNet.Utils;
@@ -57,5 +58,11 @@ public static class Extensions
         if (dict.TryGetValue(key, out var value))
             return value;
         else return default;
+    }
+
+    public static string ToOpaqueString(this Color color)
+    {
+        var opaque = new Color(byte.MaxValue, color.R, color.G, color.B);
+        return opaque.ToString().Replace("#ff", "#");
     }
 }

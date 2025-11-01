@@ -9,7 +9,6 @@
              x:Class="BangumiNet.Views.TextView">
     <UserControl.Styles>
 		<Style Selector="HyperlinkButton">
-			<Setter Property="FontSize" Value="13"/>
             <Setter Property="Classes.Pri" Value="True"/>
         </Style>
         <Style Selector=":is(Inline)">

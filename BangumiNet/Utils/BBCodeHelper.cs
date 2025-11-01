@@ -9,16 +9,17 @@ public static partial class BBCodeHelper
 {
     private const string ContentPos = "%CONTENT%";
     private const string SelectionBackgroundPos = "%SELECTIONBACKGROUND%";
+    private const string ThemeTextColorPos = "%THEMETEXTCOLOR%";
     private const string HtmlFrame = $$"""
         <!DOCTYPE html>
         <html>
         <head>
         <style>
             html { margin: 0; padding: 0; }
-            body { margin: 0; padding: 0; word-break: break-all; }
+            body { margin: 0; padding: 0; word-break: break-all; {{ThemeTextColorPos}} }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             blockquote { margin: 0.5em; color: #777; }
-            ::selection { background-color: {{SelectionBackgroundPos}}; color: #000; }
+            ::selection { background-color: {{SelectionBackgroundPos}}; {{ThemeTextColorPos}} }
             img { max-width: 98%; }
         </style>
         </head>
@@ -26,6 +27,7 @@ public static partial class BBCodeHelper
         </html>
         """;
 
+    private static string GetThemeTextColor() => $"color: {(Application.Current?.ActualThemeVariant.Key.ToString() == "Dark" ? "#fff" : "#000")};";
     public static string ParseBBCode(string? bbcode)
     {
         if (string.IsNullOrWhiteSpace(bbcode)) return string.Empty;
@@ -39,8 +41,9 @@ public static partial class BBCodeHelper
 
         object? brush = null;
         Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
-        var selectionBg = (brush as SolidColorBrush)?.Color.ToString().Replace("#ff", "#") ?? "#fff";
+        var selectionBg = (brush as SolidColorBrush)?.Color.ToOpaqueString().ToLower() ?? "#fff";
         html = html.Replace(SelectionBackgroundPos, selectionBg);
+        html = html.Replace(ThemeTextColorPos, GetThemeTextColor());
 
         return html;
     }

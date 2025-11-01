@@ -34,7 +34,7 @@ public class BBCode : TemplatedControl
     public static HtmlPanel GetHtmlPanel(string? text)
     {
         HtmlPanel hp = new();
-        hp.ImageLoad += async (s, e) =>
+        hp.ImageLoad += static async (s, e) =>
         {
             if (e.Event.Handled) return;
 
@@ -49,15 +49,30 @@ public class BBCode : TemplatedControl
             e.Event.Handled = true;
             e.Handled = true;
         };
-        hp.LinkClicked += (s, e) =>
+        hp.LinkClicked += static async (s, e) =>
         {
             if (e.Event.Handled) return;
 
             var url = new Uri(e.Event.Link);
-            if (url.Host == "bgm.tv" || url.Host == "bangumi.tv" || url.Host == "chii.in")
+            if (url.Host != "bgm.tv" && url.Host != "bangumi.tv" && url.Host != "chii.in") return;
+            e.Event.Handled = true;
+            e.Handled = true;
+
+            var path = url.AbsolutePath.Trim('/');
+            if (path.StartsWith("character/") && int.TryParse(path.Replace("character/", ""), out var cid))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<CharacterViewModel>(cid) }.Show();
+            else if (path.StartsWith("subject/") && int.TryParse(path.Replace("subject/", ""), out var sid))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<SubjectViewModel>(sid) }.Show();
+            else if (path.StartsWith("person/") && int.TryParse(path.Replace("person/", ""), out var pid))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<PersonViewModel>(pid) }.Show();
+            else if (path.StartsWith("ep/") && int.TryParse(path.Replace("ep/", ""), out var eid))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<EpisodeViewModel>(eid) }.Show();
+            else if (path.StartsWith("user/") && path.Replace("user/", "") is string uid && !string.IsNullOrWhiteSpace(uid) && !uid.Contains('/'))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<UserViewModel>(username: uid) }.Show();
+            else
             {
-                // e.Event.Handled = true;
-                // e.Handled = true;
+                e.Event.Handled = false;
+                e.Handled = false;
             }
         };
         hp.Text = BBCodeHelper.ParseBBCode(text);
