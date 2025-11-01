@@ -33,7 +33,7 @@
     <cvt:CareerCvt x:Key="CareerCvt"/>
     <cvt:EpisodeCollectionTypeCvt x:Key="EpisodeCollectionTypeCvt"/>
     <cvt:TimelineCategoryCvt x:Key="TimelineCategoryCvt"/>
-    <cvt:DateCvt x:Key="DateCvt"/>
+    <cvt:CommonCvt x:Key="DateCvt"/>
     <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
     <cvt:HexColorCvt x:Key="HexColorCvt"/>
 </ResourceDictionary>

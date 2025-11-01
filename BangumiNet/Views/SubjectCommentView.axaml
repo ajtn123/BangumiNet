@@ -27,7 +27,7 @@
                     <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
                     <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"/>
                     <InfoItem Tip="收藏状态" Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}" Icon="Class"/>
-                    <InfoItem Tip="收藏时间" Text="{Binding UpdateTime}" Icon="Calendar"/>
+                    <InfoItem Tip="收藏时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/>
                     <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
                             Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
                         <Button.Flyout>

@@ -25,7 +25,7 @@
                                          IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                          Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                         <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
-                        <InfoItem Tip="收藏时间" Text="{Binding CreationTime}" Icon="Calendar"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
                         <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
                                 IsVisible="{Binding !NoReaction}"
                                 Content="{ice:FluentIcon Icon=Heart,FontSize=16}">

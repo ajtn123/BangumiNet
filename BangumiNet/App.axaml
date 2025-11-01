@@ -166,8 +166,7 @@
                 <Setter Property="Width" Value="1"/>
             </Style>
             <Style Selector="^ > HyperlinkButton">
-                <Setter Property="Margin" Value="0,-1,0,0"/>
-                <Setter Property="Height" Value="20"/>
+                <Setter Property="Margin" Value="0,-2,0,0"/>
             </Style>
         </Style>
         <Style Selector="Separator">

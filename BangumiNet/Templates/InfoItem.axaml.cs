@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using BangumiNet.Converters;
 using FluentIcons.Common;
 
 namespace BangumiNet.Templates;
@@ -9,8 +10,9 @@ public class InfoItem : TemplatedControl
 {
     public InfoItem()
     {
-        if (Design.IsDesignMode) Text = "DInfo";
-        this.WhenAnyValue(x => x.Text).Subscribe(t => { if (!Design.IsDesignMode) IsVisible = !string.IsNullOrWhiteSpace(t); });
+        this.WhenAnyValue(x => x.CommonText).Subscribe(obj => Text = CommonCvt.Convert(obj));
+        this.WhenAnyValue(x => x.Text).Subscribe(t => IsVisible = !string.IsNullOrWhiteSpace(t));
+        if (Design.IsDesignMode) Text ??= "DInfo";
     }
 
     public static readonly StyledProperty<Icon?> IconProperty =
@@ -51,5 +53,16 @@ public class InfoItem : TemplatedControl
     {
         get => GetValue(TipProperty);
         set => SetValue(TipProperty, value);
+    }
+
+    public static readonly StyledProperty<object?> CommonTextProperty =
+        AvaloniaProperty.Register<InfoItem, object?>(nameof(CommonText));
+    /// <summary>
+    /// Set <see cref="Text"/> with <see cref="CommonCvt.Convert(object?)"/>.
+    /// </summary>
+    public object? CommonText
+    {
+        get => GetValue(CommonTextProperty);
+        set => SetValue(CommonTextProperty, value);
     }
 }

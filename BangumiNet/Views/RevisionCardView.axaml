@@ -28,7 +28,7 @@
                                  Content="{Binding Creator.Nickname}" Classes="Pri"
                                  IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}"/>
                 <InfoItem Tip="用户名" Text="{Binding Creator.Username}" Classes="Sec"/>
-                <InfoItem Tip="更新时间" Icon="Calendar" Text="{Binding CreationTime}"/>
+                <InfoItem Tip="创建时间" Icon="Calendar" CommonText="{Binding CreationTime}"/>
                 <InfoItem Tip="类型" Icon="Class" Text="{Binding Type}"/>
                 <InfoItem Tip="ID" Icon="SlideText" Text="{Binding Id}"/>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
