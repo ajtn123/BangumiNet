@@ -60,7 +60,6 @@ public static class SubjectCategory
         /// <summary>综艺</summary>
         Show = 6004,
     }
-
 }
 
 public static partial class EnumExtensions

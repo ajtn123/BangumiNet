@@ -40,8 +40,10 @@ public partial class SearchViewModel : ViewModelBase
             .Subscribe(x => { this.RaisePropertyChanged(nameof(IsAirDateValid)); IsFilterValidR = IsFilterValid; });
         this.WhenAnyValue(x => x.IsRankEnabled, x => x.RankLowerLimit, x => x.RankUpperLimit)
             .Subscribe(x => { this.RaisePropertyChanged(nameof(IsRankValid)); IsFilterValidR = IsFilterValid; });
-        this.WhenAnyValue(x => x.IsAirDateEnabled, x => x.RatingLowerLimit, x => x.RatingUpperLimit)
+        this.WhenAnyValue(x => x.IsRatingEnabled, x => x.RatingLowerLimit, x => x.RatingUpperLimit)
             .Subscribe(x => { this.RaisePropertyChanged(nameof(IsRatingValid)); IsFilterValidR = IsFilterValid; });
+        this.WhenAnyValue(x => x.IsRatingCountEnabled, x => x.RatingCountLowerLimit, x => x.RatingCountUpperLimit)
+            .Subscribe(x => { this.RaisePropertyChanged(nameof(IsRatingCountValid)); IsFilterValidR = IsFilterValid; });
         this.WhenAnyValue(x => x.SubjectResultOffset, x => x.TotalSubjectResults)
             .Subscribe(x => SubjectResultOffsetMessage = x.Item1 == null || x.Item2 == null ? null : $"正在显示第 {x.Item1 + 1}-{Math.Min((int)x.Item1 + Limit, (int)x.Item2)} 条结果");
         this.WhenAnyValue(x => x.PersonResultOffset, x => x.TotalPersonResults)
@@ -89,6 +91,7 @@ public partial class SearchViewModel : ViewModelBase
                 Rating = GetRatingFilter(),
                 Tag = GetTagFilter(),
                 Type = GetTypeFilter(),
+                RatingCount = GetRatingCountFilter(),
             }
         };
         var response = await ApiC.V0.Search.Subjects.PostAsync(SubjectsPostRequestBody, config =>
@@ -227,6 +230,9 @@ public partial class SearchViewModel : ViewModelBase
     [Reactive] public partial bool IsRatingEnabled { get; set; }
     [Reactive] public partial double? RatingLowerLimit { get; set; }
     [Reactive] public partial double? RatingUpperLimit { get; set; }
+    [Reactive] public partial bool IsRatingCountEnabled { get; set; }
+    [Reactive] public partial int? RatingCountLowerLimit { get; set; }
+    [Reactive] public partial int? RatingCountUpperLimit { get; set; }
     [Reactive] public partial bool? Nsfw { get; set; }
     [Reactive] public partial SubjectListViewModel SubjectListViewModel { get; set; }
     [Reactive] public partial SubjectListViewModel PersonListViewModel { get; set; }
@@ -290,6 +296,17 @@ public partial class SearchViewModel : ViewModelBase
         if (list.Count > 0) return list;
         else return null;
     }
+    public List<string>? GetRatingCountFilter()
+    {
+        if (!IsRatingCountEnabled) return null;
+        var list = new List<string>();
+        if (RatingCountLowerLimit.HasValue)
+            list.Add($"{SearchFilterRelation.GreaterThanOrEqualTo.ToSymbol()}{RatingCountLowerLimit.Value}");
+        if (RatingCountUpperLimit.HasValue)
+            list.Add($"{SearchFilterRelation.LessThanOrEqualTo.ToSymbol()}{RatingCountUpperLimit.Value}");
+        if (list.Count > 0) return list;
+        else return null;
+    }
     public List<string>? GetRankFilter()
     {
         if (!IsRankEnabled) return null;
@@ -313,11 +330,12 @@ public partial class SearchViewModel : ViewModelBase
     }
 
     [Reactive] public partial bool IsFilterValidR { get; set; }
-    public bool IsFilterValid => !IsSearchingSubject || IsAirDateValid && IsRankValid && IsRatingValid;
+    public bool IsFilterValid => !IsSearchingSubject || IsAirDateValid && IsRankValid && IsRatingValid && IsRatingCountValid;
 
-    public bool IsAirDateValid => !IsAirDateEnabled || AirDateEnd >= AirDateStart;
-    public bool IsRankValid => !IsRankEnabled || RankUpperLimit >= RankLowerLimit;
-    public bool IsRatingValid => !IsRatingEnabled || RatingUpperLimit >= RatingLowerLimit;
+    public bool IsAirDateValid => !IsAirDateEnabled || AirDateEnd == null || AirDateStart == null || AirDateEnd >= AirDateStart;
+    public bool IsRankValid => !IsRankEnabled || RankUpperLimit == null || RankLowerLimit == null || RankUpperLimit >= RankLowerLimit;
+    public bool IsRatingValid => !IsRatingEnabled || RatingUpperLimit == null || RatingLowerLimit == null || RatingUpperLimit >= RatingLowerLimit;
+    public bool IsRatingCountValid => !IsRatingCountEnabled || RatingCountUpperLimit == null || RatingCountLowerLimit == null || RatingCountUpperLimit >= RatingCountLowerLimit;
 
     public bool IsSearchingSubject => SearchType == SearchType.Subject;
     public bool IsSearchingPerson => SearchType == SearchType.Person;
