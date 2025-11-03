@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using System.Net;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
@@ -16,7 +17,7 @@ public static partial class BBCodeHelper
         <head>
         <style>
             html { margin: 0; padding: 0; }
-            body { margin: 0; padding: 0; word-break: break-all; {{ThemeTextColorPos}} }
+            body { margin: 0; padding: 0; {{ThemeTextColorPos}} }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             blockquote { margin: 0.5em; color: #777; }
             ::selection { background-color: {{SelectionBackgroundPos}}; {{ThemeTextColorPos}} }
@@ -32,7 +33,7 @@ public static partial class BBCodeHelper
     {
         if (string.IsNullOrWhiteSpace(bbcode)) return string.Empty;
 
-        string result = bbcode.Trim(' ', '\n', '\r');
+        string result = WebUtility.HtmlEncode(bbcode.Trim(' ', '\n', '\r'));
         foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
         foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
         foreach (var (i, s) in StickerProvider.Emojis.Index()) result = result.Replace(s, $"<img src=\"bn://emoji/{i}\">");
