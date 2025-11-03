@@ -49,6 +49,14 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
 #else
         public List<string> Rating { get; set; }
 #endif
+        /// <summary>用于按照评分人数筛选条目，多值之间为 `且` 关系，格式与 `rating` 相同。</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? RatingCount { get; set; }
+#nullable restore
+#else
+        public List<string> RatingCount { get; set; }
+#endif
         /// <summary>标签，可以多次出现。多值之间为 `且` 关系。</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -95,6 +103,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "rank", n => { Rank = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "rating", n => { Rating = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "rating_count", n => { RatingCount = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "tag", n => { Tag = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "type", n => { Type = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
             };
@@ -111,6 +120,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteCollectionOfPrimitiveValues<string>("rank", Rank);
             writer.WriteCollectionOfPrimitiveValues<string>("rating", Rating);
+            writer.WriteCollectionOfPrimitiveValues<string>("rating_count", RatingCount);
             writer.WriteCollectionOfPrimitiveValues<string>("tag", Tag);
             writer.WriteCollectionOfPrimitiveValues<int?>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

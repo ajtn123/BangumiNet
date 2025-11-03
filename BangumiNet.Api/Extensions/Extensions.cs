@@ -16,9 +16,9 @@ namespace BangumiNet.Api.V0
     public partial class ApiClient : IApiClient
     {
         /// <summary>OpenAPI 定义文件的最后 commit</summary>
-        public const string Commit = "117fc456a45c1e2a5a0647d3d3cf0e4e74a28344";
+        public const string Commit = "ac5d5ea93fd7ddee6f02243e01cc7776b4efc34f";
         /// <summary>OpenAPI 定义文件的 URL</summary>
-        public const string DefinitionUrl = "https://github.com/trim21-bot/api/raw/117fc456a45c1e2a5a0647d3d3cf0e4e74a28344/open-api/v0.yaml";
+        public const string DefinitionUrl = "https://github.com/trim21-bot/api/raw/ac5d5ea93fd7ddee6f02243e01cc7776b4efc34f/open-api/v0.yaml";
         /// <summary>生成本 API 客户端的命令</summary>
         public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.V0 -o .\V0 --co";
     }
