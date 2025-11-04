@@ -29,10 +29,19 @@ dotnet publish --configuration Release --runtime <RID>
 
 > 参见 [RID](https://learn.microsoft.com/zh-cn/dotnet/core/rid-catalog)、[dotnet publish](https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish)。
 
+## BangumiNet.Api
+
+本项目使用由 [Kiota](https://learn.microsoft.com/zh-cn/openapi/kiota/overview) 根据 [Bangumi](https://bgm.tv) 提供的 [OpenAPI](https://www.openapis.org/) 定义生成的 API 客户端。
+
+- [//api.bgm.tv/](https://bangumi.github.io/api/#/)
+- [//api.bgm.tv/v0/](https://bangumi.github.io/api/#/)
+- [//next.bgm.tv/p1/](https://next.bgm.tv/p1/#/)
+
 ## 鸣谢
 
-- [Bangumi](https://bangumi.tv)
+- [Bangumi](https://bgm.tv)
 - [Bangumi 开源项目](https://github.com/bangumi)
 - [.NET](https://dotnet.microsoft.com/zh-cn/)
 - [Avalonia](https://avaloniaui.net/)
+- [Kiota](https://learn.microsoft.com/zh-cn/openapi/kiota/overview)
 - 以及所有引用的依赖、资产与服务。
