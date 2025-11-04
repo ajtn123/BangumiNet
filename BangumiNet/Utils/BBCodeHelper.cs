@@ -17,7 +17,7 @@ public static partial class BBCodeHelper
         <head>
         <style>
             html { margin: 0; padding: 0; }
-            body { margin: 0; padding: 0; {{ThemeTextColorPos}} }
+            body { margin: 0; padding: 0; word-break: break-all; {{ThemeTextColorPos}} }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             blockquote { margin: 0.5em; color: #777; }
             ::selection { background-color: {{SelectionBackgroundPos}}; {{ThemeTextColorPos}} }
