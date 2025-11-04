@@ -4,6 +4,12 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>Aoii</Authors>
+    <Title>BangumiNet API Client</Title>
+    <Copyright>MIT License</Copyright>
+    <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
+    <PackageTags>bangumi;bgm;api;client</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">

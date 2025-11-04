@@ -1,0 +1,49 @@
+name: Build & Release .NET Package
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10'
+
+      - name: Publish
+        run: |
+          version=$(git describe --tags --abbrev=0)
+          dotnet pack BangumiNet.Api -p:PackageVersion=${version#v} -o . -c Release
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pkg-archive
+          path: BangumiNet.Api.*.nupkg
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: pkg-archive
+          path: .
+
+      - name: Push
+        run: |
+          pkgName=$(find . -name "BangumiNet.Api.*.nupkg" | head -n 1)
+          dotnet nuget push $pkgName --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
