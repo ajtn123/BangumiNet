@@ -4,11 +4,25 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsPackable>False</IsPackable>
+    <Authors>Aoii</Authors>
+    <Title>BangumiNet Shared Code</Title>
+    <Copyright>Copyright (c) 2025 aoi</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
+    <PackageTags>bangumi;bgm;api;client</PackageTags>
+    <Description>Shared code in BangumiNet.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>BangumiNet.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\BangumiNet.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>
