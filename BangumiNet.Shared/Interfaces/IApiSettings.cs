@@ -4,5 +4,4 @@ public interface IApiSettings
 {
     string UserAgent { get; set; }
     string? AuthToken { get; set; }
-    string BangumiTvUrlBase { get; set; }
 }
