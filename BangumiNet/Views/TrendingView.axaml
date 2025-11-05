@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:TrendingViewModel"
+             x:Class="BangumiNet.Views.TrendingView">
+    <StackPanel Spacing="5">
+        <Border Classes="Card">
+			<Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Fire" Text="近期注目"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1" Spacing="5">
+                    <ComboBox Grid.Column="1" x:Name="ItemTypeComboBox"
+                              SelectedItem="{Binding ItemType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="1" IsVisible="{Binding IsSubject}" x:Name="SubjectTypeComboBox"
+                              SelectedItem="{Binding SubjectType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+		<bn:SubjectListPagedView DataContext="{Binding}"/>
+    </StackPanel>
+</UserControl>

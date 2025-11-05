@@ -17,11 +17,14 @@
                 </Grid>
             </Border>
             <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
-                <StackPanel Spacing="5">
+                <StackPanel Grid.Column="0" Spacing="5">
                     <bn:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
                     <bn:TimelineView DataContext="{Binding TimelineViewModel}"/>
                 </StackPanel>
-                <bn:CalendarView DataContext="{Binding Today}" Grid.Column="1"/>
+                <StackPanel Grid.Column="1" Spacing="5">
+                    <bn:CalendarView DataContext="{Binding Today}"/>
+                    <bn:TrendingView DataContext="{Binding TrendingViewModel}"/>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </ScrollViewer>

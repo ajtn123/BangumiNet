@@ -9,8 +9,10 @@ public partial class HomeViewModel : ViewModelBase
         LoadGreeting();
         this.WhenAnyValue(x => x.Me).Subscribe(x => LoadGreeting());
         TimelineViewModel = new();
+        TrendingViewModel = new(ItemType.Subject, SubjectType.Anime);
         CollectionListViewModel = new(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
         TimelineViewModel.LoadCommand.Execute(null);
+        TrendingViewModel.LoadCommand.Execute(1);
         _ = Task.Run(async () => Today = await ApiC.GetViewModelAsync<CalendarViewModel>());
         _ = Task.Run(async () =>
         {
@@ -24,6 +26,7 @@ public partial class HomeViewModel : ViewModelBase
     [Reactive] public partial CalendarViewModel? Today { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? CollectionListViewModel { get; set; }
     [Reactive] public partial TimelineViewModel TimelineViewModel { get; set; }
+    [Reactive] public partial TrendingViewModel TrendingViewModel { get; set; }
 
     private void LoadGreeting()
     {

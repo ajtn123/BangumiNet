@@ -11,7 +11,7 @@
     <StackPanel Spacing="5">
         <Border Classes="Card">
 			<Grid ColumnDefinitions="Auto,*">
-				<TextBlock>时间线</TextBlock>
+                <InfoItem Icon="Timeline" Text="时间线"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">

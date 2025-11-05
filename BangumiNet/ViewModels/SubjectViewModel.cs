@@ -224,6 +224,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial ObservableCollection<string>? MetaTags { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
+    [Reactive] public partial int? Hype { get; set; }
     [Reactive] public partial bool IsSeries { get; set; }
     [Reactive] public partial bool IsNsfw { get; set; }
     [Reactive] public partial bool IsLocked { get; set; }
