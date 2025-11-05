@@ -9,8 +9,8 @@ namespace BangumiNet.Templates;
 
 public class MainImage : ContentControl
 {
-    public static readonly StyledProperty<IImage?> SourceProperty =
-    AvaloniaProperty.Register<MainImage, IImage?>(nameof(Source));
+    public static readonly StyledProperty<IImage?> SourceProperty
+        = AvaloniaProperty.Register<MainImage, IImage?>(nameof(Source));
     public IImage? Source
     {
         get => GetValue(SourceProperty);
@@ -19,7 +19,7 @@ public class MainImage : ContentControl
 
     public void OpenImageWithExternalProgram(object? sender, RoutedEventArgs e)
     {
-        if (Tag is string url)
+        if (Tag is string url && !string.IsNullOrWhiteSpace(url))
             if (CacheProvider.GetCacheFile(url) is string path)
             {
                 var extension = url.Contains("png") ? "png"
@@ -38,9 +38,20 @@ public class MainImage : ContentControl
             }
     }
 
+    public async void ReloadImage(object? sender, RoutedEventArgs e)
+    {
+        if (Tag is string url && !string.IsNullOrWhiteSpace(url))
+        {
+            CacheProvider.DeleteCache(url);
+            Source = await ApiC.GetImageAsync(url);
+        }
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        var btn = e.NameScope.Find<Button>("PART_OpenImageButton");
-        btn?.Click += OpenImageWithExternalProgram;
+        var openBtn = e.NameScope.Find<Button>("PART_OpenImageButton");
+        openBtn?.Click += OpenImageWithExternalProgram;
+        var ReloadBtn = e.NameScope.Find<Button>("PART_ReloadImageButton");
+        ReloadBtn?.Click += ReloadImage;
     }
 }
