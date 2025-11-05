@@ -236,6 +236,21 @@
         <Style Selector="Label">
 			<Setter Property="Padding" Value="0"/>
         </Style>
+        <Style Selector=":is(TextBlock).PointoverText">
+            <Setter Property="FontSize" Value="7"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="FontSize" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector=".PointoverTextHost:pointerover :is(TextBlock).PointoverText">
+			<Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style Selector=":is(Panel).Hoverable, :is(Panel).PointoverTextHost">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+        </Style>
     </Application.Styles>
 
     <Application.DataTemplates>
