@@ -5,6 +5,10 @@
 ![framework](https://img.shields.io/badge/.NET-10-blue)
 ![framework](https://img.shields.io/badge/Avalonia-11-blue)
 
+BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组计划](https://bgm.tv/) 桌面客户端，支持 Windows、Linux 和 MacOS。
+
+软件使用 MIT 开源协议，所有源代码均可在此仓库获取。如果在其他位置查看本 README，[点击这里](https://github.com/ajtn123/BangumiNet)前往 GitHub 仓库。
+
 ## 安装
 
 ### 发布版
