@@ -1,6 +1,7 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Trending.Subjects;
+using System.Reactive.Linq;
 using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
@@ -21,7 +22,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
         {
             this.RaisePropertyChanged(nameof(IsSubject));
         });
-        this.WhenAnyValue(x => x.SubjectType).Subscribe(itemType =>
+        this.WhenAnyValue(x => x.SubjectType).Skip(1).Subscribe(itemType =>
         {
             if (ItemType != ItemType.Subject) return;
             _ = Load(1);

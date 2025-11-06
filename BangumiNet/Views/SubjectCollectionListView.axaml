@@ -10,9 +10,38 @@
              x:Class="BangumiNet.Views.SubjectCollectionListView">
     <StackPanel Spacing="5">
         <Border Classes="Card">
-            <Grid ColumnDefinitions="*,Auto">
-                <TextBlock Text="{Binding CollectionType,Converter={StaticResource CollectionTypeCvt}}"/>
-                <TextBlock Text="{Binding PageInfoMessage}" Grid.Column="1"/>
+			<Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Heart" Text="收藏"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1" Spacing="5">
+                    <TextBlock Text="{Binding PageInfoMessage}" Grid.Column="1"/>
+                    <Separator Height="15" Width="1" Margin="0"/>
+                    <ComboBox Grid.Column="1" x:Name="ItemTypeComboBox"
+                              SelectedItem="{Binding ItemType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="1" IsVisible="{Binding IsSubject}" x:Name="SubjectTypeComboBox"
+                              SelectedItem="{Binding SubjectType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}, TargetNullValue='全部'}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ComboBox Grid.Column="1" IsVisible="{Binding IsSubject}" x:Name="CollectionTypeComboBox"
+                              SelectedItem="{Binding CollectionType}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource CollectionTypeCvt}, TargetNullValue='全部'}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
             </Grid>
         </Border>
         <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>

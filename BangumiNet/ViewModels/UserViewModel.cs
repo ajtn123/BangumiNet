@@ -93,6 +93,11 @@ public partial class UserViewModel : ViewModelBase
     }
     public void Init()
     {
+        if (Username != null)
+        {
+            CollectionList = new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
+        }
+
         Title = $"{Nickname ?? Username ?? "用户"} - {Title}";
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
 
@@ -101,17 +106,6 @@ public partial class UserViewModel : ViewModelBase
         OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
-
-        if (Username != null)
-        {
-            WishList = new(ItemType.Subject, collectionType: CollectionType.Wish, username: Username);
-            DoingList = new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
-            DoneList = new(ItemType.Subject, collectionType: CollectionType.Done, username: Username);
-            DropList = new(ItemType.Subject, collectionType: CollectionType.Dropped, username: Username);
-            HoldList = new(ItemType.Subject, collectionType: CollectionType.OnHold, username: Username);
-            CharacterList = new(ItemType.Character, username: Username);
-            PersonList = new(ItemType.Person, username: Username);
-        }
     }
     public UserViewModel(string? username)
     {
@@ -133,13 +127,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial DateTimeOffset? RegistrationTime { get; set; }
     [Reactive] public partial string? Email { get; set; }
     [Reactive] public partial int? TimeOffset { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? WishList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? DoingList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? DoneList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? DropList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? HoldList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? CharacterList { get; set; }
-    [Reactive] public partial SubjectCollectionListViewModel? PersonList { get; set; }
+    [Reactive] public partial SubjectCollectionListViewModel? CollectionList { get; set; }
 
     public bool IsMe => Username == ApiC.CurrentUsername;
     public bool IsFull => Source is Api.P1.Models.User;

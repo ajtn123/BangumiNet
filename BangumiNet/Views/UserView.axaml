@@ -45,28 +45,10 @@
                 </StackPanel>
 
                 <TabControl Grid.Row="1" Grid.ColumnSpan="2"
-                            SelectedIndex="1"
+                            SelectedIndex="0"
                             Name="CollectionTabs">
-                    <TabItem Header="想看">
-                        <bn:SubjectCollectionListView DataContext="{Binding WishList}"/>
-                    </TabItem>
-                    <TabItem Header="在看">
-                        <bn:SubjectCollectionListView DataContext="{Binding DoingList}"/>
-                    </TabItem>
-                    <TabItem Header="看过">
-                        <bn:SubjectCollectionListView DataContext="{Binding DoneList}"/>
-                    </TabItem>
-                    <TabItem Header="抛弃">
-                        <bn:SubjectCollectionListView DataContext="{Binding DropList}"/>
-                    </TabItem>
-                    <TabItem Header="搁置">
-                        <bn:SubjectCollectionListView DataContext="{Binding HoldList}"/>
-                    </TabItem>
-                    <TabItem Header="角色">
-                        <bn:SubjectCollectionListView DataContext="{Binding CharacterList}"/>
-                    </TabItem>
-                    <TabItem Header="人物">
-                        <bn:SubjectCollectionListView DataContext="{Binding PersonList}"/>
+                    <TabItem Header="收藏">
+                        <bn:SubjectCollectionListView DataContext="{Binding CollectionList}"/>
                     </TabItem>
                 </TabControl>
             </Grid>

@@ -2,6 +2,7 @@
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using System.Reactive;
+using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
@@ -29,23 +30,38 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
             if (Offset == null || Total == null) PageInfoMessage = $"加载中……";
             else PageInfoMessage = $"第 {Offset + 1}-{Math.Min((int)Offset + Limit, (int)Total)} 个项目，共 {Total} 个";
         });
+        this.WhenAnyValue(x => x.ItemType).Skip(1).Subscribe(itemType =>
+        {
+            this.RaisePropertyChanged(nameof(IsSubject));
+            _ = LoadPageAsync(1);
+        });
+        this.WhenAnyValue(x => x.SubjectType).Skip(1).Subscribe(itemType =>
+        {
+            if (ItemType != ItemType.Subject) return;
+            _ = LoadPageAsync(1);
+        });
+        this.WhenAnyValue(x => x.CollectionType).Skip(1).Subscribe(itemType =>
+        {
+            if (ItemType != ItemType.Subject) return;
+            _ = LoadPageAsync(1);
+        });
     }
 
-    public Task LoadPageAsync(int? i)
+    public Task LoadPageAsync(int? i, CancellationToken ct = default)
     {
         Username ??= ApiC.CurrentUsername;
         if (string.IsNullOrWhiteSpace(Username)) return Task.CompletedTask;
         if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return Task.CompletedTask;
         return ItemType switch
         {
-            ItemType.Subject => LoadSubjects(pageIndex),
-            ItemType.Character => LoadCharacters(pageIndex),
-            ItemType.Person => LoadPersons(pageIndex),
+            ItemType.Subject => LoadSubjects(pageIndex, ct),
+            ItemType.Character => LoadCharacters(pageIndex, ct),
+            ItemType.Person => LoadPersons(pageIndex, ct),
             _ => throw new NotImplementedException(),
         };
     }
 
-    public async Task LoadSubjects(int pageIndex)
+    private async Task LoadSubjects(int pageIndex, CancellationToken ct = default)
     {
         Paged_UserCollection? collection = null;
         try
@@ -56,7 +72,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
                 config.QueryParameters.Type = ((int?)CollectionType).ToString();
                 config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                 config.QueryParameters.Limit = Limit;
-            });
+            }, ct);
         }
         catch (ErrorDetail e)
         {
@@ -66,7 +82,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         if (collection is null) return;
         UpdateItems(collection);
     }
-    public async Task LoadCharacters(int pageIndex)
+    private async Task LoadCharacters(int pageIndex, CancellationToken ct = default)
     {
         Paged_UserCharacterCollection? collection = null;
         try
@@ -74,7 +90,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
             var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Characters.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
-            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue);
+            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue, cancellationToken: ct);
         }
         catch (ErrorDetail e)
         {
@@ -84,7 +100,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         if (collection is null) return;
         UpdateItems(collection);
     }
-    public async Task LoadPersons(int pageIndex)
+    private async Task LoadPersons(int pageIndex, CancellationToken ct = default)
     {
         Paged_UserPersonCollection? collection = null;
         try
@@ -92,7 +108,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
             var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Persons.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
-            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue);
+            collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue, cancellationToken: ct);
         }
         catch (ErrorDetail e)
         {
@@ -103,21 +119,21 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         UpdateItems(collection);
     }
 
-    public void UpdateItems(Paged_UserCollection subjects)
+    private void UpdateItems(Paged_UserCollection subjects)
     {
         if (subjects.Data != null)
             SubjectList.SubjectViewModels = [.. subjects.Data.Select(x => new SubjectCollectionViewModel(x) { ParentList = this, IsMy = Username == ApiC.CurrentUsername })];
 
         UpdatePage(subjects);
     }
-    public void UpdateItems(Paged_UserCharacterCollection characters)
+    private void UpdateItems(Paged_UserCharacterCollection characters)
     {
         if (characters.Data != null)
             SubjectList.SubjectViewModels = [.. characters.Data.Select(x => new CharacterViewModel(x))];
 
         UpdatePage(characters);
     }
-    public void UpdateItems(Paged_UserPersonCollection persons)
+    private void UpdateItems(Paged_UserPersonCollection persons)
     {
         if (persons.Data != null)
             SubjectList.SubjectViewModels = [.. persons.Data.Select(x => new PersonViewModel(x))];
@@ -144,6 +160,8 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
     [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
+
+    public bool IsSubject => ItemType == ItemType.Subject;
 
     public static int Limit => SettingProvider.CurrentSettings.CollectionPageSize;
 }

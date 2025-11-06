@@ -1,5 +1,3 @@
-using System.Reactive.Linq;
-
 namespace BangumiNet.Views;
 
 public partial class UserView : ReactiveUserControl<UserViewModel>
@@ -18,17 +16,9 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
                 if (fullUser == null) return;
                 dataContextChanges += 1;
                 DataContext = fullUser;
-                if (CollectionTabs.SelectedContent is SubjectCollectionListView v && v.ViewModel != null && v.ViewModel.Total == null && !await v.ViewModel.LoadPageCommand.IsExecuting.FirstAsync())
-                    _ = v.ViewModel.LoadPageCommand.Execute(1).Subscribe();
             }
+            _ = ViewModel?.CollectionList?.LoadPageAsync(1);
         };
-
-        CollectionTabs.WhenAnyValue(x => x.SelectedContent).Subscribe(async y =>
-        {
-            if (!(ViewModel?.IsFull ?? false)) return;
-            if (y is SubjectCollectionListView v && v.ViewModel != null && v.ViewModel.Total == null && !await v.ViewModel.LoadPageCommand.IsExecuting.FirstAsync())
-                _ = v.ViewModel.LoadPageCommand.Execute(1).Subscribe();
-        });
     }
 
     private uint dataContextChanges = 0;
