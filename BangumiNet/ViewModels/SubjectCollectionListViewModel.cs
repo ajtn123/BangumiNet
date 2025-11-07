@@ -6,7 +6,7 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
-public partial class SubjectCollectionListViewModel : ViewModelBase
+public partial class SubjectCollectionListViewModel : ViewModelBase, ILoadable
 {
     public SubjectCollectionListViewModel(ItemType itemType, SubjectType? subjectType = null, CollectionType? collectionType = null, string? username = null)
     {
@@ -47,6 +47,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase
         });
     }
 
+    public Task Load(CancellationToken ct = default) => LoadPageAsync(1, ct);
     public Task LoadPageAsync(int? i, CancellationToken ct = default)
     {
         Username ??= ApiC.CurrentUsername;

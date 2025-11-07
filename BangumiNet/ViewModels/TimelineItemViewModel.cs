@@ -20,13 +20,14 @@ public partial class TimelineItemViewModel : ViewModelBase
         OperationSourceUrl = timeline.Source?.Url;
         IsMy = ApiC.CurrentUsername != null && timeline.User?.Username == ApiC.CurrentUsername;
         CreationTime = Common.ParseBangumiTime(timeline.CreatedAt);
+
+        List<ViewModelBase> subjects = [];
         if (OperationSource == "web" && string.IsNullOrWhiteSpace(OperationSourceUrl))
             OperationSourceUrl = CurrentSettings.BangumiTvUrlBase;
         if (timeline.User != null)
-            User = new(timeline.User);
+            subjects.Add(User = new(timeline.User));
         if (timeline.Memo != null)
         {
-            List<ViewModelBase> subjects = [];
             //if (timeline.Memo.Blog != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Blog));
             //if (timeline.Memo.Daily != null)
@@ -76,9 +77,8 @@ public partial class TimelineItemViewModel : ViewModelBase
                 }));
             //if (timeline.Memo.Wiki != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Wiki));
-
-            Memo = new() { SubjectViewModels = [.. subjects] };
         }
+        Memo = new() { SubjectViewModels = [.. subjects] };
     }
 
     [Reactive] public partial object? Source { get; set; }

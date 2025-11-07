@@ -46,7 +46,10 @@
 
                 <TabControl Grid.Row="1" Grid.ColumnSpan="2"
                             SelectedIndex="0"
-                            Name="CollectionTabs">
+                            Name="UserContentTabs">
+                    <TabItem Header="时间线">
+                        <bn:TimelineView DataContext="{Binding Timeline}"/>
+                    </TabItem>
                     <TabItem Header="收藏">
                         <bn:SubjectCollectionListView DataContext="{Binding CollectionList}"/>
                     </TabItem>

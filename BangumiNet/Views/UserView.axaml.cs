@@ -1,3 +1,5 @@
+using Avalonia.Controls;
+
 namespace BangumiNet.Views;
 
 public partial class UserView : ReactiveUserControl<UserViewModel>
@@ -17,9 +19,20 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
                 dataContextChanges += 1;
                 DataContext = fullUser;
             }
-            _ = ViewModel?.CollectionList?.LoadPageAsync(1);
+            _ = ViewModel?.Timeline?.Load();
+        };
+
+        UserContentTabs.SelectionChanged += (s, e) =>
+        {
+            if (loadedTabs.Contains(UserContentTabs.SelectedIndex)) return;
+            if (UserContentTabs.SelectedContent is Control { DataContext: ILoadable vm })
+            {
+                loadedTabs.Add(UserContentTabs.SelectedIndex);
+                vm.Load();
+            }
         };
     }
 
+    private readonly HashSet<int> loadedTabs = [0];
     private uint dataContextChanges = 0;
 }

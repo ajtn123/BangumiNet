@@ -96,6 +96,7 @@ public partial class UserViewModel : ViewModelBase
         if (Username != null)
         {
             CollectionList = new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
+            Timeline = new() { Username = Username };
         }
 
         Title = $"{Nickname ?? Username ?? "用户"} - {Title}";
@@ -128,6 +129,7 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial string? Email { get; set; }
     [Reactive] public partial int? TimeOffset { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? CollectionList { get; set; }
+    [Reactive] public partial TimelineViewModel? Timeline { get; set; }
 
     public bool IsMe => Username == ApiC.CurrentUsername;
     public bool IsFull => Source is Api.P1.Models.User;
