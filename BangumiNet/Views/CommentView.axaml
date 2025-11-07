@@ -26,6 +26,7 @@
                                          Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                         <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
                         <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
+                        <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning"/>
                         <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
                                 IsVisible="{Binding !NoReaction}"
                                 Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
@@ -52,7 +53,8 @@
                                 Content="{ice:FluentIcon Icon=Comment,FontSize=16}"
                                 Click="ReplyButtonClick"/>
                     </WrapPanel>
-                    <BBCode Text="{Binding Content}"/>
+                    <BBCode Text="{Binding Content}"
+                            IsVisible="{Binding Content, Converter={StaticResource NEWCvt}}"/>
                     <bn:ReactionListView DataContext="{Binding Reactions}"/>
                 </StackPanel>
             </Border>

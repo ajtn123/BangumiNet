@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.P1.Models;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.ViewModels;
 
@@ -14,7 +15,7 @@ public partial class CommentViewModel : ViewModelBase
         RelatedId = comment.RelatedID;
         Id = comment.Id;
         Reactions = new(comment.Reactions, Id, ItemType);
-        State = comment.State;
+        State = (CommentState?)comment.State;
         if (comment.User != null)
             User = new(comment.User);
         if (comment.CreatedAt is int ct)
@@ -28,7 +29,7 @@ public partial class CommentViewModel : ViewModelBase
         RelatedId = comment.RelatedID;
         Id = comment.Id;
         Reactions = new(comment.Reactions, Id, ItemType);
-        State = comment.State;
+        State = (CommentState?)comment.State;
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
@@ -43,7 +44,7 @@ public partial class CommentViewModel : ViewModelBase
         RelatedId = comment.RelatedID;
         Id = comment.Id;
         Reactions = new(comment.Reactions, Id, ItemType);
-        State = comment.State;
+        State = (CommentState?)comment.State;
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
@@ -58,7 +59,7 @@ public partial class CommentViewModel : ViewModelBase
         RelatedId = comment.RelatedID;
         Id = comment.Id;
         Reactions = new(comment.Reactions, Id, ItemType);
-        State = comment.State;
+        State = (CommentState?)comment.State;
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
@@ -72,7 +73,7 @@ public partial class CommentViewModel : ViewModelBase
     [Reactive] public partial int? MainId { get; set; }
     [Reactive] public partial int? RelatedId { get; set; }
     [Reactive] public partial int? Id { get; set; }
-    [Reactive] public partial int? State { get; set; }
+    [Reactive] public partial CommentState? State { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial ReactionListViewModel? Reactions { get; set; }
     [Reactive] public partial ObservableCollection<CommentViewModel>? Replies { get; set; }
