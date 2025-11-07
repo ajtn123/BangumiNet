@@ -21,7 +21,7 @@ public static partial class BBCodeHelper
             body { {{ThemeTextColorPos}} }
             p { word-break: break-all; white-space: pre-wrap; }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
-            blockquote { margin: 0.5em; color: #777; }
+            span.quote { border-left: 1px solid #777; color: #777; }
             ::selection { {{SelectionBackgroundPos}} {{ThemeTextColorPos}} }
             img { max-width: 98%; }
         </style>
@@ -43,10 +43,10 @@ public static partial class BBCodeHelper
     {
         if (string.IsNullOrWhiteSpace(bbcode)) return string.Empty;
 
-        var result = bbcode.Trim('\n', '\r');
-        result = WebUtility.HtmlEncode(result);
-        result = result.ReplaceLineEndings("</p><p>");
-        result = result.Replace("<p></p>", "<br/>");
+        var result = WebUtility.HtmlEncode(bbcode)
+            .Trim('\n', '\r')
+            .ReplaceLineEndings("</p><p>")
+            .Replace("<p></p>", "<br/>");
         foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
         foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
         foreach (var (i, s) in StickerProvider.Emojis.Index()) result = result.Replace(s, $"<img src=\"bn://emoji/{i}\">");
@@ -98,7 +98,7 @@ public static partial class BBCodeHelper
         [LinkLiteral()] = "<a href=\"$1\">$1</a>",
         [LinkCovered()] = "<a href=\"$1\">$2</a>",
         [Image()] = "<img src=\"$1\"/>",
-        [Quote()] = "<blockquote>$2</blockquote>",
+        [Quote()] = "<span class=\"quote\"> $1</span>",
         [Sticker()] = "<img src=\"bn://sticker/$1\"/>",
     };
 
@@ -112,7 +112,7 @@ public static partial class BBCodeHelper
     private static partial Regex LinkCovered();
     [GeneratedRegex(@"\[img\](.*?)\[/img\]")]
     private static partial Regex Image();
-    [GeneratedRegex(@"(<br/>)? *\[quote\](.*?)\[/quote\] *(<br/>)?")]
+    [GeneratedRegex(@" *\[quote\](.*?)\[/quote\] *")]
     private static partial Regex Quote();
     [GeneratedRegex(@"\(bgm([0-9]{1,3})\)")]
     private static partial Regex Sticker();

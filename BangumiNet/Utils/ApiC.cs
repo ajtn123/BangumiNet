@@ -24,6 +24,7 @@ public static partial class ApiC
     private static partial Regex DefaultUserAvatarUrl();
     public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(Common.GetAssetUri("DefaultAvatar.png")));
     public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(Common.GetAssetUri("InternetError.png")));
+    private static readonly SemaphoreSlim semaphore = new(16);
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, bool fallback = false, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url)) return null;
@@ -31,28 +32,30 @@ public static partial class ApiC
             return DefaultUserAvatar;
 
         useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
-        Bitmap? result = null;
-
-        if (useCache)
-            try
-            {
-                using var cacheStream = CacheProvider.ReadCache(url);
-                if (cacheStream is not null)
-                    result = await Task.Run(() => new Bitmap(cacheStream), cancellationToken);
-            }
-            catch (Exception e) { Trace.TraceError(e.Message); CacheProvider.DeleteCache(url); }
-        if (result != null) return result;
-
+        await semaphore.WaitAsync(cancellationToken);
         try
         {
-            var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
-            if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
-            result = await Task.Run(() => new Bitmap(responseStream), cancellationToken);
-        }
-        catch (Exception e) { Trace.TraceError(e.Message); CacheProvider.DeleteCache(url); }
+            if (useCache)
+            {
+                using var cacheStream = CacheProvider.ReadCache(url);
+                if (cacheStream is not null) return new Bitmap(cacheStream);
+            }
 
-        if (fallback) result ??= InternetErrorFallback;
-        return result;
+            using var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
+            if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
+            return new Bitmap(responseStream);
+        }
+        catch (Exception e)
+        {
+            Trace.TraceError(e.Message);
+            CacheProvider.DeleteCache(url);
+            if (fallback) return InternetErrorFallback;
+            return null;
+        }
+        finally
+        {
+            semaphore.Release();
+        }
     }
 
     public static void RebuildClients()
