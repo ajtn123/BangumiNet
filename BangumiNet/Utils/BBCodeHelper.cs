@@ -15,36 +15,45 @@ public static partial class BBCodeHelper
         <!DOCTYPE html>
         <html>
         <head>
+        <meta charset="UTF-8">
         <style>
-            html { margin: 0; padding: 0; }
-            body { margin: 0; padding: 0; word-break: break-all; {{ThemeTextColorPos}} }
+            html, body, p { margin: 0; padding: 0; }
+            body { {{ThemeTextColorPos}} }
+            p { word-break: break-all; white-space: pre-wrap; }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             blockquote { margin: 0.5em; color: #777; }
-            ::selection { background-color: {{SelectionBackgroundPos}}; {{ThemeTextColorPos}} }
+            ::selection { {{SelectionBackgroundPos}} {{ThemeTextColorPos}} }
             img { max-width: 98%; }
         </style>
         </head>
-        <body>{{ContentPos}}</body>
+        <body><p>{{ContentPos}}</p></body>
         </html>
         """;
 
     private static string GetThemeTextColor() => $"color: {(Application.Current?.ActualThemeVariant.Key.ToString() == "Dark" ? "#fff" : "#000")};";
+    private static string GetAccentBg()
+    {
+        object? brush = null;
+        Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
+        var color = (brush as SolidColorBrush)?.Color.ToOpaqueString();
+        if (color == null) return string.Empty;
+        return $"background-color: {color};";
+    }
     public static string ParseBBCode(string? bbcode)
     {
         if (string.IsNullOrWhiteSpace(bbcode)) return string.Empty;
 
-        string result = WebUtility.HtmlEncode(bbcode.Trim(' ', '\n', '\r'));
+        var result = bbcode.Trim('\n', '\r');
+        result = WebUtility.HtmlEncode(result);
+        result = result.ReplaceLineEndings("</p><p>");
+        result = result.Replace("<p></p>", "<br/>");
         foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
         foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
         foreach (var (i, s) in StickerProvider.Emojis.Index()) result = result.Replace(s, $"<img src=\"bn://emoji/{i}\">");
 
-        var html = HtmlFrame.Replace(ContentPos, result);
-
-        object? brush = null;
-        Application.Current?.TryGetResource("SystemFillColorAttentionBrush", out brush);
-        var selectionBg = (brush as SolidColorBrush)?.Color.ToOpaqueString().ToLower() ?? "#fff";
-        html = html.Replace(SelectionBackgroundPos, selectionBg);
-        html = html.Replace(ThemeTextColorPos, GetThemeTextColor());
+        var html = HtmlFrame.Replace(ContentPos, result)
+            .Replace(SelectionBackgroundPos, GetAccentBg())
+            .Replace(ThemeTextColorPos, GetThemeTextColor());
 
         return html;
     }
@@ -54,7 +63,6 @@ public static partial class BBCodeHelper
         if (string.IsNullOrWhiteSpace(bbcode)) return false;
 
         if (BBCodeReplacement
-            .Where(p => p.Value != HtmlNewLine)
             .Any(p => bbcode.Contains(p.Key))) return true;
         if (BBCodeRegexReplacement
             .Any(r => r.Key.IsMatch(bbcode))) return true;
@@ -64,12 +72,8 @@ public static partial class BBCodeHelper
         return false;
     }
 
-    private const string HtmlNewLine = "<br/>";
     private static readonly Dictionary<string, string> BBCodeReplacement = new()
     {
-        ["\r\n"] = HtmlNewLine,
-        ["\r"] = HtmlNewLine,
-        ["\n"] = HtmlNewLine,
         ["[b]"] = "<b>",
         ["[/b]"] = "</b>",
         ["[i]"] = "<i>",

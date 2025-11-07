@@ -63,6 +63,6 @@ public static class Extensions
     public static string ToOpaqueString(this Color color)
     {
         var opaque = new Color(byte.MaxValue, color.R, color.G, color.B);
-        return opaque.ToString().Replace("#ff", "#");
+        return opaque.ToString().ToLower().Replace("#ff", "#");
     }
 }
