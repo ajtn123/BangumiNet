@@ -164,7 +164,7 @@ public class CommonEnumConverter : IValueConverter
     {
         if (value == null) return null;
         if (value is ItemType itemType) return itemType.ToStringSC();
-        if (value is CommentState commentState) return commentState switch { CommentState.Normal => null, _ => commentState.ToStringSC() };
+        if (value is CommentState commentState) return commentState.ToStringSC();
         else return value.ToString();
     }
 }

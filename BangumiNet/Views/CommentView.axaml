@@ -21,12 +21,15 @@
             <Border Classes="Card Large">
                 <StackPanel Spacing="3">
                     <WrapPanel Classes="InfoBar">
+                        <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
+                            <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
+                        </Border>
                         <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
                                          IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                          Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                         <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
+                        <InfoItem Tip="签名" CommonText="{Binding User.Sign}" Icon="Edit" Classes="Sec"/>
                         <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-                        <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning"/>
                         <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
                                 IsVisible="{Binding !NoReaction}"
                                 Content="{ice:FluentIcon Icon=Heart,FontSize=16}">

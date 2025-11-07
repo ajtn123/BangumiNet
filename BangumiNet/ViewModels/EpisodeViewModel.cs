@@ -26,7 +26,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         Disc = episode.Disc;
         if (episode.DurationSeconds != null)
             Duration = TimeSpan.FromSeconds((long)episode.DurationSeconds);
-        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.NumberToInt(sid);
+        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Convert.ToInt32(sid);
 
         Init();
     }
@@ -45,7 +45,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         Description = episode.Desc;
         Disc = episode.Disc;
         SubjectId = episode.SubjectId;
-        if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && Common.NumberToInt(ds) is int t)
+        if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && Convert.ToInt32(ds) is int t)
             Duration = TimeSpan.FromSeconds(t);
 
         Init();

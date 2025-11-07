@@ -91,7 +91,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         CommentId = collection.CollectID;
         ReactionListViewModel = new(collection.Reactions, CommentId, ItemType.Subject);
         Id = collection.Subject?.Id;
-        Rating = Common.NumberToInt(collection.Rate);
+        Rating = Convert.ToInt32(collection.Rate);
         SubjectType = (SubjectType?)collection.Subject?.Type;
         if (collection.Subject != null)
             Subject = new(collection.Subject);

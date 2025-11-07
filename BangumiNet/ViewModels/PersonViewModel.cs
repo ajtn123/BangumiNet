@@ -36,9 +36,9 @@ public partial class PersonViewModel : ItemViewModelBase
         if (birthYear != null || birthMon != null || birthDay != null)
         {
             DateOnly bd = new();
-            if (Common.NumberToInt(birthYear) is int year) bd = bd.AddYears(year - 1);
-            if (Common.NumberToInt(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
-            if (Common.NumberToInt(birthDay) is int day) bd = bd.AddDays(day - 1);
+            if (Convert.ToInt32(birthYear) is int year) bd = bd.AddYears(year - 1);
+            if (Convert.ToInt32(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
+            if (Convert.ToInt32(birthDay) is int day) bd = bd.AddDays(day - 1);
             Birthday = bd;
         }
         if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
