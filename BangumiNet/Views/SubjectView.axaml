@@ -21,7 +21,7 @@
                     <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
                     <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
-                               IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
                                Classes="TitleAlt"/>
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="5">
                         <StackPanel Spacing="5">

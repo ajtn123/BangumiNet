@@ -17,7 +17,7 @@
         </Border>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
-            <HyperlinkButton Content="{Binding .,Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color"/>
                 <InfoItem Tip="排名" Text="{Binding Rank}" Icon="NumberSymbol"/>
@@ -43,10 +43,10 @@
                         <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
                     </StackPanel>
                     <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
-                               IsVisible="{Binding $self.Text,Converter={StaticResource NullCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
                                Classes="TitleAlt"/>
                     <WrapPanel Classes="InfoBar">
-                        <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                     </WrapPanel>
                 </StackPanel>
             </Flyout>

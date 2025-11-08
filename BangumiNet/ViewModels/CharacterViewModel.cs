@@ -79,6 +79,22 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         Init();
     }
+    public CharacterViewModel(Api.P1.Models.SlimCharacter character)
+    {
+        Source = character;
+
+        Id = character.Id;
+        Images = character.Images;
+        IsLocked = character.Lock ?? false;
+        IsNsfw = character.Nsfw ?? false;
+        Name = character.Name;
+        NameCn = character.NameCN;
+        CommentCount = character.Comment;
+        Type = (CharacterType?)character.Role;
+        Info = character.Info;
+
+        Init();
+    }
     public void Init()
     {
         ItemTypeEnum = ItemType.Character;
@@ -95,12 +111,14 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
 
-        Title = $"{Name ?? $"角色 {Id}"} - {Title}";
+        Title = $"{NameCnCvt.Convert(this) ?? $"角色 {Id}"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial string? Name { get; set; }
+    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial string? Summary { get; set; }
+    [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
     [Reactive] public partial Gender? Gender { get; set; }
     [Reactive] public partial string? GenderString { get; set; }

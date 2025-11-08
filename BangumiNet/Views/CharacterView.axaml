@@ -19,8 +19,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
                                Classes="Title" FontSize="30"/>
+                    <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                               IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
+                               Classes="TitleAlt"/>
                     <WrapPanel Classes="InfoBar">
                         <TextBlock ToolTip.Tip="收藏" IsVisible="{Binding CollectionTotal,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Collections"/><Run Text="{Binding CollectionTotal}"/></TextBlock>
                         <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>

@@ -19,7 +19,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Id = person.Id;
         Name = person.Name;
-        Careers = person.Career?.ToObservableCollection();
+        Careers = person.Career?.Select(static c => c?.ToStringSC()).ToObservableCollection()!;
         IsLocked = person.Locked ?? false;
         Images = person.Images;
         ShortSummary = person.ShortSummary;
@@ -36,9 +36,9 @@ public partial class PersonViewModel : ItemViewModelBase
         if (birthYear != null || birthMon != null || birthDay != null)
         {
             DateOnly bd = new();
-            if (Convert.ToInt32(birthYear) is int year) bd = bd.AddYears(year - 1);
-            if (Convert.ToInt32(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
-            if (Convert.ToInt32(birthDay) is int day) bd = bd.AddDays(day - 1);
+            if (Common.ToInt32(birthYear) is int year) bd = bd.AddYears(year - 1);
+            if (Common.ToInt32(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
+            if (Common.ToInt32(birthDay) is int day) bd = bd.AddDays(day - 1);
             Birthday = bd;
         }
         if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
@@ -64,7 +64,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Id = person.Id;
         Name = person.Name;
-        Careers = person.Career?.ToObservableCollection();
+        Careers = person.Career?.Select(static c => c?.ToStringSC()).ToObservableCollection()!;
         IsLocked = person.Locked ?? false;
         Images = person.Images;
         Summary = person.Summary;
@@ -91,7 +91,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Source = person;
         Name = person.Name;
         Relation = person.Relation;
-        Careers = person.Career?.ToObservableCollection();
+        Careers = person.Career?.Select(static c => c?.ToStringSC()).ToObservableCollection()!;
         Type = (PersonType?)person.Type;
         Id = person.Id;
         Eps = person.Eps;
@@ -125,6 +125,22 @@ public partial class PersonViewModel : ItemViewModelBase
         Images = person.Images;
         Type = (PersonType?)person.Type;
         CollectionTime = person.CreatedAt;
+        Careers = person.Career?.Select(static c => c?.ToStringSC()).ToObservableCollection()!;
+
+        Init();
+    }
+    public PersonViewModel(Api.P1.Models.SlimPerson person)
+    {
+        Source = person;
+        Name = person.Name;
+        NameCn = person.NameCN;
+        Id = person.Id;
+        Images = person.Images;
+        IsNsfw = person.Nsfw ?? false;
+        IsLocked = person.Lock ?? false;
+        Type = (PersonType?)person.Type;
+        CommentCount = person.Comment;
+        Info = person.Info;
         Careers = person.Career?.ToObservableCollection();
 
         Init();
@@ -150,22 +166,25 @@ public partial class PersonViewModel : ItemViewModelBase
             Careers?.ObserveCollectionChanges().Subscribe(x => this.RaisePropertyChanged(nameof(CareerString)));
         });
 
-        Title = $"{Name ?? $"人物 {Id}"} - {Title}";
+        Title = $"{NameCnCvt.Convert(this) ?? $"人物 {Id}"} - {Title}";
     }
 
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial string? Name { get; set; }
+    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? ShortSummary { get; set; }
+    [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial bool IsLocked { get; set; }
+    [Reactive] public partial bool IsNsfw { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
     [Reactive] public partial PersonType? Type { get; set; }
     [Reactive] public partial BloodType? BloodType { get; set; }
     [Reactive] public partial Gender? Gender { get; set; }
     [Reactive] public partial string? GenderString { get; set; }
-    [Reactive] public partial ObservableCollection<PersonCareer?>? Careers { get; set; }
+    [Reactive] public partial ObservableCollection<string>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }
 
@@ -189,7 +208,7 @@ public partial class PersonViewModel : ItemViewModelBase
     public ICommand? CollectCommand { get; private set; }
     public ICommand? UncollectCommand { get; private set; }
 
-    public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b?.ToStringSC()} ");
+    public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b} ");
     public bool IsFull => !FromRelation && Source is Person or PersonDetail;
 
     public async Task UpdateCollection(bool target)

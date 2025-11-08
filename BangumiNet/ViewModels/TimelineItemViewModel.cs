@@ -26,7 +26,7 @@ public partial class TimelineItemViewModel : ViewModelBase
             OperationSourceUrl = CurrentSettings.BangumiTvUrlBase;
         if (timeline.User != null)
             subjects.Add(User = new(timeline.User));
-        if (timeline.Memo != null)
+        if (timeline.Memo is { } memo)
         {
             //if (timeline.Memo.Blog != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Blog));
@@ -34,11 +34,15 @@ public partial class TimelineItemViewModel : ViewModelBase
             //    Memo.SubjectViewModels.Add(new DailyViewModel(timeline.Memo.Daily));
             //if (timeline.Memo.Index != null)
             //    Memo.SubjectViewModels.Add(new IndexViewModel(timeline.Memo.Index));
-            //if (timeline.Memo.Mono != null)
-            //    Memo.SubjectViewModels.Add(new MonoViewModel(timeline.Memo.Mono));
-            if (timeline.Memo.Progress?.Single != null)
+            if (memo.Mono is { } mono)
             {
-                var single = timeline.Memo.Progress.Single;
+                if (mono.Persons != null)
+                    subjects.AddRange(mono.Persons.Select(p => new PersonViewModel(p)));
+                if (mono.Characters != null)
+                    subjects.AddRange(mono.Characters.Select(c => new CharacterViewModel(c)));
+            }
+            if (memo.Progress?.Single is { } single)
+            {
                 if (single.Subject != null)
                     subjects.Add(new SubjectViewModel(single.Subject));
                 if (single.Episode != null)
@@ -57,16 +61,16 @@ public partial class TimelineItemViewModel : ViewModelBase
                     );
                 }
             }
-            if (timeline.Memo.Progress?.Batch?.Subject != null)
+            if (memo.Progress?.Batch is { } batch && batch.Subject != null)
             {
-                subjects.Add(new SubjectViewModel(timeline.Memo.Progress.Batch.Subject));
-                subjects.Add(new TextViewModel($"已完成 {timeline.Memo.Progress.Batch.EpsUpdate} / {timeline.Memo.Progress.Batch.EpsTotal} 集"));
-                subjects.Add(new TextViewModel($"已完成 {timeline.Memo.Progress.Batch.VolsUpdate} / {timeline.Memo.Progress.Batch.VolsTotal} 卷"));
+                subjects.Add(new SubjectViewModel(batch.Subject));
+                subjects.Add(new TextViewModel($"已完成 {batch.EpsUpdate} / {batch.EpsTotal} 集"));
+                subjects.Add(new TextViewModel($"已完成 {batch.VolsUpdate} / {batch.VolsTotal} 卷"));
             }
-            if (timeline.Memo.Status != null)
-                subjects.Add(new TextViewModel(timeline.Memo.Status.Tsukkomi));
-            if (timeline.Memo.Subject != null)
-                subjects.AddRange(timeline.Memo.Subject.Select(sc =>
+            if (memo.Status != null)
+                subjects.Add(new TextViewModel(memo.Status.Tsukkomi));
+            if (memo.Subject != null)
+                subjects.AddRange(memo.Subject.Select(sc =>
                 {
                     if (sc.Rate != 0 || !string.IsNullOrWhiteSpace(sc.Comment) || (sc.Reactions != null && sc.Reactions.Count != 0))
                         return new SubjectCollectionViewModel(sc) { IsMy = IsMy };
