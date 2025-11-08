@@ -73,4 +73,14 @@ public static partial class Common
         var offset = range * Random.Shared.NextDouble();
         return min + offset;
     }
+
+    public static int? ToInt32(object? obj)
+    {
+        if (obj == null) return null;
+        try
+        {
+            return Convert.ToInt32(obj);
+        }
+        catch { return null; }
+    }
 }

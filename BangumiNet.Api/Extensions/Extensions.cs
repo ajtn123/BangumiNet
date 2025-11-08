@@ -40,6 +40,7 @@ namespace BangumiNet.Api.P1.Models
 {
     public partial class Avatar : IImages { }
     public partial class SubjectImages : IImagesGrid { }
+    public partial class PersonImages : IImagesGrid { }
     public partial class SubjectTag : ITag { }
     public partial class Calendar
     {
