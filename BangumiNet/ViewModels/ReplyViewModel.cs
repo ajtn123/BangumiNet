@@ -92,8 +92,8 @@ public partial class ReplyViewModel : ViewModelBase
                     }, cancellationToken: ct))?.Id;
                 else throw new NotImplementedException();
 
-                Ancestor.Comments ??= [];
-                Ancestor.Comments.Add(new CommentViewModel()
+                Ancestor.SubjectViewModels ??= [];
+                Ancestor.SubjectViewModels.Add(new CommentViewModel()
                 {
                     Id = ncid,
                     CreationTime = DateTimeOffset.Now.ToLocalTime(),

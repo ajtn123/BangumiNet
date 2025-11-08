@@ -53,6 +53,17 @@ public partial class NavigatorViewModel : ViewModelBase
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
+        ToTopic = ReactiveCommand.CreateFromTask(async () =>
+        {
+            if (int.TryParse(Input, out var id))
+            {
+                var tvm = await ApiC.GetTopicViewModelAsync(ItemType.Subject, id);
+                //tvm ??= await ApiC.GetTopicViewModelAsync(ItemType.Group, id);
+                if (tvm != null) new SecondaryWindow() { Content = tvm }.Show();
+                else MessageWindow.ShowMessage($"未找到话题 {id}");
+            }
+        }, this.WhenAnyValue(x => x.CanToId));
+
         ToUser = ReactiveCommand.CreateFromTask(async () =>
         {
             var username = Input?.Trim();
@@ -69,6 +80,7 @@ public partial class NavigatorViewModel : ViewModelBase
             new() { Name="ToCharacter", Command=ToCharacter, TextTemplate="转到角色 {0} >" },
             new() { Name="ToPerson", Command=ToPerson, TextTemplate="转到人物 {0} >" },
             new() { Name="ToEpisode", Command=ToEpisode, TextTemplate="转到话 {0} >" },
+            new() { Name="ToTopic", Command=ToTopic, TextTemplate="转到话题 {0} >" },
             new() { Name="User", Command=ToUser, TextTemplate="转到用户 {0} >" },
         ];
     }
@@ -82,6 +94,7 @@ public partial class NavigatorViewModel : ViewModelBase
     public ICommand ToCharacter { get; set; }
     public ICommand ToPerson { get; set; }
     public ICommand ToEpisode { get; set; }
+    public ICommand ToTopic { get; set; }
     public ICommand ToUser { get; set; }
 
     public readonly AutoCompleteBoxItemViewModel[] Items;

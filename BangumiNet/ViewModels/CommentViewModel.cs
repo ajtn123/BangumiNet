@@ -18,8 +18,7 @@ public partial class CommentViewModel : ViewModelBase
         State = (CommentState?)comment.State;
         if (comment.User != null)
             User = new(comment.User);
-        if (comment.CreatedAt is int ct)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
     public CommentViewModel(Api.P1.P1.Characters.Item.Comments.Comments comment)
     {
@@ -33,8 +32,7 @@ public partial class CommentViewModel : ViewModelBase
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
-        if (comment.CreatedAt is int ct)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
     public CommentViewModel(Api.P1.P1.Persons.Item.Comments.Comments comment)
     {
@@ -48,8 +46,7 @@ public partial class CommentViewModel : ViewModelBase
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
-        if (comment.CreatedAt is int ct)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
     public CommentViewModel(Api.P1.P1.Episodes.Item.Comments.Comments comment)
     {
@@ -63,8 +60,31 @@ public partial class CommentViewModel : ViewModelBase
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.User != null)
             User = new(comment.User);
-        if (comment.CreatedAt is int ct)
-            CreationTime = DateTimeOffset.FromUnixTimeSeconds(ct).ToLocalTime();
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
+    }
+    public CommentViewModel(Reply comment, ItemType itemType)
+    {
+        ItemType = itemType;
+        Content = comment.Content;
+        Id = comment.Id;
+        Reactions = new(comment.Reactions, Id, ItemType);
+        State = (CommentState?)comment.State;
+        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
+        if (comment.Creator != null)
+            User = new(comment.Creator) { Id = comment.CreatorID };
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
+    }
+    public CommentViewModel(ReplyBase comment, CommentViewModel parent)
+    {
+        Parent = parent;
+        ItemType = parent.ItemType;
+        Content = comment.Content;
+        Id = comment.Id;
+        Reactions = new(comment.Reactions, Id, ItemType);
+        State = (CommentState?)comment.State;
+        if (comment.Creator != null)
+            User = new(comment.Creator) { Id = comment.CreatorID };
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
 
     [Reactive] public partial ItemType ItemType { get; set; }

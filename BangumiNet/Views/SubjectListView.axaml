@@ -23,6 +23,9 @@
             <DataTemplate DataType="bn:UserViewModel">
                 <bn:UserCardView DataContext="{Binding}"/>
             </DataTemplate>
+            <DataTemplate DataType="bn:TopicViewModel">
+                <bn:TopicCardView DataContext="{Binding}"/>
+            </DataTemplate>
             <DataTemplate DataType="bn:FriendViewModel">
                 <bn:FriendCardView DataContext="{Binding}"/>
             </DataTemplate>

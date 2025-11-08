@@ -4,6 +4,7 @@ using Avalonia.Platform;
 namespace BangumiNet.Utils;
 
 // https://github.com/bangumi/frontend/blob/8a7627e259b66028ee69d3aa1bcdf34cc6d9f220/packages/utils/bbcode/convert.ts
+// TODO: BMO:bmoji (https://bgm.tv/group/topic/438228)
 public static class StickerProvider
 {
     private static readonly Dictionary<Uri, Bitmap> cachedStickerBitmaps = [];
@@ -32,7 +33,7 @@ public static class StickerProvider
                 return Common.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.png");
 
         }
-        else if (sid >= 40 && sid < 141)
+        else if (sid >= 40 && sid < 142)
         {
             string tvId = (sid - 39).ToString().PadLeft(2, '0');
             return Common.GetAssetUri($"bgm.tv/img/smiles/tv/{tvId}.gif");

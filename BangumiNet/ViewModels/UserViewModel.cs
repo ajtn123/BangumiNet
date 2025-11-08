@@ -3,11 +3,10 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class UserViewModel : ViewModelBase
+public partial class UserViewModel : ItemViewModelBase
 {
     public UserViewModel(User user)
     {
@@ -104,7 +103,6 @@ public partial class UserViewModel : ViewModelBase
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
 
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => new SecondaryWindow() { Content = new UserView() { DataContext = this } }.Show());
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
     }
@@ -123,7 +121,6 @@ public partial class UserViewModel : ViewModelBase
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial string? Username { get; set; }
     [Reactive] public partial string? Nickname { get; set; }
-    [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial UserGroup? UserGroup { get; set; }
     [Reactive] public partial DateTimeOffset? RegistrationTime { get; set; }
     [Reactive] public partial string? Email { get; set; }
@@ -137,8 +134,4 @@ public partial class UserViewModel : ViewModelBase
     public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
     public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);
     public Task<Bitmap?> AvatarLarge => ApiC.GetImageAsync(Avatar?.Large);
-
-    public ICommand? OpenInNewWindowCommand { get; private set; }
-    public ICommand? SearchWebCommand { get; private set; }
-    public ICommand? OpenInBrowserCommand { get; private set; }
 }

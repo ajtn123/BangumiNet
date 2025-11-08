@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:TopicViewModel"
+             x:Class="BangumiNet.Views.TopicCardView">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
+        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
+            <Image Source="{Binding User?.AvatarLarge^}"/>
+        </Border>
+
+        <StackPanel Grid.Column="1" Name="MainStackPanel">
+            <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <WrapPanel Classes="InfoBar">
+                <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
+                    <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
+                </Border>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
+                                    IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
+                                    Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
+                <!--<InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>-->
+                <InfoItem Tip="项目名" Text="{Binding Subject,Converter={StaticResource NameCnCvt}}" Icon="Class"/>
+                <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/>
+                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
+            </WrapPanel>
+        </StackPanel>
+
+        <Grid.ContextFlyout>
+            <Flyout>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                        <!--<Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>-->
+                        <!--<Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>-->
+                    </StackPanel>
+                    <WrapPanel Classes="InfoBar">
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    </WrapPanel>
+                    <bn:UserCardView DataContext="{Binding User}"/>
+                    <bn:SubjectCardView DataContext="{Binding Subject}"/>
+                </StackPanel>
+            </Flyout>
+        </Grid.ContextFlyout>
+    </Grid>
+</UserControl>

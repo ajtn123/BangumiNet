@@ -5,7 +5,7 @@ using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
-public partial class CommentListViewModel : ViewModelBase
+public partial class CommentListViewModel : SubjectListPagedViewModel
 {
     public CommentListViewModel(ItemType? type, int? id)
     {
@@ -17,16 +17,13 @@ public partial class CommentListViewModel : ViewModelBase
         {
             IsVisible = ItemType is not Shared.ItemType.Subject
         };
-        PageNavigatorViewModel = new()
-        {
-            IsVisible = ItemType is Shared.ItemType.Subject
-        };
+        PageNavigator.IsVisible = ItemType is Shared.ItemType.Subject;
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
 
-        PageNavigatorViewModel.PrevPage.InvokeCommand(LoadPageCommand);
-        PageNavigatorViewModel.NextPage.InvokeCommand(LoadPageCommand);
-        PageNavigatorViewModel.JumpPage.InvokeCommand(LoadPageCommand);
+        PageNavigator.PrevPage.InvokeCommand(LoadPageCommand);
+        PageNavigator.NextPage.InvokeCommand(LoadPageCommand);
+        PageNavigator.JumpPage.InvokeCommand(LoadPageCommand);
     }
 
     public Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
@@ -59,8 +56,8 @@ public partial class CommentListViewModel : ViewModelBase
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
 
-        Comments = response.Data?.Select<SubjectInterestComment, ViewModelBase>(c => new SubjectCollectionViewModel(c)).ToObservableCollection();
-        PageNavigatorViewModel.UpdatePageInfo(Limit, offset, response.Total);
+        SubjectViewModels = response.Data?.Select<SubjectInterestComment, ViewModelBase>(c => new SubjectCollectionViewModel(c)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
         Sources.Add(response);
     }
     private async Task LoadCharacterComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -73,8 +70,8 @@ public partial class CommentListViewModel : ViewModelBase
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
 
-        Comments = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        SubjectViewModels = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
     private async Task LoadPersonComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -87,8 +84,8 @@ public partial class CommentListViewModel : ViewModelBase
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
 
-        Comments = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        SubjectViewModels = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
     private async Task LoadEpisodeComment(int id, int offset, CancellationToken cancellationToken = default)
@@ -101,17 +98,21 @@ public partial class CommentListViewModel : ViewModelBase
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
 
-        Comments = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigatorViewModel.UpdatePageInfo(response.Count, offset, response.Count);
+        SubjectViewModels = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
+    }
+    public void LoadReplies(List<Reply> replies)
+    {
+        if (ItemType == null) throw new InvalidOperationException();
+        Sources.Add(replies);
+        SubjectViewModels = replies.Select<Reply, ViewModelBase>(r => new CommentViewModel(r, (ItemType)ItemType)).ToObservableCollection();
     }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
-    [Reactive] public partial ObservableCollection<ViewModelBase>? Comments { get; set; }
     [Reactive] public partial ItemType? ItemType { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial CollectionType? CollectionType { get; set; }
-    [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
     [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }
 
     public ReactiveCommand<int?, Unit> LoadPageCommand { get; }

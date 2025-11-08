@@ -289,4 +289,22 @@ public static partial class ApiC
             return e.ResponseStatusCode;
         }
     }
+
+    public static async Task<TopicViewModel?> GetTopicViewModelAsync(ItemType itemType, int id, CancellationToken ct = default)
+    {
+        try
+        {
+            return itemType switch
+            {
+                ItemType.Subject => await P1.Subjects.Minus.Topics[id].GetAsync(cancellationToken: default) is { } subRes ? new(subRes, true) : null,
+                //ItemType.Group => throw new NotImplementedException(),
+                _ => throw new NotImplementedException(),
+            };
+        }
+        catch (Exception e)
+        {
+            Trace.TraceError(e.Message);
+            return null;
+        }
+    }
 }

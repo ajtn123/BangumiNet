@@ -58,6 +58,8 @@ public partial class ReactionViewModel : ViewModelBase
                     {
                         Value = Reaction,
                     });
+                else if (Parent.ItemType == ItemType.Topic)
+                    throw new NotImplementedException();
                 else throw new NotImplementedException();
 
                 await Parent.UpdateMyReaction(Reaction);
@@ -94,9 +96,8 @@ public partial class ReactionListViewModel : ViewModelBase
         {
             ItemType.Subject => StickerProvider.SubjectCommentReactions,
             ItemType.Episode => StickerProvider.EpisodeCommentReactions,
-            ItemType.Character => [],
-            ItemType.Person => [],
-            _ => throw new NotImplementedException(),
+            ItemType.Topic => StickerProvider.EpisodeCommentReactions,
+            _ => [],
         };
         ReactButtons = [.. rbs.Select(r => { r.Parent = this; return r; })];
     }

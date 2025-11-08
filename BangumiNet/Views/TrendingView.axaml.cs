@@ -8,7 +8,7 @@ public partial class TrendingView : UserControl
     public TrendingView()
     {
         InitializeComponent();
-        ItemTypeComboBox.ItemsSource = new[] { ItemType.Subject };
+        ItemTypeComboBox.ItemsSource = new[] { ItemType.Subject, ItemType.Topic };
         SubjectTypeComboBox.ItemsSource = Enum.GetValues<SubjectType>();
     }
 }

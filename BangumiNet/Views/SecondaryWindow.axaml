@@ -18,6 +18,12 @@
 		<DataTemplate DataType="bn:PersonViewModel">
 			<bn:PersonView DataContext="{Binding}"/>
         </DataTemplate>
+		<DataTemplate DataType="bn:UserViewModel">
+			<bn:UserView DataContext="{Binding}"/>
+        </DataTemplate>
+		<DataTemplate DataType="bn:TopicViewModel">
+			<bn:TopicView DataContext="{Binding}"/>
+        </DataTemplate>
 		<DataTemplate DataType="bn:RevisionListViewModel">
 			<bn:RevisionListView DataContext="{Binding}"/>
         </DataTemplate>

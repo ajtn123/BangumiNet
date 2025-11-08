@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:TopicViewModel"
+             x:Class="BangumiNet.Views.TopicView">
+    <ScrollViewer>
+        <StackPanel Spacing="5" Margin="5">
+            <Grid ColumnDefinitions="*" RowDefinitions="*"
+                  Classes="ViewRoot">
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}"
+                               Classes="Title" FontSize="30"/>
+                    <WrapPanel Classes="InfoBar">
+                        <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    </WrapPanel>
+                    <bn:SubjectCardView DataContext="{Binding Subject}" Margin="0,5"
+                                        IsVisible="{Binding Converter={StaticResource NullCvt}}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                        <!--<Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>-->
+                        <!--<Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>-->
+                    </StackPanel>
+                    <bn:CommentListView DataContext="{Binding Replies}" Name="CommentView" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

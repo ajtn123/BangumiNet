@@ -23,6 +23,14 @@ public enum CommentState
     AdminOffTopic = 8,
 }
 
+public enum TopicDisplay
+{
+    /// <summary>软删除</summary>
+    Ban = 0,
+    Normal = 1,
+    Review = 2,
+}
+
 public static partial class EnumExtensions
 {
     public static string ToStringSC(this CommentState state)
@@ -38,5 +46,23 @@ public static partial class EnumExtensions
             CommentState.AdminDelete => "管理员移除",
             CommentState.AdminOffTopic => "折叠",
             _ => throw new NotImplementedException(),
+        };
+
+    //https://github.com/bangumi/server-private/blob/master/lib/topic/state.ts
+    public static bool CanReplyPost(this CommentState state)
+        => state switch
+        {
+            CommentState.AdminCloseTopic => false,
+            CommentState.AdminReopen => false,
+            CommentState.AdminSilentTopic => false,
+            _ => true,
+        };
+    public static bool CanEditTopic(this CommentState state)
+        => state switch
+        {
+            CommentState.AdminReopen => true,
+            CommentState.AdminPin => true,
+            CommentState.Normal => true,
+            _ => false,
         };
 }

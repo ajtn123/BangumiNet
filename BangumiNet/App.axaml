@@ -7,6 +7,9 @@
              xmlns:sys="using:System"
              x:Class="BangumiNet.App"
              RequestedThemeVariant="Default">
+    <Application.DataTemplates>
+        <bn:ViewLocator/>
+    </Application.DataTemplates>
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -244,7 +247,7 @@
                 </Transitions>
             </Setter>
         </Style>
-        <Style Selector=".PointoverTextHost:pointerover :is(TextBlock).PointoverText">
+        <Style Selector=".PointoverTextHost:pointerover :is(TextBlock).PointoverText, FlyoutPresenter :is(TextBlock).PointoverText">
 			<Setter Property="FontSize" Value="14"/>
         </Style>
         <Style Selector=":is(Panel).Hoverable, :is(Panel).PointoverTextHost">
@@ -255,8 +258,4 @@
             <Setter Property="Watermark" Value="键入项目 ID 或用户名"/>
         </Style>
     </Application.Styles>
-
-    <Application.DataTemplates>
-		<DataTemplate DataType="bn:ViewModelBase"/>
-    </Application.DataTemplates>
 </Application>
