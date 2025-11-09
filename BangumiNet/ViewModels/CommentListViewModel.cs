@@ -106,11 +106,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
     {
         if (ItemType == null) throw new InvalidOperationException();
         Sources.Add(replies);
-        SubjectViewModels = replies.Select<Reply, ViewModelBase>(r => new CommentViewModel(r, (ItemType)ItemType)).ToObservableCollection();
+        SubjectViewModels = replies.Select<Reply, ViewModelBase>(r => new CommentViewModel(r, (ItemType)ItemType, ParentItemType)).ToObservableCollection();
     }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial ItemType? ItemType { get; set; }
+    [Reactive] public partial ItemType? ParentItemType { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial CollectionType? CollectionType { get; set; }
     [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }

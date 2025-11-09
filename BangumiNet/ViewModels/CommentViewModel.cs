@@ -62,12 +62,13 @@ public partial class CommentViewModel : ViewModelBase
             User = new(comment.User);
         CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
-    public CommentViewModel(Reply comment, ItemType itemType)
+    public CommentViewModel(Reply comment, ItemType itemType, ItemType? parentItemType = null)
     {
         ItemType = itemType;
+        ParentItemType = parentItemType;
         Content = comment.Content;
         Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
+        Reactions = new(comment.Reactions, Id, ItemType) { ParentItemType = ParentItemType };
         State = (CommentState?)comment.State;
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
         if (comment.Creator != null)
@@ -78,9 +79,10 @@ public partial class CommentViewModel : ViewModelBase
     {
         Parent = parent;
         ItemType = parent.ItemType;
+        ParentItemType = parent.ParentItemType;
         Content = comment.Content;
         Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
+        Reactions = new(comment.Reactions, Id, ItemType) { ParentItemType = ParentItemType };
         State = (CommentState?)comment.State;
         if (comment.Creator != null)
             User = new(comment.Creator) { Id = comment.CreatorID };
@@ -88,6 +90,7 @@ public partial class CommentViewModel : ViewModelBase
     }
 
     [Reactive] public partial ItemType ItemType { get; set; }
+    [Reactive] public partial ItemType? ParentItemType { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial string? Content { get; set; }
     [Reactive] public partial int? MainId { get; set; }

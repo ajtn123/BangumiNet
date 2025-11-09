@@ -59,7 +59,17 @@ public partial class ReactionViewModel : ViewModelBase
                         Value = Reaction,
                     });
                 else if (Parent.ItemType == ItemType.Topic)
-                    throw new NotImplementedException();
+                    if (Parent.ParentItemType == ItemType.Subject)
+                        await ApiC.P1.Subjects.Minus.Posts[cid].Like.PutAsLikePutResponseAsync(new()
+                        {
+                            Value = Reaction
+                        });
+                    else if (Parent.ParentItemType == ItemType.Group)
+                        await ApiC.P1.Groups.Minus.Posts[cid].Like.PutAsLikePutResponseAsync(new()
+                        {
+                            Value = Reaction
+                        });
+                    else throw new NotImplementedException();
                 else throw new NotImplementedException();
 
                 await Parent.UpdateMyReaction(Reaction);
@@ -74,6 +84,12 @@ public partial class ReactionViewModel : ViewModelBase
                     await ApiC.P1.Subjects.Minus.Collects[cid].Like.DeleteAsLikeDeleteResponseAsync();
                 else if (Parent.ItemType == ItemType.Episode)
                     await ApiC.P1.Episodes.Minus.Comments[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                else if (Parent.ItemType == ItemType.Topic)
+                    if (Parent.ParentItemType == ItemType.Subject)
+                        await ApiC.P1.Subjects.Minus.Posts[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                    else if (Parent.ParentItemType == ItemType.Group)
+                        await ApiC.P1.Groups.Minus.Posts[cid].Like.DeleteAsLikeDeleteResponseAsync();
+                    else throw new NotImplementedException();
                 else throw new NotImplementedException();
 
                 await Parent.UpdateMyReaction(null);
@@ -105,6 +121,7 @@ public partial class ReactionListViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<ReactionViewModel>? Reactions { get; set; }
     [Reactive] public partial int? CommentId { get; set; }
     [Reactive] public partial ItemType ItemType { get; set; }
+    [Reactive] public partial ItemType? ParentItemType { get; set; }
 
     public ReactionViewModel[] ReactButtons { get; }
 

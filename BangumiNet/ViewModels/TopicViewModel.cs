@@ -17,13 +17,35 @@ public partial class TopicViewModel : ItemViewModelBase
         Id = topic.Id;
         ParentId = topic.ParentID;
         ReplyCount = topic.ReplyCount;
-        Replies = new(ItemType.Topic, Id);
+        Replies = new(ItemType.Topic, Id) { ParentItemType = ParentType };
         if (topic.Replies != null)
             Replies.LoadReplies(topic.Replies);
         if (topic.Creator != null)
             User = new(topic.Creator) { Id = topic.CreatorID };
         if (topic.Subject != null)
             Subject = new(topic.Subject);
+
+        Init();
+    }
+    public TopicViewModel(GroupTopic topic, bool isFull)
+    {
+        IsFull = isFull;
+        ParentType = ItemType.Group;
+        CreationTime = Common.ParseBangumiTime(topic.CreatedAt);
+        UpdateTime = Common.ParseBangumiTime(topic.UpdatedAt);
+        State = (CommentState?)topic.State;
+        Display = (TopicDisplay?)topic.Display;
+        Name = topic.Title;
+        Id = topic.Id;
+        ParentId = topic.ParentID;
+        ReplyCount = topic.ReplyCount;
+        Replies = new(ItemType.Topic, Id) { ParentItemType = ParentType };
+        if (topic.Replies != null)
+            Replies.LoadReplies(topic.Replies);
+        if (topic.Creator != null)
+            User = new(topic.Creator) { Id = topic.CreatorID };
+        //if (topic.Group != null)
+        //    Group = new(topic.Group);
 
         Init();
     }
@@ -36,7 +58,7 @@ public partial class TopicViewModel : ItemViewModelBase
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
-            //ItemType.Group => UrlProvider.BangumiTvGroupTopicUrlBase + Id,
+            ItemType.Group => UrlProvider.BangumiTvGroupTopicUrlBase + Id,
             _ => throw new NotImplementedException()
         }));
     }
