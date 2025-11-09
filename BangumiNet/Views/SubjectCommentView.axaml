@@ -12,9 +12,7 @@
         <MainImage Source="{Binding User.AvatarLarge^}"
                    Tag="{Binding User.Avatar.Large}"
                    VerticalAlignment="Top" Width="50">
-            <Button Command="{Binding User.OpenInNewWindowCommand}"
-                    Content="{ice:FluentIcon Icon=Person}"
-                    Classes="Icon" ToolTip.Tip="显示用户"/>
+            <bn:UserFlyoutView DataContext="{Binding User}"/>
         </MainImage>
 
         <Border Classes="Card Large" Grid.Column="1"

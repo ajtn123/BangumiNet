@@ -44,8 +44,8 @@ public partial class TopicViewModel : ItemViewModelBase
             Replies.LoadReplies(topic.Replies);
         if (topic.Creator != null)
             User = new(topic.Creator) { Id = topic.CreatorID };
-        //if (topic.Group != null)
-        //    Parent = new GroupViewModel(topic.Group);
+        if (topic.Group != null)
+            Parent = new GroupViewModel(topic.Group);
 
         Init();
     }
@@ -70,7 +70,6 @@ public partial class TopicViewModel : ItemViewModelBase
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }
     [Reactive] public partial CommentState? State { get; set; }
     [Reactive] public partial TopicDisplay? Display { get; set; }
-    [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial int? ParentId { get; set; }
     [Reactive] public partial int? ReplyCount { get; set; }
     [Reactive] public partial CommentListViewModel? Replies { get; set; }

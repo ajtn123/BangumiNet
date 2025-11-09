@@ -11,9 +11,7 @@
         <MainImage Source="{Binding User.AvatarSmall^}"
                    Tag="{Binding User.Avatar.Small}"
                    VerticalAlignment="Top" Width="50">
-            <Button Command="{Binding User.OpenInNewWindowCommand}"
-                    Content="{ice:FluentIcon Icon=Person}"
-                    Classes="Icon" ToolTip.Tip="显示用户"/>
+            <bn:UserFlyoutView DataContext="{Binding User}"/>
         </MainImage>
 
         <StackPanel Grid.Column="1">

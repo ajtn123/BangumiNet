@@ -23,5 +23,8 @@
         <DataTemplate DataType="bn:UserViewModel">
             <bn:UserCardView />
         </DataTemplate>
+        <DataTemplate DataType="bn:GroupViewModel">
+            <bn:GroupCardView />
+        </DataTemplate>
     </UserControl.DataTemplates>
 </UserControl>

@@ -12,6 +12,8 @@ public partial class ItemViewModelBase : ViewModelBase
     }
 
     [Reactive] public partial int? Id { get; set; }
+    [Reactive] public partial string? Name { get; set; }
+    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial RevisionListViewModel? RevisionListViewModel { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; set; }
@@ -20,5 +22,5 @@ public partial class ItemViewModelBase : ViewModelBase
     public ICommand? ShowRevisionsCommand { get; set; }
     public ICommand? ShowNetworkCommand { get; set; }
 
-    public ItemType ItemTypeEnum { get; set; }
+    public ItemType ItemTypeEnum { get; protected set; }
 }
