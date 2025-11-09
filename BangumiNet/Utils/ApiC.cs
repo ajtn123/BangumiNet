@@ -290,14 +290,14 @@ public static partial class ApiC
         }
     }
 
-    public static async Task<TopicViewModel?> GetTopicViewModelAsync(ItemType itemType, int id, CancellationToken ct = default)
+    public static async Task<TopicViewModel?> GetTopicViewModelAsync(ItemType parentType, int id, CancellationToken cancellationToken = default)
     {
         try
         {
-            return itemType switch
+            return parentType switch
             {
-                ItemType.Subject => await P1.Subjects.Minus.Topics[id].GetAsync(cancellationToken: default) is { } subRes ? new(subRes, true) : null,
-                //ItemType.Group => throw new NotImplementedException(),
+                ItemType.Subject => await P1.Subjects.Minus.Topics[id].GetAsync(cancellationToken: cancellationToken) is { } subRes ? new(subRes, true) : null,
+                ItemType.Group => await P1.Groups.Minus.Topics[id].GetAsync(cancellationToken: cancellationToken) is { } groRes ? new(groRes, true) : null,
                 _ => throw new NotImplementedException(),
             };
         }

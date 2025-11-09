@@ -8,6 +8,7 @@
         Person,
         User,
         Topic,
+        Group,
     }
 }
 namespace BangumiNet.Shared.Extensions
@@ -22,6 +23,7 @@ namespace BangumiNet.Shared.Extensions
             ItemType.Person => "人物",
             ItemType.User => "用户",
             ItemType.Topic => "话题",
+            ItemType.Group => "小组",
             _ => throw new NotImplementedException(),
         };
     }

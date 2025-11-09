@@ -13,63 +13,63 @@ public partial class NavigatorViewModel : ViewModelBase
             CanToUser = Common.IsAlphaNumeric(x?.Trim());
         });
 
-        ToSubject = ReactiveCommand.CreateFromTask(async () =>
+        ToSubject = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
-                var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
+                var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id, cancellationToken: ct);
                 if (svm != null) new SecondaryWindow() { Content = new SubjectView() { DataContext = svm } }.Show();
                 else MessageWindow.ShowMessage($"未找到项目 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
-        ToCharacter = ReactiveCommand.CreateFromTask(async () =>
+        ToCharacter = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
-                var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id);
+                var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id, cancellationToken: ct);
                 if (cvm != null) new SecondaryWindow() { Content = new CharacterView() { DataContext = cvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到角色 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
-        ToPerson = ReactiveCommand.CreateFromTask(async () =>
+        ToPerson = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
-                var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id);
+                var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id, cancellationToken: ct);
                 if (pvm != null) new SecondaryWindow() { Content = new PersonView() { DataContext = pvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到人物 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
-        ToEpisode = ReactiveCommand.CreateFromTask(async () =>
+        ToEpisode = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
-                var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id);
+                var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id, cancellationToken: ct);
                 if (evm != null) new SecondaryWindow() { Content = new EpisodeFullView() { DataContext = evm } }.Show();
                 else MessageWindow.ShowMessage($"未找到话 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
-        ToTopic = ReactiveCommand.CreateFromTask(async () =>
+        ToTopic = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
-                var tvm = await ApiC.GetTopicViewModelAsync(ItemType.Subject, id);
-                //tvm ??= await ApiC.GetTopicViewModelAsync(ItemType.Group, id);
+                var tvm = await ApiC.GetTopicViewModelAsync(ItemType.Subject, id, cancellationToken: ct);
+                tvm ??= await ApiC.GetTopicViewModelAsync(ItemType.Group, id, cancellationToken: ct);
                 if (tvm != null) new SecondaryWindow() { Content = tvm }.Show();
                 else MessageWindow.ShowMessage($"未找到话题 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
-        ToUser = ReactiveCommand.CreateFromTask(async () =>
+        ToUser = ReactiveCommand.CreateFromTask(async ct =>
         {
             var username = Input?.Trim();
             if (Common.IsAlphaNumeric(username))
             {
-                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username);
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username, cancellationToken: ct);
                 if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
                 else MessageWindow.ShowMessage($"未找到用户 {Input}");
             }
@@ -100,7 +100,9 @@ public partial class NavigatorViewModel : ViewModelBase
     public readonly AutoCompleteBoxItemViewModel[] Items;
 
 #pragma warning disable CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
+#pragma warning disable IDE0060 // 删除未使用的参数
     public async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
+#pragma warning restore IDE0060 // 删除未使用的参数
 #pragma warning restore CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
     {
         Input = searchText;
