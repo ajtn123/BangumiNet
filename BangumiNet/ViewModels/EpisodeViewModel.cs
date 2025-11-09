@@ -110,8 +110,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? SubjectId { get; set; }
     [Reactive] public partial EpisodeType? Type { get; set; }
-    [Reactive] public partial string? Name { get; set; }
-    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial double? Sort { get; set; }
     [Reactive] public partial double? Ep { get; set; }
     [Reactive] public partial DateOnly? AirDate { get; set; }

@@ -53,7 +53,7 @@ public partial class TimelineItemViewModel : ViewModelBase
                             $"已完成",
                             new HyperlinkButton()
                             {
-                                Content = $"第 {evm.Sort} 集 {NameCnCvt.Convert(evm)}",
+                                Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
                                 Command = ReactiveCommand.Create(() => new SecondaryWindow() { Content = evm }.Show()),
                                 ContextFlyout = new Flyout() { Content = new EpisodeView() { DataContext = evm } }
                             }
@@ -64,7 +64,7 @@ public partial class TimelineItemViewModel : ViewModelBase
             if (memo.Progress?.Batch is { } batch && batch.Subject != null)
             {
                 subjects.Add(new SubjectViewModel(batch.Subject));
-                subjects.Add(new TextViewModel($"已完成 {batch.EpsUpdate} / {batch.EpsTotal} 集"));
+                subjects.Add(new TextViewModel($"已完成 {batch.EpsUpdate} / {batch.EpsTotal} 话"));
                 subjects.Add(new TextViewModel($"已完成 {batch.VolsUpdate} / {batch.VolsTotal} 卷"));
             }
             if (memo.Status != null)

@@ -116,4 +116,6 @@ public partial class ReplyViewModel : ViewModelBase
     public ReactiveCommand<Unit, bool> SendCommand { get; set; }
     public ReactiveCommand<Unit, bool> DismissCommand { get; set; } = ReactiveCommand.Create(() => true);
     public Interaction<Unit, string?> GetTurnstileInteraction { get; set; } = new();
+
+    public string ReplyHint => Parent?.User != null ? $"回复：{Parent.User.Nickname}" : "添加评论";
 }

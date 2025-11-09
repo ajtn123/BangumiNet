@@ -172,8 +172,6 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
-    [Reactive] public partial string? Name { get; set; }
-    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? ShortSummary { get; set; }
     [Reactive] public partial string? Info { get; set; }

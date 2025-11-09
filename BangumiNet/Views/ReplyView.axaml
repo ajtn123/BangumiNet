@@ -9,9 +9,9 @@
              x:DataType="bn:ReplyViewModel"
              x:Class="BangumiNet.Views.ReplyView">
     <StackPanel Spacing="5" Name="MainVertical">
-        <TextBlock Text="{Binding Parent.User.Nickname,StringFormat='回复：{0}',FallbackValue='添加评论'}"/>
         <TextBox Text="{Binding Content}" AcceptsReturn="True"
-                 MinHeight="60" HorizontalAlignment="Stretch"/>
+                 MinHeight="60" HorizontalAlignment="Stretch"
+                 Watermark="{Binding ReplyHint}"/>
         <StackPanel Spacing="5" Orientation="Horizontal">
             <Button Command="{Binding SendCommand}">
                 <TextBlock>

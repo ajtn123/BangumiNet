@@ -212,8 +212,6 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial int? Volumes { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Info { get; set; }
-    [Reactive] public partial string? Name { get; set; }
-    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial DateOnly? Date { get; set; }
     [Reactive] public partial DayOfWeek? Weekday { get; set; }
     [Reactive] public partial double? Score { get; set; }

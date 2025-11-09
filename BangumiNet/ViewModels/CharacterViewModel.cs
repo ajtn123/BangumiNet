@@ -115,8 +115,6 @@ public partial class CharacterViewModel : ItemViewModelBase
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial string? Name { get; set; }
-    [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
