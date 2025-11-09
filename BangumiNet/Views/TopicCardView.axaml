@@ -23,7 +23,7 @@
                                     IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                     Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                 <!--<InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>-->
-                <InfoItem Tip="项目名" Text="{Binding Subject,Converter={StaticResource NameCnCvt}}" Icon="Class"/>
+                <InfoItem Tip="项目名" Text="{Binding Parent,Converter={StaticResource NameCnCvt}}" Icon="Class"/>
                 <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
                 <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
@@ -45,8 +45,8 @@
                         <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
                         <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                     </WrapPanel>
-                    <bn:UserCardView DataContext="{Binding User}"/>
-                    <bn:SubjectCardView DataContext="{Binding Subject}"/>
+                    <bn:CardView Content="{Binding User}"/>
+                    <bn:CardView Content="{Binding Parent}" Margin="0,5,0,0"/>
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

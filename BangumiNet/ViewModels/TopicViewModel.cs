@@ -23,7 +23,7 @@ public partial class TopicViewModel : ItemViewModelBase
         if (topic.Creator != null)
             User = new(topic.Creator) { Id = topic.CreatorID };
         if (topic.Subject != null)
-            Subject = new(topic.Subject);
+            Parent = new SubjectViewModel(topic.Subject);
 
         Init();
     }
@@ -45,7 +45,7 @@ public partial class TopicViewModel : ItemViewModelBase
         if (topic.Creator != null)
             User = new(topic.Creator) { Id = topic.CreatorID };
         //if (topic.Group != null)
-        //    Group = new(topic.Group);
+        //    Parent = new GroupViewModel(topic.Group);
 
         Init();
     }
@@ -64,7 +64,7 @@ public partial class TopicViewModel : ItemViewModelBase
     }
 
     [Reactive] public partial ItemType? ParentType { get; set; }
-    [Reactive] public partial SubjectViewModel? Subject { get; set; }
+    [Reactive] public partial ViewModelBase? Parent { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }
