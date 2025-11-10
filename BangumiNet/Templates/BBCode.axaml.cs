@@ -61,8 +61,8 @@ public class BBCode : TemplatedControl
             var path = url.AbsolutePath.Trim('/');
             if (path.StartsWith("subject/topic/") && int.TryParse(path.Replace("subject/topic/", ""), out var stid))
                 new SecondaryWindow() { Content = await ApiC.GetTopicViewModelAsync(ItemType.Subject, stid) }.Show();
-            //else if (path.StartsWith("group/topic/") && int.TryParse(path.Replace("group/topic/", ""), out var gtid))
-            //    new SecondaryWindow() { Content = await ApiC.GetTopicViewModelAsync(ItemType.Group, gtid) }.Show();
+            else if (path.StartsWith("group/topic/") && int.TryParse(path.Replace("group/topic/", ""), out var gtid))
+                new SecondaryWindow() { Content = await ApiC.GetTopicViewModelAsync(ItemType.Group, gtid) }.Show();
             else if (path.StartsWith("character/") && int.TryParse(path.Replace("character/", ""), out var cid))
                 new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<CharacterViewModel>(cid) }.Show();
             else if (path.StartsWith("subject/") && int.TryParse(path.Replace("subject/", ""), out var sid))
