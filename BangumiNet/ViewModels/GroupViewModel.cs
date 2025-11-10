@@ -20,6 +20,20 @@ public partial class GroupViewModel : ItemViewModelBase
 
         Init();
     }
+    public GroupViewModel(Group group)
+    {
+        Source = group;
+        Id = group.Id;
+        Name = group.Title;
+        Groupname = group.Name;
+        Images = group.Icon;
+        IsNsfw = group.Nsfw ?? false;
+        Accessible = group.Accessible ?? true;
+        MemberCount = group.Members;
+        CreationTime = Common.ParseBangumiTime(group.CreatedAt);
+
+        Init();
+    }
     public void Init()
     {
         ItemTypeEnum = ItemType.Group;

@@ -75,6 +75,17 @@ public partial class NavigatorViewModel : ViewModelBase
             }
         }, this.WhenAnyValue(x => x.CanToUser));
 
+        ToGroup = ReactiveCommand.CreateFromTask(async ct =>
+        {
+            var groupname = Input?.Trim();
+            if (Common.IsAlphaNumeric(groupname))
+            {
+                var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname, cancellationToken: ct);
+                if (gvm != null) new SecondaryWindow() { Content = gvm }.Show();
+                else MessageWindow.ShowMessage($"未找到小组 {Input}");
+            }
+        }, this.WhenAnyValue(x => x.CanToUser));
+
         Items = [
             new() { Name="ToSubject", Command=ToSubject, TextTemplate="转到项目 {0} >" },
             new() { Name="ToCharacter", Command=ToCharacter, TextTemplate="转到角色 {0} >" },
@@ -82,6 +93,7 @@ public partial class NavigatorViewModel : ViewModelBase
             new() { Name="ToEpisode", Command=ToEpisode, TextTemplate="转到话 {0} >" },
             new() { Name="ToTopic", Command=ToTopic, TextTemplate="转到话题 {0} >" },
             new() { Name="User", Command=ToUser, TextTemplate="转到用户 {0} >" },
+            new() { Name="Group", Command=ToGroup, TextTemplate="转到小组 {0} >" },
         ];
     }
 
@@ -96,6 +108,7 @@ public partial class NavigatorViewModel : ViewModelBase
     public ICommand ToEpisode { get; set; }
     public ICommand ToTopic { get; set; }
     public ICommand ToUser { get; set; }
+    public ICommand ToGroup { get; set; }
 
     public readonly AutoCompleteBoxItemViewModel[] Items;
 

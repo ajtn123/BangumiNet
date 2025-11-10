@@ -156,6 +156,15 @@ public static partial class ApiC
             if (me is null) return null;
             else return new UserViewModel(me) as T;
         }
+        else if (typeof(T) == typeof(GroupViewModel) && username is string gid)
+        {
+            Api.P1.Models.Group? group = null;
+            try { group = await P1.Groups[gid].GetAsync(cancellationToken: cancellationToken); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (group is null) return null;
+            else return new GroupViewModel(group) as T;
+        }
         else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1)
         {
             UserSubjectCollection? subjectCollection = null;
