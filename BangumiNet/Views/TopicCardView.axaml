@@ -19,13 +19,17 @@
                 <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
                     <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
                 </Border>
-                <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Content="{Binding User.Nickname}"
-                                    IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
-                                    Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
-                <!--<InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>-->
-                <InfoItem Tip="项目名" Text="{Binding Parent,Converter={StaticResource NameCnCvt}}" Icon="Class"/>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示项目"
+                                 Content="{Binding Parent,Converter={StaticResource NameCnCvt}}"
+                                 IsVisible="{Binding Parent,Converter={StaticResource NullCvt}}"
+                                 Classes="Sec" Command="{Binding Parent?.OpenInNewWindowCommand}"/>
+                <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
+                                 Content="{Binding User.Nickname}"
+                                 IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
+                                 Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
                 <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
-                <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/>
+                <!-- <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/> -->
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
         </StackPanel>

@@ -64,7 +64,7 @@ public partial class TopicViewModel : ItemViewModelBase
     }
 
     [Reactive] public partial ItemType? ParentType { get; set; }
-    [Reactive] public partial ViewModelBase? Parent { get; set; }
+    [Reactive] public partial ItemViewModelBase? Parent { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }

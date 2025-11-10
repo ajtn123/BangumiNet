@@ -71,8 +71,10 @@ public class BBCode : TemplatedControl
                 new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<PersonViewModel>(pid) }.Show();
             else if (path.StartsWith("ep/") && int.TryParse(path.Replace("ep/", ""), out var eid))
                 new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<EpisodeViewModel>(eid) }.Show();
-            else if (path.StartsWith("user/") && path.Replace("user/", "") is string uid && !string.IsNullOrWhiteSpace(uid) && !uid.Contains('/'))
+            else if (path.StartsWith("user/") && path.Replace("user/", "") is string uid && Common.IsAlphaNumeric(uid))
                 new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<UserViewModel>(username: uid) }.Show();
+            else if (path.StartsWith("group/") && path.Replace("group/", "") is string gid && Common.IsAlphaNumeric(gid))
+                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<GroupViewModel>(username: gid) }.Show();
             else
             {
                 e.Event.Handled = false;
