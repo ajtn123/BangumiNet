@@ -13,7 +13,7 @@
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
-                    <MainImage Source="{Binding AvatarLarge^}" Tag="{Binding Avatar.Large}"/>
+                    <MainImage Source="{Binding AvatarLarge^}" Tag="{Binding Avatar?.Large}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">

@@ -26,6 +26,18 @@ public static partial class EnumExtensions
             PersonCareer.Actor => "演员",
             _ => throw new NotImplementedException(),
         };
+    public static PersonCareer? ParsePersonCareer(string career)
+        => career switch
+        {
+            "producer" => PersonCareer.Producer,
+            "mangaka" => PersonCareer.Mangaka,
+            "artist" => PersonCareer.Artist,
+            "seiyu" => PersonCareer.Seiyu,
+            "writer" => PersonCareer.Writer,
+            "illustrator" => PersonCareer.Illustrator,
+            "actor" => PersonCareer.Actor,
+            _ => null,
+        };
     public static string ToStringSC(this PersonType career)
         => career switch
         {

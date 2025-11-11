@@ -141,7 +141,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Type = (PersonType?)person.Type;
         CommentCount = person.Comment;
         Info = person.Info;
-        Careers = person.Career?.ToObservableCollection();
+        Careers = person.Career?.Select(static c => EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
 
         Init();
     }
