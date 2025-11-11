@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:GroupViewModel"
+             x:Class="BangumiNet.Views.GroupView">
+    <ScrollViewer>
+        <StackPanel Spacing="5" Margin="5">
+            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
+                  Classes="ViewRoot">
+                <StackPanel Spacing="5">
+                    <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images?.Large}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Name}"
+                               Classes="Title" FontSize="30"/>
+                    <WrapPanel Classes="InfoBar">
+                        <InfoItem Tip="小组名" Text="{Binding Groupname}"/>
+                        <InfoItem Tip="成员数" Text="{Binding MemberCount}" Icon="People"/>
+                        <InfoItem Tip="话题数" Text="{Binding TopicCount}" Icon="Document"/>
+                        <!-- <InfoItem Tip="回复数" Text="{Binding PostCount}" Icon="Comment"/> -->
+                        <InfoItem Tip="类别" Text="{Binding Category}" Icon="Class"/>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
+                        <TextBlock>
+                            <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
+                            <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !Accessible}"/>
+                        </TextBlock>
+                    </WrapPanel>
+                    <BBCode Text="{Binding Description}"
+                            IsVisible="{Binding Description, Converter={StaticResource NEWCvt}}"/>
+                    <bn:CardView Content="{Binding Creator}" Margin="0,5"/>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

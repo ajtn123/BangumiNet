@@ -31,6 +31,13 @@ public partial class GroupViewModel : ItemViewModelBase
         Accessible = group.Accessible ?? true;
         MemberCount = group.Members;
         CreationTime = Common.ParseBangumiTime(group.CreatedAt);
+        TopicCount = group.Topics;
+        Category = group.Cat;
+        Description = group.Description;
+        PostCount = group.Posts;
+        if (group.Creator != null)
+            Creator = new(group.Creator) { Id = group.CreatorID };
+        // group.Membership.Role;
 
         Init();
     }
@@ -48,7 +55,12 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial bool Accessible { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
     [Reactive] public partial int? MemberCount { get; set; }
+    [Reactive] public partial int? TopicCount { get; set; }
+    [Reactive] public partial int? PostCount { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
+    [Reactive] public partial UserViewModel? Creator { get; set; }
+    [Reactive] public partial string? Description { get; set; }
+    [Reactive] public partial int? Category { get; set; }
 
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);

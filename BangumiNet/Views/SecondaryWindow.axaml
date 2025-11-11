@@ -21,6 +21,9 @@
 		<DataTemplate DataType="bn:UserViewModel">
 			<bn:UserView DataContext="{Binding}"/>
         </DataTemplate>
+		<DataTemplate DataType="bn:GroupViewModel">
+			<bn:GroupView DataContext="{Binding}"/>
+        </DataTemplate>
 		<DataTemplate DataType="bn:TopicViewModel">
 			<bn:TopicView DataContext="{Binding}"/>
         </DataTemplate>
