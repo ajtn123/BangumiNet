@@ -160,11 +160,12 @@ public class CommonEnumConverter : IValueConverter
         => Convert(value);
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
-    public static string? Convert(object? value)
+    public static string? Convert(object? value) => value switch
     {
-        if (value == null) return null;
-        if (value is ItemType itemType) return itemType.ToStringSC();
-        if (value is CommentState commentState) return commentState.ToStringSC();
-        else return value.ToString();
-    }
+        null => null,
+        ItemType itemType => itemType.ToStringSC(),
+        CommentState commentState => commentState.ToStringSC(),
+        GroupRole groupRole => groupRole.ToStringSC(),
+        _ => value.ToString()
+    };
 }

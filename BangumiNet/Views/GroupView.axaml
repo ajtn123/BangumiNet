@@ -30,7 +30,10 @@
                         <TextBlock>
                             <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
                             <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !Accessible}"/>
+                            <ic:FluentIcon ToolTip.Tip="我是本小组的成员" Icon="Heart" IsVisible="{Binding Membership,Converter={StaticResource NullCvt}}"/>
                         </TextBlock>
+                        <InfoItem Tip="我的角色" EnumText="{Binding Membership?.Role}" Icon="Person"/>
+                        <InfoItem Tip="加入时间" CommonText="{Binding Membership?.JoinTime}" Icon="Calendar"/>
                     </WrapPanel>
                     <BBCode Text="{Binding Description}"
                             IsVisible="{Binding Description, Converter={StaticResource NEWCvt}}"/>

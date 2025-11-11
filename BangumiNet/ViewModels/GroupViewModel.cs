@@ -37,7 +37,8 @@ public partial class GroupViewModel : ItemViewModelBase
         PostCount = group.Posts;
         if (group.Creator != null)
             Creator = new(group.Creator) { Id = group.CreatorID };
-        // group.Membership.Role;
+        if (group.Membership != null)
+            Membership = new(group.Membership);
 
         Init();
     }
@@ -59,6 +60,7 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial int? PostCount { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial UserViewModel? Creator { get; set; }
+    [Reactive] public partial GroupMemberViewModel? Membership { get; set; }
     [Reactive] public partial string? Description { get; set; }
     [Reactive] public partial int? Category { get; set; }
 
