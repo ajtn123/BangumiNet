@@ -1,12 +1,23 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Groups.Item.Members;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class GroupMemberListView : SubjectListPagedViewModel
+public partial class GroupMemberListViewModel : SubjectListPagedViewModel
 {
-    public async Task Load(int? p, CancellationToken ct)
+    public GroupMemberListViewModel(string? groupname)
+    {
+        Groupname = groupname;
+
+        LoadCommand = ReactiveCommand.CreateFromTask<int?>(Load);
+
+        PageNavigator.PrevPage.InvokeCommand(LoadCommand);
+        PageNavigator.NextPage.InvokeCommand(LoadCommand);
+        PageNavigator.JumpPage.InvokeCommand(LoadCommand);
+    }
+    public async Task Load(int? p, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(Groupname)) return;
         if (p is not int pageIndex) return;
@@ -35,6 +46,8 @@ public partial class GroupMemberListView : SubjectListPagedViewModel
 
     [Reactive] public partial string? Groupname { get; set; }
     [Reactive] public partial GroupRole? Role { get; set; }
+
+    public ICommand LoadCommand { get; set; }
 
     public static int Limit => 20;
 }

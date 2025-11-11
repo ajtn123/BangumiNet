@@ -36,7 +36,7 @@ public partial class GroupViewModel : ItemViewModelBase
         Description = group.Description;
         PostCount = group.Posts;
         if (group.Creator != null)
-            Creator = new(group.Creator) { Id = group.CreatorID };
+            Creator = new(group.Creator) { Id = group.CreatorID, Role = Api.ExtraEnums.GroupRole.Leader, JoinTime = CreationTime };
         if (group.Membership != null)
             Membership = new(group.Membership);
 
@@ -48,6 +48,8 @@ public partial class GroupViewModel : ItemViewModelBase
         Title = $"{Name} - {Title}";
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));
+        Members = new(Groupname);
+        Topics = new(Groupname);
     }
 
     [Reactive] public partial object? Source { get; set; }
@@ -59,12 +61,16 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial int? TopicCount { get; set; }
     [Reactive] public partial int? PostCount { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
-    [Reactive] public partial UserViewModel? Creator { get; set; }
+    [Reactive] public partial GroupMemberViewModel? Creator { get; set; }
     [Reactive] public partial GroupMemberViewModel? Membership { get; set; }
     [Reactive] public partial string? Description { get; set; }
     [Reactive] public partial int? Category { get; set; }
+    [Reactive] public partial GroupMemberListViewModel? Members { get; set; }
+    [Reactive] public partial GroupTopicListViewModel? Topics { get; set; }
 
     public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
     public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
     public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
+
+    public bool IsFull => Source is Group;
 }

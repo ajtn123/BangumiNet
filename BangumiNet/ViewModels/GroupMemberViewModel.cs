@@ -11,6 +11,7 @@ public partial class GroupMemberViewModel : UserViewModel
         Role = (GroupRole?)user.Role;
         JoinTime = Common.ParseBangumiTime(user.JoinedAt);
     }
+    public GroupMemberViewModel(SlimUser user) : base(user) { }
 
     [Reactive] public partial GroupRole? Role { get; set; }
     [Reactive] public partial DateTimeOffset? JoinTime { get; set; }

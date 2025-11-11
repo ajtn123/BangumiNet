@@ -14,6 +14,8 @@
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
                     <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images?.Large}"/>
+                    <bn:CardView Content="{Binding Creator}"/>
+                    <bn:SubjectListView DataContext="{Binding Members}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -37,12 +39,12 @@
                     </WrapPanel>
                     <BBCode Text="{Binding Description}"
                             IsVisible="{Binding Description, Converter={StaticResource NEWCvt}}"/>
-                    <bn:CardView Content="{Binding Creator}" Margin="0,5"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
+                    <bn:SubjectListPagedView DataContext="{Binding Topics}" Margin="0,5,0,0"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

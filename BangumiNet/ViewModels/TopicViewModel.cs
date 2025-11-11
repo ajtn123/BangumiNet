@@ -49,6 +49,24 @@ public partial class TopicViewModel : ItemViewModelBase
 
         Init();
     }
+    public TopicViewModel(Topic topic, ItemType parentType)
+    {
+        IsFull = false;
+        ParentType = parentType;
+        CreationTime = Common.ParseBangumiTime(topic.CreatedAt);
+        UpdateTime = Common.ParseBangumiTime(topic.UpdatedAt);
+        State = (CommentState?)topic.State;
+        Display = (TopicDisplay?)topic.Display;
+        Name = topic.Title;
+        Id = topic.Id;
+        ParentId = topic.ParentID;
+        ReplyCount = topic.ReplyCount;
+        Replies = new(ItemType.Topic, Id) { ParentItemType = ParentType };
+        if (topic.Creator != null)
+            User = new(topic.Creator) { Id = topic.CreatorID };
+
+        Init();
+    }
 
     public void Init()
     {

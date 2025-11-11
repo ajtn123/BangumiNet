@@ -20,6 +20,9 @@
             <DataTemplate DataType="bn:PersonViewModel">
                 <bn:PersonCardView DataContext="{Binding}"/>
             </DataTemplate>
+            <DataTemplate DataType="bn:GroupMemberViewModel">
+                <bn:GroupMemberCardView DataContext="{Binding}"/>
+            </DataTemplate>
             <DataTemplate DataType="bn:UserViewModel">
                 <bn:UserCardView DataContext="{Binding}"/>
             </DataTemplate>

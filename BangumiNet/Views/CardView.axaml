@@ -20,6 +20,9 @@
         <DataTemplate DataType="bn:PersonViewModel">
             <bn:PersonCardView />
         </DataTemplate>
+        <DataTemplate DataType="bn:GroupMemberViewModel">
+            <bn:GroupMemberCardView />
+        </DataTemplate>
         <DataTemplate DataType="bn:UserViewModel">
             <bn:UserCardView />
         </DataTemplate>
