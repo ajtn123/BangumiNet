@@ -1,11 +1,11 @@
-﻿using System.Windows.Input;
+﻿using BangumiNet.Api.P1.Models;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class MeViewModel : ViewModelBase
+public partial class MeViewModel : UserViewModel
 {
-    public MeViewModel() => _ = Load();
-    public async Task Load()
+    public MeViewModel(Profile user) : base(user)
     {
         ShowNotificationWindow = ReactiveCommand.Create(() =>
         {
@@ -31,10 +31,8 @@ public partial class MeViewModel : ViewModelBase
             _ = BlockListViewModel.LoadPage(1);
             new SecondaryWindow() { Content = BlockListViewModel }.Show();
         });
-        User = await ApiC.GetViewModelAsync<UserViewModel>();
     }
 
-    [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial NotificationListViewModel? NotificationListViewModel { get; set; }
     [Reactive] public partial UserListViewModel? FriendListViewModel { get; set; }
     [Reactive] public partial UserListViewModel? FollowerListViewModel { get; set; }

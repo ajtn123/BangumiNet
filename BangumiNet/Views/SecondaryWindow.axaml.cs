@@ -36,4 +36,7 @@ public partial class SecondaryWindow : AppWindow
             disposablesForContent.Clear();
         };
     }
+
+    public static void Show(ViewModelBase data)
+        => new SecondaryWindow() { DataContext = data }.Show();
 }

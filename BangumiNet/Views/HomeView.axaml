@@ -12,18 +12,18 @@
                 <Grid ColumnDefinitions="*,Auto" Height="50">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
                     <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="5" ClipToBounds="True">
-                        <Image Source="{Binding Me?.AvatarSmall^}"/>
+                        <Image Source="{Binding Me?.AvatarLarge^}"/>
                     </Border>
                 </Grid>
             </Border>
             <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
                 <StackPanel Grid.Column="0" Spacing="5">
-                    <bn:SubjectCollectionListView DataContext="{Binding CollectionListViewModel}"/>
-                    <bn:TimelineView DataContext="{Binding TimelineViewModel}"/>
+                    <ContentControl Content="{Binding CollectionListViewModel}"/>
+                    <ContentControl Content="{Binding TimelineViewModel}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Spacing="5">
-                    <bn:CalendarView DataContext="{Binding Today}"/>
-                    <bn:TrendingView DataContext="{Binding TrendingViewModel}"/>
+                    <ContentControl Content="{Binding Today}"/>
+                    <ContentControl Content="{Binding TrendingViewModel}"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

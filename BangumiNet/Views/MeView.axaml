@@ -28,6 +28,6 @@
                         Command="{Binding ShowBlockListWindow}"/>
             </StackPanel>
         </Border>
-        <bn:UserView DataContext="{Binding User}" Grid.Column="2"/>
+        <bn:UserView Grid.Column="2"/>
     </Grid>
 </UserControl>

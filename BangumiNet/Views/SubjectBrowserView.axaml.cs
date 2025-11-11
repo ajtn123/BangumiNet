@@ -6,7 +6,6 @@ public partial class SubjectBrowserView : ReactiveUserControl<SubjectBrowserView
 {
     public SubjectBrowserView()
     {
-        DataContext = new SubjectBrowserViewModel();
         InitializeComponent();
         SortComboBox.ItemsSource = Enum.GetValues<SubjectBrowserSort>();
         TypeComboBox.ItemsSource = Enum.GetValues<SubjectType>();

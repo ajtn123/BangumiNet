@@ -6,7 +6,6 @@ public partial class SearchView : ReactiveUserControl<SearchViewModel>
 {
     public SearchView()
     {
-        DataContext = new SearchViewModel();
         InitializeComponent();
         Input.KeyDown += (s, e) =>
         {

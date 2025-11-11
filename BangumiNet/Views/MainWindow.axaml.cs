@@ -11,8 +11,8 @@ public partial class MainWindow : AppWindow
         if (SettingProvider.CurrentSettings.ShowSplashScreenOnAppStartup)
             SplashScreen = new WindowSplashScreen(this);
 
-        homeView = new();
-        NavView.Content = homeView;
+        homeVM = new();
+        NavView.Content = homeVM;
 
         Navigator.AsyncPopulator = navigatorViewModel.PopulateAsync;
 
@@ -23,26 +23,26 @@ public partial class MainWindow : AppWindow
         };
     }
     private string currentView = "主页";
-    public void SwitchView(string view)
+    public async void SwitchView(string view, CancellationToken cancellationToken = default)
     {
         if (view == currentView) return;
         currentView = view;
         NavView.Content = view switch
         {
-            "主页" => homeView ??= new HomeView(),
-            "每日放送" => airingView ??= new AiringView(),
-            "搜索" => searchView ??= new SearchView(),
-            "索引" => subjectBrowserView ??= new SubjectBrowserView(),
-            "我" => meView ??= new MeView(),
-            "设置" => new SettingView() { DataContext = new SettingViewModel(SettingProvider.CurrentSettings) },
+            "主页" => homeVM ??= new(),
+            "每日放送" => airingVM ??= await ApiC.GetViewModelAsync<AiringViewModel>(cancellationToken: cancellationToken),
+            "搜索" => searchVM ??= new(),
+            "索引" => subjectBrowserVM ??= new(),
+            "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
+            "设置" => new SettingViewModel(SettingProvider.CurrentSettings),
             _ => throw new NotImplementedException(),
         };
     }
 
     public readonly NavigatorViewModel navigatorViewModel = new();
-    public HomeView? homeView;
-    public SearchView? searchView;
-    public SubjectBrowserView? subjectBrowserView;
-    public AiringView? airingView;
-    public MeView? meView;
+    public HomeViewModel? homeVM;
+    public SearchViewModel? searchVM;
+    public SubjectBrowserViewModel? subjectBrowserVM;
+    public AiringViewModel? airingVM;
+    public MeViewModel? meVM;
 }

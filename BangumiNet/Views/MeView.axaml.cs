@@ -6,8 +6,6 @@ public partial class MeView : UserControl
 {
     public MeView()
     {
-        if (!Design.IsDesignMode)
-            DataContext = new MeViewModel();
         InitializeComponent();
     }
 }

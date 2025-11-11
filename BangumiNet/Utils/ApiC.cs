@@ -145,7 +145,7 @@ public static partial class ApiC
             if (user is null) return null;
             else return new UserViewModel(user) as T;
         }
-        else if (typeof(T) == typeof(UserViewModel) && username is null)
+        else if (typeof(T) == typeof(MeViewModel))
         {
             Api.P1.Models.Profile? me = null;
             try { me = await P1.Me.GetAsync(cancellationToken: cancellationToken); }
@@ -154,7 +154,7 @@ public static partial class ApiC
             CurrentUsername = me?.Username;
 
             if (me is null) return null;
-            else return new UserViewModel(me) as T;
+            else return new MeViewModel(me) as T;
         }
         else if (typeof(T) == typeof(GroupViewModel) && username is string gid)
         {
@@ -214,8 +214,11 @@ public static partial class ApiC
             if (revision is null) return null;
             else return new RevisionViewModel(revision, rvm.Parent!) as T;
         }
-
-        else return null;
+        else
+        {
+            Trace.TraceWarning($"GetViewModelAsync Invalid Request: Type/{typeof(T).FullName} ID/{id} Username/{username}");
+            return null;
+        }
     }
 
     /// <summary>

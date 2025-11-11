@@ -54,8 +54,8 @@ public partial class SettingViewModel : ViewModelBase
                 if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
                 {
                     var mainWindow = desktopLifetime.MainWindow as MainWindow;
-                    mainWindow?.meView = null;
-                    mainWindow?.homeView = null;
+                    mainWindow?.meVM = null;
+                    mainWindow?.homeVM = null;
                 }
             }
         });

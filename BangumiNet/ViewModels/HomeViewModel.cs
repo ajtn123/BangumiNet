@@ -16,7 +16,7 @@ public partial class HomeViewModel : ViewModelBase
         _ = Task.Run(async () => Today = await ApiC.GetViewModelAsync<CalendarViewModel>());
         _ = Task.Run(async () =>
         {
-            Me = await ApiC.GetViewModelAsync<UserViewModel>();
+            Me = await ApiC.GetViewModelAsync<MeViewModel>();
             await CollectionListViewModel.LoadPageAsync(1);
         });
     }
