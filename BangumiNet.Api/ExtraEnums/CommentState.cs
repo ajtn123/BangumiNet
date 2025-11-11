@@ -47,6 +47,14 @@ public static partial class EnumExtensions
             CommentState.AdminOffTopic => "折叠",
             _ => throw new NotImplementedException(),
         };
+    public static string ToStringSC(this TopicDisplay state)
+        => state switch
+        {
+            TopicDisplay.Ban => "已删除",
+            TopicDisplay.Normal => "正常",
+            TopicDisplay.Review => "审查中",
+            _ => throw new NotImplementedException(),
+        };
 
     //https://github.com/bangumi/server-private/blob/master/lib/topic/state.ts
     public static bool CanReplyPost(this CommentState state)

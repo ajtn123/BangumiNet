@@ -13,6 +13,7 @@ public partial class PageNavigatorViewModel : ViewModelBase
         Total = 1;
 
         this.WhenAnyValue(x => x.PageIndex).Subscribe(y => PageIndexInput = y);
+        this.WhenAnyValue(x => x.Total).Subscribe(y => this.RaisePropertyChanged(nameof(IsSinglePage)));
         PrevPage = ReactiveCommand.Create(() => (int)PageIndex! - 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex - 1)));
         NextPage = ReactiveCommand.Create(() => (int)PageIndex! + 1, this.WhenAnyValue(x => x.Total, x => x.PageIndex).Select(y => IsInRange(PageIndex + 1)));
         JumpPage = ReactiveCommand.Create(() => (int)PageIndexInput!, this.WhenAnyValue(x => x.Total, x => x.PageIndexInput).Select(y => IsInRange(PageIndexInput)));
@@ -53,4 +54,6 @@ public partial class PageNavigatorViewModel : ViewModelBase
         else if (d == null || PageIndex == null || Total == null) return false;
         else return d > 0 && d <= Total;
     }
+
+    public bool IsSinglePage => Total == 1;
 }

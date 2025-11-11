@@ -19,6 +19,9 @@
                 <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
                     <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
                 </Border>
+                <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding !IsDisplayed}">
+                    <InfoItem Tip="话题状态" CommonText="{Binding Display, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
+                </Border>
                 <HyperlinkButton ToolTip.Tip="在新窗口显示项目"
                                  Content="{Binding Parent,Converter={StaticResource NameCnCvt}}"
                                  IsVisible="{Binding Parent,Converter={StaticResource NullCvt}}"

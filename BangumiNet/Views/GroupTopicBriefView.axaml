@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:GroupTopicListViewModel"
+             x:Class="BangumiNet.Views.GroupTopicBriefView">
+    <StackPanel Spacing="5">
+        <Border Classes="Card">
+			<Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Comment" Text="近期话题"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Grid.Column="1" Spacing="5">
+                    <ComboBox Grid.Column="1" x:Name="FilterComboBox"
+                              SelectedItem="{Binding BriefFilter}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <bn:SubjectListPagedView/>
+    </StackPanel>
+</UserControl>

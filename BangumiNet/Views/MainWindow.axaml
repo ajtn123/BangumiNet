@@ -35,6 +35,12 @@
                 </ui:NavigationViewItem.IconSource>
             </ui:NavigationViewItem>
 
+            <ui:NavigationViewItem Content="小组">
+                <ui:NavigationViewItem.IconSource>
+                    <ui:SymbolIconSource Symbol="People"/>
+                </ui:NavigationViewItem.IconSource>
+            </ui:NavigationViewItem>
+
             <ui:NavigationViewItem Content="搜索">
                 <ui:NavigationViewItem.IconSource>
                     <ui:SymbolIconSource Symbol="Find"/>

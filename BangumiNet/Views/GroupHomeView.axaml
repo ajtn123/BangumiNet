@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:GroupHomeViewModel"
+             x:Class="BangumiNet.Views.GroupHomeView">
+    <ScrollViewer>
+		<Grid ColumnDefinitions="2*,*" RowDefinitions="Auto,Auto,*"
+              ColumnSpacing="5" RowSpacing="5" Margin="5">
+            <Border Classes="Card Large"
+                    Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock FontSize="30"><ic:FluentIcon Icon="People" FontSize="30" Margin="0,0,0,-4"/> 小组</TextBlock>
+            </Border>
+            <ContentControl Content="{Binding JoinedGroups}"
+                            Grid.Row="1" Grid.ColumnSpan="2">
+				<ContentControl.DataTemplates>
+					<DataTemplate DataType="bn:GroupListViewModel">
+						<Grid ColumnDefinitions="Auto,*,Auto"
+                              ColumnSpacing="5">
+                            <Button Command="{Binding PageNavigator.PrevPage}"
+                                    Content="{ice:FluentIcon Icon=ArrowLeft}"
+                                    IsVisible="{Binding !PageNavigator.IsSinglePage}"
+                                    VerticalAlignment="Stretch"
+                                    Grid.Column="0"/>
+                            <ItemsControl ItemsSource="{Binding SubjectViewModels}"
+                                          Grid.Column="1">
+                                <ItemsControl.DataTemplates>
+									<DataTemplate DataType="bn:GroupViewModel">
+										<bn:GroupCardView DataContext="{Binding}"/>
+                                    </DataTemplate>
+                                </ItemsControl.DataTemplates>
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<WrapPanel LineSpacing="5" ItemSpacing="5"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                            <Button Command="{Binding PageNavigator.NextPage}"
+                                    Content="{ice:FluentIcon Icon=ArrowRight}"
+                                    IsVisible="{Binding !PageNavigator.IsSinglePage}"
+                                    VerticalAlignment="Stretch"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+            </ContentControl>
+			<bn:GroupTopicBriefView DataContext="{Binding TopicBrief}"
+                                    Grid.Column="0" Grid.Row="2"/>
+            <bn:GroupListView DataContext="{Binding Groups}"
+                              Grid.Column="1" Grid.Row="2"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

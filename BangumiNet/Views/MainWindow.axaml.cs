@@ -31,6 +31,7 @@ public partial class MainWindow : AppWindow
         {
             "主页" => homeVM ??= new(),
             "每日放送" => airingVM ??= await ApiC.GetViewModelAsync<AiringViewModel>(cancellationToken: cancellationToken),
+            "小组" => groupVM ??= new(),
             "搜索" => searchVM ??= new(),
             "索引" => subjectBrowserVM ??= new(),
             "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
@@ -41,6 +42,7 @@ public partial class MainWindow : AppWindow
 
     public readonly NavigatorViewModel navigatorViewModel = new();
     public HomeViewModel? homeVM;
+    public GroupHomeViewModel? groupVM;
     public SearchViewModel? searchVM;
     public SubjectBrowserViewModel? subjectBrowserVM;
     public AiringViewModel? airingVM;

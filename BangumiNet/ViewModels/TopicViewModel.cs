@@ -92,4 +92,6 @@ public partial class TopicViewModel : ItemViewModelBase
     [Reactive] public partial int? ReplyCount { get; set; }
     [Reactive] public partial CommentListViewModel? Replies { get; set; }
     [Reactive] public partial bool IsFull { get; set; }
+
+    public bool IsDisplayed => Display == TopicDisplay.Normal;
 }

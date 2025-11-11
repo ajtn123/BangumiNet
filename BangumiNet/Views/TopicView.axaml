@@ -9,18 +9,23 @@
              x:Class="BangumiNet.Views.TopicView">
     <ScrollViewer>
         <StackPanel Spacing="5" Margin="5">
-            <Grid ColumnDefinitions="*" RowDefinitions="*"
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
-                <StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="0">
                     <TextBlock Text="{Binding Name}"
                                Classes="Title" FontSize="30"/>
                     <WrapPanel Classes="InfoBar">
+                        <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
+                            <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
+                        </Border>
+                        <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding !IsDisplayed}">
+                            <InfoItem Tip="话题状态" CommonText="{Binding Display, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
+                        </Border>
                         <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
                         <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
                         <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
                         <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                     </WrapPanel>
-                    <bn:CardView Content="{Binding Parent}" Margin="0,5"/>
                     <StackPanel Orientation="Horizontal" Spacing="5">
                         <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
                         <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
@@ -28,8 +33,11 @@
                         <!--<Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>-->
                         <!--<Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>-->
                     </StackPanel>
-                    <bn:CommentListView DataContext="{Binding Replies}" Name="CommentView" Margin="0,5,0,0"/>
                 </StackPanel>
+                <bn:CardView Content="{Binding Parent}"
+                             Grid.Column="1" Grid.Row="0"/>
+                <bn:CommentListView DataContext="{Binding Replies}" Name="CommentView"
+                                    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
             </Grid>
         </StackPanel>
     </ScrollViewer>

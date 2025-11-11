@@ -1,5 +1,6 @@
 ﻿using Avalonia.Data.Converters;
 using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
 using BangumiNet.Shared.Extensions;
@@ -165,7 +166,11 @@ public class CommonEnumConverter : IValueConverter
         null => null,
         ItemType itemType => itemType.ToStringSC(),
         CommentState commentState => commentState.ToStringSC(),
+        TopicDisplay topicDisplay => topicDisplay.ToStringSC(),
         GroupRole groupRole => groupRole.ToStringSC(),
+        GroupTopicFilterMode groupTopicFilterMode => groupTopicFilterMode.ToStringSC(),
+        GroupFilterMode groupFilterMode => groupFilterMode.ToStringSC(),
+        GroupSort groupSort => groupSort.ToStringSC(),
         _ => value.ToString()
     };
 }
