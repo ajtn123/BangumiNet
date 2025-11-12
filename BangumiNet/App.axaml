@@ -257,5 +257,8 @@
         <Style Selector="AutoCompleteBox#Navigator">
             <Setter Property="Watermark" Value="键入项目 ID 或用户名"/>
         </Style>
+        <Style Selector=":is(Panel).Highlight">
+            <Setter Property="Background" Value="#3F7FFF7F"/>
+        </Style>
     </Application.Styles>
 </Application>
