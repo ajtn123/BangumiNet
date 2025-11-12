@@ -1,6 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using System.Reactive;
+﻿using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
@@ -51,12 +49,9 @@ public partial class SettingViewModel : ViewModelBase
             if (newSettings.AuthToken != Settings.AuthToken || newSettings.UserAgent != Settings.UserAgent)
             {
                 ApiC.RebuildClients();
-                if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                {
-                    var mainWindow = desktopLifetime.MainWindow as MainWindow;
-                    mainWindow?.meVM = null;
-                    mainWindow?.homeVM = null;
-                }
+                var mainWindow = Common.GetMainWindow();
+                mainWindow?.meVM = null;
+                mainWindow?.homeVM = null;
             }
         });
 
