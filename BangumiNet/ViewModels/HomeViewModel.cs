@@ -11,7 +11,7 @@ public partial class HomeViewModel : ViewModelBase
         TimelineViewModel = new();
         TrendingViewModel = new(ItemType.Subject, SubjectType.Anime);
         CollectionListViewModel = new(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
-        TimelineViewModel.LoadCommand.Execute(null);
+        TimelineViewModel.LoadCommand.Execute().Subscribe();
         TrendingViewModel.LoadCommand.Execute(1);
         _ = Task.Run(async () => Today = await ApiC.GetViewModelAsync<CalendarViewModel>());
         _ = Task.Run(async () =>

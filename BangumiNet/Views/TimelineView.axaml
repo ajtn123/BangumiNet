@@ -9,32 +9,41 @@
              x:DataType="bn:TimelineViewModel"
              x:Class="BangumiNet.Views.TimelineView">
     <StackPanel Spacing="5">
-        <Border Classes="Card">
-			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Timeline" Text="时间线"/>
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right"
-                            Grid.Column="1" Spacing="5">
-                    <Label Target="OnlyFriendCheckBox">仅好友</Label>
-                    <Viewbox Height="18" Grid.Column="1">
-                        <CheckBox IsChecked="{Binding OnlyFriend}"
-                                  Name="OnlyFriendCheckBox" Padding="0"/>
-                    </Viewbox>
-                    <TextBox Text="{Binding Until}"
-                             Height="18" Padding="0"
-                             Watermark="位置"/>
-                    <Button ToolTip.Tip="前往" Classes="Icon" Height="18"
-                            Command="{Binding LoadCommand}"
-                            Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}"/>
-                    <Button ToolTip.Tip="返回顶部" Classes="Icon" Height="18"
-                            Command="{Binding LoadTopCommand}"
-                            Content="{ice:FluentIcon Icon=ArrowUpload, FontSize=16}"/>
-                    <Button ToolTip.Tip="下一页" Classes="Icon" Height="18"
-                            Command="{Binding LoadNextCommand}"
-                            Content="{ice:FluentIcon Icon=ArrowDown, FontSize=16}"/>
-                </StackPanel>
-            </Grid>
-        </Border>
+        <ContentControl Content="{Binding}"/>
 		<bn:SubjectListView DataContext="{Binding}"/>
+        <ContentControl Content="{Binding}"/>
     </StackPanel>
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="bn:TimelineViewModel">
+            <Border Classes="Card">
+			    <Grid ColumnDefinitions="Auto,*">
+                    <InfoItem Icon="Timeline" Text="时间线"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Grid.Column="1" Spacing="5">
+                        <Label Target="OnlyFriendCheckBox" Content="仅好友"
+                               IsVisible="{Binding Username,Converter={StaticResource InNullCvt}}"/>
+                        <Viewbox Height="18" Grid.Column="1">
+                            <CheckBox IsChecked="{Binding OnlyFriend}"
+                                      IsVisible="{Binding Username,Converter={StaticResource InNullCvt}}"
+                                      Name="OnlyFriendCheckBox" Padding="0"/>
+                        </Viewbox>
+                        <TextBox Text="{Binding Until}"
+                                 Height="18" Padding="0"
+                                 Watermark="位置"/>
+                        <Button ToolTip.Tip="前往" Classes="Icon" Height="18"
+                                Command="{Binding LoadCommand}"
+                                Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}"/>
+                        <Button ToolTip.Tip="返回顶部" Classes="Icon" Height="18"
+                                Command="{Binding LoadTopCommand}"
+                                Content="{ice:FluentIcon Icon=ArrowUpload, FontSize=16}"/>
+                        <Button ToolTip.Tip="下一页" Classes="Icon" Height="18"
+                                Command="{Binding LoadNextCommand}"
+                                Content="{ice:FluentIcon Icon=ArrowDown, FontSize=16}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.DataTemplates>
 </UserControl>

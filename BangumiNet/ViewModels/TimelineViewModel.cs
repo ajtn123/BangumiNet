@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.P1.Models;
-using System.Windows.Input;
+using System.Reactive;
+using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
@@ -7,12 +8,23 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
 {
     public TimelineViewModel()
     {
-        LoadCommand = ReactiveCommand.CreateFromTask(async () => await Load(Until));
-        LoadTopCommand = ReactiveCommand.CreateFromTask(async () => await Load(Until = 0));
-        LoadNextCommand = ReactiveCommand.CreateFromTask(async () => await Load(Until = SubjectViewModels?.Select(x => (x as TimelineItemViewModel)?.Id ?? int.MaxValue).Min() ?? 0));
+        LoadCommand = ReactiveCommand.CreateFromTask(async ct => await Load(Until, ct));
+        LoadTopCommand = ReactiveCommand.CreateFromTask(async ct => await Load(Until = 0, ct));
+        LoadNextCommand = ReactiveCommand.CreateFromTask(async ct =>
+        {
+            var ids = SubjectViewModels?.Select(t => (t as TimelineItemViewModel)?.Id).OfType<int>().ToArray();
+            if (ids == null || ids.Length == 0) return;
+            await Load(Until = ids.Min(), ct);
+        });
+
+        this.WhenAnyValue(x => x.OnlyFriend).Skip(1).Subscribe(async x =>
+        {
+            if (Username != null) return;
+            await LoadTopCommand.Execute();
+        });
     }
 
-    public Task Load(CancellationToken ct = default) => Load(Until, ct);
+    public async Task Load(CancellationToken ct = default) => await LoadCommand.Execute();
     public async Task Load(int until, CancellationToken cancellationToken = default)
     {
         int? u = until == 0 ? null : until;
@@ -42,9 +54,9 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
     [Reactive] public partial int Until { get; set; }
     [Reactive] public partial string? Username { get; set; }
 
-    public ICommand LoadCommand { get; set; }
-    public ICommand LoadTopCommand { get; set; }
-    public ICommand LoadNextCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> LoadCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> LoadTopCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> LoadNextCommand { get; set; }
 
     public static int Limit => 20;
 }
