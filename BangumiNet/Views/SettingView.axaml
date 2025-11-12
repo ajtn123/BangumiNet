@@ -135,12 +135,20 @@
                         </ui:SettingsExpanderItem.IconSource>
                         <TextBlock>本地缓存大小</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding DiskCacheSizeLimit}"
-                                     Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}">
-                                <TextBox.InnerRightContent>
-                                    <TextBlock VerticalAlignment="Center" Margin="5">字节</TextBlock>
-                                </TextBox.InnerRightContent>
-                            </TextBox>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button Command="{Binding DumpCacheCommand}" Content="{ice:FluentIcon Icon=Delete,FontSize=18}"
+                                        ToolTip.Tip="清空缓存" Padding="5"/>
+                                <TextBox Text="{Binding DiskCacheSizeLimit}"
+                                            Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}">
+                                    <TextBox.InnerLeftContent>
+                                        <TextBlock Text="{Binding CacheSizeString}" ToolTip.Tip="已使用磁盘空间"
+                                                   VerticalAlignment="Center" Margin="5,0,-5,0"/>
+                                    </TextBox.InnerLeftContent>
+                                    <TextBox.InnerRightContent>
+                                        <TextBlock VerticalAlignment="Center" Margin="0,0,5,0">字节</TextBlock>
+                                    </TextBox.InnerRightContent>
+                                </TextBox>
+                            </StackPanel>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>

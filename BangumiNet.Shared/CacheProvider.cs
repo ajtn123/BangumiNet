@@ -9,7 +9,7 @@ public static class CacheProvider
     public static long CacheSize { get; set; } = 0;
     public static void InitializeCache()
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) CleanUpCache();
+        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) DumpCache();
         else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
         else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
     }
@@ -69,20 +69,26 @@ public static class CacheProvider
 
     public static void CleanUpCache()
     {
-        var files = CacheDirInfo.EnumerateFiles();
-
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled)
         {
-            foreach (var file in files)
-                file.Delete();
+            DumpCache();
             return;
         }
 
+        var files = CacheDirInfo.EnumerateFiles();
         foreach (var file in files.OrderBy(c => c.LastAccessTimeUtc).Take(files.Count() / 4))
             file.Delete();
 
         CacheSize = files.Sum(f => f.Length);
         if (CacheSize > SettingProvider.CurrentSettings.DiskCacheSizeLimit)
             CleanUpCache();
+    }
+
+    public static void DumpCache()
+    {
+        var files = CacheDirInfo.EnumerateFiles();
+        foreach (var file in files)
+            file.Delete();
+        CacheSize = files.Sum(f => f.Length);
     }
 }

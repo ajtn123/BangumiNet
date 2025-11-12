@@ -54,6 +54,11 @@ public partial class SettingViewModel : ViewModelBase
                 mainWindow?.homeVM = null;
             }
         });
+        DumpCacheCommand = ReactiveCommand.Create(() =>
+        {
+            CacheProvider.DumpCache();
+            this.RaisePropertyChanged(nameof(CacheSizeString));
+        });
 
         Title = $"设置 - {Title}";
         SearchEngineSuggestions = [];
@@ -124,6 +129,9 @@ public partial class SettingViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> UndoChangesCommand { get; set; }
     public ReactiveCommand<Unit, Unit> RestoreCommand { get; set; }
     public ReactiveCommand<Unit, Unit> GetTokenCommand { get; set; }
+    public ReactiveCommand<Unit, Unit> DumpCacheCommand { get; set; }
+
+    public static string CacheSizeString => $"{CacheProvider.CacheSize} /";
 }
 public class PaletteItemViewModel : ViewModelBase
 {
