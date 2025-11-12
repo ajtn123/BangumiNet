@@ -10,7 +10,7 @@
     <StackPanel Spacing="5">
         <Border Classes="Card">
 			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Fire" Text="近期注目"/>
+                <InfoItem Icon="Fire" Text="近期瞩目"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
