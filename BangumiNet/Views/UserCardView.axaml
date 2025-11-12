@@ -8,7 +8,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:UserViewModel"
              x:Class="BangumiNet.Views.UserCardView">
-    <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
         <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
             <Image Source="{Binding AvatarLarge^}"/>
         </Border>
@@ -22,10 +22,10 @@
                 <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
-            <Border Classes="Ref" Margin="5"
-                    IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
+            <Border Classes="Ref" IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
                 <SelectableTextBlock Text="{Binding Sign}"
-                                     TextWrapping="Wrap"/>
+                                     TextWrapping="Wrap"
+                                     Classes="PointoverText"/>
             </Border>
         </StackPanel>
 
