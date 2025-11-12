@@ -3,11 +3,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:RevisionViewModel"
              x:Class="BangumiNet.Views.RevisionView">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto">
-		<SelectableTextBlock Text="{Binding DATA}" Margin="5"/>
+    <ScrollViewer>
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*"
+              Classes="ViewRoot" Margin="5">
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="{Binding Summary, FallbackValue='无标题'}"
+                           Classes="Title" FontSize="30"/>
+                <WrapPanel Classes="InfoBar">
+                    <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Command="{Binding Creator.OpenInNewWindowCommand}"
+                                     Content="{Binding Creator.Nickname}" Classes="Pri"
+                                     IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}"/>
+                    <InfoItem Tip="用户名" Text="{Binding Creator.Username}" Classes="Sec"/>
+                    <InfoItem Tip="创建时间" Icon="Calendar" CommonText="{Binding CreationTime}"/>
+                    <InfoItem Tip="类型" Icon="Class" Text="{Binding Type}"/>
+                    <InfoItem Tip="ID" Icon="SlideText" Text="{Binding Id}"/>
+                </WrapPanel>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                </StackPanel>
+            </StackPanel>
+            <bn:CardView Content="{Binding Parent}"
+                         Grid.Column="1" Grid.Row="0" Margin="0,10,10,0"/>
+            <SelectableTextBlock Text="{Binding DATA}" TextWrapping="Wrap"
+                                 Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+        </Grid>
     </ScrollViewer>
 </UserControl>

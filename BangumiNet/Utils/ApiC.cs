@@ -2,6 +2,7 @@
 using Avalonia.Platform;
 using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using Microsoft.Extensions.Caching.Abstractions;
 using Microsoft.Extensions.Caching.InMemory;
@@ -195,7 +196,7 @@ public static partial class ApiC
         }
         else if (typeof(T) == typeof(RevisionViewModel) && id is RevisionViewModel rvm)
         {
-            object? revision = null;
+            IRevision? revision = null;
             try
             {
                 if (rvm.Id is not int revisionId)
@@ -212,7 +213,7 @@ public static partial class ApiC
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (revision is null) return null;
-            else return new RevisionViewModel(revision, rvm.Parent!) as T;
+            else return new RevisionViewModel(revision, rvm.Parent) as T;
         }
         else
         {

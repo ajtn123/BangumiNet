@@ -9,11 +9,11 @@
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="60"
+             Classes.Highlight="{Binding IsEmphasized}" CornerRadius="10"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
-          Classes="PointoverTextHost"
-          Classes.Highlight="{Binding IsEmphasized}">
+          Classes="PointoverTextHost">
         <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
             <Image Source="{Binding ImageGrid^}"/>
         </Border>

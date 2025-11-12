@@ -8,6 +8,7 @@ namespace BangumiNet.ViewModels;
 
 public partial class RevisionViewModel : ViewModelBase
 {
+    private static readonly JsonSerializerOptions options = new() { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
     public RevisionViewModel(IRevision revision, ItemViewModelBase? parent)
     {
         Source = revision;
@@ -19,15 +20,8 @@ public partial class RevisionViewModel : ViewModelBase
         Type = revision.Type;
         Parent = parent;
 
-        Init();
-    }
-
-    private static readonly JsonSerializerOptions options = new() { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
-    public RevisionViewModel(object revisionDetail, ItemViewModelBase parent)
-    {
-        Source = revisionDetail;
-        Parent = parent;
-        DATA = JsonSerializer.Serialize(revisionDetail, options);
+        var data = revision.GetType().GetProperty("Data")?.GetValue(revision);
+        DATA = JsonSerializer.Serialize(data, options);
 
         Init();
     }

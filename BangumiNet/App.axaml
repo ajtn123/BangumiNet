@@ -260,5 +260,8 @@
         <Style Selector=":is(Panel).Highlight">
             <Setter Property="Background" Value="#3F7FFF7F"/>
         </Style>
+        <Style Selector=":is(TemplatedControl).Highlight">
+            <Setter Property="Background" Value="#3F7FFF7F"/>
+        </Style>
     </Application.Styles>
 </Application>
