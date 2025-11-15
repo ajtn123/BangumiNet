@@ -62,12 +62,13 @@ public partial class CommentViewModel : ViewModelBase
             User = new(comment.User);
         CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
-    public CommentViewModel(Reply comment, ItemType itemType, ItemType? parentItemType = null)
+    public CommentViewModel(Reply comment, ItemType itemType, int? mainId, ItemType? parentItemType = null)
     {
         ItemType = itemType;
         ParentItemType = parentItemType;
         Content = comment.Content;
         Id = comment.Id;
+        MainId = mainId;
         Reactions = new(comment.Reactions, Id, ItemType) { ParentItemType = ParentItemType };
         State = (CommentState?)comment.State;
         Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();

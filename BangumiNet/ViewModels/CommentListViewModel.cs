@@ -121,7 +121,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
     {
         if (ItemType == null) throw new InvalidOperationException();
         Sources.Add(replies);
-        SubjectViewModels = replies.Select<Reply, ViewModelBase>(r => new CommentViewModel(r, (ItemType)ItemType, ParentItemType)).ToObservableCollection();
+        SubjectViewModels = replies.Select<Reply, ViewModelBase>(r => new CommentViewModel(r, (ItemType)ItemType, Id, ParentItemType)).ToObservableCollection();
     }
 
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }

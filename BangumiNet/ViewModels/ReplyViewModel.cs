@@ -38,6 +38,22 @@ public partial class ReplyViewModel : ViewModelBase
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
+                else if (Parent.ItemType == ItemType.Topic)
+                    if (Parent.ParentItemType == ItemType.Subject)
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsRepliesPostResponseAsync(new()
+                        {
+                            Content = Content,
+                            ReplyTo = Parent.Id,
+                            TurnstileToken = token
+                        }, cancellationToken: ct))?.Id;
+                    else if (Parent.ParentItemType == ItemType.Group)
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsRepliesPostResponseAsync(new()
+                        {
+                            Content = Content,
+                            ReplyTo = Parent.Id,
+                            TurnstileToken = token
+                        }, cancellationToken: ct))?.Id;
+                    else throw new NotImplementedException();
                 else throw new NotImplementedException();
 
                 Parent.Replies ??= [];
@@ -90,6 +106,22 @@ public partial class ReplyViewModel : ViewModelBase
                         ReplyTo = 0,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
+                else if (Ancestor.ItemType == ItemType.Topic)
+                    if (Ancestor.ParentItemType == ItemType.Subject)
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
+                        {
+                            Content = Content,
+                            ReplyTo = 0,
+                            TurnstileToken = token
+                        }, cancellationToken: ct))?.Id;
+                    else if (Ancestor.ParentItemType == ItemType.Group)
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
+                        {
+                            Content = Content,
+                            ReplyTo = 0,
+                            TurnstileToken = token
+                        }, cancellationToken: ct))?.Id;
+                    else throw new NotImplementedException();
                 else if (Ancestor.ItemType == ItemType.Timeline)
                     ncid = (await ApiC.P1.Timeline[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
                     {
