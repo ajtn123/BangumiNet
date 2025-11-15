@@ -82,6 +82,28 @@ public partial class TimelineItemViewModel : ViewModelBase
             //if (timeline.Memo.Wiki != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Wiki));
         }
+        if (Replies > 0 || Category == TimelineCategory.Status)
+        {
+            subjects.Add(
+                new TextViewModel(
+                    new HyperlinkButton()
+                    {
+                        Content = $"共 {Replies} 条回复",
+                        Command = ReactiveCommand.Create(() =>
+                        {
+                            if (Memo.SubjectViewModels!.FirstOrDefault(vm => vm is CommentListViewModel) is CommentListViewModel replies)
+                                replies.IsVisible = !replies.IsVisible;
+                            else
+                            {
+                                replies = new(ItemType.Timeline, Id);
+                                replies.LoadPageAsync(1);
+                                Memo.SubjectViewModels!.Add(replies);
+                            }
+                        }),
+                    }
+                )
+            );
+        }
         Memo = new() { SubjectViewModels = [.. subjects] };
     }
 
@@ -97,5 +119,5 @@ public partial class TimelineItemViewModel : ViewModelBase
     [Reactive] public partial int? Type { get; set; }
     [Reactive] public partial string? OperationSource { get; set; }
     [Reactive] public partial string? OperationSourceUrl { get; set; }
-    [Reactive] public partial SubjectListViewModel? Memo { get; set; }
+    [Reactive] public partial SubjectListViewModel Memo { get; set; }
 }

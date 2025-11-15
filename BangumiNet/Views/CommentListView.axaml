@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             IsVisible="{Binding IsVisible}"
              x:DataType="bn:CommentListViewModel"
              x:Class="BangumiNet.Views.CommentListView">
     <StackPanel Spacing="5">

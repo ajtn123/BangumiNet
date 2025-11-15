@@ -88,6 +88,20 @@ public partial class CommentViewModel : ViewModelBase
             User = new(comment.Creator) { Id = comment.CreatorID };
         CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
     }
+    public CommentViewModel(Api.P1.P1.Timeline.Item.Replies.Replies comment)
+    {
+        ItemType = ItemType.Timeline;
+        Content = comment.Content;
+        Id = comment.Id;
+        MainId = comment.MainID;
+        RelatedId = comment.RelatedID;
+        Reactions = new(comment.Reactions, Id, ItemType) { ParentItemType = ParentItemType };
+        State = (CommentState?)comment.State;
+        CreationTime = Common.ParseBangumiTime(comment.CreatedAt);
+        Replies = comment.RepliesProp?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
+        if (comment.User != null)
+            User = new(comment.User) { Id = comment.CreatorID };
+    }
 
     [Reactive] public partial ItemType ItemType { get; set; }
     [Reactive] public partial ItemType? ParentItemType { get; set; }

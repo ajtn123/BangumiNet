@@ -37,6 +37,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
             Shared.ItemType.Episode => LoadEpisodeComment(i, offset, cancellationToken),
             Shared.ItemType.Character => LoadCharacterComment(i, offset, cancellationToken),
             Shared.ItemType.Person => LoadPersonComment(i, offset, cancellationToken),
+            Shared.ItemType.Timeline => LoadTimelineComment(i, offset, cancellationToken),
             _ => throw new NotImplementedException(),
         };
     }
@@ -99,6 +100,20 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
+        Sources.Add(response);
+    }
+    private async Task LoadTimelineComment(int id, int offset, CancellationToken cancellationToken = default)
+    {
+        List<Api.P1.P1.Timeline.Item.Replies.Replies>? response = null;
+        try
+        {
+            response = await ApiC.P1.Timeline[id].Replies.GetAsync(cancellationToken: cancellationToken);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        SubjectViewModels = response.Select<Api.P1.P1.Timeline.Item.Replies.Replies, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }

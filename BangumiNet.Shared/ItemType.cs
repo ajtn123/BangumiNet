@@ -9,6 +9,7 @@
         User,
         Topic,
         Group,
+        Timeline,
     }
 }
 namespace BangumiNet.Shared.Extensions

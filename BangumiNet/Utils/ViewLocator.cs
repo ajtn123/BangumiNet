@@ -18,6 +18,7 @@ public class ViewLocator : IDataTemplate
         CalendarViewModel => new CalendarView { DataContext = data },
         TrendingViewModel => new TrendingView { DataContext = data },
         GroupHomeViewModel => new GroupHomeView { DataContext = data },
+        CommentListViewModel => new CommentListView { DataContext = data },
         _ => new TextBlock { Text = $"DataTemplate Not Found: {data?.GetType().FullName}" }
     };
 
