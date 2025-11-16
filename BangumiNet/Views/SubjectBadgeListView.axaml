@@ -12,16 +12,22 @@
              x:Class="BangumiNet.Views.SubjectBadgeListView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto,Auto"
           ColumnSpacing="5">
-        <TextBlock FontSize="20" FontWeight="Bold">相关项目</TextBlock>
+        <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}, StringFormat='相关{0}'}"/>
         <TextBlock Grid.Column="1" VerticalAlignment="Center"
-                   Text="{Binding SubjectViewModels.Count,StringFormat='共 {0} 个项目'}"/>
+                   Text="{Binding SubjectViewModels?.Count,StringFormat='共 {0} 个项目'}"/>
         <Button Grid.Column="2" Content="{ice:FluentIcon Icon=ArrowWrap}"
                 Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding SubjectViewModels}">
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="vm:SubjectViewModel">
-                        <v:SubjectBadgeView DataContext="{Binding .}"/>
+                        <v:SubjectBadgeView DataContext="{Binding}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:CharacterViewModel">
+                        <v:CharacterBadgeView DataContext="{Binding}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="vm:PersonViewModel">
+                        <v:PersonBadgeView DataContext="{Binding}"/>
                     </DataTemplate>
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>

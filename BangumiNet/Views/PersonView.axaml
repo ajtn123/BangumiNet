@@ -58,7 +58,7 @@
                     <Separator/>
                     <bn:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
                     <Separator/>
-                    <bn:CharacterBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
+                    <bn:SubjectBadgeListView DataContext="{Binding CharacterBadgeListViewModel}"/>
 
                     <Expander Header="评论" HorizontalAlignment="Stretch"
                               Name="CommentExpander" IsExpanded="True">

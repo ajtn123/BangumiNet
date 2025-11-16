@@ -94,36 +94,14 @@ public partial class ItemNetworkViewModel : ViewModelBase
     }
     public async Task Load(Node node, ItemType itemType)
     {
-        if (itemType == ItemType.Subject)
-        {
-            var a = new SubjectBadgeListViewModel(node.Item.ItemTypeEnum, node.Item.Id);
-            await a.LoadSubjects();
-            var vms = a.SubjectViewModels!;
-            var radius = Math.Sqrt(vms.Count) * 10;
-            var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
-            SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
-            Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
-        }
-        else if (itemType == ItemType.Character)
-        {
-            var a = new CharacterBadgeListViewModel(node.Item.ItemTypeEnum, node.Item.Id);
-            await a.LoadCharacters();
-            var vms = a.CharacterViewModels!;
-            var radius = Math.Sqrt(vms.Count) * 10;
-            var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
-            CharacterSeries.Values = [.. CharacterSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
-            Relationships = [.. Relationships.Union(CharacterSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
-        }
-        else if (itemType == ItemType.Person)
-        {
-            var a = new PersonBadgeListViewModel(node.Item.ItemTypeEnum, node.Item.Id);
-            await a.LoadPersons();
-            var vms = a.PersonViewModels!;
-            var radius = Math.Sqrt(vms.Count) * 10;
-            var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
-            PersonSeries.Values = [.. PersonSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
-            Relationships = [.. Relationships.Union(PersonSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
-        }
+        var a = new SubjectBadgeListViewModel(itemType, node.Item.ItemTypeEnum, node.Item.Id);
+        await a.Load();
+        if (a.SubjectViewModels == null) return;
+        var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
+        var radius = Math.Sqrt(vms.Length) * 10;
+        var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
+        SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
+        Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
 
         //var relations = nodes.Select(n => new Relationship { From = node, To = n, Relation = (n.Item as PersonViewModel)?.Relation ?? "zz" });
         //RelationSeries = relations.Select(relation => new LineSeries<Node, VoidGeometry>

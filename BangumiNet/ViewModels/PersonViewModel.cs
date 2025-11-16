@@ -149,8 +149,8 @@ public partial class PersonViewModel : ItemViewModelBase
     {
         ItemTypeEnum = ItemType.Person;
 
-        SubjectBadgeListViewModel = new(ItemTypeEnum, Id);
-        CharacterBadgeListViewModel = new(ItemTypeEnum, Id);
+        SubjectBadgeListViewModel = new(ItemType.Subject, ItemTypeEnum, Id);
+        CharacterBadgeListViewModel = new(ItemType.Character, ItemTypeEnum, Id);
         CommentListViewModel = new(ItemTypeEnum, Id);
         RevisionListViewModel = new(this);
 
@@ -190,7 +190,7 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
-    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 

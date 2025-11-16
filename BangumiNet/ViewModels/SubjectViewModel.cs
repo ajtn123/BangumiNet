@@ -175,9 +175,9 @@ public partial class SubjectViewModel : ItemViewModelBase
         if (Id != null)
         {
             EpisodeListViewModel = new((int)Id);
-            PersonBadgeListViewModel = new(ItemTypeEnum, Id);
-            CharacterBadgeListViewModel = new(ItemTypeEnum, Id);
-            SubjectBadgeListViewModel = new(ItemTypeEnum, Id);
+            PersonBadgeListViewModel = new(ItemType.Person, ItemTypeEnum, Id);
+            CharacterBadgeListViewModel = new(ItemType.Character, ItemTypeEnum, Id);
+            SubjectBadgeListViewModel = new(ItemType.Subject, ItemTypeEnum, Id);
             CommentListViewModel = new(ItemTypeEnum, Id);
             RevisionListViewModel = new(this);
         }
@@ -230,8 +230,8 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
-    [Reactive] public partial PersonBadgeListViewModel? PersonBadgeListViewModel { get; set; }
-    [Reactive] public partial CharacterBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? PersonBadgeListViewModel { get; set; }
+    [Reactive] public partial SubjectBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
