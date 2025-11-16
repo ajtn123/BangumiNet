@@ -189,8 +189,8 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 

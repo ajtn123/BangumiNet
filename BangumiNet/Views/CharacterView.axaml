@@ -55,9 +55,9 @@
                                 ToolTip.Tip="取消收藏" Classes="Icon"/>
                     </StackPanel>
                     <Separator/>
-                    <bn:SubjectBadgeListView DataContext="{Binding SubjectBadgeListViewModel}"/>
+                    <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
                     <Separator/>
-                    <bn:SubjectBadgeListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>
 
                     <Expander Header="评论" HorizontalAlignment="Stretch"
                               Name="CommentExpander" IsExpanded="True">

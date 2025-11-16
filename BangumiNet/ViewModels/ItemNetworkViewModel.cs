@@ -94,7 +94,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
     }
     public async Task Load(Node node, ItemType itemType)
     {
-        var a = new SubjectBadgeListViewModel(itemType, node.Item.ItemTypeEnum, node.Item.Id);
+        var a = new RelatedItemListViewModel(itemType, node.Item.ItemTypeEnum, node.Item.Id);
         await a.Load();
         if (a.SubjectViewModels == null) return;
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();

@@ -230,9 +230,9 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial EpisodeListViewModel? EpisodeListViewModel { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? PersonBadgeListViewModel { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? CharacterBadgeListViewModel { get; set; }
-    [Reactive] public partial SubjectBadgeListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? PersonBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }

@@ -2,9 +2,9 @@
 
 namespace BangumiNet.ViewModels;
 
-public partial class SubjectBadgeListViewModel : SubjectListViewModel
+public partial class RelatedItemListViewModel : SubjectListViewModel
 {
-    public SubjectBadgeListViewModel(ItemType type, ItemType parentType, int? parentId)
+    public RelatedItemListViewModel(ItemType type, ItemType parentType, int? parentId)
     {
         Type = type;
         ParentType = parentType;

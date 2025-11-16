@@ -8,8 +8,8 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:SubjectBadgeListViewModel"
-             x:Class="BangumiNet.Views.SubjectBadgeListView">
+             x:DataType="vm:RelatedItemListViewModel"
+             x:Class="BangumiNet.Views.RelatedItemListView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto,Auto"
           ColumnSpacing="5">
         <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}, StringFormat='相关{0}'}"/>

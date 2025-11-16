@@ -4,9 +4,9 @@ using FluentIcons.Avalonia;
 
 namespace BangumiNet.Views;
 
-public partial class SubjectBadgeListView : UserControl
+public partial class RelatedItemListView : UserControl
 {
-    public SubjectBadgeListView()
+    public RelatedItemListView()
     {
         InitializeComponent();
     }
