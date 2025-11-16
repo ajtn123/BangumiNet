@@ -37,6 +37,11 @@ public partial class SecondaryWindow : AppWindow
         };
     }
 
-    public static void Show(ViewModelBase data)
-        => new SecondaryWindow() { DataContext = data }.Show();
+    public static SecondaryWindow Show(ViewModelBase? data)
+    {
+        ArgumentNullException.ThrowIfNull(data);
+        var window = new SecondaryWindow { DataContext = data };
+        window.Show();
+        return window;
+    }
 }

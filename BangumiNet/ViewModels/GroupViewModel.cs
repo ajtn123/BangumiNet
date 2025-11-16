@@ -44,7 +44,7 @@ public partial class GroupViewModel : ItemViewModelBase
     }
     public void Init()
     {
-        ItemTypeEnum = ItemType.Group;
+        ItemType = ItemType.Group;
         Title = $"{Name} - {Title}";
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));

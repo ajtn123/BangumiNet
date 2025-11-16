@@ -97,11 +97,11 @@ public partial class CharacterViewModel : ItemViewModelBase
     }
     public void Init()
     {
-        ItemTypeEnum = ItemType.Character;
+        ItemType = ItemType.Character;
 
-        SubjectBadgeListViewModel = new(ItemType.Subject, ItemTypeEnum, Id);
-        PersonBadgeListViewModel = new(ItemType.Person, ItemTypeEnum, Id);
-        CommentListViewModel = new(ItemTypeEnum, Id);
+        SubjectBadgeListViewModel = new(ItemType.Subject, ItemType, Id);
+        PersonBadgeListViewModel = new(ItemType.Person, ItemType, Id);
+        CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
@@ -160,13 +160,13 @@ public partial class CharacterViewModel : ItemViewModelBase
                 CollectionTime = target ? DateTimeOffset.Now : null;
                 break;
             case 400:
-                MessageWindow.ShowMessage("非法 ID。");
+                MessageWindow.Show("非法 ID。");
                 break;
             case 401:
-                MessageWindow.ShowMessage("未登录。");
+                MessageWindow.Show("未登录。");
                 break;
             case 404:
-                MessageWindow.ShowMessage("角色不存在。");
+                MessageWindow.Show("角色不存在。");
                 break;
             default: break;
         }

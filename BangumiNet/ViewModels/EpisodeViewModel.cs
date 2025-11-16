@@ -81,9 +81,9 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
     public void Init()
     {
-        ItemTypeEnum = ItemType.Episode;
+        ItemType = ItemType.Episode;
 
-        CommentListViewModel = new(ItemTypeEnum, Id);
+        CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
         if (string.IsNullOrWhiteSpace(Name)) Name = null;
@@ -149,13 +149,13 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
                 StatusUpdateTime = DateTimeOffset.Now;
                 break;
             case 400:
-                MessageWindow.ShowMessage("未收藏本话所属项目。");
+                MessageWindow.Show("未收藏本话所属项目。");
                 break;
             case 401:
-                MessageWindow.ShowMessage("未登录。");
+                MessageWindow.Show("未登录。");
                 break;
             case 404:
-                MessageWindow.ShowMessage("条目或者章节不存在。");
+                MessageWindow.Show("条目或者章节不存在。");
                 break;
             default: break;
         }
@@ -178,13 +178,13 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
                 }
                 break;
             case 400:
-                MessageWindow.ShowMessage("未收藏本话所属项目。");
+                MessageWindow.Show("未收藏本话所属项目。");
                 break;
             case 401:
-                MessageWindow.ShowMessage("未登录。");
+                MessageWindow.Show("未登录。");
                 break;
             case 404:
-                MessageWindow.ShowMessage("条目或者章节不存在。");
+                MessageWindow.Show("条目或者章节不存在。");
                 break;
             default: break;
         }

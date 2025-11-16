@@ -10,6 +10,7 @@
         Topic,
         Group,
         Timeline,
+        Revision,
     }
 }
 namespace BangumiNet.Shared.Extensions

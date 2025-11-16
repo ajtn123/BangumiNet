@@ -54,7 +54,7 @@ public partial class TimelineItemViewModel : ViewModelBase
                             new HyperlinkButton()
                             {
                                 Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
-                                Command = ReactiveCommand.Create(() => new SecondaryWindow() { Content = evm }.Show()),
+                                Command = ReactiveCommand.Create(() => SecondaryWindow.Show(evm)),
                                 ContextFlyout = new Flyout() { Content = new EpisodeView() { DataContext = evm } }
                             }
                         )

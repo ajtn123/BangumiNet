@@ -62,11 +62,11 @@ public partial class ItemNetworkViewModel : ViewModelBase
         CharacterSeries.ChartPointPointerDown += async (s, e) => await Load(e.Model!);
         PersonSeries.ChartPointPointerDown += async (s, e) => await Load(e.Model!);
         Series = [SubjectSeries, CharacterSeries, PersonSeries];
-        if (item.ItemTypeEnum == ItemType.Subject)
+        if (item.ItemType == ItemType.Subject)
             SubjectSeries.Values = [Origin];
-        if (item.ItemTypeEnum == ItemType.Character)
+        if (item.ItemType == ItemType.Character)
             CharacterSeries.Values = [Origin];
-        if (item.ItemTypeEnum == ItemType.Person)
+        if (item.ItemType == ItemType.Person)
             PersonSeries.Values = [Origin];
         Relationships = [];
         InterestedItems = [];
@@ -75,18 +75,18 @@ public partial class ItemNetworkViewModel : ViewModelBase
     public async Task Load(Node node)
     {
         InterestedItems.Add(node.Item);
-        if (node.Item.ItemTypeEnum == ItemType.Subject)
+        if (node.Item.ItemType == ItemType.Subject)
         {
             await Load(node, ItemType.Subject);
             await Load(node, ItemType.Person);
             await Load(node, ItemType.Character);
         }
-        else if (node.Item.ItemTypeEnum == ItemType.Character)
+        else if (node.Item.ItemType == ItemType.Character)
         {
             await Load(node, ItemType.Subject);
             await Load(node, ItemType.Person);
         }
-        else if (node.Item.ItemTypeEnum == ItemType.Person)
+        else if (node.Item.ItemType == ItemType.Person)
         {
             await Load(node, ItemType.Subject);
             await Load(node, ItemType.Character);
@@ -94,7 +94,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
     }
     public async Task Load(Node node, ItemType itemType)
     {
-        var a = new RelatedItemListViewModel(itemType, node.Item.ItemTypeEnum, node.Item.Id);
+        var a = new RelatedItemListViewModel(itemType, node.Item.ItemType, node.Item.Id);
         await a.Load();
         if (a.SubjectViewModels == null) return;
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
@@ -141,7 +141,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
         {
             Easing = EasingFunctions.ExponentialOut;
             AnimationSpeed = ItemNetworkViewModel.AnimationSpeed;
-            DrawnElement = new LineGeometry { Fill = RelationshipColors[endingNode.Item.ItemTypeEnum] };
+            DrawnElement = new LineGeometry { Fill = RelationshipColors[endingNode.Item.ItemType] };
             StartingNode = startingNode;
             EndingNode = endingNode;
             startingPoint = new(startingNode.X, startingNode.Y);

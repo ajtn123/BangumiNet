@@ -70,7 +70,7 @@ public partial class TopicViewModel : ItemViewModelBase
 
     public void Init()
     {
-        ItemTypeEnum = ItemType.Topic;
+        ItemType = ItemType.Topic;
         Title = $"{Name} - {Title}";
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(ParentType switch

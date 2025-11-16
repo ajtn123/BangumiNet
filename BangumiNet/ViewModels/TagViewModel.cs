@@ -17,20 +17,20 @@ public partial class TagViewModel : ViewModelBase
         SearchTagCommand = ReactiveCommand.Create(() =>
         {
             if (string.IsNullOrWhiteSpace(Name)) return;
-            var view = new SearchView();
-            view.ViewModel?.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
-            view.ViewModel?.Tag.Add(Name);
-            view.ViewModel?.SearchCommand.Execute(null);
-            new SecondaryWindow() { Content = view }.Show();
+            var vm = new SearchViewModel();
+            vm.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
+            vm.Tag.Add(Name);
+            vm.SearchCommand.Execute(null);
+            SecondaryWindow.Show(vm);
         });
         SearchMetaTagCommand = ReactiveCommand.Create(() =>
         {
             if (string.IsNullOrWhiteSpace(Name)) return;
-            var view = new SearchView();
-            view.ViewModel?.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
-            view.ViewModel?.MetaTag.Add(Name);
-            view.ViewModel?.SearchCommand.Execute(null);
-            new SecondaryWindow() { Content = view }.Show();
+            var vm = new SearchViewModel();
+            vm.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
+            vm.MetaTag.Add(Name);
+            vm.SearchCommand.Execute(null);
+            SecondaryWindow.Show(vm);
         });
     }
 

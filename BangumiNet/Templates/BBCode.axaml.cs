@@ -60,21 +60,21 @@ public class BBCode : TemplatedControl
 
             var path = url.AbsolutePath.Trim('/');
             if (path.StartsWith("subject/topic/") && int.TryParse(path.Replace("subject/topic/", ""), out var stid))
-                new SecondaryWindow() { Content = await ApiC.GetTopicViewModelAsync(ItemType.Subject, stid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetTopicViewModelAsync(ItemType.Subject, stid));
             else if (path.StartsWith("group/topic/") && int.TryParse(path.Replace("group/topic/", ""), out var gtid))
-                new SecondaryWindow() { Content = await ApiC.GetTopicViewModelAsync(ItemType.Group, gtid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetTopicViewModelAsync(ItemType.Group, gtid));
             else if (path.StartsWith("character/") && int.TryParse(path.Replace("character/", ""), out var cid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<CharacterViewModel>(cid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<CharacterViewModel>(cid));
             else if (path.StartsWith("subject/") && int.TryParse(path.Replace("subject/", ""), out var sid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<SubjectViewModel>(sid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<SubjectViewModel>(sid));
             else if (path.StartsWith("person/") && int.TryParse(path.Replace("person/", ""), out var pid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<PersonViewModel>(pid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<PersonViewModel>(pid));
             else if (path.StartsWith("ep/") && int.TryParse(path.Replace("ep/", ""), out var eid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<EpisodeViewModel>(eid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<EpisodeViewModel>(eid));
             else if (path.StartsWith("user/") && path.Replace("user/", "") is string uid && Common.IsAlphaNumeric(uid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<UserViewModel>(username: uid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<UserViewModel>(username: uid));
             else if (path.StartsWith("group/") && path.Replace("group/", "") is string gid && Common.IsAlphaNumeric(gid))
-                new SecondaryWindow() { Content = await ApiC.GetViewModelAsync<GroupViewModel>(username: gid) }.Show();
+                SecondaryWindow.Show(await ApiC.GetViewModelAsync<GroupViewModel>(username: gid));
             else
             {
                 e.Event.Handled = false;

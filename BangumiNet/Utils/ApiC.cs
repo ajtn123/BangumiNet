@@ -201,13 +201,13 @@ public static partial class ApiC
             {
                 if (rvm.Id is not int revisionId)
                     throw new ArgumentException($"非法 RevisionId {rvm.Id}");
-                revision = rvm.Parent?.ItemTypeEnum switch
+                revision = rvm.Parent?.ItemType switch
                 {
                     ItemType.Subject => revision = await V0.Revisions.Subjects[revisionId].GetAsync(cancellationToken: cancellationToken),
                     ItemType.Episode => revision = await V0.Revisions.Episodes[revisionId].GetAsync(cancellationToken: cancellationToken),
                     ItemType.Character => revision = await V0.Revisions.Characters[revisionId].GetAsync(cancellationToken: cancellationToken),
                     ItemType.Person => revision = await V0.Revisions.Persons[revisionId].GetAsync(cancellationToken: cancellationToken),
-                    _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemTypeEnum}"),
+                    _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemType}"),
                 };
             }
             catch (Exception e) { Trace.TraceError(e.Message); }

@@ -12,6 +12,10 @@ public partial class MessageWindow : AppWindow
         OkButton.Click += (s, e) => Close();
     }
 
-    public static void ShowMessage(string message, string title = "信息", Icon icon = FluentIcons.Common.Icon.Info)
-        => new MessageWindow() { DataContext = new MessageWindowViewModel() { Message = message, Title = title, Icon = icon } }.Show();
+    public static MessageWindow Show(string message, string title = "信息", Icon icon = FluentIcons.Common.Icon.Info)
+    {
+        var window = new MessageWindow { DataContext = new MessageWindowViewModel { Message = message, Title = title, Icon = icon } };
+        window.Show();
+        return window;
+    }
 }

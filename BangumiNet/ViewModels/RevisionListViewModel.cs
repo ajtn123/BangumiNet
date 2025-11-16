@@ -9,14 +9,14 @@ public partial class RevisionListViewModel : ViewModelBase
     public RevisionListViewModel(ItemViewModelBase item)
     {
         Parent = item;
-        ItemType = item.ItemTypeEnum;
-        ItemId = item.Id;
+        ParentItemType = item.ItemType;
+        ParentId = item.Id;
         Offset = 0;
         Sources = [];
         RevisionList = new();
         PageNavigatorViewModel = new();
 
-        Title = $"修订历史 - {NameCnCvt.Convert(Parent) ?? $"{ItemType} {ItemId}"} - {Title}";
+        Title = $"修订历史 - {NameCnCvt.Convert(Parent) ?? $"{ParentItemType} {ParentId}"} - {Title}";
 
         LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
 
@@ -38,29 +38,29 @@ public partial class RevisionListViewModel : ViewModelBase
         Paged_Revision? revs = null;
         try
         {
-            revs = ItemType switch
+            revs = ParentItemType switch
             {
                 ItemType.Subject => await ApiC.V0.Revisions.Subjects.GetAsync(config =>
                 {
-                    config.QueryParameters.SubjectId = ItemId;
+                    config.QueryParameters.SubjectId = ParentId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken),
                 ItemType.Episode => await ApiC.V0.Revisions.Episodes.GetAsync(config =>
                 {
-                    config.QueryParameters.EpisodeId = ItemId;
+                    config.QueryParameters.EpisodeId = ParentId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken),
                 ItemType.Character => await ApiC.V0.Revisions.Characters.GetAsync(config =>
                 {
-                    config.QueryParameters.CharacterId = ItemId;
+                    config.QueryParameters.CharacterId = ParentId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken),
                 ItemType.Person => await ApiC.V0.Revisions.Persons.GetAsync(config =>
                 {
-                    config.QueryParameters.PersonId = ItemId;
+                    config.QueryParameters.PersonId = ParentId;
                     config.QueryParameters.Offset = (pageIndex - 1) * Limit;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken),
@@ -86,8 +86,8 @@ public partial class RevisionListViewModel : ViewModelBase
     [Reactive] public partial ItemViewModelBase? Parent { get; set; }
     [Reactive] public partial ObservableCollection<object> Sources { get; set; }
     [Reactive] public partial SubjectListViewModel RevisionList { get; set; }
-    [Reactive] public partial ItemType ItemType { get; set; }
-    [Reactive] public partial int? ItemId { get; set; }
+    [Reactive] public partial ItemType ParentItemType { get; set; }
+    [Reactive] public partial int? ParentId { get; set; }
     [Reactive] public partial int? Total { get; set; }
     [Reactive] public partial int? Offset { get; set; }
     [Reactive] public partial string? PageInfoMessage { get; set; }

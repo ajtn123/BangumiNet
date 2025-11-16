@@ -44,5 +44,8 @@
         <DataTemplate DataType="bn:ItemNetworkViewModel">
 			<bn:ItemNetworkView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate DataType="bn:SearchViewModel">
+			<bn:SearchView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.DataTemplates>
 </Window>

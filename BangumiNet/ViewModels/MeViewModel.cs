@@ -11,25 +11,25 @@ public partial class MeViewModel : UserViewModel
         {
             NotificationListViewModel ??= new();
             _ = NotificationListViewModel.LoadNotifications();
-            new SecondaryWindow() { Content = NotificationListViewModel }.Show();
+            SecondaryWindow.Show(NotificationListViewModel);
         });
         ShowFriendListWindow = ReactiveCommand.Create(() =>
         {
             FriendListViewModel ??= new(UserRelationType.Friend);
             _ = FriendListViewModel.LoadPage(1);
-            new SecondaryWindow() { Content = FriendListViewModel }.Show();
+            SecondaryWindow.Show(FriendListViewModel);
         });
         ShowFollowerListWindow = ReactiveCommand.Create(() =>
         {
             FollowerListViewModel ??= new(UserRelationType.Follower);
             _ = FollowerListViewModel.LoadPage(1);
-            new SecondaryWindow() { Content = FollowerListViewModel }.Show();
+            SecondaryWindow.Show(FollowerListViewModel);
         });
         ShowBlockListWindow = ReactiveCommand.Create(() =>
         {
             BlockListViewModel ??= new(UserRelationType.Blocked);
             _ = BlockListViewModel.LoadPage(1);
-            new SecondaryWindow() { Content = BlockListViewModel }.Show();
+            SecondaryWindow.Show(BlockListViewModel);
         });
     }
 

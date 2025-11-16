@@ -18,8 +18,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id, cancellationToken: ct);
-                if (svm != null) new SecondaryWindow() { Content = new SubjectView() { DataContext = svm } }.Show();
-                else MessageWindow.ShowMessage($"未找到项目 {id}");
+                if (svm != null) SecondaryWindow.Show(svm);
+                else MessageWindow.Show($"未找到项目 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -28,8 +28,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id, cancellationToken: ct);
-                if (cvm != null) new SecondaryWindow() { Content = new CharacterView() { DataContext = cvm } }.Show();
-                else MessageWindow.ShowMessage($"未找到角色 {id}");
+                if (cvm != null) SecondaryWindow.Show(cvm);
+                else MessageWindow.Show($"未找到角色 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -38,8 +38,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id, cancellationToken: ct);
-                if (pvm != null) new SecondaryWindow() { Content = new PersonView() { DataContext = pvm } }.Show();
-                else MessageWindow.ShowMessage($"未找到人物 {id}");
+                if (pvm != null) SecondaryWindow.Show(pvm);
+                else MessageWindow.Show($"未找到人物 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -48,8 +48,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id, cancellationToken: ct);
-                if (evm != null) new SecondaryWindow() { Content = new EpisodeFullView() { DataContext = evm } }.Show();
-                else MessageWindow.ShowMessage($"未找到话 {id}");
+                if (evm != null) SecondaryWindow.Show(evm);
+                else MessageWindow.Show($"未找到话 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -59,8 +59,8 @@ public partial class NavigatorViewModel : ViewModelBase
             {
                 var tvm = await ApiC.GetTopicViewModelAsync(ItemType.Subject, id, cancellationToken: ct);
                 tvm ??= await ApiC.GetTopicViewModelAsync(ItemType.Group, id, cancellationToken: ct);
-                if (tvm != null) new SecondaryWindow() { Content = tvm }.Show();
-                else MessageWindow.ShowMessage($"未找到话题 {id}");
+                if (tvm != null) SecondaryWindow.Show(tvm);
+                else MessageWindow.Show($"未找到话题 {id}");
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
@@ -70,8 +70,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (Common.IsAlphaNumeric(username))
             {
                 var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username, cancellationToken: ct);
-                if (uvm != null) new SecondaryWindow() { Content = new UserView() { DataContext = uvm } }.Show();
-                else MessageWindow.ShowMessage($"未找到用户 {Input}");
+                if (uvm != null) SecondaryWindow.Show(uvm);
+                else MessageWindow.Show($"未找到用户 {Input}");
             }
         }, this.WhenAnyValue(x => x.CanToUser));
 
@@ -81,8 +81,8 @@ public partial class NavigatorViewModel : ViewModelBase
             if (Common.IsAlphaNumeric(groupname))
             {
                 var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname, cancellationToken: ct);
-                if (gvm != null) new SecondaryWindow() { Content = gvm }.Show();
-                else MessageWindow.ShowMessage($"未找到小组 {Input}");
+                if (gvm != null) SecondaryWindow.Show(gvm);
+                else MessageWindow.Show($"未找到小组 {Input}");
             }
         }, this.WhenAnyValue(x => x.CanToUser));
 

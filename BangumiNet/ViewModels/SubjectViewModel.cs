@@ -169,16 +169,16 @@ public partial class SubjectViewModel : ItemViewModelBase
     }
     public void Init()
     {
-        ItemTypeEnum = ItemType.Subject;
+        ItemType = ItemType.Subject;
 
         if (IsFull && RatingCount != null) SubjectRatingViewModel = new(RatingCount);
         if (Id != null)
         {
             EpisodeListViewModel = new((int)Id);
-            PersonBadgeListViewModel = new(ItemType.Person, ItemTypeEnum, Id);
-            CharacterBadgeListViewModel = new(ItemType.Character, ItemTypeEnum, Id);
-            SubjectBadgeListViewModel = new(ItemType.Subject, ItemTypeEnum, Id);
-            CommentListViewModel = new(ItemTypeEnum, Id);
+            PersonBadgeListViewModel = new(ItemType.Person, ItemType, Id);
+            CharacterBadgeListViewModel = new(ItemType.Character, ItemType, Id);
+            SubjectBadgeListViewModel = new(ItemType.Subject, ItemType, Id);
+            CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
         }
 

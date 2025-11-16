@@ -194,13 +194,13 @@ public partial class SubjectCollectionViewModel : ViewModelBase
             switch (e.ResponseStatusCode)
             {
                 case 400:
-                    MessageWindow.ShowMessage("非法请求格式。");
+                    MessageWindow.Show("非法请求格式。");
                     break;
                 case 401:
-                    MessageWindow.ShowMessage("未登录。");
+                    MessageWindow.Show("未登录。");
                     break;
                 case 404:
-                    MessageWindow.ShowMessage("条目或者章节不存在。");
+                    MessageWindow.Show("条目或者章节不存在。");
                     break;
                 default: break;
             }
