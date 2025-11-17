@@ -121,15 +121,15 @@
                     </Border>
                     <ui:RangeSlider RangeStart="{Binding RatingLowerLimit}" RangeEnd="{Binding RatingUpperLimit}"
                                     Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}"/>
-                    <Border Classes="Card">
+                    <!--<Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
                             <TextBlock><ic:FluentIcon Icon="People" FontSize="16" Margin="0,0,0,-3"/>评分人数</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
                                 <CheckBox IsChecked="{Binding IsRatingCountEnabled}" Padding="0"/>
                             </Viewbox>
                         </Grid>
-                    </Border>
-                    <Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsRatingCountEnabled}">
+                    </Border>-->
+                    <!--<Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsRatingCountEnabled}">
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer"
                                        Value="{Binding RatingCountLowerLimit}" Minimum="1"/>
@@ -137,7 +137,7 @@
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer" Grid.Column="2"
                                        Value="{Binding RatingCountUpperLimit}" Minimum="0"/>
-                    </Grid>
+                    </Grid>-->
                     <Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
                             <TextBlock><ic:FluentIcon Icon="NumberSymbol" FontSize="16" Margin="0,0,0,-3"/>排名</TextBlock>
