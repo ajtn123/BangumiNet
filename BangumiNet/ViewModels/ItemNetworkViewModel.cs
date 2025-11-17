@@ -100,8 +100,22 @@ public partial class ItemNetworkViewModel : ViewModelBase
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
         var radius = Math.Sqrt(vms.Length) * 10;
         var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
-        SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
-        Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
+        switch (itemType)
+        {
+            case ItemType.Subject:
+                SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
+                Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
+                break;
+            case ItemType.Character:
+                CharacterSeries.Values = [.. CharacterSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
+                Relationships = [.. Relationships.Union(CharacterSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
+                break;
+            case ItemType.Person:
+                PersonSeries.Values = [.. PersonSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
+                Relationships = [.. Relationships.Union(PersonSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
+                break;
+            default: throw new NotImplementedException();
+        }
 
         //var relations = nodes.Select(n => new Relationship { From = node, To = n, Relation = (n.Item as PersonViewModel)?.Relation ?? "zz" });
         //RelationSeries = relations.Select(relation => new LineSeries<Node, VoidGeometry>
