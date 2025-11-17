@@ -5,6 +5,7 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              IsVisible="{Binding IsVisible}"
+             Content="{Binding Content}"
              x:DataType="bn:TextViewModel"
              x:Class="BangumiNet.Views.TextView">
     <UserControl.Styles>
@@ -15,5 +16,4 @@
 			<Setter Property="BaselineAlignment" Value="Center"/>
         </Style>
     </UserControl.Styles>
-    <SelectableTextBlock Text="{Binding Text}" Inlines="{Binding Inlines}"/>
 </UserControl>
