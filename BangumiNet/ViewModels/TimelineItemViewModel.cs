@@ -30,8 +30,13 @@ public partial class TimelineItemViewModel : ViewModelBase
         {
             //if (timeline.Memo.Blog != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Blog));
-            //if (timeline.Memo.Daily != null)
-            //    Memo.SubjectViewModels.Add(new DailyViewModel(timeline.Memo.Daily));
+            if (timeline.Memo.Daily is { } daily)
+            {
+                if (daily.Groups != null)
+                    subjects.AddRange(daily.Groups.Select(g => new GroupViewModel(g)));
+                if (daily.Users != null)
+                    subjects.AddRange(daily.Users.Select(u => new UserViewModel(u)));
+            }
             //if (timeline.Memo.Index != null)
             //    Memo.SubjectViewModels.Add(new IndexViewModel(timeline.Memo.Index));
             if (memo.Mono is { } mono)
@@ -79,8 +84,8 @@ public partial class TimelineItemViewModel : ViewModelBase
                     else
                         return new ViewModelBase();
                 }));
-            //if (timeline.Memo.Wiki != null)
-            //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Wiki));
+            if (timeline.Memo.Wiki?.Subject is { } wikiSubject)
+                subjects.Add(new SubjectViewModel(wikiSubject));
         }
         if (Category == TimelineCategory.Status || Replies > 0 || (timeline.Reactions != null && timeline.Reactions.Count > 0))
         {
