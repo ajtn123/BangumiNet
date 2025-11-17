@@ -29,7 +29,7 @@ public static partial class ApiC
     private static partial Regex DefaultUserAvatarUrl();
     public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(Common.GetAssetUri("DefaultAvatar.png")));
     public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(Common.GetAssetUri("InternetError.png")));
-    private static readonly SemaphoreSlim semaphore = new(16);
+    private static readonly SemaphoreSlim semaphore = new(128);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
     private static readonly MemoryCache memoryCache = new(new());
     private static readonly TimeSpan MemoryCacheDuration = TimeSpan.FromMinutes(5);
