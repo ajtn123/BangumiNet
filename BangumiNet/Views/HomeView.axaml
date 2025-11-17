@@ -16,7 +16,8 @@
                     </Border>
                 </Grid>
             </Border>
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
+                  ColumnSpacing="5" RowSpacing="5">
                 <StackPanel Grid.Column="0" Spacing="5">
                     <ContentControl Content="{Binding CollectionListViewModel}"/>
                     <ContentControl Content="{Binding TimelineViewModel}"/>
@@ -25,6 +26,9 @@
                     <ContentControl Content="{Binding Today}"/>
                     <ContentControl Content="{Binding TrendingViewModel}"/>
                 </StackPanel>
+
+                <bn:FooterView Grid.ColumnSpan="2" Grid.Row="1"
+                               HorizontalAlignment="Center"/>
             </Grid>
         </StackPanel>
     </ScrollViewer>

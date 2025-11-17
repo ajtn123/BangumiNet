@@ -30,7 +30,7 @@ public partial class HomeViewModel : ViewModelBase
 
     private void LoadGreeting()
     {
-        var greeting = "";
+        var greeting = GreetingEmoji + " ";
 
         if (Me is null)
             greeting += $"你好！";
@@ -41,4 +41,7 @@ public partial class HomeViewModel : ViewModelBase
 
         Greeting = greeting;
     }
+
+    public readonly string GreetingEmoji = GreetingEmojis[Random.Shared.NextInt64() % GreetingEmojis.Length];
+    private static readonly string[] GreetingEmojis = ["👋", "🫡", @"\(￣︶￣*\))", @"\(@^0^@)/", "Hi~ o(*￣▽￣*)ブ"];
 }

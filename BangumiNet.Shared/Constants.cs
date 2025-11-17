@@ -2,6 +2,7 @@
 
 public static class Constants
 {
+    public const string BangumiName = "Bangumi";
     public const string ApplicationName = "BangumiNet";
     public const string SourceRepository = "https://github.com/ajtn123/BangumiNet";
     public const string SettingJsonName = "BNSettings.json";
