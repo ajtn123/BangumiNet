@@ -30,6 +30,14 @@ namespace BangumiNet.Api.P1.Models
 #else
         public global::BangumiNet.Api.P1.Models.TimelineMemo Memo { get; set; }
 #endif
+        /// <summary>The reactions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::BangumiNet.Api.P1.Models.Reaction>? Reactions { get; set; }
+#nullable restore
+#else
+        public List<global::BangumiNet.Api.P1.Models.Reaction> Reactions { get; set; }
+#endif
         /// <summary>The replies property</summary>
         public int? Replies { get; set; }
         /// <summary>The source property</summary>
@@ -82,6 +90,7 @@ namespace BangumiNet.Api.P1.Models
                 { "createdAt", n => { CreatedAt = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "memo", n => { Memo = n.GetObjectValue<global::BangumiNet.Api.P1.Models.TimelineMemo>(global::BangumiNet.Api.P1.Models.TimelineMemo.CreateFromDiscriminatorValue); } },
+                { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>(global::BangumiNet.Api.P1.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "replies", n => { Replies = n.GetIntValue(); } },
                 { "source", n => { Source = n.GetObjectValue<global::BangumiNet.Api.P1.Models.TimelineSource>(global::BangumiNet.Api.P1.Models.TimelineSource.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetIntValue(); } },
@@ -101,6 +110,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteIntValue("createdAt", CreatedAt);
             writer.WriteIntValue("id", Id);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.TimelineMemo>("memo", Memo);
+            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>("reactions", Reactions);
             writer.WriteIntValue("replies", Replies);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.TimelineSource>("source", Source);
             writer.WriteIntValue("type", Type);

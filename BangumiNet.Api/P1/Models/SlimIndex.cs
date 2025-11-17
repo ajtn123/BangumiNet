@@ -44,6 +44,14 @@ namespace BangumiNet.Api.P1.Models
         public int? Uid { get; set; }
         /// <summary>The updatedAt property</summary>
         public int? UpdatedAt { get; set; }
+        /// <summary>The user property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
+#nullable restore
+#else
+        public global::BangumiNet.Api.P1.Models.SlimUser User { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SlimIndex"/> and sets the default values.
         /// </summary>
@@ -78,6 +86,7 @@ namespace BangumiNet.Api.P1.Models
                 { "type", n => { Type = n.GetIntValue(); } },
                 { "uid", n => { Uid = n.GetIntValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetIntValue(); } },
+                { "user", n => { User = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -96,6 +105,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteIntValue("type", Type);
             writer.WriteIntValue("uid", Uid);
             writer.WriteIntValue("updatedAt", UpdatedAt);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

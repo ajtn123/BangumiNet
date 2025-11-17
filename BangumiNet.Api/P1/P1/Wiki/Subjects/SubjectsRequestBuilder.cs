@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item;
+using BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -18,6 +19,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The revisions property</summary>
+        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder Revisions
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.wiki.subjects.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectItemRequestBuilder"/></returns>

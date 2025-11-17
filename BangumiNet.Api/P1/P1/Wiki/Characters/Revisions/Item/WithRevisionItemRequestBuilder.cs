@@ -9,58 +9,57 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
+namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\wiki\subjects\{subjectID}\history-summary
+    /// Builds and executes requests for operations under \p1\wiki\characters\-\revisions\{revisionID}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class HistorySummaryRequestBuilder : BaseRequestBuilder
+    public partial class WithRevisionItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public HistorySummaryRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", pathParameters)
+        public WithRevisionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-/revisions/{revisionID}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public HistorySummaryRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", rawUrl)
+        public WithRevisionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-/revisions/{revisionID}", rawUrl)
         {
         }
         /// <summary>
-        /// 获取条目 wiki 历史编辑摘要
+        /// 获取角色历史版本 wiki 信息
         /// </summary>
-        /// <returns>A List&lt;global::BangumiNet.Api.P1.Models.RevisionHistory&gt;</returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 404 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::BangumiNet.Api.P1.Models.RevisionHistory>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::BangumiNet.Api.P1.Models.RevisionHistory>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "404", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.RevisionHistory>(requestInfo, global::BangumiNet.Api.P1.Models.RevisionHistory.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-            return collectionResult?.AsList();
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo>(requestInfo, global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// 获取条目 wiki 历史编辑摘要
+        /// 获取角色历史版本 wiki 信息
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -81,18 +80,18 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder WithUrl(string rawUrl)
+        public global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder(rawUrl, RequestAdapter);
+            return new global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class HistorySummaryRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class WithRevisionItemRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
         {
         }
     }

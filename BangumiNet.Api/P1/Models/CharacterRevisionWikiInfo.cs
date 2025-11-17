@@ -9,47 +9,59 @@ namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class HistorySummary : IAdditionalDataHolder, IParsable
+    public partial class CharacterRevisionWikiInfo : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The commitMessage property</summary>
+        /// <summary>The extra property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CommitMessage { get; set; }
+        public global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo_extra? Extra { get; set; }
 #nullable restore
 #else
-        public string CommitMessage { get; set; }
+        public global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo_extra Extra { get; set; }
 #endif
-        /// <summary>unix timestamp seconds</summary>
-        public int? CreatedAt { get; set; }
-        /// <summary>The creator property</summary>
+        /// <summary>The infobox property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::BangumiNet.Api.P1.Models.HistorySummary_creator? Creator { get; set; }
+        public string? Infobox { get; set; }
 #nullable restore
 #else
-        public global::BangumiNet.Api.P1.Models.HistorySummary_creator Creator { get; set; }
+        public string Infobox { get; set; }
 #endif
-        /// <summary>修改类型。`1` 正常修改， `11` 合并，`103` 锁定/解锁 `104` 未知</summary>
-        public int? Type { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The summary property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Summary { get; set; }
+#nullable restore
+#else
+        public string Summary { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.HistorySummary"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo"/> and sets the default values.
         /// </summary>
-        public HistorySummary()
+        public CharacterRevisionWikiInfo()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.HistorySummary"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.HistorySummary CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.HistorySummary();
+            return new global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,10 +71,10 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
-                { "createdAt", n => { CreatedAt = n.GetIntValue(); } },
-                { "creator", n => { Creator = n.GetObjectValue<global::BangumiNet.Api.P1.Models.HistorySummary_creator>(global::BangumiNet.Api.P1.Models.HistorySummary_creator.CreateFromDiscriminatorValue); } },
-                { "type", n => { Type = n.GetIntValue(); } },
+                { "extra", n => { Extra = n.GetObjectValue<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo_extra>(global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo_extra.CreateFromDiscriminatorValue); } },
+                { "infobox", n => { Infobox = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -72,10 +84,10 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("commitMessage", CommitMessage);
-            writer.WriteIntValue("createdAt", CreatedAt);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.HistorySummary_creator>("creator", Creator);
-            writer.WriteIntValue("type", Type);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo_extra>("extra", Extra);
+            writer.WriteStringValue("infobox", Infobox);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("summary", Summary);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
