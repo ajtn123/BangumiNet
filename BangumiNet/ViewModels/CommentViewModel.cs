@@ -117,5 +117,8 @@ public partial class CommentViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<CommentViewModel>? Replies { get; set; }
     [Reactive] public partial CommentViewModel? Parent { get; set; }
 
-    public bool NoReaction => (ItemType == ItemType.Character || ItemType == ItemType.Person) && Reactions?.Reactions == null;
+    private static readonly ItemType[] NoReactionItemTypes = [ItemType.Character, ItemType.Person, ItemType.Timeline];
+    private static readonly ItemType[] NoReplyItemTypes = [ItemType.Subject];
+    public bool NoReaction => NoReactionItemTypes.Contains(ItemType) && Reactions?.Reactions == null;
+    public bool NoReply => NoReplyItemTypes.Contains(ItemType) && Replies == null;
 }

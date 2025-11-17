@@ -15,12 +15,11 @@ public partial class TextViewModel : ViewModelBase
     }
     public TextViewModel(params object[] inlines)
     {
-        Inlines = [.. inlines.Select(x =>
-        {
-            if (x is string str) return new Run(str);
-            else if (x is Inline inline) return inline;
-            else if (x is Control control) return new InlineUIContainer(control);
-            else return new Run(x.ToString());
+        Inlines = [.. inlines.Select(x => x switch {
+            string str => new Run(str),
+            Inline inline => inline,
+            Control control => new InlineUIContainer(control),
+            _ => new Run(x.ToString())
         })];
         this.WhenAnyValue(x => x.Inlines).Subscribe(i => IsVisible = i != null && i.Count != 0);
     }

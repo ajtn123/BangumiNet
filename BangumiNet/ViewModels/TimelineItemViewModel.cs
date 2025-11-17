@@ -72,7 +72,7 @@ public partial class TimelineItemViewModel : ViewModelBase
             if (memo.Subject != null)
                 subjects.AddRange(memo.Subject.Select(sc =>
                 {
-                    if (sc.Rate != 0 || !string.IsNullOrWhiteSpace(sc.Comment) || (sc.Reactions != null && sc.Reactions.Count != 0))
+                    if (sc.Rate != 0 || !string.IsNullOrWhiteSpace(sc.Comment))
                         return new SubjectCollectionViewModel(sc) { IsMy = IsMy };
                     else if (sc.Subject != null)
                         return new SubjectViewModel(sc.Subject);
@@ -82,11 +82,12 @@ public partial class TimelineItemViewModel : ViewModelBase
             //if (timeline.Memo.Wiki != null)
             //    Memo.SubjectViewModels.Add(new BlogViewModel(timeline.Memo.Wiki));
         }
-        if (Replies > 0 || Category == TimelineCategory.Status)
+        if (Category == TimelineCategory.Status || Replies > 0 || (timeline.Reactions != null && timeline.Reactions.Count > 0))
         {
+            Reactions = new ReactionListViewModel(timeline.Reactions, timeline.Id, ItemType.Timeline);
             subjects.Add(
                 new TextViewModel(
-                    new HyperlinkButton()
+                    new HyperlinkButton
                     {
                         Content = $"共 {Replies} 条回复",
                         Command = ReactiveCommand.Create(() =>
@@ -100,6 +101,14 @@ public partial class TimelineItemViewModel : ViewModelBase
                                 Memo.SubjectViewModels!.Add(replies);
                             }
                         }),
+                    },
+                    new ReactionButtonView
+                    {
+                        DataContext = Reactions
+                    },
+                    new ReactionListView
+                    {
+                        DataContext = Reactions,
                     }
                 )
             );
@@ -120,4 +129,5 @@ public partial class TimelineItemViewModel : ViewModelBase
     [Reactive] public partial string? OperationSource { get; set; }
     [Reactive] public partial string? OperationSourceUrl { get; set; }
     [Reactive] public partial SubjectListViewModel Memo { get; set; }
+    [Reactive] public partial ReactionListViewModel? Reactions { get; set; }
 }

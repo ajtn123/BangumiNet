@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" Width="18" Height="18"
+             IsVisible="{Binding Converter={StaticResource NullCvt}}"
+             x:DataType="bn:ReactionListViewModel"
+             x:Class="BangumiNet.Views.ReactionButtonView">
+    <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
+            Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
+        <Button.Flyout>
+            <Flyout>
+                <ItemsControl ItemsSource="{Binding ReactButtons}">
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate DataType="bn:ReactionViewModel">
+                            <Button Padding="3" Command="{Binding ReactCommand}">
+                                <Image Source="{Binding ReactionImage}" Height="18"/>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4" ColumnSpacing="5" RowSpacing="5"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Flyout>
+        </Button.Flyout>
+    </Button>
+</UserControl>

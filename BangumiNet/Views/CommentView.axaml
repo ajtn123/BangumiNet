@@ -28,29 +28,15 @@
                         <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
                         <InfoItem Tip="签名" CommonText="{Binding User.Sign}" Icon="Edit" Classes="Sec"/>
                         <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-                        <Button ToolTip.Tip="点赞" Classes="Icon Distinct"
-                                IsVisible="{Binding !NoReaction}"
-                                Content="{ice:FluentIcon Icon=Heart,FontSize=16}">
-                            <Button.Flyout>
-                                <Flyout>
-                                    <ItemsControl ItemsSource="{Binding Reactions.ReactButtons}">
-                                        <ItemsControl.DataTemplates>
-                                            <DataTemplate DataType="bn:ReactionViewModel">
-                                                <Button Padding="3" Command="{Binding ReactCommand}">
-                                                    <Image Source="{Binding ReactionImage}" Height="18"/>
-                                                </Button>
-                                            </DataTemplate>
-                                        </ItemsControl.DataTemplates>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <UniformGrid Columns="4" ColumnSpacing="5" RowSpacing="5"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
-                                </Flyout>
-                            </Button.Flyout>
-                        </Button>
+                        <ContentControl Content="{Binding Reactions}" IsVisible="{Binding !NoReaction}">
+							<ContentControl.DataTemplates>
+								<DataTemplate DataType="bn:ReactionListViewModel">
+									<bn:ReactionButtonView/>
+                                </DataTemplate>
+                            </ContentControl.DataTemplates>
+                        </ContentControl>
                         <Button ToolTip.Tip="回复" Classes="Icon Distinct"
+                                IsVisible="{Binding !NoReply}"
                                 Content="{ice:FluentIcon Icon=Comment,FontSize=16}"
                                 Click="ReplyButtonClick"/>
                     </WrapPanel>

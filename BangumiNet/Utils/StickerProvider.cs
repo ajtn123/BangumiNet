@@ -54,7 +54,7 @@ public static class StickerProvider
     public static ReactionViewModel[] SubjectCommentReactions => [
         new(0), new(104), new(54), new(140), new(122), new(90), new(88), new(80)
     ];
-    public static ReactionViewModel[] EpisodeCommentReactions => [
+    public static ReactionViewModel[] CommonReactions => [
         new(0), new(79), new(54), new(140), new(62), new(122), new(104), new(80), new(141), new(88), new(85), new(90)
     ];
 
