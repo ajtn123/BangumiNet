@@ -1,6 +1,5 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Documents;
-using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
