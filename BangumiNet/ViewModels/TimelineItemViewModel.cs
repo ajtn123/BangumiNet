@@ -73,7 +73,7 @@ public partial class TimelineItemViewModel : ViewModelBase
                 subjects.Add(new TextViewModel($"已完成 {batch.VolsUpdate} / {batch.VolsTotal} 卷"));
             }
             if (memo.Status != null)
-                subjects.Add(new TextViewModel(memo.Status.Tsukkomi));
+                subjects.Add(new BBCodeViewModel(memo.Status.Tsukkomi));
             if (memo.Subject != null)
                 subjects.AddRange(memo.Subject.Select(sc =>
                 {
