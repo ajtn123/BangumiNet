@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ai="using:BangumiNet.Api.Interfaces"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             mc:Ignorable="d"
+             MinWidth="400" MinHeight="10" Opacity="0.7"
+             Name="View" Classes="PointoverTextHost"
+             x:DataType="ai:ICollection"
+             x:Class="BangumiNet.Views.SubjectCollectionCountView">
+    <UserControl.Clip>
+		<RectangleGeometry Rect="{Binding #View.Bounds, Converter={StaticResource BoundCvt}}"
+                           RadiusX="5" RadiusY="5"/>
+    </UserControl.Clip>
+    <UserControl.Styles>
+		<Style Selector="Grid#LayoutGird > Panel > TextBlock">
+            <Setter Property="Margin" Value="1,0"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Classes.PointoverText" Value="True"/>
+            <Setter Property="Classes.Trans" Value="True"/>
+            <Style Selector="^ ic|FluentIcon">
+				<Setter Property="Margin" Value="0,0,0,-1.5"/>
+            </Style>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Name="LayoutGird">
+        <Panel Name="Wish" Background="Pink" Grid.Column="0">
+			<TextBlock Name="WishTB">
+				<ic:FluentIcon Icon="AddSquare" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+                <Run>想看</Run>
+                <Run Name="WishRun"/>
+            </TextBlock>
+        </Panel>
+        <Panel Name="Doing" Background="LightGreen" Grid.Column="1">
+			<TextBlock Name="DoingTB">
+				<ic:FluentIcon Icon="Tv" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+                <Run>在看</Run>
+                <Run Name="DoingRun"/>
+            </TextBlock>
+        </Panel>
+        <Panel Name="Done" Background="LightBlue" Grid.Column="2">
+			<TextBlock Name="DoneTB">
+				<ic:FluentIcon Icon="Checkmark" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+                <Run>看过</Run>
+                <Run Name="DoneRun"/>
+            </TextBlock>
+        </Panel>
+        <Panel Name="OnHold" Background="LightGray" Grid.Column="3">
+			<TextBlock Name="OnHoldTB">
+				<ic:FluentIcon Icon="StackVertical" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+                <Run>搁置</Run>
+                <Run Name="OnHoldRun"/>
+            </TextBlock>
+        </Panel>
+        <Panel Name="Dropped" Background="Red" Grid.Column="4">
+			<TextBlock Name="DroppedTB">
+				<ic:FluentIcon Icon="Dismiss" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+                <Run>抛弃</Run>
+                <Run Name="DroppedRun"/>
+            </TextBlock>
+        </Panel>
+    </Grid>
+</UserControl>

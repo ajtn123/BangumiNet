@@ -85,7 +85,7 @@
             </Style>
         </Style>
         <Style Selector="ic|FluentIcon">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style Selector="Window">
@@ -246,9 +246,20 @@
                     <DoubleTransition Property="FontSize" Duration="0:0:0.2"/>
                 </Transitions>
             </Setter>
+            <Style Selector="^.Trans">
+                <Setter Property="FontSize" Value="0.1"/>
+                <Setter Property="Opacity" Value="0"/>
+                <Setter Property="Transitions">
+                    <Transitions>
+                        <DoubleTransition Property="FontSize" Duration="0:0:0.2"/>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+                    </Transitions>
+                </Setter>
+            </Style>
         </Style>
         <Style Selector=".PointoverTextHost:pointerover :is(TextBlock).PointoverText, FlyoutPresenter :is(TextBlock).PointoverText">
 			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Opacity" Value="1"/>
         </Style>
         <Style Selector=":is(Panel).Hoverable, :is(Panel).PointoverTextHost">
             <Setter Property="Background" Value="Transparent"/>
