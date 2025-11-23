@@ -103,7 +103,6 @@ public partial class UserViewModel : ItemViewModelBase
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
 
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(IsFull ? new UserViewModel((Api.P1.Models.User)Source!) : new UserViewModel(Username)));
         SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
         OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
     }

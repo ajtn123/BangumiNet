@@ -6,18 +6,18 @@ namespace BangumiNet.ViewModels;
 /// <summary>
 /// For <see cref="SubjectListViewModel.SubjectViewModels"/>
 /// </summary>
-public partial class TextViewModel : ViewModelBase
+public class TextViewModel : ViewModelBase
 {
-    public TextViewModel(params object[] inlines)
-        => SetInlines(inlines);
-
-    public void SetInlines(params object[] inlines)
-        => Inlines = [.. inlines.Select(x => x switch {
+    public Func<object[]> Builder { get; set; }
+    public TextViewModel(Func<object[]> builder)
+        => Builder = builder;
+    public TextViewModel(string str)
+        => Builder = () => [str];
+    public InlineCollection? Inlines
+        => [..Builder().Select(x => x switch {
             string str => new Run(str),
             Inline inline => inline,
             Control control => new InlineUIContainer(control),
             _ => new Run(x.ToString())
         })];
-
-    [Reactive] public partial InlineCollection? Inlines { get; private set; }
 }

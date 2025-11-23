@@ -54,14 +54,14 @@ public partial class TimelineItemViewModel : ViewModelBase
                 {
                     var evm = new EpisodeViewModel(single.Episode);
                     subjects.Add(
-                        new TextViewModel(
+                        new TextViewModel(() => [
                             $"已完成",
                             new HyperlinkButton()
                             {
                                 Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
                                 Command = ReactiveCommand.Create(() => SecondaryWindow.Show(evm)),
                                 ContextFlyout = new Flyout() { Content = new EpisodeView() { DataContext = evm } }
-                            }
+                            }]
                         )
                     );
                 }
@@ -91,7 +91,7 @@ public partial class TimelineItemViewModel : ViewModelBase
         {
             Reactions = new ReactionListViewModel(timeline.Reactions, timeline.Id, ItemType.Timeline);
             subjects.Add(
-                new TextViewModel(
+                new TextViewModel(() => [
                     new HyperlinkButton
                     {
                         Content = $"共 {Replies} 条回复",
@@ -114,7 +114,7 @@ public partial class TimelineItemViewModel : ViewModelBase
                     new ReactionListView
                     {
                         DataContext = Reactions,
-                    }
+                    }]
                 )
             );
         }
