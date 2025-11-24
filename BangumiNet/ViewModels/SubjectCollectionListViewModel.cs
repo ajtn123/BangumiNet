@@ -67,7 +67,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase, ILoadable
         Paged_UserCollection? collection = null;
         try
         {
-            collection = await ApiC.V0.Users[Username].Collections.GetAsync(config =>
+            collection = await ApiC.V0.Users[Username!].Collections.GetAsync(config =>
             {
                 config.QueryParameters.SubjectType = (int?)SubjectType;
                 config.QueryParameters.Type = ((int?)CollectionType).ToString();
@@ -88,7 +88,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase, ILoadable
         Paged_UserCharacterCollection? collection = null;
         try
         {
-            var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Characters.ToGetRequestInformation();
+            var requestInfo = ApiC.V0.Users[Username!].Collections.Minus.Characters.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
             collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue, cancellationToken: ct);
@@ -106,7 +106,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase, ILoadable
         Paged_UserPersonCollection? collection = null;
         try
         {
-            var requestInfo = ApiC.V0.Users[Username].Collections.Minus.Persons.ToGetRequestInformation();
+            var requestInfo = ApiC.V0.Users[Username!].Collections.Minus.Persons.ToGetRequestInformation();
             requestInfo.QueryParameters.Add("offset", (pageIndex - 1) * Limit);
             requestInfo.QueryParameters.Add("limit", Limit);
             collection = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue, cancellationToken: ct);

@@ -168,8 +168,10 @@ public static partial class ApiC
         }
         else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1)
         {
+            var user = username ?? CurrentUsername;
+            if (user is null) return null;
             UserSubjectCollection? subjectCollection = null;
-            try { subjectCollection = await V0.Users[username ?? CurrentUsername].Collections[subjectId1].GetAsync(cancellationToken: cancellationToken); }
+            try { subjectCollection = await V0.Users[user].Collections[subjectId1].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (subjectCollection is null) return null;
