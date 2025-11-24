@@ -42,11 +42,11 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse?> GetAsPositionsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse> GetAsPositionsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -55,30 +55,6 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 获取条目的制作人员职位
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsPositionsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 获取条目的制作人员职位
@@ -120,14 +96,6 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class PositionsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder.PositionsRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

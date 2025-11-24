@@ -43,11 +43,11 @@ namespace BangumiNet.Api.P1.P1.Friends.Item
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse?> DeleteAsWithUsernameDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse> DeleteAsWithUsernameDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -59,32 +59,6 @@ namespace BangumiNet.Api.P1.P1.Friends.Item
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// 取消好友
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use DeleteAsWithUsernameDeleteResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "429", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
         /// 添加好友
         /// </summary>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse"/></returns>
@@ -94,11 +68,11 @@ namespace BangumiNet.Api.P1.P1.Friends.Item
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse?> PutAsWithUsernamePutResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse?> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse> PutAsWithUsernamePutResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPutRequestInformation(requestConfiguration);
@@ -108,32 +82,6 @@ namespace BangumiNet.Api.P1.P1.Friends.Item
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernamePutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 添加好友
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use PutAsWithUsernamePutResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse?> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToPutRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "429", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 取消好友
@@ -181,22 +129,6 @@ namespace BangumiNet.Api.P1.P1.Friends.Item
         public global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithUsernameItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithUsernameItemRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

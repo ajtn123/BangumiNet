@@ -43,11 +43,11 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse?> DeleteAsWithIndexDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse> DeleteAsWithIndexDeleteResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
@@ -59,32 +59,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// 删除目录收藏
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use DeleteAsWithIndexDeleteResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "429", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
         /// 新增目录收藏
         /// </summary>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse"/></returns>
@@ -94,11 +68,11 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse?> PutAsWithIndexPutResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse?> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse> PutAsWithIndexPutResponseAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPutRequestInformation(requestConfiguration);
@@ -108,32 +82,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 新增目录收藏
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 429 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use PutAsWithIndexPutResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse?> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse> PutAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToPutRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "429", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 删除目录收藏
@@ -181,22 +129,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         public global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithIndexItemRequestBuilderDeleteRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithIndexItemRequestBuilderPutRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

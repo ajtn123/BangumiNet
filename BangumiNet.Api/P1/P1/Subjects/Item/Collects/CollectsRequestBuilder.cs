@@ -42,11 +42,11 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse?> GetAsCollectsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse> GetAsCollectsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -55,30 +55,6 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 获取条目的收藏用户
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsCollectsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 获取条目的收藏用户
@@ -117,31 +93,13 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            [Obsolete("This property is deprecated, use ModeAsFilterMode instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("mode")]
-            public string? Mode { get; set; }
-#nullable restore
-#else
-            [QueryParameter("mode")]
-            public string Mode { get; set; }
-#endif
-            [QueryParameter("mode")]
-            public global::BangumiNet.Api.P1.Models.FilterMode? ModeAsFilterMode { get; set; }
+            public global::BangumiNet.Api.P1.Models.FilterMode? Mode { get; set; }
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
             [QueryParameter("type")]
             public int? Type { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CollectsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder.CollectsRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

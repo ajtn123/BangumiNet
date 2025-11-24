@@ -30,19 +30,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes
                 return new global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.collections.indexes.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("indexID", position);
-                return new global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -68,11 +55,11 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse?> GetAsIndexesGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse> GetAsIndexesGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -81,30 +68,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 获取当前用户的目录收藏
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsIndexesGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 获取当前用户的目录收藏
@@ -146,14 +109,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class IndexesRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.P1.P1.Collections.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

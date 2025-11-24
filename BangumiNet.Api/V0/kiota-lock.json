@@ -1,6 +1,6 @@
 {
   "descriptionHash": "104BC6D8409D5BBF1A094F2D59B12179F05913367CC228F45F4EE436FEA0E8318F7EF5E11F3794548FFC04A4594AE1D6573DB46206E3CBFE192EBEFFFBC02D00",
-  "descriptionLocation": "https://github.com/trim21-bot/api/raw/ac5d5ea93fd7ddee6f02243e01cc7776b4efc34f/open-api/v0.yaml",
+  "descriptionLocation": "https://github.com/bangumi/api/raw/refs/heads/master/open-api/v0.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.29.0",
   "clientClassName": "ApiClient",
@@ -8,7 +8,7 @@
   "clientNamespaceName": "BangumiNet.Api.V0",
   "language": "CSharp",
   "usesBackingStore": false,
-  "excludeBackwardCompatible": false,
+  "excludeBackwardCompatible": true,
   "includeAdditionalData": true,
   "disableSSLValidation": false,
   "serializers": [

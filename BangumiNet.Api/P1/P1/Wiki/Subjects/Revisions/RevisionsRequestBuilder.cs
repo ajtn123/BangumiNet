@@ -27,19 +27,6 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions
                 return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.wiki.subjects.revisions.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("revisionID", position);
-                return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>

@@ -35,19 +35,6 @@ namespace BangumiNet.Api.P1.P1.Subjects
                 return new global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.subjects.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("subjectID", position);
-                return new global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -73,11 +60,11 @@ namespace BangumiNet.Api.P1.P1.Subjects
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse?> GetAsSubjectsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse> GetAsSubjectsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -86,30 +73,6 @@ namespace BangumiNet.Api.P1.P1.Subjects
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 获取条目列表
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.SubjectsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsSubjectsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Subjects.SubjectsResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.SubjectsResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.SubjectsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 获取条目列表
@@ -157,18 +120,8 @@ namespace BangumiNet.Api.P1.P1.Subjects
             /// <summary>是否为系列，仅对书籍类型的条目有效</summary>
             [QueryParameter("series")]
             public bool? Series { get; set; }
-            [Obsolete("This property is deprecated, use SortAsSubjectBrowseSort instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("sort")]
-            public string? Sort { get; set; }
-#nullable restore
-#else
-            [QueryParameter("sort")]
-            public string Sort { get; set; }
-#endif
-            [QueryParameter("sort")]
-            public global::BangumiNet.Api.P1.Models.SubjectBrowseSort? SortAsSubjectBrowseSort { get; set; }
+            public global::BangumiNet.Api.P1.Models.SubjectBrowseSort? Sort { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("tags")]
@@ -183,14 +136,6 @@ namespace BangumiNet.Api.P1.P1.Subjects
             /// <summary>年份</summary>
             [QueryParameter("year")]
             public int? Year { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class SubjectsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

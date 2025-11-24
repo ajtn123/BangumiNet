@@ -30,19 +30,6 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
                 return new global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.groups.topics.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("topicID", position);
-                return new global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -68,11 +55,11 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse?> GetAsTopicsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse> GetAsTopicsGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -81,30 +68,6 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 获取最新的小组话题
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsTopicsGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 获取最新的小组话题
@@ -142,28 +105,10 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
         {
             [QueryParameter("limit")]
             public int? Limit { get; set; }
-            [Obsolete("This property is deprecated, use ModeAsGroupTopicFilterMode instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("mode")]
-            public string? Mode { get; set; }
-#nullable restore
-#else
-            [QueryParameter("mode")]
-            public string Mode { get; set; }
-#endif
-            [QueryParameter("mode")]
-            public global::BangumiNet.Api.P1.Models.GroupTopicFilterMode? ModeAsGroupTopicFilterMode { get; set; }
+            public global::BangumiNet.Api.P1.Models.GroupTopicFilterMode? Mode { get; set; }
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class TopicsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>
-        {
         }
     }
 }

@@ -32,19 +32,6 @@ namespace BangumiNet.Api.V0.V0.Users.Collections
                 return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.V0.v0.users.collections.item collection</summary>
-        /// <param name="position">条目 ID</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("subject_id", position);
-                return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>

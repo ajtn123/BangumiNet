@@ -32,19 +32,6 @@ namespace BangumiNet.Api.P1.P1.Persons
                 return new global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.persons.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("personID", position);
-                return new global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>

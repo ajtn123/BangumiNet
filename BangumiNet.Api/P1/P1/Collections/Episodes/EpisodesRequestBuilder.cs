@@ -27,19 +27,6 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes
                 return new global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.P1.p1.collections.episodes.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("episodeID", position);
-                return new global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>

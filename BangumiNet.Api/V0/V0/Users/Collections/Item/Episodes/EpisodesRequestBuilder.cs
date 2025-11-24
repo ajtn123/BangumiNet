@@ -44,11 +44,11 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         /// <exception cref="global::BangumiNet.Api.V0.Models.ErrorDetail">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse?> GetAsEpisodesGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse> GetAsEpisodesGetResponseAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -59,34 +59,6 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
                 { "404", global::BangumiNet.Api.V0.Models.ErrorDetail.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse>(requestInfo, global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-        }
-        /// <summary>
-        /// 章节收藏信息
-        /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse"/></returns>
-        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.V0.Models.ErrorDetail">When receiving a 400 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.V0.Models.ErrorDetail">When receiving a 401 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.V0.Models.ErrorDetail">When receiving a 404 status code</exception>
-        [Obsolete("This method is obsolete. Use GetAsEpisodesGetResponseAsync instead.")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#nullable restore
-#else
-        public async Task<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
-        {
-#endif
-            var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "400", global::BangumiNet.Api.V0.Models.ErrorDetail.CreateFromDiscriminatorValue },
-                { "401", global::BangumiNet.Api.V0.Models.ErrorDetail.CreateFromDiscriminatorValue },
-                { "404", global::BangumiNet.Api.V0.Models.ErrorDetail.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse>(requestInfo, global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// 同时会重新计算条目的完成度
@@ -181,22 +153,6 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class EpisodesRequestBuilderGetRequestConfiguration : RequestConfiguration<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder.EpisodesRequestBuilderGetQueryParameters>
-        {
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class EpisodesRequestBuilderPatchRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
-        {
         }
     }
 }

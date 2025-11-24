@@ -27,19 +27,6 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Episodes
                 return new global::BangumiNet.Api.V0.V0.Users.Collections.Episodes.Item.WithEpisode_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
-        /// <summary>Gets an item from the BangumiNet.Api.V0.v0.users.collections.episodes.item collection</summary>
-        /// <param name="position">章节 ID</param>
-        /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Episodes.Item.WithEpisode_ItemRequestBuilder"/></returns>
-        [Obsolete("This indexer is deprecated and will be removed in the next major version. Use the one with the typed parameter instead.")]
-        public global::BangumiNet.Api.V0.V0.Users.Collections.Episodes.Item.WithEpisode_ItemRequestBuilder this[string position]
-        {
-            get
-            {
-                var urlTplParams = new Dictionary<string, object>(PathParameters);
-                if (!string.IsNullOrWhiteSpace(position)) urlTplParams.Add("episode_id", position);
-                return new global::BangumiNet.Api.V0.V0.Users.Collections.Episodes.Item.WithEpisode_ItemRequestBuilder(urlTplParams, RequestAdapter);
-            }
-        }
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
