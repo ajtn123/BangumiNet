@@ -50,25 +50,25 @@ public partial class ReactionViewModel : ViewModelBase
             {
                 object? response = Parent.ItemType switch
                 {
-                    ItemType.Subject => await ApiC.P1.Subjects.Minus.Collects[cid].Like.PutAsLikePutResponseAsync(new()
+                    ItemType.Subject => await ApiC.P1.Subjects.Minus.Collects[cid].Like.PutAsync(new()
                     {
                         Value = Reaction,
                     }),
-                    ItemType.Episode => await ApiC.P1.Episodes.Minus.Comments[cid].Like.PutAsLikePutResponseAsync(new()
+                    ItemType.Episode => await ApiC.P1.Episodes.Minus.Comments[cid].Like.PutAsync(new()
                     {
                         Value = Reaction,
                     }),
-                    ItemType.Timeline => await ApiC.P1.Timeline[cid].Like.PutAsLikePutResponseAsync(new()
+                    ItemType.Timeline => await ApiC.P1.Timeline[cid].Like.PutAsync(new()
                     {
                         Value = Reaction,
                     }),
                     ItemType.Topic => Parent.ParentItemType switch
                     {
-                        ItemType.Subject => await ApiC.P1.Subjects.Minus.Posts[cid].Like.PutAsLikePutResponseAsync(new()
+                        ItemType.Subject => await ApiC.P1.Subjects.Minus.Posts[cid].Like.PutAsync(new()
                         {
                             Value = Reaction
                         }),
-                        ItemType.Group => await ApiC.P1.Groups.Minus.Posts[cid].Like.PutAsLikePutResponseAsync(new()
+                        ItemType.Group => await ApiC.P1.Groups.Minus.Posts[cid].Like.PutAsync(new()
                         {
                             Value = Reaction
                         }),
@@ -87,13 +87,13 @@ public partial class ReactionViewModel : ViewModelBase
             {
                 object? response = Parent.ItemType switch
                 {
-                    ItemType.Subject => await ApiC.P1.Subjects.Minus.Collects[cid].Like.DeleteAsLikeDeleteResponseAsync(),
-                    ItemType.Episode => await ApiC.P1.Episodes.Minus.Comments[cid].Like.DeleteAsLikeDeleteResponseAsync(),
-                    ItemType.Timeline => await ApiC.P1.Timeline[cid].Like.DeleteAsLikeDeleteResponseAsync(),
+                    ItemType.Subject => await ApiC.P1.Subjects.Minus.Collects[cid].Like.DeleteAsync(),
+                    ItemType.Episode => await ApiC.P1.Episodes.Minus.Comments[cid].Like.DeleteAsync(),
+                    ItemType.Timeline => await ApiC.P1.Timeline[cid].Like.DeleteAsync(),
                     ItemType.Topic => Parent.ParentItemType switch
                     {
-                        ItemType.Subject => await ApiC.P1.Subjects.Minus.Posts[cid].Like.DeleteAsLikeDeleteResponseAsync(),
-                        ItemType.Group => await ApiC.P1.Groups.Minus.Posts[cid].Like.DeleteAsLikeDeleteResponseAsync(),
+                        ItemType.Subject => await ApiC.P1.Subjects.Minus.Posts[cid].Like.DeleteAsync(),
+                        ItemType.Group => await ApiC.P1.Groups.Minus.Posts[cid].Like.DeleteAsync(),
                         _ => throw new NotImplementedException(),
                     },
                     _ => throw new NotImplementedException(),

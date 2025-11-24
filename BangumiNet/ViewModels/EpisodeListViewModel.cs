@@ -29,7 +29,7 @@ public partial class EpisodeListViewModel : ViewModelBase
             EpisodesGetResponse? epCole = null;
             try
             {
-                epCole = await ApiC.V0.Users.Minus.Collections[SubjectId].Episodes.GetAsEpisodesGetResponseAsync(config =>
+                epCole = await ApiC.V0.Users.Minus.Collections[SubjectId].Episodes.GetAsync(config =>
                 {
                     config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = Offset;

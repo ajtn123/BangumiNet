@@ -50,7 +50,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
         FriendsGetResponse? response = null;
         try
         {
-            response = (await ApiC.P1.Friends.GetAsFriendsGetResponseAsync(config =>
+            response = (await ApiC.P1.Friends.GetAsync(config =>
             {
                 config.QueryParameters.Offset = offset;
                 config.QueryParameters.Limit = Limit;
@@ -70,7 +70,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
         FollowersGetResponse? response = null;
         try
         {
-            response = (await ApiC.P1.Followers.GetAsFollowersGetResponseAsync(config =>
+            response = (await ApiC.P1.Followers.GetAsync(config =>
             {
                 config.QueryParameters.Offset = offset;
                 config.QueryParameters.Limit = Limit;
@@ -88,7 +88,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
         List<int?>? blockList = null;
         try
         {
-            blockList = (await ApiC.P1.Blocklist.GetAsBlocklistGetResponseAsync(cancellationToken: cancellationToken))?.Blocklist;
+            blockList = (await ApiC.P1.Blocklist.GetAsync(cancellationToken: cancellationToken))?.Blocklist;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
 

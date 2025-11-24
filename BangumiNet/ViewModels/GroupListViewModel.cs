@@ -35,12 +35,12 @@ public partial class GroupListViewModel : SubjectListPagedViewModel
         GroupsGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Groups.GetAsGroupsGetResponseAsync(config =>
+            response = await ApiC.P1.Groups.GetAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
-                config.QueryParameters.ModeAsGroupFilterMode = Filter;
-                config.QueryParameters.SortAsGroupSort = Sort;
+                config.QueryParameters.Mode = Filter;
+                config.QueryParameters.Sort = Sort;
             }, cancellationToken: ct);
         }
         catch (Exception e)

@@ -34,7 +34,7 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
             timelines = Username == null
                 ? await ApiC.P1.Timeline.GetAsync(config =>
                 {
-                    config.QueryParameters.ModeAsFilterMode = OnlyFriend ? FilterMode.Friends : FilterMode.All;
+                    config.QueryParameters.Mode = OnlyFriend ? FilterMode.Friends : FilterMode.All;
                     config.QueryParameters.Until = u;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken)

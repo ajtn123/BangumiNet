@@ -39,7 +39,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
             SubjectsGetResponse? response = null;
             try
             {
-                response = await ApiC.P1.Trending.Subjects.GetAsSubjectsGetResponseAsync(config =>
+                response = await ApiC.P1.Trending.Subjects.GetAsync(config =>
                 {
                     config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = offset;
@@ -59,7 +59,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
             TopicsGetResponse? response = null;
             try
             {
-                response = await ApiC.P1.Trending.Subjects.Topics.GetAsTopicsGetResponseAsync(config =>
+                response = await ApiC.P1.Trending.Subjects.Topics.GetAsync(config =>
                 {
                     config.QueryParameters.Limit = Limit;
                     config.QueryParameters.Offset = offset;

@@ -18,21 +18,21 @@ public partial class ReplyViewModel : ViewModelBase
             {
                 int? ncid = null;
                 if (Parent.ItemType == ItemType.Person)
-                    ncid = (await ApiC.P1.Persons[(int)Parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Persons[(int)Parent.MainId].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Character)
-                    ncid = (await ApiC.P1.Characters[(int)Parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Characters[(int)Parent.MainId].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Episode)
-                    ncid = (await ApiC.P1.Episodes[(int)Parent.MainId].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Episodes[(int)Parent.MainId].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = Parent.Id,
@@ -40,14 +40,14 @@ public partial class ReplyViewModel : ViewModelBase
                     }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Topic)
                     if (Parent.ParentItemType == ItemType.Subject)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsRepliesPostResponseAsync(new()
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = Parent.Id,
                             TurnstileToken = token
                         }, cancellationToken: ct))?.Id;
                     else if (Parent.ParentItemType == ItemType.Group)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsRepliesPostResponseAsync(new()
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = Parent.Id,
@@ -86,21 +86,21 @@ public partial class ReplyViewModel : ViewModelBase
             {
                 int? ncid = null;
                 if (Ancestor.ItemType == ItemType.Person)
-                    ncid = (await ApiC.P1.Persons[(int)Ancestor.Id].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Persons[(int)Ancestor.Id].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Character)
-                    ncid = (await ApiC.P1.Characters[(int)Ancestor.Id].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Characters[(int)Ancestor.Id].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Episode)
-                    ncid = (await ApiC.P1.Episodes[(int)Ancestor.Id].Comments.PostAsCommentsPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Episodes[(int)Ancestor.Id].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,
@@ -108,14 +108,14 @@ public partial class ReplyViewModel : ViewModelBase
                     }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Topic)
                     if (Ancestor.ParentItemType == ItemType.Subject)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = 0,
                             TurnstileToken = token
                         }, cancellationToken: ct))?.Id;
                     else if (Ancestor.ParentItemType == ItemType.Group)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
+                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = 0,
@@ -123,7 +123,7 @@ public partial class ReplyViewModel : ViewModelBase
                         }, cancellationToken: ct))?.Id;
                     else throw new NotImplementedException();
                 else if (Ancestor.ItemType == ItemType.Timeline)
-                    ncid = (await ApiC.P1.Timeline[(int)Ancestor.Id].Replies.PostAsRepliesPostResponseAsync(new()
+                    ncid = (await ApiC.P1.Timeline[(int)Ancestor.Id].Replies.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,

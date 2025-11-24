@@ -35,7 +35,7 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
         TopicsGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Groups[Groupname].Topics.GetAsTopicsGetResponseAsync(config =>
+            response = await ApiC.P1.Groups[Groupname].Topics.GetAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
@@ -60,11 +60,11 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
         Api.P1.P1.Groups.Topics.TopicsGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Groups.Minus.Topics.GetAsTopicsGetResponseAsync(config =>
+            response = await ApiC.P1.Groups.Minus.Topics.GetAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
-                config.QueryParameters.ModeAsGroupTopicFilterMode = BriefFilter;
+                config.QueryParameters.Mode = BriefFilter;
             }, cancellationToken: ct);
         }
         catch (Exception e)

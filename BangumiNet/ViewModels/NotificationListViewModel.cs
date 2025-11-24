@@ -15,7 +15,7 @@ public partial class NotificationListViewModel : ViewModelBase
         NotifyGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Notify.GetAsNotifyGetResponseAsync(config =>
+            response = await ApiC.P1.Notify.GetAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Unread = Unread;

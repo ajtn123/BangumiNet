@@ -25,7 +25,7 @@ public partial class GroupMemberListViewModel : SubjectListPagedViewModel
         MembersGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Groups[Groupname].Members.GetAsMembersGetResponseAsync(config =>
+            response = await ApiC.P1.Groups[Groupname].Members.GetAsync(config =>
             {
                 config.QueryParameters.Role = (int?)Role;
                 config.QueryParameters.Limit = Limit;

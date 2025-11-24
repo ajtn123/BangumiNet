@@ -47,7 +47,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         CommentsGetResponse? response = null;
         try
         {
-            response = await ApiC.P1.Subjects[id].Comments.GetAsCommentsGetResponseAsync(config =>
+            response = await ApiC.P1.Subjects[id].Comments.GetAsync(config =>
             {
                 config.QueryParameters.Limit = Limit;
                 config.QueryParameters.Offset = offset;
