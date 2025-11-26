@@ -171,6 +171,7 @@ public class CommonEnumConverter : IValueConverter
         GroupTopicFilterMode groupTopicFilterMode => groupTopicFilterMode.ToStringSC(),
         GroupFilterMode groupFilterMode => groupFilterMode.ToStringSC(),
         GroupSort groupSort => groupSort.ToStringSC(),
+        RevisionType revisionType => revisionType.ToStringSC(),
         TimelineTypes.Daily tDaily => tDaily.ToStringSC(),
         TimelineTypes.Doujin tDoujin => tDoujin.ToStringSC(),
         TimelineTypes.Mono tMono => tMono.ToStringSC(),

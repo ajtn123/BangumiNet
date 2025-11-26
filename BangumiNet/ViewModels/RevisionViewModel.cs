@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.Interfaces;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Converters;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -16,7 +17,7 @@ public partial class RevisionViewModel : ItemViewModelBase
         CreationTime = revision.CreatedAt;
         if (!string.IsNullOrWhiteSpace(revision.Creator?.Username))
             Creator = new(revision.Creator.Username) { Nickname = revision.Creator?.Nickname };
-        Type = revision.Type;
+        Type = (RevisionType?)revision.Type;
         Parent = parent;
 
         var data = revision.GetType().GetProperty("Data")?.GetValue(revision);
@@ -31,7 +32,7 @@ public partial class RevisionViewModel : ItemViewModelBase
         Title = $"修订 {Id} - {NameCnCvt.Convert(Parent) ?? $"{Parent?.ItemType} {Parent?.Id}"} - {Title}";
     }
 
-    [Reactive] public partial int? Type { get; set; }
+    [Reactive] public partial RevisionType? Type { get; set; }
     [Reactive] public partial ItemViewModelBase? Parent { get; set; }
     [Reactive] public partial UserViewModel? Creator { get; set; }
     [Reactive] public partial string? Summary { get; set; }
