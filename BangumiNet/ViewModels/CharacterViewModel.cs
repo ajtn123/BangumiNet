@@ -114,7 +114,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         Title = $"{NameCnCvt.Convert(this) ?? $"角色 {Id}"} - {Title}";
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }

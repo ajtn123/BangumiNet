@@ -107,7 +107,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         Title = $"{NameCnCvt.Convert(this) ?? $"话 {Id}"} - {Title}";
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? SubjectId { get; set; }
     [Reactive] public partial EpisodeType? Type { get; set; }
     [Reactive] public partial double? Sort { get; set; }

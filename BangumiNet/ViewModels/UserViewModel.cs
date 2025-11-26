@@ -114,7 +114,6 @@ public partial class UserViewModel : ItemViewModelBase
         Init();
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial IImages? Avatar { get; set; }
     [Reactive] public partial string? Sign { get; set; }
     [Reactive] public partial string? Summary { get; set; }

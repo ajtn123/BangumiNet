@@ -52,7 +52,6 @@ public partial class GroupViewModel : ItemViewModelBase
         Topics = new(Groupname);
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial string? Groupname { get; set; }
     [Reactive] public partial bool IsNsfw { get; set; }
     [Reactive] public partial bool Accessible { get; set; }

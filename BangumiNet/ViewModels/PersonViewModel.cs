@@ -169,7 +169,6 @@ public partial class PersonViewModel : ItemViewModelBase
         Title = $"{NameCnCvt.Convert(this) ?? $"人物 {Id}"} - {Title}";
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? CommentCount { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial string? Summary { get; set; }

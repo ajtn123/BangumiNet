@@ -11,6 +11,7 @@ public partial class ItemViewModelBase : ViewModelBase
         ShowNetworkCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(new ItemNetworkViewModel(this)));
     }
 
+    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? NameCn { get; set; }

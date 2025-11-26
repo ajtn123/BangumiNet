@@ -31,7 +31,6 @@ public partial class RevisionViewModel : ItemViewModelBase
         Title = $"修订 {Id} - {NameCnCvt.Convert(Parent) ?? $"{Parent?.ItemType} {Parent?.Id}"} - {Title}";
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Type { get; set; }
     [Reactive] public partial ItemViewModelBase? Parent { get; set; }
     [Reactive] public partial UserViewModel? Creator { get; set; }

@@ -5,10 +5,11 @@ using BangumiNet.Converters;
 
 namespace BangumiNet.ViewModels;
 
-public partial class TimelineItemViewModel : ViewModelBase
+public partial class TimelineItemViewModel : ItemViewModelBase
 {
     public TimelineItemViewModel(Timeline timeline)
     {
+        ItemType = ItemType.Timeline;
         Source = timeline;
         Id = timeline.Id;
         Uid = timeline.Uid;
@@ -121,8 +122,6 @@ public partial class TimelineItemViewModel : ViewModelBase
         Memo = new() { SubjectViewModels = [.. subjects] };
     }
 
-    [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? Uid { get; set; }
     [Reactive] public partial bool Batch { get; set; }
     [Reactive] public partial bool IsMy { get; set; }

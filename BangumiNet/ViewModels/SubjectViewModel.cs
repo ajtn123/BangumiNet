@@ -204,7 +204,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Title = $"{NameCnCvt.Convert(this) ?? $"项目 {Id}"} - {Title}";
     }
 
-    [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
     [Reactive] public partial int? Eps { get; set; }
