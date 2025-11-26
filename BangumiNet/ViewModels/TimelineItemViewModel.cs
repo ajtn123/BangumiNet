@@ -16,7 +16,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
         Batch = timeline.Batch ?? false;
         Category = (TimelineCategory?)timeline.Cat;
         Replies = timeline.Replies;
-        Type = timeline.Type;
+        Type = Category?.Parse(timeline.Type);
         OperationSource = timeline.Source?.Name;
         OperationSourceUrl = timeline.Source?.Url;
         IsMy = ApiC.CurrentUsername != null && timeline.User?.Username == ApiC.CurrentUsername;
@@ -129,7 +129,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial TimelineCategory? Category { get; set; }
-    [Reactive] public partial int? Type { get; set; }
+    [Reactive] public partial Enum? Type { get; set; }
     [Reactive] public partial string? OperationSource { get; set; }
     [Reactive] public partial string? OperationSourceUrl { get; set; }
     [Reactive] public partial SubjectListViewModel Memo { get; set; }

@@ -171,6 +171,13 @@ public class CommonEnumConverter : IValueConverter
         GroupTopicFilterMode groupTopicFilterMode => groupTopicFilterMode.ToStringSC(),
         GroupFilterMode groupFilterMode => groupFilterMode.ToStringSC(),
         GroupSort groupSort => groupSort.ToStringSC(),
+        TimelineTypes.Daily tDaily => tDaily.ToStringSC(),
+        TimelineTypes.Doujin tDoujin => tDoujin.ToStringSC(),
+        TimelineTypes.Mono tMono => tMono.ToStringSC(),
+        TimelineTypes.Progress tProgress => tProgress.ToStringSC(),
+        TimelineTypes.Status tStatus => tStatus.ToStringSC(),
+        TimelineTypes.Subject tSubject => tSubject.ToStringSC(),
+        TimelineTypes.Wiki tWiki => tWiki.ToStringSC(),
         _ => value.ToString()
     };
 }

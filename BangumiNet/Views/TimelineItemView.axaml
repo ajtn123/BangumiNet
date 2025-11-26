@@ -12,8 +12,8 @@
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="类别" Text="{Binding Category, Converter={StaticResource TimelineCategoryCvt}}"
                           FontWeight="Bold" Classes="Pri"/>
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <InfoItem Tip="时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-                <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
                 <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                 <HyperlinkButton ToolTip.Tip="源" Classes="Sec"
                                  Content="{Binding OperationSource}"
