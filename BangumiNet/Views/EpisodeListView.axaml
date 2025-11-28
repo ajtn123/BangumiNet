@@ -23,7 +23,8 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
 
-        <Button Grid.Column="1" VerticalAlignment="Bottom" Height="22" Width="22"
+        <Button Grid.Column="1" VerticalAlignment="Bottom"
+                Height="{Binding $self.Bounds.Width}"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
                 Command="{Binding LoadEpisodesCommand}"
                 IsVisible="{Binding !IsAllEpisodesLoaded}"/>

@@ -12,9 +12,9 @@
              x:Class="BangumiNet.Views.RelatedItemListView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto,Auto"
           ColumnSpacing="5">
-        <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}, StringFormat='相关{0}'}"/>
+        <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}}"/>
         <TextBlock Grid.Column="1" VerticalAlignment="Center"
-                   Text="{Binding SubjectViewModels?.Count,StringFormat='共 {0} 个项目'}"/>
+                   Text="{Binding Total,StringFormat='共 {0} 个项目'}"/>
         <Button Grid.Column="2" Content="{ice:FluentIcon Icon=ArrowWrap}"
                 Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
@@ -37,5 +37,10 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
+        <Button Grid.Column="3" Grid.Row="1"
+                VerticalAlignment="Bottom"
+                Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
+                Command="{Binding LoadPageCommand}"
+                IsVisible="{Binding !IsFullyLoaded}"/>
     </Grid>
 </UserControl>

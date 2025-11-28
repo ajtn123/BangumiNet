@@ -1,4 +1,5 @@
-﻿using BangumiNet.Converters;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Converters;
 using BangumiNet.Models.ItemNetwork;
 using BangumiNet.Shared.Extensions;
 using LiveChartsCore;
@@ -77,40 +78,40 @@ public partial class ItemNetworkViewModel : ViewModelBase
         InterestedItems.Add(node.Item);
         if (node.Item.ItemType == ItemType.Subject)
         {
-            await Load(node, ItemType.Subject);
-            await Load(node, ItemType.Person);
-            await Load(node, ItemType.Character);
+            await Load(node, RelatedItemType.Subject);
+            await Load(node, RelatedItemType.Person);
+            await Load(node, RelatedItemType.Character);
         }
         else if (node.Item.ItemType == ItemType.Character)
         {
-            await Load(node, ItemType.Subject);
-            await Load(node, ItemType.Person);
+            await Load(node, RelatedItemType.Subject);
+            await Load(node, RelatedItemType.Person);
         }
         else if (node.Item.ItemType == ItemType.Person)
         {
-            await Load(node, ItemType.Subject);
-            await Load(node, ItemType.Character);
+            await Load(node, RelatedItemType.Subject);
+            await Load(node, RelatedItemType.Character);
         }
     }
-    public async Task Load(Node node, ItemType itemType)
+    public async Task Load(Node node, RelatedItemType relatedItemType)
     {
-        var a = new RelatedItemListViewModel(itemType, node.Item.ItemType, node.Item.Id);
+        var a = new RelatedItemListViewModel(relatedItemType, node.Item.ItemType, node.Item.Id);
         await a.Load();
         if (a.SubjectViewModels == null) return;
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
         var radius = Math.Sqrt(vms.Length) * 10;
         var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
-        switch (itemType)
+        switch (relatedItemType)
         {
-            case ItemType.Subject:
+            case RelatedItemType.Subject:
                 SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
                 Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
                 break;
-            case ItemType.Character:
+            case RelatedItemType.Character:
                 CharacterSeries.Values = [.. CharacterSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
                 Relationships = [.. Relationships.Union(CharacterSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
                 break;
-            case ItemType.Person:
+            case RelatedItemType.Person:
                 PersonSeries.Values = [.. PersonSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
                 Relationships = [.. Relationships.Union(PersonSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
                 break;

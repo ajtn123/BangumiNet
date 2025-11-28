@@ -11,6 +11,7 @@
         Group,
         Timeline,
         Revision,
+        Blog,
     }
 }
 namespace BangumiNet.Shared.Extensions
@@ -26,6 +27,7 @@ namespace BangumiNet.Shared.Extensions
             ItemType.User => "用户",
             ItemType.Topic => "话题",
             ItemType.Group => "小组",
+            ItemType.Blog => "日志",
             _ => throw new NotImplementedException(),
         };
     }

@@ -1,4 +1,5 @@
 ﻿using Avalonia.Media.Imaging;
+using BangumiNet.Api.Extensions;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
@@ -145,12 +146,17 @@ public partial class PersonViewModel : ItemViewModelBase
 
         Init();
     }
-    public void Init()
+    public static PersonViewModel Init(Api.P1.Models.SubjectStaff staff)
+        => new(staff.Staff!)
+        {
+            Relation = staff.Positions?.FirstOrDefault()?.Type?.ToLocalString(),
+        };
+    private void Init()
     {
         ItemType = ItemType.Person;
 
-        SubjectBadgeListViewModel = new(ItemType.Subject, ItemType, Id);
-        CharacterBadgeListViewModel = new(ItemType.Character, ItemType, Id);
+        SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
+        CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 

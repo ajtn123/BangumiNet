@@ -12,7 +12,7 @@
              x:Class="BangumiNet.Views.SubjectBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
         <Border Classes="Card ItemBadge" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
-            <Image Source="{Binding ImageGrid^}" Name="Img">
+            <Image Source="{Binding ImageSmall^}" Name="Img">
                 <Image.Clip>
                     <RectangleGeometry RadiusX="{StaticResource CardInnerRadius}"
                                        RadiusY="{StaticResource CardInnerRadius}"

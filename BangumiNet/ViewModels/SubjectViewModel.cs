@@ -1,4 +1,5 @@
 ﻿using Avalonia.Media.Imaging;
+using BangumiNet.Api.Extensions;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
@@ -167,7 +168,13 @@ public partial class SubjectViewModel : ItemViewModelBase
 
         Init();
     }
-    public void Init()
+    public static SubjectViewModel Init(Api.P1.Models.SubjectRelation relation)
+        => new(relation.Subject!)
+        {
+            Relation = relation.Relation?.ToLocalString(),
+            Order = relation.Order,
+        };
+    private void Init()
     {
         ItemType = ItemType.Subject;
 
@@ -175,9 +182,9 @@ public partial class SubjectViewModel : ItemViewModelBase
         if (Id != null)
         {
             EpisodeListViewModel = new((int)Id);
-            PersonBadgeListViewModel = new(ItemType.Person, ItemType, Id);
-            CharacterBadgeListViewModel = new(ItemType.Character, ItemType, Id);
-            SubjectBadgeListViewModel = new(ItemType.Subject, ItemType, Id);
+            PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
+            CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
+            SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
             CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
         }

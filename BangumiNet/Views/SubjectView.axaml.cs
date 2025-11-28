@@ -1,3 +1,5 @@
+using System.Reactive.Linq;
+
 namespace BangumiNet.Views;
 
 public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
@@ -6,27 +8,22 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
     {
         InitializeComponent();
 
-        DataContextChanged += async (s, e) =>
+        this.WhenAnyValue(x => x.ViewModel)
+            .Where(x => x?.IsFull == false)
+            .Subscribe(async x =>
         {
-            if (dataContextChanges >= 1) return;
-            if (DataContext is not SubjectViewModel viewModel) return;
-            if (!viewModel.IsFull)
-            {
-                if (viewModel.Id is not int id) return;
-                var fullSubject = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
-                if (fullSubject == null) return;
-                dataContextChanges += 1;
-                DataContext = fullSubject;
-            }
+            if (ViewModel!.Id is not int id) return;
+            var fullSubject = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
+            if (fullSubject == null) return;
+            DataContext = fullSubject;
+
             _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
-            _ = ViewModel?.PersonBadgeListViewModel?.Load();
-            _ = ViewModel?.CharacterBadgeListViewModel?.Load();
-            _ = ViewModel?.SubjectBadgeListViewModel?.Load();
+            _ = ViewModel?.PersonBadgeListViewModel?.LoadPage();
+            _ = ViewModel?.CharacterBadgeListViewModel?.LoadPage();
+            _ = ViewModel?.SubjectBadgeListViewModel?.LoadPage();
             _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
             ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
             ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
-        };
+        });
     }
-
-    private uint dataContextChanges = 0;
 }

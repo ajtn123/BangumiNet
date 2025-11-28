@@ -165,6 +165,7 @@ public class CommonEnumConverter : IValueConverter
     {
         null => null,
         ItemType itemType => itemType.ToStringSC(),
+        RelatedItemType relatedItemType => relatedItemType.ToStringSC(),
         CommentState commentState => commentState.ToStringSC(),
         TopicDisplay topicDisplay => topicDisplay.ToStringSC(),
         GroupRole groupRole => groupRole.ToStringSC(),

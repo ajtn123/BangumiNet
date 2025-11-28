@@ -95,12 +95,19 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         Init();
     }
-    public void Init()
+    public static CharacterViewModel Init(Api.P1.Models.SubjectCharacter subjectCharacter)
+        => new(subjectCharacter.Character!)
+        {
+            PersonListViewModel = new() { SubjectViewModels = subjectCharacter.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() },
+            Order = subjectCharacter.Order,
+            Relation = ((SubjectCharacterType?)subjectCharacter.Type)?.ToStringSC(),
+        };
+    private void Init()
     {
         ItemType = ItemType.Character;
 
-        SubjectBadgeListViewModel = new(ItemType.Subject, ItemType, Id);
-        PersonBadgeListViewModel = new(ItemType.Person, ItemType, Id);
+        SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
+        PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
