@@ -84,13 +84,13 @@ public partial class ItemNetworkViewModel : ViewModelBase
         }
         else if (node.Item.ItemType == ItemType.Character)
         {
-            await Load(node, RelatedItemType.Subject);
+            await Load(node, RelatedItemType.CharacterCast);
             await Load(node, RelatedItemType.Person);
         }
         else if (node.Item.ItemType == ItemType.Person)
         {
-            await Load(node, RelatedItemType.Subject);
-            await Load(node, RelatedItemType.Character);
+            await Load(node, RelatedItemType.PersonWork);
+            await Load(node, RelatedItemType.PersonCast);
         }
     }
     public async Task Load(Node node, RelatedItemType relatedItemType)
@@ -104,10 +104,13 @@ public partial class ItemNetworkViewModel : ViewModelBase
         switch (relatedItemType)
         {
             case RelatedItemType.Subject:
+            case RelatedItemType.CharacterCast:
+            case RelatedItemType.PersonWork:
                 SubjectSeries.Values = [.. SubjectSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
                 Relationships = [.. Relationships.Union(SubjectSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
                 break;
             case RelatedItemType.Character:
+            case RelatedItemType.PersonCast:
                 CharacterSeries.Values = [.. CharacterSeries.Values!.UnionBy(nodes, x => x.Item.Id)];
                 Relationships = [.. Relationships.Union(CharacterSeries.Values.IntersectBy(vms.Select(vm => vm.Id), n => n.Item.Id).Select(n => new RelationshipVisual(node, n)))];
                 break;

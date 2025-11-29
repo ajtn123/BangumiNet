@@ -174,6 +174,17 @@ public partial class SubjectViewModel : ItemViewModelBase
             Relation = relation.Relation?.ToLocalString(),
             Order = relation.Order,
         };
+    public static SubjectViewModel Init(Api.P1.Models.PersonWork work)
+        => new(work.Subject!)
+        {
+            Relation = string.Join(' ', work.Positions?.Select(x => x.Type?.ToLocalString()) ?? []),
+        };
+    public static SubjectViewModel Init(Api.P1.Models.CharacterSubject characterSubject)
+        => new(characterSubject.Subject!)
+        {
+            Relation = ((SubjectCharacterType?)characterSubject.Type)?.ToStringSC() + "·" + string.Join('/', characterSubject.Actors?.Select(NameCnCvt.Convert) ?? []),
+            RelationItems = new() { SubjectViewModels = characterSubject.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() }
+        };
     private void Init()
     {
         ItemType = ItemType.Subject;

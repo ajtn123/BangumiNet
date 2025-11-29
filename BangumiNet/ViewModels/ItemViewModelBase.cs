@@ -14,9 +14,11 @@ public partial class ItemViewModelBase : ViewModelBase
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? Order { get; set; }
+    [Reactive] public partial int? Redirect { get; set; }
     [Reactive] public partial string? Name { get; set; }
     [Reactive] public partial string? NameCn { get; set; }
     [Reactive] public partial RevisionListViewModel? RevisionListViewModel { get; set; }
+    [Reactive] public partial SubjectListViewModel? RelationItems { get; set; }
 
     public ICommand? OpenInNewWindowCommand { get; set; }
     public ICommand? SearchWebCommand { get; set; }

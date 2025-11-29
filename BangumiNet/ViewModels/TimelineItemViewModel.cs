@@ -98,13 +98,13 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                         Content = $"共 {Replies} 条回复",
                         Command = ReactiveCommand.Create(() =>
                         {
-                            if (Memo.SubjectViewModels!.FirstOrDefault(vm => vm is CommentListViewModel) is CommentListViewModel replies)
+                            if (RelationItems!.SubjectViewModels!.FirstOrDefault(vm => vm is CommentListViewModel) is CommentListViewModel replies)
                                 replies.IsVisible = !replies.IsVisible;
                             else
                             {
                                 replies = new(ItemType.Timeline, Id);
                                 replies.LoadPageAsync(1);
-                                Memo.SubjectViewModels!.Add(replies);
+                                RelationItems.SubjectViewModels!.Add(replies);
                             }
                         }),
                     },
@@ -119,7 +119,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                 )
             );
         }
-        Memo = new() { SubjectViewModels = [.. subjects] };
+        RelationItems = new() { SubjectViewModels = [.. subjects] };
     }
 
     [Reactive] public partial int? Uid { get; set; }
@@ -132,6 +132,5 @@ public partial class TimelineItemViewModel : ItemViewModelBase
     [Reactive] public partial Enum? Type { get; set; }
     [Reactive] public partial string? OperationSource { get; set; }
     [Reactive] public partial string? OperationSourceUrl { get; set; }
-    [Reactive] public partial SubjectListViewModel Memo { get; set; }
     [Reactive] public partial ReactionListViewModel? Reactions { get; set; }
 }

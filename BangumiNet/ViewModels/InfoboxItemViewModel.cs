@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.Helpers;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 
@@ -21,12 +22,12 @@ public partial class InfoboxItemViewModel : ViewModelBase
             }
         }
     }
-    public InfoboxItemViewModel(Api.P1.Models.Subjects sub)
+    public InfoboxItemViewModel(IInfoboxItem<IEnumerable<IInfoboxKeyValuePair>> sub)
     {
         Key = sub.Key;
-        if (sub.Values?.Count == 1)
+        if (sub.Values?.Count() == 1 && string.IsNullOrWhiteSpace(sub.Values.First().K))
             Value = sub.Values.First().V;
-        else if (sub.Values?.Count > 1)
+        else
             SubValues = sub.Values?.Select(p => new InfoboxItemViewModel(p.K, p.V)).ToObservableCollection();
     }
     public InfoboxItemViewModel(Character_infobox ib)

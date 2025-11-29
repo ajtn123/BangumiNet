@@ -43,7 +43,7 @@ public partial class CharacterViewModel : ItemViewModelBase
         Source = character;
         Id = character.Id;
         Relation = character.Relation;
-        PersonListViewModel = new() { SubjectViewModels = character.Actors?.Select<Person, ViewModelBase>(x => new PersonViewModel(x, fromRelation: true)).ToObservableCollection() };
+        RelationItems = new() { SubjectViewModels = character.Actors?.Select<Person, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() };
         Images = character.Images;
         Name = character.Name;
         Type = (CharacterType?)character.Type;
@@ -58,13 +58,16 @@ public partial class CharacterViewModel : ItemViewModelBase
         Images = character.Images;
         Name = character.Name;
         Type = (CharacterType?)character.Type;
-        CharacterSubjectViewModel = new(new SubjectBasic()
+        RelationItems = new()
         {
-            Id = character.SubjectId,
-            Name = character.SubjectName,
-            NameCn = character.SubjectNameCn,
-            Type = (SubjectType?)character.SubjectType
-        });
+            SubjectViewModels = [new SubjectViewModel(new SubjectBasic
+            {
+                Id = character.SubjectId,
+                Name = character.SubjectName,
+                NameCn = character.SubjectNameCn,
+                Type = (SubjectType?)character.SubjectType
+            })],
+        };
 
         Init();
     }
@@ -95,18 +98,44 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         Init();
     }
+    public CharacterViewModel(Api.P1.Models.Character character)
+    {
+        Source = character;
+
+        Id = character.Id;
+        Images = character.Images;
+        IsLocked = character.Lock ?? false;
+        IsNsfw = character.Nsfw ?? false;
+        Name = character.Name;
+        NameCn = character.NameCN;
+        CommentCount = character.Comment;
+        Type = (CharacterType?)character.Role;
+        Info = character.Info;
+        CollectionTime = Common.ParseBangumiTime(character.CollectedAt);
+        CollectionTotal = character.Collects;
+        Redirect = character.Redirect;
+        Summary = character.Summary;
+        Infobox = character.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
+
+        Init();
+    }
     public static CharacterViewModel Init(Api.P1.Models.SubjectCharacter subjectCharacter)
         => new(subjectCharacter.Character!)
         {
-            PersonListViewModel = new() { SubjectViewModels = subjectCharacter.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() },
+            RelationItems = new() { SubjectViewModels = subjectCharacter.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() },
             Order = subjectCharacter.Order,
             Relation = ((SubjectCharacterType?)subjectCharacter.Type)?.ToStringSC(),
+        };
+    public static CharacterViewModel Init(Api.P1.Models.PersonCharacter personCharacter)
+        => new(personCharacter.Character!)
+        {
+            Relation = string.Join('\n', personCharacter.Relations?.Select(x => $"{((SubjectCharacterType?)x.Type)?.ToStringSC()}·{NameCnCvt.Convert(x.Subject)}") ?? []),
         };
     private void Init()
     {
         ItemType = ItemType.Character;
 
-        SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
+        SubjectBadgeListViewModel = new(RelatedItemType.CharacterCast, ItemType, Id);
         PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
@@ -136,10 +165,8 @@ public partial class CharacterViewModel : ItemViewModelBase
     [Reactive] public partial int? CommentCount { get; set; }
 
     [Reactive] public partial string? Relation { get; set; }
-    [Reactive] public partial SubjectListViewModel? PersonListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? PersonBadgeListViewModel { get; set; }
-    [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
@@ -154,7 +181,7 @@ public partial class CharacterViewModel : ItemViewModelBase
     public ICommand? CollectCommand { get; private set; }
     public ICommand? UncollectCommand { get; private set; }
 
-    public bool IsFull => Source is Character;
+    public bool IsFull => Source is Api.P1.Models.Character;
 
     public async Task UpdateCollection(bool target)
     {

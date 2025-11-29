@@ -15,7 +15,7 @@ namespace BangumiNet.ViewModels;
 
 public partial class PersonViewModel : ItemViewModelBase
 {
-    public PersonViewModel(Person person, bool fromRelation = false)
+    public PersonViewModel(Person person)
     {
         Source = person;
         Id = person.Id;
@@ -25,7 +25,6 @@ public partial class PersonViewModel : ItemViewModelBase
         Images = person.Images;
         ShortSummary = person.ShortSummary;
         Type = (PersonType?)person.Type;
-        FromRelation = fromRelation;
 
         if (person.AdditionalData.TryGetValue("summary", out var summary))
             Summary = summary.ToString();
@@ -108,13 +107,16 @@ public partial class PersonViewModel : ItemViewModelBase
         Type = (PersonType?)person.Type;
         Id = person.Id;
         Images = person.Images;
-        CharacterSubjectViewModel = new(new SubjectBasic()
+        RelationItems = new()
         {
-            Id = person.SubjectId,
-            Name = person.SubjectName,
-            NameCn = person.SubjectNameCn,
-            Type = (SubjectType?)person.SubjectType
-        });
+            SubjectViewModels = [new SubjectViewModel(new SubjectBasic
+            {
+                Id = person.SubjectId,
+                Name = person.SubjectName,
+                NameCn = person.SubjectNameCn,
+                Type = (SubjectType?)person.SubjectType
+            })],
+        };
 
         Init();
     }
@@ -146,17 +148,38 @@ public partial class PersonViewModel : ItemViewModelBase
 
         Init();
     }
+    public PersonViewModel(Api.P1.Models.Person person)
+    {
+        Source = person;
+        Name = person.Name;
+        NameCn = person.NameCN;
+        Id = person.Id;
+        Images = person.Images;
+        IsNsfw = person.Nsfw ?? false;
+        IsLocked = person.Lock ?? false;
+        Type = (PersonType?)person.Type;
+        CommentCount = person.Comment;
+        Info = person.Info;
+        Careers = person.Career?.Select(static c => EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
+        CollectionTime = Common.ParseBangumiTime(person.CollectedAt);
+        CollectionTotal = person.Collects;
+        Redirect = person.Redirect;
+        Summary = person.Summary;
+        Infobox = person.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
+
+        Init();
+    }
     public static PersonViewModel Init(Api.P1.Models.SubjectStaff staff)
         => new(staff.Staff!)
         {
-            Relation = staff.Positions?.FirstOrDefault()?.Type?.ToLocalString(),
+            Relation = string.Join(' ', staff.Positions?.Select(x => x.Type?.ToLocalString()) ?? []),
         };
     private void Init()
     {
         ItemType = ItemType.Person;
 
-        SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
-        CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
+        SubjectBadgeListViewModel = new(RelatedItemType.PersonWork, ItemType, Id);
+        CharacterBadgeListViewModel = new(RelatedItemType.PersonCast, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
@@ -191,12 +214,10 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }
 
-    [Reactive] public partial bool FromRelation { get; set; }
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial string? Eps { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
-    [Reactive] public partial SubjectViewModel? CharacterSubjectViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
@@ -212,7 +233,7 @@ public partial class PersonViewModel : ItemViewModelBase
     public ICommand? UncollectCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b} ");
-    public bool IsFull => !FromRelation && Source is Person or PersonDetail;
+    public bool IsFull => Source is Api.P1.Models.Person;
 
     public async Task UpdateCollection(bool target)
     {

@@ -8,6 +8,12 @@ namespace BangumiNet.Api.P1.Models
     public partial class SubjectImages : IImagesGrid;
     public partial class PersonImages : IImagesGrid;
     public partial class SubjectTag : ITag;
+    public partial class Subjects : IInfoboxItem<List<Subjects_values>>;
+    public partial class Subjects_values : IInfoboxKeyValuePair;
+    public partial class Persons : IInfoboxItem<List<Persons_values>>;
+    public partial class Persons_values : IInfoboxKeyValuePair;
+    public partial class Characters : IInfoboxItem<List<Characters_values>>;
+    public partial class Characters_values : IInfoboxKeyValuePair;
     public partial class Calendar
     {
         public Dictionary<DayOfWeek, IEnumerable<CalendarItem>> Days { get; set; } = [];

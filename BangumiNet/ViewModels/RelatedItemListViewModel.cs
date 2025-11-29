@@ -25,25 +25,25 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         IEnumerable<object>? response = null;
         try
         {
-            response = Type switch
+            response = ParentType switch
             {
-                RelatedItemType.Subject => ParentType switch
+                ItemType.Subject => Type switch
                 {
-                    ItemType.Subject => await ApiC.V0.Subjects[id].Subjects.GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Character => await ApiC.V0.Characters[id].Subjects.GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Person => await ApiC.V0.Persons[id].Subjects.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.Subject => await ApiC.V0.Subjects[id].Subjects.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.Character => await ApiC.V0.Subjects[id].Characters.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.Person => await ApiC.V0.Subjects[id].Persons.GetAsync(cancellationToken: cancellationToken),
                     _ => throw new NotImplementedException(),
                 },
-                RelatedItemType.Character => ParentType switch
+                ItemType.Character => Type switch
                 {
-                    ItemType.Subject => await ApiC.V0.Subjects[id].Characters.GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Person => await ApiC.V0.Persons[id].Characters.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.CharacterCast => await ApiC.V0.Characters[id].Subjects.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.Person => await ApiC.V0.Characters[id].Persons.GetAsync(cancellationToken: cancellationToken),
                     _ => throw new NotImplementedException(),
                 },
-                RelatedItemType.Person => ParentType switch
+                ItemType.Person => Type switch
                 {
-                    ItemType.Subject => await ApiC.V0.Subjects[id].Persons.GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Character => await ApiC.V0.Characters[id].Persons.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.PersonWork => await ApiC.V0.Persons[id].Subjects.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.PersonCast => await ApiC.V0.Persons[id].Characters.GetAsync(cancellationToken: cancellationToken),
                     _ => throw new NotImplementedException(),
                 },
                 _ => throw new NotImplementedException(),
@@ -124,6 +124,9 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.SubjectCharacter sCharacter => CharacterViewModel.Init(sCharacter),
         Api.P1.Models.SubjectStaff sPerson => PersonViewModel.Init(sPerson),
         Api.P1.Models.SubjectRelation sSubject => SubjectViewModel.Init(sSubject),
+        Api.P1.Models.CharacterSubject cSubject => SubjectViewModel.Init(cSubject),
+        Api.P1.Models.PersonCharacter pc => CharacterViewModel.Init(pc),
+        Api.P1.Models.PersonWork pw => SubjectViewModel.Init(pw),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 

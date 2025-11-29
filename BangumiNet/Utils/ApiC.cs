@@ -78,6 +78,7 @@ public static partial class ApiC
         }
         catch (Exception e)
         {
+            Trace.TraceError($"Image Loading Failed: {url}");
             Trace.TraceError(e.Message);
             CacheProvider.DeleteCache(url);
             if (fallback) return InternetErrorFallback;
@@ -121,8 +122,8 @@ public static partial class ApiC
         }
         else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
         {
-            Character? character = null;
-            try { character = await V0.Characters[characterId].GetAsync(cancellationToken: cancellationToken); }
+            Api.P1.Models.Character? character = null;
+            try { character = await P1.Characters[characterId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (character is null) return null;
@@ -130,8 +131,8 @@ public static partial class ApiC
         }
         else if (typeof(T) == typeof(PersonViewModel) && id is int personId)
         {
-            PersonDetail? person = null;
-            try { person = await V0.Persons[personId].GetAsync(cancellationToken: cancellationToken); }
+            Api.P1.Models.Person? person = null;
+            try { person = await P1.Persons[personId].GetAsync(cancellationToken: cancellationToken); }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
             if (person is null) return null;
@@ -245,7 +246,7 @@ public static partial class ApiC
                 _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
             };
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch { } // (Exception e) { Trace.TraceError(e.Message); }
 
         return null;
     }

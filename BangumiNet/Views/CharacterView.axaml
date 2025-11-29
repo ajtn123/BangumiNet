@@ -56,8 +56,8 @@
                     </StackPanel>
                     <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-                    <Separator/>
-                    <bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <!--<Separator/>-->
+                    <!--<bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>-->
 
                     <Expander Header="评论" HorizontalAlignment="Stretch"
                               Name="CommentExpander" IsExpanded="True">

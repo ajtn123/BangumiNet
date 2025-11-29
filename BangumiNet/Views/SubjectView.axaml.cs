@@ -11,19 +11,19 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
         this.WhenAnyValue(x => x.ViewModel)
             .Where(x => x?.IsFull == false)
             .Subscribe(async x =>
-        {
-            if (ViewModel!.Id is not int id) return;
-            var fullSubject = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
-            if (fullSubject == null) return;
-            DataContext = fullSubject;
+            {
+                if (ViewModel!.Id is not int id) return;
+                var fullItem = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
+                if (fullItem == null) return;
+                DataContext = fullItem;
 
-            _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
-            _ = ViewModel?.PersonBadgeListViewModel?.LoadPage();
-            _ = ViewModel?.CharacterBadgeListViewModel?.LoadPage();
-            _ = ViewModel?.SubjectBadgeListViewModel?.LoadPage();
-            _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
-            ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
-            ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
-        });
+                _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
+                _ = ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
+                ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
+                ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
+            });
     }
 }

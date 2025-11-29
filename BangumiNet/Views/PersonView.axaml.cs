@@ -1,3 +1,5 @@
+using System.Reactive.Linq;
+
 namespace BangumiNet.Views;
 
 public partial class PersonView : ReactiveUserControl<PersonViewModel>
@@ -6,24 +8,18 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
     {
         InitializeComponent();
 
-        DataContextChanged += async (s, e) =>
-        {
-            if (dataContextChanges >= 1) return;
-            if (DataContext is not PersonViewModel viewModel) return;
-            if (!viewModel.IsFull)
+        this.WhenAnyValue(x => x.ViewModel)
+            .Where(x => x?.IsFull == false)
+            .Subscribe(async x =>
             {
-                if (viewModel.Id is not int id) return;
-                var fullPerson = await ApiC.GetViewModelAsync<PersonViewModel>(id);
-                if (fullPerson == null) return;
-                dataContextChanges += 1;
-                DataContext = fullPerson;
-            }
-            _ = ViewModel?.SubjectBadgeListViewModel?.Load();
-            _ = ViewModel?.CharacterBadgeListViewModel?.Load();
-            _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
-            ViewModel?.CollectionTime ??= await ApiC.GetIsCollected(ItemType.Person, ViewModel.Id);
-        };
-    }
+                if (ViewModel!.Id is not int id) return;
+                var fullItem = await ApiC.GetViewModelAsync<PersonViewModel>(id);
+                if (fullItem == null) return;
+                DataContext = fullItem;
 
-    private uint dataContextChanges = 0;
+                _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
+            });
+    }
 }
