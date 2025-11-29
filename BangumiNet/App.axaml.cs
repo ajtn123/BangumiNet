@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using AvaloniaWebView;
-using System.IO;
 using System.Net;
 
 namespace BangumiNet;
@@ -38,10 +36,10 @@ public partial class App : Application
     public override void RegisterServices()
     {
         base.RegisterServices();
-        AvaloniaWebViewBuilder.Initialize(config =>
-        {
-            config.DefaultWebViewBackgroundColor = System.Drawing.Color.FromArgb(244, 244, 244);
-            config.UserDataFolder = Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, "WebView");
-        });
+        //AvaloniaWebViewBuilder.Initialize(config =>
+        //{
+        //    config.DefaultWebViewBackgroundColor = System.Drawing.Color.FromArgb(244, 244, 244);
+        //    config.UserDataFolder = Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, "WebView");
+        //});
     }
 }
