@@ -19,7 +19,7 @@ public partial class PageNavigatorViewModel : ViewModelBase
         JumpPage = ReactiveCommand.Create(() => (int)PageIndexInput!, this.WhenAnyValue(x => x.Total, x => x.PageIndexInput).Select(y => IsInRange(PageIndexInput)));
     }
 
-    public void UpdatePageInfo(IPagedResponse response)
+    public void UpdatePageInfo(IPagedResponseFull response)
     {
         if (response.Offset != null && response.Limit != null)
             PageIndex = response.Offset / response.Limit + 1;

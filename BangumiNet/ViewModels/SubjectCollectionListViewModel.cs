@@ -141,7 +141,7 @@ public partial class SubjectCollectionListViewModel : ViewModelBase, ILoadable
 
         UpdatePage(persons);
     }
-    private void UpdatePage(IPagedResponse response)
+    private void UpdatePage(IPagedResponseFull response)
     {
         Total = response.Total;
         Offset = response.Offset;

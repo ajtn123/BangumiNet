@@ -61,7 +61,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         if (Offset >= Total) return true;
         if (ParentId is not int id) return false;
 
-        IPagedDataResponse<IEnumerable<object>>? response = null;
+        IPagedResponse<IEnumerable<object>>? response = null;
         try
         {
             response = ParentType switch

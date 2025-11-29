@@ -9,12 +9,12 @@ public interface IPagedRequest
 public interface IPagedResponse
 {
     int? Total { get; }
-    int? Limit { get; }
-    int? Offset { get; }
 }
 
-public interface IPagedDataResponse<out TData> where TData : IEnumerable<object>
+public interface IPagedResponse<out TData> : IPagedResponse where TData : IEnumerable<object>
 {
-    int? Total { get; }
     TData? Data { get; }
 }
+
+public interface IPagedResponseFull : IPagedResponse, IPagedRequest;
+public interface IPagedResponseFull<out TData> : IPagedResponse<TData>, IPagedResponseFull where TData : IEnumerable<object>;
