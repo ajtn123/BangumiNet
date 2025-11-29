@@ -7,10 +7,10 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="100"
-             x:DataType="vm:EpisodeListViewModel"
+             x:DataType="vm:RelatedItemListViewModel"
              x:Class="BangumiNet.Views.EpisodeListView">
     <Grid ColumnDefinitions="*,Auto">
-        <ItemsControl ItemsSource="{Binding EpisodeViewModels}" Grid.ColumnSpan="2">
+        <ItemsControl ItemsSource="{Binding SubjectViewModels}" Grid.ColumnSpan="2">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="vm:EpisodeViewModel">
                     <v:EpisodeBadgeView DataContext="{Binding}"/>
@@ -26,7 +26,7 @@
         <Button Grid.Column="1" VerticalAlignment="Bottom"
                 Height="{Binding $self.Bounds.Width}"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
-                Command="{Binding LoadEpisodesCommand}"
-                IsVisible="{Binding !IsAllEpisodesLoaded}"/>
+                Command="{Binding LoadPageCommand}"
+                IsVisible="{Binding !IsFullyLoaded}"/>
     </Grid>
 </UserControl>

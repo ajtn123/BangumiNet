@@ -124,7 +124,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
     [Reactive] public partial INeighboring? Prev { get; set; }
     [Reactive] public partial INeighboring? Next { get; set; }
-    [Reactive] public partial EpisodeListViewModel? Parent { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? Parent { get; set; }
 
     public ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
     public ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
@@ -161,12 +161,11 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     }
     public async Task UpdateStatusUntilThis(EpisodeCollectionType type)
     {
-        if (Ep == null || Parent == null) return;
+        if (Ep == null || Parent?.SubjectViewModels == null) return;
 
-        var affectedEps = Parent.EpisodeViewModels.Where(x => x.Ep != null && x.Ep <= Ep && x.Id != null);
+        var affectedEps = Parent.SubjectViewModels.OfType<EpisodeViewModel>().Where(x => x.Id != null && x.Ep != null && x.Ep <= Ep);
 
-        var result = await ApiC.UpdateEpisodeCollection(Parent.SubjectId,
-            affectedEps.Select(x => (int)x.Id!), type);
+        var result = await ApiC.UpdateEpisodeCollection((int)Parent.ParentId!, affectedEps.Select(x => (int)x.Id!), type);
         switch (result)
         {
             case 204:

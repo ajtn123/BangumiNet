@@ -71,7 +71,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                     RelatedItemType.Character => await ApiC.P1.Subjects[id].Characters.GetAsync(c => c.Paging(Limit, Offset), ct),
                     RelatedItemType.Collector => await ApiC.P1.Subjects[id].Collects.GetAsync(c => c.Paging(Limit, Offset), ct),
                     RelatedItemType.Comment => await ApiC.P1.Subjects[id].Comments.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(Limit, Offset), ct),
+                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(CurrentSettings.EpisodePageSize, Offset), ct),
                     RelatedItemType.Index => await ApiC.P1.Subjects[id].Indexes.GetAsync(c => c.Paging(Limit, Offset), ct),
                     RelatedItemType.Recommendation => await ApiC.P1.Subjects[id].Recs.GetAsync(c => c.Paging(Limit, Offset), ct),
                     RelatedItemType.Subject => await ApiC.P1.Subjects[id].Relations.GetAsync(c => c.Paging(Limit, Offset), ct),
@@ -109,7 +109,13 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         if (response?.Data == null) return false;
         Offset += response.Data.Count();
         SubjectViewModels ??= [];
-        SubjectViewModels = SubjectViewModels.Union(response.Data.Select(ConvertToVM)).ToObservableCollection();
+        SubjectViewModels = Type switch
+        {
+            RelatedItemType.Episode => SubjectViewModels.Union(response.Data.Select(ConvertToChildVM))
+                                           .OfType<EpisodeViewModel>().ToArray().LinkNeighbors()
+                                           .OfType<ViewModelBase>().ToObservableCollection(),
+            _ => SubjectViewModels.Union(response.Data.Select(ConvertToVM)).ToObservableCollection(),
+        };
         return Offset >= Total;
     }
 
@@ -127,7 +133,14 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.CharacterSubject cSubject => SubjectViewModel.Init(cSubject),
         Api.P1.Models.PersonCharacter pc => CharacterViewModel.Init(pc),
         Api.P1.Models.PersonWork pw => SubjectViewModel.Init(pw),
+        Api.P1.Models.Episode ep => new EpisodeViewModel(ep),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
+    };
+
+    public ViewModelBase ConvertToChildVM(object obj) => obj switch
+    {
+        Api.P1.Models.Episode ep => new EpisodeViewModel(ep) { Parent = this },
+        _ => ConvertToVM(obj),
     };
 
     [Reactive] public partial RelatedItemType Type { get; set; }

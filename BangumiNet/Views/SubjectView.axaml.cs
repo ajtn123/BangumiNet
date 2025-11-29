@@ -17,7 +17,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 if (fullItem == null) return;
                 DataContext = fullItem;
 
-                _ = ViewModel?.EpisodeListViewModel?.LoadEpisodes();
+                _ = ViewModel?.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
