@@ -10,7 +10,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
-    <PackageTags>bangumi;bgm;api;client</PackageTags>
     <Description>Shared code in BangumiNet.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>BangumiNet.png</PackageIcon>

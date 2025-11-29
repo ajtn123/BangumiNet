@@ -5,11 +5,11 @@ namespace BangumiNet.BangumiData.Models;
 public enum ItemType : byte
 {
     [JsonStringEnumMemberName("tv")]
-    TV,
-    [JsonStringEnumMemberName("web")]
-    WEB,
-    [JsonStringEnumMemberName("movie")]
-    Movie,
+    TV = 1,
     [JsonStringEnumMemberName("ova")]
-    OVA,
+    OVA = 2,
+    [JsonStringEnumMemberName("movie")]
+    Movie = 3,
+    [JsonStringEnumMemberName("web")]
+    WEB = 5,
 }

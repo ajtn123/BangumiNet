@@ -6,8 +6,9 @@ public sealed class DeserializationTest
     [TestMethod]
     public async Task LoadFile()
     {
-        using var fs = await new HttpClient().GetStreamAsync("https://unpkg.com/bangumi-data@0.3/dist/data.json", TestContext.CancellationToken);
-        var obj = await BangumiDataLoader.LoadAsync(fs);
+        using var client = new HttpClient();
+        using var stream = await client.GetStreamAsync("https://unpkg.com/bangumi-data@0.3/dist/data.json", TestContext.CancellationToken);
+        var obj = await BangumiDataLoader.LoadAsync(stream);
 
         Assert.IsNotEmpty(obj.SiteMeta);
         Assert.IsNotEmpty(obj.Items);
