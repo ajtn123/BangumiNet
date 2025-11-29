@@ -24,7 +24,7 @@
 				    <ic:FluentIcon ToolTip.Tip="批量操作" Icon="DocumentMultiple" IsVisible="{Binding Batch}"/>
                 </TextBlock>
             </WrapPanel>
-            <bn:SubjectListView DataContext="{Binding Memo}"/>
+            <bn:SubjectListView DataContext="{Binding RelationItems}"/>
         </StackPanel>
     </Border>
 </UserControl>
