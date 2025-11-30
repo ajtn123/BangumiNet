@@ -47,7 +47,7 @@ public readonly record struct Item
     /// 放送周期
     /// </summary>
     [JsonPropertyName("broadcast")]
-    public string? Broadcast { get; init; }
+    public RepeatingInterval? Broadcast { get; init; }
 
     /// <summary>
     /// tv/web: 番组完结时间; movie: 无意义; ova: 则为最终话发售时间（未确定则置空）

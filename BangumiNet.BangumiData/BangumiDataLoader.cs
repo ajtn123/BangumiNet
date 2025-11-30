@@ -9,7 +9,11 @@ public static class BangumiDataLoader
 {
     private static readonly JsonSerializerOptions options = new()
     {
-        Converters = { new JsonStringEnumConverter(), new NullableConverterFactory() }
+        Converters = {
+            new JsonStringEnumConverter(),
+            new RepeatingIntervalConverter(),
+            new NullableConverterFactory(),
+        }
     };
 
     public static ValueTask<BangumiDataObject> LoadAsync(Stream stream)
