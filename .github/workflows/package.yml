@@ -17,13 +17,14 @@ jobs:
           fetch-depth: 0
 
       - name: Test
-        run: dotnet test -c Release
+        run: dotnet test -c Release --filter "TestCategory!=LargeData"
 
       - name: Publish
         run: |
           version=$(git describe --tags --abbrev=0)
           dotnet pack BangumiNet.Api -p:PackageVersion=${version#v} -o . -c Release
           dotnet pack BangumiNet.Shared -p:PackageVersion=${version#v} -o . -c Release
+          dotnet pack BangumiNet.Archive -p:PackageVersion=${version#v} -o . -c Release
           dotnet pack BangumiNet.BangumiData -p:PackageVersion=${version#v} -o . -c Release
 
       - name: Upload artifact
@@ -47,7 +48,9 @@ jobs:
         run: |
           apiPkg=$(find . -name "BangumiNet.Api.*.nupkg" | head -n 1)
           sharedPkg=$(find . -name "BangumiNet.Shared.*.nupkg" | head -n 1)
+          archivePkg=$(find . -name "BangumiNet.Archive.*.nupkg" | head -n 1)
           dataPkg=$(find . -name "BangumiNet.BangumiData.*.nupkg" | head -n 1)
           dotnet nuget push $apiPkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push $sharedPkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push $archivePkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push $dataPkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json

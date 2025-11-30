@@ -3,10 +3,9 @@
 namespace BangumiNet.Archive.Test;
 
 [TestClass]
-[TestCategory("LargeData")]
-public sealed class DeserializationTest
+public sealed class MinimalDeserializationTest
 {
-    private static string GetFileName(string fileName) => "../../../Archives/" + fileName;
+    private static string GetFileName(string fileName) => "../../../MinimalArchives/" + fileName;
 
     [TestMethod]
     public async Task PersonCharacterRelations()
