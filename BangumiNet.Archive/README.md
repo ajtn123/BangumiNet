@@ -1,6 +1,6 @@
 ﻿# BangumiNet.Archive
 
-一个 [Bangumi Wiki Archive](https://github.com/bangumi-data/bangumi-data) 的 .NET 包装器，来自 [BangumiNet](https://github.com/ajtn123/BangumiNet)。
+一个 [Bangumi Wiki Archive](https://github.com/bangumi/Archive) 的 .NET 包装器，来自 [BangumiNet](https://github.com/ajtn123/BangumiNet)。
 
 ```
 using var fs = File.OpenRead(@".\person-characters.jsonlines");
