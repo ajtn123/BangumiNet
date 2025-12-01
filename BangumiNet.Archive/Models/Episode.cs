@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BangumiNet.Common.Extras;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive.Models;
 
@@ -65,5 +66,5 @@ public readonly record struct Episode
     /// 类型
     /// </summary>
     [JsonPropertyName("type")]
-    public int Type { get; init; }
+    public EpisodeType Type { get; init; }
 }

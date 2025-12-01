@@ -76,7 +76,7 @@ public class SubjectTypeCvt : IValueConverter
 public class EpisodeTypeCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is EpisodeType type ? type.ToStringSC() : null;
+        => value is EpisodeType type ? type.GetNameCn() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

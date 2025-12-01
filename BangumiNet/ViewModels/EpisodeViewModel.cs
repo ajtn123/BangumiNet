@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Shared.Interfaces;
 using System.Reactive;

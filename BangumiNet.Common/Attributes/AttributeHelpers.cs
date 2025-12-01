@@ -184,4 +184,6 @@ public static class AttributeHelpers
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
     public static string GetNameCn(this CharacterType value)
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
+    public static string GetNameCn(this EpisodeType value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
 }
