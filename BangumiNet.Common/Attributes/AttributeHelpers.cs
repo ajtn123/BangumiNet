@@ -152,7 +152,7 @@ public static class AttributeHelpers
         => value.GetAttribute<NameEnAttribute>()!.NameEn;
     public static string GetNameCn(this StaffCategory value)
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
-    public static SubjectType GetMediaType(this StaffCategory value)
+    public static SubjectType GetSubjectType(this StaffCategory value)
         => (int)value switch
         {
             <= 999 => SubjectType.Anime,
