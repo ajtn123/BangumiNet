@@ -140,4 +140,11 @@ public static class AttributeHelpers
         => value.GetAttribute<ServiceInfoAttribute>()!.Url;
     public static string? GetValidationRegex(this NetworkService value)
         => value.GetAttribute<ServiceInfoAttribute>()!.ValidationRegex;
+
+    public static string GetName(this TimelineSource value)
+        => value.GetAttribute<SourceInfoAttribute>()!.Name;
+    public static string? GetUrl(this TimelineSource value)
+        => value.GetAttribute<SourceInfoAttribute>()!.Url;
+    public static string? GetAppId(this TimelineSource value)
+        => value.GetAttribute<SourceInfoAttribute>()!.AppId;
 }
