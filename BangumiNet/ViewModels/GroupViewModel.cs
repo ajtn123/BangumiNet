@@ -16,7 +16,7 @@ public partial class GroupViewModel : ItemViewModelBase
         IsNsfw = group.Nsfw ?? false;
         Accessible = group.Accessible ?? true;
         MemberCount = group.Members;
-        CreationTime = Common.ParseBangumiTime(group.CreatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(group.CreatedAt);
 
         Init();
     }
@@ -30,7 +30,7 @@ public partial class GroupViewModel : ItemViewModelBase
         IsNsfw = group.Nsfw ?? false;
         Accessible = group.Accessible ?? true;
         MemberCount = group.Members;
-        CreationTime = Common.ParseBangumiTime(group.CreatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(group.CreatedAt);
         TopicCount = group.Topics;
         Category = group.Cat;
         Description = group.Description;
@@ -46,8 +46,8 @@ public partial class GroupViewModel : ItemViewModelBase
     {
         ItemType = ItemType.Group;
         Title = $"{Name} - {Title}";
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));
         Members = new(Groupname);
         Topics = new(Groupname);
     }

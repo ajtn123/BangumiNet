@@ -10,33 +10,33 @@ public static class StickerProvider
     private static readonly Dictionary<Uri, Bitmap> cachedStickerBitmaps = [];
     public static Uri GetStickerUri(int? id)
     {
-        var defaultSticker = Common.GetAssetUri("bgm.tv/img/smiles/tv/44.gif");
+        var defaultSticker = CommonUtils.GetAssetUri("bgm.tv/img/smiles/tv/44.gif");
         if (id is not int sid)
             return defaultSticker;
         else if (sid == 0)
         {
-            return Common.GetAssetUri($"bgm.tv/img/smiles/tv/44.gif");
+            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/tv/44.gif");
         }
         else if (sid >= 1 && sid < 17)
         {
-            return Common.GetAssetUri($"bgm.tv/img/smiles/{sid}.gif");
+            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/{sid}.gif");
         }
         else if (sid >= 17 && sid < 40)
         {
             string bgmId = (sid - 16).ToString().PadLeft(2, '0');
 
             if (bgmId == "11")
-                return Common.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
+                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
             if (bgmId == "23")
-                return Common.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
+                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
             else
-                return Common.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.png");
+                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.png");
 
         }
         else if (sid >= 40 && sid < 142)
         {
             string tvId = (sid - 39).ToString().PadLeft(2, '0');
-            return Common.GetAssetUri($"bgm.tv/img/smiles/tv/{tvId}.gif");
+            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/tv/{tvId}.gif");
         }
         else return defaultSticker;
     }

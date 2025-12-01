@@ -4,6 +4,7 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
 using DynamicData.Binding;
@@ -36,9 +37,9 @@ public partial class PersonViewModel : ItemViewModelBase
         if (birthYear != null || birthMon != null || birthDay != null)
         {
             DateOnly bd = new();
-            if (Common.ToInt32(birthYear) is int year) bd = bd.AddYears(year - 1);
-            if (Common.ToInt32(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
-            if (Common.ToInt32(birthDay) is int day) bd = bd.AddDays(day - 1);
+            if (CommonUtils.ToInt32(birthYear) is int year) bd = bd.AddYears(year - 1);
+            if (CommonUtils.ToInt32(birthMon) is int mon) bd = bd.AddMonths(mon - 1);
+            if (CommonUtils.ToInt32(birthDay) is int day) bd = bd.AddDays(day - 1);
             Birthday = bd;
         }
         if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
@@ -161,7 +162,7 @@ public partial class PersonViewModel : ItemViewModelBase
         CommentCount = person.Comment;
         Info = person.Info;
         Careers = person.Career?.Select(static c => EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
-        CollectionTime = Common.ParseBangumiTime(person.CollectedAt);
+        CollectionTime = CommonUtils.ParseBangumiTime(person.CollectedAt);
         CollectionTotal = person.Collects;
         Redirect = person.Redirect;
         Summary = person.Summary;
@@ -183,8 +184,8 @@ public partial class PersonViewModel : ItemViewModelBase
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
         CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
 

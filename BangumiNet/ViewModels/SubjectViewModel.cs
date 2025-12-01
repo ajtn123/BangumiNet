@@ -43,7 +43,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         Summary = subject.ShortSummary;
         Name = subject.Name;
         NameCn = subject.NameCn;
-        Date = Common.ParseBangumiDate(subject.Date);
+        Date = CommonUtils.ParseBangumiDate(subject.Date);
         Id = subject.Id;
         Score = subject.Score;
         Type = (SubjectType?)subject.Type;
@@ -58,7 +58,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         Source = subject;
         Eps = subject.Eps;
         Rank = subject.Rank;
-        Date = Common.ParseBangumiDate(subject.AirDate);
+        Date = CommonUtils.ParseBangumiDate(subject.AirDate);
         Id = subject.Id;
         Url = subject.Url;
         Type = (SubjectType?)subject.Type;
@@ -67,7 +67,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         Name = subject.Name;
         NameCn = subject.NameCn;
         Collection = subject.Collection;
-        Weekday = Common.ParseDayOfWeek(subject.AirWeekday);
+        Weekday = CommonUtils.ParseDayOfWeek(subject.AirWeekday);
         Score = subject.Rating?.Score;
         RatingCount = (subject.Rating?.Count as IRatingCount)?.ToList();
         RatingTotal = subject.Rating?.Total;
@@ -85,7 +85,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         IsSeries = subject.Series ?? false;
         IsNsfw = subject.Nsfw ?? false;
         IsLocked = subject.Locked ?? false;
-        Date = Common.ParseBangumiDate(subject.Date);
+        Date = CommonUtils.ParseBangumiDate(subject.Date);
         Platform = subject.Platform;
         Images = subject.Images;
         Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
@@ -150,7 +150,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         IsSeries = subject.Series ?? false;
         IsNsfw = subject.Nsfw ?? false;
         IsLocked = subject.Locked ?? false;
-        Date = Common.ParseBangumiDate(subject.Airtime?.Date);
+        Date = CommonUtils.ParseBangumiDate(subject.Airtime?.Date);
         Platform = subject.Platform?.TypeCN;
         Images = subject.Images;
         Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
@@ -200,8 +200,8 @@ public partial class SubjectViewModel : ItemViewModelBase
             RevisionListViewModel = new(this);
         }
 
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
             this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
 

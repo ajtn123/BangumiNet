@@ -19,14 +19,14 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         NameCn = episode.NameCn;
         Sort = episode.Sort;
         Ep = episode.Ep;
-        AirDate = Common.ParseBangumiDate(episode.Airdate);
+        AirDate = CommonUtils.ParseBangumiDate(episode.Airdate);
         CommentCount = episode.Comment;
         DurationString = episode.Duration;
         Description = episode.Desc;
         Disc = episode.Disc;
         if (episode.DurationSeconds != null)
             Duration = TimeSpan.FromSeconds((long)episode.DurationSeconds);
-        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = Common.ToInt32(sid);
+        if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = CommonUtils.ToInt32(sid);
 
         Init();
     }
@@ -39,13 +39,13 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         NameCn = episode.NameCn;
         Sort = episode.Sort;
         Ep = episode.Ep;
-        AirDate = Common.ParseBangumiDate(episode.Airdate);
+        AirDate = CommonUtils.ParseBangumiDate(episode.Airdate);
         CommentCount = episode.Comment;
         DurationString = episode.Duration;
         Description = episode.Desc;
         Disc = episode.Disc;
         SubjectId = episode.SubjectId;
-        if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && Common.ToInt32(ds) is int t)
+        if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && CommonUtils.ToInt32(ds) is int t)
             Duration = TimeSpan.FromSeconds(t);
 
         Init();
@@ -58,13 +58,13 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         Name = episode.Name;
         NameCn = episode.NameCN;
         Sort = episode.Sort;
-        AirDate = Common.ParseBangumiDate(episode.Airdate);
+        AirDate = CommonUtils.ParseBangumiDate(episode.Airdate);
         CommentCount = episode.Comment;
         DurationString = episode.Duration;
         Description = episode.Desc;
         Disc = episode.Disc;
         SubjectId = episode.SubjectID;
-        StatusUpdateTime = Common.ParseBangumiTime(episode.Collection?.UpdatedAt);
+        StatusUpdateTime = CommonUtils.ParseBangumiTime(episode.Collection?.UpdatedAt);
         Status = (EpisodeCollectionType?)episode.Collection?.Status ?? EpisodeCollectionType.Uncollected;
         if (episode.Subject != null)
             SubjectViewModel = new(episode.Subject);
@@ -76,7 +76,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         => new(collection.Episode ?? new())
         {
             Status = (EpisodeCollectionType?)collection.Type,
-            StatusUpdateTime = collection.UpdatedAt == 0 ? null : Common.ParseBangumiTime(collection.UpdatedAt),
+            StatusUpdateTime = collection.UpdatedAt == 0 ? null : CommonUtils.ParseBangumiTime(collection.UpdatedAt),
         };
 
     public void Init()
@@ -94,8 +94,8 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
 
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected));

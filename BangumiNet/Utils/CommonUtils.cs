@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
 
-public static partial class Common
+public static partial class CommonUtils
 {
     /// <summary>
     /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly"/>.

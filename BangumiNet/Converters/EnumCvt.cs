@@ -3,6 +3,8 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
+using BangumiNet.Common.Attributes;
+using BangumiNet.Common.Extras;
 using BangumiNet.Shared.Extensions;
 using System.Globalization;
 
@@ -88,7 +90,7 @@ public class CharacterTypeCvt : IValueConverter
 public class PersonTypeCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is PersonType type ? type.ToStringSC() : null;
+        => value is PersonType type ? type.GetNameCn() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

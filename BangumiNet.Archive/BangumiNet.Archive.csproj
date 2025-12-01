@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Package.props"/>
+  <Import Project="..\Package.props" />
 
   <PropertyGroup>
     <Title>BangumiNet Wiki Archive Wrapper</Title>
@@ -12,6 +12,10 @@
   <ItemGroup>
     <None Include=".\README.md" Pack="true" PackagePath="\" />
     <None Include="..\BangumiNet.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BangumiNet.Common\BangumiNet.Common.csproj" />
   </ItemGroup>
 
 </Project>

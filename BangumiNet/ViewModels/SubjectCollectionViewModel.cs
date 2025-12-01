@@ -90,7 +90,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Comment = collection.Comment;
         CommentId = collection.CollectID;
         Id = collection.Subject?.Id;
-        Rating = Common.ToInt32(collection.Rate);
+        Rating = CommonUtils.ToInt32(collection.Rate);
         SubjectType = (SubjectType?)collection.Subject?.Type;
         if (collection.Subject != null)
             Subject = new(collection.Subject);

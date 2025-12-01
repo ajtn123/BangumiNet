@@ -111,7 +111,7 @@ public partial class CharacterViewModel : ItemViewModelBase
         CommentCount = character.Comment;
         Type = (CharacterType?)character.Role;
         Info = character.Info;
-        CollectionTime = Common.ParseBangumiTime(character.CollectedAt);
+        CollectionTime = CommonUtils.ParseBangumiTime(character.CollectedAt);
         CollectionTotal = character.Collects;
         Redirect = character.Redirect;
         Summary = character.Summary;
@@ -140,8 +140,8 @@ public partial class CharacterViewModel : ItemViewModelBase
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
         CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
 

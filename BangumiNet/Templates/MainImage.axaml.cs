@@ -34,7 +34,7 @@ public class MainImage : ContentControl
             }
             else
             {
-                Common.OpenUrlInBrowser(url);
+                CommonUtils.OpenUrlInBrowser(url);
             }
     }
 

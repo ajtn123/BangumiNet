@@ -10,7 +10,7 @@ public partial class NavigatorViewModel : ViewModelBase
         this.WhenAnyValue(x => x.Input).Subscribe(x =>
         {
             CanToId = int.TryParse(x, out int id) && id > 0;
-            CanToUser = Common.IsAlphaNumeric(x?.Trim());
+            CanToUser = CommonUtils.IsAlphaNumeric(x?.Trim());
         });
 
         ToSubject = ReactiveCommand.CreateFromTask(async ct =>
@@ -67,7 +67,7 @@ public partial class NavigatorViewModel : ViewModelBase
         ToUser = ReactiveCommand.CreateFromTask(async ct =>
         {
             var username = Input?.Trim();
-            if (Common.IsAlphaNumeric(username))
+            if (CommonUtils.IsAlphaNumeric(username))
             {
                 var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username, cancellationToken: ct);
                 if (uvm != null) SecondaryWindow.Show(uvm);
@@ -78,7 +78,7 @@ public partial class NavigatorViewModel : ViewModelBase
         ToGroup = ReactiveCommand.CreateFromTask(async ct =>
         {
             var groupname = Input?.Trim();
-            if (Common.IsAlphaNumeric(groupname))
+            if (CommonUtils.IsAlphaNumeric(groupname))
             {
                 var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname, cancellationToken: ct);
                 if (gvm != null) SecondaryWindow.Show(gvm);

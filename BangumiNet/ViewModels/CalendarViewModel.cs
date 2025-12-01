@@ -10,7 +10,7 @@ public class CalendarViewModel : ViewModelBase
     public CalendarViewModel(Api.Legacy.Calendar.Calendar calendar)
     {
         Source = calendar;
-        DayOfWeek = Common.ParseDayOfWeek(calendar.Weekday?.Id);
+        DayOfWeek = CommonUtils.ParseDayOfWeek(calendar.Weekday?.Id);
         Weekday = calendar.Weekday;
         Subjects = calendar.Items?.Select(c => new SubjectViewModel(c)).ToObservableCollection();
     }

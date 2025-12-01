@@ -41,7 +41,7 @@ public partial class SettingViewModel : ViewModelBase
 
         UndoChangesCommand = ReactiveCommand.Create(() => { });
         RestoreCommand = ReactiveCommand.Create(() => { });
-        GetTokenCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Shared.Constants.BangumiTokenManagerUrl));
+        GetTokenCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Shared.Constants.BangumiTokenManagerUrl));
         SaveCommand = ReactiveCommand.Create(() =>
         {
             var newSettings = ToSettings();
@@ -49,7 +49,7 @@ public partial class SettingViewModel : ViewModelBase
             if (newSettings.AuthToken != Settings.AuthToken || newSettings.UserAgent != Settings.UserAgent)
             {
                 ApiC.RebuildClients();
-                var mainWindow = Common.GetMainWindow();
+                var mainWindow = CommonUtils.GetMainWindow();
                 mainWindow?.meVM = null;
                 mainWindow?.homeVM = null;
             }

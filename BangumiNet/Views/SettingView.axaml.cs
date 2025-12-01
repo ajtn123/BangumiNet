@@ -34,7 +34,7 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
     private void LocalDataPickDir(object? sender, RoutedEventArgs e)
         => _ = LocalDataPickDirAsync();
     private void OpenGitHub(object? sender, RoutedEventArgs e)
-        => Common.OpenUrlInBrowser(Shared.Constants.SourceRepository);
+        => CommonUtils.OpenUrlInBrowser(Shared.Constants.SourceRepository);
 
     private async Task LocalDataPickDirAsync()
     {

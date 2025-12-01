@@ -50,7 +50,7 @@ public partial class UserViewModel : ItemViewModelBase
         Username = user.Username;
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
-        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
+        RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }
@@ -63,7 +63,7 @@ public partial class UserViewModel : ItemViewModelBase
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
         Sign = user.Sign;
-        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
+        RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }
@@ -77,7 +77,7 @@ public partial class UserViewModel : ItemViewModelBase
         UserGroup = (UserGroup?)user.Group;
         Sign = user.Sign;
         Summary = user.Bio;
-        RegistrationTime = Common.ParseBangumiTime(user.JoinedAt);
+        RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
 
         Init();
     }
@@ -103,8 +103,8 @@ public partial class UserViewModel : ItemViewModelBase
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
 
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Username));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Username));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
     }
     public UserViewModel(string? username)
     {

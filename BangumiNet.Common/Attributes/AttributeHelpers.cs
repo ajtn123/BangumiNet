@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BangumiNet.Common.Extras;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace BangumiNet.Common.Attributes;
@@ -178,4 +179,7 @@ public static class AttributeHelpers
             <= 3999 => SubjectType.Music,
             _ => SubjectType.Real,
         };
+
+    public static string GetNameCn(this PersonType value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
 }

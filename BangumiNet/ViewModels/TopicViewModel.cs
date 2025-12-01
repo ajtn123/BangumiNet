@@ -9,8 +9,8 @@ public partial class TopicViewModel : ItemViewModelBase
     {
         IsFull = isFull;
         ParentType = ItemType.Subject;
-        CreationTime = Common.ParseBangumiTime(topic.CreatedAt);
-        UpdateTime = Common.ParseBangumiTime(topic.UpdatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(topic.CreatedAt);
+        UpdateTime = CommonUtils.ParseBangumiTime(topic.UpdatedAt);
         State = (CommentState?)topic.State;
         Display = (TopicDisplay?)topic.Display;
         Name = topic.Title;
@@ -31,8 +31,8 @@ public partial class TopicViewModel : ItemViewModelBase
     {
         IsFull = isFull;
         ParentType = ItemType.Group;
-        CreationTime = Common.ParseBangumiTime(topic.CreatedAt);
-        UpdateTime = Common.ParseBangumiTime(topic.UpdatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(topic.CreatedAt);
+        UpdateTime = CommonUtils.ParseBangumiTime(topic.UpdatedAt);
         State = (CommentState?)topic.State;
         Display = (TopicDisplay?)topic.Display;
         Name = topic.Title;
@@ -53,8 +53,8 @@ public partial class TopicViewModel : ItemViewModelBase
     {
         IsFull = false;
         ParentType = parentType;
-        CreationTime = Common.ParseBangumiTime(topic.CreatedAt);
-        UpdateTime = Common.ParseBangumiTime(topic.UpdatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(topic.CreatedAt);
+        UpdateTime = CommonUtils.ParseBangumiTime(topic.UpdatedAt);
         State = (CommentState?)topic.State;
         Display = (TopicDisplay?)topic.Display;
         Name = topic.Title;
@@ -72,8 +72,8 @@ public partial class TopicViewModel : ItemViewModelBase
     {
         ItemType = ItemType.Topic;
         Title = $"{Name} - {Title}";
-        SearchWebCommand = ReactiveCommand.Create(() => Common.SearchWeb(Name));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => Common.OpenUrlInBrowser(ParentType switch
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
             ItemType.Group => UrlProvider.BangumiTvGroupTopicUrlBase + Id,

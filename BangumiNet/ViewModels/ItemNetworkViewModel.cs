@@ -100,7 +100,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
         if (a.SubjectViewModels == null) return;
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
         var radius = Math.Sqrt(vms.Length) * 10;
-        var nodes = vms.Select(vm => new Node { Item = vm, X = Common.RandomDouble(-radius, radius) + node.X, Y = Common.RandomDouble(-radius, radius) + node.Y }).ToArray();
+        var nodes = vms.Select(vm => new Node { Item = vm, X = CommonUtils.RandomDouble(-radius, radius) + node.X, Y = CommonUtils.RandomDouble(-radius, radius) + node.Y }).ToArray();
         switch (relatedItemType)
         {
             case RelatedItemType.Subject:

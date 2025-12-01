@@ -20,7 +20,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
         OperationSource = timeline.Source?.Name;
         OperationSourceUrl = timeline.Source?.Url;
         IsMy = ApiC.CurrentUsername != null && timeline.User?.Username == ApiC.CurrentUsername;
-        CreationTime = Common.ParseBangumiTime(timeline.CreatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(timeline.CreatedAt);
 
         List<ViewModelBase> subjects = [];
         if (OperationSource == "web" && string.IsNullOrWhiteSpace(OperationSourceUrl))

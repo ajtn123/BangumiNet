@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Package.props"/>
+  <Import Project="..\Package.props" />
 
   <PropertyGroup>
     <Title>BangumiNet Common Data Wrapper</Title>
@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include=".\README.md" Pack="true" PackagePath="\"/>
-    <None Include="..\BangumiNet.png" Pack="true" PackagePath="\"/>
+    <None Include=".\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\BangumiNet.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

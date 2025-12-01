@@ -9,7 +9,7 @@ public partial class GroupMemberViewModel : UserViewModel
     {
         Id = user.Uid;
         Role = (GroupRole?)user.Role;
-        JoinTime = Common.ParseBangumiTime(user.JoinedAt);
+        JoinTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
     }
     public GroupMemberViewModel(SlimUser user) : base(user) { }
 

@@ -15,8 +15,8 @@ public partial class BlogViewModel : ItemViewModelBase
         Images = new ImageSet { Large = blog.Icon };
         Id = blog.Id;
         NoReply = blog.Noreply;
-        CreationTime = Common.ParseBangumiTime(blog.CreatedAt);
-        UpdateTime = Common.ParseBangumiTime(blog.UpdatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(blog.CreatedAt);
+        UpdateTime = CommonUtils.ParseBangumiTime(blog.UpdatedAt);
         Views = blog.Views;
         IsPublic = blog.Public ?? true;
         Related = blog.Related;
@@ -35,8 +35,8 @@ public partial class BlogViewModel : ItemViewModelBase
         Content = blog.Summary;
         Images = new ImageSet { Large = blog.Icon };
         Id = blog.Id;
-        CreationTime = Common.ParseBangumiTime(blog.CreatedAt);
-        UpdateTime = Common.ParseBangumiTime(blog.UpdatedAt);
+        CreationTime = CommonUtils.ParseBangumiTime(blog.CreatedAt);
+        UpdateTime = CommonUtils.ParseBangumiTime(blog.UpdatedAt);
         IsPublic = blog.Public ?? true;
         ReplyCount = blog.Replies;
         Type = blog.Type;

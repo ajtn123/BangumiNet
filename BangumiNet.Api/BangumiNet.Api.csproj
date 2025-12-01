@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Package.props"/>
+  <Import Project="..\Package.props" />
 
   <PropertyGroup>
     <Title>BangumiNet API Client</Title>
@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BangumiNet.Common\BangumiNet.Common.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
   </ItemGroup>
 

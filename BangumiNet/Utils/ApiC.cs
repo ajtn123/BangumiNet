@@ -27,8 +27,8 @@ public static partial class ApiC
     //this is magic
     [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
     private static partial Regex DefaultUserAvatarUrl();
-    public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(Common.GetAssetUri("DefaultAvatar.png")));
-    public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(Common.GetAssetUri("InternetError.png")));
+    public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
+    public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("InternetError.png")));
     private static readonly SemaphoreSlim semaphore = new(128);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
     private static readonly MemoryCache memoryCache = new(new());

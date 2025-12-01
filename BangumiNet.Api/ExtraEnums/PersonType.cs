@@ -2,16 +2,6 @@
 
 namespace BangumiNet.Api.ExtraEnums;
 
-public enum PersonType
-{
-    /// <summary>个人</summary>
-    Individual = 1,
-    /// <summary>公司</summary>
-    Company = 2,
-    /// <summary>组合</summary>
-    Group = 3
-}
-
 public static partial class EnumExtensions
 {
     public static string ToStringSC(this PersonCareer career)
@@ -37,13 +27,5 @@ public static partial class EnumExtensions
             "illustrator" => PersonCareer.Illustrator,
             "actor" => PersonCareer.Actor,
             _ => null,
-        };
-    public static string ToStringSC(this PersonType career)
-        => career switch
-        {
-            PersonType.Individual => "个人",
-            PersonType.Company => "公司",
-            PersonType.Group => "组合",
-            _ => throw new NotImplementedException(),
         };
 }
