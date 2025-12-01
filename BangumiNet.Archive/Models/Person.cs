@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BangumiNet.Common.Extras;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive.Models;
 
@@ -23,7 +24,7 @@ public readonly record struct Person
     /// 人物类型
     /// </summary>
     [JsonPropertyName("type")]
-    public int Type { get; init; }
+    public PersonType Type { get; init; }
 
     /// <summary>
     /// 人物职业

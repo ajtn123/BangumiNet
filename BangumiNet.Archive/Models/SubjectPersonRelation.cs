@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BangumiNet.Common;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive.Models;
 
@@ -23,7 +24,7 @@ public readonly record struct SubjectPersonRelation
     /// 担任职位
     /// </summary>
     [JsonPropertyName("position")]
-    public int Position { get; init; }
+    public SubjectStaff Position { get; init; }
 
     /// <summary>
     /// 参与章节

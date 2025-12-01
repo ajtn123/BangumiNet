@@ -83,7 +83,7 @@ public class EpisodeTypeCvt : IValueConverter
 public class CharacterTypeCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is CharacterType type ? type.ToStringSC() : null;
+        => value is CharacterType type ? type.GetNameCn() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

@@ -182,4 +182,6 @@ public static class AttributeHelpers
 
     public static string GetNameCn(this PersonType value)
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
+    public static string GetNameCn(this CharacterType value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
 }
