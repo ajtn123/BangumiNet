@@ -3,6 +3,7 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
+using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
@@ -126,12 +127,12 @@ public partial class CharacterViewModel : ItemViewModelBase
         {
             RelationItems = new() { SubjectViewModels = subjectCharacter.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() },
             Order = subjectCharacter.Order,
-            Relation = ((SubjectCharacterType?)subjectCharacter.Type)?.ToStringSC(),
+            Relation = ((CharacterRole?)subjectCharacter.Type)?.GetNameCn(),
         };
     public static CharacterViewModel Init(Api.P1.Models.PersonCharacter personCharacter)
         => new(personCharacter.Character!)
         {
-            Relation = string.Join('\n', personCharacter.Relations?.Select(x => $"{((SubjectCharacterType?)x.Type)?.ToStringSC()}·{NameCnCvt.Convert(x.Subject)}") ?? []),
+            Relation = string.Join('\n', personCharacter.Relations?.Select(x => $"{((CharacterRole?)x.Type)?.GetNameCn()}·{NameCnCvt.Convert(x.Subject)}") ?? []),
         };
     private void Init()
     {

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BangumiNet.Common.Extras;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive.Models;
 
@@ -23,7 +24,7 @@ public readonly record struct SubjectCharacterRelation
     /// 角色类型
     /// </summary>
     [JsonPropertyName("type")]
-    public int Type { get; init; }
+    public CharacterRole Type { get; init; }
 
     /// <summary>
     /// 作品角色列表排序

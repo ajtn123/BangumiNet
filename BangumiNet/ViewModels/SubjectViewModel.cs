@@ -5,6 +5,7 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
 using BangumiNet.Common.Attributes;
+using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
 using System.Reactive.Linq;
@@ -184,7 +185,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     public static SubjectViewModel Init(Api.P1.Models.CharacterSubject characterSubject)
         => new(characterSubject.Subject!)
         {
-            Relation = ((SubjectCharacterType?)characterSubject.Type)?.ToStringSC() + "·" + string.Join('/', characterSubject.Actors?.Select(NameCnCvt.Convert) ?? []),
+            Relation = ((CharacterRole?)characterSubject.Type)?.GetNameCn() + "·" + string.Join('/', characterSubject.Actors?.Select(NameCnCvt.Convert) ?? []),
             RelationItems = new() { SubjectViewModels = characterSubject.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() }
         };
     private void Init()
