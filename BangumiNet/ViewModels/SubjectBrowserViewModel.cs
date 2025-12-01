@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.V0.Subjects;
+using BangumiNet.Common;
 using System.Reactive;
 using System.Windows.Input;
 
@@ -79,10 +80,10 @@ public partial class SubjectBrowserViewModel : ViewModelBase
 
 
     [Reactive] public partial SubjectType Type { get; set; }
-    [Reactive] public partial SubjectCategory.Anime? AnimeCategory { get; set; }
-    [Reactive] public partial SubjectCategory.Book? BookCategory { get; set; }
-    [Reactive] public partial SubjectCategory.Game? GameCategory { get; set; }
-    [Reactive] public partial SubjectCategory.Real? RealCategory { get; set; }
+    [Reactive] public partial AnimeType? AnimeCategory { get; set; }
+    [Reactive] public partial BookType? BookCategory { get; set; }
+    [Reactive] public partial GameType? GameCategory { get; set; }
+    [Reactive] public partial RealType? RealCategory { get; set; }
     [Reactive] public partial string? Platform { get; set; }
     [Reactive] public partial SubjectBrowserSort? Sort { get; set; }
     [Reactive] public partial bool? IsSeries { get; set; }

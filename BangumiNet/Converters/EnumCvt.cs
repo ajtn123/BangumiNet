@@ -3,6 +3,7 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Subjects;
+using BangumiNet.Common;
 using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Shared.Extensions;
@@ -69,7 +70,7 @@ public class DayOfWeekCvt : IValueConverter
 public class SubjectTypeCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is SubjectType type ? type.ToStringSC() : null;
+        => value is SubjectType type ? type.GetNameCn() : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
@@ -104,28 +105,28 @@ public class CareerCvt : IValueConverter
 public class AnimeCatCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is SubjectCategory.Anime type ? type.ToStringSC() : "全部";
+        => value is AnimeType type ? type.GetNameCn() : "全部";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
 public class BookCatCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is SubjectCategory.Book type ? type.ToStringSC() : "全部";
+        => value is BookType type ? type.GetNameCn() : "全部";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
 public class GameCatCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is SubjectCategory.Game type ? type.ToStringSC() : "全部";
+        => value is GameType type ? type.GetNameCn() : "全部";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }
 public class RealCatCvt : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is SubjectCategory.Real type ? type.ToStringSC() : "全部";
+        => value is RealType type ? type.GetNameCn() : "全部";
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotImplementedException();
 }

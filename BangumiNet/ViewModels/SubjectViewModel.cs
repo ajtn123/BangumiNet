@@ -3,6 +3,8 @@ using BangumiNet.Api.Extensions;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common;
+using BangumiNet.Common.Attributes;
 using BangumiNet.Converters;
 using BangumiNet.Models;
 using System.Reactive.Linq;
@@ -135,7 +137,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         NameCn = subject.NameCn;
         Id = subject.Id;
         Type = subject.Type;
-        Relation = subject.Type?.ToStringSC();
+        Relation = subject.Type?.GetNameCn();
 
         Init();
     }

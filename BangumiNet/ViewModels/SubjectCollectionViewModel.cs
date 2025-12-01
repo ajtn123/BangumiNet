@@ -1,6 +1,7 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common;
 using BangumiNet.Converters;
 using DynamicData;
 using System.Reactive;
@@ -102,8 +103,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     {
         if (EpisodeStatus == 0 && Subject?.Eps == null) EpisodeStatus = null;
         if (VolumeStatus == 0 && Subject?.Volumes == null) VolumeStatus = null;
-        IsEpStatusEditable = EpisodeStatus != null && SubjectType == Api.ExtraEnums.SubjectType.Book;
-        IsVolStatusEditable = VolumeStatus != null && SubjectType == Api.ExtraEnums.SubjectType.Book;
+        IsEpStatusEditable = EpisodeStatus != null && SubjectType == Common.SubjectType.Book;
+        IsVolStatusEditable = VolumeStatus != null && SubjectType == Common.SubjectType.Book;
         IsEpStatusReadonly = EpisodeStatus != null && !IsEpStatusEditable;
         IsVolStatusReadonly = VolumeStatus != null && !IsVolStatusEditable;
 
@@ -175,8 +176,8 @@ public partial class SubjectCollectionViewModel : ViewModelBase
                 Rate = Rating,
                 Type = (int?)Type,
                 Tags = Tags?.ToList(),
-                EpStatus = SubjectType == Api.ExtraEnums.SubjectType.Book ? EpisodeStatus : null,
-                VolStatus = SubjectType == Api.ExtraEnums.SubjectType.Book ? VolumeStatus : null,
+                EpStatus = SubjectType == Common.SubjectType.Book ? EpisodeStatus : null,
+                VolStatus = SubjectType == Common.SubjectType.Book ? VolumeStatus : null,
             });
 
             UpdateTime = DateTimeOffset.Now;

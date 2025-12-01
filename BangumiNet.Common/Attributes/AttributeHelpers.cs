@@ -33,6 +33,8 @@ public static class AttributeHelpers
             _ => PersonCharacterRelationCategory.Character,
         };
 
+    public static string GetNameCn(this SubjectType value)
+        => value.GetAttribute<PlatformInfoAttribute>()!.NameCn;
     public static string[] GetSortKeys(this SubjectType value)
         => value.GetAttribute<PlatformInfoAttribute>()!.SortKeys!;
     public static string GetWikiTemplate(this SubjectType value)

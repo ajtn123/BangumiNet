@@ -1,4 +1,5 @@
 using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Common;
 
 namespace BangumiNet.Views;
 
@@ -9,14 +10,10 @@ public partial class SubjectBrowserView : ReactiveUserControl<SubjectBrowserView
         InitializeComponent();
         SortComboBox.ItemsSource = Enum.GetValues<SubjectBrowserSort>();
         TypeComboBox.ItemsSource = Enum.GetValues<SubjectType>();
-        List<SubjectCategory.Book?> bookCatList = [null, .. Enum.GetValues<SubjectCategory.Book>()];
-        List<SubjectCategory.Anime?> AnimeCatList = [null, .. Enum.GetValues<SubjectCategory.Anime>()];
-        List<SubjectCategory.Game?> gameCatList = [null, .. Enum.GetValues<SubjectCategory.Game>()];
-        List<SubjectCategory.Real?> realCatList = [null, .. Enum.GetValues<SubjectCategory.Real>()];
-        BookCatComboBox.ItemsSource = bookCatList;
-        AnimeCatComboBox.ItemsSource = AnimeCatList;
-        GameCatComboBox.ItemsSource = gameCatList;
-        RealCatComboBox.ItemsSource = realCatList;
+        BookCatComboBox.ItemsSource = (BookType?[])[null, .. Enum.GetValues<BookType>()];
+        AnimeCatComboBox.ItemsSource = (AnimeType?[])[null, .. Enum.GetValues<AnimeType>()];
+        GameCatComboBox.ItemsSource = (GameType?[])[null, .. Enum.GetValues<GameType>()];
+        RealCatComboBox.ItemsSource = (RealType?[])[null, .. Enum.GetValues<RealType>()];
     }
 
     private void ResetIsSeries(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

@@ -1,7 +1,7 @@
-﻿using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.P1.Models;
+﻿using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Trending.Subjects;
 using BangumiNet.Api.P1.P1.Trending.Subjects.Topics;
+using BangumiNet.Common;
 using System.Reactive.Linq;
 using System.Windows.Input;
 

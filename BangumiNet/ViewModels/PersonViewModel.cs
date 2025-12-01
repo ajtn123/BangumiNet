@@ -4,6 +4,7 @@ using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;

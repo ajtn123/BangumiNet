@@ -3,6 +3,8 @@ using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Characters;
 using BangumiNet.Api.V0.V0.Search.Persons;
 using BangumiNet.Api.V0.V0.Search.Subjects;
+using BangumiNet.Common;
+using BangumiNet.Common.Attributes;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Input;
@@ -345,7 +347,7 @@ public partial class SearchViewModel : ViewModelBase
 public partial class SubjectTypeOptionViewModel : ViewModelBase
 {
     public static List<SubjectTypeOptionViewModel> GetList()
-        => [.. Enum.GetValues<SubjectType>().Select(x => new SubjectTypeOptionViewModel(x, x.ToStringSC()))];
+        => [.. Enum.GetValues<SubjectType>().Select(x => new SubjectTypeOptionViewModel(x, x.GetNameCn()))];
 
     private SubjectTypeOptionViewModel(SubjectType v, string? name = null)
     {

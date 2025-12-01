@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Common;
 
 namespace BangumiNet.ViewModels;
 

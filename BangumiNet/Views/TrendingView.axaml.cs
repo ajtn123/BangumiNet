@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Common;
 
 namespace BangumiNet.Views;
 

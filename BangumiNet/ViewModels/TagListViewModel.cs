@@ -1,5 +1,5 @@
-﻿using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.Interfaces;
+﻿using BangumiNet.Api.Interfaces;
+using BangumiNet.Common;
 
 namespace BangumiNet.ViewModels;
 
