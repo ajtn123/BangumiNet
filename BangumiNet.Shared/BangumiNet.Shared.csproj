@@ -1,22 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="..\Package.props"/>
+
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Authors>Aoii</Authors>
     <Title>BangumiNet Shared Code</Title>
-    <Copyright>Copyright (c) 2025 aoi</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
     <Description>Shared code in BangumiNet.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>BangumiNet.png</PackageIcon>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

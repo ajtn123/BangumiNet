@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+
+        <Authors>Aoii</Authors>
+        <Copyright>Copyright (c) 2025 aoi</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+</Project>
