@@ -2,7 +2,7 @@
 
 public static partial class Config
 {
-    public static Dictionary<string, string[]> AppTags { get; } = new()
+    public static Dictionary<string, string[]> AppTags => new()
     {
         ["功能增强"] = ["列表管理", "搜索与发现", "目录与标签", "评分与统计", "进度管理", "编辑器", "外部链接"],
         ["工具"] = ["娱乐"],

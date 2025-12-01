@@ -129,4 +129,15 @@ public static class AttributeHelpers
         => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
     public static MediaType GetParentType(this RealType value)
         => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
+
+    public static string GetName(this NetworkService value)
+        => value.GetAttribute<ServiceInfoAttribute>()!.Name;
+    public static string GetTitle(this NetworkService value)
+        => value.GetAttribute<ServiceInfoAttribute>()!.Title;
+    public static string GetBackgroundColor(this NetworkService value)
+        => value.GetAttribute<ServiceInfoAttribute>()!.BackgroundColor;
+    public static string? GetUrl(this NetworkService value)
+        => value.GetAttribute<ServiceInfoAttribute>()!.Url;
+    public static string? GetValidationRegex(this NetworkService value)
+        => value.GetAttribute<ServiceInfoAttribute>()!.ValidationRegex;
 }
