@@ -9,11 +9,11 @@ public class NameCnAttribute(string value) : Attribute
 [AttributeUsage(AttributeTargets.Field)]
 public class NameEnAttribute(string value) : Attribute
 {
-    public string NameCn { get; init; } = value;
+    public string NameEn { get; init; } = value;
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class NameJaAttribute(string value) : Attribute
+public class NameJpAttribute(string value) : Attribute
 {
-    public string NameCn { get; init; } = value;
+    public string NameJp { get; init; } = value;
 }

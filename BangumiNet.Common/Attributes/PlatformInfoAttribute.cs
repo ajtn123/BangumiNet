@@ -12,15 +12,3 @@ public class PlatformInfoAttribute : Attribute
     public string? WikiTemplate { get; init; }
     public bool IsHeaderEnabled { get; init; }
 }
-
-[AttributeUsage(AttributeTargets.Field)]
-public class SpecificTypeAttribute(Type type) : Attribute
-{
-    public Type SpecificType { get; init; } = type;
-}
-
-[AttributeUsage(AttributeTargets.Enum)]
-public class ParentTypeAttribute<T>(T type) : Attribute where T : Enum
-{
-    public T ParentType { get; init; } = type;
-}

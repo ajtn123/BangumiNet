@@ -147,4 +147,35 @@ public static class AttributeHelpers
         => value.GetAttribute<SourceInfoAttribute>()!.Url;
     public static string? GetAppId(this TimelineSource value)
         => value.GetAttribute<SourceInfoAttribute>()!.AppId;
+
+    public static string GetNameEn(this StaffCategory value)
+        => value.GetAttribute<NameEnAttribute>()!.NameEn;
+    public static string GetNameCn(this StaffCategory value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+    public static MediaType GetMediaType(this StaffCategory value)
+        => (int)value switch
+        {
+            <= 999 => MediaType.Anime,
+            _ => MediaType.Game,
+        };
+
+    public static string GetNameCn(this SubjectStaff value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+    public static string? GetNameEn(this SubjectStaff value)
+        => value.GetAttribute<NameEnAttribute>()?.NameEn;
+    public static string? GetNameJp(this SubjectStaff value)
+        => value.GetAttribute<NameJpAttribute>()?.NameJp;
+    public static string? GetDescription(this SubjectStaff value)
+        => value.GetAttribute<DescriptionAttribute>()?.Description;
+    public static StaffCategory[]? GetCategories(this SubjectStaff value)
+        => value.GetAttribute<CategoriesAttribute<StaffCategory>>()?.Categories;
+    public static MediaType GetSubjectType(this SubjectStaff value)
+        => (int)value switch
+        {
+            <= 999 => MediaType.Anime,
+            <= 1999 => MediaType.Game,
+            <= 2999 => MediaType.Book,
+            <= 3999 => MediaType.Music,
+            _ => MediaType.Real,
+        };
 }
