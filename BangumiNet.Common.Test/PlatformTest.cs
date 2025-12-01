@@ -8,7 +8,7 @@ public sealed class PlatformTest
     [TestMethod]
     public void SortKeys()
     {
-        var keys = Enum.GetValues<MediaType>().Select(x => x.GetSortKeys());
+        var keys = Enum.GetValues<SubjectType>().Select(x => x.GetSortKeys());
         foreach (var item in keys)
             Assert.IsNotEmpty(item);
     }
@@ -17,7 +17,7 @@ public sealed class PlatformTest
     public void WikiTemplate()
     {
         string[] keys = [
-            .. Enum.GetValues<MediaType>().Select(x=>x.GetWikiTemplate()),
+            .. Enum.GetValues<SubjectType>().Select(x=>x.GetWikiTemplate()),
             .. Enum.GetValues<AnimeType>().Select(x=>x.GetWikiTemplate()),
             .. Enum.GetValues<RealType>().Select(x=>x.GetWikiTemplate()),
         ];
@@ -28,7 +28,7 @@ public sealed class PlatformTest
     [TestMethod]
     public void SpecificType()
     {
-        var keys = Enum.GetValues<MediaType>().Select(x => x.GetSpecificType());
+        var keys = Enum.GetValues<SubjectType>().Select(x => x.GetSpecificType());
         foreach (var item in keys)
             Assert.IsTrue(item.IsEnum);
     }
@@ -36,11 +36,11 @@ public sealed class PlatformTest
     [TestMethod]
     public void ParentType()
     {
-        Assert.AreEqual(MediaType.Book, BookType.Official.GetParentType());
-        Assert.AreEqual(MediaType.Anime, AnimeType.AnimeComic.GetParentType());
-        Assert.AreEqual(MediaType.Music, MusicType.Drama.GetParentType());
-        Assert.AreEqual(MediaType.Game, GameType.Software.GetParentType());
-        Assert.AreEqual(MediaType.Real, RealType.CN.GetParentType());
+        Assert.AreEqual(SubjectType.Book, BookType.Official.GetParentType());
+        Assert.AreEqual(SubjectType.Anime, AnimeType.AnimeComic.GetParentType());
+        Assert.AreEqual(SubjectType.Music, MusicType.Drama.GetParentType());
+        Assert.AreEqual(SubjectType.Game, GameType.Software.GetParentType());
+        Assert.AreEqual(SubjectType.Real, RealType.CN.GetParentType());
     }
 
     [TestMethod]

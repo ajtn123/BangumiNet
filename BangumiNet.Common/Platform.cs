@@ -2,7 +2,7 @@
 
 namespace BangumiNet.Common;
 
-public enum MediaType
+public enum SubjectType
 {
     [PlatformInfo(
         Name = "Book",
@@ -55,7 +55,7 @@ public enum MediaType
     Real = 6,
 }
 
-[ParentType<MediaType>(MediaType.Book)]
+[ParentType<SubjectType>(SubjectType.Book)]
 public enum BookType
 {
     [PlatformInfo(
@@ -138,7 +138,7 @@ public enum BookSeriesType
     Series = 1,
 }
 
-[ParentType<MediaType>(MediaType.Anime)]
+[ParentType<SubjectType>(SubjectType.Anime)]
 public enum AnimeType
 {
 
@@ -203,7 +203,7 @@ public enum AnimeType
     None = 0,
 }
 
-[ParentType<MediaType>(MediaType.Real)]
+[ParentType<SubjectType>(SubjectType.Real)]
 public enum RealType
 {
     [PlatformInfo(
@@ -278,7 +278,7 @@ public enum RealType
     None = 0,
 }
 
-[ParentType<MediaType>(MediaType.Music)]
+[ParentType<SubjectType>(SubjectType.Music)]
 public enum MusicType
 {
     Album = 3001,
@@ -287,7 +287,7 @@ public enum MusicType
     Radio = 3004,
 }
 
-[ParentType<MediaType>(MediaType.Game)]
+[ParentType<SubjectType>(SubjectType.Game)]
 public enum GameType
 {
     [PlatformInfo(

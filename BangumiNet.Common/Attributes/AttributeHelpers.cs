@@ -32,11 +32,11 @@ public static class AttributeHelpers
             _ => PersonCharacterRelationCategory.Character,
         };
 
-    public static string[] GetSortKeys(this MediaType value)
+    public static string[] GetSortKeys(this SubjectType value)
         => value.GetAttribute<PlatformInfoAttribute>()!.SortKeys!;
-    public static string GetWikiTemplate(this MediaType value)
+    public static string GetWikiTemplate(this SubjectType value)
         => value.GetAttribute<PlatformInfoAttribute>()!.WikiTemplate!;
-    public static Type GetSpecificType(this MediaType value)
+    public static Type GetSpecificType(this SubjectType value)
         => value.GetAttribute<SpecificTypeAttribute>()!.SpecificType;
 
     public static string GetName(this GamePlatform value)
@@ -119,16 +119,16 @@ public static class AttributeHelpers
     public static int GetOrder(this GameType value)
         => value.GetAttribute<PlatformInfoAttribute>()!.Order;
 
-    public static MediaType GetParentType(this BookType value)
-        => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
-    public static MediaType GetParentType(this AnimeType value)
-        => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
-    public static MediaType GetParentType(this MusicType value)
-        => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
-    public static MediaType GetParentType(this GameType value)
-        => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
-    public static MediaType GetParentType(this RealType value)
-        => value.GetType().GetCustomAttribute<ParentTypeAttribute<MediaType>>()!.ParentType;
+    public static SubjectType GetParentType(this BookType value)
+        => value.GetType().GetCustomAttribute<ParentTypeAttribute<SubjectType>>()!.ParentType;
+    public static SubjectType GetParentType(this AnimeType value)
+        => value.GetType().GetCustomAttribute<ParentTypeAttribute<SubjectType>>()!.ParentType;
+    public static SubjectType GetParentType(this MusicType value)
+        => value.GetType().GetCustomAttribute<ParentTypeAttribute<SubjectType>>()!.ParentType;
+    public static SubjectType GetParentType(this GameType value)
+        => value.GetType().GetCustomAttribute<ParentTypeAttribute<SubjectType>>()!.ParentType;
+    public static SubjectType GetParentType(this RealType value)
+        => value.GetType().GetCustomAttribute<ParentTypeAttribute<SubjectType>>()!.ParentType;
 
     public static string GetName(this NetworkService value)
         => value.GetAttribute<ServiceInfoAttribute>()!.Name;
@@ -152,11 +152,11 @@ public static class AttributeHelpers
         => value.GetAttribute<NameEnAttribute>()!.NameEn;
     public static string GetNameCn(this StaffCategory value)
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
-    public static MediaType GetMediaType(this StaffCategory value)
+    public static SubjectType GetMediaType(this StaffCategory value)
         => (int)value switch
         {
-            <= 999 => MediaType.Anime,
-            _ => MediaType.Game,
+            <= 999 => SubjectType.Anime,
+            _ => SubjectType.Game,
         };
 
     public static string GetNameCn(this SubjectStaff value)
@@ -169,13 +169,13 @@ public static class AttributeHelpers
         => value.GetAttribute<DescriptionAttribute>()?.Description;
     public static StaffCategory[]? GetCategories(this SubjectStaff value)
         => value.GetAttribute<CategoriesAttribute<StaffCategory>>()?.Categories;
-    public static MediaType GetSubjectType(this SubjectStaff value)
+    public static SubjectType GetSubjectType(this SubjectStaff value)
         => (int)value switch
         {
-            <= 999 => MediaType.Anime,
-            <= 1999 => MediaType.Game,
-            <= 2999 => MediaType.Book,
-            <= 3999 => MediaType.Music,
-            _ => MediaType.Real,
+            <= 999 => SubjectType.Anime,
+            <= 1999 => SubjectType.Game,
+            <= 2999 => SubjectType.Book,
+            <= 3999 => SubjectType.Music,
+            _ => SubjectType.Real,
         };
 }
