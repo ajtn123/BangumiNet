@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BangumiNet.Common;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive.Models;
 
@@ -14,7 +15,7 @@ public readonly record struct SubjectRelation
     /// 条目 ID
     /// </summary>
     [JsonPropertyName("relation_type")]
-    public int RelationType { get; init; }
+    public SubjectRelationType RelationType { get; init; }
 
     /// <summary>
     /// 关联条目 ID

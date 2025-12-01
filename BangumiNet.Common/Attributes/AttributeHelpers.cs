@@ -162,6 +162,25 @@ public static class AttributeHelpers
             _ => SubjectType.Game,
         };
 
+    public static string GetNameCn(this SubjectRelationType value)
+        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+    public static string? GetNameEn(this SubjectRelationType value)
+        => value.GetAttribute<NameEnAttribute>()?.NameEn;
+    public static string? GetDescription(this SubjectRelationType value)
+        => value.GetAttribute<DescriptionAttribute>()?.Description;
+    public static bool GetIsViceVersaSkipped(this SubjectRelationType value)
+        => value.GetAttribute<SkipViceVersaAttribute>() != null;
+    /// <returns>所有可能的条目类型</returns>
+    public static SubjectType[] GetSubjectType(this SubjectRelationType value)
+        => (int)value switch
+        {
+            1 => [SubjectType.Anime, SubjectType.Book, SubjectType.Music, SubjectType.Music, SubjectType.Real],
+            <= 999 => [SubjectType.Anime, SubjectType.Real],
+            <= 1999 => [SubjectType.Book],
+            <= 3999 => [SubjectType.Music],
+            _ => [SubjectType.Game],
+        };
+
     public static string GetNameCn(this SubjectStaff value)
         => value.GetAttribute<NameCnAttribute>()!.NameCn;
     public static string? GetNameEn(this SubjectStaff value)
