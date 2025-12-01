@@ -5,7 +5,14 @@ namespace BangumiNet.Archive.Test;
 [TestClass]
 public sealed class MinimalDeserializationTest
 {
-    private static string GetFileName(string fileName) => "../../../MinimalArchives/" + fileName;
+    private static string GetFileName(string fileName)
+    {
+        var path = "../../../MinimalArchives/" + fileName;
+        if (File.Exists(path)) return path;
+        path = "../" + path;
+        if (File.Exists(path)) return path;
+        throw new FileNotFoundException(fileName);
+    }
 
     [TestMethod]
     public async Task PersonCharacterRelations()
