@@ -28,7 +28,7 @@ jobs:
                     "BangumiNet.Archive" 
                     "BangumiNet.BangumiData")
           for project in "${projects[@]}"; do
-              dotnet pack $project -p:PackageVersion=${version#v} -o . -c Release
+              dotnet pack $project -p:Version=${version#v} -o . -c Release
           done
 
       - name: Upload artifact
