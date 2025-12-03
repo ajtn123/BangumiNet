@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.3.9" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.9" />
     <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.9" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.9" />
@@ -37,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
+    <ProjectReference Include="..\BangumiNet.BangumiData\BangumiNet.BangumiData.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
   </ItemGroup>
 

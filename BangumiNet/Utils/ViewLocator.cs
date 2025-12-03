@@ -12,6 +12,7 @@ public class ViewLocator : IDataTemplate
         MeViewModel => new MeView { DataContext = data },
         SearchViewModel => new SearchView { DataContext = data },
         SubjectBrowserViewModel => new SubjectBrowserView { DataContext = data },
+        BangumiDataIndexViewModel => new BangumiDataIndexView { DataContext = data },
         SubjectCollectionListViewModel => new SubjectCollectionListView { DataContext = data },
         SettingViewModel => new SettingView { DataContext = data },
         TimelineViewModel => new TimelineView { DataContext = data },

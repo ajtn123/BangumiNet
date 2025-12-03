@@ -34,6 +34,7 @@ public partial class MainWindow : AppWindow
             "小组" => groupVM ??= new(),
             "搜索" => searchVM ??= new(),
             "索引" => subjectBrowserVM ??= new(),
+            "番组索引" => bangumiDataIndexVM ??= new(),
             "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
             "设置" => new SettingViewModel(SettingProvider.CurrentSettings),
             _ => throw new NotImplementedException(),
@@ -45,6 +46,7 @@ public partial class MainWindow : AppWindow
     public GroupHomeViewModel? groupVM;
     public SearchViewModel? searchVM;
     public SubjectBrowserViewModel? subjectBrowserVM;
+    public BangumiDataIndexViewModel? bangumiDataIndexVM;
     public AiringViewModel? airingVM;
     public MeViewModel? meVM;
 }

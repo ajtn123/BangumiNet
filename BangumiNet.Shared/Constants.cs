@@ -8,6 +8,8 @@ public static class Constants
     public const string SettingJsonName = "BNSettings.json";
     public const string DiskCacheDirectory = "Cache";
     public const string BangumiTokenManagerUrl = "https://next.bgm.tv/demo/access-token";
+    //public const string BangumiDataJsonUrl = "http://localhost:8000/data.json";
+    public const string BangumiDataJsonUrl = "https://unpkg.com/bangumi-data@0.3/dist/data.json";
     public const string License = """
         MIT License
 
