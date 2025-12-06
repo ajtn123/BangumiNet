@@ -1,6 +1,4 @@
-﻿using BangumiNet.Shared.Interfaces;
-
-namespace BangumiNet.Api.Misc;
+﻿namespace BangumiNet.Api.Misc;
 
 //https://github.com/bangumi/server-private/blob/master/docs/socket.io.md
 public class SocketIoNotificationClient

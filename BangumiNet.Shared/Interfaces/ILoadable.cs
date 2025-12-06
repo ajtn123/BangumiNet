@@ -1,4 +1,4 @@
-﻿namespace BangumiNet.Interfaces;
+﻿namespace BangumiNet.Shared.Interfaces;
 
 public interface ILoadable
 {

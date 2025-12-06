@@ -64,4 +64,11 @@ public readonly record struct Site
         else
             return null;
     }
+    public string? GetUrl(SiteMeta meta)
+    {
+        if (!string.IsNullOrWhiteSpace(Url))
+            return Url;
+        else
+            return meta.UrlTemplate.Replace("{{id}}", Id);
+    }
 }

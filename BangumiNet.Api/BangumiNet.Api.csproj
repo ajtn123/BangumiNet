@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BangumiNet.Common\BangumiNet.Common.csproj" />
-    <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
   </ItemGroup>
 
 </Project>

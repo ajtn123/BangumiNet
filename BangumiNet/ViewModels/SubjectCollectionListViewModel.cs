@@ -2,6 +2,7 @@
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
+using BangumiNet.Shared.Interfaces;
 using System.Reactive;
 using System.Reactive.Linq;
 

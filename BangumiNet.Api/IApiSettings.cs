@@ -1,4 +1,4 @@
-﻿namespace BangumiNet.Shared.Interfaces;
+﻿namespace BangumiNet.Api;
 
 public interface IApiSettings
 {

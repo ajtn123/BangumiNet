@@ -87,11 +87,16 @@
                 <Setter Property="FontSize" Value="24"/>
             </Style>
         </Style>
+        <Style Selector="SplitButton.Icon">
+            <Setter Property="Padding" Value="5,0"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="Height" Value="26"/>
+        </Style>
         <Style Selector="ic|FluentIcon">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <Style Selector="Window">
+        <Style Selector=":is(Window)">
             <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
         </Style>
         <Style Selector="FlyoutPresenter">

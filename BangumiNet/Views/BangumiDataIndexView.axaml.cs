@@ -25,10 +25,6 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
 
         foreach (var column in columns)
             IndexGrid.Columns.Add(column);
-
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Subscribe(x => _ = x.Init());
     }
 
     public class CellTemplate<TControl>(string bindingPath) : IDataTemplate where TControl : ContentControl, ICellTemplate, new()
@@ -90,8 +86,8 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
             foreach (var site in sites)
                 sp.Children.Add(new HyperlinkButton
                 {
-                    Content = meta[site.Name].Title,
-                    NavigateUri = new Uri(site.GetUrl(meta)!),
+                    Content = Meta[site.Name].Title,
+                    NavigateUri = new Uri(site.GetUrl(Meta)!),
                     BorderBrush = Brushes.LightGray,
                     BorderThickness = new(1),
                     Background = Brushes.White,
@@ -100,6 +96,6 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
             Content = sp;
         }
 
-        private Dictionary<string, SiteMeta> meta => BangumiDataIndexViewModel.BangumiDataObject?.SiteMeta!;
+        private static Dictionary<string, SiteMeta> Meta => BangumiDataProvider.BangumiDataObject?.SiteMeta!;
     }
 }

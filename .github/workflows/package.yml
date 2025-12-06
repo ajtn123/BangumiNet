@@ -23,7 +23,6 @@ jobs:
         run: |
           version=$(git describe --tags --abbrev=0)
           projects=("BangumiNet.Api" 
-                    "BangumiNet.Shared" 
                     "BangumiNet.Common" 
                     "BangumiNet.Archive" 
                     "BangumiNet.BangumiData")

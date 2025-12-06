@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.P1.Models;
+using BangumiNet.Shared.Interfaces;
 using System.Reactive;
 using System.Reactive.Linq;
 

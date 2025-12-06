@@ -1,5 +1,4 @@
-﻿global using BangumiNet.Interfaces;
-global using BangumiNet.Shared;
+﻿global using BangumiNet.Shared;
 global using BangumiNet.Utils;
 global using BangumiNet.ViewModels;
 global using BangumiNet.Views;
@@ -29,5 +28,5 @@ internal sealed class Program
             .WithInterFont()
             .LogToTrace()
             .UseReactiveUI();
-    //.UseDesktopWebView();
+    //      .UseDesktopWebView();
 }

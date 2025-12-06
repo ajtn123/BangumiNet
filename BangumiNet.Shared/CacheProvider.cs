@@ -7,14 +7,14 @@ public static class CacheProvider
     public static string GetAbsolutePath(string relativePath) => Path.Combine(CacheDirPath, relativePath);
 
     public static long CacheSize { get; set; } = 0;
-    public static void InitializeCache()
+    static CacheProvider()
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) DumpCache();
         else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
         else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
     }
 
-    public static async Task WriteCache(string id, Stream content, CancellationToken cancellationToken = default)
+    public static async Task WriteCache(string id, Stream content)
     {
         if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return;
 
@@ -28,8 +28,8 @@ public static class CacheProvider
         if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(idHash) || string.IsNullOrWhiteSpace(dir)) return;
 
         Directory.CreateDirectory(dir);
-        using var file = File.OpenWrite(path);
-        await content.CopyToAsync(file, cancellationToken);
+        await using var file = File.OpenWrite(path);
+        await content.CopyToAsync(file, CancellationToken.None);
         content.Position = 0;
 
         CacheSize += l;

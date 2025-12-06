@@ -1,4 +1,4 @@
-﻿using BangumiNet.Shared.Interfaces;
+﻿using BangumiNet.Api;
 using System.Reflection;
 
 namespace BangumiNet.Shared;

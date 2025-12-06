@@ -1,5 +1,4 @@
-﻿using BangumiNet.Shared.Interfaces;
-using Microsoft.Extensions.Caching.Abstractions;
+﻿using Microsoft.Extensions.Caching.Abstractions;
 using Microsoft.Extensions.Caching.InMemory;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;

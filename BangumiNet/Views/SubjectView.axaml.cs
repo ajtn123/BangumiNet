@@ -1,3 +1,5 @@
+using Avalonia.Controls;
+using BangumiNet.BangumiData.Models;
 using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
@@ -24,6 +26,31 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
                 ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
                 ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
+                OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout(id);
             });
+    }
+
+    public static MenuFlyout? GetOpenInBrowserFlyout(int id)
+    {
+        if (BangumiDataProvider.BangumiDataObject?.Items.LastOrDefault(item =>
+        {
+            if (item.Sites.Length == 0) return false;
+            var bgm = item.Sites.FirstOrDefault(x => x.Name == "bangumi");
+            return bgm.Id != null && int.Parse(bgm.Id) == id;
+        }) is { Sites: Site[] sites })
+        {
+            var menu = new MenuFlyout();
+            foreach (var site in sites)
+            {
+                SiteMeta meta = BangumiDataProvider.BangumiDataObject.Value.SiteMeta[site.Name];
+                menu.Items.Add(new MenuItem
+                {
+                    Header = meta.Title,
+                    Command = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(site.GetUrl(meta)!))
+                });
+            }
+            return menu;
+        }
+        else return null;
     }
 }

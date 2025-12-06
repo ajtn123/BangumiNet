@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using BangumiNet.Shared.Interfaces;
 
 namespace BangumiNet.Views;
 

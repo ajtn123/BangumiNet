@@ -56,7 +56,7 @@ public static partial class ApiC
 
                 if (useCache)
                 {
-                    using var cacheStream = CacheProvider.ReadCache(url);
+                    await using var cacheStream = CacheProvider.ReadCache(url);
                     if (cacheStream is not null)
                     {
                         var cacheBitmap = new Bitmap(cacheStream);
@@ -65,8 +65,9 @@ public static partial class ApiC
                     }
                 }
 
-                using var responseStream = await (await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken)).Clone(cancellationToken: cancellationToken);
-                if (useCache) await CacheProvider.WriteCache(url, responseStream, cancellationToken);
+                await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
+                await using var responseStream = await response.Clone(cancellationToken: cancellationToken);
+                if (useCache) await CacheProvider.WriteCache(url, responseStream);
                 var responseBitmap = new Bitmap(responseStream);
                 memoryCache.Set(url, responseBitmap, MemoryCacheDuration);
                 return responseBitmap;
@@ -82,7 +83,7 @@ public static partial class ApiC
             Trace.TraceError(e.Message);
             CacheProvider.DeleteCache(url);
             if (fallback) return InternetErrorFallback;
-            return null;
+            else return null;
         }
         finally
         {

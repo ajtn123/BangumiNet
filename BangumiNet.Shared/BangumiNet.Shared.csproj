@@ -1,17 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\Package.props"/>
+  <Import Project="..\Package.props" />
 
   <PropertyGroup>
     <Title>BangumiNet Shared Code</Title>
     <Description>Shared code in BangumiNet.</Description>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>BangumiNet.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\"/>
-    <None Include="..\BangumiNet.png" Pack="true" PackagePath="\"/>
+    <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
   </ItemGroup>
 
 </Project>
