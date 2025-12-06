@@ -22,6 +22,12 @@ public static partial class BBCodeHelper
             p { word-break: break-all; white-space: pre-wrap; }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             span.quote { border-left: 1px solid #777; color: #777; }
+            div.code {
+                font-family: Consolas, "Courier New", monospace;
+                padding: 10px;
+                corner-radius: 10px;
+                border: 1px solid #777;
+            }
             ::selection { {{SelectionBackgroundPos}} {{ThemeTextColorPos}} }
             img { max-width: 98%; }
         </style>
@@ -47,7 +53,7 @@ public static partial class BBCodeHelper
             .Trim('\n', '\r')
             .ReplaceLineEndings("</p><p>")
             .Replace("<p></p>", "<br/>");
-        foreach (var p in BBCodeReplacement) result = result.Replace(p.Key, p.Value);
+        foreach (var p in BBCodeSimpleReplacement) result = result.Replace(p.Key, p.Value);
         foreach (var p in BBCodeRegexReplacement) result = p.Key.Replace(result, p.Value);
         foreach (var (i, s) in StickerProvider.Emojis.Index()) result = result.Replace(s, $"<img src=\"bn://emoji/{i}\">");
 
@@ -62,7 +68,7 @@ public static partial class BBCodeHelper
     {
         if (string.IsNullOrWhiteSpace(bbcode)) return false;
 
-        if (BBCodeReplacement
+        if (BBCodeSimpleReplacement
             .Any(p => bbcode.Contains(p.Key))) return true;
         if (BBCodeRegexReplacement
             .Any(r => r.Key.IsMatch(bbcode))) return true;
@@ -72,7 +78,7 @@ public static partial class BBCodeHelper
         return false;
     }
 
-    private static readonly Dictionary<string, string> BBCodeReplacement = new()
+    private static readonly Dictionary<string, string> BBCodeSimpleReplacement = new()
     {
         ["[b]"] = "<b>",
         ["[/b]"] = "</b>",
@@ -82,6 +88,8 @@ public static partial class BBCodeHelper
         ["[/u]"] = "</u>",
         ["[s]"] = "<s>",
         ["[/s]"] = "</s>",
+        ["[code]"] = "<div class=\"code\">",
+        ["[/code]"] = "</div>",
         ["[center]"] = "<div align=\"center\">",
         ["[/center]"] = "</div>",
         ["[right]"] = "<div align=\"right\">",
