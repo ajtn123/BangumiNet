@@ -14,7 +14,7 @@
             <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
-                    <MainImage Source="{Binding ImageLarge^}" Tag="{Binding Images.Large}"/>
+                    <MainImage Url="{Binding Images?.Large}"/>
                     <bn:InfoboxView DataContext="{Binding Infobox}" />
                 </StackPanel>
 

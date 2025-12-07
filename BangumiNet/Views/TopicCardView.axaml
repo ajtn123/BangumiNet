@@ -10,7 +10,7 @@
              x:Class="BangumiNet.Views.TopicCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
         <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
-            <Image Source="{Binding User?.AvatarLarge^}"/>
+            <MainImage Url="{Binding User.Avatar?.Large}"/>
         </Border>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">

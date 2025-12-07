@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using BangumiNet.Api.ExtraEnums;
+﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
@@ -129,8 +128,4 @@ public partial class UserViewModel : ItemViewModelBase
 
     public bool IsMe => Username == ApiC.CurrentUsername;
     public bool IsFull => Source is Api.P1.Models.User;
-
-    public Task<Bitmap?> AvatarSmall => ApiC.GetImageAsync(Avatar?.Small);
-    public Task<Bitmap?> AvatarMedium => ApiC.GetImageAsync(Avatar?.Medium);
-    public Task<Bitmap?> AvatarLarge => ApiC.GetImageAsync(Avatar?.Large);
 }

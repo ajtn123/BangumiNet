@@ -4,8 +4,6 @@ using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
-using Microsoft.Extensions.Caching.Abstractions;
-using Microsoft.Extensions.Caching.InMemory;
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Net.Http;
@@ -24,58 +22,44 @@ public static partial class ApiC
     public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
     public static Task<UserViewModel?> RefreshAuthState() => GetViewModelAsync<UserViewModel>();
 
-    //this is magic
     [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
     private static partial Regex DefaultUserAvatarUrl();
     public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
     public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("InternetError.png")));
+    public static bool IsShared(this Bitmap bitmap)
+        => ReferenceEquals(bitmap, DefaultUserAvatar) ||
+           ReferenceEquals(bitmap, InternetErrorFallback);
+
     private static readonly SemaphoreSlim semaphore = new(128);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
-    private static readonly MemoryCache memoryCache = new(new());
-    private static readonly TimeSpan MemoryCacheDuration = TimeSpan.FromMinutes(5);
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, bool fallback = false, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url)) return null;
         if (DefaultUserAvatarUrl().IsMatch(url))
             return DefaultUserAvatar;
 
-        if (memoryCache.TryGetValue(url, out Bitmap reusedBitmap))
-            return reusedBitmap;
-
         var urlLock = urlLocks.GetOrAdd(url, _ => new SemaphoreSlim(1, 1));
         await urlLock.WaitAsync(cancellationToken);
+        await semaphore.WaitAsync(cancellationToken);
         try
         {
-            if (memoryCache.TryGetValue(url, out reusedBitmap))
-                return reusedBitmap;
+            useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
 
-            await semaphore.WaitAsync(cancellationToken);
-            try
+            if (useCache)
             {
-                useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
-
-                if (useCache)
+                await using var cacheStream = CacheProvider.ReadCache(url);
+                if (cacheStream is not null)
                 {
-                    await using var cacheStream = CacheProvider.ReadCache(url);
-                    if (cacheStream is not null)
-                    {
-                        var cacheBitmap = new Bitmap(cacheStream);
-                        memoryCache.Set(url, cacheBitmap, MemoryCacheDuration);
-                        return cacheBitmap;
-                    }
+                    var cacheBitmap = new Bitmap(cacheStream);
+                    return cacheBitmap;
                 }
+            }
 
-                await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
-                await using var responseStream = await response.Clone(cancellationToken: cancellationToken);
-                if (useCache) await CacheProvider.WriteCache(url, responseStream);
-                var responseBitmap = new Bitmap(responseStream);
-                memoryCache.Set(url, responseBitmap, MemoryCacheDuration);
-                return responseBitmap;
-            }
-            finally
-            {
-                semaphore.Release();
-            }
+            await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
+            await using var responseStream = await response.Clone(cancellationToken: cancellationToken);
+            if (useCache) await CacheProvider.WriteCache(url, responseStream);
+            var responseBitmap = new Bitmap(responseStream);
+            return responseBitmap;
         }
         catch (Exception e)
         {
@@ -87,6 +71,7 @@ public static partial class ApiC
         }
         finally
         {
+            semaphore.Release();
             urlLock.Release();
         }
     }

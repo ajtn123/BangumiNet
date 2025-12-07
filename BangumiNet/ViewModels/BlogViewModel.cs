@@ -1,7 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using BangumiNet.Api.Interfaces;
-using BangumiNet.Api.P1.Models;
-using BangumiNet.Models;
+﻿using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.ViewModels;
 
@@ -12,7 +9,7 @@ public partial class BlogViewModel : ItemViewModelBase
         Source = blog;
         Content = blog.Content;
         Name = blog.Title;
-        Images = new ImageSet { Large = blog.Icon };
+        Image = blog.Icon;
         Id = blog.Id;
         NoReply = blog.Noreply;
         CreationTime = CommonUtils.ParseBangumiTime(blog.CreatedAt);
@@ -33,7 +30,7 @@ public partial class BlogViewModel : ItemViewModelBase
         Source = blog;
         Name = blog.Title;
         Content = blog.Summary;
-        Images = new ImageSet { Large = blog.Icon };
+        Image = blog.Icon;
         Id = blog.Id;
         CreationTime = CommonUtils.ParseBangumiTime(blog.CreatedAt);
         UpdateTime = CommonUtils.ParseBangumiTime(blog.UpdatedAt);
@@ -52,7 +49,7 @@ public partial class BlogViewModel : ItemViewModelBase
     }
 
     [Reactive] public partial string? Content { get; set; }
-    [Reactive] public partial IImages? Images { get; set; }
+    [Reactive] public partial string? Image { get; set; }
     [Reactive] public partial int? NoReply { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }
@@ -63,6 +60,4 @@ public partial class BlogViewModel : ItemViewModelBase
     [Reactive] public partial bool IsPublic { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
-
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 }

@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using BangumiNet.Api.ExtraEnums;
+﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
@@ -173,11 +172,6 @@ public partial class CharacterViewModel : ItemViewModelBase
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
-
-    public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
-    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public bool IsCollected => CollectionTime != null;
 

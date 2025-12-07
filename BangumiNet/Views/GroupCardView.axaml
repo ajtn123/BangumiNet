@@ -9,9 +9,7 @@
              x:DataType="bn:GroupViewModel"
              x:Class="BangumiNet.Views.GroupCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
-            <Image Source="{Binding ImageLarge^}"/>
-        </Border>
+        <MainImage Url="{Binding Images?.Large}" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Column="1">
             <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>

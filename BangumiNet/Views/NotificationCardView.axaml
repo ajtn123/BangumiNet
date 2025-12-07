@@ -8,8 +8,7 @@
              x:DataType="bn:NotificationViewModel"
              x:Class="BangumiNet.Views.NotificationCardView">
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-        <MainImage Source="{Binding User.AvatarSmall^}"
-                   Tag="{Binding User.Avatar.Small}"
+        <MainImage Url="{Binding User.Avatar?.Small}"
                    VerticalAlignment="Top" Width="50">
             <bn:UserFlyoutView DataContext="{Binding User}"/>
         </MainImage>

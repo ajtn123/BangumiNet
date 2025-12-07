@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using BangumiNet.Api.Extensions;
+﻿using BangumiNet.Api.Extensions;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
@@ -259,11 +258,6 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     public ICommand? CollectCommand { get; private set; }
-
-    public Task<Bitmap?> ImageGrid => ApiC.GetImageAsync(Images?.Grid);
-    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
-    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsFull => Source is Api.P1.Models.Subject;

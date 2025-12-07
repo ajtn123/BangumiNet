@@ -9,8 +9,7 @@
              x:DataType="bn:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCommentView">
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
-        <MainImage Source="{Binding User.AvatarLarge^}"
-                   Tag="{Binding User.Avatar.Large}"
+        <MainImage Url="{Binding User.Avatar?.Large}"
                    VerticalAlignment="Top" Width="50">
             <bn:UserFlyoutView DataContext="{Binding User}"/>
         </MainImage>

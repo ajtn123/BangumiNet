@@ -4,6 +4,8 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using System.IO;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.Templates;
 
@@ -17,9 +19,40 @@ public class MainImage : ContentControl
         set => SetValue(SourceProperty, value);
     }
 
+    public static readonly StyledProperty<string?> UrlProperty
+        = AvaloniaProperty.Register<MainImage, string?>(nameof(Url));
+    public string? Url
+    {
+        get => GetValue(UrlProperty);
+        set => SetValue(UrlProperty, value);
+    }
+
+    private CompositeDisposable disposables = [];
+    public async Task LoadImageAsync()
+    {
+        var bitmap = await ApiC.GetImageAsync(Url);
+        if (bitmap != null && !bitmap.IsShared())
+            bitmap.DisposeWith(disposables);
+        Source = bitmap;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _ = LoadImageAsync();
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        Source = null;
+        disposables.Dispose();
+        disposables = [];
+    }
+
     public void OpenImageWithExternalProgram(object? sender, RoutedEventArgs e)
     {
-        if (Tag is string url && !string.IsNullOrWhiteSpace(url))
+        if (Url is string url)
             if (CacheProvider.GetCacheFile(url) is string path)
             {
                 var extension = url.Contains("png") ? "png"
@@ -39,13 +72,7 @@ public class MainImage : ContentControl
     }
 
     public async void ReloadImage(object? sender, RoutedEventArgs e)
-    {
-        if (Tag is string url && !string.IsNullOrWhiteSpace(url))
-        {
-            CacheProvider.DeleteCache(url);
-            Source = await ApiC.GetImageAsync(url);
-        }
-    }
+        => await LoadImageAsync();
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {

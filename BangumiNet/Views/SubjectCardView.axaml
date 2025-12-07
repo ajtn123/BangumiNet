@@ -14,9 +14,7 @@
              x:Class="BangumiNet.Views.SubjectCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
           Classes="PointoverTextHost" Name="CardGrid">
-        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
-            <Image Source="{Binding ImageGrid^}"/>
-        </Border>
+        <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>

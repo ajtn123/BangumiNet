@@ -1,5 +1,4 @@
-﻿using Avalonia.Media.Imaging;
-using BangumiNet.Api.Interfaces;
+﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.ViewModels;
@@ -66,10 +65,6 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial int? Category { get; set; }
     [Reactive] public partial GroupMemberListViewModel? Members { get; set; }
     [Reactive] public partial GroupTopicListViewModel? Topics { get; set; }
-
-    public Task<Bitmap?> ImageSmall => ApiC.GetImageAsync(Images?.Small);
-    public Task<Bitmap?> ImageMedium => ApiC.GetImageAsync(Images?.Medium);
-    public Task<Bitmap?> ImageLarge => ApiC.GetImageAsync(Images?.Large);
 
     public bool IsFull => Source is Group;
 }
