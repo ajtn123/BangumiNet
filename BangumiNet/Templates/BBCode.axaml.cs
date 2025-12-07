@@ -13,6 +13,7 @@ public class BBCode : TemplatedControl
 {
     private ContentPresenter? contentPresenter;
     private readonly CompositeDisposable disposables = [];
+    private readonly CompositeDisposable images = [];
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -25,22 +26,33 @@ public class BBCode : TemplatedControl
             if (string.IsNullOrWhiteSpace(text))
                 contentPresenter?.Content = null;
             else if (BBCodeHelper.ContainsBBCode(text))
-                contentPresenter?.Content = GetHtmlPanel(text);
+                contentPresenter?.Content = GetHtmlPanel(text, images);
             else
                 contentPresenter?.Content = new SelectableTextBlock() { Text = text, TextWrapping = TextWrapping.Wrap };
         }).DisposeWith(disposables);
     }
 
-    public static HtmlPanel GetHtmlPanel(string? text)
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        images.Clear();
+        disposables.Clear();
+    }
+
+    public static HtmlPanel GetHtmlPanel(string? text, CompositeDisposable disposables)
     {
         HtmlPanel hp = new();
-        hp.ImageLoad += static async (s, e) =>
+        hp.ImageLoad += async (s, e) =>
         {
             if (e.Event.Handled) return;
 
             var src = e.Event.Src;
-            if (src.StartsWith("http"))
-                e.Event.Callback(await ApiC.GetImageAsync(e.Event.Src, fallback: true));
+            if (src.StartsWith("http") || src.StartsWith("//"))
+            {
+                var bitmap = await ApiC.GetImageAsync(e.Event.Src, fallback: true);
+                bitmap?.DisposeWith(disposables);
+                e.Event.Callback(bitmap);
+            }
             else if (src.StartsWith("bn://emoji/") && int.TryParse(src[11..], out var emojiIndex))
                 e.Event.Callback(StickerProvider.GetStickerBitmap(emojiIndex + 1));
             else if (src.StartsWith("bn://sticker/") && int.TryParse(src[13..], out var stickerIndex))

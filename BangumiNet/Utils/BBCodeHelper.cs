@@ -108,6 +108,7 @@ public static partial class BBCodeHelper
         [User()] = $"<a href=\"{UrlProvider.BangumiTvUserUrlBase}$1\">@$2</a>",
         [Image()] = "</p><img src=\"$1\"/><p>",
         [ImageSized()] = "</p><img src=\"$3\" width=\"$1\" height=\"$2\"/><p>",
+        [Photo()] = "</p><img src=\"https://lain.bgm.tv/pic/photo/l/$2\"/><p>",
         [Quote()] = "<span class=\"quote\"> $1</span>",
         [Sticker()] = "<img src=\"bn://sticker/$1\"/>",
     };
@@ -126,6 +127,8 @@ public static partial class BBCodeHelper
     private static partial Regex Image();
     [GeneratedRegex(@"\[img=([0-9]+),([0-9]+)\](.*?)\[/img\]")]
     private static partial Regex ImageSized();
+    [GeneratedRegex(@"\[photo=([0-9]+)\](.*?)\[/photo\]")]
+    private static partial Regex Photo();
     [GeneratedRegex(@" *\[quote\](.*?)\[/quote\] *")]
     private static partial Regex Quote();
     [GeneratedRegex(@"\(bgm([0-9]{1,3})\)")]

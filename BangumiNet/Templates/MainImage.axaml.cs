@@ -27,7 +27,7 @@ public class MainImage : ContentControl
         set => SetValue(UrlProperty, value);
     }
 
-    private CompositeDisposable disposables = [];
+    private readonly CompositeDisposable disposables = [];
     public async Task LoadImageAsync()
     {
         var bitmap = await ApiC.GetImageAsync(Url);
@@ -46,8 +46,7 @@ public class MainImage : ContentControl
     {
         base.OnDetachedFromVisualTree(e);
         Source = null;
-        disposables.Dispose();
-        disposables = [];
+        disposables.Clear();
     }
 
     public void OpenImageWithExternalProgram(object? sender, RoutedEventArgs e)
