@@ -27,7 +27,7 @@
                                         <Button Classes="Icon" Content="{ice:FluentIcon Icon=ArrowCounterclockwise}"
                                                 ToolTip.Tip="重新载入图片"
                                                 Name="PART_ReloadImageButton"
-                                                IsEnabled="{TemplateBinding Tag, Converter={StaticResource NEWCvt}}"/>
+                                                IsEnabled="{TemplateBinding Url, Converter={StaticResource NEWCvt}}"/>
                                     </StackPanel>
                                     <Separator IsVisible="{TemplateBinding Content, Converter={StaticResource NullCvt}}"/>
                                     <ContentPresenter Content="{TemplateBinding Content}" />

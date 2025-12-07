@@ -22,7 +22,7 @@ public static class BangumiDataProvider
 
         if (isLoading) return; else isLoading = true;
 
-        using var json = local.OpenRead();
+        await using var json = local.OpenRead();
         BangumiDataObject = await BangumiDataLoader.LoadAsync(json);
 
         isLoading = false;
