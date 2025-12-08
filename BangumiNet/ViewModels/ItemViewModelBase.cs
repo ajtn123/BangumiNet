@@ -6,6 +6,7 @@ public partial class ItemViewModelBase : ViewModelBase
 {
     public ItemViewModelBase()
     {
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
         ShowRevisionsCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(RevisionListViewModel));
         OpenInNewWindowCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(this));
         ShowNetworkCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(new ItemNetworkViewModel(this)));

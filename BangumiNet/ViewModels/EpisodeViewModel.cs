@@ -95,7 +95,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
 
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));

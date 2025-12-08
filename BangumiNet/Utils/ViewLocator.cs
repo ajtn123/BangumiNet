@@ -7,6 +7,7 @@ public class ViewLocator : IDataTemplate
 {
     public Control? Build(object? data) => data switch
     {
+        TextViewModel => new TextView { DataContext = data },
         HomeViewModel => new HomeView { DataContext = data },
         AiringViewModel => new AiringView { DataContext = data },
         MeViewModel => new MeView { DataContext = data },

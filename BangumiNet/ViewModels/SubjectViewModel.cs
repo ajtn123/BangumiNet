@@ -198,11 +198,11 @@ public partial class SubjectViewModel : ItemViewModelBase
             PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
             CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
             SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
+            TopicCardListViewModel = new(RelatedItemType.Topic, ItemType, Id);
             CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
         }
 
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
             this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
@@ -252,6 +252,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? TopicCardListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }

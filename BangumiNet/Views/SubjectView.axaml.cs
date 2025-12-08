@@ -23,6 +23,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 _ = ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                _ = ViewModel?.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
                 _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
                 ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
                 ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;

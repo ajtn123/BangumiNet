@@ -82,6 +82,8 @@
                     <bn:RelatedItemListView DataContext="{Binding CharacterBadgeListViewModel}"/>
                     <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>
+                    <Separator/>
+                    <bn:RelatedItemListView DataContext="{Binding TopicCardListViewModel}"/>
                     
                     <Expander Header="评论" HorizontalAlignment="Stretch"
                               Name="CommentExpander" IsExpanded="True">

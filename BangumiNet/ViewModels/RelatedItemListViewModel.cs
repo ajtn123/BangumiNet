@@ -134,6 +134,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.PersonCharacter pc => CharacterViewModel.Init(pc),
         Api.P1.Models.PersonWork pw => SubjectViewModel.Init(pw),
         Api.P1.Models.Episode ep => new EpisodeViewModel(ep),
+        Api.P1.Models.Topic st => new TopicViewModel(st, ItemType.Subject),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 

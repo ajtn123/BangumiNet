@@ -29,6 +29,9 @@
                     <DataTemplate DataType="vm:PersonViewModel">
                         <v:PersonBadgeView DataContext="{Binding}"/>
                     </DataTemplate>
+                    <DataTemplate DataType="vm:TopicViewModel">
+                        <v:TopicCardView DataContext="{Binding}" MaxWidth="400"/>
+                    </DataTemplate>
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

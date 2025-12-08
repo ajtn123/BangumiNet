@@ -72,7 +72,6 @@ public partial class TopicViewModel : ItemViewModelBase
     {
         ItemType = ItemType.Topic;
         Title = $"{Name} - {Title}";
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
