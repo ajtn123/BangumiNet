@@ -45,6 +45,7 @@ dotnet publish --configuration Release --runtime <RID>
 
 - [Bangumi](https://bgm.tv)
 - [Bangumi 开源项目](https://github.com/bangumi)
+- [Bangumi Data](https://github.com/bangumi-data/bangumi-data)
 - [.NET](https://dotnet.microsoft.com/zh-cn/)
 - [Avalonia](https://avaloniaui.net/)
 - [Kiota](https://learn.microsoft.com/zh-cn/openapi/kiota/overview)
