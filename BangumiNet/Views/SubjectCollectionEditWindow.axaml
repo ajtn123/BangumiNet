@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bn="https://github.com/ajtn123/BangumiNet"
         xmlns:ic="using:FluentIcons.Avalonia"
-        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+        xmlns:ice="using:FluentIcons.Avalonia.Markup"
         mc:Ignorable="d" Width="400"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen"

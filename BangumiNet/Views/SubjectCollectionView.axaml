@@ -5,7 +5,7 @@
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="100"
              x:DataType="vm:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCollectionView">

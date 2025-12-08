@@ -7,7 +7,7 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
              x:DataType="vm:SubjectRatingViewModel"
              x:Class="BangumiNet.Views.SubjectRatingView">

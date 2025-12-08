@@ -6,7 +6,7 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
              xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
              x:DataType="vm:EpisodeViewModel"

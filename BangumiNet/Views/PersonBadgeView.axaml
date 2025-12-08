@@ -6,7 +6,7 @@
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
              xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:PersonViewModel"
              x:Class="BangumiNet.Views.PersonBadgeView">

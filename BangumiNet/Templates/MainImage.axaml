@@ -1,6 +1,6 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:ic="using:FluentIcons.Avalonia"
-                    xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+                    xmlns:ice="using:FluentIcons.Avalonia.Markup"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <StackPanel Width="400" Spacing="10">

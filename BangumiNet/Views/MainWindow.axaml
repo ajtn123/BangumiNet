@@ -8,7 +8,7 @@
         x:DataType="bn:MainWindowViewModel"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:ic="using:FluentIcons.Avalonia"
-        xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+        xmlns:ice="using:FluentIcons.Avalonia.Markup"
         Title="{Binding Title}">
 
     <Design.DataContext>
