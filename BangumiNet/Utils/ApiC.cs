@@ -24,11 +24,15 @@ public static partial class ApiC
 
     [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
     private static partial Regex DefaultUserAvatarUrl();
+    [GeneratedRegex(@"^https?://lain\.bgm\.tv/pic/photo/[A-Za-z]/no_photo\.png$")]
+    private static partial Regex NoPhotoUrl();
     public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
-    public static Bitmap InternetErrorFallback { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("InternetError.png")));
+    public static Bitmap FallbackImage { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("FallbackImage.png")));
+    public static Bitmap InternetErrorFallbackImage { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("InternetError.png")));
     public static bool IsShared(this Bitmap bitmap)
         => ReferenceEquals(bitmap, DefaultUserAvatar) ||
-           ReferenceEquals(bitmap, InternetErrorFallback);
+           ReferenceEquals(bitmap, FallbackImage) ||
+           ReferenceEquals(bitmap, InternetErrorFallbackImage);
 
     private static readonly SemaphoreSlim semaphore = new(128);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
@@ -37,6 +41,8 @@ public static partial class ApiC
         if (string.IsNullOrWhiteSpace(url)) return null;
         if (DefaultUserAvatarUrl().IsMatch(url))
             return DefaultUserAvatar;
+        if (NoPhotoUrl().IsMatch(url))
+            return FallbackImage;
 
         var urlLock = urlLocks.GetOrAdd(url, _ => new SemaphoreSlim(1, 1));
         await urlLock.WaitAsync(cancellationToken);
@@ -66,7 +72,7 @@ public static partial class ApiC
             Trace.TraceError($"Image Loading Failed: {url}");
             Trace.TraceError(e.Message);
             CacheProvider.DeleteCache(url);
-            if (fallback) return InternetErrorFallback;
+            if (fallback) return InternetErrorFallbackImage;
             else return null;
         }
         finally

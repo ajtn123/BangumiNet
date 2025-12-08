@@ -11,6 +11,7 @@ public static class UrlProvider
     public static string BangumiTvGroupUrlBase => $"{BangumiTvUrlBase}/group/";
     public static string BangumiTvSubjectTopicUrlBase => $"{BangumiTvUrlBase}/subject/topic/";
     public static string BangumiTvGroupTopicUrlBase => $"{BangumiTvUrlBase}/group/topic/";
+    public static string BangumiTvBlogUrlBase => $"{BangumiTvUrlBase}/blog/";
 
     public const string DefaultUserAvatarUrl = "https://lain.bgm.tv/pic/user/l/icon.jpg";
     public const string BangumiUrl = "https://bangumi.tv/";

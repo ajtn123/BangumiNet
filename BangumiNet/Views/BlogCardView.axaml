@@ -6,37 +6,30 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
-             x:DataType="bn:TopicViewModel"
-             x:Class="BangumiNet.Views.TopicCardView">
+             x:DataType="bn:BlogViewModel"
+             x:Class="BangumiNet.Views.BlogCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <Border CornerRadius="5" ClipToBounds="True" VerticalAlignment="Top">
-            <MainImage Url="{Binding User.Avatar?.Large}"/>
-        </Border>
+        <MainImage Url="{Binding Image}" VerticalAlignment="Top"/>
 
-        <StackPanel Grid.Column="1" Name="MainStackPanel">
+        <StackPanel Grid.Column="1">
             <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
-                <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
-                    <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
-                </Border>
-                <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding !IsDisplayed}">
-                    <InfoItem Tip="话题状态" CommonText="{Binding Display, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>
-                </Border>
-                <HyperlinkButton ToolTip.Tip="在新窗口显示项目"
-                                 Content="{Binding Parent,Converter={StaticResource NameCnCvt}}"
-                                 IsVisible="{Binding Parent,Converter={StaticResource NullCvt}}"
-                                 Classes="Sec" Command="{Binding Parent?.OpenInNewWindowCommand}"/>
                 <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
                 <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
                                  Content="{Binding User.Nickname}"
                                  IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                  Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
-                <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
-                <!-- <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/> -->
+                <InfoItem Tip="回复数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                <TextBlock>
+                    <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
+                </TextBlock>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
+            <SelectableTextBlock Text="{Binding Content}"
+                                 IsVisible="{Binding Content, Converter={StaticResource NEWCvt}}"
+                                 Classes="Sec PointoverText" TextWrapping="Wrap"/>
         </StackPanel>
-
+        
         <Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
@@ -46,12 +39,11 @@
                         <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                     </StackPanel>
                     <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
-                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
                         <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="CalendarEdit"/>
                     </WrapPanel>
                     <bn:CardView Content="{Binding User}"/>
-                    <bn:CardView Content="{Binding Parent}" Margin="0,5,0,0"/>
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

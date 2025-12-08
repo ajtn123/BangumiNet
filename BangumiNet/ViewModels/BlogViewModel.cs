@@ -42,10 +42,19 @@ public partial class BlogViewModel : ItemViewModelBase
 
         Init();
     }
+    public static BlogViewModel Init(SubjectReview review)
+        => new(review.Entry!)
+        {
+            IsReview = true,
+            ReviewId = review.Id,
+            User = new(review.User!),
+        };
 
     private void Init()
     {
         ItemType = ItemType.Blog;
+
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvBlogUrlBase + Id));
     }
 
     [Reactive] public partial string? Content { get; set; }
@@ -60,4 +69,7 @@ public partial class BlogViewModel : ItemViewModelBase
     [Reactive] public partial bool IsPublic { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
+
+    [Reactive] public partial bool IsReview { get; set; }
+    [Reactive] public partial int? ReviewId { get; set; }
 }

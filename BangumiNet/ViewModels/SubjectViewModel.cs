@@ -198,6 +198,7 @@ public partial class SubjectViewModel : ItemViewModelBase
             PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
             CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
             SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
+            BlogCardListViewModel = new(RelatedItemType.Review, ItemType, Id);
             TopicCardListViewModel = new(RelatedItemType.Topic, ItemType, Id);
             CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
@@ -252,6 +253,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? PersonBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? BlogCardListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? TopicCardListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
