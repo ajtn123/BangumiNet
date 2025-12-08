@@ -19,9 +19,10 @@
                                  Content="{Binding User.Nickname}"
                                  IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
                                  Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
-                <InfoItem Tip="回复数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
                 <TextBlock>
-                    <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
+                    <ic:FluentIcon ToolTip.Tip="本日志非公开" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
                 </TextBlock>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
@@ -40,8 +41,8 @@
                     </StackPanel>
                     <WrapPanel Classes="InfoBar">
                         <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="CalendarEdit"/>
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
                     </WrapPanel>
                     <bn:CardView Content="{Binding User}"/>
                 </StackPanel>

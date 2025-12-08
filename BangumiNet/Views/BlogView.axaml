@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.MarkupExtensions"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:BlogViewModel"
+             x:Class="BangumiNet.Views.BlogView">
+    <ScrollViewer>
+        <Grid ColumnDefinitions="*,250" RowDefinitions="Auto,*"
+                Classes="ViewRoot" Margin="5">
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="{Binding Name}"
+                            Classes="Title" FontSize="30"/>
+                <WrapPanel Classes="InfoBar">
+                    <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
+                    <InfoItem Tip="浏览数" Text="{Binding Views}" Icon="Eye"/>
+                    <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
+                    <InfoItem Tip="相关" Text="{Binding Related}"/>
+                    <InfoItem Tip="无回复" Text="{Binding NoReply}"/>
+                    <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
+                    <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <TextBlock>
+                        <ic:FluentIcon ToolTip.Tip="本日志非公开" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
+                    </TextBlock>
+                </WrapPanel>
+                <ItemsControl ItemsSource="{Binding Tags}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Classes="Card TagBadge">
+                                <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                </StackPanel>
+
+                <BBCode Text="{Binding Content}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="0" Spacing="5">
+                <MainImage Url="{Binding Image}"/>
+                <bn:CardView Content="{Binding User}"/>
+                <bn:SubjectListView DataContext="{Binding RelatedSubjects}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <bn:RelatedItemListView DataContext="{Binding Photos}"/>
+                <bn:CommentListView DataContext="{Binding Comments}" Name="CommentView" />
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

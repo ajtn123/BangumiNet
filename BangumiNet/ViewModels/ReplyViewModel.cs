@@ -38,6 +38,13 @@ public partial class ReplyViewModel : ViewModelBase
                         ReplyTo = Parent.Id,
                         TurnstileToken = token
                     }, cancellationToken: ct))?.Id;
+                else if (Parent.ItemType == ItemType.Blog)
+                    ncid = (await ApiC.P1.Blogs[(int)Parent.MainId].Comments.PostAsync(new()
+                    {
+                        Content = Content,
+                        ReplyTo = Parent.Id,
+                        TurnstileToken = token
+                    }, cancellationToken: ct))?.Id;
                 else if (Parent.ItemType == ItemType.Topic)
                     if (Parent.ParentItemType == ItemType.Subject)
                         ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsync(new()
@@ -101,6 +108,13 @@ public partial class ReplyViewModel : ViewModelBase
                     }, cancellationToken: ct))?.Id;
                 else if (Ancestor.ItemType == ItemType.Episode)
                     ncid = (await ApiC.P1.Episodes[(int)Ancestor.Id].Comments.PostAsync(new()
+                    {
+                        Content = Content,
+                        ReplyTo = 0,
+                        TurnstileToken = token
+                    }, cancellationToken: ct))?.Id;
+                else if (Ancestor.ItemType == ItemType.Blog)
+                    ncid = (await ApiC.P1.Blogs[(int)Ancestor.Id].Comments.PostAsync(new()
                     {
                         Content = Content,
                         ReplyTo = 0,

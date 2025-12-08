@@ -62,6 +62,20 @@ public partial class CommentViewModel : ViewModelBase
             User = new(comment.User);
         CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
     }
+    public CommentViewModel(Api.P1.P1.Blogs.Item.Comments.Comments comment)
+    {
+        ItemType = ItemType.Episode;
+        Content = comment.Content;
+        MainId = comment.MainID;
+        RelatedId = comment.RelatedID;
+        Id = comment.Id;
+        Reactions = new(comment.Reactions, Id, ItemType);
+        State = (CommentState?)comment.State;
+        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
+        if (comment.User != null)
+            User = new(comment.User);
+        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
+    }
     public CommentViewModel(Reply comment, ItemType itemType, int? mainId, ItemType? parentItemType = null)
     {
         ItemType = itemType;
@@ -117,7 +131,7 @@ public partial class CommentViewModel : ViewModelBase
     [Reactive] public partial ObservableCollection<CommentViewModel>? Replies { get; set; }
     [Reactive] public partial CommentViewModel? Parent { get; set; }
 
-    private static readonly ItemType[] NoReactionItemTypes = [ItemType.Character, ItemType.Person, ItemType.Timeline];
+    private static readonly ItemType[] NoReactionItemTypes = [ItemType.Character, ItemType.Person, ItemType.Blog, ItemType.Timeline];
     private static readonly ItemType[] NoReplyItemTypes = [ItemType.Subject];
     public bool NoReaction => NoReactionItemTypes.Contains(ItemType) && Reactions?.Reactions == null;
     public bool NoReply => NoReplyItemTypes.Contains(ItemType) && Replies == null;

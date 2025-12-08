@@ -19,13 +19,13 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 if (fullItem == null) return;
                 DataContext = fullItem;
 
-                _ = ViewModel?.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
+                ViewModel?.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                ViewModel?.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
                 ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
                 ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
                 OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout(id);

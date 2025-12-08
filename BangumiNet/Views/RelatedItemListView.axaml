@@ -33,6 +33,9 @@
                     <DataTemplate DataType="bn:BlogViewModel">
                         <bn:BlogCardView DataContext="{Binding}" Width="400"/>
                     </DataTemplate>
+                    <DataTemplate DataType="bn:PhotoViewModel">
+                        <bn:PhotoView DataContext="{Binding}"/>
+                    </DataTemplate>
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

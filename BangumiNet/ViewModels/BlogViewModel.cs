@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.P1.Models;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.ViewModels;
 
@@ -54,6 +55,10 @@ public partial class BlogViewModel : ItemViewModelBase
     {
         ItemType = ItemType.Blog;
 
+        RelatedSubjects = new(RelatedItemType.Subject, ItemType, Id);
+        Photos = new(RelatedItemType.Photo, ItemType, Id);
+        Comments = new(ItemType, Id);
+
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvBlogUrlBase + Id));
     }
 
@@ -69,7 +74,12 @@ public partial class BlogViewModel : ItemViewModelBase
     [Reactive] public partial bool IsPublic { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? RelatedSubjects { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? Photos { get; set; }
+    [Reactive] public partial CommentListViewModel? Comments { get; set; }
 
     [Reactive] public partial bool IsReview { get; set; }
     [Reactive] public partial int? ReviewId { get; set; }
+
+    public bool IsFull => Source is BlogEntry;
 }

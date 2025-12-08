@@ -130,6 +130,15 @@ public static partial class ApiC
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
         }
+        else if (typeof(T) == typeof(BlogViewModel) && id is int bid)
+        {
+            Api.P1.Models.BlogEntry? blog = null;
+            try { blog = await P1.Blogs[bid].GetAsync(cancellationToken: cancellationToken); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (blog is null) return null;
+            else return new BlogViewModel(blog) as T;
+        }
         else if (typeof(T) == typeof(UserViewModel) && username is string uid)
         {
             Api.P1.Models.User? user = null;

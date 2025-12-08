@@ -27,6 +27,9 @@
 		<DataTemplate DataType="bn:TopicViewModel">
 			<bn:TopicView DataContext="{Binding}"/>
         </DataTemplate>
+		<DataTemplate DataType="bn:BlogViewModel">
+			<bn:BlogView DataContext="{Binding}"/>
+        </DataTemplate>
 		<DataTemplate DataType="bn:RevisionListViewModel">
 			<bn:RevisionListView DataContext="{Binding}"/>
         </DataTemplate>

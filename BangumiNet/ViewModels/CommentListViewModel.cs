@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Helpers;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Subjects.Item.Comments;
 using System.Reactive;
@@ -28,29 +29,31 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
 
     public Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
-        if (ItemType is not ItemType type || Id is not int i || page is not int p) return Task.CompletedTask;
-        int offset = (p - 1) * Limit;
+        if (ItemType is not ItemType type || Id is not int i) return Task.CompletedTask;
 
         return type switch
         {
-            Shared.ItemType.Subject => LoadSubjectComment(i, offset, cancellationToken),
-            Shared.ItemType.Episode => LoadEpisodeComment(i, offset, cancellationToken),
-            Shared.ItemType.Character => LoadCharacterComment(i, offset, cancellationToken),
-            Shared.ItemType.Person => LoadPersonComment(i, offset, cancellationToken),
-            Shared.ItemType.Timeline => LoadTimelineComment(i, offset, cancellationToken),
+            Shared.ItemType.Subject => LoadSubjectComment(i, page, cancellationToken),
+            Shared.ItemType.Episode => LoadEpisodeComment(i, cancellationToken),
+            Shared.ItemType.Character => LoadCharacterComment(i, cancellationToken),
+            Shared.ItemType.Person => LoadPersonComment(i, cancellationToken),
+            Shared.ItemType.Blog => LoadBlogComment(i, cancellationToken),
+            Shared.ItemType.Timeline => LoadTimelineComment(i, cancellationToken),
             _ => throw new NotImplementedException(),
         };
     }
 
-    private async Task LoadSubjectComment(int id, int offset, CancellationToken cancellationToken = default)
+    private async Task LoadSubjectComment(int id, int? page, CancellationToken cancellationToken = default)
     {
+        if (page is not int p) return;
+        int offset = (p - 1) * Limit;
+
         CommentsGetResponse? response = null;
         try
         {
             response = await ApiC.P1.Subjects[id].Comments.GetAsync(config =>
             {
-                config.QueryParameters.Limit = Limit;
-                config.QueryParameters.Offset = offset;
+                config.Paging(Limit, offset);
                 config.QueryParameters.Type = (int?)CollectionType;
             }, cancellationToken);
         }
@@ -61,7 +64,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
         Sources.Add(response);
     }
-    private async Task LoadCharacterComment(int id, int offset, CancellationToken cancellationToken = default)
+    private async Task LoadCharacterComment(int id, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Characters.Item.Comments.Comments>? response = null;
         try
@@ -72,10 +75,9 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
-    private async Task LoadPersonComment(int id, int offset, CancellationToken cancellationToken = default)
+    private async Task LoadPersonComment(int id, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Persons.Item.Comments.Comments>? response = null;
         try
@@ -86,10 +88,9 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
-    private async Task LoadEpisodeComment(int id, int offset, CancellationToken cancellationToken = default)
+    private async Task LoadEpisodeComment(int id, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Episodes.Item.Comments.Comments>? response = null;
         try
@@ -100,10 +101,22 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
-    private async Task LoadTimelineComment(int id, int offset, CancellationToken cancellationToken = default)
+    private async Task LoadBlogComment(int id, CancellationToken cancellationToken = default)
+    {
+        List<Api.P1.P1.Blogs.Item.Comments.Comments>? response = null;
+        try
+        {
+            response = await ApiC.P1.Blogs[id].Comments.GetAsync(cancellationToken: cancellationToken);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        SubjectViewModels = response.Select<Api.P1.P1.Blogs.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        Sources.Add(response);
+    }
+    private async Task LoadTimelineComment(int id, CancellationToken cancellationToken = default)
     {
         List<Api.P1.P1.Timeline.Item.Replies.Replies>? response = null;
         try
@@ -114,7 +127,6 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Timeline.Item.Replies.Replies, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response.Count, offset, response.Count);
         Sources.Add(response);
     }
     public void LoadReplies(List<Reply> replies)

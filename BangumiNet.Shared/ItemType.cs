@@ -12,6 +12,7 @@
         Timeline,
         Revision,
         Blog,
+        Photo,
     }
 }
 namespace BangumiNet.Shared.Extensions

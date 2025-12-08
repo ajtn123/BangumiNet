@@ -46,6 +46,11 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                     RelatedItemType.PersonCast => await ApiC.V0.Persons[id].Characters.GetAsync(cancellationToken: cancellationToken),
                     _ => throw new NotImplementedException(),
                 },
+                ItemType.Blog => Type switch
+                {
+                    RelatedItemType.Subject => await ApiC.P1.Blogs[id].Subjects.GetAsync(cancellationToken: cancellationToken),
+                    _ => throw new NotImplementedException(),
+                },
                 _ => throw new NotImplementedException(),
             };
         }
@@ -134,8 +139,10 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.PersonCharacter pc => CharacterViewModel.Init(pc),
         Api.P1.Models.SubjectReview sr => BlogViewModel.Init(sr),
         Api.P1.Models.PersonWork pw => SubjectViewModel.Init(pw),
+        Api.P1.Models.SlimSubject ss => new SubjectViewModel(ss),
         Api.P1.Models.Episode ep => new EpisodeViewModel(ep),
         Api.P1.Models.Topic st => new TopicViewModel(st, ItemType.Subject),
+        Api.P1.Models.BlogPhoto bp => new PhotoViewModel(bp),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 
