@@ -1,16 +1,16 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class AiringView : UserControl
+public partial class AiringView : ReactiveUserControl<AiringViewModel>
 {
     public AiringView()
     {
         InitializeComponent();
-        DataContextChanged += (s, e) =>
-        {
-            if (DataContext is not AiringViewModel vm) return;
-            _ = vm.Highlight();
-        };
+
+        this.WhenAnyValue(x => x.ViewModel)
+            .WhereNotNull()
+            .Subscribe(async vm =>
+            {
+                _ = vm.Highlight();
+            });
     }
 }

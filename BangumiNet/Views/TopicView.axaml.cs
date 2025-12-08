@@ -1,3 +1,5 @@
+using System.Reactive.Linq;
+
 namespace BangumiNet.Views;
 
 public partial class TopicView : ReactiveUserControl<TopicViewModel>
@@ -6,20 +8,18 @@ public partial class TopicView : ReactiveUserControl<TopicViewModel>
     {
         InitializeComponent();
 
-        DataContextChanged += async (s, e) =>
-        {
-            if (dataContextChanges >= 1) return;
-            if (DataContext is not TopicViewModel viewModel) return;
-            if (!viewModel.IsFull)
+        this.WhenAnyValue(x => x.ViewModel)
+            .WhereNotNull()
+            .Where(vm => !vm.IsFull)
+            .Subscribe(async vm =>
             {
-                if (viewModel.Id is not int id || viewModel.ParentType is not ItemType parentType) return;
-                var fullSubject = await ApiC.GetTopicViewModelAsync(parentType, id);
-                if (fullSubject == null) return;
-                dataContextChanges += 1;
-                DataContext = fullSubject;
-            }
-        };
+                var fullItem = await ApiC.GetTopicViewModelAsync((ItemType)vm.ParentType!, (int)vm.Id!);
+                if (fullItem == null) return;
+                ViewModel = fullItem;
+            });
+        //this.WhenAnyValue(x => x.ViewModel)
+        //    .WhereNotNull()
+        //    .Where(vm => vm.IsFull)
+        //    .Subscribe(async vm => { });
     }
-
-    private uint dataContextChanges = 0;
 }

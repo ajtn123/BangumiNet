@@ -11,24 +11,29 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
         InitializeComponent();
 
         this.WhenAnyValue(x => x.ViewModel)
-            .Where(x => x?.IsFull == false)
-            .Subscribe(async x =>
+            .WhereNotNull()
+            .Where(vm => !vm.IsFull)
+            .Subscribe(async vm =>
             {
-                if (ViewModel!.Id is not int id) return;
-                var fullItem = await ApiC.GetViewModelAsync<SubjectViewModel>(id);
+                var fullItem = await ApiC.GetViewModelAsync<SubjectViewModel>(vm.Id);
                 if (fullItem == null) return;
-                DataContext = fullItem;
-
-                ViewModel?.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                ViewModel?.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
-                ViewModel?.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(ViewModel.Id);
-                ViewModel?.SubjectCollectionViewModel?.Parent = ViewModel;
-                OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout(id);
+                ViewModel = fullItem;
+            });
+        this.WhenAnyValue(x => x.ViewModel)
+            .WhereNotNull()
+            .Where(vm => vm.IsFull)
+            .Subscribe(async vm =>
+            {
+                vm.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
+                vm.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(vm.Id);
+                vm.SubjectCollectionViewModel?.Parent = ViewModel;
+                OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout((int)vm.Id!);
             });
     }
 

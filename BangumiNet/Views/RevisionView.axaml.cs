@@ -1,3 +1,5 @@
+using System.Reactive.Linq;
+
 namespace BangumiNet.Views;
 
 public partial class RevisionView : ReactiveUserControl<RevisionViewModel>
@@ -5,19 +7,19 @@ public partial class RevisionView : ReactiveUserControl<RevisionViewModel>
     public RevisionView()
     {
         InitializeComponent();
-        DataContextChanged += async (s, e) =>
-        {
-            if (dataContextChanges >= 1) return;
-            if (DataContext is not RevisionViewModel viewModel) return;
-            if (!viewModel.IsFull)
-            {
-                var fullRev = await ApiC.GetViewModelAsync<RevisionViewModel>(viewModel);
-                if (fullRev == null) return;
-                dataContextChanges += 1;
-                DataContext = fullRev;
-            }
-        };
-    }
 
-    private uint dataContextChanges = 0;
+        this.WhenAnyValue(x => x.ViewModel)
+            .WhereNotNull()
+            .Where(vm => !vm.IsFull)
+            .Subscribe(async vm =>
+            {
+                var fullItem = await ApiC.GetViewModelAsync<RevisionViewModel>(vm);
+                if (fullItem == null) return;
+                ViewModel = fullItem;
+            });
+        //this.WhenAnyValue(x => x.ViewModel)
+        //    .WhereNotNull()
+        //    .Where(vm => vm.IsFull)
+        //    .Subscribe(async vm => { });
+    }
 }

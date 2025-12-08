@@ -9,17 +9,22 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
         InitializeComponent();
 
         this.WhenAnyValue(x => x.ViewModel)
-            .Where(x => x?.IsFull == false)
-            .Subscribe(async x =>
+            .WhereNotNull()
+            .Where(vm => !vm.IsFull)
+            .Subscribe(async vm =>
             {
-                if (ViewModel!.Id is not int id) return;
-                var fullItem = await ApiC.GetViewModelAsync<PersonViewModel>(id);
+                var fullItem = await ApiC.GetViewModelAsync<PersonViewModel>(vm.Id);
                 if (fullItem == null) return;
-                DataContext = fullItem;
-
-                _ = ViewModel?.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                _ = ViewModel?.CommentListViewModel?.LoadPageAsync(1);
+                ViewModel = fullItem;
+            });
+        this.WhenAnyValue(x => x.ViewModel)
+            .WhereNotNull()
+            .Where(vm => vm.IsFull)
+            .Subscribe(async vm =>
+            {
+                vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
             });
     }
 }
