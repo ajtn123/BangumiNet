@@ -1,0 +1,23 @@
+name: Test & Build
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Test
+        run: dotnet test -c Release --filter "TestCategory!=LargeData"
+
+      - name: Build
+        run: dotnet build BangumiNet -c Release

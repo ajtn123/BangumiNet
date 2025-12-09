@@ -16,9 +16,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Test
-        run: dotnet test -c Release --filter "TestCategory!=LargeData"
-
       - name: Publish
         run: |
           version=$(git describe --tags --abbrev=0)

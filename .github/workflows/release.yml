@@ -16,11 +16,6 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v6
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: '10'
-
       - name: Publish
         run: dotnet msbuild BangumiNet -restore -p:Configuration=Release -p:Version=${GITHUB_REF_NAME#v} -t:PublishAllRuntimes
 
