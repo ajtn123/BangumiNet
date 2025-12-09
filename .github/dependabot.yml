@@ -6,7 +6,27 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "deps"
+    groups:
+      avalonia:
+        patterns:
+          - "Avalonia*"
+      safe:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "Avalonia*"
+        update-types:
+          - "patch"
+          - "minor"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns:
+          - "*"
