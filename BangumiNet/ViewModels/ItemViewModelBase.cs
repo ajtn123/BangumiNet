@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using BangumiNet.Converters;
+using BangumiNet.Shared.Extensions;
+using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -10,6 +12,11 @@ public partial class ItemViewModelBase : ViewModelBase
         ShowRevisionsCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(RevisionListViewModel));
         OpenInNewWindowCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(this));
         ShowNetworkCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(new ItemNetworkViewModel(this)));
+
+        this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(x =>
+        {
+            Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.ToStringSC()} {Id}"} - {Constants.ApplicationName}";
+        });
     }
 
     [Reactive] public partial object? Source { get; set; }

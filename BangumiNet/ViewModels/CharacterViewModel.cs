@@ -139,6 +139,7 @@ public partial class CharacterViewModel : ItemViewModelBase
 
         SubjectBadgeListViewModel = new(RelatedItemType.CharacterCast, ItemType, Id);
         PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
+        IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
@@ -147,8 +148,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
 
         this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
-
-        Title = $"{NameCnCvt.Convert(this) ?? $"角色 {Id}"} - {Title}";
     }
 
     [Reactive] public partial string? Summary { get; set; }
@@ -168,6 +167,7 @@ public partial class CharacterViewModel : ItemViewModelBase
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? PersonBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? IndexCardListViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }

@@ -2,9 +2,9 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
 
-public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
+public partial class IndexView : ReactiveUserControl<IndexViewModel>
 {
-    public CharacterView()
+    public IndexView()
     {
         InitializeComponent();
 
@@ -13,7 +13,7 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
             .Where(vm => !vm.IsFull)
             .Subscribe(async vm =>
             {
-                var fullItem = await ApiC.GetViewModelAsync<CharacterViewModel>(vm.Id);
+                var fullItem = await ApiC.GetViewModelAsync<IndexViewModel>(vm.Id);
                 if (fullItem == null) return;
                 ViewModel = fullItem;
             });
@@ -22,9 +22,7 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
             .Where(vm => vm.IsFull)
             .Subscribe(async vm =>
             {
-                vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.IndexCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.Comments?.LoadPageCommand.Execute().Subscribe();
             });
     }
 }

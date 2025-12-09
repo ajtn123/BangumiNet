@@ -10,9 +10,8 @@
         <StackPanel Margin="5" Spacing="5">
             <bn:EpisodeView DataContext="{Binding}"/>
 
-            <Expander Header="评论" HorizontalAlignment="Stretch"
-                      Name="CommentExpander" IsExpanded="True">
-                <bn:CommentListView DataContext="{Binding CommentListViewModel}" Name="CommentView"/>
+            <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
+                <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>
             </Expander>
         </StackPanel>
     </ScrollViewer>

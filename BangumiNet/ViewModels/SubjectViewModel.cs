@@ -200,6 +200,7 @@ public partial class SubjectViewModel : ItemViewModelBase
             SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
             BlogCardListViewModel = new(RelatedItemType.Review, ItemType, Id);
             TopicCardListViewModel = new(RelatedItemType.Topic, ItemType, Id);
+            IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
             CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
         }
@@ -221,8 +222,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         if (TotalEps == 0) TotalEps = null;
         if (Volumes == 0) Volumes = null;
         if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
-
-        Title = $"{NameCnCvt.Convert(this) ?? $"项目 {Id}"} - {Title}";
     }
 
     [Reactive] public partial int? CollectionTotal { get; set; }
@@ -255,6 +254,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? BlogCardListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? TopicCardListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? IndexCardListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }
     [Reactive] public partial string? Relation { get; set; }

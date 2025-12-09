@@ -139,6 +139,15 @@ public static partial class ApiC
             if (blog is null) return null;
             else return new BlogViewModel(blog) as T;
         }
+        else if (typeof(T) == typeof(IndexViewModel) && id is int iid)
+        {
+            Api.P1.Models.IndexObject? index = null;
+            try { index = await P1.Indexes[iid].GetAsync(cancellationToken: cancellationToken); }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+            if (index is null) return null;
+            else return new IndexViewModel(index) as T;
+        }
         else if (typeof(T) == typeof(UserViewModel) && username is string uid)
         {
             Api.P1.Models.User? user = null;

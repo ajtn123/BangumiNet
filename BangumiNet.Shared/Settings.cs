@@ -34,7 +34,7 @@ public class Settings : IApiSettings
     public int CollectionPageSize { get; set; } = 30;
     public int RevisionPageSize { get; set; } = 30;
     public int CommentPageSize { get; set; } = 20;
-    public int SearchPageSize { get; set; } = 10;
+    public int SearchPageSize { get; set; } = 20;
     public int EpisodePageSize { get; set; } = 100;
     public int SubjectBrowserPageSize { get; set; } = 30;
 

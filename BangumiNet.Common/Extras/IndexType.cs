@@ -1,11 +1,32 @@
-﻿namespace BangumiNet.Api.ExtraEnums;
+﻿using BangumiNet.Common.Attributes;
+
+namespace BangumiNet.Common.Extras;
+
 // https://github.com/bangumi/server-private/blob/master/lib/index/types.ts
 // https://github.com/bangumi/server-private/blob/master/lib/types/common.ts
+
+/// <summary>
+/// 目录类型
+/// </summary>
 public enum IndexType
 {
+    /// <summary>
+    /// 用户
+    /// </summary>
+    [NameCn("用户")]
     User = 0,
+
+    /// <summary>
+    /// 公共
+    /// </summary>
+    [NameCn("公共")]
     Public = 1,
-    Award = 2,
+
+    /// <summary>
+    /// The Bangumi Awards
+    /// </summary>
+    [NameCn("TBA")]
+    TBA = 2,
 }
 
 public enum IndexPrivacy

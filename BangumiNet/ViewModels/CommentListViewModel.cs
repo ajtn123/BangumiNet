@@ -38,6 +38,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
             Shared.ItemType.Character => LoadCharacterComment(i, cancellationToken),
             Shared.ItemType.Person => LoadPersonComment(i, cancellationToken),
             Shared.ItemType.Blog => LoadBlogComment(i, cancellationToken),
+            Shared.ItemType.Index => LoadIndexComment(i, cancellationToken),
             Shared.ItemType.Timeline => LoadTimelineComment(i, cancellationToken),
             _ => throw new NotImplementedException(),
         };
@@ -114,6 +115,19 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         if (response == null) return;
 
         SubjectViewModels = response.Select<Api.P1.P1.Blogs.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        Sources.Add(response);
+    }
+    private async Task LoadIndexComment(int id, CancellationToken cancellationToken = default)
+    {
+        List<Api.P1.P1.Indexes.Item.Comments.Comments>? response = null;
+        try
+        {
+            response = await ApiC.P1.Indexes[id].Comments.GetAsync(cancellationToken: cancellationToken);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
+
+        SubjectViewModels = response.Select<Api.P1.P1.Indexes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadTimelineComment(int id, CancellationToken cancellationToken = default)

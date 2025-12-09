@@ -29,5 +29,11 @@
         <DataTemplate DataType="bn:GroupViewModel">
             <bn:GroupCardView />
         </DataTemplate>
+        <DataTemplate DataType="bn:BlogViewModel">
+            <bn:BlogCardView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate DataType="bn:IndexViewModel">
+            <bn:IndexCardView DataContext="{Binding}"/>
+        </DataTemplate>
     </UserControl.DataTemplates>
 </UserControl>

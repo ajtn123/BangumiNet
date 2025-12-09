@@ -8,7 +8,7 @@ namespace BangumiNet.ViewModels;
 /// </summary>
 public class TextViewModel : ViewModelBase
 {
-    public Func<object[]> Builder { get; set; }
+    private Func<object[]> Builder { get; set; }
     public TextViewModel(Func<object[]> builder)
         => Builder = builder;
     public TextViewModel(string str)

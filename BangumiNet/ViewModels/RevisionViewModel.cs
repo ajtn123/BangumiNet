@@ -1,6 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
-using BangumiNet.Converters;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
@@ -29,7 +28,7 @@ public partial class RevisionViewModel : ItemViewModelBase
     private void Init()
     {
         ItemType = ItemType.Revision;
-        Title = $"修订 {Id} - {NameCnCvt.Convert(Parent) ?? $"{Parent?.ItemType} {Parent?.Id}"} - {Title}";
+        Title = $"修订 {Id} - {Parent?.Title}";
     }
 
     [Reactive] public partial RevisionType? Type { get; set; }

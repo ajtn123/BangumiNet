@@ -30,6 +30,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 vm.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
                 vm.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.IndexCardListViewModel?.LoadPageCommand.Execute().Subscribe();
                 vm.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
                 vm.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(vm.Id);
                 vm.SubjectCollectionViewModel?.Parent = ViewModel;

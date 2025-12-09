@@ -181,6 +181,7 @@ public partial class PersonViewModel : ItemViewModelBase
 
         SubjectBadgeListViewModel = new(RelatedItemType.PersonWork, ItemType, Id);
         CharacterBadgeListViewModel = new(RelatedItemType.PersonCast, ItemType, Id);
+        IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
@@ -194,8 +195,6 @@ public partial class PersonViewModel : ItemViewModelBase
             this.RaisePropertyChanged(nameof(CareerString));
             Careers?.ObserveCollectionChanges().Subscribe(x => this.RaisePropertyChanged(nameof(CareerString)));
         });
-
-        Title = $"{NameCnCvt.Convert(this) ?? $"人物 {Id}"} - {Title}";
     }
 
     [Reactive] public partial int? CommentCount { get; set; }
@@ -218,6 +217,7 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial string? Eps { get; set; }
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? CharacterBadgeListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? IndexCardListViewModel { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }

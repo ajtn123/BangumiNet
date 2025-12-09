@@ -13,6 +13,7 @@
         Revision,
         Blog,
         Photo,
+        Index,
     }
 }
 namespace BangumiNet.Shared.Extensions
@@ -29,6 +30,8 @@ namespace BangumiNet.Shared.Extensions
             ItemType.Topic => "话题",
             ItemType.Group => "小组",
             ItemType.Blog => "日志",
+            ItemType.Photo => "图片",
+            ItemType.Index => "目录",
             _ => throw new NotImplementedException(),
         };
     }

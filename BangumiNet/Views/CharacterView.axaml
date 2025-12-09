@@ -15,7 +15,12 @@
                   Classes="ViewRoot">
                 <StackPanel Spacing="5">
                     <MainImage Url="{Binding Images?.Large}"/>
-                    <bn:InfoboxView DataContext="{Binding Infobox}" />
+                    <bn:InfoboxView DataContext="{Binding Infobox}"/>
+                    <bn:SubjectListView DataContext="{Binding IndexCardListViewModel}"/>
+                    <Button Content="{ice:FluentIcon Icon=Add}"
+                            Command="{Binding IndexCardListViewModel.LoadPageCommand}"
+                            IsVisible="{Binding !IndexCardListViewModel.IsFullyLoaded}"
+                            HorizontalAlignment="Stretch"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -59,9 +64,8 @@
                     <!--<Separator/>-->
                     <!--<bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>-->
 
-                    <Expander Header="评论" HorizontalAlignment="Stretch"
-                              Name="CommentExpander" IsExpanded="True">
-                        <bn:CommentListView DataContext="{Binding CommentListViewModel}" Name="CommentView"/>
+                    <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
+                        <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>
                     </Expander>
                 </StackPanel>
             </Grid>

@@ -30,6 +30,9 @@
 		<DataTemplate DataType="bn:BlogViewModel">
 			<bn:BlogView DataContext="{Binding}"/>
         </DataTemplate>
+		<DataTemplate DataType="bn:IndexViewModel">
+			<bn:IndexView DataContext="{Binding}"/>
+        </DataTemplate>
 		<DataTemplate DataType="bn:RevisionListViewModel">
 			<bn:RevisionListView DataContext="{Binding}"/>
         </DataTemplate>

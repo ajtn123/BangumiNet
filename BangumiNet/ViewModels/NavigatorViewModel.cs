@@ -64,6 +64,26 @@ public partial class NavigatorViewModel : ViewModelBase
             }
         }, this.WhenAnyValue(x => x.CanToId));
 
+        ToBlog = ReactiveCommand.CreateFromTask(async ct =>
+        {
+            if (int.TryParse(Input, out var id))
+            {
+                var bvm = await ApiC.GetViewModelAsync<BlogViewModel>(id, cancellationToken: ct);
+                if (bvm != null) SecondaryWindow.Show(bvm);
+                else MessageWindow.Show($"未找到日志 {id}");
+            }
+        }, this.WhenAnyValue(x => x.CanToId));
+
+        ToIndex = ReactiveCommand.CreateFromTask(async ct =>
+        {
+            if (int.TryParse(Input, out var id))
+            {
+                var ivm = await ApiC.GetViewModelAsync<IndexViewModel>(id, cancellationToken: ct);
+                if (ivm != null) SecondaryWindow.Show(ivm);
+                else MessageWindow.Show($"未找到目录 {id}");
+            }
+        }, this.WhenAnyValue(x => x.CanToId));
+
         ToUser = ReactiveCommand.CreateFromTask(async ct =>
         {
             var username = Input?.Trim();
@@ -92,6 +112,8 @@ public partial class NavigatorViewModel : ViewModelBase
             new() { Name="ToPerson", Command=ToPerson, TextTemplate="转到人物 {0} >" },
             new() { Name="ToEpisode", Command=ToEpisode, TextTemplate="转到话 {0} >" },
             new() { Name="ToTopic", Command=ToTopic, TextTemplate="转到话题 {0} >" },
+            new() { Name="ToBlog", Command=ToBlog, TextTemplate="转到日志 {0} >" },
+            new() { Name="ToIndex", Command=ToIndex, TextTemplate="转到目录 {0} >" },
             new() { Name="User", Command=ToUser, TextTemplate="转到用户 {0} >" },
             new() { Name="Group", Command=ToGroup, TextTemplate="转到小组 {0} >" },
         ];
@@ -107,6 +129,8 @@ public partial class NavigatorViewModel : ViewModelBase
     public ICommand ToPerson { get; set; }
     public ICommand ToEpisode { get; set; }
     public ICommand ToTopic { get; set; }
+    public ICommand ToBlog { get; set; }
+    public ICommand ToIndex { get; set; }
     public ICommand ToUser { get; set; }
     public ICommand ToGroup { get; set; }
 

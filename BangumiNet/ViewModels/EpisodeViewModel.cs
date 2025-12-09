@@ -1,7 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common.Extras;
-using BangumiNet.Converters;
 using BangumiNet.Shared.Interfaces;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -103,8 +102,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         DoneCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done));
         DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
         DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done));
-
-        Title = $"{NameCnCvt.Convert(this) ?? $"话 {Id}"} - {Title}";
     }
 
     [Reactive] public partial int? SubjectId { get; set; }

@@ -25,6 +25,7 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
                 vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 vm.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
                 vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
+                vm.IndexCardListViewModel?.LoadPageCommand.Execute().Subscribe();
             });
     }
 }

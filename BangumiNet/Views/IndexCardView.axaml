@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:IndexViewModel"
+             x:Class="BangumiNet.Views.IndexCardView">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
+        <MainImage Url="{Binding User?.Avatar.Large}" VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Column="1">
+            <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <WrapPanel Classes="InfoBar">
+                <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
+                                 Content="{Binding User.Nickname}"
+                                 IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
+                                 Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
+                <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps"/>
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
+                <TextBlock>
+                    <ic:FluentIcon ToolTip.Tip="私有目录" Icon="LockClosed" IsVisible="{Binding IsPrivate}"/>
+                </TextBlock>
+                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
+            </WrapPanel>
+        </StackPanel>
+        
+        <Grid.ContextFlyout>
+            <Flyout>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="5">
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    </StackPanel>
+                    <WrapPanel Classes="InfoBar">
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
+                    </WrapPanel>
+                    <bn:CardView Content="{Binding User}"/>
+                </StackPanel>
+            </Flyout>
+        </Grid.ContextFlyout>
+    </Grid>
+</UserControl>

@@ -112,7 +112,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         catch (Exception e) { Trace.TraceError(e.Message); return false; }
         Total = response?.Total;
         if (response?.Data == null) return false;
-        Offset += response.Data.Count();
+        Offset += Math.Max(Limit, response.Data.Count());
         SubjectViewModels ??= [];
         SubjectViewModels = Type switch
         {
@@ -143,6 +143,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.Episode ep => new EpisodeViewModel(ep),
         Api.P1.Models.Topic st => new TopicViewModel(st, ItemType.Subject),
         Api.P1.Models.BlogPhoto bp => new PhotoViewModel(bp),
+        Api.P1.Models.SlimIndex si => new IndexViewModel(si),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 
