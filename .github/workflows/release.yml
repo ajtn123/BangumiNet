@@ -35,7 +35,7 @@ jobs:
           done
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: app-archive
           path: ${{ github.event.repository.name }}-${{ github.ref_name }}-*.zip
