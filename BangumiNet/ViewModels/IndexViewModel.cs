@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.P1.Models;
+﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.P1.Models;
 using BangumiNet.Common.Extras;
 
 namespace BangumiNet.ViewModels;
@@ -45,6 +46,7 @@ public partial class IndexViewModel : ItemViewModelBase
     private void Init()
     {
         ItemType = ItemType.Index;
+        RelatedItems = new(RelatedItemType.Subject, ItemType, Id);
 
         Comments = new(ItemType, Id);
 
@@ -63,6 +65,7 @@ public partial class IndexViewModel : ItemViewModelBase
     [Reactive] public partial int? CollectionCount { get; set; }
     [Reactive] public partial int? Award { get; set; }
     [Reactive] public partial CommentListViewModel? Comments { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? RelatedItems { get; set; }
 
     public bool IsFull => Source is IndexObject;
 }

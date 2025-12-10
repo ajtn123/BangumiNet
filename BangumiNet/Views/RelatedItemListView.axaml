@@ -36,6 +36,14 @@
                     <DataTemplate DataType="bn:PhotoViewModel">
                         <bn:PhotoView DataContext="{Binding}"/>
                     </DataTemplate>
+                    <DataTemplate DataType="bn:EpisodeViewModel">
+                        <StackPanel>
+                            <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"
+                                             Command="{Binding OpenInNewWindowCommand}"
+                                             Classes="Title" MaxWidth="250"/>
+                            <bn:SubjectBadgeView DataContext="{Binding SubjectViewModel}"/>
+                        </StackPanel>
+                    </DataTemplate>
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

@@ -20,7 +20,8 @@
                 <HyperlinkButton Content="{Binding Name}"
                                  Command="{Binding OpenInNewWindowCommand}"
                                  Classes="Title"/>
-                <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"
+                           IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
             </StackPanel>
         </Border>
         <Grid.ContextFlyout>

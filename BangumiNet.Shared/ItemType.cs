@@ -2,6 +2,7 @@
 {
     public enum ItemType
     {
+        Unknown,
         Subject,
         Episode,
         Character,
@@ -22,13 +23,16 @@ namespace BangumiNet.Shared.Extensions
     {
         public static string ToStringSC(this ItemType type) => type switch
         {
-            ItemType.Subject => "项目",
+            ItemType.Unknown => "未知",
+            ItemType.Subject => "条目",
             ItemType.Episode => "话",
             ItemType.Character => "角色",
             ItemType.Person => "人物",
             ItemType.User => "用户",
             ItemType.Topic => "话题",
             ItemType.Group => "小组",
+            ItemType.Timeline => "时间线",
+            ItemType.Revision => "修订",
             ItemType.Blog => "日志",
             ItemType.Photo => "图片",
             ItemType.Index => "目录",

@@ -23,6 +23,7 @@ public partial class IndexView : ReactiveUserControl<IndexViewModel>
             .Subscribe(async vm =>
             {
                 vm.Comments?.LoadPageCommand.Execute().Subscribe();
+                vm.RelatedItems?.LoadPageCommand.Execute().Subscribe();
             });
     }
 }

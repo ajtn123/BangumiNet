@@ -20,6 +20,6 @@
         <InfoBadge Label="章节" Text="{Binding Episode}"/>
         <InfoBadge Label="日志" Text="{Binding Blog}"/>
         <InfoBadge Label="小组话题" Text="{Binding GroupTopic}"/>
-        <InfoBadge Label="条目话题" Text="{Binding SubjectTopic}"/>
+        <InfoBadge Label="条目讨论" Text="{Binding SubjectTopic}"/>
     </WrapPanel>
 </UserControl>

@@ -2,6 +2,8 @@
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
+using BangumiNet.Common;
+using BangumiNet.Models;
 using System.Reactive;
 using System.Reactive.Linq;
 
@@ -106,6 +108,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                     RelatedItemType.Photo => await ApiC.P1.Blogs[id].Photos.GetAsync(c => c.Paging(Limit, Offset), ct),
                     _ => throw new NotImplementedException(),
                 },
+                ItemType.Index => await ApiC.P1.Indexes[id].Related.GetAsync(c => c.Paging(Limit, Offset), ct),
                 _ => throw new NotImplementedException(),
             };
         }
@@ -144,6 +147,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.Topic st => new TopicViewModel(st, ItemType.Subject),
         Api.P1.Models.BlogPhoto bp => new PhotoViewModel(bp),
         Api.P1.Models.SlimIndex si => new IndexViewModel(si),
+        Api.P1.Models.IndexRelated ir => IndexRelatedToVM(ir),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 
@@ -152,6 +156,42 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.Episode ep => new EpisodeViewModel(ep) { Parent = this },
         _ => ConvertToVM(obj),
     };
+
+    public static ViewModelBase IndexRelatedToVM(Api.P1.Models.IndexRelated related)
+    {
+        ItemViewModelBase item;
+        if (related.Subject != null)
+            item = new SubjectViewModel(related.Subject);
+        else if (related.Character != null)
+            item = new CharacterViewModel(related.Character);
+        else if (related.Person != null)
+            item = new PersonViewModel(related.Person);
+        else if (related.Episode != null)
+            item = new EpisodeViewModel(related.Episode);
+        else if (related.Blog != null)
+            item = new BlogViewModel(related.Blog);
+        else if (related.GroupTopic != null)
+            item = new TopicViewModel(related.GroupTopic, false);
+        else if (related.SubjectTopic != null)
+            item = new TopicViewModel(related.SubjectTopic, false);
+        else
+            throw new NotImplementedException();
+
+        item.Order = related.Order;
+        item.IndexRelation = new IndexRelation
+        {
+            Category = (IndexRelatedCategory?)related.Cat,
+            Type = (SubjectType?)related.Type,
+            Id = related.Id,
+            IndexId = related.Rid,
+            ItemId = related.Sid,
+            Order = related.Order,
+            Comment = related.Comment,
+            Award = related.Award,
+            CreationTime = CommonUtils.ParseBangumiTime(related.CreatedAt),
+        };
+        return item;
+    }
 
     [Reactive] public partial RelatedItemType Type { get; set; }
     [Reactive] public partial ItemType ParentType { get; set; }

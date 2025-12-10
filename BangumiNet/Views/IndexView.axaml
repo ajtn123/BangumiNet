@@ -42,6 +42,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <bn:RelatedItemListView DataContext="{Binding RelatedItems}"/>
                 <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
                     <bn:CommentListView DataContext="{Binding Comments}"/>
                 </Expander>
