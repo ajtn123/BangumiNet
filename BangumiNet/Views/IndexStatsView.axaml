@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:models="using:BangumiNet.Api.P1.Models"
+             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="models:IndexStats"
+             x:Class="BangumiNet.Views.IndexStatsView">
+    <WrapPanel ItemSpacing="3" LineSpacing="3">
+        <InfoBadge Label="动画" Text="{Binding Subject?.Anime}"/>
+        <InfoBadge Label="书籍" Text="{Binding Subject?.Book}"/>
+        <InfoBadge Label="游戏" Text="{Binding Subject?.Game}"/>
+        <InfoBadge Label="音乐" Text="{Binding Subject?.Music}"/>
+        <InfoBadge Label="三次元" Text="{Binding Subject?.Real}"/>
+        <InfoBadge Label="角色" Text="{Binding Character}"/>
+        <InfoBadge Label="人物" Text="{Binding Person}"/>
+        <InfoBadge Label="章节" Text="{Binding Episode}"/>
+        <InfoBadge Label="日志" Text="{Binding Blog}"/>
+        <InfoBadge Label="小组话题" Text="{Binding GroupTopic}"/>
+        <InfoBadge Label="条目话题" Text="{Binding SubjectTopic}"/>
+    </WrapPanel>
+</UserControl>

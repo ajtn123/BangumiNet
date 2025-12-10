@@ -38,6 +38,7 @@
 
             <StackPanel Grid.Column="1" Grid.Row="0" Spacing="5">
                 <bn:CardView Content="{Binding User}"/>
+                <bn:IndexStatsView DataContext="{Binding Stats}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
