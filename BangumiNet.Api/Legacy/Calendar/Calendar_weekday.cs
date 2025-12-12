@@ -9,20 +9,19 @@ using System;
 namespace BangumiNet.Api.Legacy.Calendar
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Calendar_weekday : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The cn property</summary>
+
         public string? Cn { get; set; }
-        /// <summary>The en property</summary>
+
         public string? En { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The ja property</summary>
+
         public string? Ja { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.Legacy.Calendar.Calendar_weekday"/> and sets the default values.
         /// </summary>
@@ -30,6 +29,7 @@ namespace BangumiNet.Api.Legacy.Calendar
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -40,6 +40,7 @@ namespace BangumiNet.Api.Legacy.Calendar
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.Legacy.Calendar.Calendar_weekday();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -54,6 +55,7 @@ namespace BangumiNet.Api.Legacy.Calendar
                 { "ja", n => { Ja = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

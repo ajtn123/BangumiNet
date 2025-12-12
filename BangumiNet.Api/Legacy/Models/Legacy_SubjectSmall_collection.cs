@@ -16,16 +16,22 @@ namespace BangumiNet.Api.Legacy.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>做过</summary>
         public int? Collect { get; set; }
+
         /// <summary>在做</summary>
         public int? Doing { get; set; }
+
         /// <summary>抛弃</summary>
         public int? Dropped { get; set; }
+
         /// <summary>搁置</summary>
         public int? OnHold { get; set; }
+
         /// <summary>想做</summary>
         public int? Wish { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.Legacy.Models.Legacy_SubjectSmall_collection"/> and sets the default values.
         /// </summary>
@@ -33,6 +39,7 @@ namespace BangumiNet.Api.Legacy.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -43,6 +50,7 @@ namespace BangumiNet.Api.Legacy.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.Legacy.Models.Legacy_SubjectSmall_collection();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -58,6 +66,7 @@ namespace BangumiNet.Api.Legacy.Models
                 { "wish", n => { Wish = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

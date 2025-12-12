@@ -20,11 +20,12 @@ namespace BangumiNet.Api.Legacy
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ApiClient : BaseRequestBuilder
     {
-        /// <summary>The calendar property</summary>
+
         public global::BangumiNet.Api.Legacy.Calendar.CalendarRequestBuilder Calendar
         {
             get => new global::BangumiNet.Api.Legacy.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.Legacy.ApiClient"/> and sets the default values.
         /// </summary>

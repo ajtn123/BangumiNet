@@ -25,6 +25,7 @@ namespace BangumiNet.Api.Legacy.Calendar
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/calendar", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.Legacy.Calendar.CalendarRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.Legacy.Calendar
         public CalendarRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/calendar", rawUrl)
         {
         }
+
         /// <summary>
         /// 每日放送
         /// </summary>
@@ -45,6 +47,7 @@ namespace BangumiNet.Api.Legacy.Calendar
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.Legacy.Calendar.Calendar>(requestInfo, global::BangumiNet.Api.Legacy.Calendar.Calendar.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 每日放送
         /// </summary>
@@ -57,6 +60,7 @@ namespace BangumiNet.Api.Legacy.Calendar
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

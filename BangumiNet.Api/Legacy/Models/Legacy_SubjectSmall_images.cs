@@ -16,16 +16,17 @@ namespace BangumiNet.Api.Legacy.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The common property</summary>
+
         public string? Common { get; set; }
-        /// <summary>The grid property</summary>
+
         public string? Grid { get; set; }
-        /// <summary>The large property</summary>
+
         public string? Large { get; set; }
-        /// <summary>The medium property</summary>
+
         public string? Medium { get; set; }
-        /// <summary>The small property</summary>
+
         public string? Small { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.Legacy.Models.Legacy_SubjectSmall_images"/> and sets the default values.
         /// </summary>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.Legacy.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -43,6 +45,7 @@ namespace BangumiNet.Api.Legacy.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.Legacy.Models.Legacy_SubjectSmall_images();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -58,6 +61,7 @@ namespace BangumiNet.Api.Legacy.Models
                 { "small", n => { Small = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>
