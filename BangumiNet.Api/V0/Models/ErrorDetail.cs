@@ -10,20 +10,20 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ErrorDetail : ApiException, IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The description property</summary>
+
         public string? Description { get; set; }
-        /// <summary>The details property</summary>
+
         public global::BangumiNet.Api.V0.Models.ErrorDetail.ErrorDetail_details? Details { get; set; }
+
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
-        /// <summary>The title property</summary>
+
         public string? Title { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.ErrorDetail"/> and sets the default values.
         /// </summary>
@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -41,6 +42,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.ErrorDetail();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.V0.Models
                 { "title", n => { Title = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>
@@ -66,6 +69,7 @@ namespace BangumiNet.Api.V0.Models
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.V0.Models.ErrorDetail_detailsMember1"/>, <see cref="string"/>
         /// </summary>
@@ -74,8 +78,10 @@ namespace BangumiNet.Api.V0.Models
         {
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.V0.Models.ErrorDetail_detailsMember1"/></summary>
             public global::BangumiNet.Api.V0.Models.ErrorDetail_detailsMember1? ErrorDetailDetailsMember1 { get; set; }
+
             /// <summary>Composed type representation for type <see cref="string"/></summary>
             public string? String { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -96,6 +102,7 @@ namespace BangumiNet.Api.V0.Models
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -108,6 +115,7 @@ namespace BangumiNet.Api.V0.Models
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>

@@ -24,51 +24,52 @@ namespace BangumiNet.Api.V0.V0
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class V0RequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.V0.V0.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.V0.V0.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The episodes property</summary>
+
         public global::BangumiNet.Api.V0.V0.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.V0.V0.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indices property</summary>
+
         public global::BangumiNet.Api.V0.V0.Indices.IndicesRequestBuilder Indices
         {
             get => new global::BangumiNet.Api.V0.V0.Indices.IndicesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The me property</summary>
+
         public global::BangumiNet.Api.V0.V0.Me.MeRequestBuilder Me
         {
             get => new global::BangumiNet.Api.V0.V0.Me.MeRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.V0.V0.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.V0.V0.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The revisions property</summary>
+
         public global::BangumiNet.Api.V0.V0.Revisions.RevisionsRequestBuilder Revisions
         {
             get => new global::BangumiNet.Api.V0.V0.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The search property</summary>
+
         public global::BangumiNet.Api.V0.V0.Search.SearchRequestBuilder Search
         {
             get => new global::BangumiNet.Api.V0.V0.Search.SearchRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The users property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.UsersRequestBuilder Users
         {
             get => new global::BangumiNet.Api.V0.V0.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.V0RequestBuilder"/> and sets the default values.
         /// </summary>
@@ -77,6 +78,7 @@ namespace BangumiNet.Api.V0.V0
         public V0RequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.V0RequestBuilder"/> and sets the default values.
         /// </summary>

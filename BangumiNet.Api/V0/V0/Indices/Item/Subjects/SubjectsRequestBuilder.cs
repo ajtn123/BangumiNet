@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
                 return new global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/subjects{?limit*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/subjects{?limit*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Index Subjects
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Add a subject to Index
         /// </summary>
@@ -87,6 +91,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Index Subjects
         /// </summary>
@@ -99,6 +104,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Add a subject to Index
         /// </summary>
@@ -114,6 +120,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -123,6 +130,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
         {
             return new global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// Get Index Subjects
         /// </summary>
@@ -132,9 +140,11 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>条目类型</summary>
             [QueryParameter("type")]
             public int? Type { get; set; }

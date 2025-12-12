@@ -9,38 +9,45 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SlimSubject : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>收藏人数</summary>
         public int? CollectionTotal { get; set; }
+
         /// <summary>air date in `YYYY-MM-DD` format</summary>
         public string? Date { get; set; }
+
         /// <summary>由旧服务端从wiki中解析，对于书籍条目为`话数`</summary>
         public int? Eps { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The images property</summary>
+
         public global::BangumiNet.Api.V0.Models.Images? Images { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The name_cn property</summary>
+
         public string? NameCn { get; set; }
+
         /// <summary>排名</summary>
         public int? Rank { get; set; }
+
         /// <summary>分数</summary>
         public double? Score { get; set; }
+
         /// <summary>截短后的条目描述。</summary>
         public string? ShortSummary { get; set; }
+
         /// <summary>前 10 个 tag</summary>
         public List<global::BangumiNet.Api.V0.Models.Collections>? Tags { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
+
         /// <summary>书籍条目的册数，由旧服务端从wiki中解析</summary>
         public int? Volumes { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.SlimSubject"/> and sets the default values.
         /// </summary>
@@ -48,6 +55,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -58,6 +66,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.SlimSubject();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -81,6 +90,7 @@ namespace BangumiNet.Api.V0.Models
                 { "volumes", n => { Volumes = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

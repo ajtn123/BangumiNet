@@ -16,11 +16,12 @@ namespace BangumiNet.Api.V0.V0.Users.Collections
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CollectionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Collections.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Collections.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.V0.v0.users.collections.item collection</summary>
         /// <param name="position">条目 ID</param>
         /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder"/></returns>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections
                 return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -41,6 +43,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections
         public CollectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-/collections", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>

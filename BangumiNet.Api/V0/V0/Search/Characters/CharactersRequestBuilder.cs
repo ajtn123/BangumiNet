@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
         public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/characters{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
         public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/characters{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Character>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Character.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
         {
             return new global::BangumiNet.Api.V0.V0.Search.Characters.CharactersRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

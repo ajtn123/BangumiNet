@@ -9,16 +9,16 @@ using System;
 namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class EpisodesPatchRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The episode_id property</summary>
+
         public List<int?>? EpisodeId { get; set; }
+
         /// <summary>- `0`: 未收藏- `1`: 想看- `2`: 看过- `3`: 抛弃</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesPatchRequestBody"/> and sets the default values.
         /// </summary>
@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesPatchRequestBody();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -48,6 +50,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

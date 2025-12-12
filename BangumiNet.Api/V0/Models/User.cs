@@ -16,18 +16,22 @@ namespace BangumiNet.Api.V0.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The avatar property</summary>
+
         public global::BangumiNet.Api.V0.Models.Avatar? Avatar { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The nickname property</summary>
+
         public string? Nickname { get; set; }
+
         /// <summary>个人签名</summary>
         public string? Sign { get; set; }
+
         /// <summary>用户组 - 1 = 管理员 - 2 = Bangumi 管理猿 - 3 = 天窗管理猿 - 4 = 禁言用户 - 5 = 禁止访问用户 - 8 = 人物管理猿 - 9 = 维基条目管理猿 - 10 = 用户 - 11 = 维基人</summary>
         public int? UserGroup { get; set; }
+
         /// <summary>唯一用户名，初始与 UID 相同，可修改一次</summary>
         public string? Username { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.User"/> and sets the default values.
         /// </summary>
@@ -35,6 +39,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,6 +50,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.User();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -61,6 +67,7 @@ namespace BangumiNet.Api.V0.Models
                 { "username", n => { Username = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

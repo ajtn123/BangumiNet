@@ -9,26 +9,28 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class RelatedPerson : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The career property</summary>
+
         public List<global::BangumiNet.Api.V0.Models.PersonCareer?>? Career { get; set; }
+
         /// <summary>参与章节/曲目</summary>
         public string? Eps { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
+
         /// <summary>object with some size of images, this object maybe `null`</summary>
         public global::BangumiNet.Api.V0.Models.RelatedPerson_images? Images { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The relation property</summary>
+
         public string? Relation { get; set; }
+
         /// <summary>`1`, `2`, `3` 表示 `个人`, `公司`, `组合`</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.RelatedPerson"/> and sets the default values.
         /// </summary>
@@ -36,6 +38,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -46,6 +49,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.RelatedPerson();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -63,6 +67,7 @@ namespace BangumiNet.Api.V0.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

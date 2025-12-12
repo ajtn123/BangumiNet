@@ -16,11 +16,12 @@ namespace BangumiNet.Api.V0.V0.Users
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The collections property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Collections.CollectionsRequestBuilder Collections
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Collections.CollectionsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.V0.V0.Users
         public Minus_RequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>

@@ -18,21 +18,22 @@ namespace BangumiNet.Api.V0.V0.Search
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SearchRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.V0.V0.Search.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.V0.V0.Search.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.V0.V0.Search.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.V0.V0.Search.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.SearchRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -41,6 +42,7 @@ namespace BangumiNet.Api.V0.V0.Search
         public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.SearchRequestBuilder"/> and sets the default values.
         /// </summary>

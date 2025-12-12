@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
                 return new global::BangumiNet.Api.V0.V0.Episodes.Item.WithEpisode_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
         public EpisodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/episodes?subject_id={subject_id}{&limit*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
         public EpisodesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/episodes?subject_id={subject_id}{&limit*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Episodes
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Episode>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Episode.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Episodes
         /// </summary>
@@ -77,6 +81,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -86,6 +91,7 @@ namespace BangumiNet.Api.V0.V0.Episodes
         {
             return new global::BangumiNet.Api.V0.V0.Episodes.EpisodesRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// Get Episodes
         /// </summary>
@@ -95,12 +101,15 @@ namespace BangumiNet.Api.V0.V0.Episodes
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>条目 ID</summary>
             [QueryParameter("subject_id")]
             public int? SubjectId { get; set; }
+
             /// <summary>参照章节的`type`</summary>
             [QueryParameter("type")]
             public string? Type { get; set; }

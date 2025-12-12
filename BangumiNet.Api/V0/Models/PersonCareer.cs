@@ -9,32 +9,18 @@ namespace BangumiNet.Api.V0.Models
     public enum PersonCareer
     {
         [EnumMember(Value = "producer")]
-        #pragma warning disable CS1591
         Producer,
-        #pragma warning restore CS1591
         [EnumMember(Value = "mangaka")]
-        #pragma warning disable CS1591
         Mangaka,
-        #pragma warning restore CS1591
         [EnumMember(Value = "artist")]
-        #pragma warning disable CS1591
         Artist,
-        #pragma warning restore CS1591
         [EnumMember(Value = "seiyu")]
-        #pragma warning disable CS1591
         Seiyu,
-        #pragma warning restore CS1591
         [EnumMember(Value = "writer")]
-        #pragma warning disable CS1591
         Writer,
-        #pragma warning restore CS1591
         [EnumMember(Value = "illustrator")]
-        #pragma warning disable CS1591
         Illustrator,
-        #pragma warning restore CS1591
         [EnumMember(Value = "actor")]
-        #pragma warning disable CS1591
         Actor,
-        #pragma warning restore CS1591
     }
 }

@@ -9,18 +9,19 @@ using System;
 namespace BangumiNet.Api.V0.V0.Search.Subjects
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SubjectsPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>不同条件之间是 `且` 的关系</summary>
         public global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_filter? Filter { get; set; }
-        /// <summary>The keyword property</summary>
+
         public string? Keyword { get; set; }
+
         /// <summary>排序规则- `match` meilisearch 的默认排序，按照匹配程度- `heat` 收藏人数- `rank` 排名由高到低- `score` 评分</summary>
         public global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_sort? Sort { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             AdditionalData = new Dictionary<string, object>();
             Sort = global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_sort.Match;
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,6 +41,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
                 { "sort", n => { Sort = n.GetEnumValue<global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_sort>(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

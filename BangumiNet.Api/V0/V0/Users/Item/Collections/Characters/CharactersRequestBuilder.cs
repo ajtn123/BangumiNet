@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Characters
                 return new global::BangumiNet.Api.V0.V0.Users.Item.Collections.Characters.Item.WithCharacter_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Characters
         public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/characters", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Characters
         public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/characters", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户角色收藏列表
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Characters
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_UserCharacterCollection>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_UserCharacterCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户角色收藏列表
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Characters
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

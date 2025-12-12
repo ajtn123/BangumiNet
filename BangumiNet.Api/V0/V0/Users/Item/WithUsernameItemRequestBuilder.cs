@@ -20,16 +20,17 @@ namespace BangumiNet.Api.V0.V0.Users.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithUsernameItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The avatar property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder Avatar
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collections property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder Collections
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.WithUsernameItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -38,6 +39,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item
         public WithUsernameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.WithUsernameItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -46,6 +48,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item
         public WithUsernameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户信息
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.User>(requestInfo, global::BangumiNet.Api.V0.Models.User.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户信息
         /// </summary>
@@ -76,6 +80,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

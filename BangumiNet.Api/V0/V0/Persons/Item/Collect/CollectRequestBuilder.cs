@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
         public CollectRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/persons/{person_id}/collect", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Persons.Item.Collect.CollectRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
         public CollectRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/persons/{person_id}/collect", rawUrl)
         {
         }
+
         /// <summary>
         /// 为当前用户取消收藏人物
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 为当前用户收藏人物
         /// </summary>
@@ -72,6 +75,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 为当前用户取消收藏人物
         /// </summary>
@@ -84,6 +88,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 为当前用户收藏人物
         /// </summary>
@@ -96,6 +101,7 @@ namespace BangumiNet.Api.V0.V0.Persons.Item.Collect
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Me
         public MeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/me", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Me.MeRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Me
         public MeRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/me", rawUrl)
         {
         }
+
         /// <summary>
         /// 返回当前 Access Token 对应的用户信息
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.V0.V0.Me
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.V0.Me.MeGetResponse>(requestInfo, global::BangumiNet.Api.V0.V0.Me.MeGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 返回当前 Access Token 对应的用户信息
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.V0.V0.Me
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -28,6 +28,7 @@ namespace BangumiNet.Api.V0.V0.Characters
                 return new global::BangumiNet.Api.V0.V0.Characters.Item.WithCharacter_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.V0.V0.Characters
         public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/characters", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>

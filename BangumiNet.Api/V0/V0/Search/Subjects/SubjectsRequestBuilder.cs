@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/subjects{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/subjects{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `type`: 条目类型，参照 `SubjectType` enum， `或`。- `tag`: 标签，可以多次出现。`且` 关系。- `air_date`: 播出日期/发售日期。`且` 关系。- `rating`: 用于搜索指定评分的条目。`且` 关系。- `rating_count`: 用于按照评分人数筛选条目。`且` 关系。- `rank`: 用于搜索指定排名的条目。`且` 关系。- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。不同筛选条件之间为 `且`
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Subject>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Subject.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `type`: 条目类型，参照 `SubjectType` enum， `或`。- `tag`: 标签，可以多次出现。`且` 关系。- `air_date`: 播出日期/发售日期。`且` 关系。- `rating`: 用于搜索指定评分的条目。`且` 关系。- `rating_count`: 用于按照评分人数筛选条目。`且` 关系。- `rank`: 用于搜索指定排名的条目。`且` 关系。- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。不同筛选条件之间为 `且`
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
         {
             return new global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `type`: 条目类型，参照 `SubjectType` enum， `或`。- `tag`: 标签，可以多次出现。`且` 关系。- `air_date`: 播出日期/发售日期。`且` 关系。- `rating`: 用于搜索指定评分的条目。`且` 关系。- `rating_count`: 用于按照评分人数筛选条目。`且` 关系。- `rank`: 用于搜索指定排名的条目。`且` 关系。- `nsfw`: 使用 `include` 包含NSFW搜索结果。默认排除搜索NSFW条目。无权限情况下忽略此选项，不会返回NSFW条目。不同筛选条件之间为 `且`
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

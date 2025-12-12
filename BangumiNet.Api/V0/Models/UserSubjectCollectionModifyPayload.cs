@@ -16,20 +16,28 @@ namespace BangumiNet.Api.V0.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>评价</summary>
         public string? Comment { get; set; }
+
         /// <summary>只能用于修改书籍条目进度</summary>
         public int? EpStatus { get; set; }
+
         /// <summary>仅自己可见</summary>
         public bool? Private { get; set; }
+
         /// <summary>评分，`0` 表示删除评分</summary>
         public int? Rate { get; set; }
+
         /// <summary>不传或者 `null` 都会被忽略，传 `[]` 则会删除所有 tag。</summary>
         public List<string>? Tags { get; set; }
+
         /// <summary>修改条目收藏类型</summary>
         public int? Type { get; set; }
+
         /// <summary>只能用于修改书籍条目进度</summary>
         public int? VolStatus { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.UserSubjectCollectionModifyPayload"/> and sets the default values.
         /// </summary>
@@ -37,6 +45,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -47,6 +56,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.UserSubjectCollectionModifyPayload();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -64,6 +74,7 @@ namespace BangumiNet.Api.V0.Models
                 { "vol_status", n => { VolStatus = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

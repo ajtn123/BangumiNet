@@ -20,11 +20,12 @@ namespace BangumiNet.Api.V0
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ApiClient : BaseRequestBuilder
     {
-        /// <summary>The v0 property</summary>
+
         public global::BangumiNet.Api.V0.V0.V0RequestBuilder V0
         {
             get => new global::BangumiNet.Api.V0.V0.V0RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.ApiClient"/> and sets the default values.
         /// </summary>

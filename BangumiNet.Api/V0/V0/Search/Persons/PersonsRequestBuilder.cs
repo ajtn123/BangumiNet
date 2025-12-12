@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
         public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/persons{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
         public PersonsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/search/persons{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `career`: 职业，可以多次出现。`且` 关系。不同筛选条件之间为 `且`
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Person>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Person.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `career`: 职业，可以多次出现。`且` 关系。不同筛选条件之间为 `且`
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
         {
             return new global::BangumiNet.Api.V0.V0.Search.Persons.PersonsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// ## 实验性 API， 本 schema 和实际的 API 行为都可能随时发生改动目前支持的筛选条件包括:- `career`: 职业，可以多次出现。`且` 关系。不同筛选条件之间为 `且`
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

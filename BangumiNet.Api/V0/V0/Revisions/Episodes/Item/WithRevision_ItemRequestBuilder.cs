@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Episodes.Item
         public WithRevision_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/episodes/{revision_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.Episodes.Item.WithRevision_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Episodes.Item
         public WithRevision_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/episodes/{revision_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Episode Revision
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Episodes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.DetailedRevision>(requestInfo, global::BangumiNet.Api.V0.Models.DetailedRevision.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Episode Revision
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Episodes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

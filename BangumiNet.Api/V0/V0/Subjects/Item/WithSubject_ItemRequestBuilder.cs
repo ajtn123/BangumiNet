@@ -22,26 +22,27 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSubject_ItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.V0.V0.Subjects.Item.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.V0.V0.Subjects.Item.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The image property</summary>
+
         public global::BangumiNet.Api.V0.V0.Subjects.Item.Image.ImageRequestBuilder Image
         {
             get => new global::BangumiNet.Api.V0.V0.Subjects.Item.Image.ImageRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.V0.V0.Subjects.Item.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.V0.V0.Subjects.Item.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.V0.V0.Subjects.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Subjects.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -50,6 +51,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item
         public WithSubject_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -58,6 +60,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item
         public WithSubject_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// cache with 300s
         /// </summary>
@@ -76,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Subject>(requestInfo, global::BangumiNet.Api.V0.Models.Subject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// cache with 300s
         /// </summary>
@@ -88,6 +92,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

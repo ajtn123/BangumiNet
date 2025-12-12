@@ -10,12 +10,11 @@ using System;
 namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class EpisodesGetResponse : global::BangumiNet.Api.V0.Models.Page, IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The data property</summary>
+
         public List<global::BangumiNet.Api.V0.Models.UserEpisodeCollection>? Data { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -26,6 +25,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -37,6 +37,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::BangumiNet.Api.V0.Models.UserEpisodeCollection>(global::BangumiNet.Api.V0.Models.UserEpisodeCollection.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

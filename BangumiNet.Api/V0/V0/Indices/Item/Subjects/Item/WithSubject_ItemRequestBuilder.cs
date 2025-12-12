@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
         public WithSubject_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/subjects/{subject_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
         public WithSubject_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/subjects/{subject_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// Delete a subject from a Index
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 如果条目不存在于目录，会创建该条目
         /// </summary>
@@ -74,6 +77,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Delete a subject from a Index
         /// </summary>
@@ -86,6 +90,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 如果条目不存在于目录，会创建该条目
         /// </summary>
@@ -101,6 +106,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Subjects.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

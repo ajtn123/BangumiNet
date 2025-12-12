@@ -19,26 +19,27 @@ namespace BangumiNet.Api.V0.V0.Revisions
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RevisionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.V0.V0.Revisions.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.V0.V0.Revisions.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The episodes property</summary>
+
         public global::BangumiNet.Api.V0.V0.Revisions.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.V0.V0.Revisions.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.V0.V0.Revisions.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.V0.V0.Revisions.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.V0.V0.Revisions.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Revisions.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +48,7 @@ namespace BangumiNet.Api.V0.V0.Revisions
         public RevisionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>

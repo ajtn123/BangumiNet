@@ -19,11 +19,12 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSubject_ItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The episodes property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
         public WithSubject_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-/collections/{subject_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
         public WithSubject_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-/collections/{subject_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// 修改条目收藏状态由于直接修改剧集条目的完成度可能会引起意料之外效果，只能用于修改书籍类条目的完成度。PATCH 方法的所有请求体字段均可选
         /// </summary>
@@ -61,6 +64,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 修改条目收藏状态, 如果不存在则创建，如果存在则修改由于直接修改剧集条目的完成度可能会引起意料之外效果，只能用于修改书籍类条目的完成度。方法的所有请求体字段均可选
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 修改条目收藏状态由于直接修改剧集条目的完成度可能会引起意料之外效果，只能用于修改书籍类条目的完成度。PATCH 方法的所有请求体字段均可选
         /// </summary>
@@ -97,6 +102,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// 修改条目收藏状态, 如果不存在则创建，如果存在则修改由于直接修改剧集条目的完成度可能会引起意料之外效果，只能用于修改书籍类条目的完成度。方法的所有请求体字段均可选
         /// </summary>
@@ -112,6 +118,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

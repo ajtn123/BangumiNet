@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Image
         public ImageRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/image?type={type}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.Item.Image.ImageRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Image
         public ImageRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/image?type={type}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Subject Image
         /// </summary>
@@ -51,6 +53,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Image
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Subject Image
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Image
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -72,6 +76,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Image
         {
             return new global::BangumiNet.Api.V0.V0.Subjects.Item.Image.ImageRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// Get Subject Image
         /// </summary>

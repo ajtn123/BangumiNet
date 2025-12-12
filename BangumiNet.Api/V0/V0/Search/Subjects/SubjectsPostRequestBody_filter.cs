@@ -16,22 +16,31 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>播出日期/发售日期，日期必需为 `YYYY-MM-DD` 格式。多值之间为 `且` 关系。</summary>
         public List<string>? AirDate { get; set; }
+
         /// <summary>公共标签。多个值之间为 `且` 关系。可以用 `-` 排除标签。比如 `-科幻` 可以排除科幻标签。</summary>
         public List<string>? MetaTags { get; set; }
+
         /// <summary>无权限的用户会直接忽略此字段，不会返回R18条目。默认或者 `null` 会返回包含 R18 的所有搜索结果。`true` 只会返回 R18 条目。`false` 只会返回非 R18 条目。</summary>
         public bool? Nsfw { get; set; }
+
         /// <summary>用于搜索指定排名的条目，多值之间为 `且` 关系。</summary>
         public List<string>? Rank { get; set; }
+
         /// <summary>用于搜索指定评分的条目，多值之间为 `且` 关系。</summary>
         public List<string>? Rating { get; set; }
+
         /// <summary>用于按照评分人数筛选条目，多值之间为 `且` 关系，格式与 `rating` 相同。</summary>
         public List<string>? RatingCount { get; set; }
+
         /// <summary>标签，可以多次出现。多值之间为 `且` 关系。</summary>
         public List<string>? Tag { get; set; }
+
         /// <summary>条目类型，参照 `SubjectType` enum，多值之间为 `或` 的关系。</summary>
         public List<int?>? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_filter"/> and sets the default values.
         /// </summary>
@@ -39,6 +48,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -49,6 +59,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_filter();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -67,6 +78,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
                 { "type", n => { Type = n.GetCollectionOfPrimitiveValues<int?>()?.AsList(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

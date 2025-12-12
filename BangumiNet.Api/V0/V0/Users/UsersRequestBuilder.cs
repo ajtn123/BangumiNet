@@ -16,11 +16,12 @@ namespace BangumiNet.Api.V0.V0.Users
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UsersRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.V0.v0.users.item collection</summary>
         /// <param name="position">设置了用户名之后无法使用 UID。</param>
         /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Item.WithUsernameItemRequestBuilder"/></returns>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.V0.V0.Users
                 return new global::BangumiNet.Api.V0.V0.Users.Item.WithUsernameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.UsersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -41,6 +43,7 @@ namespace BangumiNet.Api.V0.V0.Users
         public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.UsersRequestBuilder"/> and sets the default values.
         /// </summary>

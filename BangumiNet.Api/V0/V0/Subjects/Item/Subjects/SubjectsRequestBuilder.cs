@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/subjects", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.Item.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/subjects", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Subject Relations
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Subjects
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.V0.Models.V0_subject_relation>(requestInfo, global::BangumiNet.Api.V0.Models.V0_subject_relation.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// Get Subject Relations
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

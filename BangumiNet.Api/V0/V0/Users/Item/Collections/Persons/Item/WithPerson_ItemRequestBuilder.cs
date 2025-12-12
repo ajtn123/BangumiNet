@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item
         public WithPerson_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/persons/{person_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item.WithPerson_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item
         public WithPerson_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/persons/{person_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户单个人物收藏信息
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.UserPersonCollection>(requestInfo, global::BangumiNet.Api.V0.Models.UserPersonCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户单个人物收藏信息
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

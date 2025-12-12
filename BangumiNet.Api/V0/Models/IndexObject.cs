@@ -9,33 +9,36 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class IndexObject : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>deprecated, always false.</summary>
         [Obsolete("")]
         public bool? Ban { get; set; }
-        /// <summary>The created_at property</summary>
+
         public DateTimeOffset? CreatedAt { get; set; }
+
         /// <summary>意义同&lt;a href=&quot;#model-Me&quot;&gt;Me&lt;/a&gt;</summary>
         public global::BangumiNet.Api.V0.Models.Creator? Creator { get; set; }
-        /// <summary>The desc property</summary>
+
         public string? Desc { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The nsfw property</summary>
+
         public bool? Nsfw { get; set; }
+
         /// <summary>目录评论及收藏数</summary>
         public global::BangumiNet.Api.V0.Models.Index_stat? Stat { get; set; }
-        /// <summary>The title property</summary>
+
         public string? Title { get; set; }
+
         /// <summary>收录条目总数</summary>
         public int? Total { get; set; }
-        /// <summary>The updated_at property</summary>
+
         public DateTimeOffset? UpdatedAt { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.IndexObject"/> and sets the default values.
         /// </summary>
@@ -43,6 +46,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -53,6 +57,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.IndexObject();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -73,6 +78,7 @@ namespace BangumiNet.Api.V0.Models
                 { "updated_at", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons
                 return new global::BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.Item.WithPerson_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons
         public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/persons", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons
         public PersonsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/-/persons", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户人物收藏列表
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_UserPersonCollection>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_UserPersonCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户人物收藏列表
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Persons
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

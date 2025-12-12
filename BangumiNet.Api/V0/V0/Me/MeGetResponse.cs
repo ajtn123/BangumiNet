@@ -10,16 +10,17 @@ using System;
 namespace BangumiNet.Api.V0.V0.Me
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class MeGetResponse : global::BangumiNet.Api.V0.Models.User, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>用户绑定的邮箱地址</summary>
         public string? Email { get; set; }
+
         /// <summary>用户注册时间。比如 2017-12-03T08:51:16+08:00</summary>
         public DateTimeOffset? RegTime { get; set; }
+
         /// <summary>用户设置的时区偏移，以小时为单位。比如 GMT+8（shanghai/beijing）为 8</summary>
         public int? TimeOffset { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -30,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Me
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Me.MeGetResponse();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -43,6 +45,7 @@ namespace BangumiNet.Api.V0.V0.Me
                 { "time_offset", n => { TimeOffset = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

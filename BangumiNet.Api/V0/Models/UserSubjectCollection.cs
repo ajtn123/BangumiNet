@@ -9,34 +9,36 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class UserSubjectCollection : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The comment property</summary>
+
         public string? Comment { get; set; }
-        /// <summary>The ep_status property</summary>
+
         public int? EpStatus { get; set; }
-        /// <summary>The private property</summary>
+
         public bool? Private { get; set; }
-        /// <summary>The rate property</summary>
+
         public int? Rate { get; set; }
-        /// <summary>The subject property</summary>
+
         public global::BangumiNet.Api.V0.Models.SlimSubject? Subject { get; set; }
-        /// <summary>The subject_id property</summary>
+
         public int? SubjectId { get; set; }
+
         /// <summary>条目类型- `1` 为 书籍- `2` 为 动画- `3` 为 音乐- `4` 为 游戏- `6` 为 三次元没有 `5`</summary>
         public int? SubjectType { get; set; }
-        /// <summary>The tags property</summary>
+
         public List<string>? Tags { get; set; }
+
         /// <summary>- `1`: 想看- `2`: 看过- `3`: 在看- `4`: 搁置- `5`: 抛弃</summary>
         public int? Type { get; set; }
+
         /// <summary>本时间并不代表条目的收藏时间。修改评分，评价，章节观看状态等收藏信息时未更新此时间是一个 bug。请不要依赖此特性</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
-        /// <summary>The vol_status property</summary>
+
         public int? VolStatus { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.UserSubjectCollection"/> and sets the default values.
         /// </summary>
@@ -44,6 +46,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -54,6 +57,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.UserSubjectCollection();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.Models
                 { "vol_status", n => { VolStatus = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

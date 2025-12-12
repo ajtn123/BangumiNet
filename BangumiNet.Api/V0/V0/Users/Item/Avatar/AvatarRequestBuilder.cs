@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Avatar
         public AvatarRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/avatar?type={type}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Avatar
         public AvatarRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/avatar?type={type}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户头像，302 重定向至头像地址，设置了 username 之后无法使用 UID 查询。
         /// </summary>
@@ -51,6 +53,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Avatar
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户头像，302 重定向至头像地址，设置了 username 之后无法使用 UID 查询。
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Avatar
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -72,6 +76,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Avatar
         {
             return new global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取用户头像，302 重定向至头像地址，设置了 username 之后无法使用 UID 查询。
         /// </summary>

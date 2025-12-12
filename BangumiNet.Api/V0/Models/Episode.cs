@@ -9,36 +9,42 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Episode : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The airdate property</summary>
+
         public string? Airdate { get; set; }
-        /// <summary>The comment property</summary>
+
         public int? Comment { get; set; }
+
         /// <summary>简介</summary>
         public string? Desc { get; set; }
+
         /// <summary>音乐曲目的碟片数</summary>
         public int? Disc { get; set; }
+
         /// <summary>维基人填写的原始时长</summary>
         public string? Duration { get; set; }
+
         /// <summary>服务器解析的时长，无法解析时为 `0`</summary>
         public int? DurationSeconds { get; set; }
+
         /// <summary>条目内的集数, 从`1`开始。非本篇剧集的此字段无意义</summary>
         public double? Ep { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The name_cn property</summary>
+
         public string? NameCn { get; set; }
+
         /// <summary>同类条目的排序和集数</summary>
         public double? Sort { get; set; }
+
         /// <summary>`0` 本篇，`1` SP，`2` OP，`3` ED</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Episode"/> and sets the default values.
         /// </summary>
@@ -46,6 +52,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -56,6 +63,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.Episode();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -78,6 +86,7 @@ namespace BangumiNet.Api.V0.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

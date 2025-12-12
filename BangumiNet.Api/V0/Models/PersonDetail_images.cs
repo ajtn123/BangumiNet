@@ -24,6 +24,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.PersonDetail_images();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.Models
             {
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

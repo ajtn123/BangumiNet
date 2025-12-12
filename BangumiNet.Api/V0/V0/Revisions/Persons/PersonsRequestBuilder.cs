@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
                 return new global::BangumiNet.Api.V0.V0.Revisions.Persons.Item.WithRevision_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
         public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/persons?person_id={person_id}{&limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
         public PersonsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/persons?person_id={person_id}{&limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Person Revisions
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Revision>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Revision.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Person Revisions
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -84,6 +89,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
         {
             return new global::BangumiNet.Api.V0.V0.Revisions.Persons.PersonsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// Get Person Revisions
         /// </summary>
@@ -93,9 +99,11 @@ namespace BangumiNet.Api.V0.V0.Revisions.Persons
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>角色 ID</summary>
             [QueryParameter("person_id")]
             public int? PersonId { get; set; }

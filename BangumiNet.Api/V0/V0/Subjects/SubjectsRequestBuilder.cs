@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
                 return new global::BangumiNet.Api.V0.V0.Subjects.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects?type={type}{&cat*,limit*,month*,offset*,platform*,series*,sort*,year*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects?type={type}{&cat*,limit*,month*,offset*,platform*,series*,sort*,year*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 第一页会 cache 24h，之后会 cache 1h
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Subject>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Subject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 第一页会 cache 24h，之后会 cache 1h
         /// </summary>
@@ -77,6 +81,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -86,6 +91,7 @@ namespace BangumiNet.Api.V0.V0.Subjects
         {
             return new global::BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 第一页会 cache 24h，之后会 cache 1h
         /// </summary>
@@ -95,27 +101,35 @@ namespace BangumiNet.Api.V0.V0.Subjects
             /// <summary>条目分类，参照 `SubjectCategory` enum</summary>
             [QueryParameter("cat")]
             public int? Cat { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>月份</summary>
             [QueryParameter("month")]
             public int? Month { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>平台，仅对游戏类型的条目有效</summary>
             [QueryParameter("platform")]
             public string? Platform { get; set; }
+
             /// <summary>是否系列，仅对书籍类型的条目有效</summary>
             [QueryParameter("series")]
             public bool? Series { get; set; }
+
             /// <summary>排序，枚举值 {date|rank}</summary>
             [QueryParameter("sort")]
             public string? Sort { get; set; }
+
             /// <summary>条目类型</summary>
             [QueryParameter("type")]
             public int? Type { get; set; }
+
             /// <summary>年份</summary>
             [QueryParameter("year")]
             public int? Year { get; set; }

@@ -19,11 +19,12 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CollectionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.V0.V0.Users.Item.Collections.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Collections.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.V0.v0.users.item.collections.item collection</summary>
         /// <param name="position">条目 ID</param>
         /// <returns>A <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Item.WithSubject_ItemRequestBuilder"/></returns>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
                 return new global::BangumiNet.Api.V0.V0.Users.Item.Collections.Item.WithSubject_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +46,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
         public CollectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections{?limit*,offset*,subject_type*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
         public CollectionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections{?limit*,offset*,subject_type*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取对应用户的收藏，查看私有收藏需要access token。
         /// </summary>
@@ -70,6 +74,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_UserCollection>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_UserCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取对应用户的收藏，查看私有收藏需要access token。
         /// </summary>
@@ -82,6 +87,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -91,6 +97,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
         {
             return new global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取对应用户的收藏，查看私有收藏需要access token。
         /// </summary>
@@ -100,12 +107,15 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>条目类型，默认为全部具体含义见 [SubjectType](#model-SubjectType)</summary>
             [QueryParameter("subject_type")]
             public int? SubjectType { get; set; }
+
             /// <summary>收藏类型，默认为全部具体含义见 [CollectionType](#model-CollectionType)</summary>
             [QueryParameter("type")]
             public string? Type { get; set; }

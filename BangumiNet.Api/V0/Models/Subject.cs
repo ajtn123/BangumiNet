@@ -9,50 +9,56 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Subject : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The collection property</summary>
+
         public global::BangumiNet.Api.V0.Models.Subject_collection? Collection { get; set; }
+
         /// <summary>air date in `YYYY-MM-DD` format</summary>
         public string? Date { get; set; }
+
         /// <summary>由旧服务端从wiki中解析，对于书籍条目为`话数`</summary>
         public int? Eps { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The images property</summary>
+
         public global::BangumiNet.Api.V0.Models.Images? Images { get; set; }
-        /// <summary>The infobox property</summary>
+
         public List<global::BangumiNet.Api.V0.Models.Subjects>? Infobox { get; set; }
-        /// <summary>The locked property</summary>
+
         public bool? Locked { get; set; }
+
         /// <summary>由维基人维护的 tag</summary>
         public List<string>? MetaTags { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The name_cn property</summary>
+
         public string? NameCn { get; set; }
-        /// <summary>The nsfw property</summary>
+
         public bool? Nsfw { get; set; }
+
         /// <summary>TV, Web, 欧美剧, DLC...</summary>
         public string? Platform { get; set; }
-        /// <summary>The rating property</summary>
+
         public global::BangumiNet.Api.V0.Models.Subject_rating? Rating { get; set; }
+
         /// <summary>是否为书籍系列的主条目</summary>
         public bool? Series { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
-        /// <summary>The tags property</summary>
+
         public List<global::BangumiNet.Api.V0.Models.Subjects>? Tags { get; set; }
+
         /// <summary>数据库中的章节数量</summary>
         public int? TotalEpisodes { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
+
         /// <summary>书籍条目的册数，由旧服务端从wiki中解析</summary>
         public int? Volumes { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Subject"/> and sets the default values.
         /// </summary>
@@ -60,6 +66,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -70,6 +77,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.Subject();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -99,6 +107,7 @@ namespace BangumiNet.Api.V0.Models
                 { "volumes", n => { Volumes = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

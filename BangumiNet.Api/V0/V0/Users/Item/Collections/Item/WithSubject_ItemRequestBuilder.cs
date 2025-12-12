@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Item
         public WithSubject_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/{subject_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Item.Collections.Item.WithSubject_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Item
         public WithSubject_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/{username}/collections/{subject_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取对应用户的收藏，查看私有收藏需要 access token
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.UserSubjectCollection>(requestInfo, global::BangumiNet.Api.V0.Models.UserSubjectCollection.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取对应用户的收藏，查看私有收藏需要 access token
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

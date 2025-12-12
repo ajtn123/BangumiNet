@@ -20,16 +20,17 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIndex_ItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The collect property</summary>
+
         public global::BangumiNet.Api.V0.V0.Indices.Item.Collect.CollectRequestBuilder Collect
         {
             get => new global::BangumiNet.Api.V0.V0.Indices.Item.Collect.CollectRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.WithIndex_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -38,6 +39,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
         public WithIndex_ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.WithIndex_ItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -46,6 +48,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
         public WithIndex_ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Index By ID
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.IndexObject>(requestInfo, global::BangumiNet.Api.V0.Models.IndexObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Edit index&apos;s information
         /// </summary>
@@ -84,6 +88,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.IndexObject>(requestInfo, global::BangumiNet.Api.V0.Models.IndexObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Index By ID
         /// </summary>
@@ -96,6 +101,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Edit index&apos;s information
         /// </summary>
@@ -111,6 +117,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

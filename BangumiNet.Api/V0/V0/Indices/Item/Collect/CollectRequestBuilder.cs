@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
         public CollectRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/collect", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.Item.Collect.CollectRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
         public CollectRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices/{index_id}/collect", rawUrl)
         {
         }
+
         /// <summary>
         /// 为当前用户取消收藏一条目录
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 为当前用户收藏一条目录
         /// </summary>
@@ -74,6 +77,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 为当前用户取消收藏一条目录
         /// </summary>
@@ -86,6 +90,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 为当前用户收藏一条目录
         /// </summary>
@@ -98,6 +103,7 @@ namespace BangumiNet.Api.V0.V0.Indices.Item.Collect
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

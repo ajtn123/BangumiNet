@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Indices
                 return new global::BangumiNet.Api.V0.V0.Indices.Item.WithIndex_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.IndicesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Indices
         public IndicesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Indices.IndicesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Indices
         public IndicesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/indices", rawUrl)
         {
         }
+
         /// <summary>
         /// Create a new index
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Indices
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.IndexObject>(requestInfo, global::BangumiNet.Api.V0.Models.IndexObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Create a new index
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Indices
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

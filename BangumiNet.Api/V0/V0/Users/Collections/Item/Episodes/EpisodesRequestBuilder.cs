@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         public EpisodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-/collections/{subject_id}/episodes{?episode_type*,limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         public EpisodesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/users/-/collections/{subject_id}/episodes{?episode_type*,limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 章节收藏信息
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse>(requestInfo, global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 同时会重新计算条目的完成度
         /// </summary>
@@ -75,6 +78,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             };
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 章节收藏信息
         /// </summary>
@@ -87,6 +91,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 同时会重新计算条目的完成度
         /// </summary>
@@ -102,6 +107,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -111,6 +117,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         {
             return new global::BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes.EpisodesRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 章节收藏信息
         /// </summary>
@@ -120,9 +127,11 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
             /// <summary>章节类型，不传则不按照章节进行筛选</summary>
             [QueryParameter("episode_type")]
             public int? EpisodeType { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

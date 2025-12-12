@@ -9,42 +9,50 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PersonDetail : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>parsed from wiki, maybe `null`</summary>
         public int? BirthDay { get; set; }
+
         /// <summary>parsed from wiki, maybe `null`</summary>
         public int? BirthMon { get; set; }
+
         /// <summary>parsed from wiki, maybe `null`</summary>
         public int? BirthYear { get; set; }
+
         /// <summary>parsed from wiki, maybe null, `1, 2, 3, 4` for `A, B, AB, O`</summary>
         public int? BloodType { get; set; }
-        /// <summary>The career property</summary>
+
         public List<global::BangumiNet.Api.V0.Models.PersonCareer?>? Career { get; set; }
+
         /// <summary>parsed from wiki, maybe null</summary>
         public string? Gender { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
+
         /// <summary>object with some size of images, this object maybe `null`</summary>
         public global::BangumiNet.Api.V0.Models.PersonDetail_images? Images { get; set; }
+
         /// <summary>server parsed infobox, a map from key to string or tuplenull if server infobox is not valid</summary>
         public List<global::BangumiNet.Api.V0.Models.PersonDetail_infobox>? Infobox { get; set; }
+
         /// <summary>currently it&apos;s latest user comment time, it will be replaced by wiki modified date in the future</summary>
         public DateTimeOffset? LastModified { get; set; }
-        /// <summary>The locked property</summary>
+
         public bool? Locked { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The stat property</summary>
+
         public global::BangumiNet.Api.V0.Models.Stat? Stat { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
+
         /// <summary>`1`, `2`, `3` 表示 `个人`, `公司`, `组合`</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.PersonDetail"/> and sets the default values.
         /// </summary>
@@ -52,6 +60,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,6 +71,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.PersonDetail();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -87,6 +97,7 @@ namespace BangumiNet.Api.V0.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

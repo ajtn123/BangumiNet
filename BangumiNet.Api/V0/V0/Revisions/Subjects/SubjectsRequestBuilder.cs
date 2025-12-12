@@ -31,6 +31,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
                 return new global::BangumiNet.Api.V0.V0.Revisions.Subjects.Item.WithRevision_ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/subjects?subject_id={subject_id}{&limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Revisions.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/revisions/subjects?subject_id={subject_id}{&limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Subject Revisions
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.V0.Models.Paged_Revision>(requestInfo, global::BangumiNet.Api.V0.Models.Paged_Revision.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// Get Subject Revisions
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -84,6 +89,7 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
         {
             return new global::BangumiNet.Api.V0.V0.Revisions.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// Get Subject Revisions
         /// </summary>
@@ -93,9 +99,11 @@ namespace BangumiNet.Api.V0.V0.Revisions.Subjects
             /// <summary>分页参数</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>分页参数</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>条目 ID</summary>
             [QueryParameter("subject_id")]
             public int? SubjectId { get; set; }

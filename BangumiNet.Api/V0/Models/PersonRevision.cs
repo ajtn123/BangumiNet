@@ -9,12 +9,11 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PersonRevision : global::BangumiNet.Api.V0.Models.Revision, IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The data property</summary>
+
         public global::BangumiNet.Api.V0.Models.PersonRevision_data? Data { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -25,6 +24,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.PersonRevision();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -36,6 +36,7 @@ namespace BangumiNet.Api.V0.Models
                 { "data", n => { Data = n.GetObjectValue<global::BangumiNet.Api.V0.Models.PersonRevision_data>(global::BangumiNet.Api.V0.Models.PersonRevision_data.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

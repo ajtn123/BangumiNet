@@ -26,6 +26,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Characters
         public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/characters", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Subjects.Item.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Characters
         public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/v0/subjects/{subject_id}/characters", rawUrl)
         {
         }
+
         /// <summary>
         /// Get Subject Characters
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Characters
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.V0.Models.RelatedCharacter>(requestInfo, global::BangumiNet.Api.V0.Models.RelatedCharacter.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// Get Subject Characters
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.V0.V0.Subjects.Item.Characters
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

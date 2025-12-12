@@ -16,8 +16,10 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>无权限的用户会直接忽略此字段，不会返回 R18 角色。默认或者 `null` 会返回包含 R18 的所有搜索结果。`true` 只会返回 R18 角色。`false` 只会返回非 R18 角色。</summary>
         public bool? Nsfw { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.V0.Search.Characters.CharactersPostRequestBody_filter"/> and sets the default values.
         /// </summary>
@@ -25,6 +27,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -35,6 +38,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.V0.Search.Characters.CharactersPostRequestBody_filter();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -46,6 +50,7 @@ namespace BangumiNet.Api.V0.V0.Search.Characters
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

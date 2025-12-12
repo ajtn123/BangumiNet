@@ -9,32 +9,31 @@ using System;
 namespace BangumiNet.Api.V0.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SubjectRevisionData : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The field_eps property</summary>
+
         public int? FieldEps { get; set; }
-        /// <summary>The field_infobox property</summary>
+
         public string? FieldInfobox { get; set; }
-        /// <summary>The field_summary property</summary>
+
         public string? FieldSummary { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The name_cn property</summary>
+
         public string? NameCn { get; set; }
-        /// <summary>The platform property</summary>
+
         public int? Platform { get; set; }
-        /// <summary>The subject_id property</summary>
+
         public int? SubjectId { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
-        /// <summary>The type_id property</summary>
+
         public int? TypeId { get; set; }
-        /// <summary>The vote_field property</summary>
+
         public string? VoteField { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.SubjectRevisionData"/> and sets the default values.
         /// </summary>
@@ -42,6 +41,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -52,6 +52,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.SubjectRevisionData();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -72,6 +73,7 @@ namespace BangumiNet.Api.V0.Models
                 { "vote_field", n => { VoteField = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

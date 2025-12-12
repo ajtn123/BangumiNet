@@ -16,10 +16,11 @@ namespace BangumiNet.Api.V0.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The nickname property</summary>
+
         public string? Nickname { get; set; }
-        /// <summary>The username property</summary>
+
         public string? Username { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Creator"/> and sets the default values.
         /// </summary>
@@ -27,6 +28,7 @@ namespace BangumiNet.Api.V0.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -37,6 +39,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.V0.Models.Creator();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -49,6 +52,7 @@ namespace BangumiNet.Api.V0.Models
                 { "username", n => { Username = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>
