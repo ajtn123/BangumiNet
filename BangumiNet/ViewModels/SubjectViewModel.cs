@@ -1,5 +1,4 @@
 ﻿using BangumiNet.Api.Extensions;
-using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;

@@ -8,12 +8,16 @@ public partial class CalendarItem : IAdditionalDataHolder, IParsable
 {
     /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
     public IDictionary<string, object> AdditionalData { get; set; }
+
     public SlimSubject? Subject { get; set; }
+
     public int? Watchers { get; set; }
+
     public CalendarItem()
     {
         AdditionalData = new Dictionary<string, object>();
     }
+
     /// <summary>
     /// Creates a new instance of the appropriate class based on discriminator value
     /// </summary>
@@ -23,6 +27,7 @@ public partial class CalendarItem : IAdditionalDataHolder, IParsable
         ArgumentNullException.ThrowIfNull(parseNode);
         return new CalendarItem();
     }
+
     /// <summary>
     /// The deserialization information for the current model
     /// </summary>
@@ -34,6 +39,7 @@ public partial class CalendarItem : IAdditionalDataHolder, IParsable
                 { "watchers", n => { Watchers = n.GetIntValue(); } },
             };
     }
+
     /// <summary>
     /// Serializes information the current object
     /// </summary>
