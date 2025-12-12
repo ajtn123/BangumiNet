@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes.Item
         public WithEpisodeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/episodes/{episodeID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes.Item
         public WithEpisodeItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/episodes/{episodeID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 更新章节进度
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodePatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodePatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 更新章节进度
         /// </summary>
@@ -69,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

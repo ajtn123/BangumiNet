@@ -9,28 +9,27 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class TimelineMemo : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The blog property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimBlogEntry? Blog { get; set; }
-        /// <summary>The daily property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo_daily? Daily { get; set; }
-        /// <summary>The index property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimIndex? Index { get; set; }
-        /// <summary>The mono property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo_mono? Mono { get; set; }
-        /// <summary>The progress property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo_progress? Progress { get; set; }
-        /// <summary>The status property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo_status? Status { get; set; }
-        /// <summary>The subject property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.TimelineMemo_subject>? Subject { get; set; }
-        /// <summary>The wiki property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo_wiki? Wiki { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.TimelineMemo"/> and sets the default values.
         /// </summary>
@@ -38,6 +37,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -48,6 +48,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.TimelineMemo();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -66,6 +67,7 @@ namespace BangumiNet.Api.P1.Models
                 { "wiki", n => { Wiki = n.GetObjectValue<global::BangumiNet.Api.P1.Models.TimelineMemo_wiki>(global::BangumiNet.Api.P1.Models.TimelineMemo_wiki.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

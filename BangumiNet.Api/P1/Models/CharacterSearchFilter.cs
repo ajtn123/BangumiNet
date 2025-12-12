@@ -9,14 +9,14 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CharacterSearchFilter : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>无权限的用户会直接忽略此字段，不会返回 R18 条目。`null` 或者 `true` 会返回包含 R18 的所有搜索结果。`false` 只会返回非 R18 条目。</summary>
         public bool? Nsfw { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.CharacterSearchFilter"/> and sets the default values.
         /// </summary>
@@ -24,6 +24,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.CharacterSearchFilter();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -45,6 +47,7 @@ namespace BangumiNet.Api.P1.Models
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

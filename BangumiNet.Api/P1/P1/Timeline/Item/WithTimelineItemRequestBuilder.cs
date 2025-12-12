@@ -20,16 +20,17 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTimelineItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The like property</summary>
+
         public global::BangumiNet.Api.P1.P1.Timeline.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The replies property</summary>
+
         public global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesRequestBuilder Replies
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Timeline.Item.WithTimelineItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -38,6 +39,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
         public WithTimelineItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline/{timelineID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Timeline.Item.WithTimelineItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -46,6 +48,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
         public WithTimelineItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline/{timelineID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除时间线
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Timeline.Item.WithTimelineDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Timeline.Item.WithTimelineDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除时间线
         /// </summary>
@@ -74,6 +78,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

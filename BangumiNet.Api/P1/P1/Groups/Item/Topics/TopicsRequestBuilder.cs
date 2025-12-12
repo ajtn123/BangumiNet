@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
         public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}/topics{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
         public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}/topics{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取小组话题列表
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 创建小组话题
         /// </summary>
@@ -70,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取小组话题列表
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 创建小组话题
         /// </summary>
@@ -97,6 +102,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -106,6 +112,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
         {
             return new global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取小组话题列表
         /// </summary>

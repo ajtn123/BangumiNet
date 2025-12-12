@@ -9,16 +9,15 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class TimelineMemo_progress_single : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The episode property</summary>
+
         public global::BangumiNet.Api.P1.Models.Episode? Episode { get; set; }
-        /// <summary>The subject property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimSubject? Subject { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.TimelineMemo_progress_single"/> and sets the default values.
         /// </summary>
@@ -26,6 +25,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -36,6 +36,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.TimelineMemo_progress_single();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -48,6 +49,7 @@ namespace BangumiNet.Api.P1.Models
                 { "subject", n => { Subject = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimSubject>(global::BangumiNet.Api.P1.Models.SlimSubject.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

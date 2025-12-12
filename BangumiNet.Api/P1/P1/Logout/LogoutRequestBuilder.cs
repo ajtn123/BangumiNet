@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Logout
         public LogoutRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/logout", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Logout.LogoutRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Logout
         public LogoutRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/logout", rawUrl)
         {
         }
+
         /// <summary>
         /// 登出
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Logout
             };
             return await RequestAdapter.SendAsync<UntypedNode>(requestInfo, UntypedNode.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 登出
         /// </summary>
@@ -69,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Logout
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

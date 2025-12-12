@@ -9,44 +9,24 @@ namespace BangumiNet.Api.P1.Models
     public enum UserHomepageSection
     {
         [EnumMember(Value = "anime")]
-        #pragma warning disable CS1591
         Anime,
-        #pragma warning restore CS1591
         [EnumMember(Value = "game")]
-        #pragma warning disable CS1591
         Game,
-        #pragma warning restore CS1591
         [EnumMember(Value = "book")]
-        #pragma warning disable CS1591
         Book,
-        #pragma warning restore CS1591
         [EnumMember(Value = "music")]
-        #pragma warning disable CS1591
         Music,
-        #pragma warning restore CS1591
         [EnumMember(Value = "real")]
-        #pragma warning disable CS1591
         Real,
-        #pragma warning restore CS1591
         [EnumMember(Value = "mono")]
-        #pragma warning disable CS1591
         Mono,
-        #pragma warning restore CS1591
         [EnumMember(Value = "blog")]
-        #pragma warning disable CS1591
         Blog,
-        #pragma warning restore CS1591
         [EnumMember(Value = "friend")]
-        #pragma warning disable CS1591
         Friend,
-        #pragma warning restore CS1591
         [EnumMember(Value = "group")]
-        #pragma warning disable CS1591
         Group,
-        #pragma warning restore CS1591
         [EnumMember(Value = "index")]
-        #pragma warning disable CS1591
         Index,
-        #pragma warning restore CS1591
     }
 }

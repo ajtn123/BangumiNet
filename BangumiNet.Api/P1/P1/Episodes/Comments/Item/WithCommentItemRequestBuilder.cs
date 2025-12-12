@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCommentItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The like property</summary>
+
         public global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
         public WithCommentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes/-/comments/{commentID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
         public WithCommentItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes/-/comments/{commentID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除条目的章节吐槽
         /// </summary>
@@ -56,6 +59,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 编辑条目的章节吐槽
         /// </summary>
@@ -74,6 +78,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Episodes.Comments.Item.WithCommentPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除条目的章节吐槽
         /// </summary>
@@ -86,6 +91,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 编辑条目的章节吐槽
         /// </summary>
@@ -101,6 +107,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Comments.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

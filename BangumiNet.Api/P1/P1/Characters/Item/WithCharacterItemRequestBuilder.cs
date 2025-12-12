@@ -22,26 +22,27 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCharacterItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The casts property</summary>
+
         public global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsRequestBuilder Casts
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Characters.Item.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.Item.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Characters.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indexes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Characters.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Characters.Item.WithCharacterItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -50,6 +51,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
         public WithCharacterItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Characters.Item.WithCharacterItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -58,6 +60,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
         public WithCharacterItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取角色
         /// </summary>
@@ -76,6 +79,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Character>(requestInfo, global::BangumiNet.Api.P1.Models.Character.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取角色
         /// </summary>
@@ -88,6 +92,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

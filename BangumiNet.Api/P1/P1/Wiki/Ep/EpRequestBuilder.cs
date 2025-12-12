@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Ep
                 return new global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Ep.EpRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Ep
         public EpRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/ep", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Ep.EpRequestBuilder"/> and sets the default values.
         /// </summary>

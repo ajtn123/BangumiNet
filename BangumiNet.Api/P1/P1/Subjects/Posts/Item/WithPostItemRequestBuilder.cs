@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPostItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The like property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
         public WithPostItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/posts/{postID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
         public WithPostItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/posts/{postID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除条目讨论回复
         /// </summary>
@@ -56,6 +59,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目讨论回复详情
         /// </summary>
@@ -72,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Post>(requestInfo, global::BangumiNet.Api.P1.Models.Post.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 编辑条目讨论回复
         /// </summary>
@@ -90,6 +95,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除条目讨论回复
         /// </summary>
@@ -102,6 +108,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 获取条目讨论回复详情
         /// </summary>
@@ -114,6 +121,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 编辑条目讨论回复
         /// </summary>
@@ -129,6 +137,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

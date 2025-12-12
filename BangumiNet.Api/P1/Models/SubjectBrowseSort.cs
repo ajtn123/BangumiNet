@@ -9,24 +9,14 @@ namespace BangumiNet.Api.P1.Models
     public enum SubjectBrowseSort
     {
         [EnumMember(Value = "rank")]
-        #pragma warning disable CS1591
         Rank,
-        #pragma warning restore CS1591
         [EnumMember(Value = "trends")]
-        #pragma warning disable CS1591
         Trends,
-        #pragma warning restore CS1591
         [EnumMember(Value = "collects")]
-        #pragma warning disable CS1591
         Collects,
-        #pragma warning restore CS1591
         [EnumMember(Value = "date")]
-        #pragma warning disable CS1591
         Date,
-        #pragma warning restore CS1591
         [EnumMember(Value = "title")]
-        #pragma warning disable CS1591
         Title,
-        #pragma warning restore CS1591
     }
 }

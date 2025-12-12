@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
         public WithPersonItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/persons/{personID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Persons.Item.WithPersonItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
         public WithPersonItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/persons/{personID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除人物收藏
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Persons.Item.WithPersonDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Persons.Item.WithPersonDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 新增人物收藏
         /// </summary>
@@ -70,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Persons.Item.WithPersonPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Persons.Item.WithPersonPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除人物收藏
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 新增人物收藏
         /// </summary>
@@ -94,6 +99,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Persons.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

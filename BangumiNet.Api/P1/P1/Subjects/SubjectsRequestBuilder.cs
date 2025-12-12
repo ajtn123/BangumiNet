@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.subjects.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder"/></returns>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
                 return new global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +46,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects{?cat*,month*,page*,series*,sort*,tags*,type*,year*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects{?cat*,month*,page*,series*,sort*,tags*,type*,year*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目列表
         /// </summary>
@@ -68,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.SubjectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目列表
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -89,6 +95,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取条目列表
         /// </summary>
@@ -98,12 +105,15 @@ namespace BangumiNet.Api.P1.P1.Subjects
             /// <summary>每种条目类型分类不同，具体参考 https://github.com/bangumi/common 的 subject_platforms.yaml</summary>
             [QueryParameter("cat")]
             public int? Cat { get; set; }
+
             /// <summary>月份</summary>
             [QueryParameter("month")]
             public int? Month { get; set; }
+
             /// <summary>min 1</summary>
             [QueryParameter("page")]
             public int? Page { get; set; }
+
             /// <summary>是否为系列，仅对书籍类型的条目有效</summary>
             [QueryParameter("series")]
             public bool? Series { get; set; }
@@ -113,6 +123,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
             public string[]? Tags { get; set; }
             [QueryParameter("type")]
             public int? Type { get; set; }
+
             /// <summary>年份</summary>
             [QueryParameter("year")]
             public int? Year { get; set; }

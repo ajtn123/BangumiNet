@@ -9,14 +9,13 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class GroupTopic : global::BangumiNet.Api.P1.Models.Topic, IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The group property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimGroup? Group { get; set; }
-        /// <summary>The replies property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.Reply>? Replies { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -27,6 +26,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.GroupTopic();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -39,6 +39,7 @@ namespace BangumiNet.Api.P1.Models
                 { "replies", n => { Replies = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reply>(global::BangumiNet.Api.P1.Models.Reply.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

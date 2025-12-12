@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Turnstile
         public TurnstileRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/turnstile?redirect_uri={redirect_uri}{&theme*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Turnstile.TurnstileRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Turnstile
         public TurnstileRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/turnstile?redirect_uri={redirect_uri}{&theme*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 为防止滥用，Redirect URI 为白名单机制，如需添加请提交 PR。
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Turnstile
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 为防止滥用，Redirect URI 为白名单机制，如需添加请提交 PR。
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Turnstile
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Turnstile
         {
             return new global::BangumiNet.Api.P1.P1.Turnstile.TurnstileRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 为防止滥用，Redirect URI 为白名单机制，如需添加请提交 PR。
         /// </summary>

@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects
                 return new global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.WithCollectItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects
         public CollectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/collects", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder"/> and sets the default values.
         /// </summary>

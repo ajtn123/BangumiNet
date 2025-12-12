@@ -9,44 +9,44 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class IndexRelated : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The award property</summary>
+
         public string? Award { get; set; }
-        /// <summary>The blog property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimBlogEntry? Blog { get; set; }
+
         /// <summary>目录关联类型  - 0 = 条目  - 1 = 角色  - 2 = 人物  - 3 = 章节  - 4 = 日志  - 5 = 小组话题  - 6 = 条目讨论</summary>
         public int? Cat { get; set; }
-        /// <summary>The character property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimCharacter? Character { get; set; }
-        /// <summary>The comment property</summary>
+
         public string? Comment { get; set; }
-        /// <summary>The createdAt property</summary>
+
         public int? CreatedAt { get; set; }
-        /// <summary>The episode property</summary>
+
         public global::BangumiNet.Api.P1.Models.Episode? Episode { get; set; }
-        /// <summary>The groupTopic property</summary>
+
         public global::BangumiNet.Api.P1.Models.GroupTopic? GroupTopic { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The order property</summary>
+
         public int? Order { get; set; }
-        /// <summary>The person property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimPerson? Person { get; set; }
-        /// <summary>The rid property</summary>
+
         public int? Rid { get; set; }
-        /// <summary>The sid property</summary>
+
         public int? Sid { get; set; }
-        /// <summary>The subject property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimSubject? Subject { get; set; }
-        /// <summary>The subjectTopic property</summary>
+
         public global::BangumiNet.Api.P1.Models.SubjectTopic? SubjectTopic { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.IndexRelated"/> and sets the default values.
         /// </summary>
@@ -54,6 +54,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -64,6 +65,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.IndexRelated();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -90,6 +92,7 @@ namespace BangumiNet.Api.P1.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

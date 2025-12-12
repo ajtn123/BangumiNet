@@ -9,34 +9,33 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SlimBlogEntry : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The createdAt property</summary>
+
         public int? CreatedAt { get; set; }
-        /// <summary>The icon property</summary>
+
         public string? Icon { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The public property</summary>
+
         public bool? Public { get; set; }
-        /// <summary>The replies property</summary>
+
         public int? Replies { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
-        /// <summary>The title property</summary>
+
         public string? Title { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
-        /// <summary>The uid property</summary>
+
         public int? Uid { get; set; }
-        /// <summary>The updatedAt property</summary>
+
         public int? UpdatedAt { get; set; }
-        /// <summary>The user property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SlimBlogEntry"/> and sets the default values.
         /// </summary>
@@ -44,6 +43,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -54,6 +54,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SlimBlogEntry();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -75,6 +76,7 @@ namespace BangumiNet.Api.P1.Models
                 { "user", n => { User = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

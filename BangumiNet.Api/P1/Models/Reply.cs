@@ -9,12 +9,11 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Reply : global::BangumiNet.Api.P1.Models.ReplyBase, IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The replies property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.ReplyBase>? Replies { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -25,6 +24,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.Reply();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -36,6 +36,7 @@ namespace BangumiNet.Api.P1.Models
                 { "replies", n => { Replies = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.ReplyBase>(global::BangumiNet.Api.P1.Models.ReplyBase.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

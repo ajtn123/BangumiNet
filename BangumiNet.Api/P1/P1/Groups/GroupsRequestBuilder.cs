@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Groups
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class GroupsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.P1.P1.Groups.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.groups.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.WithGroupNameItemRequestBuilder"/></returns>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Groups
                 return new global::BangumiNet.Api.P1.P1.Groups.Item.WithGroupNameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +46,7 @@ namespace BangumiNet.Api.P1.P1.Groups
         public GroupsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups{?limit*,mode*,offset*,sort*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Groups
         public GroupsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups{?limit*,mode*,offset*,sort*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取小组列表
         /// </summary>
@@ -68,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Groups
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.GroupsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.GroupsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取小组列表
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Groups
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -89,6 +95,7 @@ namespace BangumiNet.Api.P1.P1.Groups
         {
             return new global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取小组列表
         /// </summary>

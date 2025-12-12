@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
         public LikeRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/posts/{postID}/like", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Posts.Item.Like.LikeRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
         public LikeRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/posts/{postID}/like", rawUrl)
         {
         }
+
         /// <summary>
         /// 取消小组话题回复点赞
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Posts.Item.Like.LikeDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Posts.Item.Like.LikeDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 给小组话题回复点赞
         /// </summary>
@@ -70,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Posts.Item.Like.LikePutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Posts.Item.Like.LikePutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 取消小组话题回复点赞
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 给小组话题回复点赞
         /// </summary>
@@ -97,6 +102,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Posts.Item.Like
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

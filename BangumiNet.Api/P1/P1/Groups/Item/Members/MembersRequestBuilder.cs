@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Members
         public MembersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}/members{?limit*,offset*,role*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Members
         public MembersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}/members{?limit*,offset*,role*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取小组成员列表
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Members
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取小组成员列表
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Members
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Members
         {
             return new global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取小组成员列表
         /// </summary>

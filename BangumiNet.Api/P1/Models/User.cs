@@ -9,38 +9,37 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class User : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The avatar property</summary>
+
         public global::BangumiNet.Api.P1.Models.Avatar? Avatar { get; set; }
-        /// <summary>The bio property</summary>
+
         public string? Bio { get; set; }
-        /// <summary>The group property</summary>
+
         public int? Group { get; set; }
-        /// <summary>The homepage property</summary>
+
         public global::BangumiNet.Api.P1.Models.UserHomepage? Homepage { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The joinedAt property</summary>
+
         public int? JoinedAt { get; set; }
-        /// <summary>The location property</summary>
+
         public string? Location { get; set; }
-        /// <summary>The networkServices property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.User_networkServices>? NetworkServices { get; set; }
-        /// <summary>The nickname property</summary>
+
         public string? Nickname { get; set; }
-        /// <summary>The sign property</summary>
+
         public string? Sign { get; set; }
-        /// <summary>The site property</summary>
+
         public string? Site { get; set; }
-        /// <summary>The stats property</summary>
+
         public global::BangumiNet.Api.P1.Models.UserStats? Stats { get; set; }
-        /// <summary>The username property</summary>
+
         public string? Username { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.User"/> and sets the default values.
         /// </summary>
@@ -48,6 +47,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -58,6 +58,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.User();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -81,6 +82,7 @@ namespace BangumiNet.Api.P1.Models
                 { "username", n => { Username = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

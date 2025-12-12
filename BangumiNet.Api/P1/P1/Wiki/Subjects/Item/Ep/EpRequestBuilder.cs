@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
         public EpRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/ep", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
         public EpRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/ep", rawUrl)
         {
         }
+
         /// <summary>
         /// 需要 `epEdit` 权限，一次最多可以编辑 20 个章节
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `epEdit` 权限，一次最多可以添加 40 个章节
         /// </summary>
@@ -74,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `epEdit` 权限，一次最多可以编辑 20 个章节
         /// </summary>
@@ -89,6 +93,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// 需要 `epEdit` 权限，一次最多可以添加 40 个章节
         /// </summary>
@@ -104,6 +109,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

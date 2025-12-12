@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithImageItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The vote property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteRequestBuilder Vote
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.WithImageItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item
         public WithImageItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/covers/{imageID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.WithImageItemRequestBuilder"/> and sets the default values.
         /// </summary>

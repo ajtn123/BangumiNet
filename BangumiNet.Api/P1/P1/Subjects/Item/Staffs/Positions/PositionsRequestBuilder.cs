@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
         public PositionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/staffs/positions{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
         public PositionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/staffs/positions{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目的制作人员职位
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目的制作人员职位
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取条目的制作人员职位
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

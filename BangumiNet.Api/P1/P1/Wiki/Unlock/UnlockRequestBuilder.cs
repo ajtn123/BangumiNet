@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UnlockRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.UnlockRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock
         public UnlockRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/unlock", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.UnlockRequestBuilder"/> and sets the default values.
         /// </summary>

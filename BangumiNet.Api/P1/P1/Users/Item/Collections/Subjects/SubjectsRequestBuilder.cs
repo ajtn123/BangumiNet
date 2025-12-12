@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/collections/subjects{?limit*,offset*,subjectType*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/collections/subjects{?limit*,offset*,subjectType*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户条目收藏
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户条目收藏
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
         {
             return new global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取用户条目收藏
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

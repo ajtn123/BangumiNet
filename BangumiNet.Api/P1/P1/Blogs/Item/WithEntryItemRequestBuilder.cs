@@ -21,21 +21,22 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithEntryItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The photos property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Photos.PhotosRequestBuilder Photos
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Photos.PhotosRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +45,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
         public WithEntryItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/{entryID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
         public WithEntryItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/{entryID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取日志详情
         /// </summary>
@@ -68,6 +71,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.BlogEntry>(requestInfo, global::BangumiNet.Api.P1.Models.BlogEntry.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取日志详情
         /// </summary>
@@ -80,6 +84,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

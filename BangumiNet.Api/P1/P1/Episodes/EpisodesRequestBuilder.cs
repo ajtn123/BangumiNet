@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Episodes
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class EpisodesRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.P1.P1.Episodes.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.episodes.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Episodes.Item.WithEpisodeItemRequestBuilder"/></returns>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.P1.P1.Episodes
                 return new global::BangumiNet.Api.P1.P1.Episodes.Item.WithEpisodeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -41,6 +43,7 @@ namespace BangumiNet.Api.P1.P1.Episodes
         public EpisodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>

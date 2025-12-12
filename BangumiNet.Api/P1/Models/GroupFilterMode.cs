@@ -9,16 +9,10 @@ namespace BangumiNet.Api.P1.Models
     public enum GroupFilterMode
     {
         [EnumMember(Value = "all")]
-        #pragma warning disable CS1591
         All,
-        #pragma warning restore CS1591
         [EnumMember(Value = "joined")]
-        #pragma warning disable CS1591
         Joined,
-        #pragma warning restore CS1591
         [EnumMember(Value = "managed")]
-        #pragma warning disable CS1591
         Managed,
-        #pragma warning restore CS1591
     }
 }

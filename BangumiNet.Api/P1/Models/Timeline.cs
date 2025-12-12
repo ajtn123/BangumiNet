@@ -9,34 +9,34 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Timeline : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The batch property</summary>
+
         public bool? Batch { get; set; }
+
         /// <summary>时间线类型  - 1 = 日常行为  - 2 = 维基操作  - 3 = 收藏条目  - 4 = 收视进度  - 5 = 状态  - 6 = 日志  - 7 = 目录  - 8 = 人物  - 9 = 天窗</summary>
         public int? Cat { get; set; }
-        /// <summary>The createdAt property</summary>
+
         public int? CreatedAt { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The memo property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineMemo? Memo { get; set; }
-        /// <summary>The reactions property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.Reaction>? Reactions { get; set; }
-        /// <summary>The replies property</summary>
+
         public int? Replies { get; set; }
-        /// <summary>The source property</summary>
+
         public global::BangumiNet.Api.P1.Models.TimelineSource? Source { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
-        /// <summary>The uid property</summary>
+
         public int? Uid { get; set; }
-        /// <summary>The user property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.Timeline"/> and sets the default values.
         /// </summary>
@@ -44,6 +44,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -54,6 +55,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.Timeline();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -75,6 +77,7 @@ namespace BangumiNet.Api.P1.Models
                 { "user", n => { User = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

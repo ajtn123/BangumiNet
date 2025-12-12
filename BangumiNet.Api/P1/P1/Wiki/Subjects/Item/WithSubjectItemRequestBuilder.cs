@@ -21,21 +21,22 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSubjectItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The covers property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder Covers
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The ep property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpRequestBuilder Ep
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The historySummary property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +45,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public WithSubjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public WithSubjectItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目当前的 wiki 信息
         /// </summary>
@@ -89,6 +92,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -109,6 +113,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             };
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目当前的 wiki 信息
         /// </summary>
@@ -133,6 +138,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -148,6 +154,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

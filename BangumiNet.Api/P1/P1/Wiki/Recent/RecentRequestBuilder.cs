@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent
         public RecentRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Recent.RecentRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent
         public RecentRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取最近两天的wiki更新
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.RecentWikiChange>(requestInfo, global::BangumiNet.Api.P1.Models.RecentWikiChange.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取最近两天的wiki更新
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

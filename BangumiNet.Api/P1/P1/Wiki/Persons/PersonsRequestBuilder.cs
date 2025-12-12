@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons
                 return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons
         public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/persons", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.PersonsRequestBuilder"/> and sets the default values.
         /// </summary>

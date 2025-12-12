@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Friendlist
         public FriendlistRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/friendlist", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Friendlist.FriendlistRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Friendlist
         public FriendlistRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/friendlist", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取当前用户的好友 ID 列表
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Friendlist
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friendlist.FriendlistGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friendlist.FriendlistGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取当前用户的好友 ID 列表
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Friendlist
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
         public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/users/{username}/contributions/characters{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
         public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/users/{username}/contributions/characters{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户 wiki 角色编辑记录
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户 wiki 角色编辑记录
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -73,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
         {
             return new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取用户 wiki 角色编辑记录
         /// </summary>
@@ -82,6 +87,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

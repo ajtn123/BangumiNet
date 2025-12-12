@@ -17,16 +17,17 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class StaffsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The positions property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder Positions
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.StaffsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -35,6 +36,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs
         public StaffsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/staffs", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.StaffsRequestBuilder"/> and sets the default values.
         /// </summary>

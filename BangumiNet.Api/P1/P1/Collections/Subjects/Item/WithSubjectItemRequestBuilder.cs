@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
         public WithSubjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/subjects/{subjectID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Subjects.Item.WithSubjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
         public WithSubjectItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/subjects/{subjectID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 更新条目进度
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Subjects.Item.WithSubjectPatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Subjects.Item.WithSubjectPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 新增或修改条目收藏
         /// </summary>
@@ -74,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Subjects.Item.WithSubjectPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Subjects.Item.WithSubjectPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 更新条目进度
         /// </summary>
@@ -89,6 +93,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// 新增或修改条目收藏
         /// </summary>
@@ -104,6 +109,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Subjects.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

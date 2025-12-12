@@ -9,24 +9,14 @@ namespace BangumiNet.Api.P1.Models
     public enum GroupSort
     {
         [EnumMember(Value = "posts")]
-        #pragma warning disable CS1591
         Posts,
-        #pragma warning restore CS1591
         [EnumMember(Value = "topics")]
-        #pragma warning disable CS1591
         Topics,
-        #pragma warning restore CS1591
         [EnumMember(Value = "members")]
-        #pragma warning disable CS1591
         Members,
-        #pragma warning restore CS1591
         [EnumMember(Value = "created")]
-        #pragma warning disable CS1591
         Created,
-        #pragma warning restore CS1591
         [EnumMember(Value = "updated")]
-        #pragma warning disable CS1591
         Updated,
-        #pragma warning restore CS1591
     }
 }

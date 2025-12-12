@@ -19,26 +19,27 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CollectionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.P1.P1.Users.Item.Collections.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Collections.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indexes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Users.Item.Collections.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Collections.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.P1.P1.Users.Item.Collections.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Collections.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Users.Item.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +48,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Collections
         public CollectionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/collections", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Users.Item.Collections.CollectionsRequestBuilder"/> and sets the default values.
         /// </summary>

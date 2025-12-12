@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
         public CommentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}/comments", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Characters.Item.Comments.CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
         public CommentsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}/comments", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取角色的吐槽箱
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.P1.Characters.Item.Comments.Comments>(requestInfo, global::BangumiNet.Api.P1.P1.Characters.Item.Comments.Comments.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 创建角色的吐槽
         /// </summary>
@@ -73,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Characters.Item.Comments.CommentsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Characters.Item.Comments.CommentsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取角色的吐槽箱
         /// </summary>
@@ -85,6 +89,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 创建角色的吐槽
         /// </summary>
@@ -100,6 +105,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

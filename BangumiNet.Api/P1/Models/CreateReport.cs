@@ -9,20 +9,23 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CreateReport : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>举报说明（可选）</summary>
         public string? Comment { get; set; }
+
         /// <summary>被举报对象的 ID</summary>
         public int? Id { get; set; }
+
         /// <summary>举报类型  - 6 = 用户  - 7 = 小组话题  - 8 = 小组回复  - 9 = 条目话题  - 10 = 条目回复  - 11 = 章节回复  - 12 = 角色回复  - 13 = 人物回复  - 14 = 日志  - 15 = 日志回复  - 16 = 时间线  - 17 = 时间线回复  - 18 = 目录  - 19 = 目录回复</summary>
         public int? Type { get; set; }
+
         /// <summary>举报原因  - 1 = 辱骂、人身攻击  - 2 = 刷屏、无关内容  - 3 = 政治相关  - 4 = 违法信息  - 5 = 泄露隐私  - 6 = 涉嫌刷分  - 7 = 引战  - 8 = 广告  - 9 = 剧透  - 99 = 其他</summary>
         public int? Value { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.CreateReport"/> and sets the default values.
         /// </summary>
@@ -30,6 +33,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -40,6 +44,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.CreateReport();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -54,6 +59,7 @@ namespace BangumiNet.Api.P1.Models
                 { "value", n => { Value = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

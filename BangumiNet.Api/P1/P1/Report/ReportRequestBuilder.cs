@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Report
         public ReportRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/report", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Report.ReportRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Report
         public ReportRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/report", rawUrl)
         {
         }
+
         /// <summary>
         /// 报告疑虑
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Report
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Report.ReportPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Report.ReportPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 报告疑虑
         /// </summary>
@@ -69,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Report
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

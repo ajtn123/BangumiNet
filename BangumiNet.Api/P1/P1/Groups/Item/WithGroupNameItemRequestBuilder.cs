@@ -20,16 +20,17 @@ namespace BangumiNet.Api.P1.P1.Groups.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithGroupNameItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The members property</summary>
+
         public global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersRequestBuilder Members
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Item.Members.MembersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The topics property</summary>
+
         public global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.WithGroupNameItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -38,6 +39,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item
         public WithGroupNameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.WithGroupNameItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -46,6 +48,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item
         public WithGroupNameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/{groupName}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取小组详情
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Group>(requestInfo, global::BangumiNet.Api.P1.Models.Group.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取小组详情
         /// </summary>
@@ -74,6 +78,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

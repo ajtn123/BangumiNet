@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTopicItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The replies property</summary>
+
         public global::BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies.RepliesRequestBuilder Replies
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
         public WithTopicItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics/{topicID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
         public WithTopicItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics/{topicID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取小组话题详情
         /// </summary>
@@ -56,6 +59,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.GroupTopic>(requestInfo, global::BangumiNet.Api.P1.Models.GroupTopic.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 编辑小组话题
         /// </summary>
@@ -74,6 +78,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Topics.Item.WithTopicPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取小组话题详情
         /// </summary>
@@ -86,6 +91,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 编辑小组话题
         /// </summary>
@@ -101,6 +107,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Indexes
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class IndexesRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.P1.P1.Indexes.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.indexes.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexItemRequestBuilder"/></returns>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
                 return new global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -44,6 +46,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
         public IndexesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
         public IndexesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes", rawUrl)
         {
         }
+
         /// <summary>
         /// 创建目录
         /// </summary>
@@ -70,6 +74,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Indexes.IndexesPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Indexes.IndexesPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 创建目录
         /// </summary>
@@ -85,6 +90,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

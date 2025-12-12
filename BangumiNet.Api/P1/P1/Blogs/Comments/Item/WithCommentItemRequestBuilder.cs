@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
         public WithCommentItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/-/comments/{commentID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.Comments.Item.WithCommentItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
         public WithCommentItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/-/comments/{commentID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除日志的吐槽
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blogs.Comments.Item.WithCommentDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blogs.Comments.Item.WithCommentDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 编辑日志的吐槽
         /// </summary>
@@ -68,6 +71,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blogs.Comments.Item.WithCommentPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blogs.Comments.Item.WithCommentPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除日志的吐槽
         /// </summary>
@@ -80,6 +84,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 编辑日志的吐槽
         /// </summary>
@@ -95,6 +100,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Comments.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

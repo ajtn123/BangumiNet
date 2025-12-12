@@ -10,16 +10,16 @@ using System;
 namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PersonsGetResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The data property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.SubjectStaff>? Data { get; set; }
+
         /// <summary>limit+offset 为参数的请求表示总条数，page 为参数的请求表示总页数</summary>
         public int? Total { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsGetResponse"/> and sets the default values.
         /// </summary>
@@ -27,6 +27,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -37,6 +38,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsGetResponse();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -49,6 +51,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons
                 { "total", n => { Total = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

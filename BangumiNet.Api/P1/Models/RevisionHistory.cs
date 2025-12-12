@@ -9,22 +9,23 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class RevisionHistory : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The commitMessage property</summary>
+
         public string? CommitMessage { get; set; }
+
         /// <summary>unix timestamp seconds</summary>
         public int? CreatedAt { get; set; }
-        /// <summary>The creator property</summary>
+
         public global::BangumiNet.Api.P1.Models.RevisionHistory_creator? Creator { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
+
         /// <summary>修订类型  - 1 = 条目编辑  - 103 = 条目锁定  - 104 = 条目解锁  - 11 = 条目合体  - 12 = 条目删除  - 17 = 条目关联  - 5 = 条目-&gt;角色关联  - 6 = 条目-&gt;声优关联  - 10 = 条目-&gt;人物关联   - 2 = 角色编辑  - 13 = 角色合体  - 14 = 角色删除  - 4 = 角色-&gt;条目关联  - 7 = 角色-&gt;声优关联   - 3 = 人物编辑  - 15 = 人物合体  - 16 = 人物删除  - 8 = 人物-&gt;声优关联  - 9 = 人物-&gt;条目关联   - 18 = 章节编辑  - 181 = 章节合体  - 182 = 章节移动  - 183 = 章节锁定  - 184 = 章节解锁  - 185 = 章节删除</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.RevisionHistory"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -42,6 +44,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.RevisionHistory();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -57,6 +60,7 @@ namespace BangumiNet.Api.P1.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

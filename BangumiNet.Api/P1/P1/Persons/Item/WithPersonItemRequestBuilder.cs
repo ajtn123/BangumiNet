@@ -23,31 +23,32 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPersonItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The casts property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.Item.Casts.CastsRequestBuilder Casts
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Casts.CastsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indexes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The works property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder Works
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -56,6 +57,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
         public WithPersonItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.WithPersonItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -64,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
         public WithPersonItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取人物
         /// </summary>
@@ -82,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Person>(requestInfo, global::BangumiNet.Api.P1.Models.Person.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取人物
         /// </summary>
@@ -94,6 +98,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/search/subjects{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Search.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/search/subjects{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 搜索条目
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Search.Subjects.SubjectsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Search.Subjects.SubjectsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 搜索条目
         /// </summary>
@@ -67,6 +70,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -76,6 +80,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
         {
             return new global::BangumiNet.Api.P1.P1.Search.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 搜索条目
         /// </summary>
@@ -85,6 +90,7 @@ namespace BangumiNet.Api.P1.P1.Search.Subjects
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

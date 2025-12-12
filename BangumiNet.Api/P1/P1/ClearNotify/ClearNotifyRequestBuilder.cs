@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.ClearNotify
         public ClearNotifyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/clear-notify", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.ClearNotify.ClearNotifyRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.ClearNotify
         public ClearNotifyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/clear-notify", rawUrl)
         {
         }
+
         /// <summary>
         /// 标记通知为已读不传id时会清空所有未读通知
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.ClearNotify
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.ClearNotify.ClearNotifyPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.ClearNotify.ClearNotifyPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 标记通知为已读不传id时会清空所有未读通知
         /// </summary>
@@ -67,6 +70,7 @@ namespace BangumiNet.Api.P1.P1.ClearNotify
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

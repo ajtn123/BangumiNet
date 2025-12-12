@@ -9,42 +9,42 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Group : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The accessible property</summary>
+
         public bool? Accessible { get; set; }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The cat property</summary>
+
         public int? Cat { get; set; }
-        /// <summary>The createdAt property</summary>
+
         public int? CreatedAt { get; set; }
-        /// <summary>The creator property</summary>
+
         public global::BangumiNet.Api.P1.Models.SlimUser? Creator { get; set; }
-        /// <summary>The creatorID property</summary>
+
         public int? CreatorID { get; set; }
-        /// <summary>The description property</summary>
+
         public string? Description { get; set; }
-        /// <summary>The icon property</summary>
+
         public global::BangumiNet.Api.P1.Models.Avatar? Icon { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The members property</summary>
+
         public int? Members { get; set; }
-        /// <summary>The membership property</summary>
+
         public global::BangumiNet.Api.P1.Models.GroupMember? Membership { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The nsfw property</summary>
+
         public bool? Nsfw { get; set; }
-        /// <summary>The posts property</summary>
+
         public int? Posts { get; set; }
-        /// <summary>The title property</summary>
+
         public string? Title { get; set; }
-        /// <summary>The topics property</summary>
+
         public int? Topics { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.Group"/> and sets the default values.
         /// </summary>
@@ -52,6 +52,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,6 +63,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.Group();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -87,6 +89,7 @@ namespace BangumiNet.Api.P1.Models
                 { "topics", n => { Topics = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

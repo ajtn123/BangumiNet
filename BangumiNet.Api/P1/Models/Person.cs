@@ -9,42 +9,42 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Person : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>职业</summary>
         public List<string>? Career { get; set; }
-        /// <summary>The collectedAt property</summary>
+
         public int? CollectedAt { get; set; }
-        /// <summary>The collects property</summary>
+
         public int? Collects { get; set; }
-        /// <summary>The comment property</summary>
+
         public int? Comment { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The images property</summary>
+
         public global::BangumiNet.Api.P1.Models.PersonImages? Images { get; set; }
-        /// <summary>The info property</summary>
+
         public string? Info { get; set; }
-        /// <summary>The infobox property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.Persons>? Infobox { get; set; }
-        /// <summary>The lock property</summary>
+
         public bool? Lock { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The nameCN property</summary>
+
         public string? NameCN { get; set; }
-        /// <summary>The nsfw property</summary>
+
         public bool? Nsfw { get; set; }
-        /// <summary>The redirect property</summary>
+
         public int? Redirect { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
-        /// <summary>The type property</summary>
+
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.Person"/> and sets the default values.
         /// </summary>
@@ -52,6 +52,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,6 +63,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.Person();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -87,6 +89,7 @@ namespace BangumiNet.Api.P1.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

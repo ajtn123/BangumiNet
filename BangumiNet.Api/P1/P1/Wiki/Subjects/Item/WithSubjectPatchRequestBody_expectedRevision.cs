@@ -9,22 +9,21 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class WithSubjectPatchRequestBody_expectedRevision : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The infobox property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_infobox? Infobox { get; set; }
-        /// <summary>The metaTags property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_metaTags? MetaTags { get; set; }
-        /// <summary>The name property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_name? Name { get; set; }
-        /// <summary>The platform property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_platform? Platform { get; set; }
-        /// <summary>The summary property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_summary? Summary { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision"/> and sets the default values.
         /// </summary>
@@ -32,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -57,6 +58,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 { "summary", n => { Summary = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_summary>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_summary.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>
@@ -71,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision.WithSubjectPatchRequestBody_expectedRevision_summary>("summary", Summary);
             writer.WriteAdditionalData(AdditionalData);
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_infoboxMember1"/>, <see cref="string"/>
         /// </summary>
@@ -79,8 +82,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             /// <summary>Composed type representation for type <see cref="string"/></summary>
             public string? String { get; set; }
+
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_infoboxMember1"/></summary>
             public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_infoboxMember1? WithSubjectPatchRequestBodyExpectedRevisionInfoboxMember1 { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -99,6 +104,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -111,6 +117,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>
@@ -127,6 +134,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
             }
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_metaTagsMember1"/>, List&lt;string&gt;
         /// </summary>
@@ -135,8 +143,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             /// <summary>Composed type representation for type List&lt;string&gt;</summary>
             public List<string>? String { get; set; }
+
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_metaTagsMember1"/></summary>
             public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_metaTagsMember1? WithSubjectPatchRequestBodyExpectedRevisionMetaTagsMember1 { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -155,6 +165,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -167,6 +178,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>
@@ -183,6 +195,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
             }
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_nameMember1"/>, <see cref="string"/>
         /// </summary>
@@ -191,8 +204,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             /// <summary>Composed type representation for type <see cref="string"/></summary>
             public string? String { get; set; }
+
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_nameMember1"/></summary>
             public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_nameMember1? WithSubjectPatchRequestBodyExpectedRevisionNameMember1 { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -211,6 +226,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -223,6 +239,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>
@@ -239,6 +256,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
             }
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1"/>, <see cref="int"/>
         /// </summary>
@@ -247,8 +265,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             /// <summary>Composed type representation for type <see cref="int"/></summary>
             public int? Integer { get; set; }
+
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1"/></summary>
             public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1? WithSubjectPatchRequestBodyExpectedRevisionPlatformMember1 { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -267,6 +287,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -279,6 +300,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>
@@ -295,6 +317,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
             }
         }
+
         /// <summary>
         /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_summaryMember1"/>, <see cref="string"/>
         /// </summary>
@@ -303,8 +326,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         {
             /// <summary>Composed type representation for type <see cref="string"/></summary>
             public string? String { get; set; }
+
             /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_summaryMember1"/></summary>
             public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_summaryMember1? WithSubjectPatchRequestBodyExpectedRevisionSummaryMember1 { get; set; }
+
             /// <summary>
             /// Creates a new instance of the appropriate class based on discriminator value
             /// </summary>
@@ -323,6 +348,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return result;
             }
+
             /// <summary>
             /// The deserialization information for the current model
             /// </summary>
@@ -335,6 +361,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 return new Dictionary<string, Action<IParseNode>>();
             }
+
             /// <summary>
             /// Serializes information the current object
             /// </summary>

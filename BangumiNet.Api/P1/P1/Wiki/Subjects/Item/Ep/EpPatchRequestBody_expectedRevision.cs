@@ -9,22 +9,21 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class EpPatchRequestBody_expectedRevision : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The date property</summary>
+
         public string? Date { get; set; }
-        /// <summary>The duration property</summary>
+
         public string? Duration { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The nameCN property</summary>
+
         public string? NameCN { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpPatchRequestBody_expectedRevision"/> and sets the default values.
         /// </summary>
@@ -32,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpPatchRequestBody_expectedRevision();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -57,6 +58,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep
                 { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

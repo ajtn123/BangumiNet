@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         public WithIndexItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/indexes/{indexID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         public WithIndexItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/indexes/{indexID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除目录收藏
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 新增目录收藏
         /// </summary>
@@ -70,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexPutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除目录收藏
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 新增目录收藏
         /// </summary>
@@ -94,6 +99,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

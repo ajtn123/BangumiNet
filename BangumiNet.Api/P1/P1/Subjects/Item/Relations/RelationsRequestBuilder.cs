@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
         public RelationsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/relations{?limit*,offprint*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
         public RelationsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/relations{?limit*,offprint*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目的关联条目
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目的关联条目
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取条目的关联条目
         /// </summary>
@@ -80,9 +85,11 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Relations
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>是否单行本</summary>
             [QueryParameter("offprint")]
             public bool? Offprint { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

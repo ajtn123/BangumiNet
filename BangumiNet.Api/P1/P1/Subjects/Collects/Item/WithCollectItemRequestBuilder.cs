@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCollectItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The like property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.WithCollectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Collects.Item
         public WithCollectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/collects/{collectID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Collects.Item.WithCollectItemRequestBuilder"/> and sets the default values.
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/unlock/subjects", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -61,6 +62,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

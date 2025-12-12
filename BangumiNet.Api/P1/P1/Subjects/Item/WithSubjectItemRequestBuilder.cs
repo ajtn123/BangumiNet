@@ -28,56 +28,57 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSubjectItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The episodes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indexes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The recs property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Recs.RecsRequestBuilder Recs
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Recs.RecsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The relations property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsRequestBuilder Relations
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The reviews property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Reviews.ReviewsRequestBuilder Reviews
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Reviews.ReviewsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The staffs property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.StaffsRequestBuilder Staffs
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.StaffsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The topics property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -86,6 +87,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
         public WithSubjectItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.WithSubjectItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -94,6 +96,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
         public WithSubjectItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目
         /// </summary>
@@ -110,6 +113,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Subject>(requestInfo, global::BangumiNet.Api.P1.Models.Subject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目
         /// </summary>
@@ -122,6 +126,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

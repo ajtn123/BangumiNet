@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
         public EpisodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/episodes{?limit*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
         public EpisodesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/episodes{?limit*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目的章节
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目的章节
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取条目的章节
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Episodes
             /// <summary>max 1000</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

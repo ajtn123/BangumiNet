@@ -9,18 +9,19 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SearchSubject : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The filter property</summary>
+
         public global::BangumiNet.Api.P1.Models.SubjectSearchFilter? Filter { get; set; }
+
         /// <summary>搜索关键词</summary>
         public string? Keyword { get; set; }
+
         /// <summary>条目搜索排序方式  - match = 匹配程度  - heat = 收藏人数  - rank = 排名由高到低  - score = 评分</summary>
         public global::BangumiNet.Api.P1.Models.SubjectSearchSort? Sort { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SearchSubject"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.Models
             AdditionalData = new Dictionary<string, object>();
             Sort = global::BangumiNet.Api.P1.Models.SubjectSearchSort.Match;
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,6 +41,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SearchSubject();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -52,6 +55,7 @@ namespace BangumiNet.Api.P1.Models
                 { "sort", n => { Sort = n.GetEnumValue<global::BangumiNet.Api.P1.Models.SubjectSearchSort>(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

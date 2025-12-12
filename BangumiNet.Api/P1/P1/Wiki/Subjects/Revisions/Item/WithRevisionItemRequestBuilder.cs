@@ -13,7 +13,7 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\wiki\subjects\revisions\{revisionID}
+    /// Builds and executes requests for operations under \p1\wiki\subjects\-\revisions\{revisionID}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithRevisionItemRequestBuilder : BaseRequestBuilder
@@ -23,17 +23,19 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRevisionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/revisions/{revisionID}", pathParameters)
+        public WithRevisionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/-/revisions/{revisionID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithRevisionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/revisions/{revisionID}", rawUrl)
+        public WithRevisionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/-/revisions/{revisionID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目历史版本 wiki 信息
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.SubjectRevisionWikiInfo>(requestInfo, global::BangumiNet.Api.P1.Models.SubjectRevisionWikiInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目历史版本 wiki 信息
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

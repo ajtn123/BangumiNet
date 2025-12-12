@@ -9,14 +9,14 @@ using System;
 namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class TopicsPostResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>new topic id</summary>
         public int? Id { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsPostResponse"/> and sets the default values.
         /// </summary>
@@ -24,6 +24,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Topics.TopicsPostResponse();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -45,6 +47,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Topics
                 { "id", n => { Id = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item
         public WithRevisionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-/revisions/{revisionID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item
         public WithRevisionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-/revisions/{revisionID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取角色历史版本 wiki 信息
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo>(requestInfo, global::BangumiNet.Api.P1.Models.CharacterRevisionWikiInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取角色历史版本 wiki 信息
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

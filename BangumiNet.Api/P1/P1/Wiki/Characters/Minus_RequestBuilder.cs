@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The revisions property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.RevisionsRequestBuilder Revisions
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters
         public Minus_RequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>

@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithEpisodeItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Item.WithEpisodeItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
         public WithEpisodeItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes/{episodeID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Item.WithEpisodeItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
         public WithEpisodeItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes/{episodeID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取章节信息
         /// </summary>
@@ -56,6 +59,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.Episode>(requestInfo, global::BangumiNet.Api.P1.Models.Episode.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取章节信息
         /// </summary>
@@ -68,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

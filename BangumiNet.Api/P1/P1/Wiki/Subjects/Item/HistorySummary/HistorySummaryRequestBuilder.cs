@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         public HistorySummaryRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         public HistorySummaryRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目 wiki 历史编辑摘要
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.RevisionHistory>(requestInfo, global::BangumiNet.Api.P1.Models.RevisionHistory.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 获取条目 wiki 历史编辑摘要
         /// </summary>
@@ -65,6 +68,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

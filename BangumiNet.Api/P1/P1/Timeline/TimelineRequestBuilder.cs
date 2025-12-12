@@ -31,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
                 return new global::BangumiNet.Api.P1.P1.Timeline.Item.WithTimelineItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Timeline.TimelineRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
         public TimelineRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline{?limit*,mode*,until*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Timeline.TimelineRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
         public TimelineRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline{?limit*,mode*,until*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取时间线
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.Timeline>(requestInfo, global::BangumiNet.Api.P1.Models.Timeline.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 发送时间线吐槽
         /// </summary>
@@ -84,6 +88,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Timeline.TimelinePostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Timeline.TimelinePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取时间线
         /// </summary>
@@ -96,6 +101,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 发送时间线吐槽
         /// </summary>
@@ -111,6 +117,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -120,6 +127,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
         {
             return new global::BangumiNet.Api.P1.P1.Timeline.TimelineRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取时间线
         /// </summary>
@@ -131,6 +139,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
             public int? Limit { get; set; }
             [QueryParameter("mode")]
             public global::BangumiNet.Api.P1.Models.FilterMode? Mode { get; set; }
+
             /// <summary>max timeline id to fetch from</summary>
             [QueryParameter("until")]
             public int? Until { get; set; }

@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCharacterItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The historySummary property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         public WithCharacterItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/{characterID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         public WithCharacterItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/{characterID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取角色当前的 wiki 信息
         /// </summary>
@@ -60,6 +63,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.CharacterWikiInfo>(requestInfo, global::BangumiNet.Api.P1.Models.CharacterWikiInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取角色当前的 wiki 信息
         /// </summary>
@@ -72,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

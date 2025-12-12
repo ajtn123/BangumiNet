@@ -31,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
                 return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.WithImageItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         public CoversRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/covers", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -60,6 +62,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -91,6 +94,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -106,6 +110,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

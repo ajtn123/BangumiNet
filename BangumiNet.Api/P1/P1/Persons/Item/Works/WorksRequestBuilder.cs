@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
         public WorksRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}/works{?limit*,offset*,position*,subjectType*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
         public WorksRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}/works{?limit*,offset*,position*,subjectType*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取人物的参与作品
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取人物的参与作品
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -73,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
         {
             return new global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取人物的参与作品
         /// </summary>
@@ -82,9 +87,11 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Works
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+
             /// <summary>职位</summary>
             [QueryParameter("position")]
             public int? Position { get; set; }

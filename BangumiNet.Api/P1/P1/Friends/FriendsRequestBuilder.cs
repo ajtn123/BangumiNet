@@ -31,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Friends
                 return new global::BangumiNet.Api.P1.P1.Friends.Item.WithUsernameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Friends.FriendsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Friends
         public FriendsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/friends{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Friends.FriendsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.P1.P1.Friends
         public FriendsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/friends{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取当前用户的好友列表
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Friends
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Friends.FriendsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Friends.FriendsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取当前用户的好友列表
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.P1.P1.Friends
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -84,6 +89,7 @@ namespace BangumiNet.Api.P1.P1.Friends
         {
             return new global::BangumiNet.Api.P1.P1.Friends.FriendsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取当前用户的好友列表
         /// </summary>
@@ -93,6 +99,7 @@ namespace BangumiNet.Api.P1.P1.Friends
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

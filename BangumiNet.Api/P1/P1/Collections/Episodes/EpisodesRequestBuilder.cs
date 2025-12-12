@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes
                 return new global::BangumiNet.Api.P1.P1.Collections.Episodes.Item.WithEpisodeItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Episodes
         public EpisodesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/collections/episodes", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Episodes.EpisodesRequestBuilder"/> and sets the default values.
         /// </summary>

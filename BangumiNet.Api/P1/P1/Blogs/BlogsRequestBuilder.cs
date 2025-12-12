@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Blogs
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class BlogsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The minus property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blogs.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.blogs.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryItemRequestBuilder"/></returns>
@@ -33,6 +34,7 @@ namespace BangumiNet.Api.P1.P1.Blogs
                 return new global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.BlogsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -41,6 +43,7 @@ namespace BangumiNet.Api.P1.P1.Blogs
         public BlogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.BlogsRequestBuilder"/> and sets the default values.
         /// </summary>

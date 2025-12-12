@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts
                 return new global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.WithPostItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Posts.PostsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts
         public PostsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/posts", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Posts.PostsRequestBuilder"/> and sets the default values.
         /// </summary>

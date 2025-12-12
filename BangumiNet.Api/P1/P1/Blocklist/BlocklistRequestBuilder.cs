@@ -31,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist
                 return new global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blocklist.BlocklistRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist
         public BlocklistRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blocklist", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blocklist.BlocklistRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist
         public BlocklistRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blocklist", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取当前用户的绝交用户列表
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blocklist.BlocklistGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blocklist.BlocklistGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取当前用户的绝交用户列表
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

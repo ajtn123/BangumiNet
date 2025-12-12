@@ -9,18 +9,19 @@ using System;
 namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class TopicsPostRequestBody : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>bbcode</summary>
         public string? Content { get; set; }
-        /// <summary>The title property</summary>
+
         public string? Title { get; set; }
+
         /// <summary>需要 [turnstile](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/)next.bgm.tv 域名对应的 site-key 为 `0x4AAAAAAABkMYinukE8nzYS`dev.bgm38.tv 域名使用测试用的 site-key `1x00000000000000000000AA`</summary>
         public string? TurnstileToken { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsPostRequestBody"/> and sets the default values.
         /// </summary>
@@ -28,6 +29,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -38,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Groups.Item.Topics.TopicsPostRequestBody();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -51,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Item.Topics
                 { "turnstileToken", n => { TurnstileToken = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

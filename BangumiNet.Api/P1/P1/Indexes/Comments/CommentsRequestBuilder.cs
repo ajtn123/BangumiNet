@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Comments
                 return new global::BangumiNet.Api.P1.P1.Indexes.Comments.Item.WithCommentItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.Comments.CommentsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Comments
         public CommentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes/-/comments", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.Comments.CommentsRequestBuilder"/> and sets the default values.
         /// </summary>

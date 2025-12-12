@@ -9,22 +9,21 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SubjectRelationType : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The cn property</summary>
+
         public string? Cn { get; set; }
-        /// <summary>The desc property</summary>
+
         public string? Desc { get; set; }
-        /// <summary>The en property</summary>
+
         public string? En { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The jp property</summary>
+
         public string? Jp { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SubjectRelationType"/> and sets the default values.
         /// </summary>
@@ -32,6 +31,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SubjectRelationType();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -57,6 +58,7 @@ namespace BangumiNet.Api.P1.Models
                 { "jp", n => { Jp = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

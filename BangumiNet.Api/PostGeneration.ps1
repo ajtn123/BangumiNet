@@ -26,7 +26,13 @@ foreach ($file in $files)
     $content = ($content -replace "(?s)#if NETSTANDARD2_1_OR_GREATER .*?$osLineBreak#nullable enable$osLineBreak(?<ifBody>.*?)$osLineBreak#nullable restore$osLineBreak#else$osLineBreak(?<elseBody>.*?)$osLineBreak#endif", "`$1")
 
     # insert new line between member and next summary
-    # $content = ($content -replace "}$osLineBreak(?<indentedSummary>\s+/// <summary>)", "}$osLineBreak$osLineBreak`$1")
+    $content = ($content -replace "}$osLineBreak(?<indentedSummary>\s+/// <summary>)", "}$osLineBreak$osLineBreak`$1")
+
+    # remove default summary
+    $content = ($content -replace "$osLineBreak\s+/// <summary>The [A-Za-z0-9_]+ property</summary>", "$osLineBreak")
+    
+    # remove warning suppression
+    $content = ($content -replace "$osLineBreak\s+#pragma warning disable CS1591$osLineBreak(?<def>.*?)$osLineBreak\s+#pragma warning restore CS1591", "$osLineBreak`$1")
 
     Set-Content -Path $file -Value $content -NoNewline
 }

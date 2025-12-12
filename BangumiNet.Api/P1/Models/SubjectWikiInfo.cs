@@ -9,32 +9,32 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class SubjectWikiInfo : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The availablePlatform property</summary>
+
         public List<global::BangumiNet.Api.P1.Models.WikiPlatform>? AvailablePlatform { get; set; }
-        /// <summary>The id property</summary>
+
         public int? Id { get; set; }
-        /// <summary>The infobox property</summary>
+
         public string? Infobox { get; set; }
-        /// <summary>The metaTags property</summary>
+
         public List<string>? MetaTags { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The nsfw property</summary>
+
         public bool? Nsfw { get; set; }
-        /// <summary>The platform property</summary>
+
         public int? Platform { get; set; }
-        /// <summary>The series property</summary>
+
         public bool? Series { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
+
         /// <summary>条目类型  - 1 = 书籍  - 2 = 动画  - 3 = 音乐  - 4 = 游戏  - 6 = 三次元  没有 5</summary>
         public int? TypeID { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SubjectWikiInfo"/> and sets the default values.
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -52,6 +53,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.SubjectWikiInfo();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -72,6 +74,7 @@ namespace BangumiNet.Api.P1.Models
                 { "typeID", n => { TypeID = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
         public BlogsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/blogs{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
         public BlogsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/blogs{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户创建的日志
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取用户创建的日志
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
         {
             return new global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取用户创建的日志
         /// </summary>
@@ -80,6 +85,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Blogs
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

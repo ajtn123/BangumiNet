@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
         public CastsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}/casts{?limit*,offset*,subjectType*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
         public CastsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/characters/{characterID}/casts{?limit*,offset*,subjectType*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取角色出演作品
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取角色出演作品
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -73,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
         {
             return new global::BangumiNet.Api.P1.P1.Characters.Item.Casts.CastsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取角色出演作品
         /// </summary>
@@ -82,11 +87,13 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Casts
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
             [QueryParameter("subjectType")]
             public int? SubjectType { get; set; }
+
             /// <summary>角色出场类型: 主角，配角，客串</summary>
             [QueryParameter("type")]
             public int? Type { get; set; }

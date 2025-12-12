@@ -9,16 +9,15 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class WithPersonPatchRequestBody : IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The commitMessage property</summary>
+
         public string? CommitMessage { get; set; }
-        /// <summary>The expectedRevision property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_expectedRevision? ExpectedRevision { get; set; }
-        /// <summary>The person property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person? Person { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -29,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
                 { "person", n => { Person = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person>(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person.CreateFromDiscriminatorValue); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

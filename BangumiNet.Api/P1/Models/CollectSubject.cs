@@ -9,24 +9,28 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CollectSubject : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>评价</summary>
         public string? Comment { get; set; }
+
         /// <summary>仅自己可见</summary>
         public bool? Private { get; set; }
+
         /// <summary>是否自动完成条目进度，仅在 `type` 为 `看过` 时有效，并且不会产生对应的时间线记录：          - 书籍条目会检查总的话数和卷数，并更新收藏进度到最新;          - 动画和三次元会标记所有正片章节为已完成，并同时更新收藏进度</summary>
         public bool? Progress { get; set; }
+
         /// <summary>评分，0 表示删除评分</summary>
         public int? Rate { get; set; }
-        /// <summary>The tags property</summary>
+
         public List<string>? Tags { get; set; }
+
         /// <summary>条目收藏状态  - 1 = 想看  - 2 = 看过  - 3 = 在看  - 4 = 搁置  - 5 = 抛弃</summary>
         public int? Type { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.CollectSubject"/> and sets the default values.
         /// </summary>
@@ -34,6 +38,7 @@ namespace BangumiNet.Api.P1.Models
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -44,6 +49,7 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.Models.CollectSubject();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -60,6 +66,7 @@ namespace BangumiNet.Api.P1.Models
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

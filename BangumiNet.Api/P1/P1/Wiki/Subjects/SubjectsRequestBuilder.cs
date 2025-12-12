@@ -3,7 +3,6 @@
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item;
-using BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -20,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The revisions property</summary>
-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder Revisions
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Minus_RequestBuilder Minus
         {
-            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Minus_RequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.wiki.subjects.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectItemRequestBuilder"/></returns>
@@ -37,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
                 return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -45,6 +46,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects", rawUrl)
         {
         }
+
         /// <summary>
         /// 创建新条目
         /// </summary>
@@ -75,6 +78,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 创建新条目
         /// </summary>
@@ -90,6 +94,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

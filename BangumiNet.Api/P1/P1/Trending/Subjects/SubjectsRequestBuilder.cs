@@ -19,11 +19,12 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The topics property</summary>
+
         public global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -32,6 +33,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects{?limit*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -40,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects{?limit*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取热门条目
         /// </summary>
@@ -56,6 +59,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Trending.Subjects.SubjectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Trending.Subjects.SubjectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取热门条目
         /// </summary>
@@ -68,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -77,6 +82,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
         {
             return new global::BangumiNet.Api.P1.P1.Trending.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取热门条目
         /// </summary>
@@ -86,6 +92,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

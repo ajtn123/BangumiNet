@@ -2,6 +2,7 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters;
+using BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
@@ -16,11 +17,17 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ContributionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects.SubjectsRequestBuilder Subjects
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.ContributionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +36,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions
         public ContributionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/users/{username}/contributions", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.ContributionsRequestBuilder"/> and sets the default values.
         /// </summary>

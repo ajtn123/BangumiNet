@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
         public CollectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}/collects{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
         public CollectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/persons/{personID}/collects{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取人物的收藏用户
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取人物的收藏用户
         /// </summary>
@@ -64,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -73,6 +77,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
         {
             return new global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取人物的收藏用户
         /// </summary>
@@ -82,6 +87,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Collects
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

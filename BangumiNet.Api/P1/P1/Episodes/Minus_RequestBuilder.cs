@@ -16,11 +16,12 @@ namespace BangumiNet.Api.P1.P1.Episodes
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Episodes.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>
@@ -29,6 +30,7 @@ namespace BangumiNet.Api.P1.P1.Episodes
         public Minus_RequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/episodes/-", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Minus_RequestBuilder"/> and sets the default values.
         /// </summary>

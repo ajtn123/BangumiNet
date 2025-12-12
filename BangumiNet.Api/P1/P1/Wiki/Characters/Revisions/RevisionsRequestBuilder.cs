@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions
                 return new global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.Item.WithRevisionItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Revisions
         public RevisionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/characters/-/revisions", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>

@@ -28,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users
                 return new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.WithUsernameItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Users.UsersRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -36,6 +37,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users
         public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/users", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Users.UsersRequestBuilder"/> and sets the default values.
         /// </summary>

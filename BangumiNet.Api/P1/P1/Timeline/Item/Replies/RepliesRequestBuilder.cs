@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
         public RepliesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline/{timelineID}/replies", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
         public RepliesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/timeline/{timelineID}/replies", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取时间线回复
         /// </summary>
@@ -53,6 +55,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.Replies>(requestInfo, global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.Replies.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 创建时间线回复
         /// </summary>
@@ -73,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取时间线回复
         /// </summary>
@@ -85,6 +89,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 创建时间线回复
         /// </summary>
@@ -100,6 +105,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

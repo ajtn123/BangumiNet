@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Login
         public LoginRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/login", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Login.LoginRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Login
         public LoginRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/login", rawUrl)
         {
         }
+
         /// <summary>
         /// 需要 [turnstile](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/)next.bgm.tv 域名对应的 site-key 为 `0x4AAAAAAABkMYinukE8nzYS`dev.bgm38.tv 域名使用测试用的 site-key `1x00000000000000000000AA`
         /// </summary>
@@ -58,6 +60,7 @@ namespace BangumiNet.Api.P1.P1.Login
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.SlimUser>(requestInfo, global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 [turnstile](https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/)next.bgm.tv 域名对应的 site-key 为 `0x4AAAAAAABkMYinukE8nzYS`dev.bgm38.tv 域名使用测试用的 site-key `1x00000000000000000000AA`
         /// </summary>
@@ -73,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Login
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

@@ -31,6 +31,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
                 return new global::BangumiNet.Api.P1.P1.Subjects.Topics.Item.WithTopicItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -39,6 +40,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
         public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/topics{?limit*,offset*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -47,6 +49,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
         public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/-/topics{?limit*,offset*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取最新的条目讨论
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取最新的条目讨论
         /// </summary>
@@ -75,6 +79,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -84,6 +89,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取最新的条目讨论
         /// </summary>
@@ -93,6 +99,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics
             /// <summary>max 100</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

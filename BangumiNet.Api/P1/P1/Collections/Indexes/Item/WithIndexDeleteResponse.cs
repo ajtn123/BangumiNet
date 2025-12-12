@@ -9,12 +9,11 @@ using System;
 namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class WithIndexDeleteResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse"/> and sets the default values.
         /// </summary>
@@ -22,6 +21,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
         {
             AdditionalData = new Dictionary<string, object>();
         }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -32,6 +32,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Collections.Indexes.Item.WithIndexDeleteResponse();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -42,6 +43,7 @@ namespace BangumiNet.Api.P1.P1.Collections.Indexes.Item
             {
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
         public TimelineRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/timeline{?limit*,until*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Users.Item.Timeline.TimelineRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
         public TimelineRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/users/{username}/timeline{?limit*,until*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取用户时间胶囊
         /// </summary>
@@ -51,6 +53,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.Timeline>(requestInfo, global::BangumiNet.Api.P1.Models.Timeline.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 获取用户时间胶囊
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -72,6 +76,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
         {
             return new global::BangumiNet.Api.P1.P1.Users.Item.Timeline.TimelineRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取用户时间胶囊
         /// </summary>
@@ -81,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Users.Item.Timeline
             /// <summary>min 1, max 20</summary>
             [QueryParameter("limit")]
             public int? Limit { get; set; }
+
             /// <summary>max timeline id to fetch from</summary>
             [QueryParameter("until")]
             public int? Until { get; set; }

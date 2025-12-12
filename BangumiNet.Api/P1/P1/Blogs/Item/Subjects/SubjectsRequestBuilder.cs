@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item.Subjects
         public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/{entryID}/subjects", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blogs.Item.Subjects.SubjectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item.Subjects
         public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blogs/{entryID}/subjects", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取日志的关联条目
         /// </summary>
@@ -51,6 +53,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item.Subjects
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.SlimSubject>(requestInfo, global::BangumiNet.Api.P1.Models.SlimSubject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
+
         /// <summary>
         /// 获取日志的关联条目
         /// </summary>
@@ -63,6 +66,7 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item.Subjects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

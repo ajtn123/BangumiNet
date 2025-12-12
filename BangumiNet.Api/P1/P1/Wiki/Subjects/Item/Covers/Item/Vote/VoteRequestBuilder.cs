@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
         public VoteRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/covers/{imageID}/vote", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
         public VoteRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/covers/{imageID}/vote", rawUrl)
         {
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -66,6 +69,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -78,6 +82,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 需要 `subjectWikiEdit` 权限
         /// </summary>
@@ -90,6 +95,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

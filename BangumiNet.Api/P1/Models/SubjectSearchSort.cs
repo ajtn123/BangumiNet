@@ -9,20 +9,12 @@ namespace BangumiNet.Api.P1.Models
     public enum SubjectSearchSort
     {
         [EnumMember(Value = "match")]
-        #pragma warning disable CS1591
         Match,
-        #pragma warning restore CS1591
         [EnumMember(Value = "heat")]
-        #pragma warning disable CS1591
         Heat,
-        #pragma warning restore CS1591
         [EnumMember(Value = "rank")]
-        #pragma warning disable CS1591
         Rank,
-        #pragma warning restore CS1591
         [EnumMember(Value = "score")]
-        #pragma warning disable CS1591
         Score,
-        #pragma warning restore CS1591
     }
 }

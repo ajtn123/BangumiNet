@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
         public WithUsernameItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blocklist/{username}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernameItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
         public WithUsernameItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/blocklist/{username}", rawUrl)
         {
         }
+
         /// <summary>
         /// 取消与用户绝交
         /// </summary>
@@ -52,6 +54,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernameDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernameDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 与用户绝交
         /// </summary>
@@ -70,6 +73,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernamePutResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blocklist.Item.WithUsernamePutResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 取消与用户绝交
         /// </summary>
@@ -82,6 +86,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 与用户绝交
         /// </summary>
@@ -94,6 +99,7 @@ namespace BangumiNet.Api.P1.P1.Blocklist.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

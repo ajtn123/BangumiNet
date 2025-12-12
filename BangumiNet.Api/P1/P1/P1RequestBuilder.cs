@@ -41,136 +41,137 @@ namespace BangumiNet.Api.P1.P1
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class P1RequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The blocklist property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blocklist.BlocklistRequestBuilder Blocklist
         {
             get => new global::BangumiNet.Api.P1.P1.Blocklist.BlocklistRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The blogs property</summary>
+
         public global::BangumiNet.Api.P1.P1.Blogs.BlogsRequestBuilder Blogs
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.BlogsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The calendar property</summary>
+
         public global::BangumiNet.Api.P1.P1.Calendar.CalendarRequestBuilder Calendar
         {
             get => new global::BangumiNet.Api.P1.P1.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The characters property</summary>
+
         public global::BangumiNet.Api.P1.P1.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The clearNotify property</summary>
+
         public global::BangumiNet.Api.P1.P1.ClearNotify.ClearNotifyRequestBuilder ClearNotify
         {
             get => new global::BangumiNet.Api.P1.P1.ClearNotify.ClearNotifyRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The collections property</summary>
+
         public global::BangumiNet.Api.P1.P1.Collections.CollectionsRequestBuilder Collections
         {
             get => new global::BangumiNet.Api.P1.P1.Collections.CollectionsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The debug property</summary>
+
         public global::BangumiNet.Api.P1.P1.Debug.DebugRequestBuilder Debug
         {
             get => new global::BangumiNet.Api.P1.P1.Debug.DebugRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The episodes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The followers property</summary>
+
         public global::BangumiNet.Api.P1.P1.Followers.FollowersRequestBuilder Followers
         {
             get => new global::BangumiNet.Api.P1.P1.Followers.FollowersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The friendlist property</summary>
+
         public global::BangumiNet.Api.P1.P1.Friendlist.FriendlistRequestBuilder Friendlist
         {
             get => new global::BangumiNet.Api.P1.P1.Friendlist.FriendlistRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The friends property</summary>
+
         public global::BangumiNet.Api.P1.P1.Friends.FriendsRequestBuilder Friends
         {
             get => new global::BangumiNet.Api.P1.P1.Friends.FriendsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The groups property</summary>
+
         public global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder Groups
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The indexes property</summary>
+
         public global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The login property</summary>
+
         public global::BangumiNet.Api.P1.P1.Login.LoginRequestBuilder Login
         {
             get => new global::BangumiNet.Api.P1.P1.Login.LoginRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The logout property</summary>
+
         public global::BangumiNet.Api.P1.P1.Logout.LogoutRequestBuilder Logout
         {
             get => new global::BangumiNet.Api.P1.P1.Logout.LogoutRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The me property</summary>
+
         public global::BangumiNet.Api.P1.P1.Me.MeRequestBuilder Me
         {
             get => new global::BangumiNet.Api.P1.P1.Me.MeRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The notify property</summary>
+
         public global::BangumiNet.Api.P1.P1.Notify.NotifyRequestBuilder Notify
         {
             get => new global::BangumiNet.Api.P1.P1.Notify.NotifyRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The persons property</summary>
+
         public global::BangumiNet.Api.P1.P1.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The report property</summary>
+
         public global::BangumiNet.Api.P1.P1.Report.ReportRequestBuilder Report
         {
             get => new global::BangumiNet.Api.P1.P1.Report.ReportRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The search property</summary>
+
         public global::BangumiNet.Api.P1.P1.Search.SearchRequestBuilder Search
         {
             get => new global::BangumiNet.Api.P1.P1.Search.SearchRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The subjects property</summary>
+
         public global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The timeline property</summary>
+
         public global::BangumiNet.Api.P1.P1.Timeline.TimelineRequestBuilder Timeline
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.TimelineRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The trending property</summary>
+
         public global::BangumiNet.Api.P1.P1.Trending.TrendingRequestBuilder Trending
         {
             get => new global::BangumiNet.Api.P1.P1.Trending.TrendingRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The turnstile property</summary>
+
         public global::BangumiNet.Api.P1.P1.Turnstile.TurnstileRequestBuilder Turnstile
         {
             get => new global::BangumiNet.Api.P1.P1.Turnstile.TurnstileRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The users property</summary>
+
         public global::BangumiNet.Api.P1.P1.Users.UsersRequestBuilder Users
         {
             get => new global::BangumiNet.Api.P1.P1.Users.UsersRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The wiki property</summary>
+
         public global::BangumiNet.Api.P1.P1.Wiki.WikiRequestBuilder Wiki
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.WikiRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.P1RequestBuilder"/> and sets the default values.
         /// </summary>
@@ -179,6 +180,7 @@ namespace BangumiNet.Api.P1.P1
         public P1RequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.P1RequestBuilder"/> and sets the default values.
         /// </summary>

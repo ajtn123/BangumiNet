@@ -9,16 +9,15 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class WithPersonPatchRequestBody_person : IParsable
-    #pragma warning restore CS1591
     {
-        /// <summary>The infobox property</summary>
+
         public string? Infobox { get; set; }
-        /// <summary>The name property</summary>
+
         public string? Name { get; set; }
-        /// <summary>The summary property</summary>
+
         public string? Summary { get; set; }
+
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -29,6 +28,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person();
         }
+
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
@@ -42,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
                 { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
+
         /// <summary>
         /// Serializes information the current object
         /// </summary>

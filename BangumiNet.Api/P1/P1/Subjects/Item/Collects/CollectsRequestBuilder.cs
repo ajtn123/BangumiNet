@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
         public CollectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/collects{?limit*,mode*,offset*,type*}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
         public CollectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects/{subjectID}/collects{?limit*,mode*,offset*,type*}", rawUrl)
         {
         }
+
         /// <summary>
         /// 获取条目的收藏用户
         /// </summary>
@@ -50,6 +52,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取条目的收藏用户
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
@@ -71,6 +75,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
         {
             return new global::BangumiNet.Api.P1.P1.Subjects.Item.Collects.CollectsRequestBuilder(rawUrl, RequestAdapter);
         }
+
         /// <summary>
         /// 获取条目的收藏用户
         /// </summary>
@@ -82,6 +87,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Collects
             public int? Limit { get; set; }
             [QueryParameter("mode")]
             public global::BangumiNet.Api.P1.Models.FilterMode? Mode { get; set; }
+
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }

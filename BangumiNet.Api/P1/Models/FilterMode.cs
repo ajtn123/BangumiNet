@@ -9,12 +9,8 @@ namespace BangumiNet.Api.P1.Models
     public enum FilterMode
     {
         [EnumMember(Value = "all")]
-        #pragma warning disable CS1591
         All,
-        #pragma warning restore CS1591
         [EnumMember(Value = "friends")]
-        #pragma warning disable CS1591
         Friends,
-        #pragma warning restore CS1591
     }
 }

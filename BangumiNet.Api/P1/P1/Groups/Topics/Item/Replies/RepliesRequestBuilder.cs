@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies
         public RepliesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics/{topicID}/replies", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies.RepliesRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,6 +35,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies
         public RepliesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics/{topicID}/replies", rawUrl)
         {
         }
+
         /// <summary>
         /// 创建小组话题回复
         /// </summary>
@@ -54,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies.RepliesPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies.RepliesPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 创建小组话题回复
         /// </summary>
@@ -69,6 +72,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

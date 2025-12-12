@@ -11,7 +11,7 @@ using System;
 namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\wiki\subjects\revisions
+    /// Builds and executes requests for operations under \p1\wiki\subjects\-\revisions
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RevisionsRequestBuilder : BaseRequestBuilder
@@ -28,20 +28,22 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions
                 return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.Item.WithRevisionItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RevisionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/revisions", pathParameters)
+        public RevisionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/-/revisions", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RevisionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/revisions", rawUrl)
+        public RevisionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/-/revisions", rawUrl)
         {
         }
     }

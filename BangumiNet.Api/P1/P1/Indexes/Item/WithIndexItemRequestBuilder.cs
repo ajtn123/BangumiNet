@@ -20,16 +20,17 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIndexItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The comments property</summary>
+
         public global::BangumiNet.Api.P1.P1.Indexes.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The related property</summary>
+
         public global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedRequestBuilder Related
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedRequestBuilder(PathParameters, RequestAdapter);
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -38,6 +39,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
         public WithIndexItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes/{indexID}", pathParameters)
         {
         }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -46,6 +48,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
         public WithIndexItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes/{indexID}", rawUrl)
         {
         }
+
         /// <summary>
         /// 删除目录
         /// </summary>
@@ -62,6 +65,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 获取目录详情
         /// </summary>
@@ -78,6 +82,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.IndexObject>(requestInfo, global::BangumiNet.Api.P1.Models.IndexObject.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 更新目录
         /// </summary>
@@ -96,6 +101,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexPatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Indexes.Item.WithIndexPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
         /// <summary>
         /// 删除目录
         /// </summary>
@@ -108,6 +114,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 获取目录详情
         /// </summary>
@@ -120,6 +127,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
         /// <summary>
         /// 更新目录
         /// </summary>
@@ -135,6 +143,7 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
+
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>

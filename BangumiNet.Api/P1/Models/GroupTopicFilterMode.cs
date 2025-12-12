@@ -9,20 +9,12 @@ namespace BangumiNet.Api.P1.Models
     public enum GroupTopicFilterMode
     {
         [EnumMember(Value = "all")]
-        #pragma warning disable CS1591
         All,
-        #pragma warning restore CS1591
         [EnumMember(Value = "joined")]
-        #pragma warning disable CS1591
         Joined,
-        #pragma warning restore CS1591
         [EnumMember(Value = "created")]
-        #pragma warning disable CS1591
         Created,
-        #pragma warning restore CS1591
         [EnumMember(Value = "replied")]
-        #pragma warning disable CS1591
         Replied,
-        #pragma warning restore CS1591
     }
 }
