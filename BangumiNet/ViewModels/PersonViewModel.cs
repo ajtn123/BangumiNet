@@ -43,10 +43,7 @@ public partial class PersonViewModel : ItemViewModelBase
             Birthday = bd;
         }
         if (person.AdditionalData.TryGetValue("gender", out var gd) && gd is string gender)
-        {
-            GenderString = gender;
-            Gender = EnumExtensions.TryParseGender(gender);
-        }
+            Gender = gender;
         if (person.AdditionalData.TryGetValue("stat", out var statO) && statO is UntypedObject statUO && statUO.ToObject() is IDictionary<string, object?> stat)
         {
             stat.TryGetValue("collects", out var collectsNode);
@@ -71,8 +68,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Summary = person.Summary;
         Type = (PersonType?)person.Type;
         BloodType = (BloodType?)person.BloodType;
-        Gender = EnumExtensions.TryParseGender(person.Gender);
-        GenderString = person.Gender;
+        Gender = person.Gender;
         CommentCount = person.Stat?.Comments;
         CollectionTotal = person.Stat?.Collects;
         Infobox = person.Infobox?.Select(x => new InfoboxItemViewModel(x)).ToObservableCollection();
@@ -145,7 +141,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Type = (PersonType?)person.Type;
         CommentCount = person.Comment;
         Info = person.Info;
-        Careers = person.Career?.Select(static c => EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
+        Careers = person.Career?.Select(static c => Api.ExtraEnums.EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
 
         Init();
     }
@@ -161,7 +157,7 @@ public partial class PersonViewModel : ItemViewModelBase
         Type = (PersonType?)person.Type;
         CommentCount = person.Comment;
         Info = person.Info;
-        Careers = person.Career?.Select(static c => EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
+        Careers = person.Career?.Select(static c => Api.ExtraEnums.EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
         CollectionTime = CommonUtils.ParseBangumiTime(person.CollectedAt);
         CollectionTotal = person.Collects;
         Redirect = person.Redirect;
@@ -207,8 +203,7 @@ public partial class PersonViewModel : ItemViewModelBase
     [Reactive] public partial DateOnly? Birthday { get; set; }
     [Reactive] public partial PersonType? Type { get; set; }
     [Reactive] public partial BloodType? BloodType { get; set; }
-    [Reactive] public partial Gender? Gender { get; set; }
-    [Reactive] public partial string? GenderString { get; set; }
+    [Reactive] public partial string? Gender { get; set; }
     [Reactive] public partial ObservableCollection<string>? Careers { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
     [Reactive] public partial IImagesGrid? Images { get; set; }

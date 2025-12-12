@@ -25,8 +25,7 @@ public partial class CharacterViewModel : ItemViewModelBase
             Birthday = bd;
         }
         BloodType = (BloodType?)character.BloodType;
-        Gender = EnumExtensions.TryParseGender(character.Gender);
-        GenderString = character.Gender;
+        Gender = character.Gender;
         Id = character.Id;
         Images = character.Images;
         IsLocked = character.Locked ?? false;
@@ -153,8 +152,7 @@ public partial class CharacterViewModel : ItemViewModelBase
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial DateOnly? Birthday { get; set; }
-    [Reactive] public partial Gender? Gender { get; set; }
-    [Reactive] public partial string? GenderString { get; set; }
+    [Reactive] public partial string? Gender { get; set; }
     [Reactive] public partial BloodType? BloodType { get; set; }
     [Reactive] public partial CharacterType? Type { get; set; }
     [Reactive] public partial ObservableCollection<InfoboxItemViewModel>? Infobox { get; set; }
