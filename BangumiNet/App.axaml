@@ -23,6 +23,7 @@
                 <ResourceInclude Source="/Templates/BBCode.axaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        <FontFamily x:Key="ContentControlThemeFontFamily">Microsoft YaHei UI, Noto Sans CJK SC, PingFang SC, sans-serif</FontFamily>
         <CornerRadius x:Key="CardInnerCornerRadius">9.35</CornerRadius>
         <x:Double x:Key="CardInnerRadius">9.35</x:Double>
         <x:Double x:Key="TextControlThemeMinHeight">0</x:Double>
@@ -45,8 +46,12 @@
 
     <Application.Styles>
         <sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
-        <Style Selector=":is(TopLevel)">
-            <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Style Selector=":is(Window)">
+            <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
+        </Style>
+        <Style Selector="ic|FluentIcon">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style Selector="Border.Card">
             <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}"/>
@@ -92,13 +97,6 @@
             <Setter Property="Padding" Value="5,0"/>
             <Setter Property="MinHeight" Value="0"/>
             <Setter Property="Height" Value="26"/>
-        </Style>
-        <Style Selector="ic|FluentIcon">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-        <Style Selector=":is(Window)">
-            <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
         </Style>
         <Style Selector="FlyoutPresenter">
             <Setter Property="Padding" Value="5"/>
