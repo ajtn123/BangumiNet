@@ -32,7 +32,7 @@
 
             <ui:NavigationViewItem Content="搜索" IconSource="{bn:IconSource Search}"/>
 
-            <ui:NavigationViewItem Content="索引" IconSource="{bn:IconSource AppsList}"/>
+            <ui:NavigationViewItem Content="分类浏览" IconSource="{bn:IconSource ListBar}"/>
 
             <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
         </ui:NavigationView.MenuItems>
