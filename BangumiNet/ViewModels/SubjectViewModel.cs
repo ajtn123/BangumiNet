@@ -186,6 +186,12 @@ public partial class SubjectViewModel : ItemViewModelBase
             Relation = ((CharacterRole?)characterSubject.Type)?.GetNameCn() + "·" + string.Join('/', characterSubject.Actors?.Select(NameCnCvt.Convert) ?? []),
             RelationItems = new() { SubjectViewModels = characterSubject.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() }
         };
+    public static SubjectViewModel Init(Api.P1.Models.SubjectRec rec)
+        => new(rec.Subject!)
+        {
+            Hype = rec.Count,
+            Similarity = rec.Sim,
+        };
     private void Init()
     {
         ItemType = ItemType.Subject;
@@ -199,6 +205,7 @@ public partial class SubjectViewModel : ItemViewModelBase
             SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
             BlogCardListViewModel = new(RelatedItemType.Review, ItemType, Id);
             TopicCardListViewModel = new(RelatedItemType.Topic, ItemType, Id);
+            Recommendations = new(RelatedItemType.Recommendation, ItemType, Id);
             IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
             CommentListViewModel = new(ItemType, Id);
             RevisionListViewModel = new(this);
@@ -241,6 +248,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial IImagesGrid? Images { get; set; }
     [Reactive] public partial ICollection? Collection { get; set; }
     [Reactive] public partial int? Hype { get; set; }
+    [Reactive] public partial double? Similarity { get; set; }
     [Reactive] public partial bool IsSeries { get; set; }
     [Reactive] public partial bool IsNsfw { get; set; }
     [Reactive] public partial bool IsLocked { get; set; }
@@ -253,6 +261,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? SubjectBadgeListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? BlogCardListViewModel { get; set; }
     [Reactive] public partial RelatedItemListViewModel? TopicCardListViewModel { get; set; }
+    [Reactive] public partial RelatedItemListViewModel? Recommendations { get; set; }
     [Reactive] public partial RelatedItemListViewModel? IndexCardListViewModel { get; set; }
     [Reactive] public partial SubjectCollectionViewModel? SubjectCollectionViewModel { get; set; }
     [Reactive] public partial SubjectRatingViewModel? SubjectRatingViewModel { get; set; }

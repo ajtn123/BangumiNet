@@ -62,11 +62,6 @@
             <Style Selector="^.Large">
                 <Setter Property="Padding" Value="5"/>
             </Style>
-            <Style Selector="^.ItemBadge">
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
-            </Style>
             <Style Selector="^ ComboBox">
                 <Setter Property="Height" Value="19"/>
                 <Setter Property="BorderThickness" Value="0"/>
@@ -228,6 +223,10 @@
                 <Setter Property="Margin" Value="5,5,5,10"/>
             </Style>
         </Style>
+        <Style Selector=".BadgeView MainImage#Img">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
         <Style Selector="HyperlinkButton.Pri">
             <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
         </Style>
@@ -280,6 +279,12 @@
         </Style>
         <Style Selector=":is(TemplatedControl).Highlight">
             <Setter Property="Background" Value="#3F7FFF7F"/>
+        </Style>
+        <Style Selector=".ViewRoot > StackPanel > bn|RelatedItemListView">
+            <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+            <Setter Property="Padding" Value="0,5,0,0"/>
         </Style>
     </Application.Styles>
 </Application>

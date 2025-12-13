@@ -34,6 +34,7 @@ public class MainImage : ContentControl
         if (bitmap != null && !bitmap.IsShared())
             bitmap.DisposeWith(disposables);
         Source = bitmap;
+        IsVisible = bitmap != null;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)

@@ -8,12 +8,11 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Classes="BadgeView"
              x:DataType="vm:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectBadgeView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <Border Classes="Card ItemBadge" IsVisible="{Binding #Img.Source,Converter={StaticResource NullCvt}}">
-            <MainImage Url="{Binding Images?.Small}" Name="Img"/>
-        </Border>
+        <MainImage Url="{Binding Images?.Small}" Name="Img"/>
         <Border Grid.Row="1" Classes="Ref"
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>

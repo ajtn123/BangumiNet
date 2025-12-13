@@ -68,6 +68,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         if (Offset >= Total) return true;
         if (ParentId is not int id) return false;
 
+        int limit = Limit;
         IPagedResponse<IEnumerable<object>>? response = null;
         try
         {
@@ -75,47 +76,48 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
             {
                 ItemType.Subject => Type switch
                 {
-                    RelatedItemType.Character => await ApiC.P1.Subjects[id].Characters.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Collector => await ApiC.P1.Subjects[id].Collects.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Comment => await ApiC.P1.Subjects[id].Comments.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(CurrentSettings.EpisodePageSize, Offset), ct),
-                    RelatedItemType.Index => await ApiC.P1.Subjects[id].Indexes.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Recommendation => await ApiC.P1.Subjects[id].Recs.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Subject => await ApiC.P1.Subjects[id].Relations.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Review => await ApiC.P1.Subjects[id].Reviews.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Person => await ApiC.P1.Subjects[id].Staffs.Persons.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Position => await ApiC.P1.Subjects[id].Staffs.Positions.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Topic => await ApiC.P1.Subjects[id].Topics.GetAsync(c => c.Paging(Limit, Offset), ct),
+                    RelatedItemType.Character => await ApiC.P1.Subjects[id].Characters.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Collector => await ApiC.P1.Subjects[id].Collects.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Comment => await ApiC.P1.Subjects[id].Comments.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(limit = CurrentSettings.EpisodePageSize, Offset), ct),
+                    RelatedItemType.Index => await ApiC.P1.Subjects[id].Indexes.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Recommendation => await ApiC.P1.Subjects[id].Recs.GetAsync(c => c.Paging(limit = 10, Offset), ct),
+                    RelatedItemType.Subject => await ApiC.P1.Subjects[id].Relations.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Review => await ApiC.P1.Subjects[id].Reviews.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Person => await ApiC.P1.Subjects[id].Staffs.Persons.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Position => await ApiC.P1.Subjects[id].Staffs.Positions.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Topic => await ApiC.P1.Subjects[id].Topics.GetAsync(c => c.Paging(limit, Offset), ct),
                     _ => throw new NotImplementedException(),
                 },
                 ItemType.Character => Type switch
                 {
-                    RelatedItemType.CharacterCast => await ApiC.P1.Characters[id].Casts.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Collector => await ApiC.P1.Characters[id].Collects.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Index => await ApiC.P1.Characters[id].Indexes.GetAsync(c => c.Paging(Limit, Offset), ct),
+                    RelatedItemType.CharacterCast => await ApiC.P1.Characters[id].Casts.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Collector => await ApiC.P1.Characters[id].Collects.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Index => await ApiC.P1.Characters[id].Indexes.GetAsync(c => c.Paging(limit, Offset), ct),
                     _ => throw new NotImplementedException(),
                 },
                 ItemType.Person => Type switch
                 {
-                    RelatedItemType.PersonCast => await ApiC.P1.Persons[id].Casts.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Collector => await ApiC.P1.Persons[id].Collects.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.Index => await ApiC.P1.Persons[id].Indexes.GetAsync(c => c.Paging(Limit, Offset), ct),
-                    RelatedItemType.PersonWork => await ApiC.P1.Persons[id].Works.GetAsync(c => c.Paging(Limit, Offset), ct),
+                    RelatedItemType.PersonCast => await ApiC.P1.Persons[id].Casts.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Collector => await ApiC.P1.Persons[id].Collects.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.Index => await ApiC.P1.Persons[id].Indexes.GetAsync(c => c.Paging(limit, Offset), ct),
+                    RelatedItemType.PersonWork => await ApiC.P1.Persons[id].Works.GetAsync(c => c.Paging(limit, Offset), ct),
                     _ => throw new NotImplementedException(),
                 },
                 ItemType.Blog => Type switch
                 {
-                    RelatedItemType.Photo => await ApiC.P1.Blogs[id].Photos.GetAsync(c => c.Paging(Limit, Offset), ct),
+                    RelatedItemType.Photo => await ApiC.P1.Blogs[id].Photos.GetAsync(c => c.Paging(limit, Offset), ct),
                     _ => throw new NotImplementedException(),
                 },
-                ItemType.Index => await ApiC.P1.Indexes[id].Related.GetAsync(c => c.Paging(Limit, Offset), ct),
+                ItemType.Index => await ApiC.P1.Indexes[id].Related.GetAsync(c => c.Paging(limit, Offset), ct),
                 _ => throw new NotImplementedException(),
             };
         }
         catch (Exception e) { Trace.TraceError(e.Message); return false; }
         Total = response?.Total;
         if (response?.Data == null) return false;
-        Offset += Math.Max(Limit, response.Data.Count());
+
+        Offset += limit;
         SubjectViewModels ??= [];
         SubjectViewModels = Type switch
         {
@@ -139,6 +141,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.SubjectStaff sPerson => PersonViewModel.Init(sPerson),
         Api.P1.Models.SubjectRelation sSubject => SubjectViewModel.Init(sSubject),
         Api.P1.Models.CharacterSubject cSubject => SubjectViewModel.Init(cSubject),
+        Api.P1.Models.SubjectRec sr => SubjectViewModel.Init(sr),
         Api.P1.Models.PersonCharacter pc => CharacterViewModel.Init(pc),
         Api.P1.Models.SubjectReview sr => BlogViewModel.Init(sr),
         Api.P1.Models.PersonWork pw => SubjectViewModel.Init(pw),

@@ -60,9 +60,8 @@
                                 Content="{ice:FluentIcon Icon=DismissSquareMultiple}"
                                 ToolTip.Tip="取消收藏" Classes="Icon"/>
                     </StackPanel>
-                    <Separator/>
+
                     <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-                    <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding CharacterBadgeListViewModel}"/>
 
                     <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">

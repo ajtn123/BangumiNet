@@ -81,17 +81,14 @@
                                                   Width="250" Height="200"/>
                         </StackPanel>
                     </Grid>
-                    <Separator/>
+
                     <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-                    <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding CharacterBadgeListViewModel}"/>
-                    <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>
-                    <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding BlogCardListViewModel}"/>
-                    <Separator/>
                     <bn:RelatedItemListView DataContext="{Binding TopicCardListViewModel}"/>
-                    
+                    <bn:RelatedItemListView DataContext="{Binding Recommendations}"/>
+
                     <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
                         <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>
                     </Expander>
