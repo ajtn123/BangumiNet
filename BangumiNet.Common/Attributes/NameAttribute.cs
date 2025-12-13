@@ -3,17 +3,17 @@
 [AttributeUsage(AttributeTargets.Field)]
 public class NameCnAttribute(string value) : Attribute
 {
-    public string NameCn { get; init; } = value;
+    public string Name { get; init; } = value;
 }
 
 [AttributeUsage(AttributeTargets.Field)]
 public class NameEnAttribute(string value) : Attribute
 {
-    public string NameEn { get; init; } = value;
+    public string Name { get; init; } = value;
 }
 
 [AttributeUsage(AttributeTargets.Field)]
 public class NameJpAttribute(string value) : Attribute
 {
-    public string NameJp { get; init; } = value;
+    public string Name { get; init; } = value;
 }

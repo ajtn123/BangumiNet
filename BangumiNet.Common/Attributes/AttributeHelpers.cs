@@ -6,7 +6,7 @@ namespace BangumiNet.Common.Attributes;
 
 public static class AttributeHelpers
 {
-    private static T? GetAttribute<T>(this Enum value) where T : Attribute
+    public static T? GetAttribute<T>(this Enum value) where T : Attribute
     {
         var type = value.GetType();
         var name = value.ToString();
@@ -14,9 +14,12 @@ public static class AttributeHelpers
 
         return field?.GetCustomAttributes(typeof(T), false).FirstOrDefault() as T;
     }
+    public static string? GetNameCn(Enum value) => value.GetAttribute<NameCnAttribute>()?.Name;
+    public static string? GetNameEn(Enum value) => value.GetAttribute<NameEnAttribute>()?.Name;
+    public static string? GetNameJp(Enum value) => value.GetAttribute<NameJpAttribute>()?.Name;
 
     public static string GetNameCn(this PersonCharacterRelationType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string? GetDescription(this PersonCharacterRelationType value)
         => value.GetAttribute<DescriptionAttribute>()?.Description;
     public static PersonCharacterRelationType? GetViceVersa(this PersonCharacterRelationType value)
@@ -152,9 +155,9 @@ public static class AttributeHelpers
         => value.GetAttribute<SourceInfoAttribute>()!.AppId;
 
     public static string GetNameEn(this StaffCategory value)
-        => value.GetAttribute<NameEnAttribute>()!.NameEn;
+        => value.GetAttribute<NameEnAttribute>()!.Name;
     public static string GetNameCn(this StaffCategory value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static SubjectType GetSubjectType(this StaffCategory value)
         => (int)value switch
         {
@@ -163,9 +166,9 @@ public static class AttributeHelpers
         };
 
     public static string GetNameCn(this SubjectRelationType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string? GetNameEn(this SubjectRelationType value)
-        => value.GetAttribute<NameEnAttribute>()?.NameEn;
+        => value.GetAttribute<NameEnAttribute>()?.Name;
     public static string? GetDescription(this SubjectRelationType value)
         => value.GetAttribute<DescriptionAttribute>()?.Description;
     public static bool GetIsViceVersaSkipped(this SubjectRelationType value)
@@ -182,11 +185,11 @@ public static class AttributeHelpers
         };
 
     public static string GetNameCn(this SubjectStaff value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string? GetNameEn(this SubjectStaff value)
-        => value.GetAttribute<NameEnAttribute>()?.NameEn;
+        => value.GetAttribute<NameEnAttribute>()?.Name;
     public static string? GetNameJp(this SubjectStaff value)
-        => value.GetAttribute<NameJpAttribute>()?.NameJp;
+        => value.GetAttribute<NameJpAttribute>()?.Name;
     public static string? GetDescription(this SubjectStaff value)
         => value.GetAttribute<DescriptionAttribute>()?.Description;
     public static StaffCategory[]? GetCategories(this SubjectStaff value)
@@ -202,13 +205,13 @@ public static class AttributeHelpers
         };
 
     public static string GetNameCn(this PersonType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string GetNameCn(this CharacterType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string GetNameCn(this EpisodeType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string GetNameCn(this CharacterRole value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
     public static string GetNameCn(this IndexType value)
-        => value.GetAttribute<NameCnAttribute>()!.NameCn;
+        => value.GetAttribute<NameCnAttribute>()!.Name;
 }

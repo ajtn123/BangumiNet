@@ -1,7 +1,5 @@
-﻿using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Converters;
+﻿using BangumiNet.Converters;
 using BangumiNet.Models.ItemNetwork;
-using BangumiNet.Shared.Extensions;
 using LiveChartsCore;
 using LiveChartsCore.Drawing;
 using LiveChartsCore.Kernel;
@@ -141,9 +139,9 @@ public partial class ItemNetworkViewModel : ViewModelBase
     [Reactive] public partial Node Origin { get; set; }
     [Reactive] public partial ObservableCollection<ItemViewModelBase> InterestedItems { get; set; }
 
-    private static readonly string SubjectTip = ItemType.Subject.ToStringSC();
-    private static readonly string CharacterTip = ItemType.Character.ToStringSC();
-    private static readonly string PersonTip = ItemType.Person.ToStringSC();
+    private static readonly string SubjectTip = ItemType.Subject.GetNameCn();
+    private static readonly string CharacterTip = ItemType.Character.GetNameCn();
+    private static readonly string PersonTip = ItemType.Person.GetNameCn();
 
     public static TimeSpan AnimationSpeed { get; } = TimeSpan.FromSeconds(1);
     public static Dictionary<ItemType, SolidColorPaint> RelationshipColors { get; set; } = new()

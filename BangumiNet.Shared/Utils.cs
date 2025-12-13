@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using BangumiNet.Common.Attributes;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace BangumiNet.Shared;
@@ -18,4 +19,7 @@ public static class Utils
         byte[] hashBytes = MD5.HashData(Encoding.UTF8.GetBytes(input));
         return Convert.ToHexStringLower(hashBytes);
     }
+
+    public static string GetNameCn(this ItemType value) => AttributeHelpers.GetNameCn(value)!;
+    public static string GetNameCn(this RelatedItemType value) => AttributeHelpers.GetNameCn(value)!;
 }

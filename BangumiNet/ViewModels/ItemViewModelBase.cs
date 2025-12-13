@@ -1,6 +1,5 @@
 ﻿using BangumiNet.Converters;
 using BangumiNet.Models;
-using BangumiNet.Shared.Extensions;
 using System.Reactive.Linq;
 using System.Windows.Input;
 
@@ -17,7 +16,7 @@ public partial class ItemViewModelBase : ViewModelBase
 
         this.WhenAnyValue(x => x.ItemType, x => x.Name, x => x.NameCn).Skip(1).Subscribe(x =>
         {
-            Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.ToStringSC()} {Id}"} - {Constants.ApplicationName}";
+            Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.GetNameCn()} {Id}"} - {Constants.ApplicationName}";
         });
     }
 

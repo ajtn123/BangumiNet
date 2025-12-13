@@ -6,7 +6,6 @@ using BangumiNet.Api.V0.V0.Search.Subjects;
 using BangumiNet.Common;
 using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
-using BangumiNet.Shared.Extensions;
 using System.Globalization;
 
 namespace BangumiNet.Converters;
@@ -167,8 +166,8 @@ public class CommonEnumConverter : IValueConverter
     public static string? Convert(object? value) => value switch
     {
         null => null,
-        ItemType itemType => itemType.ToStringSC(),
-        RelatedItemType relatedItemType => relatedItemType.ToStringSC(),
+        ItemType itemType => itemType.GetNameCn(),
+        RelatedItemType relatedItemType => relatedItemType.GetNameCn(),
         CommentState commentState => commentState.ToStringSC(),
         TopicDisplay topicDisplay => topicDisplay.ToStringSC(),
         GroupRole groupRole => groupRole.ToStringSC(),

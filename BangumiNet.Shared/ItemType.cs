@@ -1,42 +1,45 @@
-﻿namespace BangumiNet.Shared
+﻿using BangumiNet.Common.Attributes;
+
+namespace BangumiNet.Shared;
+
+public enum ItemType
 {
-    public enum ItemType
-    {
-        Unknown,
-        Subject,
-        Episode,
-        Character,
-        Person,
-        User,
-        Topic,
-        Group,
-        Timeline,
-        Revision,
-        Blog,
-        Photo,
-        Index,
-    }
-}
-namespace BangumiNet.Shared.Extensions
-{
-    public static class EnumExtensions
-    {
-        public static string ToStringSC(this ItemType type) => type switch
-        {
-            ItemType.Unknown => "未知",
-            ItemType.Subject => "条目",
-            ItemType.Episode => "话",
-            ItemType.Character => "角色",
-            ItemType.Person => "人物",
-            ItemType.User => "用户",
-            ItemType.Topic => "话题",
-            ItemType.Group => "小组",
-            ItemType.Timeline => "时间线",
-            ItemType.Revision => "修订",
-            ItemType.Blog => "日志",
-            ItemType.Photo => "图片",
-            ItemType.Index => "目录",
-            _ => throw new NotImplementedException(),
-        };
-    }
+    [NameCn("未知")]
+    Unknown,
+
+    [NameCn("条目")]
+    Subject,
+
+    [NameCn("章节")]
+    Episode,
+
+    [NameCn("角色")]
+    Character,
+
+    [NameCn("人物")]
+    Person,
+
+    [NameCn("用户")]
+    User,
+
+    [NameCn("话题")]
+    Topic,
+
+    [NameCn("小组")]
+    Group,
+
+    [NameCn("时间线")]
+    Timeline,
+
+    [NameCn("修订")]
+    Revision,
+
+    [NameCn("日志")]
+    Blog,
+
+    [NameCn("图片")]
+    Photo,
+
+    [NameCn("目录")]
+    Index,
 }
