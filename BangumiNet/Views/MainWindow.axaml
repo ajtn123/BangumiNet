@@ -23,51 +23,22 @@
         </ui:NavigationView.AutoCompleteBox>
 
         <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="主页" IsSelected="True">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="Home"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"
+                                   IsSelected="True"/>
 
-            <ui:NavigationViewItem Content="每日放送">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="Calendar"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="每日放送" IconSource="{bn:IconSource Live}"/>
 
-            <ui:NavigationViewItem Content="小组">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="People"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="小组" IconSource="{bn:IconSource PeopleTeam}"/>
 
-            <ui:NavigationViewItem Content="搜索">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="Find"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="搜索" IconSource="{bn:IconSource Search}"/>
 
-            <ui:NavigationViewItem Content="索引">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="Filter"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="索引" IconSource="{bn:IconSource AppsList}"/>
 
-            <ui:NavigationViewItem Content="番组索引">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:SymbolIconSource Symbol="Library"/>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
         </ui:NavigationView.MenuItems>
 
         <ui:NavigationView.FooterMenuItems>
-            <ui:NavigationViewItem Content="我">
-                <ui:NavigationViewItem.IconSource>
-                    <ui:ImageIconSource>
-                        <ic:FluentImage Icon="Person"/>
-                    </ui:ImageIconSource>
-                </ui:NavigationViewItem.IconSource>
-            </ui:NavigationViewItem>
+            <ui:NavigationViewItem Content="我" IconSource="{bn:IconSource Person}"/>
         </ui:NavigationView.FooterMenuItems>
     </ui:NavigationView>
 </Window>
