@@ -11,5 +11,5 @@
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
              x:DataType="vm:SubjectCollectionViewModel"
              x:Class="BangumiNet.Views.SubjectCollectionCardView">
-    <v:SubjectCardView DataContext="{Binding Subject}" Name="SubjectCard"/>
+    <v:SubjectCardView DataContext="{Binding Parent}" Name="SubjectCard"/>
 </UserControl>

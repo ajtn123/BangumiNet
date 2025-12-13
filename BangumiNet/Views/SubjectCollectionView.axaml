@@ -14,8 +14,8 @@
             <WrapPanel Classes="InfoBar">                
                 <TextBlock ToolTip.Tip="收藏状态" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Bookmark"/><Run Text="{Binding Type,Converter={StaticResource CollectionTypeCvt},Mode=OneWay}"/></TextBlock>
                 <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
-                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话</TextBlock>
-                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册</TextBlock>
+                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Parent.EpisodeCount}"/> 话</TextBlock>
+                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Parent.VolumeCount}"/> 册</TextBlock>
                 <TextBlock ToolTip.Tip="修改时间" IsVisible="{Binding UpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding UpdateTime}"/></TextBlock>
                 <TextBlock>
                     <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>

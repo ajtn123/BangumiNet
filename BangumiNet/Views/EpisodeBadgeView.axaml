@@ -21,7 +21,7 @@
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid.ContextFlyout>
             <Flyout>
-                <v:EpisodeView DataContext="{Binding}" MaxWidth="440"/>
+                <v:EpisodeView/>
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

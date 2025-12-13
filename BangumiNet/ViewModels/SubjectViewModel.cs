@@ -31,6 +31,8 @@ public partial class SubjectViewModel : ItemViewModelBase
         RatingTotal = subject.Rating?.Total;
         IsNsfw = subject.Nsfw ?? false;
         IsLocked = subject.Locked ?? false;
+        if (subject.Interest != null)
+            SubjectCollectionViewModel = new(subject.Interest) { Parent = this };
 
         Init();
     }
@@ -40,7 +42,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         CollectionTotal = subject.CollectionTotal;
         Rank = subject.Rank;
         Eps = subject.Eps;
-        Volumes = subject.Volumes;
+        VolumeCount = subject.Volumes;
         Summary = subject.ShortSummary;
         Name = subject.Name;
         NameCn = subject.NameCn;
@@ -90,9 +92,9 @@ public partial class SubjectViewModel : ItemViewModelBase
         Platform = subject.Platform;
         Images = subject.Images;
         Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
-        Volumes = subject.Volumes;
+        VolumeCount = subject.Volumes;
         Eps = subject.Eps;
-        TotalEps = subject.TotalEpisodes;
+        EpisodeCount = subject.TotalEpisodes;
         Rank = subject.Rating?.Rank;
         RatingTotal = subject.Rating?.Total;
         RatingCount = (subject.Rating?.Count as IRatingCount)?.ToList();
@@ -155,9 +157,8 @@ public partial class SubjectViewModel : ItemViewModelBase
         Platform = subject.Platform?.TypeCN;
         Images = subject.Images;
         Infobox = subject.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
-        Volumes = subject.Volumes;
-        // Eps = subject.Eps;
-        TotalEps = subject.Eps;
+        VolumeCount = subject.Volumes;
+        EpisodeCount = subject.Eps;
         Rank = subject.Rating?.Rank;
         RatingTotal = subject.Rating?.Total;
         RatingCount = subject.Rating?.Count?.Select(c => c ?? 0).ToList();
@@ -231,16 +232,17 @@ public partial class SubjectViewModel : ItemViewModelBase
 
         if (Rank == 0) Rank = null;
         if (Eps == 0) Eps = null;
-        if (TotalEps == 0) TotalEps = null;
-        if (Volumes == 0) Volumes = null;
+        if (EpisodeCount == 0) EpisodeCount = null;
+        if (VolumeCount == 0) VolumeCount = null;
         if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
+        EpisodeCount ??= Eps;
     }
 
     [Reactive] public partial int? CollectionTotal { get; set; }
     [Reactive] public partial int? Rank { get; set; }
     [Reactive] public partial int? Eps { get; set; }
-    [Reactive] public partial int? TotalEps { get; set; }
-    [Reactive] public partial int? Volumes { get; set; }
+    [Reactive] public partial int? EpisodeCount { get; set; }
+    [Reactive] public partial int? VolumeCount { get; set; }
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Info { get; set; }
     [Reactive] public partial DateOnly? Date { get; set; }

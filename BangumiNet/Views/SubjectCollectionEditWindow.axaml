@@ -25,11 +25,11 @@
 
                 <Separator IsVisible="{Binding IsEpStatusReadonly}"/>
                 <TextBlock ToolTip.Tip="话数" IsVisible="{Binding IsEpStatusReadonly}">
-                    <ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Subject.Eps}"/> 话
+                    <ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Parent.EpisodeCount}"/> 话
                 </TextBlock>
                 <Separator IsVisible="{Binding IsVolStatusReadonly}"/>
                 <TextBlock ToolTip.Tip="册数" IsVisible="{Binding IsVolStatusReadonly}">
-                    <ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Subject.Volumes}"/> 册
+                    <ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Parent.VolumeCount}"/> 册
                 </TextBlock>
 
 
@@ -43,7 +43,7 @@
                          Watermark="{Binding EpisodeStatus,Mode=OneTime}"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 <TextBlock IsVisible="{Binding IsEpStatusEditable}">
-                    /<Run Text="{Binding Subject.Eps}"/> 话
+                    /<Run Text="{Binding Parent.EpisodeCount}"/> 话
                 </TextBlock>
 
                 <Separator IsVisible="{Binding IsVolStatusEditable}"/>
@@ -56,7 +56,7 @@
                          Watermark="{Binding VolumeStatus,Mode=OneTime}"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 <TextBlock IsVisible="{Binding IsVolStatusEditable}">
-                    /<Run Text="{Binding Subject.Volumes}"/> 册
+                    /<Run Text="{Binding Parent.VolumeCount}"/> 册
                 </TextBlock>
                 
                 <Separator/>

@@ -2,19 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
-             xmlns:utils="using:BangumiNet.Utils"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="60"
              Classes.Highlight="{Binding IsEmphasized}" CornerRadius="10"
-             x:DataType="vm:SubjectViewModel"
+             x:DataType="bn:SubjectViewModel"
              x:Class="BangumiNet.Views.SubjectCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
           Classes="PointoverTextHost" Name="CardGrid">
-        <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top"/>
+        <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top">
+            <bn:SubjectFlyoutView/>
+        </MainImage>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
@@ -24,7 +23,7 @@
                 <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
                 <InfoItem Tip="在看" Text="{Binding Collection?.Doing}" Icon="Tv"/>
                 <InfoItem Tip="在看" Text="{Binding Hype}" Icon="Fire"/>
-                <InfoItem Tip="类型" Text="{Binding Type,Converter={StaticResource SubjectTypeCvt},Mode=OneWay}" Icon="Class"/>
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
@@ -34,25 +33,7 @@
 
         <Grid.ContextFlyout>
             <Flyout>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                        <SplitButton Name="OpenInBrowserSplitButton"
-                                     ToolTip.Tip="在 bangumi.tv 显示"
-                                     Content="bangumi" Classes="Icon"
-                                     Command="{Binding OpenInBrowserCommand}"/>
-                        <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
-                        <Button Classes="Icon" Command="{Binding ShowCoversCommand}" Content="{ice:FluentIcon Icon=ImageMultiple}" ToolTip.Tip="显示封面"/>
-                        <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
-                    </StackPanel>
-                    <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
-                               IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
-                               Classes="TitleAlt"/>
-                    <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                    </WrapPanel>
-                </StackPanel>
+                <bn:SubjectFlyoutView/>
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

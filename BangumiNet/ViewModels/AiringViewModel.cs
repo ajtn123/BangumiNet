@@ -20,7 +20,7 @@ public partial class AiringViewModel : ViewModelBase
     {
         var cl = new SubjectCollectionListViewModel(ItemType.Subject, SubjectType.Anime, CollectionType.Doing);
         await cl.Load();
-        var cids = cl.SubjectList.SubjectViewModels?.Select(s => (s as SubjectCollectionViewModel)?.Subject?.Id).ToArray();
+        var cids = cl.SubjectList.SubjectViewModels?.Select(s => (s as SubjectCollectionViewModel)?.Parent?.Id).ToArray();
         if (cids == null || Calendars == null) return;
         foreach (var subject in Calendars.SelectMany(x => x.Subjects ?? []))
             if (cids.Contains(subject.Id)) subject.IsEmphasized = true;

@@ -1,6 +1,7 @@
 using Avalonia.Controls.Primitives;
 using BangumiNet.Api.ExtraEnums;
 using FluentIcons.Avalonia;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.Views;
 
@@ -9,6 +10,25 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
     public SubjectCollectionEditWindow()
     {
         InitializeComponent();
+
+        this.WhenActivated(d =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .Subscribe(vm => vm?.InitEditCommands())
+                .DisposeWith(d);
+            this.WhenAnyObservable(x => x.ViewModel!.SaveCommand)
+                .Subscribe(async isSuccess =>
+                {
+                    SaveButton.IsEnabled = !isSuccess;
+                    SaveIcon.Icon = isSuccess ? FluentIcons.Common.Icon.Checkmark : FluentIcons.Common.Icon.Dismiss;
+
+                    await Task.Delay(5000);
+
+                    SaveButton.IsEnabled = true;
+                    SaveIcon.Icon = FluentIcons.Common.Icon.Save;
+                }).DisposeWith(d);
+        });
+
         StatusComboBox.ItemsSource = Enum.GetValues<CollectionType>();
         RatingSlider.WhenAnyValue(s => s.Value).Subscribe(v =>
         {
@@ -22,17 +42,6 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
                 RatingIcon.IconVariant = FluentIcons.Common.IconVariant.Color;
                 RatingIcon.Icon = FluentIcons.Common.Icon.Star;
             }
-        });
-
-        this.WhenAnyObservable(x => x.ViewModel!.SaveCommand).Subscribe(async r =>
-        {
-            SaveButton.IsEnabled = !r;
-            SaveIcon.Icon = r ? FluentIcons.Common.Icon.Checkmark : FluentIcons.Common.Icon.Dismiss;
-
-            await Task.Delay(5000);
-
-            SaveButton.IsEnabled = true;
-            SaveIcon.Icon = FluentIcons.Common.Icon.Save;
         });
 
         TagInputBox.KeyDown += (s, e) =>
@@ -52,8 +61,6 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
             DataContext = new SubjectCollectionViewModel(ViewModel.Source);
         else if (ViewModel?.Parent != null)
             DataContext = new SubjectCollectionViewModel(ViewModel.Parent);
-        else if (ViewModel?.Subject != null)
-            DataContext = new SubjectCollectionViewModel(ViewModel.Subject);
     }
     private void ChangeWrap(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {

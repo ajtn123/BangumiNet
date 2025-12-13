@@ -2,7 +2,6 @@
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
-using BangumiNet.Converters;
 using DynamicData;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -14,7 +13,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 {
     public SubjectCollectionViewModel(SubjectViewModel subject)
     {
-        Subject = subject;
         Parent = subject;
         Comment = null;
         Id = subject.Id;
@@ -45,7 +43,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Type = (CollectionType?)collection.Type;
         SubjectType = (SubjectType?)collection.SubjectType;
         if (collection.Subject != null)
-            Subject = new(collection.Subject);
+            Parent = new(collection.Subject);
 
         IsMy = true;
 
@@ -66,7 +64,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         UpdateTime = collection.UpdateTime;
         Type = collection.Type;
         SubjectType = collection.SubjectType;
-        Subject = collection.Subject;
         IsMy = collection.IsMy;
 
         Init();
@@ -85,6 +82,18 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 
         Init();
     }
+    public SubjectCollectionViewModel(SlimSubjectInterest interest)
+    {
+        Comment = interest.Comment;
+        if (interest.UpdatedAt is int ut)
+            UpdateTime = DateTimeOffset.FromUnixTimeSeconds(ut).ToLocalTime();
+        Type = (CollectionType?)interest.Type;
+        Rating = interest.Rate;
+        CommentId = interest.Id;
+        Tags = interest.Tags?.ToObservableCollection();
+
+        Init();
+    }
     public SubjectCollectionViewModel(TimelineMemo_subject collection)
     {
         IsPrivate = false;
@@ -94,23 +103,32 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Rating = CommonUtils.ToInt32(collection.Rate);
         SubjectType = (SubjectType?)collection.Subject?.Type;
         if (collection.Subject != null)
-            Subject = new(collection.Subject);
+            Parent = new(collection.Subject);
 
         Init();
     }
 
     private void Init()
     {
-        if (EpisodeStatus == 0 && Subject?.Eps == null) EpisodeStatus = null;
-        if (VolumeStatus == 0 && Subject?.Volumes == null) VolumeStatus = null;
+        if (EpisodeStatus == 0 && Parent?.Eps == null) EpisodeStatus = null;
+        if (VolumeStatus == 0 && Parent?.VolumeCount == null) VolumeStatus = null;
         IsEpStatusEditable = EpisodeStatus != null && SubjectType == Common.SubjectType.Book;
         IsVolStatusEditable = VolumeStatus != null && SubjectType == Common.SubjectType.Book;
         IsEpStatusReadonly = EpisodeStatus != null && !IsEpStatusEditable;
         IsVolStatusReadonly = VolumeStatus != null && !IsVolStatusEditable;
 
-        RecommendedTags = (Parent ?? Subject)?.Tags?.Select(x => x.Name).ToObservableCollection()!;
-
         OpenEditWindowCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show());
+
+        Title = $"修改收藏 - {Parent?.Title}";
+    }
+
+    private bool isEditCommandsInitialized;
+    public void InitEditCommands()
+    {
+        if (isEditCommandsInitialized) return;
+        isEditCommandsInitialized = true;
+
+        RecommendedTags = Parent?.Tags?.Select(x => x.Name).ToObservableCollection()!;
         AddTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(TagInput) && !Tags!.Contains(TagInput)) { Tags.Add(TagInput.Trim()); TagInput = string.Empty; } },
             this.WhenAnyValue(x => x.TagInput).Select(y => !string.IsNullOrWhiteSpace(y) && !Tags!.Contains(y)));
         AddRecommendedTagCommand = ReactiveCommand.Create<string>(s => { if (!string.IsNullOrWhiteSpace(s) && !Tags!.Contains(s)) Tags.Add(s); });
@@ -121,12 +139,9 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         DropCommand = ReactiveCommand.Create(() => Type = CollectionType.Dropped, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.Dropped));
         HoldCommand = ReactiveCommand.Create(() => Type = CollectionType.OnHold, this.WhenAnyValue(x => x.Type).Select(y => y != CollectionType.OnHold));
         SaveCommand = ReactiveCommand.CreateFromTask(UpdateCollection);
-
-        Title = $"修改收藏 - {NameCnCvt.Convert(Subject) ?? "项目"} - {Title}";
     }
 
     [Reactive] public partial UserSubjectCollection? Source { get; set; }
-    [Reactive] public partial SubjectViewModel? Subject { get; set; }
     [Reactive] public partial SubjectViewModel? Parent { get; set; }
     [Reactive] public partial SubjectCollectionListViewModel? ParentList { get; set; }
     [Reactive] public partial SubjectType? SubjectType { get; set; }
@@ -151,18 +166,19 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial bool IsEpStatusReadonly { get; set; }
     [Reactive] public partial bool IsVolStatusReadonly { get; set; }
 
-    public ICommand? OpenEditWindowCommand { get; private set; }
-    public ReactiveCommand<Unit, Unit>? AddTagCommand { get; set; }
-    public ReactiveCommand<string, Unit>? AddRecommendedTagCommand { get; set; }
-    public ReactiveCommand<string, Unit>? DelTagCommand { get; set; }
+    [Reactive] public partial ICommand? OpenEditWindowCommand { get; private set; }
 
-    public ICommand? WishCommand { get; private set; }
-    public ICommand? DoingCommand { get; private set; }
-    public ICommand? DoneCommand { get; private set; }
-    public ICommand? DropCommand { get; private set; }
-    public ICommand? HoldCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? AddTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<string, Unit>? AddRecommendedTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<string, Unit>? DelTagCommand { get; set; }
 
-    public ReactiveCommand<Unit, bool>? SaveCommand { get; private set; }
+    [Reactive] public partial ICommand? WishCommand { get; private set; }
+    [Reactive] public partial ICommand? DoingCommand { get; private set; }
+    [Reactive] public partial ICommand? DoneCommand { get; private set; }
+    [Reactive] public partial ICommand? DropCommand { get; private set; }
+    [Reactive] public partial ICommand? HoldCommand { get; private set; }
+
+    [Reactive] public partial ReactiveCommand<Unit, bool>? SaveCommand { get; private set; }
 
     public async Task<bool> UpdateCollection()
     {

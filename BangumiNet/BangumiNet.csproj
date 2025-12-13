@@ -6,7 +6,7 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <ApplicationIcon>Assets\BangumiNet.ico</ApplicationIcon>
   </PropertyGroup>
-	
+    
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
