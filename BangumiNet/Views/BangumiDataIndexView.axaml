@@ -11,6 +11,5 @@
               CanUserResizeColumns="True"
               CanUserSortColumns="True"
               IsReadOnly="True"
-              GridLinesVisibility="Horizontal"
-              ItemsSource="{Binding Items}"/>
+              GridLinesVisibility="Horizontal"/>
 </UserControl>

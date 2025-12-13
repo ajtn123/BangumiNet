@@ -6,7 +6,7 @@ public partial class MessageWindowViewModel : ViewModelBase
 {
     public MessageWindowViewModel()
     {
-        Title = "信息";
+        Title = $"信息 - {Constants.ApplicationName}";
         Icon = Icon.Info;
     }
 

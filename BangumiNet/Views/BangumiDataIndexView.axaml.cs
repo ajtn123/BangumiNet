@@ -1,8 +1,10 @@
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Media;
 using BangumiNet.BangumiData.Models;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
@@ -25,6 +27,19 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
 
         foreach (var column in columns)
             IndexGrid.Columns.Add(column);
+
+        this.WhenActivated(d =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Select(vm => vm.WhenAnyValue(x => x.Items).WhereNotNull())
+                .Switch()
+                .Subscribe(items => IndexGrid.ItemsSource = new DataGridCollectionView(items.Reverse())
+                {
+                    GroupDescriptions = { new DataGridPathGroupDescription("Begin.Year") }
+                })
+                .DisposeWith(d);
+        });
     }
 
     public class CellTemplate<TControl>(string bindingPath) : IDataTemplate where TControl : ContentControl, ICellTemplate, new()
@@ -45,6 +60,7 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
         public void Init()
         {
             if (DataContext is not string url || string.IsNullOrWhiteSpace(url)) return;
+            if (url.StartsWith("http://%")) return;
             var uri = new Uri(url);
             Content = new HyperlinkButton
             {
