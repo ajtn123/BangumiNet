@@ -3,14 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:PhotoViewModel"
              x:Class="BangumiNet.Views.PhotoView">
-    <MainImage Url="{Binding Images?.Large}">
-		<WrapPanel Classes="InfoBar">
-            <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-			<InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-			<InfoItem Tip="票数" Text="{Binding Vote}" Icon="People"/>
-        </WrapPanel>
-    </MainImage>
+    <Panel>
+        <ic:FluentIcon ToolTip.Tip="当前封面" Icon="Checkmark" IconSize="Size12"
+                       FontSize="80" Foreground="LightGreen" ZIndex="1"
+                       IsVisible="{Binding IsCurrent}" Margin="20"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <MainImage Url="{Binding Images?.Large}">
+            <StackPanel>
+                <WrapPanel Classes="InfoBar">
+                    <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <InfoItem Tip="票数" Text="{Binding Vote}" Icon="People"/>
+                    <TextBlock>
+                        <ic:FluentIcon ToolTip.Tip="当前封面" Icon="Checkmark" IsVisible="{Binding IsCurrent}"/>
+                        <ic:FluentIcon ToolTip.Tip="已投票" Icon="Vote" IsVisible="{Binding IsVoted}"/>
+                    </TextBlock>
+                </WrapPanel>
+                <bn:CardView Content="{Binding User}" Classes="SepTop"/>
+            </StackPanel>
+        </MainImage>
+    </Panel>
 </UserControl>

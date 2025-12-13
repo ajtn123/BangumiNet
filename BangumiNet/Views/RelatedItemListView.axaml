@@ -34,7 +34,10 @@
                         <bn:BlogCardView DataContext="{Binding}" Width="400"/>
                     </DataTemplate>
                     <DataTemplate DataType="bn:PhotoViewModel">
-                        <bn:PhotoView DataContext="{Binding}"/>
+                        <bn:PhotoView DataContext="{Binding}"
+                                      VerticalAlignment="Top"
+                                      HorizontalAlignment="Left"
+                                      MaxHeight="800"/>
                     </DataTemplate>
                     <DataTemplate DataType="bn:EpisodeViewModel">
                         <StackPanel>

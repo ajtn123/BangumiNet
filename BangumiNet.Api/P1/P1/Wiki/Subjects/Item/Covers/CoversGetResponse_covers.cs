@@ -14,7 +14,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator? Creator { get; set; }
+        public global::BangumiNet.Api.P1.Models.SlimUser? Creator { get; set; }
 
         public int? Id { get; set; }
 
@@ -51,7 +51,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "creator", n => { Creator = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator.CreateFromDiscriminatorValue); } },
+                { "creator", n => { Creator = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "raw", n => { Raw = n.GetStringValue(); } },
                 { "thumbnail", n => { Thumbnail = n.GetStringValue(); } },
@@ -66,7 +66,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator>("creator", Creator);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>("creator", Creator);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("raw", Raw);
             writer.WriteStringValue("thumbnail", Thumbnail);

@@ -214,6 +214,12 @@ public partial class SubjectViewModel : ItemViewModelBase
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
             this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
+        ShowCoversCommand = ReactiveCommand.Create(() =>
+        {
+            var vm = new RelatedItemListViewModel(RelatedItemType.Cover, ItemType, Id);
+            _ = vm.Load();
+            SecondaryWindow.Show(vm);
+        });
 
         this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
@@ -269,6 +275,7 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
     public ICommand? CollectCommand { get; private set; }
+    public ICommand? ShowCoversCommand { get; private set; }
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsFull => Source is Api.P1.Models.Subject;

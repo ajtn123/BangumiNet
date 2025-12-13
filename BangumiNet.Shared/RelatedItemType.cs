@@ -40,6 +40,9 @@ public enum RelatedItemType
     [NameCn("图片")]
     Photo,
 
+    [NameCn("封面")]
+    Cover,
+
     /// <summary>角色出演的作品</summary>
     [NameCn("出演作品")]
     CharacterCast,

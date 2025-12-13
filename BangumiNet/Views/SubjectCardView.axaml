@@ -43,6 +43,7 @@
                                      Content="bangumi" Classes="Icon"
                                      Command="{Binding OpenInBrowserCommand}"/>
                         <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
+                        <Button Classes="Icon" Command="{Binding ShowCoversCommand}" Content="{ice:FluentIcon Icon=ImageMultiple}" ToolTip.Tip="显示封面"/>
                         <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
                     </StackPanel>
                     <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"

@@ -6,52 +6,57 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BangumiNet.Views.SecondaryWindow">
     <Window.DataTemplates>
-		<DataTemplate DataType="bn:SubjectViewModel">
-			<bn:SubjectView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:SubjectViewModel">
+            <bn:SubjectView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:EpisodeViewModel">
-			<bn:EpisodeFullView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:EpisodeViewModel">
+            <bn:EpisodeFullView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:CharacterViewModel">
-			<bn:CharacterView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:CharacterViewModel">
+            <bn:CharacterView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:PersonViewModel">
-			<bn:PersonView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:PersonViewModel">
+            <bn:PersonView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:UserViewModel">
-			<bn:UserView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:UserViewModel">
+            <bn:UserView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:GroupViewModel">
-			<bn:GroupView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:GroupViewModel">
+            <bn:GroupView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:TopicViewModel">
-			<bn:TopicView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:TopicViewModel">
+            <bn:TopicView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:BlogViewModel">
-			<bn:BlogView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:BlogViewModel">
+            <bn:BlogView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:IndexViewModel">
-			<bn:IndexView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:IndexViewModel">
+            <bn:IndexView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:RevisionListViewModel">
-			<bn:RevisionListView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:RevisionListViewModel">
+            <bn:RevisionListView DataContext="{Binding}"/>
         </DataTemplate>
-		<DataTemplate DataType="bn:RevisionViewModel">
-			<bn:RevisionView DataContext="{Binding}"/>
+        <DataTemplate DataType="bn:RevisionViewModel">
+            <bn:RevisionView DataContext="{Binding}"/>
         </DataTemplate>
         <DataTemplate DataType="bn:NotificationListViewModel">
-			<bn:NotificationListView DataContext="{Binding}"/>
+            <bn:NotificationListView DataContext="{Binding}"/>
         </DataTemplate>
         <DataTemplate DataType="bn:UserListViewModel">
             <ScrollViewer>
-			    <bn:SubjectListPagedView DataContext="{Binding}" Margin="5"/>
+                <bn:SubjectListPagedView DataContext="{Binding}" Margin="5"/>
+            </ScrollViewer>
+        </DataTemplate>
+        <DataTemplate DataType="bn:RelatedItemListViewModel">
+            <ScrollViewer>
+                <bn:RelatedItemListView DataContext="{Binding}" Margin="5"/>
             </ScrollViewer>
         </DataTemplate>
         <DataTemplate DataType="bn:ItemNetworkViewModel">
-			<bn:ItemNetworkView DataContext="{Binding}"/>
+            <bn:ItemNetworkView DataContext="{Binding}"/>
         </DataTemplate>
         <DataTemplate DataType="bn:SearchViewModel">
-			<bn:SearchView DataContext="{Binding}"/>
+            <bn:SearchView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.DataTemplates>
 </Window>

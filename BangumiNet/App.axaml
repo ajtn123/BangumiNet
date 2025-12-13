@@ -9,7 +9,7 @@
              RequestedThemeVariant="Default">
     <Application.DataTemplates>
         <DataTemplate DataType="bn:BBCodeViewModel">
-			<BBCode Text="{Binding Text}"/>
+            <BBCode Text="{Binding Text}"/>
         </DataTemplate>
         <bn:ViewLocator/>
     </Application.DataTemplates>
@@ -240,10 +240,10 @@
             <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
         <Style Selector="ItemsControl:empty">
-			<Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False"/>
         </Style>
         <Style Selector="Label">
-			<Setter Property="Padding" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
         </Style>
         <Style Selector=":is(TextBlock).PointoverText">
             <Setter Property="FontSize" Value="7"/>
@@ -264,8 +264,8 @@
             </Style>
         </Style>
         <Style Selector=".PointoverTextHost:pointerover :is(TextBlock).PointoverText, FlyoutPresenter :is(TextBlock).PointoverText">
-			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="Opacity" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Opacity" Value="1"/>
         </Style>
         <Style Selector=":is(Panel).Hoverable, :is(Panel).PointoverTextHost">
             <Setter Property="Background" Value="Transparent"/>
@@ -280,7 +280,7 @@
         <Style Selector=":is(TemplatedControl).Highlight">
             <Setter Property="Background" Value="#3F7FFF7F"/>
         </Style>
-        <Style Selector=".ViewRoot > StackPanel > bn|RelatedItemListView">
+        <Style Selector=".ViewRoot > StackPanel > bn|RelatedItemListView, bn|CardView.SepTop">
             <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}"/>
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
             <Setter Property="Margin" Value="0,5,0,0"/>

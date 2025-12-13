@@ -1,6 +1,7 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
+using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
 using BangumiNet.Models;
@@ -34,6 +35,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                     RelatedItemType.Subject => await ApiC.V0.Subjects[id].Subjects.GetAsync(cancellationToken: cancellationToken),
                     RelatedItemType.Character => await ApiC.V0.Subjects[id].Characters.GetAsync(cancellationToken: cancellationToken),
                     RelatedItemType.Person => await ApiC.V0.Subjects[id].Persons.GetAsync(cancellationToken: cancellationToken),
+                    RelatedItemType.Cover => await LoadSubjectCoverAsync(id, cancellationToken),
                     _ => throw new NotImplementedException(),
                 },
                 ItemType.Character => Type switch
@@ -151,6 +153,8 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         Api.P1.Models.BlogPhoto bp => new PhotoViewModel(bp),
         Api.P1.Models.SlimIndex si => new IndexViewModel(si),
         Api.P1.Models.IndexRelated ir => IndexRelatedToVM(ir),
+        CoversGetResponse_current cc => new PhotoViewModel(cc),
+        CoversGetResponse_covers cc => new PhotoViewModel(cc),
         _ => new TextViewModel($"RelatedItemListViewModel.ConvertToVM: {obj}"),
     };
 
@@ -194,6 +198,19 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
             CreationTime = CommonUtils.ParseBangumiTime(related.CreatedAt),
         };
         return item;
+    }
+
+    private static async Task<IEnumerable<object>?> LoadSubjectCoverAsync(int id, CancellationToken cancellationToken)
+    {
+        var response = await ApiC.P1.Wiki.Subjects[id].Covers.GetAsync(cancellationToken: cancellationToken);
+        if (response == null) return null;
+
+        List<object> list = [];
+        if (response.Current != null)
+            list.Add(response.Current);
+        if (response.Covers != null)
+            list.AddRange(response.Covers);
+        return list;
     }
 
     [Reactive] public partial RelatedItemType Type { get; set; }

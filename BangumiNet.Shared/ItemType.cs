@@ -42,4 +42,7 @@ public enum ItemType
 
     [NameCn("目录")]
     Index,
+
+    [NameCn("封面")]
+    Cover,
 }
