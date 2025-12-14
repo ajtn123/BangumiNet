@@ -1,3 +1,5 @@
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using FluentAvalonia.UI.Windowing;
 
 namespace BangumiNet.Views;
@@ -49,4 +51,6 @@ public partial class MainWindow : AppWindow
     public BangumiDataIndexViewModel? bangumiDataIndexVM;
     public AiringViewModel? airingVM;
     public MeViewModel? meVM;
+
+    public static MainWindow Instance => (MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current?.ApplicationLifetime!).MainWindow!;
 }

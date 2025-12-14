@@ -49,9 +49,9 @@ public partial class SettingViewModel : ViewModelBase
             if (newSettings.AuthToken != Settings.AuthToken || newSettings.UserAgent != Settings.UserAgent)
             {
                 ApiC.RebuildClients();
-                var mainWindow = CommonUtils.GetMainWindow();
-                mainWindow?.meVM = null;
-                mainWindow?.homeVM = null;
+                var mainWindow = MainWindow.Instance;
+                mainWindow.meVM = null;
+                mainWindow.homeVM = null;
             }
         });
         DumpCacheCommand = ReactiveCommand.Create(() =>

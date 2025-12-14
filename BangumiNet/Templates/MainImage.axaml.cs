@@ -6,6 +6,7 @@ using Avalonia.Media;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
+using System.Reactive.Linq;
 
 namespace BangumiNet.Templates;
 
@@ -40,7 +41,9 @@ public class MainImage : ContentControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        _ = LoadImageAsync();
+        this.WhenAnyValue(x => x.Url)
+            .Subscribe(url => _ = LoadImageAsync())
+            .DisposeWith(disposables);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)

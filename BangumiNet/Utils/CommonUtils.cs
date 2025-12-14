@@ -1,6 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
-using System.IO;
+﻿using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -85,9 +83,4 @@ public static partial class CommonUtils
         }
         catch { return null; }
     }
-
-    public static MainWindow? GetMainWindow()
-        => Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime
-            ? lifetime.MainWindow as MainWindow
-            : null;
 }

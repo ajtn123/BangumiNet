@@ -29,7 +29,7 @@ public partial class SecondaryWindow : AppWindow
     {
         ArgumentNullException.ThrowIfNull(data);
         var window = new SecondaryWindow { Content = data };
-        window.Show();
+        window.Show(MainWindow.Instance);
         return window;
     }
 }

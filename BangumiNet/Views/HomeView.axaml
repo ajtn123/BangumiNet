@@ -11,9 +11,7 @@
             <Border Classes="Card Large">
                 <Grid ColumnDefinitions="*,Auto" Height="50">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
-                    <Border Grid.Column="1" HorizontalAlignment="Right" CornerRadius="5" ClipToBounds="True">
-                        <MainImage Url="{Binding Me?.Avatar?.Large}"/>
-                    </Border>
+                    <MainImage Url="{Binding Me?.Avatar?.Large}" Grid.Column="1" HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
             <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
