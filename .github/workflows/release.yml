@@ -30,7 +30,7 @@ jobs:
           done
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: app-archive
           path: ${{ github.event.repository.name }}-${{ github.ref_name }}-*.zip
@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: app-archive
           path: .
