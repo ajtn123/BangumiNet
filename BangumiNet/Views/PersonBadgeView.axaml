@@ -2,47 +2,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
-             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              Classes="BadgeView"
-             x:DataType="vm:PersonViewModel"
+             x:DataType="bn:PersonViewModel"
              x:Class="BangumiNet.Views.PersonBadgeView">
-    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto" RowSpacing="5">
-        <MainImage Url="{Binding Images?.Grid}" Name="Img"/>
+    <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
+          RowSpacing="5" Name="BadgeGrid">
+        <MainImage Url="{Binding Images?.Grid}" Name="Img">
+			<bn:PersonFlyoutView/>
+        </MainImage>
+
         <Border Grid.Row="1" Classes="Ref"
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
-                <HyperlinkButton Content="{Binding Name}"
+                <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"
                                  Command="{Binding OpenInNewWindowCommand}"
                                  Classes="Title"/>
                 <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"
                            IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
             </StackPanel>
         </Border>
+
         <Grid.ContextFlyout>
             <Flyout>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
-                        <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
-                        <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
-                    </StackPanel>
-                    <Separator/>
-                    <TextBlock ToolTip.Tip="名称" Text="{Binding Name}" IsVisible="{Binding Name,Converter={StaticResource NEWCvt}}" Classes="Title"/>
-                    <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}" IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
-                    <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
-                    <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource PersonTypeCvt},Mode=OneWay}"/></TextBlock>
-                    <TextBlock ToolTip.Tip="职业" IsVisible="{Binding CareerString,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="LayerDiagonalPerson"/><Run Text="{Binding CareerString}"/></TextBlock>
-                    <Separator IsVisible="{Binding RelationItems,Converter={StaticResource NullCvt}}"/>
-                    <v:SubjectListView DataContext="{Binding RelationItems}"
-                                      IsVisible="{Binding $self.DataContext,Converter={StaticResource NullCvt}}"/>
-                </StackPanel>
+                <bn:PersonFlyoutView/>
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

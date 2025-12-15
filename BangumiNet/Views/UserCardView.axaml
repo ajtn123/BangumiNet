@@ -9,7 +9,9 @@
              x:DataType="bn:UserViewModel"
              x:Class="BangumiNet.Views.UserCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <MainImage Url="{Binding Avatar?.Large}" VerticalAlignment="Top"/>
+        <MainImage Url="{Binding Avatar?.Large}" VerticalAlignment="Top">
+			<bn:UserFlyoutView/>
+        </MainImage>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton ToolTip.Tip="在新窗口显示用户"

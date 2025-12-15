@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="bn:CharacterViewModel"
+             x:Class="BangumiNet.Views.CharacterFlyoutView">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="5">
+            <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+            <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+            <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+            <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
+            <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
+        </StackPanel>
+        <Separator/>
+        <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
+                   Classes="Title"/>
+        <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                    IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
+                    Classes="TitleAlt"/>
+        <TextBlock ToolTip.Tip="关系" Text="{Binding Relation}"
+                   IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"/>
+        <WrapPanel Classes="InfoBar">
+            <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
+            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+        </WrapPanel>
+        <ContentControl Content="{Binding RelationItems}"
+                        IsVisible="{Binding $self.Content,Converter={StaticResource NullCvt}}"
+                        Classes="SepTop">
+			<ContentControl.DataTemplates>
+				<DataTemplate DataType="bn:SubjectListViewModel">
+					<bn:SubjectListView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ContentControl.DataTemplates>
+        </ContentControl>
+    </StackPanel>
+</UserControl>

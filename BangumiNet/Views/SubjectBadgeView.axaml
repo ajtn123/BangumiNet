@@ -18,7 +18,7 @@
         <Border Grid.Row="1" Classes="Ref"
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
-                <HyperlinkButton Content="{Binding .,Converter={StaticResource NameCnCvt}}"
+                <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"
                                  Command="{Binding OpenInNewWindowCommand}"
                                  Classes="Title"/>
                 <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"
