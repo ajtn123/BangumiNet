@@ -44,5 +44,11 @@ public partial class HomeViewModel : ViewModelBase
     }
 
     public readonly string GreetingEmoji = GreetingEmojis[Random.Shared.NextInt64() % GreetingEmojis.Length];
-    private static readonly string[] GreetingEmojis = ["👋", "🫡", @"\(￣︶￣*\))", @"\(@^0^@)/", "Hi~ o(*￣▽￣*)ブ"];
+    private static readonly string[] GreetingEmojis
+        = [@"\(￣︶￣*\))", @"\(@^0^@)/", "Hi~ o(*￣▽￣*)ブ",
+           "(^_^)/", "(・ω・)ノ", "(＾▽＾)／", "(≧∇≦)ﾉ",
+           "(*￣▽￣)b", "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",  "(✿´‿`)ﾉ", "ヽ(•‿•)ノ",
+           "(￣▽￣)ノ", "( ´ ▽ ` )ﾉ", "(._.)/", "(＾‐＾)ゞ",
+           "＼(＾O＾)／", "o(≧▽≦)o", "(ﾉ≧∀≦)ﾉ",
+           "😊", "😄", "🙂", "🙌", "✨", "🎉", "👋", "👋🙂", "😺", "🌸", "☀️", "💫"];
 }

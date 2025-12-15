@@ -14,7 +14,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
-                    <ComboBox Grid.Column="1" x:Name="ItemTypeComboBox"
+                    <ComboBox Grid.Column="1" Name="ItemTypeComboBox"
                               SelectedItem="{Binding ItemType}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -22,8 +22,9 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <ComboBox Grid.Column="1" IsVisible="{Binding IsSubject}" x:Name="SubjectTypeComboBox"
-                              SelectedItem="{Binding SubjectType}">
+                    <ComboBox Grid.Column="1" Name="SubjectTypeComboBox"
+                              SelectedItem="{Binding SubjectType}"
+                              IsVisible="{Binding IsSubject}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}}" />

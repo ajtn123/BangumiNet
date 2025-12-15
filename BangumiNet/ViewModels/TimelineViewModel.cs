@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.P1.Models;
+﻿using BangumiNet.Api.Misc;
+using BangumiNet.Api.P1.Models;
 using BangumiNet.Shared.Interfaces;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -18,16 +19,26 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
             await Load(Until = ids.Min(), ct);
         });
 
-        this.WhenAnyValue(x => x.OnlyFriend).Skip(1).Subscribe(async x =>
+        this.WhenAnyValue(x => x.Mode).Skip(1).Subscribe(async x =>
         {
             if (Username != null) return;
-            await LoadTopCommand.Execute();
+
+            if (IsEventStreaming) _ = Connect();
+            else _ = LoadTopCommand.Execute().Subscribe();
+        });
+
+        this.WhenAnyValue(x => x.IsEventStreaming).Skip(1).Subscribe(x =>
+        {
+            if (IsEventStreaming) _ = Connect();
+            else Disconnect();
         });
     }
 
     public async Task Load(CancellationToken ct = default) => await LoadCommand.Execute();
     public async Task Load(int until, CancellationToken cancellationToken = default)
     {
+        IsEventStreaming = false;
+
         int? u = until == 0 ? null : until;
         List<Timeline>? timelines = null;
         try
@@ -35,7 +46,7 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
             timelines = Username == null
                 ? await ApiC.P1.Timeline.GetAsync(config =>
                 {
-                    config.QueryParameters.Mode = OnlyFriend ? FilterMode.Friends : FilterMode.All;
+                    config.QueryParameters.Mode = Mode;
                     config.QueryParameters.Until = u;
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken)
@@ -51,7 +62,34 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
         SubjectViewModels = timelines.Select<Timeline, ViewModelBase>(t => new TimelineItemViewModel(t)).ToObservableCollection();
     }
 
-    [Reactive] public partial bool OnlyFriend { get; set; }
+    private readonly TimelineEventStream events = new(ApiC.HttpClient, CurrentSettings);
+    private CancellationTokenSource cts = new();
+    private async Task Connect()
+    {
+        Disconnect();
+
+        try
+        {
+            SubjectViewModels = [];
+            await foreach (var item in events.StartAsync(Mode, null, cts.Token))
+            {
+                if (SubjectViewModels.Count >= 100)
+                    SubjectViewModels.RemoveAt(99);
+                SubjectViewModels.Insert(0, new TimelineItemViewModel(item));
+            }
+        }
+        catch (TaskCanceledException) { Trace.WriteLine("Timeline SSE connection ended as requested."); }
+        catch (Exception e) { Trace.WriteLine(e.Message); }
+    }
+    private void Disconnect()
+    {
+        cts.Cancel();
+        cts.Dispose();
+        cts = new();
+    }
+
+    [Reactive] public partial bool IsEventStreaming { get; set; }
+    [Reactive] public partial FilterMode Mode { get; set; }
     [Reactive] public partial int Until { get; set; }
     [Reactive] public partial string? Username { get; set; }
 

@@ -1,4 +1,6 @@
-﻿namespace BangumiNet.Api.ExtraEnums;
+﻿using BangumiNet.Api.P1.Models;
+
+namespace BangumiNet.Api.ExtraEnums;
 
 //https://github.com/bangumi/server-private/blob/master/lib/timeline/type.ts
 public enum TimelineCategory
@@ -183,6 +185,12 @@ public static partial class EnumExtensions
         TimelineTypes.Doujin.FollowClub => "关注社团",
         TimelineTypes.Doujin.FollowEvent => "关注活动",
         TimelineTypes.Doujin.AttendEvent => "参加活动",
+        _ => throw new NotImplementedException(),
+    };
+    public static string ToStringSC(this FilterMode mode) => mode switch
+    {
+        FilterMode.All => "全站",
+        FilterMode.Friends => "仅好友",
         _ => throw new NotImplementedException(),
     };
 }
