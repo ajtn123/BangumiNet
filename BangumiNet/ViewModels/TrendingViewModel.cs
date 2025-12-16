@@ -3,7 +3,6 @@ using BangumiNet.Api.P1.P1.Trending.Subjects;
 using BangumiNet.Api.P1.P1.Trending.Subjects.Topics;
 using BangumiNet.Common;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -14,26 +13,23 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
         ItemType = itemType;
         SubjectType = subjectType;
 
-        LoadCommand = ReactiveCommand.CreateFromTask<int?>(Load);
-        PageNavigator.JumpPage.InvokeCommand(LoadCommand);
-        PageNavigator.NextPage.InvokeCommand(LoadCommand);
-        PageNavigator.PrevPage.InvokeCommand(LoadCommand);
-
         this.WhenAnyValue(x => x.ItemType).Skip(1).Subscribe(itemType =>
         {
             this.RaisePropertyChanged(nameof(IsSubject));
-            _ = Load(1);
+            _ = LoadPageCommand.Execute(1).Subscribe();
         });
         this.WhenAnyValue(x => x.SubjectType).Skip(1).Subscribe(itemType =>
         {
             if (!IsSubject) return;
-            _ = Load(1);
+            _ = LoadPageCommand.Execute(1).Subscribe();
         });
     }
-    public async Task Load(int? p, CancellationToken ct = default)
+
+    protected override async Task LoadPageAsync(int? page, CancellationToken ct = default)
     {
-        if (p is not int page) return;
-        var offset = (page - 1) * Limit;
+        if (page is not int p) return;
+        var offset = (p - 1) * Limit;
+
         if (ItemType == ItemType.Subject)
         {
             SubjectsGetResponse? response = null;
@@ -46,8 +42,9 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
                     config.QueryParameters.Type = (int)SubjectType;
                 }, cancellationToken: ct);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); return; }
+            catch (Exception e) { Trace.TraceError(e.Message); }
             if (response == null) return;
+
             SubjectViewModels = response.Data?
                 .Where(s => s.Subject != null)
                 .Select<TrendingSubject, ViewModelBase>(s => new SubjectViewModel(s.Subject!) { Hype = s.Count })
@@ -65,8 +62,9 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
                     config.QueryParameters.Offset = offset;
                 }, cancellationToken: ct);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); return; }
+            catch (Exception e) { Trace.TraceError(e.Message); }
             if (response == null) return;
+
             SubjectViewModels = response.Data?
                 .Select<SubjectTopic, ViewModelBase>(s => new TopicViewModel(s, false))
                 .ToObservableCollection();
@@ -78,9 +76,6 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
     [Reactive] public partial ItemType ItemType { get; set; }
     [Reactive] public partial SubjectType SubjectType { get; set; }
 
-    public ICommand LoadCommand { get; set; }
-
     public bool IsSubject => ItemType == ItemType.Subject;
-
-    public const int Limit = 20;
+    public override int Limit => 20;
 }

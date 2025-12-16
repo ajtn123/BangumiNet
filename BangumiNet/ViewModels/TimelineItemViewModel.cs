@@ -102,7 +102,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                             else
                             {
                                 replies = new(ItemType.Timeline, Id);
-                                replies.LoadPageAsync(1);
+                                replies.LoadPageCommand.Execute(1).Subscribe();
                                 RelationItems.SubjectViewModels!.Add(replies);
                             }
                         }),

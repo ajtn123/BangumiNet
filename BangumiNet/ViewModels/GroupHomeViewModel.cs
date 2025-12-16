@@ -8,8 +8,8 @@ public partial class GroupHomeViewModel : ViewModelBase
         Groups = new();
         JoinedGroups = new() { Filter = Api.P1.Models.GroupFilterMode.Joined };
 
-        _ = TopicBrief.Load(1);
-        _ = Groups.Load(1);
+        _ = TopicBrief.LoadPageCommand.Execute(1).Subscribe();
+        _ = Groups.LoadPageCommand.Execute(1).Subscribe();
     }
 
     [Reactive] public partial GroupTopicListViewModel TopicBrief { get; set; }

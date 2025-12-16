@@ -1,11 +1,20 @@
-﻿namespace BangumiNet.ViewModels;
+﻿using System.Reactive;
 
-public partial class SubjectListPagedViewModel : SubjectListViewModel
+namespace BangumiNet.ViewModels;
+
+public abstract partial class SubjectListPagedViewModel : SubjectListViewModel
 {
     public SubjectListPagedViewModel()
     {
-        PageNavigator = new();
+        LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
+
+        PageNavigator.PrevPage.InvokeCommand(LoadPageCommand);
+        PageNavigator.NextPage.InvokeCommand(LoadPageCommand);
+        PageNavigator.JumpPage.InvokeCommand(LoadPageCommand);
     }
 
-    [Reactive] public partial PageNavigatorViewModel PageNavigator { get; set; }
+    public abstract int Limit { get; }
+    protected abstract Task LoadPageAsync(int? page, CancellationToken cancellationToken = default);
+    public ReactiveCommand<int?, Unit> LoadPageCommand { get; private init; }
+    public PageNavigatorViewModel PageNavigator { get; } = new();
 }

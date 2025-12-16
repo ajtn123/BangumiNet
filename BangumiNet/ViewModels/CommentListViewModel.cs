@@ -2,7 +2,6 @@
 using BangumiNet.Api.Helpers;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Subjects.Item.Comments;
-using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
@@ -19,15 +18,9 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
             IsVisible = ItemType is not Shared.ItemType.Subject
         };
         PageNavigator.IsVisible = ItemType is Shared.ItemType.Subject;
-
-        LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
-
-        PageNavigator.PrevPage.InvokeCommand(LoadPageCommand);
-        PageNavigator.NextPage.InvokeCommand(LoadPageCommand);
-        PageNavigator.JumpPage.InvokeCommand(LoadPageCommand);
     }
 
-    public Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
+    protected override Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
         if (ItemType is not ItemType type || Id is not int i) return Task.CompletedTask;
 
@@ -157,7 +150,5 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
     [Reactive] public partial CollectionType? CollectionType { get; set; }
     [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }
 
-    public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
-
-    public static int Limit => CurrentSettings.CommentPageSize;
+    public override int Limit => CurrentSettings.CommentPageSize;
 }

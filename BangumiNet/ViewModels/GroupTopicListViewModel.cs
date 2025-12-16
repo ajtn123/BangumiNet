@@ -1,7 +1,6 @@
 ﻿using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Groups.Item.Topics;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -12,19 +11,14 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
         Groupname = groupname;
         BriefFilter = GroupTopicFilterMode.All;
 
-        LoadCommand = ReactiveCommand.CreateFromTask<int?>(Load);
-
-        PageNavigator.PrevPage.InvokeCommand(LoadCommand);
-        PageNavigator.NextPage.InvokeCommand(LoadCommand);
-        PageNavigator.JumpPage.InvokeCommand(LoadCommand);
-
         this.WhenAnyValue(x => x.BriefFilter).Skip(1).Subscribe(f =>
         {
             if (Groupname == null)
-                _ = Load(1);
+                _ = LoadPageCommand.Execute(1).Subscribe();
         });
     }
-    public Task Load(int? p, CancellationToken ct = default)
+
+    protected override Task LoadPageAsync(int? p, CancellationToken ct = default)
         => Groupname == null ? LoadBrief(p, ct) : LoadParticle(p, ct);
 
     private async Task LoadParticle(int? p, CancellationToken ct = default)
@@ -32,6 +26,7 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
         if (string.IsNullOrWhiteSpace(Groupname)) return;
         if (p is not int pageIndex) return;
         int offset = (pageIndex - 1) * Limit;
+
         TopicsGetResponse? response = null;
         try
         {
@@ -41,12 +36,9 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Offset = offset;
             }, cancellationToken: ct);
         }
-        catch (Exception e)
-        {
-            Trace.TraceError(e.Message);
-            return;
-        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
+
         SubjectViewModels = response.Data?
             .Select<Topic, ViewModelBase>(t => new TopicViewModel(t, ItemType.Group))
             .ToObservableCollection();
@@ -57,6 +49,7 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
     {
         if (p is not int pageIndex) return;
         int offset = (pageIndex - 1) * Limit;
+
         Api.P1.P1.Groups.Topics.TopicsGetResponse? response = null;
         try
         {
@@ -67,12 +60,9 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Mode = BriefFilter;
             }, cancellationToken: ct);
         }
-        catch (Exception e)
-        {
-            Trace.TraceError(e.Message);
-            return;
-        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
         if (response == null) return;
+
         SubjectViewModels = response.Data?
             .Select<Topic, ViewModelBase>(t => new TopicViewModel(t, ItemType.Group))
             .ToObservableCollection();
@@ -82,7 +72,5 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
     [Reactive] public partial string? Groupname { get; set; }
     [Reactive] public partial GroupTopicFilterMode BriefFilter { get; set; }
 
-    public ICommand LoadCommand { get; set; }
-
-    public static int Limit => 20;
+    public override int Limit => 20;
 }

@@ -16,19 +16,19 @@ public partial class MeViewModel : UserViewModel
         ShowFriendListWindow = ReactiveCommand.Create(() =>
         {
             FriendListViewModel ??= new(UserRelationType.Friend);
-            _ = FriendListViewModel.LoadPage(1);
+            _ = FriendListViewModel.LoadPageCommand.Execute(1).Subscribe();
             SecondaryWindow.Show(FriendListViewModel);
         });
         ShowFollowerListWindow = ReactiveCommand.Create(() =>
         {
             FollowerListViewModel ??= new(UserRelationType.Follower);
-            _ = FollowerListViewModel.LoadPage(1);
+            _ = FollowerListViewModel.LoadPageCommand.Execute(1).Subscribe();
             SecondaryWindow.Show(FollowerListViewModel);
         });
         ShowBlockListWindow = ReactiveCommand.Create(() =>
         {
             BlockListViewModel ??= new(UserRelationType.Blocked);
-            _ = BlockListViewModel.LoadPage(1);
+            _ = BlockListViewModel.LoadPageCommand.Execute(1).Subscribe();
             SecondaryWindow.Show(BlockListViewModel);
         });
     }

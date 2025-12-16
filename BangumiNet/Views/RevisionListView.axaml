@@ -7,10 +7,6 @@
              x:DataType="bn:RevisionListViewModel"
              x:Class="BangumiNet.Views.RevisionListView">
     <ScrollViewer Padding="5">
-        <StackPanel Spacing="5">
-            <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-            <bn:SubjectListView DataContext="{Binding RevisionList}"/>
-            <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-        </StackPanel>
+        <bn:SubjectListPagedView/>
     </ScrollViewer>
 </UserControl>

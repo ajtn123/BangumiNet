@@ -22,8 +22,8 @@ public partial class GroupView : ReactiveUserControl<GroupViewModel>
             .Where(vm => vm.IsFull)
             .Subscribe(async vm =>
             {
-                _ = vm.Members?.Load(1);
-                _ = vm.Topics?.Load(1);
+                _ = vm.Members?.LoadPageCommand.Execute(1).Subscribe();
+                _ = vm.Topics?.LoadPageCommand.Execute(1).Subscribe();
             });
     }
 }

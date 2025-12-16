@@ -1,7 +1,6 @@
 ﻿using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Followers;
 using BangumiNet.Api.P1.P1.Friends;
-using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
@@ -24,29 +23,26 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             UserRelationType.Blocked => $"绝交列表 - {Title}",
             _ => Title,
         };
-        LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPage);
-        PageNavigator.JumpPage.InvokeCommand(LoadPageCommand);
-        PageNavigator.NextPage.InvokeCommand(LoadPageCommand);
-        PageNavigator.PrevPage.InvokeCommand(LoadPageCommand);
     }
 
     [Reactive] public partial UserRelationType ListType { get; set; }
 
-    public Task LoadPage(int? p, CancellationToken cancellationToken = default)
+    protected override Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
         return ListType switch
         {
-            UserRelationType.Friend => LoadFriend(p, cancellationToken),
-            UserRelationType.Follower => LoadFollower(p, cancellationToken),
+            UserRelationType.Friend => LoadFriend(page, cancellationToken),
+            UserRelationType.Follower => LoadFollower(page, cancellationToken),
             UserRelationType.Blocked => LoadBlockList(cancellationToken),
             _ => throw new NotImplementedException(),
         };
     }
 
-    public async Task LoadFriend(int? p, CancellationToken cancellationToken = default)
+    private async Task LoadFriend(int? page, CancellationToken cancellationToken = default)
     {
-        if (p is not int pageIndex) return;
-        int offset = (pageIndex - 1) * Limit;
+        if (page is not int p) return;
+        int offset = (p - 1) * Limit;
+
         FriendsGetResponse? response = null;
         try
         {
@@ -57,16 +53,18 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             }, cancellationToken: cancellationToken));
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
 
-        SubjectViewModels = response?.Data?
+        SubjectViewModels = response.Data?
             .Select<Friend, ViewModelBase>(f => new FriendViewModel(f) { RelationType = UserRelationType.Friend })
             .ToObservableCollection();
         PageNavigator.UpdatePageInfo(Limit, offset, response?.Total);
     }
-    public async Task LoadFollower(int? p, CancellationToken cancellationToken = default)
+    private async Task LoadFollower(int? page, CancellationToken cancellationToken = default)
     {
-        if (p is not int pageIndex) return;
-        int offset = (pageIndex - 1) * Limit;
+        if (page is not int p) return;
+        int offset = (p - 1) * Limit;
+
         FollowersGetResponse? response = null;
         try
         {
@@ -77,13 +75,14 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             }, cancellationToken: cancellationToken));
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response == null) return;
 
-        SubjectViewModels = response?.Data?
+        SubjectViewModels = response.Data?
             .Select<Friend, ViewModelBase>(f => new FriendViewModel(f) { RelationType = UserRelationType.Follower })
             .ToObservableCollection();
         PageNavigator.UpdatePageInfo(Limit, offset, response?.Total);
     }
-    public async Task LoadBlockList(CancellationToken cancellationToken = default)
+    private async Task LoadBlockList(CancellationToken cancellationToken = default)
     {
         List<int?>? blockList = null;
         try
@@ -91,13 +90,12 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             blockList = (await ApiC.P1.Blocklist.GetAsync(cancellationToken: cancellationToken))?.Blocklist;
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
+        if (blockList == null) return;
 
         SubjectViewModels = blockList?
             .Select<int?, ViewModelBase>(uid => new UserViewModel(uid.ToString()) { Id = uid })
             .ToObservableCollection();
     }
 
-    public static int Limit => CurrentSettings.SubjectBrowserPageSize;
-
-    public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
+    public override int Limit => CurrentSettings.SubjectBrowserPageSize;
 }

@@ -1,99 +1,62 @@
-﻿using BangumiNet.Api.V0.Models;
+﻿using BangumiNet.Api.Helpers;
+using BangumiNet.Api.V0.Models;
 using BangumiNet.Converters;
-using System.Reactive;
 
 namespace BangumiNet.ViewModels;
 
-public partial class RevisionListViewModel : ViewModelBase
+public partial class RevisionListViewModel : SubjectListPagedViewModel
 {
     public RevisionListViewModel(ItemViewModelBase item)
     {
         Parent = item;
         ParentItemType = item.ItemType;
         ParentId = item.Id;
-        Offset = 0;
-        Sources = [];
-        RevisionList = new();
-        PageNavigatorViewModel = new();
 
         Title = $"修订历史 - {NameCnCvt.Convert(Parent) ?? $"{ParentItemType} {ParentId}"} - {Title}";
-
-        LoadPageCommand = ReactiveCommand.CreateFromTask<int?>(LoadPageAsync);
-
-        PageNavigatorViewModel.PrevPage.InvokeCommand(LoadPageCommand);
-        PageNavigatorViewModel.NextPage.InvokeCommand(LoadPageCommand);
-        PageNavigatorViewModel.JumpPage.InvokeCommand(LoadPageCommand);
-
-        this.WhenAnyValue(x => x.Offset, x => x.Total).Subscribe(x =>
-        {
-            if (Offset == null || Total == null) PageInfoMessage = $"加载中……";
-            else PageInfoMessage = $"第 {Offset + 1}-{Math.Min((int)Offset + Limit, (int)Total)} 个项目，共 {Total} 个";
-        });
     }
 
-    public async Task LoadPageAsync(int? i, CancellationToken cancellationToken = default)
+    protected override async Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
-        if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return;
+        if (page is not int p) return;
 
-        Paged_Revision? revs = null;
+        Paged_Revision? response = null;
         try
         {
-            revs = ParentItemType switch
+            response = ParentItemType switch
             {
                 ItemType.Subject => await ApiC.V0.Revisions.Subjects.GetAsync(config =>
                 {
                     config.QueryParameters.SubjectId = ParentId;
-                    config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-                    config.QueryParameters.Limit = Limit;
+                    config.SetPage(p, Limit);
                 }, cancellationToken),
                 ItemType.Episode => await ApiC.V0.Revisions.Episodes.GetAsync(config =>
                 {
                     config.QueryParameters.EpisodeId = ParentId;
-                    config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-                    config.QueryParameters.Limit = Limit;
+                    config.SetPage(p, Limit);
                 }, cancellationToken),
                 ItemType.Character => await ApiC.V0.Revisions.Characters.GetAsync(config =>
                 {
                     config.QueryParameters.CharacterId = ParentId;
-                    config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-                    config.QueryParameters.Limit = Limit;
+                    config.SetPage(p, Limit);
                 }, cancellationToken),
                 ItemType.Person => await ApiC.V0.Revisions.Persons.GetAsync(config =>
                 {
                     config.QueryParameters.PersonId = ParentId;
-                    config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-                    config.QueryParameters.Limit = Limit;
+                    config.SetPage(p, Limit);
                 }, cancellationToken),
                 _ => throw new NotImplementedException(),
             };
         }
-        catch (ErrorDetail e)
-        {
-            Trace.TraceError(e.Message);
-            return;
-        }
-        if (revs is null) return;
+        catch (ErrorDetail e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
 
-        if (revs.Data != null)
-            RevisionList.SubjectViewModels = [.. revs.Data.Select(x => new RevisionViewModel(x, Parent))];
-
-        Total = revs.Total;
-        Offset = revs.Offset;
-        PageNavigatorViewModel.UpdatePageInfo(revs);
-        Sources.Add(revs);
+        SubjectViewModels = response.Data?.Select<Revision, ViewModelBase>(x => new RevisionViewModel(x, Parent)).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(response);
     }
 
     [Reactive] public partial ItemViewModelBase? Parent { get; set; }
-    [Reactive] public partial ObservableCollection<object> Sources { get; set; }
-    [Reactive] public partial SubjectListViewModel RevisionList { get; set; }
     [Reactive] public partial ItemType ParentItemType { get; set; }
     [Reactive] public partial int? ParentId { get; set; }
-    [Reactive] public partial int? Total { get; set; }
-    [Reactive] public partial int? Offset { get; set; }
-    [Reactive] public partial string? PageInfoMessage { get; set; }
-    [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
 
-    public ReactiveCommand<int?, Unit> LoadPageCommand { get; }
-
-    public static int Limit => CurrentSettings.RevisionPageSize;
+    public override int Limit => CurrentSettings.RevisionPageSize;
 }

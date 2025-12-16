@@ -25,7 +25,7 @@ public class TimelineEventStream(HttpClient httpClient, IApiSettings apiSettings
         if (category != null) url += $"&cat={(int)category}";
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Accept.ParseAdd("text/event-stream");
-        request.Headers.Add("Authorization", $"Bearer {settings.AuthToken}");
+        request.Headers.Authorization = new("Bearer", settings.AuthToken);
         using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct);
         response.EnsureSuccessStatusCode();
         await using var stream = await response.Content.ReadAsStreamAsync(ct);

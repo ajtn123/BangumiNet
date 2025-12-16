@@ -10,7 +10,7 @@ public partial class RevisionListView : ReactiveUserControl<RevisionListViewMode
 
         this.WhenAnyValue(x => x.ViewModel)
             .WhereNotNull()
-            .Where(vm => vm.RevisionList.SubjectViewModels == null)
+            .Where(vm => vm.SubjectViewModels == null)
             .Subscribe(async vm =>
             {
                 vm.LoadPageCommand.Execute(1).Subscribe();
