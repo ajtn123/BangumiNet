@@ -81,8 +81,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
     public void Init()
     {
-        ItemType = ItemType.Episode;
-
         CommentListViewModel = new(ItemType, Id);
         RevisionListViewModel = new(this);
 
@@ -132,6 +130,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     public ICommand? DoneUntilCommand { get; private set; }
 
     public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
+    public override ItemType ItemType { get; init; } = ItemType.Episode;
 
     // 尽管对非正片或SP话更新收藏状态会导致完成度显示异常，还是应该允许这么做。
     public async Task UpdateStatus(EpisodeCollectionType type)

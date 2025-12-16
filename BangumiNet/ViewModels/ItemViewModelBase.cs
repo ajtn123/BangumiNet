@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class ItemViewModelBase : ViewModelBase
+public abstract partial class ItemViewModelBase : ViewModelBase
 {
     public ItemViewModelBase()
     {
@@ -21,7 +21,6 @@ public partial class ItemViewModelBase : ViewModelBase
     }
 
     [Reactive] public partial object? Source { get; set; }
-    [Reactive] public partial ItemType ItemType { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? Order { get; set; }
     [Reactive] public partial int? Redirect { get; set; }
@@ -36,4 +35,6 @@ public partial class ItemViewModelBase : ViewModelBase
     public ICommand? OpenInBrowserCommand { get; set; }
     public ICommand? ShowRevisionsCommand { get; set; }
     public ICommand? ShowNetworkCommand { get; set; }
+
+    public abstract ItemType ItemType { get; init; }
 }

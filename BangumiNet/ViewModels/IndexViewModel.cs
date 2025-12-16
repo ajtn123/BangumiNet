@@ -44,9 +44,7 @@ public partial class IndexViewModel : ItemViewModelBase
 
     private void Init()
     {
-        ItemType = ItemType.Index;
         RelatedItems = new(RelatedItemType.Subject, ItemType, Id);
-
         Comments = new(ItemType, Id);
 
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvIndexUrlBase + Id));
@@ -67,4 +65,5 @@ public partial class IndexViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? RelatedItems { get; set; }
 
     public bool IsFull => Source is IndexObject;
+    public override ItemType ItemType { get; init; } = ItemType.Index;
 }

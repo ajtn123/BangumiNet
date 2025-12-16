@@ -134,8 +134,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         };
     private void Init()
     {
-        ItemType = ItemType.Character;
-
         SubjectBadgeListViewModel = new(RelatedItemType.CharacterCast, ItemType, Id);
         PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
         IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
@@ -170,12 +168,12 @@ public partial class CharacterViewModel : ItemViewModelBase
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
 
-    public bool IsCollected => CollectionTime != null;
-
     public ICommand? CollectCommand { get; private set; }
     public ICommand? UncollectCommand { get; private set; }
 
+    public bool IsCollected => CollectionTime != null;
     public bool IsFull => Source is Api.P1.Models.Character;
+    public override ItemType ItemType { get; init; } = ItemType.Character;
 
     public async Task UpdateCollection(bool target)
     {

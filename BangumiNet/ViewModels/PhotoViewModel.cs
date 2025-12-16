@@ -52,4 +52,6 @@ public partial class PhotoViewModel : ItemViewModelBase
     [Reactive] public partial bool IsCurrent { get; set; }
     [Reactive] public partial DateTimeOffset? CreationTime { get; set; }
     [Reactive] public partial UserViewModel? User { get; set; }
+
+    public override ItemType ItemType { get; init; }
 }

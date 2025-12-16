@@ -52,8 +52,6 @@ public partial class BlogViewModel : ItemViewModelBase
 
     private void Init()
     {
-        ItemType = ItemType.Blog;
-
         RelatedSubjects = new(RelatedItemType.Subject, ItemType, Id);
         Photos = new(RelatedItemType.Photo, ItemType, Id);
         Comments = new(ItemType, Id);
@@ -81,4 +79,5 @@ public partial class BlogViewModel : ItemViewModelBase
     [Reactive] public partial int? ReviewId { get; set; }
 
     public bool IsFull => Source is BlogEntry;
+    public override ItemType ItemType { get; init; } = ItemType.Blog;
 }

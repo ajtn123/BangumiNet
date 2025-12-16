@@ -43,7 +43,6 @@ public partial class GroupViewModel : ItemViewModelBase
     }
     public void Init()
     {
-        ItemType = ItemType.Group;
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));
         Members = new(Groupname);
         Topics = new(Groupname);
@@ -65,4 +64,5 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial GroupTopicListViewModel? Topics { get; set; }
 
     public bool IsFull => Source is Group;
+    public override ItemType ItemType { get; init; } = ItemType.Group;
 }

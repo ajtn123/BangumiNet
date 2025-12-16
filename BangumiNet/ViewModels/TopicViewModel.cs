@@ -70,7 +70,6 @@ public partial class TopicViewModel : ItemViewModelBase
 
     public void Init()
     {
-        ItemType = ItemType.Topic;
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
@@ -92,4 +91,5 @@ public partial class TopicViewModel : ItemViewModelBase
     [Reactive] public partial bool IsFull { get; set; }
 
     public bool IsDisplayed => Display == TopicDisplay.Normal;
+    public override ItemType ItemType { get; init; } = ItemType.Topic;
 }

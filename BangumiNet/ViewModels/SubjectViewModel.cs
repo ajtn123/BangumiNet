@@ -195,8 +195,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         };
     private void Init()
     {
-        ItemType = ItemType.Subject;
-
         if (IsFull && RatingCount != null) SubjectRatingViewModel = new(RatingCount);
         if (Id != null)
         {
@@ -281,4 +279,5 @@ public partial class SubjectViewModel : ItemViewModelBase
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsFull => Source is Api.P1.Models.Subject;
+    public override ItemType ItemType { get; init; } = ItemType.Subject;
 }

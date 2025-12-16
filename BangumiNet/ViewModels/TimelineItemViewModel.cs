@@ -9,7 +9,6 @@ public partial class TimelineItemViewModel : ItemViewModelBase
 {
     public TimelineItemViewModel(Timeline timeline)
     {
-        ItemType = ItemType.Timeline;
         Source = timeline;
         Id = timeline.Id;
         Uid = timeline.Uid;
@@ -133,4 +132,6 @@ public partial class TimelineItemViewModel : ItemViewModelBase
     [Reactive] public partial string? OperationSource { get; set; }
     [Reactive] public partial string? OperationSourceUrl { get; set; }
     [Reactive] public partial ReactionListViewModel? Reactions { get; set; }
+
+    public override ItemType ItemType { get; init; } = ItemType.Timeline;
 }

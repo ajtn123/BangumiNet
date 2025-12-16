@@ -173,8 +173,6 @@ public partial class PersonViewModel : ItemViewModelBase
         };
     private void Init()
     {
-        ItemType = ItemType.Person;
-
         SubjectBadgeListViewModel = new(RelatedItemType.PersonWork, ItemType, Id);
         CharacterBadgeListViewModel = new(RelatedItemType.PersonCast, ItemType, Id);
         IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
@@ -224,6 +222,7 @@ public partial class PersonViewModel : ItemViewModelBase
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b} ");
     public bool IsFull => Source is Api.P1.Models.Person;
+    public override ItemType ItemType { get; init; } = ItemType.Person;
 
     public async Task UpdateCollection(bool target)
     {

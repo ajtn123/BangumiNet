@@ -27,7 +27,6 @@ public partial class RevisionViewModel : ItemViewModelBase
 
     private void Init()
     {
-        ItemType = ItemType.Revision;
         Title = $"修订 {Id} - {Parent?.Title}";
     }
 
@@ -41,4 +40,5 @@ public partial class RevisionViewModel : ItemViewModelBase
 
     // Should be changed after revision detail is done.
     public bool IsFull => Source is not IRevision;
+    public override ItemType ItemType { get; init; } = ItemType.Revision;
 }
