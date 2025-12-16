@@ -9,49 +9,49 @@
     <ItemsControl ItemsSource="{Binding SubjectViewModels}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:SubjectViewModel">
-                <bn:SubjectCardView DataContext="{Binding}"/>
+                <bn:SubjectCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:SubjectCollectionViewModel">
-                <bn:SubjectCollectionCardView DataContext="{Binding}"/>
+                <bn:SubjectCollectionCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:CharacterViewModel">
-                <bn:CharacterCardView DataContext="{Binding}"/>
+                <bn:CharacterCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:PersonViewModel">
-                <bn:PersonCardView DataContext="{Binding}"/>
+                <bn:PersonCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:GroupViewModel">
-                <bn:GroupCardView DataContext="{Binding}"/>
+                <bn:GroupCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:GroupMemberViewModel">
-                <bn:GroupMemberCardView DataContext="{Binding}"/>
+                <bn:GroupMemberCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:UserViewModel">
-                <bn:UserCardView DataContext="{Binding}"/>
+                <bn:UserCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:TopicViewModel">
-                <bn:TopicCardView DataContext="{Binding}"/>
+                <bn:TopicCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:FriendViewModel">
-                <bn:FriendCardView DataContext="{Binding}"/>
+                <bn:FriendCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:RevisionViewModel">
-                <bn:RevisionCardView DataContext="{Binding}"/>
+                <bn:RevisionCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:NotificationViewModel">
-                <bn:NotificationCardView DataContext="{Binding}"/>
+                <bn:NotificationCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:TimelineItemViewModel">
-                <bn:TimelineItemView DataContext="{Binding}"/>
+                <bn:TimelineItemView/>
             </DataTemplate>
             <DataTemplate DataType="bn:BlogViewModel">
-                <bn:BlogCardView DataContext="{Binding}"/>
+                <bn:BlogCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:IndexViewModel">
-                <bn:IndexCardView DataContext="{Binding}"/>
+                <bn:IndexCardView/>
             </DataTemplate>
             <DataTemplate DataType="bn:TextViewModel">
-                <bn:TextView DataContext="{Binding}"/>
+                <bn:TextView/>
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>

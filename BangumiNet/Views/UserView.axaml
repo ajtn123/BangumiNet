@@ -45,7 +45,7 @@
                 </StackPanel>
 
                 <TabControl Grid.Row="1" Grid.ColumnSpan="2"
-                            SelectedIndex="0"
+                            SelectedIndex="0" IsVisible="{Binding IsFull}"
                             Name="UserContentTabs">
                     <TabItem Header="时间线">
                         <bn:TimelineView DataContext="{Binding Timeline}"/>

@@ -180,6 +180,7 @@ public class CommonEnumConverter : IValueConverter
         PersonType personType => personType.GetNameCn(),
         CharacterType characterType => characterType.GetNameCn(),
         FilterMode filterMode => filterMode.ToStringSC(),
+        CollectionType collectionType => collectionType.ToStringSC(),
         TimelineTypes.Daily tDaily => tDaily.ToStringSC(),
         TimelineTypes.Doujin tDoujin => tDoujin.ToStringSC(),
         TimelineTypes.Mono tMono => tMono.ToStringSC(),

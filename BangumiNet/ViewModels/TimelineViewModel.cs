@@ -97,9 +97,9 @@ public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewM
     [Reactive] public partial int Until { get; set; }
     [Reactive] public partial string? Username { get; set; }
 
-    public ReactiveCommand<Unit, Unit>? LoadCommand { get; set; }
-    public ReactiveCommand<Unit, Unit>? LoadTopCommand { get; set; }
-    public ReactiveCommand<Unit, Unit>? LoadNextCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? LoadCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? LoadTopCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? LoadNextCommand { get; set; }
 
     public static int Limit => 20;
     public ViewModelActivator Activator { get; } = new();
