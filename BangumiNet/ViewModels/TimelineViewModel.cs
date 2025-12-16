@@ -1,41 +1,45 @@
 ﻿using BangumiNet.Api.Misc;
 using BangumiNet.Api.P1.Models;
-using BangumiNet.Shared.Interfaces;
 using System.Reactive;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
-public partial class TimelineViewModel : SubjectListViewModel, ILoadable
+public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewModel
 {
     public TimelineViewModel()
     {
-        LoadCommand = ReactiveCommand.CreateFromTask(async ct => await Load(Until, ct));
-        LoadTopCommand = ReactiveCommand.CreateFromTask(async ct => await Load(Until = 0, ct));
-        LoadNextCommand = ReactiveCommand.CreateFromTask(async ct =>
+        this.WhenActivated(disposables =>
         {
-            var ids = SubjectViewModels?.Select(t => (t as TimelineItemViewModel)?.Id).OfType<int>().ToArray();
-            if (ids == null || ids.Length == 0) return;
-            await Load(Until = ids.Min(), ct);
-        });
+            LoadCommand = ReactiveCommand.CreateFromTask(async ct => await LoadAsync(Until, ct)).DisposeWith(disposables);
+            LoadTopCommand = ReactiveCommand.CreateFromTask(async ct => await LoadAsync(Until = 0, ct)).DisposeWith(disposables);
+            LoadNextCommand = ReactiveCommand.CreateFromTask(async ct =>
+            {
+                var ids = SubjectViewModels?.Select(t => (t as TimelineItemViewModel)?.Id).OfType<int>().ToArray();
+                if (ids == null || ids.Length == 0) return;
+                await LoadAsync(Until = ids.Min(), ct);
+            }).DisposeWith(disposables);
 
-        this.WhenAnyValue(x => x.Mode).Skip(1).Subscribe(async x =>
-        {
-            if (Username != null) return;
+            this.WhenAnyValue(x => x.Mode).Skip(1).Subscribe(async x =>
+            {
+                if (Username != null) return;
 
-            if (IsEventStreaming) _ = Connect();
-            else _ = LoadTopCommand.Execute().Subscribe();
-        });
+                if (IsEventStreaming) _ = Connect();
+                else _ = LoadTopCommand.Execute().Subscribe();
+            }).DisposeWith(disposables);
 
-        this.WhenAnyValue(x => x.IsEventStreaming).Skip(1).Subscribe(x =>
-        {
-            if (IsEventStreaming) _ = Connect();
-            else Disconnect();
+            this.WhenAnyValue(x => x.IsEventStreaming).Skip(1).Subscribe(x =>
+            {
+                if (IsEventStreaming) _ = Connect();
+                else Disconnect();
+            }).DisposeWith(disposables);
+
+            if (SubjectViewModels == null) LoadCommand.Execute().Subscribe();
         });
     }
 
-    public async Task Load(CancellationToken ct = default) => await LoadCommand.Execute();
-    public async Task Load(int until, CancellationToken cancellationToken = default)
+    private async Task LoadAsync(int until, CancellationToken cancellationToken = default)
     {
         IsEventStreaming = false;
 
@@ -93,9 +97,10 @@ public partial class TimelineViewModel : SubjectListViewModel, ILoadable
     [Reactive] public partial int Until { get; set; }
     [Reactive] public partial string? Username { get; set; }
 
-    public ReactiveCommand<Unit, Unit> LoadCommand { get; set; }
-    public ReactiveCommand<Unit, Unit> LoadTopCommand { get; set; }
-    public ReactiveCommand<Unit, Unit> LoadNextCommand { get; set; }
+    public ReactiveCommand<Unit, Unit>? LoadCommand { get; set; }
+    public ReactiveCommand<Unit, Unit>? LoadTopCommand { get; set; }
+    public ReactiveCommand<Unit, Unit>? LoadNextCommand { get; set; }
 
     public static int Limit => 20;
+    public ViewModelActivator Activator { get; } = new();
 }

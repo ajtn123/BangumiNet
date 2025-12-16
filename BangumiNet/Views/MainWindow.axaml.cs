@@ -32,7 +32,7 @@ public partial class MainWindow : AppWindow
         NavView.Content = view switch
         {
             "主页" => homeVM ??= new(),
-            "每日放送" => airingVM ??= await ApiC.GetViewModelAsync<AiringViewModel>(cancellationToken: cancellationToken),
+            "每日放送" => airingVM ??= new(),
             "小组" => groupVM ??= new(),
             "搜索" => searchVM ??= new(),
             "索引" => subjectBrowserVM ??= new(),

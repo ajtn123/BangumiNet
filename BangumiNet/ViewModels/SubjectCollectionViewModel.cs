@@ -199,9 +199,9 @@ public partial class SubjectCollectionViewModel : ViewModelBase
             UpdateTime = DateTimeOffset.Now;
             Comment = string.IsNullOrWhiteSpace(Comment) ? null : Comment;
             Parent?.SubjectCollectionViewModel = this;
-            var og = ParentList?.SubjectList.SubjectViewModels?.FirstOrDefault(x => x is SubjectCollectionViewModel vm && vm.Id == Id, null);
+            var og = ParentList?.SubjectViewModels?.FirstOrDefault(x => x is SubjectCollectionViewModel vm && vm.Id == Id, null);
             if (og != null)
-                ParentList?.SubjectList.SubjectViewModels?.Replace(og, this);
+                ParentList?.SubjectViewModels?.Replace(og, this);
             return true;
         }
         catch (ErrorDetail e)

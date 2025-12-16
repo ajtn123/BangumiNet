@@ -44,8 +44,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-        <bn:SubjectListView DataContext="{Binding SubjectList}"/>
-        <bn:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
+        <bn:SubjectListPagedView/>
     </StackPanel>
 </UserControl>
