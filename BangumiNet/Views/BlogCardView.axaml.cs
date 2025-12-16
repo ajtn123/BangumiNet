@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class BlogCardView : UserControl
+public partial class BlogCardView : ReactiveUserControl<BlogViewModel>
 {
     public BlogCardView()
     {

@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class GroupCardView : UserControl
+public partial class GroupCardView : ReactiveUserControl<GroupViewModel>
 {
     public GroupCardView()
     {

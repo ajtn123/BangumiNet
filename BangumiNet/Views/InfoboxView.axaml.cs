@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class InfoboxView : UserControl
+public partial class InfoboxView : ReactiveUserControl<ObservableCollection<InfoboxItemViewModel>>
 {
     public InfoboxView()
     {

@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class NotificationCardView : UserControl
+public partial class NotificationCardView : ReactiveUserControl<NotificationViewModel>
 {
     public NotificationCardView()
     {

@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class TextView : UserControl
+public partial class TextView : ReactiveUserControl<TextViewModel>
 {
     public TextView()
     {

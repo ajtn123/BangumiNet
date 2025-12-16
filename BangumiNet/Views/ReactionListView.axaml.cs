@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class ReactionListView : UserControl
+public partial class ReactionListView : ReactiveUserControl<ReactionListViewModel>
 {
     public ReactionListView()
     {

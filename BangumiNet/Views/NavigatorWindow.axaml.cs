@@ -3,7 +3,7 @@ using Avalonia.Controls;
 
 namespace BangumiNet.Views;
 
-public partial class NavigatorWindow : Window
+public partial class NavigatorWindow : ReactiveWindow<NavigatorViewModel>
 {
     public NavigatorWindow()
     {
@@ -20,5 +20,5 @@ public partial class NavigatorWindow : Window
     }
 
     private double Scaling => Screens.ScreenFromWindow(this)!.Scaling;
-    private NavigatorViewModel navigatorViewModel = new();
+    private readonly NavigatorViewModel navigatorViewModel = new();
 }

@@ -3,7 +3,7 @@ using Avalonia.Controls;
 
 namespace BangumiNet.Views;
 
-public partial class SubjectCollectionCardView : ReactiveUserControl<SubjectCollectionView>
+public partial class SubjectCollectionCardView : ReactiveUserControl<SubjectCollectionViewModel>
 {
     public SubjectCollectionCardView()
     {

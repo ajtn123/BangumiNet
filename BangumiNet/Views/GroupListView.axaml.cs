@@ -1,9 +1,8 @@
-using Avalonia.Controls;
 using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.Views;
 
-public partial class GroupListView : UserControl
+public partial class GroupListView : ReactiveUserControl<GroupListViewModel>
 {
     public GroupListView()
     {

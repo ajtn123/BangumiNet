@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class GroupHomeView : UserControl
+public partial class GroupHomeView : ReactiveUserControl<GroupHomeViewModel>
 {
     public GroupHomeView()
     {

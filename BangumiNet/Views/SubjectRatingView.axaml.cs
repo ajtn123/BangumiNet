@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class SubjectRatingView : UserControl
+public partial class SubjectRatingView : ReactiveUserControl<SubjectRatingViewModel>
 {
     public SubjectRatingView()
     {

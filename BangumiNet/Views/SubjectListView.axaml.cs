@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class SubjectListView : UserControl
+public partial class SubjectListView : ReactiveUserControl<SubjectListViewModel>
 {
     public SubjectListView()
     {

@@ -6,14 +6,14 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
 
-public partial class SubjectCollectionCountView : UserControl
+public partial class SubjectCollectionCountView : ReactiveUserControl<ICollection>
 {
     public SubjectCollectionCountView()
     {
         InitializeComponent();
-        this.WhenAnyValue(x => x.DataContext).Subscribe(dc =>
+        this.WhenAnyValue(x => x.ViewModel).Subscribe(vm =>
         {
-            if (dc is not ICollection col || col.GetTotal() == 0)
+            if (vm is not { } col || col.GetTotal() == 0)
             {
                 LayoutGird.ColumnDefinitions = [GetCD(1), GetCD(1), GetCD(1), GetCD(1), GetCD(1)];
                 WishRun.Text = DoingRun.Text = DoneRun.Text = OnHoldRun.Text = DroppedRun.Text = string.Empty;

@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class CalendarView : UserControl
+public partial class CalendarView : ReactiveUserControl<CalendarViewModel>
 {
     public CalendarView()
     {

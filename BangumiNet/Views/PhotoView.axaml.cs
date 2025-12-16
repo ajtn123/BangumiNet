@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class PhotoView : UserControl
+public partial class PhotoView : ReactiveUserControl<PhotoViewModel>
 {
     public PhotoView()
     {

@@ -1,9 +1,8 @@
-using Avalonia.Controls;
 using BangumiNet.Common;
 
 namespace BangumiNet.Views;
 
-public partial class TrendingView : UserControl
+public partial class TrendingView : ReactiveUserControl<TrendingViewModel>
 {
     public TrendingView()
     {

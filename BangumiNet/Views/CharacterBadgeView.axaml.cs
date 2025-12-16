@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class CharacterBadgeView : UserControl
+public partial class CharacterBadgeView : ReactiveUserControl<CharacterViewModel>
 {
     public CharacterBadgeView()
     {

@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class MeView : UserControl
+public partial class MeView : ReactiveUserControl<MeViewModel>
 {
     public MeView()
     {

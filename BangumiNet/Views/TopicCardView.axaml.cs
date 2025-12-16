@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class TopicCardView : UserControl
+public partial class TopicCardView : ReactiveUserControl<TopicViewModel>
 {
     public TopicCardView()
     {

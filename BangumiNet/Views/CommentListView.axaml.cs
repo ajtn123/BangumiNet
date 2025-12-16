@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class CommentListView : UserControl
+public partial class CommentListView : ReactiveUserControl<CommentListViewModel>
 {
     public CommentListView()
     {

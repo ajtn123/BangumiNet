@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class CharacterFlyoutView : UserControl
+public partial class CharacterFlyoutView : ReactiveUserControl<CharacterViewModel>
 {
     public CharacterFlyoutView()
     {

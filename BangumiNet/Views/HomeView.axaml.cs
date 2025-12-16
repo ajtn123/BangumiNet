@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class HomeView : UserControl
+public partial class HomeView : ReactiveUserControl<HomeViewModel>
 {
     public HomeView()
     {

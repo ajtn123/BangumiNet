@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class PageNavigatorView : UserControl
+public partial class PageNavigatorView : ReactiveUserControl<PageNavigatorViewModel>
 {
     public PageNavigatorView()
     {

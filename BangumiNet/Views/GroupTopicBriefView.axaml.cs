@@ -1,9 +1,8 @@
-using Avalonia.Controls;
 using BangumiNet.Api.P1.Models;
 
 namespace BangumiNet.Views;
 
-public partial class GroupTopicBriefView : UserControl
+public partial class GroupTopicBriefView : ReactiveUserControl<GroupTopicListViewModel>
 {
     public GroupTopicBriefView()
     {

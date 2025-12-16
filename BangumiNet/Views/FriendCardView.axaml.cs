@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class FriendCardView : UserControl
+public partial class FriendCardView : ReactiveUserControl<FriendViewModel>
 {
     public FriendCardView()
     {

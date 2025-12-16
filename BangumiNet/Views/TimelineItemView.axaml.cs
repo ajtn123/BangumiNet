@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class TimelineItemView : UserControl
+public partial class TimelineItemView : ReactiveUserControl<TimelineItemViewModel>
 {
     public TimelineItemView()
     {

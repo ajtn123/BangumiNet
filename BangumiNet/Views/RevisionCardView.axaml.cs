@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class RevisionCardView : UserControl
+public partial class RevisionCardView : ReactiveUserControl<RevisionViewModel>
 {
     public RevisionCardView()
     {
