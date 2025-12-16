@@ -9,8 +9,10 @@ using BangumiNet.Converters;
 using BangumiNet.Models;
 using DynamicData.Binding;
 using Microsoft.Kiota.Abstractions.Serialization;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -54,8 +56,6 @@ public partial class PersonViewModel : ItemViewModelBase
         if (person.AdditionalData.TryGetValue("infobox", out var ib) && ib is UntypedArray ua && ua.ToObject() is List<object?> list)
             Infobox = list.Select(x => x is not Dictionary<string, object?> dict ? null : new InfoboxItemViewModel(dict))
                 .Where(y => y is not null).ToObservableCollection()!;
-
-        Init();
     }
     public PersonViewModel(PersonDetail person)
     {
@@ -80,8 +80,6 @@ public partial class PersonViewModel : ItemViewModelBase
             if (person.BirthDay != null) bd = bd.AddDays((int)person.BirthDay - 1);
             Birthday = bd;
         }
-
-        Init();
     }
     public PersonViewModel(RelatedPerson person)
     {
@@ -93,8 +91,6 @@ public partial class PersonViewModel : ItemViewModelBase
         Id = person.Id;
         Eps = person.Eps;
         Images = person.Images;
-
-        Init();
     }
     public PersonViewModel(CharacterPerson person)
     {
@@ -114,8 +110,6 @@ public partial class PersonViewModel : ItemViewModelBase
                 Type = (SubjectType?)person.SubjectType
             })],
         };
-
-        Init();
     }
     public PersonViewModel(UserPersonCollection person)
     {
@@ -126,8 +120,6 @@ public partial class PersonViewModel : ItemViewModelBase
         Type = (PersonType?)person.Type;
         CollectionTime = person.CreatedAt;
         Careers = person.Career?.Select(static c => c?.ToStringSC()).ToObservableCollection()!;
-
-        Init();
     }
     public PersonViewModel(Api.P1.Models.SlimPerson person)
     {
@@ -142,8 +134,6 @@ public partial class PersonViewModel : ItemViewModelBase
         CommentCount = person.Comment;
         Info = person.Info;
         Careers = person.Career?.Select(static c => Api.ExtraEnums.EnumExtensions.ParsePersonCareer(c)?.ToStringSC() ?? c).ToObservableCollection();
-
-        Init();
     }
     public PersonViewModel(Api.P1.Models.Person person)
     {
@@ -163,32 +153,31 @@ public partial class PersonViewModel : ItemViewModelBase
         Redirect = person.Redirect;
         Summary = person.Summary;
         Infobox = person.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
-
-        Init();
     }
     public static PersonViewModel Init(Api.P1.Models.SubjectStaff staff)
         => new(staff.Staff!)
         {
             Relation = string.Join(' ', staff.Positions?.Select(x => x.Type?.ToLocalString()) ?? []),
         };
-    private void Init()
+
+    protected override void Activate(CompositeDisposable disposables)
     {
-        SubjectBadgeListViewModel = new(RelatedItemType.PersonWork, ItemType, Id);
-        CharacterBadgeListViewModel = new(RelatedItemType.PersonCast, ItemType, Id);
-        IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
-        CommentListViewModel = new(ItemType, Id);
-        RevisionListViewModel = new(this);
+        SubjectBadgeListViewModel ??= new(RelatedItemType.PersonWork, ItemType, Id);
+        CharacterBadgeListViewModel ??= new(RelatedItemType.PersonCast, ItemType, Id);
+        IndexCardListViewModel ??= new(RelatedItemType.Index, ItemType, Id);
+        CommentListViewModel ??= new(ItemType, Id);
+        RevisionListViewModel ??= new(this);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id));
-        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
-        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvPersonUrlBase + Id)).DisposeWith(disposables);
+        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x)).DisposeWith(disposables);
+        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected)).DisposeWith(disposables);
 
-        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
+        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected))).DisposeWith(disposables);
         this.WhenAnyValue(x => x.Careers).Subscribe(x =>
         {
             this.RaisePropertyChanged(nameof(CareerString));
             Careers?.ObserveCollectionChanges().Subscribe(x => this.RaisePropertyChanged(nameof(CareerString)));
-        });
+        }).DisposeWith(disposables);
     }
 
     [Reactive] public partial int? CommentCount { get; set; }
@@ -215,12 +204,11 @@ public partial class PersonViewModel : ItemViewModelBase
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
 
-    public bool IsCollected => CollectionTime != null;
-
-    public ICommand? CollectCommand { get; private set; }
-    public ICommand? UncollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? CollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? UncollectCommand { get; private set; }
 
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b} ");
+    public bool IsCollected => CollectionTime != null;
     public bool IsFull => Source is Api.P1.Models.Person;
     public override ItemType ItemType { get; init; } = ItemType.Person;
 

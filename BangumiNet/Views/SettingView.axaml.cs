@@ -9,7 +9,7 @@ namespace BangumiNet.Views;
 
 public partial class SettingView : ReactiveUserControl<SettingViewModel>
 {
-    private readonly CompositeDisposable disposables = [];
+    private readonly CompositeDisposable commandSubs = [];
     public SettingView()
     {
         if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
@@ -28,21 +28,25 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
             new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
             new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
         ]);
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Subscribe(vm =>
-            {
-                disposables.Clear();
-                vm.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.CurrentSettings.AuthToken })).DisposeWith(disposables);
-                vm.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(disposables);
-                vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(disposables);
-            });
+
+        this.WhenActivated(disposables =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Subscribe(vm =>
+                {
+                    commandSubs.Clear();
+                    vm.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.CurrentSettings.AuthToken })).DisposeWith(commandSubs);
+                    vm.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
+                    vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
+                }).DisposeWith(disposables);
+        });
     }
 
     private void LocalDataPickDir(object? sender, RoutedEventArgs e)
         => _ = LocalDataPickDirAsync();
     private void OpenGitHub(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(Shared.Constants.SourceRepository);
+        => CommonUtils.OpenUrlInBrowser(Constants.SourceRepository);
 
     private async Task LocalDataPickDirAsync()
     {

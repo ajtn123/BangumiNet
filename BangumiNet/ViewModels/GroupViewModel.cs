@@ -1,5 +1,7 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.P1.Models;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -16,8 +18,6 @@ public partial class GroupViewModel : ItemViewModelBase
         Accessible = group.Accessible ?? true;
         MemberCount = group.Members;
         CreationTime = CommonUtils.ParseBangumiTime(group.CreatedAt);
-
-        Init();
     }
     public GroupViewModel(Group group)
     {
@@ -38,14 +38,14 @@ public partial class GroupViewModel : ItemViewModelBase
             Creator = new(group.Creator) { Id = group.CreatorID, Role = Api.ExtraEnums.GroupRole.Leader, JoinTime = CreationTime };
         if (group.Membership != null)
             Membership = new(group.Membership);
-
-        Init();
     }
-    public void Init()
+
+    protected override void Activate(CompositeDisposable disposables)
     {
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname));
-        Members = new(Groupname);
-        Topics = new(Groupname);
+        Members ??= new(Groupname);
+        Topics ??= new(Groupname);
+
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname)).DisposeWith(disposables);
     }
 
     [Reactive] public partial string? Groupname { get; set; }

@@ -6,8 +6,10 @@ using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -33,8 +35,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         IsLocked = subject.Locked ?? false;
         if (subject.Interest != null)
             SubjectCollectionViewModel = new(subject.Interest) { Parent = this };
-
-        Init();
     }
     public SubjectViewModel(SlimSubject subject)
     {
@@ -52,8 +52,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Type = (SubjectType?)subject.Type;
         Tags = subject.Tags?.ToObservableCollection<ITag>();
         Images = subject.Images;
-
-        Init();
     }
     [Obsolete]
     public SubjectViewModel(Api.Legacy.Models.Legacy_SubjectSmall subject)
@@ -74,8 +72,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Score = subject.Rating?.Score;
         RatingCount = (subject.Rating?.Count as IRatingCount)?.ToList();
         RatingTotal = subject.Rating?.Total;
-
-        Init();
     }
     public SubjectViewModel(Subject subject)
     {
@@ -103,8 +99,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         CollectionTotal = Collection?.GetTotal();
         Tags = subject.Tags?.Select(t => new Tag(t)).ToObservableCollection<ITag>();
         MetaTags = subject.MetaTags?.ToObservableCollection();
-
-        Init();
     }
     public SubjectViewModel(V0_subject_relation subject)
     {
@@ -115,8 +109,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         NameCn = subject.NameCn;
         Images = subject.Images;
         Relation = subject.Relation;
-
-        Init();
     }
     public SubjectViewModel(V0_RelatedSubject subject)
     {
@@ -129,8 +121,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Relation = subject.Staff;
         if (!string.IsNullOrWhiteSpace(subject.Eps))
             Relation += $" < {subject.Eps}";
-
-        Init();
     }
     public SubjectViewModel(SubjectBasic subject)
     {
@@ -139,8 +129,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Id = subject.Id;
         Type = subject.Type;
         Relation = subject.Type?.GetNameCn();
-
-        Init();
     }
     public SubjectViewModel(Api.P1.Models.Subject subject)
     {
@@ -167,8 +155,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         CollectionTotal = Collection?.GetTotal();
         Tags = subject.Tags?.ToObservableCollection<ITag>();
         MetaTags = subject.MetaTags?.ToObservableCollection();
-
-        Init();
     }
     public static SubjectViewModel Init(Api.P1.Models.SubjectRelation relation)
         => new(relation.Subject!)
@@ -193,40 +179,38 @@ public partial class SubjectViewModel : ItemViewModelBase
             Hype = rec.Count,
             Similarity = rec.Sim,
         };
-    private void Init()
-    {
-        if (IsFull && RatingCount != null) SubjectRatingViewModel = new(RatingCount);
-        if (Id != null)
-        {
-            EpisodeListViewModel = new(RelatedItemType.Episode, ItemType, Id);
-            PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
-            CharacterBadgeListViewModel = new(RelatedItemType.Character, ItemType, Id);
-            SubjectBadgeListViewModel = new(RelatedItemType.Subject, ItemType, Id);
-            BlogCardListViewModel = new(RelatedItemType.Review, ItemType, Id);
-            TopicCardListViewModel = new(RelatedItemType.Topic, ItemType, Id);
-            Recommendations = new(RelatedItemType.Recommendation, ItemType, Id);
-            IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
-            CommentListViewModel = new(ItemType, Id);
-            RevisionListViewModel = new(this);
-        }
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id));
+    protected override void Activate(CompositeDisposable disposables)
+    {
+        if (RatingCount != null) SubjectRatingViewModel ??= new(RatingCount);
+        EpisodeListViewModel ??= new(RelatedItemType.Episode, ItemType, Id);
+        PersonBadgeListViewModel ??= new(RelatedItemType.Person, ItemType, Id);
+        CharacterBadgeListViewModel ??= new(RelatedItemType.Character, ItemType, Id);
+        SubjectBadgeListViewModel ??= new(RelatedItemType.Subject, ItemType, Id);
+        BlogCardListViewModel ??= new(RelatedItemType.Review, ItemType, Id);
+        TopicCardListViewModel ??= new(RelatedItemType.Topic, ItemType, Id);
+        Recommendations ??= new(RelatedItemType.Recommendation, ItemType, Id);
+        IndexCardListViewModel ??= new(RelatedItemType.Index, ItemType, Id);
+        CommentListViewModel ??= new(ItemType, Id);
+        RevisionListViewModel ??= new(this);
+
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id)).DisposeWith(disposables);
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
-            this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null));
+            this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null)).DisposeWith(disposables);
         ShowCoversCommand = ReactiveCommand.Create(() =>
         {
             var vm = new RelatedItemListViewModel(RelatedItemType.Cover, ItemType, Id);
-            _ = vm.Load();
+            _ = vm.LoadAsync();
             SecondaryWindow.Show(vm);
-        });
+        }).DisposeWith(disposables);
 
-        this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull)));
+        this.WhenAnyValue(x => x.Source).Subscribe(e => this.RaisePropertyChanged(nameof(IsFull))).DisposeWith(disposables);
         this.WhenAnyValue(x => x.Tags, x => x.MetaTags).Subscribe(e =>
         {
             this.RaisePropertyChanged(nameof(TagListViewModel));
             Tags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
             MetaTags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
-        });
+        }).DisposeWith(disposables);
 
         if (Rank == 0) Rank = null;
         if (Eps == 0) Eps = null;
@@ -274,8 +258,8 @@ public partial class SubjectViewModel : ItemViewModelBase
     [Reactive] public partial string? Relation { get; set; }
     [Reactive] public partial CommentListViewModel? CommentListViewModel { get; set; }
 
-    public ICommand? CollectCommand { get; private set; }
-    public ICommand? ShowCoversCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? CollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? ShowCoversCommand { get; private set; }
 
     public TagListViewModel? TagListViewModel => new(Tags, MetaTags, Type);
     public bool IsFull => Source is Api.P1.Models.Subject;

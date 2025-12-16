@@ -11,7 +11,7 @@ public partial class RelatedItemListView : ReactiveUserControl<RelatedItemListVi
     {
         InitializeComponent();
 
-        this.WhenActivated(d =>
+        this.WhenActivated(disposables =>
         {
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
@@ -19,7 +19,7 @@ public partial class RelatedItemListView : ReactiveUserControl<RelatedItemListVi
                 .Switch()
                 .Where(x => x.Item1)
                 .Subscribe(x => IsVisible = x.Item2 != 0)
-                .DisposeWith(d);
+                .DisposeWith(disposables);
         });
     }
 

@@ -3,8 +3,9 @@ using BangumiNet.Api.V0.Models;
 using BangumiNet.Common.Extras;
 using BangumiNet.Shared.Interfaces;
 using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -27,8 +28,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         if (episode.DurationSeconds != null)
             Duration = TimeSpan.FromSeconds((long)episode.DurationSeconds);
         if (episode.AdditionalData.TryGetValue("subject_id", out var sid)) SubjectId = CommonUtils.ToInt32(sid);
-
-        Init();
     }
     public EpisodeViewModel(EpisodeDetail episode)
     {
@@ -47,8 +46,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         SubjectId = episode.SubjectId;
         if (episode.AdditionalData.TryGetValue("duration_seconds", out var ds) && CommonUtils.ToInt32(ds) is int t)
             Duration = TimeSpan.FromSeconds(t);
-
-        Init();
     }
     public EpisodeViewModel(Api.P1.Models.Episode episode)
     {
@@ -68,8 +65,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         Status = (EpisodeCollectionType?)episode.Collection?.Status ?? EpisodeCollectionType.Uncollected;
         if (episode.Subject != null)
             SubjectViewModel = new(episode.Subject);
-
-        Init();
     }
 
     public static EpisodeViewModel InitFormCollection(UserEpisodeCollection collection)
@@ -79,10 +74,10 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
             StatusUpdateTime = collection.UpdatedAt == 0 ? null : CommonUtils.ParseBangumiTime(collection.UpdatedAt),
         };
 
-    public void Init()
+    protected override void Activate(CompositeDisposable disposables)
     {
-        CommentListViewModel = new(ItemType, Id);
-        RevisionListViewModel = new(this);
+        CommentListViewModel ??= new(ItemType, Id);
+        RevisionListViewModel ??= new(this);
 
         if (string.IsNullOrWhiteSpace(Name)) Name = null;
         if (string.IsNullOrWhiteSpace(NameCn)) NameCn = null;
@@ -90,16 +85,16 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         if (Disc == 0) Disc = null;
         if (Ep == 0) Ep = null;
 
-        this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString)));
+        this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString))).DisposeWith(disposables);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id));
-        ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null));
-        ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null));
-        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected));
-        WishCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish));
-        DoneCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done));
-        DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped));
-        DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id)).DisposeWith(disposables);
+        ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null)).DisposeWith(disposables);
+        ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null)).DisposeWith(disposables);
+        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected)).DisposeWith(disposables);
+        WishCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish)).DisposeWith(disposables);
+        DoneCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done)).DisposeWith(disposables);
+        DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped)).DisposeWith(disposables);
+        DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done)).DisposeWith(disposables);
     }
 
     [Reactive] public partial int? SubjectId { get; set; }
@@ -121,13 +116,13 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     [Reactive] public partial INeighboring? Next { get; set; }
     [Reactive] public partial RelatedItemListViewModel? Parent { get; set; }
 
-    public ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
-    public ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
-    public ICommand? UncollectCommand { get; private set; }
-    public ICommand? WishCommand { get; private set; }
-    public ICommand? DoneCommand { get; private set; }
-    public ICommand? DropCommand { get; private set; }
-    public ICommand? DoneUntilCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, INeighboring?>? ShowPrevCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, INeighboring?>? ShowNextCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? UncollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? WishCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? DoneCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? DropCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? DoneUntilCommand { get; private set; }
 
     public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
     public override ItemType ItemType { get; init; } = ItemType.Episode;

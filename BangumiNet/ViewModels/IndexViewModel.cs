@@ -1,5 +1,7 @@
 ﻿using BangumiNet.Api.P1.Models;
 using BangumiNet.Common.Extras;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -18,8 +20,6 @@ public partial class IndexViewModel : ItemViewModelBase
         Stats = index.Stats;
         if (index.User != null)
             User = new(index.User) { Id = index.Uid };
-
-        Init();
     }
     public IndexViewModel(IndexObject index)
     {
@@ -38,16 +38,14 @@ public partial class IndexViewModel : ItemViewModelBase
         Award = index.Award;
         if (index.User != null)
             User = new(index.User) { Id = index.Uid };
-
-        Init();
     }
 
-    private void Init()
+    protected override void Activate(CompositeDisposable disposables)
     {
-        RelatedItems = new(RelatedItemType.Subject, ItemType, Id);
-        Comments = new(ItemType, Id);
+        RelatedItems ??= new(RelatedItemType.Subject, ItemType, Id);
+        Comments ??= new(ItemType, Id);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvIndexUrlBase + Id));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvIndexUrlBase + Id)).DisposeWith(disposables);
     }
 
     [Reactive] public partial UserViewModel? User { get; set; }

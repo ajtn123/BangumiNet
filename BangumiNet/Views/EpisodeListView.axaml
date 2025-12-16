@@ -26,7 +26,7 @@
         <Button Grid.Column="1" VerticalAlignment="Bottom"
                 Height="{Binding $self.Bounds.Width}"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
-                Command="{Binding LoadPageCommand}"
+                Command="{Binding ProceedPageCommand}"
                 IsVisible="{Binding !IsFullyLoaded}"/>
     </Grid>
 </UserControl>

@@ -2,6 +2,8 @@
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Me;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -19,8 +21,6 @@ public partial class UserViewModel : ItemViewModelBase
 
         if (user.AdditionalData.TryGetValue("url", out var urlObj) && urlObj is string url)
             Url = url;
-
-        Init();
     }
     public UserViewModel(MeGetResponse user)
     {
@@ -37,8 +37,6 @@ public partial class UserViewModel : ItemViewModelBase
 
         if (user.AdditionalData.TryGetValue("url", out var urlObj) && urlObj is string url)
             Url = url;
-
-        Init();
     }
     public UserViewModel(Api.P1.Models.Profile user)
     {
@@ -50,8 +48,6 @@ public partial class UserViewModel : ItemViewModelBase
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
         RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
-
-        Init();
     }
     public UserViewModel(Api.P1.Models.SlimUser user)
     {
@@ -63,8 +59,6 @@ public partial class UserViewModel : ItemViewModelBase
         UserGroup = (UserGroup?)user.Group;
         Sign = user.Sign;
         RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
-
-        Init();
     }
     public UserViewModel(Api.P1.Models.User user)
     {
@@ -77,8 +71,6 @@ public partial class UserViewModel : ItemViewModelBase
         Sign = user.Sign;
         Summary = user.Bio;
         RegistrationTime = CommonUtils.ParseBangumiTime(user.JoinedAt);
-
-        Init();
     }
     public UserViewModel(Api.P1.Models.SimpleUser user)
     {
@@ -86,30 +78,27 @@ public partial class UserViewModel : ItemViewModelBase
         Username = user.Username;
         Nickname = user.Nickname;
         Id = user.Id;
-
-        Init();
-    }
-    public void Init()
-    {
-        if (Username != null)
-        {
-            CollectionList = new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
-            Timeline = new() { Username = Username };
-        }
-
-        Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
-
-        this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe)));
-
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Username));
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username));
     }
     public UserViewModel(string? username)
     {
         Source = username;
         Username = username;
+    }
 
-        Init();
+    protected override void Activate(CompositeDisposable disposables)
+    {
+        if (Username != null)
+        {
+            CollectionList ??= new(ItemType.Subject, collectionType: CollectionType.Doing, username: Username);
+            Timeline ??= new() { Username = Username };
+        }
+
+        Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
+
+        this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe))).DisposeWith(disposables);
+
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Nickname)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username)).DisposeWith(disposables);
     }
 
     [Reactive] public partial IImages? Avatar { get; set; }

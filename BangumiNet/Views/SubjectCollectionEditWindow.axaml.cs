@@ -11,11 +11,12 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
     {
         InitializeComponent();
 
-        this.WhenActivated(d =>
+        this.WhenActivated(disposables =>
         {
             this.WhenAnyValue(x => x.ViewModel)
-                .Subscribe(vm => vm?.InitEditCommands())
-                .DisposeWith(d);
+                .WhereNotNull()
+                .Subscribe(vm => vm.InitEditCommands())
+                .DisposeWith(disposables);
             this.WhenAnyObservable(x => x.ViewModel!.SaveCommand)
                 .Subscribe(async isSuccess =>
                 {
@@ -26,7 +27,7 @@ public partial class SubjectCollectionEditWindow : ReactiveWindow<SubjectCollect
 
                     SaveButton.IsEnabled = true;
                     SaveIcon.Icon = FluentIcons.Common.Icon.Save;
-                }).DisposeWith(d);
+                }).DisposeWith(disposables);
         });
 
         StatusComboBox.ItemsSource = Enum.GetValues<CollectionType>();

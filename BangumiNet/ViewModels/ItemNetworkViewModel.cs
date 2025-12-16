@@ -94,7 +94,7 @@ public partial class ItemNetworkViewModel : ViewModelBase
     public async Task Load(Node node, RelatedItemType relatedItemType)
     {
         var a = new RelatedItemListViewModel(relatedItemType, node.Item.ItemType, node.Item.Id);
-        await a.Load();
+        await a.LoadAsync();
         if (a.SubjectViewModels == null) return;
         var vms = a.SubjectViewModels.OfType<ItemViewModelBase>().ToArray();
         var radius = Math.Sqrt(vms.Length) * 10;

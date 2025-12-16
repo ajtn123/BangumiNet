@@ -1,3 +1,5 @@
+using System.Reactive.Disposables.Fluent;
+
 namespace BangumiNet.Views;
 
 public partial class EpisodeFullView : ReactiveUserControl<EpisodeViewModel>
@@ -6,11 +8,14 @@ public partial class EpisodeFullView : ReactiveUserControl<EpisodeViewModel>
     {
         InitializeComponent();
 
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Subscribe(async vm =>
-            {
-                vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
-            });
+        this.WhenActivated(disposables =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Subscribe(async vm =>
+                {
+                    vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
+                }).DisposeWith(disposables);
+        });
     }
 }

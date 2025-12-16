@@ -58,7 +58,7 @@
         <Button Grid.Column="3" Grid.Row="1"
                 VerticalAlignment="Bottom"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
-                Command="{Binding LoadPageCommand}"
+                Command="{Binding ProceedPageCommand}"
                 IsVisible="{Binding !IsFullyLoaded}"/>
     </Grid>
 </UserControl>

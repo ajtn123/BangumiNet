@@ -19,10 +19,10 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         ParentId = parentId;
 
         this.WhenAnyValue(x => x.Offset, x => x.Total).Subscribe(x => IsFullyLoaded = Offset >= Total);
-        LoadPageCommand = ReactiveCommand.CreateFromTask(LoadPage, this.WhenAnyValue(x => x.IsFullyLoaded).Select(x => !x));
+        ProceedPageCommand = ReactiveCommand.CreateFromTask(ProceedPageAsync, this.WhenAnyValue(x => x.IsFullyLoaded).Select(x => !x));
     }
 
-    public async Task Load(CancellationToken cancellationToken = default)
+    public async Task LoadAsync(CancellationToken cancellationToken = default)
     {
         if (ParentId is not int id) return;
         IEnumerable<object>? response = null;
@@ -65,7 +65,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
     }
 
     /// <returns>是否已取得全部项目</returns>
-    public async Task<bool> LoadPage(CancellationToken ct = default)
+    public async Task<bool> ProceedPageAsync(CancellationToken ct = default)
     {
         if (Offset >= Total) return true;
         if (ParentId is not int id) return false;
@@ -220,7 +220,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
     [Reactive] public partial int? Total { get; set; }
     [Reactive] public partial bool IsFullyLoaded { get; set; }
 
-    public ReactiveCommand<Unit, bool> LoadPageCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, bool> ProceedPageCommand { get; set; }
 
     public const int Limit = 20;
 }

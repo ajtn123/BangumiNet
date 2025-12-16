@@ -1,22 +1,29 @@
 ﻿using BangumiNet.Converters;
 using BangumiNet.Models;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public abstract partial class ItemViewModelBase : ViewModelBase
+public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableViewModel
 {
     public ItemViewModelBase()
     {
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name));
-        ShowRevisionsCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(RevisionListViewModel));
-        OpenInNewWindowCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(this));
-        ShowNetworkCommand = ReactiveCommand.Create(() => SecondaryWindow.Show(new ItemNetworkViewModel(this)));
-
-        this.WhenAnyValue(x => x.ItemType, x => x.Name, x => x.NameCn).Skip(1).Subscribe(x =>
+        this.WhenActivated(disposables =>
         {
-            Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.GetNameCn()} {Id}"} - {Constants.ApplicationName}";
+            SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name)).DisposeWith(disposables);
+            ShowRevisionsCommand = ReactiveCommand.Create(() => { SecondaryWindow.Show(RevisionListViewModel); }).DisposeWith(disposables);
+            OpenInNewWindowCommand = ReactiveCommand.Create(() => { SecondaryWindow.Show(this); }).DisposeWith(disposables);
+            ShowNetworkCommand = ReactiveCommand.Create(() => { SecondaryWindow.Show(new ItemNetworkViewModel(this)); }).DisposeWith(disposables);
+
+            this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(x =>
+            {
+                Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.GetNameCn()} {Id}"} - {Constants.ApplicationName}";
+            }).DisposeWith(disposables);
+
+            Activate(disposables);
         });
     }
 
@@ -30,11 +37,14 @@ public abstract partial class ItemViewModelBase : ViewModelBase
     [Reactive] public partial SubjectListViewModel? RelationItems { get; set; }
     [Reactive] public partial IndexRelation? IndexRelation { get; set; }
 
-    public ICommand? OpenInNewWindowCommand { get; set; }
-    public ICommand? SearchWebCommand { get; set; }
-    public ICommand? OpenInBrowserCommand { get; set; }
-    public ICommand? ShowRevisionsCommand { get; set; }
-    public ICommand? ShowNetworkCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? OpenInNewWindowCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? SearchWebCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? OpenInBrowserCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? ShowRevisionsCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? ShowNetworkCommand { get; set; }
 
     public abstract ItemType ItemType { get; init; }
+
+    protected abstract void Activate(CompositeDisposable disposables);
+    public ViewModelActivator Activator { get; } = new();
 }

@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using BangumiNet.BangumiData.Models;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
@@ -10,33 +11,36 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
     {
         InitializeComponent();
 
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Where(vm => !vm.IsFull)
-            .Subscribe(async vm =>
-            {
-                var fullItem = await ApiC.GetViewModelAsync<SubjectViewModel>(vm.Id);
-                if (fullItem == null) return;
-                ViewModel = fullItem;
-            });
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Where(vm => vm.IsFull)
-            .Subscribe(async vm =>
-            {
-                vm.EpisodeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.PersonBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.CharacterBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.SubjectBadgeListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.BlogCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.TopicCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.IndexCardListViewModel?.LoadPageCommand.Execute().Subscribe();
-                vm.Recommendations?.LoadPageCommand?.Execute().Subscribe();
-                vm.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
-                vm.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(vm.Id);
-                vm.SubjectCollectionViewModel?.Parent = ViewModel;
-                OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout((int)vm.Id!);
-            });
+        this.WhenActivated(disposables =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Where(vm => !vm.IsFull)
+                .Subscribe(async vm =>
+                {
+                    var fullItem = await ApiC.GetViewModelAsync<SubjectViewModel>(vm.Id);
+                    if (fullItem == null) return;
+                    ViewModel = fullItem;
+                }).DisposeWith(disposables);
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Where(vm => vm.IsFull)
+                .Subscribe(async vm =>
+                {
+                    vm.EpisodeListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.PersonBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.CharacterBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.SubjectBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.BlogCardListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.TopicCardListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.IndexCardListViewModel?.ProceedPageCommand.Execute().Subscribe();
+                    vm.Recommendations?.ProceedPageCommand?.Execute().Subscribe();
+                    vm.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
+                    vm.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(vm.Id);
+                    vm.SubjectCollectionViewModel?.Parent = ViewModel;
+                    OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout((int)vm.Id!);
+                }).DisposeWith(disposables);
+        });
     }
 
     public static MenuFlyout? GetOpenInBrowserFlyout(int id)

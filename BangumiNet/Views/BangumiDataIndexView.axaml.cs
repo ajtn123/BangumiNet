@@ -28,7 +28,7 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
         foreach (var column in columns)
             IndexGrid.Columns.Add(column);
 
-        this.WhenActivated(d =>
+        this.WhenActivated(disposables =>
         {
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
@@ -37,8 +37,7 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
                 .Subscribe(items => IndexGrid.ItemsSource = new DataGridCollectionView(items.Reverse())
                 {
                     GroupDescriptions = { new DataGridPathGroupDescription("Begin.Year") }
-                })
-                .DisposeWith(d);
+                }).DisposeWith(disposables);
         });
     }
 

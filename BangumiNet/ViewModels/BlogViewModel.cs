@@ -1,4 +1,6 @@
 ﻿using BangumiNet.Api.P1.Models;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -22,8 +24,6 @@ public partial class BlogViewModel : ItemViewModelBase
         Tags = blog.Tags?.ToObservableCollection();
         if (blog.User != null)
             User = new(blog.User) { Id = blog.Uid };
-
-        Init();
     }
     public BlogViewModel(SlimBlogEntry blog)
     {
@@ -39,8 +39,6 @@ public partial class BlogViewModel : ItemViewModelBase
         Type = blog.Type;
         if (blog.User != null)
             User = new(blog.User) { Id = blog.Uid };
-
-        Init();
     }
     public static BlogViewModel Init(SubjectReview review)
         => new(review.Entry!)
@@ -50,13 +48,13 @@ public partial class BlogViewModel : ItemViewModelBase
             User = new(review.User!),
         };
 
-    private void Init()
+    protected override void Activate(CompositeDisposable disposables)
     {
-        RelatedSubjects = new(RelatedItemType.Subject, ItemType, Id);
-        Photos = new(RelatedItemType.Photo, ItemType, Id);
-        Comments = new(ItemType, Id);
+        RelatedSubjects ??= new(RelatedItemType.Subject, ItemType, Id);
+        Photos ??= new(RelatedItemType.Photo, ItemType, Id);
+        Comments ??= new(ItemType, Id);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvBlogUrlBase + Id));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvBlogUrlBase + Id)).DisposeWith(disposables);
     }
 
     [Reactive] public partial string? Content { get; set; }

@@ -5,18 +5,21 @@ namespace BangumiNet.Views;
 
 public partial class EpisodeView : ReactiveUserControl<EpisodeViewModel>
 {
-    private readonly CompositeDisposable disposables = [];
+    private readonly CompositeDisposable vmSwitch = [];
     public EpisodeView()
     {
         InitializeComponent();
 
-        this.WhenAnyValue(v => v.ViewModel)
-            .WhereNotNull()
-            .Subscribe(vm =>
-            {
-                disposables.Clear();
-                vm.ShowPrevCommand?.Subscribe(ev => DataContext = ev).DisposeWith(disposables);
-                vm.ShowNextCommand?.Subscribe(ev => DataContext = ev).DisposeWith(disposables);
-            });
+        this.WhenActivated(disposables =>
+        {
+            this.WhenAnyValue(v => v.ViewModel)
+                .WhereNotNull()
+                .Subscribe(vm =>
+                {
+                    vmSwitch.Clear();
+                    vm.ShowPrevCommand?.Subscribe(ev => DataContext = ev).DisposeWith(vmSwitch);
+                    vm.ShowNextCommand?.Subscribe(ev => DataContext = ev).DisposeWith(vmSwitch);
+                }).DisposeWith(disposables);
+        });
     }
 }

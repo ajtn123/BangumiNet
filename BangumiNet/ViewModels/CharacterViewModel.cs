@@ -6,8 +6,10 @@ using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
+using System.Reactive;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
@@ -36,8 +38,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         Summary = character.Summary;
         Type = (CharacterType?)character.Type;
         IsNsfw = (bool?)character.AdditionalData["nsfw"] ?? false;
-
-        Init();
     }
     public CharacterViewModel(RelatedCharacter character)
     {
@@ -48,8 +48,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         Images = character.Images;
         Name = character.Name;
         Type = (CharacterType?)character.Type;
-
-        Init();
     }
     public CharacterViewModel(PersonCharacter character)
     {
@@ -69,8 +67,6 @@ public partial class CharacterViewModel : ItemViewModelBase
                 Type = (SubjectType?)character.SubjectType
             })],
         };
-
-        Init();
     }
     public CharacterViewModel(UserCharacterCollection character)
     {
@@ -80,8 +76,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         Name = character.Name;
         Type = (CharacterType?)character.Type;
         Images = character.Images;
-
-        Init();
     }
     public CharacterViewModel(Api.P1.Models.SlimCharacter character)
     {
@@ -96,8 +90,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         CommentCount = character.Comment;
         Type = (CharacterType?)character.Role;
         Info = character.Info;
-
-        Init();
     }
     public CharacterViewModel(Api.P1.Models.Character character)
     {
@@ -117,8 +109,6 @@ public partial class CharacterViewModel : ItemViewModelBase
         Redirect = character.Redirect;
         Summary = character.Summary;
         Infobox = character.Infobox?.Select(p => new InfoboxItemViewModel(p)).ToObservableCollection();
-
-        Init();
     }
     public static CharacterViewModel Init(Api.P1.Models.SubjectCharacter subjectCharacter)
         => new(subjectCharacter.Character!)
@@ -132,19 +122,20 @@ public partial class CharacterViewModel : ItemViewModelBase
         {
             Relation = string.Join('\n', personCharacter.Relations?.Select(x => $"{((CharacterRole?)x.Type)?.GetNameCn()}·{NameCnCvt.Convert(x.Subject)}") ?? []),
         };
-    private void Init()
+
+    protected override void Activate(CompositeDisposable disposables)
     {
-        SubjectBadgeListViewModel = new(RelatedItemType.CharacterCast, ItemType, Id);
-        PersonBadgeListViewModel = new(RelatedItemType.Person, ItemType, Id);
-        IndexCardListViewModel = new(RelatedItemType.Index, ItemType, Id);
-        CommentListViewModel = new(ItemType, Id);
-        RevisionListViewModel = new(this);
+        SubjectBadgeListViewModel ??= new(RelatedItemType.CharacterCast, ItemType, Id);
+        PersonBadgeListViewModel ??= new(RelatedItemType.Person, ItemType, Id);
+        IndexCardListViewModel ??= new(RelatedItemType.Index, ItemType, Id);
+        CommentListViewModel ??= new(ItemType, Id);
+        RevisionListViewModel ??= new(this);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id));
-        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x));
-        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected));
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id)).DisposeWith(disposables);
+        CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x)).DisposeWith(disposables);
+        UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected)).DisposeWith(disposables);
 
-        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected)));
+        this.WhenAnyValue(x => x.CollectionTime).Subscribe(x => this.RaisePropertyChanged(nameof(IsCollected))).DisposeWith(disposables);
     }
 
     [Reactive] public partial string? Summary { get; set; }
@@ -168,8 +159,8 @@ public partial class CharacterViewModel : ItemViewModelBase
 
     [Reactive] public partial DateTimeOffset? CollectionTime { get; set; }
 
-    public ICommand? CollectCommand { get; private set; }
-    public ICommand? UncollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? CollectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? UncollectCommand { get; private set; }
 
     public bool IsCollected => CollectionTime != null;
     public bool IsFull => Source is Api.P1.Models.Character;

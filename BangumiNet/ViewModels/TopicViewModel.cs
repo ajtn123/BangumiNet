@@ -1,5 +1,7 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
+using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -24,8 +26,6 @@ public partial class TopicViewModel : ItemViewModelBase
             User = new(topic.Creator) { Id = topic.CreatorID };
         if (topic.Subject != null)
             Parent = new SubjectViewModel(topic.Subject);
-
-        Init();
     }
     public TopicViewModel(GroupTopic topic, bool isFull)
     {
@@ -46,8 +46,6 @@ public partial class TopicViewModel : ItemViewModelBase
             User = new(topic.Creator) { Id = topic.CreatorID };
         if (topic.Group != null)
             Parent = new GroupViewModel(topic.Group);
-
-        Init();
     }
     public TopicViewModel(Topic topic, ItemType parentType)
     {
@@ -64,18 +62,16 @@ public partial class TopicViewModel : ItemViewModelBase
         Replies = new(ItemType.Topic, Id) { ParentItemType = ParentType };
         if (topic.Creator != null)
             User = new(topic.Creator) { Id = topic.CreatorID };
-
-        Init();
     }
 
-    public void Init()
+    protected override void Activate(CompositeDisposable disposables)
     {
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
             ItemType.Group => UrlProvider.BangumiTvGroupTopicUrlBase + Id,
             _ => throw new NotImplementedException()
-        }));
+        })).DisposeWith(disposables);
     }
 
     [Reactive] public partial ItemType? ParentType { get; set; }

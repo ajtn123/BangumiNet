@@ -19,7 +19,7 @@
                     <bn:InfoboxView DataContext="{Binding Infobox}"/>
                     <bn:SubjectListView DataContext="{Binding IndexCardListViewModel}"/>
                     <Button Content="{ice:FluentIcon Icon=Add}"
-                            Command="{Binding IndexCardListViewModel.LoadPageCommand}"
+                            Command="{Binding IndexCardListViewModel.ProceedPageCommand}"
                             IsVisible="{Binding !IndexCardListViewModel.IsFullyLoaded}"
                             HorizontalAlignment="Stretch"/>
                 </StackPanel>

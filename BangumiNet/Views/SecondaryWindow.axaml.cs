@@ -18,11 +18,12 @@ public partial class SecondaryWindow : AppWindow
         this.WhenAnyValue(x => x.Content)
             .WhereNotNull()
             .OfType<ViewModelBase>()
-            .Subscribe(content =>
-            {
-                disposables.Clear();
-                Bind(TitleProperty, content.WhenAnyValue(x => x.Title)).DisposeWith(disposables);
-            });
+            .Select(content => content.WhenAnyValue(x => x.Title))
+            .Switch()
+            .Subscribe(title => Title = title)
+            .DisposeWith(disposables);
+
+        Closed += (s, e) => disposables.Dispose();
     }
 
     public static SecondaryWindow Show(ViewModelBase? data)

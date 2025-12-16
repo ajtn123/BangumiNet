@@ -2,6 +2,7 @@
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Converters;
+using System.Reactive.Disposables;
 
 namespace BangumiNet.ViewModels;
 
@@ -120,6 +121,8 @@ public partial class TimelineItemViewModel : ItemViewModelBase
         }
         RelationItems = new() { SubjectViewModels = [.. subjects] };
     }
+
+    protected override void Activate(CompositeDisposable disposables) { }
 
     [Reactive] public partial int? Uid { get; set; }
     [Reactive] public partial bool Batch { get; set; }

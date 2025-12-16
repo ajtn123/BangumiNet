@@ -1,3 +1,5 @@
+using System.Reactive.Disposables.Fluent;
+
 namespace BangumiNet.Views;
 
 public partial class ReplyView : ReactiveUserControl<ReplyViewModel>
@@ -6,21 +8,25 @@ public partial class ReplyView : ReactiveUserControl<ReplyViewModel>
     {
         InitializeComponent();
 
-        DataContextChanged += (s, e) =>
+        this.WhenActivated(disposables =>
         {
-            getTurnstileInteractionHandler?.Dispose();
-            getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(i => i.SetOutput(null));
-            //getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
-            //{
-            //    var tv = new TurnstileView();
-            //    MainVertical.Children.Add(tv);
+            this.WhenAnyValue(x => x.ViewModel)
+                .Subscribe(vm =>
+                {
+                    getTurnstileInteractionHandler?.Dispose();
+                    getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(i => i.SetOutput(null));
+                    //getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
+                    //{
+                    //    var tv = new TurnstileView();
+                    //    MainVertical.Children.Add(tv);
 
-            //    var token = await tv.GetToken();
-            //    i.SetOutput(token);
+                    //    var token = await tv.GetToken();
+                    //    i.SetOutput(token);
 
-            //    MainVertical.Children.RemoveAll(MainVertical.Children.Where(c => c is TurnstileView));
-            //});
-        };
+                    //    MainVertical.Children.RemoveAll(MainVertical.Children.Where(c => c is TurnstileView));
+                    //});
+                }).DisposeWith(disposables);
+        });
     }
 
     private IDisposable? getTurnstileInteractionHandler;

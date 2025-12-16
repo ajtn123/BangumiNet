@@ -1,5 +1,6 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
+using System.Reactive.Disposables;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
@@ -21,11 +22,9 @@ public partial class RevisionViewModel : ItemViewModelBase
 
         var data = revision.GetType().GetProperty("Data")?.GetValue(revision);
         DATA = JsonSerializer.Serialize(data, options);
-
-        Init();
     }
 
-    private void Init()
+    protected override void Activate(CompositeDisposable disposables)
     {
         Title = $"修订 {Id} - {Parent?.Title}";
     }

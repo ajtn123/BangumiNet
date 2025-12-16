@@ -1,3 +1,4 @@
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
@@ -8,18 +9,17 @@ public partial class RevisionView : ReactiveUserControl<RevisionViewModel>
     {
         InitializeComponent();
 
-        this.WhenAnyValue(x => x.ViewModel)
-            .WhereNotNull()
-            .Where(vm => !vm.IsFull)
-            .Subscribe(async vm =>
-            {
-                var fullItem = await ApiC.GetViewModelAsync<RevisionViewModel>(vm);
-                if (fullItem == null) return;
-                ViewModel = fullItem;
-            });
-        //this.WhenAnyValue(x => x.ViewModel)
-        //    .WhereNotNull()
-        //    .Where(vm => vm.IsFull)
-        //    .Subscribe(async vm => { });
+        this.WhenActivated(disposables =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .WhereNotNull()
+                .Where(vm => !vm.IsFull)
+                .Subscribe(async vm =>
+                {
+                    var fullItem = await ApiC.GetViewModelAsync<RevisionViewModel>(vm);
+                    if (fullItem == null) return;
+                    ViewModel = fullItem;
+                }).DisposeWith(disposables);
+        });
     }
 }

@@ -2,6 +2,7 @@
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers;
 using BangumiNet.Models;
+using System.Reactive.Disposables;
 
 namespace BangumiNet.ViewModels;
 
@@ -44,6 +45,8 @@ public partial class PhotoViewModel : ItemViewModelBase
         if (cover.Creator != null)
             User = new(cover.Creator);
     }
+
+    protected override void Activate(CompositeDisposable disposables) { }
 
     [Reactive] public partial string? Target { get; set; }
     [Reactive] public partial IImages? Images { get; set; }
