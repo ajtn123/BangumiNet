@@ -33,13 +33,14 @@ dotnet publish --configuration Release --runtime <RID>
 
 > 参见 [RID](https://learn.microsoft.com/zh-cn/dotnet/core/rid-catalog)、[dotnet publish](https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish)。
 
-## BangumiNet.Api
+## NuGet
 
-本项目使用由 [Kiota](https://learn.microsoft.com/zh-cn/openapi/kiota/overview) 根据 [Bangumi](https://bgm.tv) 提供的 [OpenAPI](https://www.openapis.org/) 定义生成的 API 客户端。
+BangumiNet 将部分工具项目发布在 [NuGet](https://www.nuget.org/packages?q=BangumiNet)。
 
-- [//api.bgm.tv/](https://bangumi.github.io/api/#/)
-- [//api.bgm.tv/v0/](https://bangumi.github.io/api/#/)
-- [//next.bgm.tv/p1/](https://next.bgm.tv/p1/#/)
+![BangumiNet.Api 版本](https://img.shields.io/nuget/v/BangumiNet.Api?label=BangumiNet.Api)
+![BangumiNet.Archive 版本](https://img.shields.io/nuget/v/BangumiNet.Archive?label=BangumiNet.Archive)
+![BangumiNet.BangumiData 版本](https://img.shields.io/nuget/v/BangumiNet.BangumiData?label=BangumiNet.BangumiData)
+![BangumiNet.Common 版本](https://img.shields.io/nuget/v/BangumiNet.Common?label=BangumiNet.Common)
 
 ## 鸣谢
 
