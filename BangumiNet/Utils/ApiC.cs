@@ -6,7 +6,6 @@ using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using System.Collections.Concurrent;
 using System.ComponentModel;
-using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;

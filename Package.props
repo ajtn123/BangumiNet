@@ -1,6 +1,5 @@
 <Project>
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
         <NoWarn>$(NoWarn);1591</NoWarn>
 
         <Authors>Aoii</Authors>

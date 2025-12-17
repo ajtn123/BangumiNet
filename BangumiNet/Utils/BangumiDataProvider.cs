@@ -1,6 +1,5 @@
 ﻿using BangumiNet.BangumiData;
 using BangumiNet.BangumiData.Models;
-using System.IO;
 
 namespace BangumiNet.Utils;
 

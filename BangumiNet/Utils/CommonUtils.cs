@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Net;
+﻿using System.Net;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
