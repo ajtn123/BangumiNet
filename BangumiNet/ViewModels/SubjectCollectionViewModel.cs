@@ -110,7 +110,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
 
     private void Init()
     {
-        var disposable = Parent?.Activator.Activate();
+        Parent?.CleanValues();
         if (EpisodeStatus == 0 && Parent?.Eps == null) EpisodeStatus = null;
         if (VolumeStatus == 0 && Parent?.VolumeCount == null) VolumeStatus = null;
         IsEpStatusEditable = EpisodeStatus != null && SubjectType == Common.SubjectType.Book;
@@ -121,8 +121,6 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         OpenEditWindowCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show());
 
         Title = $"修改收藏 - {Parent?.Title}";
-
-        disposable?.Dispose();
     }
 
     private bool isEditCommandsInitialized;

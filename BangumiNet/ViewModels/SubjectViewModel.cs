@@ -180,8 +180,20 @@ public partial class SubjectViewModel : ItemViewModelBase
             Similarity = rec.Sim,
         };
 
+    public void CleanValues()
+    {
+        if (Rank == 0) Rank = null;
+        if (Eps == 0) Eps = null;
+        if (EpisodeCount == 0) EpisodeCount = null;
+        if (VolumeCount == 0) VolumeCount = null;
+        if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
+        EpisodeCount ??= Eps;
+    }
+
     protected override void Activate(CompositeDisposable disposables)
     {
+        CleanValues();
+
         if (RatingCount != null) SubjectRatingViewModel ??= new(RatingCount);
         EpisodeListViewModel ??= new(RelatedItemType.Episode, ItemType, Id);
         PersonBadgeListViewModel ??= new(RelatedItemType.Person, ItemType, Id);
@@ -211,13 +223,6 @@ public partial class SubjectViewModel : ItemViewModelBase
             Tags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
             MetaTags?.CollectionChanged += (s, e) => this.RaisePropertyChanged(nameof(TagListViewModel));
         }).DisposeWith(disposables);
-
-        if (Rank == 0) Rank = null;
-        if (Eps == 0) Eps = null;
-        if (EpisodeCount == 0) EpisodeCount = null;
-        if (VolumeCount == 0) VolumeCount = null;
-        if (string.IsNullOrWhiteSpace(Summary)) Summary = null;
-        EpisodeCount ??= Eps;
     }
 
     [Reactive] public partial int? CollectionTotal { get; set; }
