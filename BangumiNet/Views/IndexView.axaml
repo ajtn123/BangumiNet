@@ -9,11 +9,11 @@
              x:DataType="bn:IndexViewModel"
              x:Class="BangumiNet.Views.IndexView">
     <ScrollViewer>
-        <Grid ColumnDefinitions="*,250" RowDefinitions="Auto,*"
-                Classes="ViewRoot" Margin="5">
+        <Grid ColumnDefinitions="*,250" RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <TextBlock Text="{Binding Name}"
-                            Classes="Title" FontSize="30"/>
+                           Classes="Title" FontSize="30"/>
                 <WrapPanel Classes="InfoBar">
                     <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps"/>
                     <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>

@@ -8,8 +8,8 @@
              x:DataType="bn:RevisionViewModel"
              x:Class="BangumiNet.Views.RevisionView">
     <ScrollViewer>
-        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*"
-              Classes="ViewRoot" Margin="5">
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <TextBlock Text="{Binding Summary, FallbackValue='无标题'}"
                            Classes="Title" FontSize="30"/>

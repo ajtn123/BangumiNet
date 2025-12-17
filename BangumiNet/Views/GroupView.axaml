@@ -9,44 +9,42 @@
              x:DataType="bn:GroupViewModel"
              x:Class="BangumiNet.Views.GroupView">
     <ScrollViewer>
-        <StackPanel Spacing="5" Margin="5">
-            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
-                  Classes="ViewRoot">
-                <StackPanel Spacing="5">
-                    <MainImage Url="{Binding Images?.Large}"/>
-                    <bn:CardView Content="{Binding Creator}"/>
-                    <bn:SubjectListView DataContext="{Binding Members}"/>
-                </StackPanel>
+        <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
+            <StackPanel Spacing="5">
+                <MainImage Url="{Binding Images?.Large}"/>
+                <bn:CardView Content="{Binding Creator}"/>
+                <bn:SubjectListView DataContext="{Binding Members}"/>
+            </StackPanel>
 
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Name}"
-                               Classes="Title" FontSize="30"/>
-                    <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="小组名" Text="{Binding Groupname}"/>
-                        <InfoItem Tip="成员数" Text="{Binding MemberCount}" Icon="People"/>
-                        <InfoItem Tip="话题数" Text="{Binding TopicCount}" Icon="Document"/>
-                        <!-- <InfoItem Tip="回复数" Text="{Binding PostCount}" Icon="Comment"/> -->
-                        <InfoItem Tip="类别" Text="{Binding Category}" Icon="Class"/>
-                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
-                        <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
-                            <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !Accessible}"/>
-                            <ic:FluentIcon ToolTip.Tip="我是本小组的成员" Icon="Heart" IsVisible="{Binding Membership,Converter={StaticResource NullCvt}}"/>
-                        </TextBlock>
-                        <InfoItem Tip="我的角色" EnumText="{Binding Membership?.Role}" Icon="Person"/>
-                        <InfoItem Tip="加入时间" CommonText="{Binding Membership?.JoinTime}" Icon="Calendar"/>
-                    </WrapPanel>
-                    <BBCode Text="{Binding Description}"
-                            IsVisible="{Binding Description, Converter={StaticResource NEWCvt}}"/>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
-                    </StackPanel>
-                    <bn:SubjectListPagedView DataContext="{Binding Topics}" Margin="0,5,0,0"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Name}"
+                           Classes="Title" FontSize="30"/>
+                <WrapPanel Classes="InfoBar">
+                    <InfoItem Tip="小组名" Text="{Binding Groupname}"/>
+                    <InfoItem Tip="成员数" Text="{Binding MemberCount}" Icon="People"/>
+                    <InfoItem Tip="话题数" Text="{Binding TopicCount}" Icon="Document"/>
+                    <!-- <InfoItem Tip="回复数" Text="{Binding PostCount}" Icon="Comment"/> -->
+                    <InfoItem Tip="类别" Text="{Binding Category}" Icon="Class"/>
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
+                    <TextBlock>
+                        <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
+                        <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !Accessible}"/>
+                        <ic:FluentIcon ToolTip.Tip="我是本小组的成员" Icon="Heart" IsVisible="{Binding Membership,Converter={StaticResource NullCvt}}"/>
+                    </TextBlock>
+                    <InfoItem Tip="我的角色" EnumText="{Binding Membership?.Role}" Icon="Person"/>
+                    <InfoItem Tip="加入时间" CommonText="{Binding Membership?.JoinTime}" Icon="Calendar"/>
+                </WrapPanel>
+                <BBCode Text="{Binding Description}"
+                        IsVisible="{Binding Description, Converter={StaticResource NEWCvt}}"/>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                 </StackPanel>
-            </Grid>
-        </StackPanel>
+                <bn:SubjectListPagedView DataContext="{Binding Topics}" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </UserControl>

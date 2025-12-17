@@ -7,27 +7,26 @@
              x:DataType="bn:HomeViewModel"
              x:Class="BangumiNet.Views.HomeView">
     <ScrollViewer>
-        <StackPanel Margin="5" Spacing="5">
-            <Border Classes="Card Large">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto"
+              Classes="ViewRoot">
+            <Border Classes="Card Large" Grid.ColumnSpan="2">
                 <Grid ColumnDefinitions="*,Auto" Height="50">
                     <TextBlock Text="{Binding Greeting}" VerticalAlignment="Center"/>
                     <MainImage Url="{Binding Me?.Avatar?.Large}" Grid.Column="1" HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
-            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto"
-                  ColumnSpacing="5" RowSpacing="5">
-                <StackPanel Grid.Column="0" Spacing="5">
-                    <ContentControl Content="{Binding CollectionListViewModel}"/>
-                    <ContentControl Content="{Binding TimelineViewModel}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Spacing="5">
-                    <ContentControl Content="{Binding Today}"/>
-                    <ContentControl Content="{Binding TrendingViewModel}"/>
-                </StackPanel>
 
-                <bn:FooterView Grid.ColumnSpan="2" Grid.Row="1"
-                               HorizontalAlignment="Center"/>
-            </Grid>
-        </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" Spacing="5">
+                <ContentControl Content="{Binding CollectionListViewModel}"/>
+                <ContentControl Content="{Binding TimelineViewModel}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Spacing="5">
+                <ContentControl Content="{Binding Today}"/>
+                <ContentControl Content="{Binding TrendingViewModel}"/>
+            </StackPanel>
+
+            <bn:FooterView Grid.ColumnSpan="2" Grid.Row="2"
+                           HorizontalAlignment="Center"/>
+        </Grid>
     </ScrollViewer>
 </UserControl>

@@ -12,7 +12,7 @@
              x:DataType="vm:SubjectBrowserViewModel"
              x:Class="BangumiNet.Views.SubjectBrowserView">
     <ScrollViewer>
-        <StackPanel Margin="5" Spacing="5">
+        <StackPanel Margin="10" Spacing="5">
             <Grid ColumnDefinitions="*,*,*,*,Auto,2*" ColumnSpacing="5">
                 <Grid.Styles>
                     <Style Selector="StackPanel">

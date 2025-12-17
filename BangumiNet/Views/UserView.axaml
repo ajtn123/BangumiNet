@@ -9,52 +9,50 @@
              x:DataType="bn:UserViewModel"
              x:Class="BangumiNet.Views.UserView">
     <ScrollViewer>
-        <StackPanel Spacing="5" Margin="5">
-            <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,*"
-                  Classes="ViewRoot">
-                <StackPanel Spacing="5">
-                    <MainImage Url="{Binding Avatar?.Large}"/>
-                </StackPanel>
+        <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
+            <StackPanel Spacing="5">
+                <MainImage Url="{Binding Avatar?.Large}"/>
+            </StackPanel>
 
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Nickname}"
-                               Classes="Title" FontSize="30"/>
-                    <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="用户名" Text="{Binding Username}"/>
-                        <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
-                        <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
-                        <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
-                        <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail"/>
-                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                        <TextBlock>
-                            <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
-                        </TextBlock>
-                    </WrapPanel>
-                    <Border Classes="Ref" Margin="5"
-                            IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
-                        <SelectableTextBlock Text="{Binding Sign}"
-                                             TextWrapping="Wrap"/>
-                    </Border>
-                    <BBCode Text="{Binding Summary}"
-                            IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
-                    </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Nickname}"
+                            Classes="Title" FontSize="30"/>
+                <WrapPanel Classes="InfoBar">
+                    <InfoItem Tip="用户名" Text="{Binding Username}"/>
+                    <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
+                    <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
+                    <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
+                    <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail"/>
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <TextBlock>
+                        <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
+                    </TextBlock>
+                </WrapPanel>
+                <Border Classes="Ref" Margin="5"
+                        IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
+                    <SelectableTextBlock Text="{Binding Sign}"
+                                         TextWrapping="Wrap"/>
+                </Border>
+                <BBCode Text="{Binding Summary}"
+                        IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
                 </StackPanel>
+            </StackPanel>
 
-                <TabControl Grid.Row="1" Grid.ColumnSpan="2"
-                            SelectedIndex="0" IsVisible="{Binding IsFull}"
-                            Name="UserContentTabs">
-                    <TabItem Header="时间线">
-                        <bn:TimelineView DataContext="{Binding Timeline}"/>
-                    </TabItem>
-                    <TabItem Header="收藏">
-                        <bn:SubjectCollectionListView DataContext="{Binding CollectionList}"/>
-                    </TabItem>
-                </TabControl>
-            </Grid>
-        </StackPanel>
+            <TabControl Grid.Row="1" Grid.ColumnSpan="2"
+                        SelectedIndex="0" IsVisible="{Binding IsFull}"
+                        Name="UserContentTabs">
+                <TabItem Header="时间线">
+                    <bn:TimelineView DataContext="{Binding Timeline}"/>
+                </TabItem>
+                <TabItem Header="收藏">
+                    <bn:SubjectCollectionListView DataContext="{Binding CollectionList}"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
     </ScrollViewer>
 </UserControl>

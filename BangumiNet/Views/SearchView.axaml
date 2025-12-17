@@ -12,7 +12,7 @@
              x:DataType="vm:SearchViewModel"
              x:Class="BangumiNet.Views.SearchView">
     <ScrollViewer>
-        <StackPanel Margin="5" Spacing="5">
+        <StackPanel Margin="10" Spacing="5">
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
                 <ComboBox x:Name="SearchTypeBox" SelectedItem="{Binding SearchType}">
                     <ComboBox.ItemTemplate>

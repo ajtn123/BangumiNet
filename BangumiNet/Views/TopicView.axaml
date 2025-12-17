@@ -8,11 +8,11 @@
              x:DataType="bn:TopicViewModel"
              x:Class="BangumiNet.Views.TopicView">
     <ScrollViewer>
-        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,*"
-                Classes="ViewRoot" Margin="5">
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <TextBlock Text="{Binding Name}"
-                            Classes="Title" FontSize="30"/>
+                           Classes="Title" FontSize="30"/>
                 <WrapPanel Classes="InfoBar">
                     <Border Background="Red" CornerRadius="5" Padding="3,0" IsVisible="{Binding State, Converter={StaticResource ZeroCvt}}">
                         <InfoItem Tip="评论状态" CommonText="{Binding State, Converter={StaticResource EnumCvt}}" Icon="Warning" Foreground="White"/>

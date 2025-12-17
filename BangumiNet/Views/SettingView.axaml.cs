@@ -15,19 +15,19 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
         if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
         InitializeComponent();
         VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-        Credits.ItemsSource = AppDomain.CurrentDomain.GetAssemblies().Select(x =>
+        Credits.ItemsSource = ((CreditItem[])[
+            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
+            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
+            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
+            new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
+            new CreditItem() { Name = $"Fluent UI System Icons", Tooltip = "https://github.com/microsoft/fluentui-system-icons", Type = "资产" },
+            new CreditItem() { Name = $"はらぺこ 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
+            new CreditItem() { Name = $"MingCute Icon tv-2-line", Tooltip = "https://www.mingcute.com", Type = "资产" },
+        ]).Union(AppDomain.CurrentDomain.GetAssemblies().Select(x =>
         {
             var name = x.GetName();
             return new CreditItem() { Name = $"{name.Name} - {name.Version}", Tooltip = name.FullName, Type = "依赖" };
-        }).Where(x => x.Name != "Anonymously Hosted DynamicMethods Assembly - 0.0.0.0").OrderBy(x => x.Name).Union([
-            new CreditItem() { Name = $"[PIXIV 22876424] 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
-            new CreditItem() { Name = $"Fluent UI System Icons", Tooltip = "https://github.com/microsoft/fluentui-system-icons", Type = "资产" },
-            new CreditItem() { Name = $"MingCute Icon tv-2-line", Tooltip = "https://www.mingcute.com", Type = "资产" },
-            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
-            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
-        ]);
+        }).Where(x => !x.Name.StartsWith("Anonymously")).OrderBy(x => x.Name));
 
         this.WhenActivated(disposables =>
         {

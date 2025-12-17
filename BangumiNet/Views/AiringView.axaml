@@ -9,13 +9,16 @@
              x:DataType="vm:AiringViewModel"
              x:Class="BangumiNet.Views.AiringView">
     <ScrollViewer>
-        <StackPanel>
-            <Border Classes="Card Large" Margin="5,5,5,0">
+        <Grid RowDefinitions="Auto,Auto"
+              Classes="ViewRoot">
+            <Border Classes="Card Large">
                 <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4"/> 每日放送</TextBlock>
             </Border>
+
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-                          MaxWidth="1650" HorizontalAlignment="Center">
-                <ItemsControl ItemsSource="{Binding Calendars}" Margin="5">
+                          MaxWidth="1650" Margin="-20,0,0,0" ClipToBounds="False"
+                          Grid.Row="1" HorizontalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding Calendars}" Margin="10,0">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
                             <v:CalendarView DataContext="{Binding .}" Width="230"/>
@@ -28,6 +31,6 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
-        </StackPanel>
+        </Grid>
     </ScrollViewer>
 </UserControl>
