@@ -28,9 +28,8 @@ public partial class SecondaryWindow : AppWindow
 
     public static SecondaryWindow Show(ViewModelBase? data)
     {
-        ArgumentNullException.ThrowIfNull(data);
         var window = new SecondaryWindow { Content = data };
-        window.Show(MainWindow.Instance);
+        window.Show();
         return window;
     }
 }
