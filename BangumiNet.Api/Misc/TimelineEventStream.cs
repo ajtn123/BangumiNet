@@ -12,11 +12,11 @@ namespace BangumiNet.Api.Misc;
 /// <summary>
 /// Server-Sent Events from /p1/timeline/-/events
 /// </summary>
-public class TimelineEventStream(HttpClient httpClient, IApiSettings apiSettings)
+public class TimelineEventStream(HttpClient httpClient, string? authToken)
 {
     private const string Endpoint = "https://next.bgm.tv/p1/timeline/-/events";
     private readonly HttpClient client = httpClient;
-    private readonly IApiSettings settings = apiSettings;
+    private readonly string? token = authToken;
     private static readonly JsonParseNodeFactory factory = new();
 
     public async IAsyncEnumerable<Timeline> StartAsync(FilterMode mode = FilterMode.All, TimelineCategory? category = null, [EnumeratorCancellation] CancellationToken ct = default)
@@ -25,7 +25,7 @@ public class TimelineEventStream(HttpClient httpClient, IApiSettings apiSettings
         if (category != null) url += $"&cat={(int)category}";
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Accept.ParseAdd("text/event-stream");
-        request.Headers.Authorization = new("Bearer", settings.AuthToken);
+        request.Headers.Authorization = new("Bearer", token);
         using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct);
         response.EnsureSuccessStatusCode();
         await using var stream = await response.Content.ReadAsStreamAsync(ct);

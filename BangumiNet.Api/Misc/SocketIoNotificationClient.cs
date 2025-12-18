@@ -1,7 +1,7 @@
 ﻿namespace BangumiNet.Api.Misc;
 
 //https://github.com/bangumi/server-private/blob/master/docs/socket.io.md
-public class SocketIoNotificationClient
+public class SocketIoNotificationClient : IDisposable
 {
     public record NotifyEvent(int Count);
 
@@ -47,4 +47,6 @@ public class SocketIoNotificationClient
     public SocketIOClient.SocketIO Client { get; }
     public Task ConnectAsync() => Client.ConnectAsync();
     public Task DisconnectAsync() => Client.DisconnectAsync();
+
+    public void Dispose() => Client.Dispose();
 }

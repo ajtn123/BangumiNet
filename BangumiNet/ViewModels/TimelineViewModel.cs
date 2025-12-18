@@ -66,7 +66,7 @@ public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewM
         SubjectViewModels = timelines.Select<Timeline, ViewModelBase>(t => new TimelineItemViewModel(t)).ToObservableCollection();
     }
 
-    private readonly TimelineEventStream events = new(ApiC.HttpClient, CurrentSettings);
+    private readonly TimelineEventStream events = new(ApiC.HttpClient, CurrentSettings.AuthToken);
     private CancellationTokenSource cts = new();
     private async Task Connect()
     {
