@@ -14,13 +14,13 @@
                 HorizontalAlignment="Stretch"
                 Grid.Column="0"/>
 
-        <NumericUpDown Value="{Binding PageIndexInput}" Grid.Column="1" Maximum="{Binding Total}" Minimum="1"
+        <NumericUpDown Value="{Binding InputPage}" Grid.Column="1" Maximum="{Binding TotalPages}" Minimum="1"
                        FormatString="N0" ParsingNumberStyle="Integer" Margin="5,0">
             <NumericUpDown.InnerLeftContent>
                 <Button Command="{Binding JumpPage}" Content="{ice:FluentIcon Icon=Checkmark}" Margin="3"/>
             </NumericUpDown.InnerLeftContent>
         </NumericUpDown>
-        <TextBlock Text="{Binding Total,StringFormat='/ {0} 页'}" VerticalAlignment="Center" Grid.Column="2" Margin="0,0,5,0"/>
+        <TextBlock Text="{Binding TotalPages,StringFormat='/ {0} 页'}" VerticalAlignment="Center" Grid.Column="2" Margin="0,0,5,0"/>
 
         <Button Command="{Binding NextPage}"
                 Content="{ice:FluentIcon Icon=ArrowRight}"

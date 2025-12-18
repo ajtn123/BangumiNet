@@ -9,8 +9,8 @@
              x:DataType="bn:GroupHomeViewModel"
              x:Class="BangumiNet.Views.GroupHomeView">
     <ScrollViewer>
-		<Grid ColumnDefinitions="2*,*" RowDefinitions="Auto,Auto,*"
-              ColumnSpacing="5" RowSpacing="5" Margin="5">
+		<Grid ColumnDefinitions="2*,*" RowDefinitions="Auto,Auto,Auto"
+              Classes="ViewRoot">
             <Border Classes="Card Large"
                     Grid.Row="0" Grid.ColumnSpan="2">
                 <TextBlock FontSize="30"><ic:FluentIcon Icon="People" FontSize="30" Margin="0,0,0,-4"/> 小组</TextBlock>

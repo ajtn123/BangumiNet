@@ -8,7 +8,7 @@ public partial class SubjectCollectionListView : ReactiveUserControl<SubjectColl
     public SubjectCollectionListView()
     {
         InitializeComponent();
-        ItemTypeComboBox.ItemsSource = new[] { ItemType.Subject, ItemType.Character, ItemType.Person };
+        ItemTypeComboBox.ItemsSource = (ItemType[])[ItemType.Subject, ItemType.Character, ItemType.Person, ItemType.Index];
         SubjectTypeComboBox.ItemsSource = (SubjectType?[])[null, .. Enum.GetValues<SubjectType>()];
         CollectionTypeComboBox.ItemsSource = (CollectionType?[])[null, .. Enum.GetValues<CollectionType>()];
     }

@@ -155,6 +155,8 @@ public partial class SubjectViewModel : ItemViewModelBase
         CollectionTotal = Collection?.GetTotal();
         Tags = subject.Tags?.ToObservableCollection<ITag>();
         MetaTags = subject.MetaTags?.ToObservableCollection();
+        if (subject.Interest != null)
+            SubjectCollectionViewModel = new(subject.Interest) { Parent = this };
     }
     public static SubjectViewModel Init(Api.P1.Models.SubjectRelation relation)
         => new(relation.Subject!)

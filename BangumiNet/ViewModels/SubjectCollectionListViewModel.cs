@@ -1,6 +1,10 @@
 ﻿using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Helpers;
-using BangumiNet.Api.V0.Models;
+using BangumiNet.Api.P1.Models;
+using BangumiNet.Api.P1.P1.Users.Item.Collections.Characters;
+using BangumiNet.Api.P1.P1.Users.Item.Collections.Indexes;
+using BangumiNet.Api.P1.P1.Users.Item.Collections.Persons;
+using BangumiNet.Api.P1.P1.Users.Item.Collections.Subjects;
 using BangumiNet.Common;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
@@ -14,19 +18,19 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
         ItemType = itemType;
         SubjectType = subjectType;
         CollectionType = collectionType;
-        Username = username ?? ApiC.CurrentUsername;
+        Username = username;
 
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(x => x.PageNavigator.PageIndex, x => x.PageNavigator.Total).Subscribe(x =>
+            this.WhenAnyValue(x => x.PageNavigator.CurrentPage, x => x.PageNavigator.TotalPages).Subscribe(x =>
             {
                 if (x.Item1 == null || x.Item2 == null) PageInfoMessage = $"加载中……";
                 else
                 {
                     var currentPage = x.Item1; var totalPage = x.Item2;
-                    var startItem = (currentPage - 1) * Limit + 1;
-                    var totalItem = totalPage * Limit;
-                    PageInfoMessage = $"第 {startItem}-{Math.Min((int)startItem + Limit, (int)totalItem)} 个项目，共 {totalItem} 个";
+                    var startItem = (currentPage - 1) * Limit;
+                    var totalItems = PageNavigator.TotalItems;
+                    PageInfoMessage = $"第 {startItem + 1}-{Math.Min((int)startItem + Limit, totalItems ?? int.MaxValue)} 个项目，共 {totalItems} 个";
                 }
             }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ItemType).Skip(1).Subscribe(itemType =>
@@ -52,73 +56,189 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
 
     protected override Task LoadPageAsync(int? page, CancellationToken ct = default)
     {
-        Username ??= ApiC.CurrentUsername;
-        if (string.IsNullOrWhiteSpace(Username)) return Task.CompletedTask;
         if (page is not int p) return Task.CompletedTask;
-        return ItemType switch
-        {
-            ItemType.Subject => LoadSubjects(p, ct),
-            ItemType.Character => LoadCharacters(p, ct),
-            ItemType.Person => LoadPersons(p, ct),
-            _ => throw new NotImplementedException(),
-        };
+        var offset = (p - 1) * Limit;
+
+        if (Username == null || Username == ApiC.CurrentUsername)
+            return ItemType switch
+            {
+                ItemType.Subject => LoadSubjects(offset, ct),
+                ItemType.Character => LoadCharacters(offset, ct),
+                ItemType.Person => LoadPersons(offset, ct),
+                ItemType.Index => LoadIndexes(offset, ct),
+                _ => throw new NotImplementedException(),
+            };
+        else if (Username is string username)
+            return ItemType switch
+            {
+                ItemType.Subject => LoadSubjects(username, offset, ct),
+                ItemType.Character => LoadCharacters(username, offset, ct),
+                ItemType.Person => LoadPersons(username, offset, ct),
+                ItemType.Index => LoadIndexes(username, offset, ct),
+                _ => throw new NotImplementedException(),
+            };
+
+        // should be unreachable
+        else throw new Exception();
     }
 
-    private async Task LoadSubjects(int page, CancellationToken ct)
+    private async Task LoadSubjects(string username, int offset, CancellationToken ct)
     {
-        Paged_UserCollection? response = null;
+        SubjectsGetResponse? response = null;
         try
         {
-            response = await ApiC.V0.Users[Username!].Collections.GetAsync(config =>
+            response = await ApiC.P1.Users[username].Collections.Subjects.GetAsync(config =>
             {
-                config.SetPage(page, Limit);
+                config.Paging(Limit, offset);
                 config.QueryParameters.SubjectType = (int?)SubjectType;
-                config.QueryParameters.Type = ((int?)CollectionType).ToString();
+                config.QueryParameters.Type = (int?)CollectionType;
             }, ct);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
-            .Select<UserSubjectCollection, ViewModelBase>(x => new SubjectCollectionViewModel(x) { ParentList = this, IsMy = Username == ApiC.CurrentUsername })
-            .ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response);
+            .Select<SlimSubject, ViewModelBase>(x =>
+            {
+                var vm = new SubjectViewModel(x).SubjectCollectionViewModel;
+                vm?.ParentList = this;
+                vm?.IsMy = username == ApiC.CurrentUsername;
+                return vm ?? new ViewModelBase();
+            }).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
     }
-    private async Task LoadCharacters(int page, CancellationToken ct)
+    private async Task LoadCharacters(string username, int offset, CancellationToken ct)
     {
-        Paged_UserCharacterCollection? response = null;
+        CharactersGetResponse? response = null;
         try
         {
-            var requestInfo = ApiC.V0.Users[Username!].Collections.Minus.Characters.ToGetRequestInformation();
-            requestInfo.QueryParameters.Add("offset", (page - 1) * Limit);
-            requestInfo.QueryParameters.Add("limit", Limit);
-            response = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserCharacterCollection.CreateFromDiscriminatorValue, cancellationToken: ct);
+            response = await ApiC.P1.Users[username].Collections.Characters.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
-            .Select<UserCharacterCollection, ViewModelBase>(x => new CharacterViewModel(x))
+            .Select<SlimCharacter, ViewModelBase>(x => new CharacterViewModel(x))
             .ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response);
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
     }
-    private async Task LoadPersons(int page, CancellationToken ct)
+    private async Task LoadPersons(string username, int offset, CancellationToken ct)
     {
-        Paged_UserPersonCollection? response = null;
+        PersonsGetResponse? response = null;
         try
         {
-            var requestInfo = ApiC.V0.Users[Username!].Collections.Minus.Persons.ToGetRequestInformation();
-            requestInfo.QueryParameters.Add("offset", (page - 1) * Limit);
-            requestInfo.QueryParameters.Add("limit", Limit);
-            response = await ApiC.Clients.RequestAdapter0.SendAsync(requestInfo, Paged_UserPersonCollection.CreateFromDiscriminatorValue, cancellationToken: ct);
+            response = await ApiC.P1.Users[username].Collections.Persons.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
         }
         catch (Exception e) { Trace.TraceError(e.Message); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
-            .Select<UserPersonCollection, ViewModelBase>(x => new PersonViewModel(x))
+            .Select<SlimPerson, ViewModelBase>(x => new PersonViewModel(x))
             .ToObservableCollection();
-        PageNavigator.UpdatePageInfo(response);
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
+    }
+    private async Task LoadIndexes(string username, int offset, CancellationToken ct)
+    {
+        IndexesGetResponse? response = null;
+        try
+        {
+            response = await ApiC.P1.Users[username].Collections.Indexes.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
+
+        SubjectViewModels = response.Data?
+            .Select<SlimIndex, ViewModelBase>(x => new IndexViewModel(x))
+            .ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
+    }
+    private async Task LoadSubjects(int offset, CancellationToken ct)
+    {
+        Api.P1.P1.Collections.Subjects.SubjectsGetResponse? response = null;
+        try
+        {
+            response = await ApiC.P1.Collections.Subjects.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+                config.QueryParameters.SubjectType = (int?)SubjectType;
+                config.QueryParameters.Type = (int?)CollectionType;
+            }, ct);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
+
+        SubjectViewModels = response.Data?
+            .Select<Subject, ViewModelBase>(x =>
+            {
+                var vm = new SubjectViewModel(x).SubjectCollectionViewModel;
+                vm?.ParentList = this;
+                vm?.IsMy = true;
+                return vm ?? new ViewModelBase();
+            }).ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
+    }
+    private async Task LoadCharacters(int offset, CancellationToken ct)
+    {
+        Api.P1.P1.Collections.Characters.CharactersGetResponse? response = null;
+        try
+        {
+            response = await ApiC.P1.Collections.Characters.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
+
+        SubjectViewModels = response.Data?
+            .Select<Character, ViewModelBase>(x => new CharacterViewModel(x))
+            .ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
+    }
+    private async Task LoadPersons(int offset, CancellationToken ct)
+    {
+        Api.P1.P1.Collections.Persons.PersonsGetResponse? response = null;
+        try
+        {
+            response = await ApiC.P1.Collections.Persons.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
+
+        SubjectViewModels = response.Data?
+            .Select<Person, ViewModelBase>(x => new PersonViewModel(x))
+            .ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
+    }
+    private async Task LoadIndexes(int offset, CancellationToken ct)
+    {
+        Api.P1.P1.Collections.Indexes.IndexesGetResponse? response = null;
+        try
+        {
+            response = await ApiC.P1.Collections.Indexes.GetAsync(config =>
+            {
+                config.Paging(Limit, offset);
+            }, ct);
+        }
+        catch (Exception e) { Trace.TraceError(e.Message); }
+        if (response is null) return;
+
+        SubjectViewModels = response.Data?
+            .Select<IndexObject, ViewModelBase>(x => new IndexViewModel(x))
+            .ToObservableCollection();
+        PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
     }
 
     [Reactive] public partial ItemType ItemType { get; set; }

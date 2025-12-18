@@ -35,7 +35,7 @@ public partial class MainWindow : AppWindow
             "每日放送" => airingVM ??= new(),
             "小组" => groupVM ??= new(),
             "搜索" => searchVM ??= new(),
-            "索引" => subjectBrowserVM ??= new(),
+            "分类浏览" => subjectBrowserVM ??= new(),
             "番组索引" => bangumiDataIndexVM ??= new(),
             "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
             "设置" => new SettingViewModel(SettingProvider.CurrentSettings),

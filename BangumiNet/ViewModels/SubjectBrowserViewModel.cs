@@ -52,12 +52,12 @@ public partial class SubjectBrowserViewModel : ViewModelBase
         });
         if (response == null) { QueryParameters = null; return; }
         SubjectListViewModel.UpdateItems(response);
-        PageNavigatorViewModel.PageIndex = 1;
+        PageNavigatorViewModel.CurrentPage = 1;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
         if (response.Total != null)
-            PageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else PageNavigatorViewModel.Total = null;
+            PageNavigatorViewModel.TotalPages = (int)Math.Ceiling((double)response.Total / Limit);
+        else PageNavigatorViewModel.TotalPages = null;
     }
     public async Task BrowsePageAsync(int? i)
     {
@@ -70,12 +70,12 @@ public partial class SubjectBrowserViewModel : ViewModelBase
         });
         if (response == null) { QueryParameters = null; return; }
         SubjectListViewModel.UpdateItems(response);
-        PageNavigatorViewModel.PageIndex = pageIndex;
+        PageNavigatorViewModel.CurrentPage = pageIndex;
         TotalResults = response.Total;
         ResultOffset = response.Offset;
         if (response.Total != null)
-            PageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else PageNavigatorViewModel.Total = null;
+            PageNavigatorViewModel.TotalPages = (int)Math.Ceiling((double)response.Total / Limit);
+        else PageNavigatorViewModel.TotalPages = null;
     }
 
 

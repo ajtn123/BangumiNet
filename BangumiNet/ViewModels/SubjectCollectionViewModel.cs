@@ -37,7 +37,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         EpisodeStatus = collection.EpStatus;
         VolumeStatus = collection.VolStatus;
         Tags = collection.Tags?.ToObservableCollection() ?? [];
-        IsPrivate = collection.Private;
+        IsPrivate = collection.Private ?? false;
         Rating = collection.Rate;
         UpdateTime = collection.UpdatedAt;
         Type = (CollectionType?)collection.Type;
@@ -91,6 +91,21 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         Rating = interest.Rate;
         CommentId = interest.Id;
         Tags = interest.Tags?.ToObservableCollection();
+
+        Init();
+    }
+    public SubjectCollectionViewModel(SubjectInterest interest)
+    {
+        Comment = interest.Comment;
+        if (interest.UpdatedAt is int ut)
+            UpdateTime = DateTimeOffset.FromUnixTimeSeconds(ut).ToLocalTime();
+        Type = (CollectionType?)interest.Type;
+        Rating = interest.Rate;
+        CommentId = interest.Id;
+        Tags = interest.Tags?.ToObservableCollection();
+        EpisodeStatus = interest.EpStatus;
+        VolumeStatus = interest.VolStatus;
+        IsPrivate = interest.Private ?? false;
 
         Init();
     }
@@ -154,7 +169,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
     [Reactive] public partial int? EpisodeStatus { get; set; }
     [Reactive] public partial int? VolumeStatus { get; set; }
     [Reactive] public partial int? Rating { get; set; }
-    [Reactive] public partial bool? IsPrivate { get; set; }
+    [Reactive] public partial bool IsPrivate { get; set; }
     [Reactive] public partial DateTimeOffset? UpdateTime { get; set; }
     [Reactive] public partial ObservableCollection<string>? Tags { get; set; }
     [Reactive] public partial ObservableCollection<string>? RecommendedTags { get; set; }

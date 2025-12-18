@@ -46,12 +46,6 @@ public partial class SearchViewModel : ViewModelBase
             .Subscribe(x => { this.RaisePropertyChanged(nameof(IsRatingValid)); IsFilterValidR = IsFilterValid; });
         this.WhenAnyValue(x => x.IsRatingCountEnabled, x => x.RatingCountLowerLimit, x => x.RatingCountUpperLimit)
             .Subscribe(x => { this.RaisePropertyChanged(nameof(IsRatingCountValid)); IsFilterValidR = IsFilterValid; });
-        this.WhenAnyValue(x => x.SubjectResultOffset, x => x.TotalSubjectResults)
-            .Subscribe(x => SubjectResultOffsetMessage = x.Item1 == null || x.Item2 == null ? null : $"正在显示第 {x.Item1 + 1}-{Math.Min((int)x.Item1 + Limit, (int)x.Item2)} 条结果");
-        this.WhenAnyValue(x => x.PersonResultOffset, x => x.TotalPersonResults)
-            .Subscribe(x => PersonResultOffsetMessage = x.Item1 == null || x.Item2 == null ? null : $"正在显示第 {x.Item1 + 1}-{Math.Min((int)x.Item1 + Limit, (int)x.Item2)} 条。");
-        this.WhenAnyValue(x => x.CharacterResultOffset, x => x.TotalCharacterResults)
-            .Subscribe(x => CharacterResultOffsetMessage = x.Item1 == null || x.Item2 == null ? null : $"正在显示第 {x.Item1 + 1}-{Math.Min((int)x.Item1 + Limit, (int)x.Item2)} 条。");
         this.WhenAnyValue(x => x.SearchType).Subscribe(a =>
         {
             this.RaisePropertyChanged(nameof(IsSearchingSubject));
@@ -103,12 +97,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { SubjectsPostRequestBody = null; return; }
         SubjectListViewModel.UpdateItems(response);
-        SubjectPageNavigatorViewModel.PageIndex = 1;
-        TotalSubjectResults = response.Total;
-        SubjectResultOffset = response.Offset;
-        if (response.Total != null)
-            SubjectPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else SubjectPageNavigatorViewModel.Total = null;
+        SubjectPageNavigatorViewModel.UpdatePageInfo(response);
     }
     public async Task SearchSubjectPageAsync(int? i)
     {
@@ -121,12 +110,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { SubjectsPostRequestBody = null; return; }
         SubjectListViewModel.UpdateItems(response);
-        SubjectPageNavigatorViewModel.PageIndex = pageIndex;
-        TotalSubjectResults = response.Total;
-        SubjectResultOffset = response.Offset;
-        if (response.Total != null)
-            SubjectPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else SubjectPageNavigatorViewModel.Total = null;
+        SubjectPageNavigatorViewModel.UpdatePageInfo(response);
     }
 
     public async Task SearchPersonAsync()
@@ -143,12 +127,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { PersonsPostRequestBody = null; return; }
         PersonListViewModel.UpdateItems(response);
-        PersonPageNavigatorViewModel.PageIndex = 1;
-        TotalPersonResults = response.Total;
-        PersonResultOffset = response.Offset;
-        if (response.Total != null)
-            PersonPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else PersonPageNavigatorViewModel.Total = null;
+        PersonPageNavigatorViewModel.UpdatePageInfo(response);
     }
     public async Task SearchPersonPageAsync(int? i)
     {
@@ -161,12 +140,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { PersonsPostRequestBody = null; return; }
         PersonListViewModel.UpdateItems(response);
-        PersonPageNavigatorViewModel.PageIndex = pageIndex;
-        TotalPersonResults = response.Total;
-        PersonResultOffset = response.Offset;
-        if (response.Total != null)
-            PersonPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else PersonPageNavigatorViewModel.Total = null;
+        PersonPageNavigatorViewModel.UpdatePageInfo(response);
     }
 
     public async Task SearchCharacterAsync()
@@ -183,12 +157,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { CharactersPostRequestBody = null; return; }
         CharacterListViewModel.UpdateItems(response);
-        CharacterPageNavigatorViewModel.PageIndex = 1;
-        TotalCharacterResults = response.Total;
-        CharacterResultOffset = response.Offset;
-        if (response.Total != null)
-            CharacterPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else CharacterPageNavigatorViewModel.Total = null;
+        CharacterPageNavigatorViewModel.UpdatePageInfo(response);
     }
     public async Task SearchCharacterPageAsync(int? i)
     {
@@ -201,12 +170,7 @@ public partial class SearchViewModel : ViewModelBase
         });
         if (response == null) { CharactersPostRequestBody = null; return; }
         CharacterListViewModel.UpdateItems(response);
-        CharacterPageNavigatorViewModel.PageIndex = pageIndex;
-        TotalCharacterResults = response.Total;
-        CharacterResultOffset = response.Offset;
-        if (response.Total != null)
-            CharacterPageNavigatorViewModel.Total = (int)Math.Ceiling((double)response.Total / Limit);
-        else CharacterPageNavigatorViewModel.Total = null;
+        CharacterPageNavigatorViewModel.UpdatePageInfo(response);
     }
 
     public static int Limit => SettingProvider.CurrentSettings.SearchPageSize;
@@ -242,15 +206,6 @@ public partial class SearchViewModel : ViewModelBase
     [Reactive] public partial SubjectsPostRequestBody? SubjectsPostRequestBody { get; set; }
     [Reactive] public partial PersonsPostRequestBody? PersonsPostRequestBody { get; set; }
     [Reactive] public partial CharactersPostRequestBody? CharactersPostRequestBody { get; set; }
-    [Reactive] public partial int? TotalSubjectResults { get; set; }
-    [Reactive] public partial int? SubjectResultOffset { get; set; }
-    [Reactive] public partial string? SubjectResultOffsetMessage { get; set; }
-    [Reactive] public partial int? TotalPersonResults { get; set; }
-    [Reactive] public partial int? PersonResultOffset { get; set; }
-    [Reactive] public partial string? PersonResultOffsetMessage { get; set; }
-    [Reactive] public partial int? TotalCharacterResults { get; set; }
-    [Reactive] public partial int? CharacterResultOffset { get; set; }
-    [Reactive] public partial string? CharacterResultOffsetMessage { get; set; }
     [Reactive] public partial PageNavigatorViewModel SubjectPageNavigatorViewModel { get; set; }
     [Reactive] public partial PageNavigatorViewModel PersonPageNavigatorViewModel { get; set; }
     [Reactive] public partial PageNavigatorViewModel CharacterPageNavigatorViewModel { get; set; }

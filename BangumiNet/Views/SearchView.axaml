@@ -76,8 +76,11 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsRatingCountValid}">
                         <TextBlock TextWrapping="Wrap">最高评分人数必须大于最低评分人数。</TextBlock>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalSubjectResults,Converter={StaticResource NullCvt}}">
-                        <TextBlock TextWrapping="Wrap" Text="{Binding TotalSubjectResults,StringFormat='共 {0} 条结果'}" ToolTip.Tip="{Binding SubjectResultOffsetMessage}"/>
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding SubjectPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
+                        <TextBlock TextWrapping="Wrap">
+                            <ic:FluentIcon Icon="Checkmark"/>
+                            共 <Run Text="{Binding SubjectPageNavigatorViewModel.TotalItems}"/> 条结果
+                        </TextBlock>
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
@@ -249,10 +252,10 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding PersonErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding PersonErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalPersonResults,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PersonPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <Run Text="{Binding TotalPersonResults,StringFormat='共 {0} 条结果，'}"/>
-                            <Run Text="{Binding PersonResultOffsetMessage}"/>
+                            <ic:FluentIcon Icon="Checkmark"/>
+                            共 <Run Text="{Binding PersonPageNavigatorViewModel.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
@@ -280,10 +283,10 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding CharacterErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding CharacterErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding TotalCharacterResults,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding CharacterPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <Run Text="{Binding TotalCharacterResults,StringFormat='共 {0} 条结果，'}"/>
-                            <Run Text="{Binding CharacterResultOffsetMessage}"/>
+                            <ic:FluentIcon Icon="Checkmark"/>
+                            共 <Run Text="{Binding CharacterPageNavigatorViewModel.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
