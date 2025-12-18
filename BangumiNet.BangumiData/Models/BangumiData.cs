@@ -2,11 +2,11 @@
 
 namespace BangumiNet.BangumiData.Models;
 
-public readonly record struct BangumiDataObject
+public record class BangumiDataObject
 {
     [JsonPropertyName("siteMeta")]
-    public Dictionary<string, SiteMeta> SiteMeta { get; init; }
+    public required Dictionary<string, SiteMeta> SiteMeta { get; init; }
 
     [JsonPropertyName("items")]
-    public Item[] Items { get; init; }
+    public required Item[] Items { get; init; }
 }

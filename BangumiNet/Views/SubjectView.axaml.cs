@@ -55,7 +55,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
             var menu = new MenuFlyout();
             foreach (var site in sites)
             {
-                SiteMeta meta = BangumiDataProvider.BangumiDataObject.Value.SiteMeta[site.Name];
+                SiteMeta meta = BangumiDataProvider.BangumiDataObject.SiteMeta[site.Name];
                 menu.Items.Add(new MenuItem
                 {
                     Header = meta.Title,

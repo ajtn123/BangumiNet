@@ -17,9 +17,9 @@ public static class BangumiDataLoader
     };
 
     public static ValueTask<BangumiDataObject> LoadAsync(Stream stream)
-        => JsonSerializer.DeserializeAsync<BangumiDataObject>(stream, options);
+        => JsonSerializer.DeserializeAsync<BangumiDataObject>(stream, options)!;
     public static BangumiDataObject Load(string json)
-        => JsonSerializer.Deserialize<BangumiDataObject>(json, options);
+        => JsonSerializer.Deserialize<BangumiDataObject>(json, options)!;
     public static ValueTask<Dictionary<string, SiteMeta>> LoadSitesAsync(Stream stream)
         => JsonSerializer.DeserializeAsync<Dictionary<string, SiteMeta>>(stream, options)!;
     public static Dictionary<string, SiteMeta> LoadSites(string json)
