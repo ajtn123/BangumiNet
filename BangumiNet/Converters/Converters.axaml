@@ -24,7 +24,6 @@
     <cvt:UserGroupCvt x:Key="UserGroupCvt"/>
     <cvt:CollectionTypeCvt x:Key="CollectionTypeCvt"/>
     <cvt:SearchSortCvt x:Key="SearchSortCvt"/>
-    <cvt:SearchTypeCvt x:Key="SearchTypeCvt"/>
     <cvt:DayOfWeekCvt x:Key="DayOfWeekCvt"/>
     <cvt:SubjectTypeCvt x:Key="SubjectTypeCvt"/>
     <cvt:EpisodeTypeCvt x:Key="EpisodeTypeCvt"/>

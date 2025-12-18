@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api.ExtraEnums;
+using BangumiNet.Api.Helpers;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Api.V0.V0.Search.Characters;
 using BangumiNet.Api.V0.V0.Search.Persons;
@@ -7,30 +8,20 @@ using BangumiNet.Common;
 using BangumiNet.Common.Attributes;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Windows.Input;
 
 namespace BangumiNet.ViewModels;
 
-public partial class SearchViewModel : ViewModelBase
+public partial class SearchViewModel : SubjectListPagedViewModel
 {
     public SearchViewModel()
     {
         Title = $"搜索 - {Title}";
-        SearchType = SearchType.Subject;
+        SearchType = ItemType.Subject;
         Type = SubjectTypeOptionViewModel.GetList();
         Career = PersonCareerOptionViewModel.GetList();
-        SubjectPageNavigatorViewModel = new PageNavigatorViewModel();
-        PersonPageNavigatorViewModel = new PageNavigatorViewModel();
-        CharacterPageNavigatorViewModel = new PageNavigatorViewModel();
-        SubjectListViewModel = new SubjectListViewModel();
-        CharacterListViewModel = new SubjectListViewModel();
-        PersonListViewModel = new SubjectListViewModel();
         Tag = []; MetaTag = [];
 
-        SearchCommand = ReactiveCommand.CreateFromTask(SearchAsync, this.WhenAnyValue(x => x.IsFilterValidR));
-        SearchSubjectPageCommand = ReactiveCommand.CreateFromTask<int?>(SearchSubjectPageAsync);
-        SearchPersonPageCommand = ReactiveCommand.CreateFromTask<int?>(SearchPersonPageAsync);
-        SearchCharacterPageCommand = ReactiveCommand.CreateFromTask<int?>(SearchCharacterPageAsync);
+        SearchCommand = ReactiveCommand.CreateFromTask(ct => LoadPageAsync(1, ct), this.WhenAnyValue(x => x.IsFilterValidR));
         AddTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(TagInput) && !Tag.Contains(TagInput)) { Tag.Add(TagInput.Trim()); TagInput = string.Empty; } },
             this.WhenAnyValue(x => x.TagInput).Select(y => !string.IsNullOrWhiteSpace(y) && !Tag.Contains(y)));
         AddMetaTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(MetaTagInput) && !MetaTag.Contains(MetaTagInput)) { MetaTag.Add(MetaTagInput.Trim()); MetaTagInput = string.Empty; } },
@@ -52,29 +43,42 @@ public partial class SearchViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(IsSearchingPerson));
             this.RaisePropertyChanged(nameof(IsSearchingCharacter));
         });
-
-        SubjectPageNavigatorViewModel.PrevPage.InvokeCommand(SearchSubjectPageCommand);
-        SubjectPageNavigatorViewModel.NextPage.InvokeCommand(SearchSubjectPageCommand);
-        SubjectPageNavigatorViewModel.JumpPage.InvokeCommand(SearchSubjectPageCommand);
-        PersonPageNavigatorViewModel.PrevPage.InvokeCommand(SearchPersonPageCommand);
-        PersonPageNavigatorViewModel.NextPage.InvokeCommand(SearchPersonPageCommand);
-        PersonPageNavigatorViewModel.JumpPage.InvokeCommand(SearchPersonPageCommand);
-        CharacterPageNavigatorViewModel.PrevPage.InvokeCommand(SearchCharacterPageCommand);
-        CharacterPageNavigatorViewModel.NextPage.InvokeCommand(SearchCharacterPageCommand);
-        CharacterPageNavigatorViewModel.JumpPage.InvokeCommand(SearchCharacterPageCommand);
     }
 
-    public Task SearchAsync() => SearchType switch
+    protected override async Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
-        SearchType.Subject => SearchSubjectAsync(),
-        SearchType.Character => SearchCharacterAsync(),
-        SearchType.Person => SearchPersonAsync(),
-        _ => throw new NotImplementedException(),
-    };
+        if (page is not int p) return;
+        var offset = (p - 1) * Limit;
 
-    public async Task SearchSubjectAsync()
+        try
+        {
+            if (p != 1 && Request != null)
+                Request = await (Request switch
+                {
+                    SubjectsPostRequestBody sr => SearchSubjectPageAsync(offset, sr),
+                    CharactersPostRequestBody cr => SearchCharacterPageAsync(offset, cr),
+                    PersonsPostRequestBody pr => SearchPersonPageAsync(offset, pr),
+                    _ => throw new NotImplementedException(),
+                });
+            else
+                Request = await (SearchType switch
+                {
+                    ItemType.Subject => SearchSubjectAsync(),
+                    ItemType.Character => SearchCharacterAsync(),
+                    ItemType.Person => SearchPersonAsync(),
+                    _ => throw new NotImplementedException(),
+                });
+        }
+        catch (Exception e)
+        {
+            Trace.TraceError(e.Message);
+            Request = null;
+        }
+    }
+
+    public async Task<object?> SearchSubjectAsync()
     {
-        SubjectsPostRequestBody = new()
+        var request = new SubjectsPostRequestBody()
         {
             Keyword = Keyword,
             Sort = Sort,
@@ -90,96 +94,99 @@ public partial class SearchViewModel : ViewModelBase
                 RatingCount = GetRatingCountFilter(),
             }
         };
-        var response = await ApiC.V0.Search.Subjects.PostAsync(SubjectsPostRequestBody, config =>
+
+        var response = await ApiC.V0.Search.Subjects.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = 0;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, 0);
         });
-        if (response == null) { SubjectsPostRequestBody = null; return; }
-        SubjectListViewModel.UpdateItems(response);
-        SubjectPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
-    public async Task SearchSubjectPageAsync(int? i)
+    public async Task<object?> SearchSubjectPageAsync(int offset, SubjectsPostRequestBody request)
     {
-        if (SubjectsPostRequestBody == null) return;
-        if (i is not int pageIndex || !SubjectPageNavigatorViewModel.IsInRange(i)) return;
-        var response = await ApiC.V0.Search.Subjects.PostAsync(SubjectsPostRequestBody, config =>
+        var response = await ApiC.V0.Search.Subjects.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, offset);
         });
-        if (response == null) { SubjectsPostRequestBody = null; return; }
-        SubjectListViewModel.UpdateItems(response);
-        SubjectPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
 
-    public async Task SearchPersonAsync()
+    public async Task<object?> SearchPersonAsync()
     {
-        PersonsPostRequestBody = new()
+        var request = new PersonsPostRequestBody()
         {
             Keyword = Keyword,
             Filter = new PersonsPostRequestBody_filter() { Career = GetCareerFilter() }
         };
-        var response = await ApiC.V0.Search.Persons.PostAsync(PersonsPostRequestBody, config =>
+
+        var response = await ApiC.V0.Search.Persons.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = 0;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, 0);
         });
-        if (response == null) { PersonsPostRequestBody = null; return; }
-        PersonListViewModel.UpdateItems(response);
-        PersonPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
-    public async Task SearchPersonPageAsync(int? i)
+    public async Task<object?> SearchPersonPageAsync(int offset, PersonsPostRequestBody request)
     {
-        if (PersonsPostRequestBody == null) return;
-        if (i is not int pageIndex || !PersonPageNavigatorViewModel.IsInRange(i)) return;
-        var response = await ApiC.V0.Search.Persons.PostAsync(PersonsPostRequestBody, config =>
+        var response = await ApiC.V0.Search.Persons.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, offset);
         });
-        if (response == null) { PersonsPostRequestBody = null; return; }
-        PersonListViewModel.UpdateItems(response);
-        PersonPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
 
-    public async Task SearchCharacterAsync()
+    public async Task<object?> SearchCharacterAsync()
     {
-        CharactersPostRequestBody = new()
+        var request = new CharactersPostRequestBody()
         {
             Keyword = Keyword,
             Filter = new CharactersPostRequestBody_filter() { Nsfw = Nsfw }
         };
-        var response = await ApiC.V0.Search.Characters.PostAsync(CharactersPostRequestBody, config =>
+
+        var response = await ApiC.V0.Search.Characters.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = 0;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, 0);
         });
-        if (response == null) { CharactersPostRequestBody = null; return; }
-        CharacterListViewModel.UpdateItems(response);
-        CharacterPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
-    public async Task SearchCharacterPageAsync(int? i)
+    public async Task<object?> SearchCharacterPageAsync(int offset, CharactersPostRequestBody request)
     {
-        if (CharactersPostRequestBody == null) return;
-        if (i is not int pageIndex || !CharacterPageNavigatorViewModel.IsInRange(i)) return;
-        var response = await ApiC.V0.Search.Characters.PostAsync(CharactersPostRequestBody, config =>
+        var response = await ApiC.V0.Search.Characters.PostAsync(request, config =>
         {
-            config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-            config.QueryParameters.Limit = Limit;
+            config.Paging(Limit, offset);
         });
-        if (response == null) { CharactersPostRequestBody = null; return; }
-        CharacterListViewModel.UpdateItems(response);
-        CharacterPageNavigatorViewModel.UpdatePageInfo(response);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return request;
     }
 
-    public static int Limit => SettingProvider.CurrentSettings.SearchPageSize;
+    public override int Limit => SettingProvider.CurrentSettings.SearchPageSize;
 
     [Reactive] public partial string? SubjectErrorMessage { get; set; }
     [Reactive] public partial string? PersonErrorMessage { get; set; }
     [Reactive] public partial string? CharacterErrorMessage { get; set; }
     [Reactive] public partial string? Keyword { get; set; }
-    [Reactive] public partial SearchType SearchType { get; set; }
+    [Reactive] public partial ItemType SearchType { get; set; }
     [Reactive] public partial SubjectsPostRequestBody_sort? Sort { get; set; }
     [Reactive] public partial List<SubjectTypeOptionViewModel> Type { get; set; }
     [Reactive] public partial List<PersonCareerOptionViewModel> Career { get; set; }
@@ -200,24 +207,13 @@ public partial class SearchViewModel : ViewModelBase
     [Reactive] public partial int? RatingCountLowerLimit { get; set; }
     [Reactive] public partial int? RatingCountUpperLimit { get; set; }
     [Reactive] public partial bool? Nsfw { get; set; }
-    [Reactive] public partial SubjectListViewModel SubjectListViewModel { get; set; }
-    [Reactive] public partial SubjectListViewModel PersonListViewModel { get; set; }
-    [Reactive] public partial SubjectListViewModel CharacterListViewModel { get; set; }
-    [Reactive] public partial SubjectsPostRequestBody? SubjectsPostRequestBody { get; set; }
-    [Reactive] public partial PersonsPostRequestBody? PersonsPostRequestBody { get; set; }
-    [Reactive] public partial CharactersPostRequestBody? CharactersPostRequestBody { get; set; }
-    [Reactive] public partial PageNavigatorViewModel SubjectPageNavigatorViewModel { get; set; }
-    [Reactive] public partial PageNavigatorViewModel PersonPageNavigatorViewModel { get; set; }
-    [Reactive] public partial PageNavigatorViewModel CharacterPageNavigatorViewModel { get; set; }
+    [Reactive] public partial object? Request { get; set; }
 
-    public ICommand SearchCommand { get; set; }
-    public ReactiveCommand<int?, Unit> SearchSubjectPageCommand { get; }
-    public ReactiveCommand<int?, Unit> SearchPersonPageCommand { get; }
-    public ReactiveCommand<int?, Unit> SearchCharacterPageCommand { get; }
-    public ReactiveCommand<Unit, Unit> AddTagCommand { get; set; }
-    public ReactiveCommand<string, Unit> DelTagCommand { get; set; }
-    public ReactiveCommand<Unit, Unit> AddMetaTagCommand { get; set; }
-    public ReactiveCommand<string, Unit> DelMetaTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit> SearchCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit> AddTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<string, Unit> DelTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit> AddMetaTagCommand { get; set; }
+    [Reactive] public partial ReactiveCommand<string, Unit> DelMetaTagCommand { get; set; }
 
     public List<int?>? GetTypeFilter()
     {
@@ -294,9 +290,9 @@ public partial class SearchViewModel : ViewModelBase
     public bool IsRatingValid => !IsRatingEnabled || RatingUpperLimit == null || RatingLowerLimit == null || RatingUpperLimit >= RatingLowerLimit;
     public bool IsRatingCountValid => !IsRatingCountEnabled || RatingCountUpperLimit == null || RatingCountLowerLimit == null || RatingCountUpperLimit >= RatingCountLowerLimit;
 
-    public bool IsSearchingSubject => SearchType == SearchType.Subject;
-    public bool IsSearchingPerson => SearchType == SearchType.Person;
-    public bool IsSearchingCharacter => SearchType == SearchType.Character;
+    public bool IsSearchingSubject => SearchType == ItemType.Subject;
+    public bool IsSearchingPerson => SearchType == ItemType.Person;
+    public bool IsSearchingCharacter => SearchType == ItemType.Character;
 }
 
 public partial class SubjectTypeOptionViewModel : ViewModelBase
@@ -336,10 +332,4 @@ public enum SearchFilterRelation
     LessThan,
     LessThanOrEqualTo,
     EqualTo
-}
-public enum SearchType
-{
-    Subject,
-    Character,
-    Person
 }

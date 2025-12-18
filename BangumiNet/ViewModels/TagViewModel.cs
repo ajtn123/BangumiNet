@@ -20,7 +20,7 @@ public partial class TagViewModel : ViewModelBase
             var vm = new SearchViewModel();
             vm.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
             vm.Tag.Add(Name);
-            vm.SearchCommand.Execute(null);
+            vm.SearchCommand.Execute().Subscribe();
             SecondaryWindow.Show(vm);
         });
         SearchMetaTagCommand = ReactiveCommand.Create(() =>
@@ -29,7 +29,7 @@ public partial class TagViewModel : ViewModelBase
             var vm = new SearchViewModel();
             vm.Type.FirstOrDefault(x => x?.SubjectType == SubjectType, null)?.IsSelected = true;
             vm.MetaTag.Add(Name);
-            vm.SearchCommand.Execute(null);
+            vm.SearchCommand.Execute().Subscribe();
             SecondaryWindow.Show(vm);
         });
     }

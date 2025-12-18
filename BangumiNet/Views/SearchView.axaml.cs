@@ -1,4 +1,5 @@
 using BangumiNet.Api.V0.V0.Search.Subjects;
+using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
 
@@ -7,13 +8,13 @@ public partial class SearchView : ReactiveUserControl<SearchViewModel>
     public SearchView()
     {
         InitializeComponent();
-        Input.KeyDown += (s, e) =>
+        Input.KeyDown += async (s, e) =>
         {
-            if (e.Key is Avalonia.Input.Key.Enter && (ViewModel?.SearchCommand.CanExecute(null) ?? false))
-                ViewModel?.SearchCommand.Execute(null);
+            if (e.Key is Avalonia.Input.Key.Enter && (await ViewModel!.SearchCommand.CanExecute.FirstAsync()))
+                ViewModel?.SearchCommand.Execute().Subscribe();
         };
         SortComboBox.ItemsSource = Enum.GetValues<SubjectsPostRequestBody_sort>();
-        SearchTypeBox.ItemsSource = Enum.GetValues<SearchType>();
+        SearchTypeBox.ItemsSource = (ItemType[])[ItemType.Subject, ItemType.Character, ItemType.Person];
 
         TagInputBox.KeyDown += (s, e) =>
         {

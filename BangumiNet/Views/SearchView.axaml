@@ -17,7 +17,7 @@
                 <ComboBox x:Name="SearchTypeBox" SelectedItem="{Binding SearchType}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource SearchTypeCvt}}" />
+                            <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -28,7 +28,6 @@
                 </TextBox>
             </Grid>
             <Grid ColumnDefinitions="*,*,3*,*,*" ColumnSpacing="5"
-                  RowDefinitions="Auto,*" RowSpacing="5"
                   IsVisible="{Binding IsSearchingSubject}">
                 <Grid.Styles>
                     <Style Selector="StackPanel">
@@ -76,10 +75,10 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsRatingCountValid}">
                         <TextBlock TextWrapping="Wrap">最高评分人数必须大于最低评分人数。</TextBlock>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding SubjectPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
                             <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding SubjectPageNavigatorViewModel.TotalItems}"/> 条结果
+                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
@@ -213,14 +212,8 @@
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 </StackPanel>
-                <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="5"
-                            IsVisible="{Binding SubjectsPostRequestBody,Converter={StaticResource NullCvt}}">
-                    <v:PageNavigatorView DataContext="{Binding SubjectPageNavigatorViewModel}"/>
-                    <v:SubjectListView DataContext="{Binding SubjectListViewModel}"/>
-                    <v:PageNavigatorView DataContext="{Binding SubjectPageNavigatorViewModel}"/>
-                </StackPanel>
             </Grid>
-            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="5"
+            <Grid RowDefinitions="Auto,Auto" RowSpacing="5"
                   ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingPerson}">
                     <Border Classes="Card">
@@ -252,22 +245,15 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding PersonErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding PersonErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PersonPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
                             <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding PersonPageNavigatorViewModel.TotalItems}"/> 条结果
+                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
-                <StackPanel Spacing="5" Grid.Row="2" Grid.ColumnSpan="2"
-                            IsVisible="{Binding PersonsPostRequestBody,Converter={StaticResource NullCvt}}">
-                    <v:PageNavigatorView DataContext="{Binding PersonPageNavigatorViewModel}"/>
-                    <v:SubjectListView DataContext="{Binding PersonListViewModel}"/>
-                    <v:PageNavigatorView DataContext="{Binding PersonPageNavigatorViewModel}"/>
-                </StackPanel>
             </Grid>
-            <Grid RowDefinitions="Auto,*" RowSpacing="5"
-                  ColumnDefinitions="*,3*" ColumnSpacing="5"
+            <Grid ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingCharacter}">
                 <Border Classes="Card">
                     <Grid ColumnDefinitions="Auto,*">
@@ -283,20 +269,16 @@
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding CharacterErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding CharacterErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding CharacterPageNavigatorViewModel.TotalItems,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
                             <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding CharacterPageNavigatorViewModel.TotalItems}"/> 条结果
+                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
-                <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2"
-                            IsVisible="{Binding CharactersPostRequestBody,Converter={StaticResource NullCvt}}">
-                    <v:PageNavigatorView DataContext="{Binding CharacterPageNavigatorViewModel}"/>
-                    <v:SubjectListView DataContext="{Binding CharacterListViewModel}"/>
-                    <v:PageNavigatorView DataContext="{Binding CharacterPageNavigatorViewModel}"/>
-                </StackPanel>
             </Grid>
+            
+            <v:SubjectListPagedView/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>
