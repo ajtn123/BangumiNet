@@ -36,10 +36,11 @@ public class MoveTransitions : AvaloniaObject
         Layoutable host = (sender as Layoutable)!;
         //Unsubscribe from position changed, otherwise we'll end up with recursive calls
         host.PropertyChanged -= HostLayoutablePropertyChanged;
-        // Calculate move vector
-        var moveVector = ((Rect)e.NewValue!).Center - ((Rect)e.OldValue!).Center;
+        // Calculate move
+        var move = ((Rect)e.NewValue!).Center - ((Rect)e.OldValue!).Center;
         // Move host to original position (before position changed)
-        host.RenderTransform = GetTransformOperations(0, -moveVector.Y);
+        // host.RenderTransform = GetTransformOperations(-move.X, -move.Y);
+        host.RenderTransform = GetTransformOperations(0, -move.Y);
         // Retrieve transition defined in attached property
         MoveTransition moveTransition = host.GetValue(TransitionProperty)!;
         // If transitions are null create new container

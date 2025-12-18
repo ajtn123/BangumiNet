@@ -30,7 +30,7 @@ public class MainImage : ContentControl
     private readonly CompositeDisposable disposables = [];
     public async Task LoadImageAsync()
     {
-        var bitmap = await ApiC.GetImageAsync(Url);
+        var bitmap = await ApiC.GetImageAsync(Url, fallback: true);
         if (bitmap != null && !bitmap.IsShared())
             bitmap.DisposeWith(disposables);
         Source = bitmap;
