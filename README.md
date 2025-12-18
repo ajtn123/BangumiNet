@@ -9,6 +9,10 @@ BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组�
 
 软件使用 MIT 开源协议，所有源代码均可在此仓库获取。如果在其他位置查看本 README，[点击这里](https://github.com/ajtn123/BangumiNet)前往 GitHub 仓库。
 
+## 预览
+
+<img width="2559" height="1525" alt="屏幕截图" src="https://github.com/user-attachments/assets/a66c77c1-7a0a-4af9-bcf6-a58e6ae6a8e6" />
+
 ## 安装
 
 ### 发布版
@@ -17,7 +21,7 @@ BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组�
 
 > 如已有 .NET 桌面运行时 / SDK 则无需额外安装。
 
-- 下载 [Release](https://github.com/ajtn123/BangumiNet/releases) 并解压到任何位置，最好无需管理员权限以写入文件。
+- 下载 [Release](https://github.com/ajtn123/BangumiNet/releases) 并解压到任何位置。
 - 运行可执行文件即可使用。
 
 ### 自行编译
