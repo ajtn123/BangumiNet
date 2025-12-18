@@ -6,11 +6,23 @@
              xmlns:controls="using:FluentAvalonia.UI.Controls"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             Classes.Streaming="{Binding IsEventStreaming}"
              x:DataType="bn:TimelineViewModel"
              x:Class="BangumiNet.Views.TimelineView">
+    <UserControl.Styles>
+        <Style Selector="bn|TimelineView.Streaming #TimelineList > ItemsControl">
+            <Setter Property="ClipToBounds" Value="True"/>
+            <Style Selector="^ > ContentPresenter">
+			    <Setter Property="bn:MoveTransitions.Transition">
+				    <bn:MoveTransition Duration="0:0:0.5" Easing="QuarticEaseInOut"/>
+			    </Setter>
+            </Style>
+        </Style>
+    </UserControl.Styles>
+
     <StackPanel Spacing="5">
         <ContentControl Content="{Binding}"/>
-		<bn:SubjectListView DataContext="{Binding}"/>
+		<bn:SubjectListView DataContext="{Binding}" Name="TimelineList"/>
         <ContentControl Content="{Binding}"/>
     </StackPanel>
 
