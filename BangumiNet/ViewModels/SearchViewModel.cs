@@ -21,7 +21,7 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         Career = PersonCareerOptionViewModel.GetList();
         Tag = []; MetaTag = [];
 
-        SearchCommand = ReactiveCommand.CreateFromTask(ct => LoadPageAsync(1, ct), this.WhenAnyValue(x => x.IsFilterValidR));
+        SearchCommand = ReactiveCommand.CreateFromTask(ct => LoadPageAsync(-1, ct), this.WhenAnyValue(x => x.IsFilterValidR));
         AddTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(TagInput) && !Tag.Contains(TagInput)) { Tag.Add(TagInput.Trim()); TagInput = string.Empty; } },
             this.WhenAnyValue(x => x.TagInput).Select(y => !string.IsNullOrWhiteSpace(y) && !Tag.Contains(y)));
         AddMetaTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(MetaTagInput) && !MetaTag.Contains(MetaTagInput)) { MetaTag.Add(MetaTagInput.Trim()); MetaTagInput = string.Empty; } },
@@ -52,20 +52,20 @@ public partial class SearchViewModel : SubjectListPagedViewModel
 
         try
         {
-            if (p != 1 && Request != null)
-                Request = await (Request switch
+            if (p != -1 && Request != null)
+                await (Request switch
                 {
-                    SubjectsPostRequestBody sr => SearchSubjectPageAsync(offset, sr),
-                    CharactersPostRequestBody cr => SearchCharacterPageAsync(offset, cr),
-                    PersonsPostRequestBody pr => SearchPersonPageAsync(offset, pr),
+                    SubjectsPostRequestBody sr => SearchSubjectPageAsync(offset, sr, cancellationToken),
+                    CharactersPostRequestBody cr => SearchCharacterPageAsync(offset, cr, cancellationToken),
+                    PersonsPostRequestBody pr => SearchPersonPageAsync(offset, pr, cancellationToken),
                     _ => throw new NotImplementedException(),
                 });
             else
                 Request = await (SearchType switch
                 {
-                    ItemType.Subject => SearchSubjectAsync(),
-                    ItemType.Character => SearchCharacterAsync(),
-                    ItemType.Person => SearchPersonAsync(),
+                    ItemType.Subject => SearchSubjectAsync(cancellationToken),
+                    ItemType.Character => SearchCharacterAsync(cancellationToken),
+                    ItemType.Person => SearchPersonAsync(cancellationToken),
                     _ => throw new NotImplementedException(),
                 });
         }
@@ -76,7 +76,7 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         }
     }
 
-    public async Task<object?> SearchSubjectAsync()
+    private async Task<object?> SearchSubjectAsync(CancellationToken cancellationToken)
     {
         var request = new SubjectsPostRequestBody()
         {
@@ -98,27 +98,26 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         var response = await ApiC.V0.Search.Subjects.PostAsync(request, config =>
         {
             config.Paging(Limit, 0);
-        });
+        }, cancellationToken);
         if (response == null) return null;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
         return request;
     }
-    public async Task<object?> SearchSubjectPageAsync(int offset, SubjectsPostRequestBody request)
+    private async Task SearchSubjectPageAsync(int offset, SubjectsPostRequestBody request, CancellationToken cancellationToken)
     {
         var response = await ApiC.V0.Search.Subjects.PostAsync(request, config =>
         {
             config.Paging(Limit, offset);
-        });
-        if (response == null) return null;
+        }, cancellationToken);
+        if (response == null) return;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
-        return request;
     }
 
-    public async Task<object?> SearchPersonAsync()
+    private async Task<object?> SearchPersonAsync(CancellationToken cancellationToken)
     {
         var request = new PersonsPostRequestBody()
         {
@@ -129,27 +128,26 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         var response = await ApiC.V0.Search.Persons.PostAsync(request, config =>
         {
             config.Paging(Limit, 0);
-        });
+        }, cancellationToken);
         if (response == null) return null;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
         return request;
     }
-    public async Task<object?> SearchPersonPageAsync(int offset, PersonsPostRequestBody request)
+    private async Task SearchPersonPageAsync(int offset, PersonsPostRequestBody request, CancellationToken cancellationToken)
     {
         var response = await ApiC.V0.Search.Persons.PostAsync(request, config =>
         {
             config.Paging(Limit, offset);
-        });
-        if (response == null) return null;
+        }, cancellationToken);
+        if (response == null) return;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
-        return request;
     }
 
-    public async Task<object?> SearchCharacterAsync()
+    private async Task<object?> SearchCharacterAsync(CancellationToken cancellationToken)
     {
         var request = new CharactersPostRequestBody()
         {
@@ -160,24 +158,23 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         var response = await ApiC.V0.Search.Characters.PostAsync(request, config =>
         {
             config.Paging(Limit, 0);
-        });
+        }, cancellationToken);
         if (response == null) return null;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
         return request;
     }
-    public async Task<object?> SearchCharacterPageAsync(int offset, CharactersPostRequestBody request)
+    private async Task SearchCharacterPageAsync(int offset, CharactersPostRequestBody request, CancellationToken cancellationToken)
     {
         var response = await ApiC.V0.Search.Characters.PostAsync(request, config =>
         {
             config.Paging(Limit, offset);
-        });
-        if (response == null) return null;
+        }, cancellationToken);
+        if (response == null) return;
 
         UpdateItems(response);
         PageNavigator.UpdatePageInfo(response);
-        return request;
     }
 
     public override int Limit => SettingProvider.CurrentSettings.SearchPageSize;

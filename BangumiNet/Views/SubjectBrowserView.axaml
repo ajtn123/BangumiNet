@@ -143,11 +143,10 @@
                             IsVisible="{Binding ErrorMessage,Converter={StaticResource NEWCvt}}">
                         <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap"/>
                     </Border>
-                    <Border Classes="Card" Background="{StaticResource OkBg}" Padding="5,0"
-                            IsVisible="{Binding TotalResults,Converter={StaticResource NullCvt}}">
+                    <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <Run Text="{Binding TotalResults,StringFormat='共 {0} 条结果，'}"/>
-                            <Run Text="{Binding ResultOffsetMessage}"/>
+                            <ic:FluentIcon Icon="Checkmark"/>
+                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
@@ -158,11 +157,8 @@
                             Content="{ice:FluentIcon Icon=ArrowClockwise}" />
                 </StackPanel>
             </Grid>
-            <StackPanel Spacing="5" IsVisible="{Binding QueryParameters,Converter={StaticResource NullCvt}}">
-                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-                <v:SubjectListView DataContext="{Binding SubjectListViewModel}"/>
-                <v:PageNavigatorView DataContext="{Binding PageNavigatorViewModel}"/>
-            </StackPanel>
+
+            <v:SubjectListPagedView/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -1,19 +1,17 @@
 ﻿using BangumiNet.Api.ExtraEnums;
-using BangumiNet.Api.V0.V0.Subjects;
+using BangumiNet.Api.Helpers;
 using BangumiNet.Common;
 using System.Reactive;
-using System.Windows.Input;
+using QueryParameters = BangumiNet.Api.V0.V0.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters;
 
 namespace BangumiNet.ViewModels;
 
-public partial class SubjectBrowserViewModel : ViewModelBase
+public partial class SubjectBrowserViewModel : SubjectListPagedViewModel
 {
     public SubjectBrowserViewModel()
     {
-        Title = $"浏览项目 - {Title}";
+        Title = $"浏览项目 - {Constants.ApplicationName}";
         Type = SubjectType.Anime;
-        SubjectListViewModel = new SubjectListViewModel();
-        PageNavigatorViewModel = new PageNavigatorViewModel();
 
         this.WhenAnyValue(x => x.Type).Subscribe(x =>
         {
@@ -24,19 +22,31 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(IsBrowsingMusic));
         });
 
-        this.WhenAnyValue(x => x.ResultOffset, x => x.TotalResults)
-            .Subscribe(x => ResultOffsetMessage = x.Item1 == null || x.Item2 == null ? null : $"正在显示第 {x.Item1 + 1}-{Math.Min((int)x.Item1 + Limit, (int)x.Item2)} 条。");
-
-        BrowseCommand = ReactiveCommand.CreateFromTask(BrowseAsync);
-        BrowsePageCommand = ReactiveCommand.CreateFromTask<int?>(BrowsePageAsync);
-
-        PageNavigatorViewModel.PrevPage.InvokeCommand(BrowsePageCommand);
-        PageNavigatorViewModel.NextPage.InvokeCommand(BrowsePageCommand);
-        PageNavigatorViewModel.JumpPage.InvokeCommand(BrowsePageCommand);
+        BrowseCommand = ReactiveCommand.CreateFromTask(ct => LoadPageAsync(-1, ct));
     }
 
-    public async Task BrowseAsync()
+    protected override async Task LoadPageAsync(int? page, CancellationToken cancellationToken = default)
     {
+        if (page is not int p) return;
+        var offset = (p - 1) * Limit;
+
+        try
+        {
+            if (p != -1 && QueryParameters != null)
+                await BrowsePageAsync(offset, QueryParameters, cancellationToken);
+            else
+                QueryParameters = await BrowseAsync(cancellationToken);
+        }
+        catch (Exception e)
+        {
+            Trace.TraceError(e.Message);
+            QueryParameters = null;
+        }
+    }
+
+    private async Task<QueryParameters?> BrowseAsync(CancellationToken cancellationToken)
+    {
+        QueryParameters? queryParameters = null;
         var response = await ApiC.V0.Subjects.GetAsync(config =>
         {
             config.QueryParameters.Type = (int)Type;
@@ -48,34 +58,25 @@ public partial class SubjectBrowserViewModel : ViewModelBase
             config.QueryParameters.Series = GetIsSeries();
             config.QueryParameters.Platform = GetPlatform();
             config.QueryParameters.Sort = GetSort();
-            QueryParameters = config.QueryParameters;
-        });
-        if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel.UpdateItems(response);
-        PageNavigatorViewModel.CurrentPage = 1;
-        TotalResults = response.Total;
-        ResultOffset = response.Offset;
-        if (response.Total != null)
-            PageNavigatorViewModel.TotalPages = (int)Math.Ceiling((double)response.Total / Limit);
-        else PageNavigatorViewModel.TotalPages = null;
+            queryParameters = config.QueryParameters;
+        }, cancellationToken);
+        if (response == null) return null;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
+        return queryParameters;
     }
-    public async Task BrowsePageAsync(int? i)
+    private async Task BrowsePageAsync(int offset, QueryParameters queryParameters, CancellationToken cancellationToken)
     {
-        if (QueryParameters == null) return;
-        if (i is not int pageIndex || !PageNavigatorViewModel.IsInRange(i)) return;
         var response = await ApiC.V0.Subjects.GetAsync(config =>
         {
-            config.QueryParameters = QueryParameters;
-            config.QueryParameters.Offset = (pageIndex - 1) * Limit;
-        });
-        if (response == null) { QueryParameters = null; return; }
-        SubjectListViewModel.UpdateItems(response);
-        PageNavigatorViewModel.CurrentPage = pageIndex;
-        TotalResults = response.Total;
-        ResultOffset = response.Offset;
-        if (response.Total != null)
-            PageNavigatorViewModel.TotalPages = (int)Math.Ceiling((double)response.Total / Limit);
-        else PageNavigatorViewModel.TotalPages = null;
+            config.QueryParameters = queryParameters;
+            config.Paging(Limit, offset);
+        }, cancellationToken);
+        if (response == null) return;
+
+        UpdateItems(response);
+        PageNavigator.UpdatePageInfo(response);
     }
 
 
@@ -91,16 +92,10 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     [Reactive] public partial bool IsMonthEnabled { get; set; }
     [Reactive] public partial DateTimeOffset? Year { get; set; }
     [Reactive] public partial DateTimeOffset? Month { get; set; }
-    [Reactive] public partial int? TotalResults { get; set; }
-    [Reactive] public partial int? ResultOffset { get; set; }
-    [Reactive] public partial PageNavigatorViewModel PageNavigatorViewModel { get; set; }
     [Reactive] public partial string? ErrorMessage { get; set; }
-    [Reactive] public partial string? ResultOffsetMessage { get; set; }
-    [Reactive] public partial SubjectListViewModel SubjectListViewModel { get; set; }
-    [Reactive] public partial SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters? QueryParameters { get; set; }
+    [Reactive] public partial QueryParameters? QueryParameters { get; set; }
 
-    public ICommand BrowseCommand { get; set; }
-    public ReactiveCommand<int?, Unit> BrowsePageCommand { get; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit> BrowseCommand { get; set; }
 
     public bool IsBrowsingAnime => Type == SubjectType.Anime;
     public bool IsBrowsingBook => Type == SubjectType.Book;
@@ -108,7 +103,7 @@ public partial class SubjectBrowserViewModel : ViewModelBase
     public bool IsBrowsingReal => Type == SubjectType.Real;
     public bool IsBrowsingMusic => Type == SubjectType.Music;
 
-    public static int Limit => SettingProvider.CurrentSettings.SubjectBrowserPageSize;
+    public override int Limit => SettingProvider.CurrentSettings.SubjectBrowserPageSize;
 
     public int? GetCategory()
         => Type switch
