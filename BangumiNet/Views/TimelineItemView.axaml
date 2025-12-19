@@ -10,7 +10,7 @@
     <Border Classes="Card Large PointoverTextHost">
         <StackPanel Spacing="3">
             <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="类别" Text="{Binding Category, Converter={StaticResource TimelineCategoryCvt}}"
+                <InfoItem Tip="类别" EnumText="{Binding Category}"
                           FontWeight="Bold" Classes="Pri"/>
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <InfoItem Tip="时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>

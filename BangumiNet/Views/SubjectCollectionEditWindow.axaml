@@ -18,7 +18,7 @@
                 <ComboBox x:Name="StatusComboBox" SelectedItem="{Binding Type}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource CollectionTypeCvt}}" />
+                            <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

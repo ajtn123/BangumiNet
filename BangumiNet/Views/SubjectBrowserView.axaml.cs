@@ -8,7 +8,7 @@ public partial class SubjectBrowserView : ReactiveUserControl<SubjectBrowserView
     public SubjectBrowserView()
     {
         InitializeComponent();
-        SortComboBox.ItemsSource = Enum.GetValues<SubjectBrowserSort>();
+        SortComboBox.ItemsSource = (SubjectBrowserSort?[])[null, .. Enum.GetValues<SubjectBrowserSort>()];
         TypeComboBox.ItemsSource = Enum.GetValues<SubjectType>();
         BookCatComboBox.ItemsSource = (BookType?[])[null, .. Enum.GetValues<BookType>()];
         AnimeCatComboBox.ItemsSource = (AnimeType?[])[null, .. Enum.GetValues<AnimeType>()];

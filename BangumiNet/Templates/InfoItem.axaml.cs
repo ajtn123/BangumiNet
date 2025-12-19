@@ -67,12 +67,12 @@ public class InfoItem : TemplatedControl
         set => SetValue(CommonTextProperty, value);
     }
 
-    public static readonly StyledProperty<object?> EnumTextProperty =
-        AvaloniaProperty.Register<InfoItem, object?>(nameof(EnumText));
+    public static readonly StyledProperty<Enum?> EnumTextProperty =
+        AvaloniaProperty.Register<InfoItem, Enum?>(nameof(EnumText));
     /// <summary>
     /// Set <see cref="Text"/> with <see cref="CommonEnumConverter.Convert(object?)"/>.
     /// </summary>
-    public object? EnumText
+    public Enum? EnumText
     {
         get => GetValue(EnumTextProperty);
         set => SetValue(EnumTextProperty, value);

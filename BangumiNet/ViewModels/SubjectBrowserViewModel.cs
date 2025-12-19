@@ -120,5 +120,5 @@ public partial class SubjectBrowserViewModel : SubjectListPagedViewModel
     public string? GetPlatform()
         => IsBrowsingGame && !string.IsNullOrWhiteSpace(Platform) ? Platform : null;
     public string? GetSort()
-        => Sort?.ToString()?.ToLower();
+        => Sort?.GetValue();
 }

@@ -27,7 +27,7 @@
                               IsVisible="{Binding IsSubject}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}}" />
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

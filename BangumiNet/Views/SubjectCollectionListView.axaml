@@ -15,7 +15,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
-                    <TextBlock Text="{Binding PageInfoMessage}" Grid.Column="1"/>
+                    <TextBlock Text="{Binding PageNavigator.RangeAndTotalMessage}" Grid.Column="1"/>
                     <Separator Height="15" Width="1" Margin="0"/>
                     <ComboBox Grid.Column="1" x:Name="ItemTypeComboBox"
                               SelectedItem="{Binding ItemType}">
@@ -29,7 +29,7 @@
                               SelectedItem="{Binding SubjectType}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}, TargetNullValue='全部'}" />
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -37,7 +37,7 @@
                               SelectedItem="{Binding CollectionType}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource CollectionTypeCvt}, TargetNullValue='全部'}" />
+                                <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

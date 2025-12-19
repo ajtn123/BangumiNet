@@ -24,56 +24,51 @@
                     <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver">Transparent</SolidColorBrush>
                 </Grid.Resources>
                 <StackPanel Grid.Column="0">
-                    <Border Classes="Card" Padding="5,0,0,0">
-                        <Grid ColumnDefinitions="Auto,*">
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="*,Auto">
                             <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3"/>类型</TextBlock>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="TypeComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding Type}">
+                            <ComboBox Grid.Column="1" Name="TypeComboBox"
+                                      SelectedItem="{Binding Type}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource SubjectTypeCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </Grid>
                     </Border>
-                    <Border Classes="Card" Padding="5,0,0,0" IsVisible="{Binding !IsBrowsingMusic}">
-                        <Grid ColumnDefinitions="Auto,*">
+                    <Border Classes="Card" IsVisible="{Binding !IsBrowsingMusic}">
+                        <Grid ColumnDefinitions="*,Auto">
                             <TextBlock><ic:FluentIcon Icon="RowChild" FontSize="16" Margin="0,0,0,-3"/>分类</TextBlock>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="BookCatComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding BookCategory}" IsVisible="{Binding IsBrowsingBook}">
+                            <ComboBox Grid.Column="1" Name="BookCatComboBox"
+                                      SelectedItem="{Binding BookCategory}" IsVisible="{Binding IsBrowsingBook}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource BookCatCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="AnimeCatComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding AnimeCategory}" IsVisible="{Binding IsBrowsingAnime}">
+                            <ComboBox Grid.Column="1" Name="AnimeCatComboBox"
+                                      SelectedItem="{Binding AnimeCategory}" IsVisible="{Binding IsBrowsingAnime}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource AnimeCatCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="GameCatComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding GameCategory}" IsVisible="{Binding IsBrowsingGame}">
+                            <ComboBox Grid.Column="1" Name="GameCatComboBox"
+                                      SelectedItem="{Binding GameCategory}" IsVisible="{Binding IsBrowsingGame}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource GameCatCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="RealCatComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding RealCategory}" IsVisible="{Binding IsBrowsingReal}">
+                            <ComboBox Grid.Column="1" Name="RealCatComboBox"
+                                      SelectedItem="{Binding RealCategory}" IsVisible="{Binding IsBrowsingReal}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource RealCatCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='全部'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -109,15 +104,14 @@
                                 SelectedDate="{Binding Month}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3">
-                    <Border Classes="Card" Padding="5,0,0,0">
-                        <Grid ColumnDefinitions="Auto,*">
+                    <Border Classes="Card">
+                        <Grid ColumnDefinitions="*,Auto">
                             <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3"/>排序</TextBlock>
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Right" Name="SortComboBox"
-                                        Height="19" BorderThickness="0" Padding="0" Background="Transparent"
-                                        SelectedItem="{Binding Sort}">
+                            <ComboBox Grid.Column="1" Name="SortComboBox"
+                                      SelectedItem="{Binding Sort}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource SubjectBrowserSortCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='默认'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>

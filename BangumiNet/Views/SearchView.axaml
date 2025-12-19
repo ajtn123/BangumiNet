@@ -46,7 +46,7 @@
                                       x:Name="SortComboBox" SelectedItem="{Binding Sort}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource SearchSortCvt}}" />
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}, TargetNullValue='默认'}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>

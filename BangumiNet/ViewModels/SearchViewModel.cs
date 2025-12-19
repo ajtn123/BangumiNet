@@ -20,6 +20,8 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         Type = SubjectTypeOptionViewModel.GetList();
         Career = PersonCareerOptionViewModel.GetList();
         Tag = []; MetaTag = [];
+        RatingLowerLimit = 1;
+        RatingUpperLimit = 10;
 
         SearchCommand = ReactiveCommand.CreateFromTask(ct => LoadPageAsync(-1, ct), this.WhenAnyValue(x => x.IsFilterValidR));
         AddTagCommand = ReactiveCommand.Create(() => { if (!string.IsNullOrWhiteSpace(TagInput) && !Tag.Contains(TagInput)) { Tag.Add(TagInput.Trim()); TagInput = string.Empty; } },
@@ -198,8 +200,8 @@ public partial class SearchViewModel : SubjectListPagedViewModel
     [Reactive] public partial int? RankLowerLimit { get; set; }
     [Reactive] public partial int? RankUpperLimit { get; set; }
     [Reactive] public partial bool IsRatingEnabled { get; set; }
-    [Reactive] public partial double? RatingLowerLimit { get; set; }
-    [Reactive] public partial double? RatingUpperLimit { get; set; }
+    [Reactive] public partial double RatingLowerLimit { get; set; }
+    [Reactive] public partial double RatingUpperLimit { get; set; }
     [Reactive] public partial bool IsRatingCountEnabled { get; set; }
     [Reactive] public partial int? RatingCountLowerLimit { get; set; }
     [Reactive] public partial int? RatingCountUpperLimit { get; set; }
@@ -238,13 +240,8 @@ public partial class SearchViewModel : SubjectListPagedViewModel
     public List<string>? GetRatingFilter()
     {
         if (!IsRatingEnabled) return null;
-        var list = new List<string>();
-        if (RatingLowerLimit.HasValue)
-            list.Add($"{SearchFilterRelation.GreaterThanOrEqualTo.ToSymbol()}{RatingLowerLimit.Value}");
-        if (RatingUpperLimit.HasValue)
-            list.Add($"{SearchFilterRelation.LessThanOrEqualTo.ToSymbol()}{RatingUpperLimit.Value}");
-        if (list.Count > 0) return list;
-        else return null;
+        else return [$"{SearchFilterRelation.GreaterThanOrEqualTo.ToSymbol()}{RatingLowerLimit}",
+                     $"{SearchFilterRelation.LessThanOrEqualTo.ToSymbol()}{RatingUpperLimit}"];
     }
     public List<string>? GetRatingCountFilter()
     {
@@ -284,7 +281,7 @@ public partial class SearchViewModel : SubjectListPagedViewModel
 
     public bool IsAirDateValid => !IsAirDateEnabled || AirDateEnd == null || AirDateStart == null || AirDateEnd >= AirDateStart;
     public bool IsRankValid => !IsRankEnabled || RankUpperLimit == null || RankLowerLimit == null || RankUpperLimit >= RankLowerLimit;
-    public bool IsRatingValid => !IsRatingEnabled || RatingUpperLimit == null || RatingLowerLimit == null || RatingUpperLimit >= RatingLowerLimit;
+    public bool IsRatingValid => !IsRatingEnabled || RatingUpperLimit >= RatingLowerLimit;
     public bool IsRatingCountValid => !IsRatingCountEnabled || RatingCountUpperLimit == null || RatingCountLowerLimit == null || RatingCountUpperLimit >= RatingCountLowerLimit;
 
     public bool IsSearchingSubject => SearchType == ItemType.Subject;

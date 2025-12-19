@@ -20,7 +20,7 @@
                             Classes="Title" FontSize="30"/>
                 <WrapPanel Classes="InfoBar">
                     <InfoItem Tip="用户名" Text="{Binding Username}"/>
-                    <InfoItem Tip="用户组" Text="{Binding UserGroup,Converter={StaticResource UserGroupCvt},Mode=OneWay}" Icon="Class"/>
+                    <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
                     <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
                     <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
                     <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail"/>

@@ -22,17 +22,6 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
 
         this.WhenActivated(disposables =>
         {
-            this.WhenAnyValue(x => x.PageNavigator.CurrentPage, x => x.PageNavigator.TotalPages).Subscribe(x =>
-            {
-                if (x.Item1 == null || x.Item2 == null) PageInfoMessage = $"加载中……";
-                else
-                {
-                    var currentPage = x.Item1; var totalPage = x.Item2;
-                    var startItem = (currentPage - 1) * Limit;
-                    var totalItems = PageNavigator.TotalItems;
-                    PageInfoMessage = $"第 {startItem + 1}-{Math.Min((int)startItem + Limit, totalItems ?? int.MaxValue)} 个项目，共 {totalItems} 个";
-                }
-            }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ItemType).Skip(1).Subscribe(itemType =>
             {
                 this.RaisePropertyChanged(nameof(IsSubject));

@@ -25,16 +25,16 @@
                 <TextBlock ToolTip.Tip="放送日期" IsVisible="{Binding AirDate,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding AirDate}"/></TextBlock>
                 <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
                 <TextBlock ToolTip.Tip="音乐碟片" IsVisible="{Binding Disc,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Cd" IconSize="Size16"/><Run Text="{Binding Disc}"/></TextBlock>
-                <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource EpisodeTypeCvt},Mode=OneWay}"/></TextBlock>
+                <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource EnumCvt},Mode=OneWay}"/></TextBlock>
                 <TextBlock ToolTip.Tip="话序" IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare"/><Run Text="{Binding Ep,StringFormat='第 {0} 话'}"/></TextBlock>
-                <TextBlock ToolTip.Tip="话排序" IsVisible="{Binding Sort,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare" IconVariant="Filled"/><Run Text="{Binding Sort}"/></TextBlock>
-                <TextBlock ToolTip.Tip="ID" IsVisible="{Binding Id,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideText"/><Run Text="{Binding Id}"/></TextBlock>
-                <TextBlock ToolTip.Tip="所属项目 ID" IsVisible="{Binding SubjectId,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="SlideTextMultiple"/><Run Text="{Binding SubjectId}"/></TextBlock>
+                <InfoItem Tip="章节编号" Text="{Binding Sort}" Icon="NumberSymbolSquare" IconVariant="Filled"/>
+                <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                <InfoItem Tip="所属项目 ID" Text="{Binding SubjectId}" Icon="SlideTextMultiple"/>
             </WrapPanel>
             <Border Classes="Card" HorizontalAlignment="Left" Margin="0,5">
                 <WrapPanel Classes="InfoBar" IsVisible="{Binding Status,Converter={StaticResource NullCvt}}">
-                    <TextBlock ToolTip.Tip="收藏状态"><ic:FluentIcon Icon="Bookmark"/><Run Text="{Binding Status,Converter={StaticResource EpisodeCollectionTypeCvt},Mode=OneWay}"/></TextBlock>
-                    <TextBlock ToolTip.Tip="更新时间" IsVisible="{Binding StatusUpdateTime,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding StatusUpdateTime}"/></TextBlock>
+                    <InfoItem Tip="收藏状态" EnumText="{Binding Status}" Icon="Bookmark"/>
+                    <InfoItem Tip="更新时间" CommonText="{Binding StatusUpdateTime}" Icon="Calendar"/>
 
                     <Button Command="{Binding UncollectCommand}" ToolTip.Tip="取消收藏" Classes="Icon" Content="{ice:FluentIcon Icon=Delete,FontSize=16}" BorderBrush="Transparent"/>
                     <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" BorderBrush="Transparent"/>
