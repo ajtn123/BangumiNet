@@ -67,7 +67,7 @@ var response = await client.V0.Users.Minus.Collections.Minus.Episodes[id].PutAsy
 ```csharp
 CancellationTokenSource cts = new();
 
-var events = new BangumiNet.Misc.TimelineEventStream(httpClient, token);
+var events = new BangumiNet.Api.Misc.TimelineEventStream(httpClient, token);
 List<Timeline> items = [];
 await foreach (var item in events.StartAsync(FilterMode.All, null, cts.Token))
 {

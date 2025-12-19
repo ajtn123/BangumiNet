@@ -1,9 +1,9 @@
 # BangumiNet
 
-![license](https://img.shields.io/github/license/ajtn123/BangumiNet)
-![release](https://img.shields.io/github/release/ajtn123/BangumiNet)
-![framework](https://img.shields.io/badge/.NET-10-blue)
-![framework](https://img.shields.io/badge/Avalonia-11-blue)
+[![license](https://img.shields.io/github/license/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/blob/master/LICENSE.txt)
+[![release](https://img.shields.io/github/release/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/releases)
+[![framework](https://img.shields.io/badge/.NET-10-blue)](https://dotnet.microsoft.com/zh-cn/)
+[![framework](https://img.shields.io/badge/Avalonia-11-blue)](https://avaloniaui.net/)
 
 BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组计划](https://bgm.tv/) 桌面客户端，支持 Windows、Linux 和 MacOS。
 
@@ -41,10 +41,10 @@ dotnet publish --configuration Release --runtime <RID>
 
 BangumiNet 将部分工具项目发布在 [NuGet](https://www.nuget.org/packages?q=BangumiNet)。
 
-![BangumiNet.Api 版本](https://img.shields.io/nuget/v/BangumiNet.Api?label=BangumiNet.Api)
-![BangumiNet.Archive 版本](https://img.shields.io/nuget/v/BangumiNet.Archive?label=BangumiNet.Archive)
-![BangumiNet.BangumiData 版本](https://img.shields.io/nuget/v/BangumiNet.BangumiData?label=BangumiNet.BangumiData)
-![BangumiNet.Common 版本](https://img.shields.io/nuget/v/BangumiNet.Common?label=BangumiNet.Common)
+[![BangumiNet.Api 版本](https://img.shields.io/nuget/v/BangumiNet.Api?label=BangumiNet.Api)](https://www.nuget.org/packages/BangumiNet.Api)
+[![BangumiNet.Archive 版本](https://img.shields.io/nuget/v/BangumiNet.Archive?label=BangumiNet.Archive)](https://www.nuget.org/packages/BangumiNet.Archive)
+[![BangumiNet.BangumiData 版本](https://img.shields.io/nuget/v/BangumiNet.BangumiData?label=BangumiNet.BangumiData)](https://www.nuget.org/packages/BangumiNet.BangumiData)
+[![BangumiNet.Common 版本](https://img.shields.io/nuget/v/BangumiNet.Common?label=BangumiNet.Common)](https://www.nuget.org/packages/BangumiNet.Common)
 
 ## 鸣谢
 
