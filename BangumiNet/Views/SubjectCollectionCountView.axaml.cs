@@ -46,7 +46,7 @@ public partial class SubjectCollectionCountView : ReactiveUserControl<ICollectio
                     else
                         cd = new(0, GridUnitType.Auto);
                     if (run != null)
-                        cd.Bind(ColumnDefinition.MinWidthProperty, this.WhenAnyValue(x => x.IsPointerOver).Select(isPointerOver => isPointerOver ? LayoutUtils.CalculateTextSize("占位 " + run.Text, 14, run.FontFamily).Width + 20 : 5d));
+                        cd.Bind(ColumnDefinition.MinWidthProperty, this.WhenAnyValue(x => x.IsPointerOver).Select(isPointerOver => isPointerOver ? LayoutUtils.CalculateTextSize("占位 " + run.Text, 14, run.FontFamily).Width + 30 : 5d));
                     return cd;
                 }
             }).DisposeWith(disposables);

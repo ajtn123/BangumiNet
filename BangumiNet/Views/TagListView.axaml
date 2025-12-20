@@ -2,15 +2,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:v="using:BangumiNet.Views"
-             xmlns:vm="using:BangumiNet.ViewModels"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ice="using:FluentIcons.Avalonia.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:DataType="vm:TagListViewModel"
+             x:DataType="bn:TagListViewModel"
              x:Class="BangumiNet.Views.TagListView">
     <ItemsControl ItemsSource="{Binding TagViewModels}">
+        <ItemsControl.Styles>
+			<Style Selector="InfoBadge > Border">
+                <Setter Property="Transitions">
+                    <Transitions>
+                        <CornerRadiusTransition Property="CornerRadius" Duration="0:0:0.2"/>
+                    </Transitions>
+                </Setter>
+            </Style>
+			<Style Selector="InfoBadge:pointerover > Border">
+				<Setter Property="CornerRadius" Value="2"/>
+            </Style>
+        </ItemsControl.Styles>
         <ItemsControl.DataTemplates>
-            <DataTemplate DataType="vm:TagViewModel">
-                <v:TagBadgeView DataContext="{Binding .}"/>
+            <DataTemplate DataType="bn:TagViewModel">
+                <InfoBadge Label="{Binding Name}" Text="{Binding Count}" IsHighlighted="{Binding IsMeta}" Tapped="InfoBadge_Tapped">
+					<InfoBadge.ContextFlyout>
+                        <Flyout>
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <Button Classes="Icon" Command="{Binding SearchTagCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索此标签"/>
+                                <Button Classes="Icon" Command="{Binding SearchMetaTagCommand}" Content="{ice:FluentIcon Icon=SearchInfo}" ToolTip.Tip="搜索此元标签" IsVisible="{Binding IsMeta}"/>
+                            </StackPanel>
+                        </Flyout>
+                    </InfoBadge.ContextFlyout>
+                </InfoBadge>
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>

@@ -25,4 +25,12 @@ public class InfoBadge : TemplatedControl
         get => GetValue(TextProperty);
         set => SetValue(TextProperty, value);
     }
+
+    public static readonly StyledProperty<bool> IsHighlightedProperty
+        = AvaloniaProperty.Register<InfoBadge, bool>(nameof(IsHighlighted));
+    public bool IsHighlighted
+    {
+        get => GetValue(IsHighlightedProperty);
+        set => SetValue(IsHighlightedProperty, value);
+    }
 }

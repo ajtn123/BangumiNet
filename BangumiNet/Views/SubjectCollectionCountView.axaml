@@ -6,8 +6,7 @@
              xmlns:ai="using:BangumiNet.Api.Interfaces"
              xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d"
-             MinWidth="400" MinHeight="10" Opacity="0.7"
-             Name="View" Classes="PointoverTextHost"
+             MinWidth="400" MinHeight="10" Opacity="0.7" Name="View"
              x:DataType="ai:ICollection"
              x:Class="BangumiNet.Views.SubjectCollectionCountView">
     <UserControl.Clip>
@@ -16,13 +15,22 @@
     </UserControl.Clip>
     <UserControl.Styles>
 		<Style Selector="Grid#LayoutGird > Panel > TextBlock">
-            <Setter Property="Margin" Value="1,0"/>
+            <Setter Property="Margin" Value="5,0"/>
 			<Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Classes.PointoverText" Value="True"/>
-            <Setter Property="Classes.Trans" Value="True"/>
+            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+                </Transitions>
+            </Setter>
             <Style Selector="^ ic|FluentIcon">
 				<Setter Property="Margin" Value="0,0,0,-1.5"/>
             </Style>
+        </Style>
+		<Style Selector="Grid#LayoutGird:pointerover > Panel > TextBlock">
+            <Setter Property="IsVisible" Value="True"/>
+            <Setter Property="Opacity" Value="1"/>
         </Style>
     </UserControl.Styles>
 

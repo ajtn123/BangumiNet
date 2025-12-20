@@ -13,7 +13,7 @@
   <ControlTheme x:Key="{x:Type InfoBadge}" TargetType="InfoBadge">
     <Setter Property="Template">
       <ControlTemplate>
-        <Border Classes="Card TagBadge">
+        <Border Classes="Card TagBadge" Classes.Meta="{TemplateBinding IsHighlighted}">
             <TextBlock>
                 <Run Text="{TemplateBinding Label}" Classes="Name"/>
                 <Run Text="{TemplateBinding Text}" Classes="Count"/>

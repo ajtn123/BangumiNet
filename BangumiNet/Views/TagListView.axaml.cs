@@ -1,3 +1,5 @@
+using Avalonia.Controls;
+
 namespace BangumiNet.Views;
 
 public partial class TagListView : ReactiveUserControl<TagListViewModel>
@@ -6,4 +8,7 @@ public partial class TagListView : ReactiveUserControl<TagListViewModel>
     {
         InitializeComponent();
     }
+
+    private void InfoBadge_Tapped(object? sender, Avalonia.Input.TappedEventArgs e)
+        => ((TagViewModel)((Control)sender!).DataContext!).SearchTagCommand.Execute(null);
 }
