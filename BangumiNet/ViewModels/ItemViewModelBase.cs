@@ -20,7 +20,7 @@ public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableVie
 
             this.WhenAnyValue(x => x.Name, x => x.NameCn).Subscribe(x =>
             {
-                Title = $"{NameCnCvt.Convert(this) ?? $"{ItemType.GetNameCn()} {Id}"} - {Constants.ApplicationName}";
+                Title = NameCnCvt.Convert(this) ?? $"{ItemType.GetNameCn()} {Id}";
             }).DisposeWith(disposables);
 
             Activate(disposables);

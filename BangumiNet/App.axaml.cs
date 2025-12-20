@@ -17,6 +17,7 @@ public partial class App : Application
         {
             var window = new MainWindow { DataContext = new MainWindowViewModel() };
             desktop.MainWindow = window;
+            desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             if (desktop.Args is { } args && args.Length >= 2)
                 window.navigatorViewModel.Navigate(args);

@@ -23,8 +23,6 @@ public partial class MainWindow : AppWindow
             if (e.InvokedItem is string tab)
                 SwitchView(tab);
         };
-
-        Closed += (s, e) => Environment.Exit(0);
     }
     private string currentView = "主页";
     public async void SwitchView(string view, CancellationToken cancellationToken = default)
