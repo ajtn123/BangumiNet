@@ -140,12 +140,9 @@ public partial class SecondaryWindow : AppWindow
 
     private void TabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)
     {
-        var srcTabs = ((IList)sender.TabItems);
-        if (srcTabs.Count <= 1) return;
-        srcTabs.Remove(args.Tab);
-        var window = new SecondaryWindow();
-        window.Tabs.Add(args.Tab);
-        window.Show();
+        ((IList)sender.TabItems).Remove(args.Tab);
+        var vm = GetVm((TabViewItem)args.Tab);
+        if (vm != null) Show(vm, inNewWindow: true);
     }
 
     public const string DataIdentifier = "SecWindowTabItem";
