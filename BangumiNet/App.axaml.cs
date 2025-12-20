@@ -14,7 +14,13 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            desktop.MainWindow = new MainWindow { DataContext = new MainWindowViewModel() };
+        {
+            var window = new MainWindow { DataContext = new MainWindowViewModel() };
+            desktop.MainWindow = window;
+
+            if (desktop.Args is { } args && args.Length >= 2)
+                window.navigatorViewModel.Navigate(args);
+        }
 
         Resources["ErrorBg"] = Brush.Parse(SettingProvider.CurrentSettings.ErrorBg);
         Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);

@@ -7,13 +7,10 @@ public partial class NavigatorViewModel : ViewModelBase
 {
     public NavigatorViewModel()
     {
-        this.WhenAnyValue(x => x.Input).Subscribe(x =>
-        {
-            CanToId = int.TryParse(x, out int id) && id > 0;
-            CanToUser = CommonUtils.IsAlphaNumeric(x?.Trim());
-        });
+        var canToId = this.WhenAnyValue(x => x.Input).Select(i => int.TryParse(i, out int id) && id > 0);
+        var canToUser = this.WhenAnyValue(x => x.Input).Select(i => CommonUtils.IsAlphaNumeric(i?.Trim()));
 
-        ToSubject = ReactiveCommand.CreateFromTask(async ct =>
+        var ToSubject = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -21,9 +18,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (svm != null) SecondaryWindow.Show(svm);
                 else MessageWindow.Show($"未找到项目 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToCharacter = ReactiveCommand.CreateFromTask(async ct =>
+        var ToCharacter = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -31,9 +28,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (cvm != null) SecondaryWindow.Show(cvm);
                 else MessageWindow.Show($"未找到角色 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToPerson = ReactiveCommand.CreateFromTask(async ct =>
+        var ToPerson = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -41,9 +38,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (pvm != null) SecondaryWindow.Show(pvm);
                 else MessageWindow.Show($"未找到人物 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToEpisode = ReactiveCommand.CreateFromTask(async ct =>
+        var ToEpisode = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -51,9 +48,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (evm != null) SecondaryWindow.Show(evm);
                 else MessageWindow.Show($"未找到话 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToTopic = ReactiveCommand.CreateFromTask(async ct =>
+        var ToTopic = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -62,9 +59,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (tvm != null) SecondaryWindow.Show(tvm);
                 else MessageWindow.Show($"未找到话题 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToBlog = ReactiveCommand.CreateFromTask(async ct =>
+        var ToBlog = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -72,9 +69,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (bvm != null) SecondaryWindow.Show(bvm);
                 else MessageWindow.Show($"未找到日志 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToIndex = ReactiveCommand.CreateFromTask(async ct =>
+        var ToIndex = ReactiveCommand.CreateFromTask(async ct =>
         {
             if (int.TryParse(Input, out var id))
             {
@@ -82,9 +79,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (ivm != null) SecondaryWindow.Show(ivm);
                 else MessageWindow.Show($"未找到目录 {id}");
             }
-        }, this.WhenAnyValue(x => x.CanToId));
+        }, canToId);
 
-        ToUser = ReactiveCommand.CreateFromTask(async ct =>
+        var ToUser = ReactiveCommand.CreateFromTask(async ct =>
         {
             var username = Input?.Trim();
             if (CommonUtils.IsAlphaNumeric(username))
@@ -93,9 +90,9 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (uvm != null) SecondaryWindow.Show(uvm);
                 else MessageWindow.Show($"未找到用户 {Input}");
             }
-        }, this.WhenAnyValue(x => x.CanToUser));
+        }, canToUser);
 
-        ToGroup = ReactiveCommand.CreateFromTask(async ct =>
+        var ToGroup = ReactiveCommand.CreateFromTask(async ct =>
         {
             var groupname = Input?.Trim();
             if (CommonUtils.IsAlphaNumeric(groupname))
@@ -104,60 +101,53 @@ public partial class NavigatorViewModel : ViewModelBase
                 if (gvm != null) SecondaryWindow.Show(gvm);
                 else MessageWindow.Show($"未找到小组 {Input}");
             }
-        }, this.WhenAnyValue(x => x.CanToUser));
+        }, canToUser);
 
         Items = [
-            new() { Name="ToSubject", Command=ToSubject, TextTemplate="转到项目 {0} >" },
-            new() { Name="ToCharacter", Command=ToCharacter, TextTemplate="转到角色 {0} >" },
-            new() { Name="ToPerson", Command=ToPerson, TextTemplate="转到人物 {0} >" },
-            new() { Name="ToEpisode", Command=ToEpisode, TextTemplate="转到话 {0} >" },
-            new() { Name="ToTopic", Command=ToTopic, TextTemplate="转到话题 {0} >" },
-            new() { Name="ToBlog", Command=ToBlog, TextTemplate="转到日志 {0} >" },
-            new() { Name="ToIndex", Command=ToIndex, TextTemplate="转到目录 {0} >" },
-            new() { Name="User", Command=ToUser, TextTemplate="转到用户 {0} >" },
-            new() { Name="Group", Command=ToGroup, TextTemplate="转到小组 {0} >" },
+            new(ItemType.Subject) { Command=ToSubject },
+            new(ItemType.Character) { Command=ToCharacter },
+            new(ItemType.Person) { Command=ToPerson },
+            new(ItemType.Episode) { Command=ToEpisode },
+            new(ItemType.Topic) { Command=ToTopic },
+            new(ItemType.Blog) { Command=ToBlog },
+            new(ItemType.Index) { Command=ToIndex },
+            new(ItemType.User) { Command=ToUser },
+            new(ItemType.Group) { Command=ToGroup },
         ];
     }
 
     [Reactive] public partial string? Input { get; set; }
 
-    [Reactive] public partial bool CanToId { get; set; }
-    [Reactive] public partial bool CanToUser { get; set; }
+    public AutoCompleteBoxItemViewModel[] Items { get; init; }
 
-    public ICommand ToSubject { get; set; }
-    public ICommand ToCharacter { get; set; }
-    public ICommand ToPerson { get; set; }
-    public ICommand ToEpisode { get; set; }
-    public ICommand ToTopic { get; set; }
-    public ICommand ToBlog { get; set; }
-    public ICommand ToIndex { get; set; }
-    public ICommand ToUser { get; set; }
-    public ICommand ToGroup { get; set; }
-
-    public readonly AutoCompleteBoxItemViewModel[] Items;
-
-#pragma warning disable CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
-#pragma warning disable IDE0060 // 删除未使用的参数
     public async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)
-#pragma warning restore IDE0060 // 删除未使用的参数
-#pragma warning restore CS1998 // 异步方法缺少 "await" 运算符，将以同步方式运行
     {
         Input = searchText;
-        // await Task.Delay(TimeSpan.FromSeconds(0.1), cancellationToken);
         return Items.Where(i => i.Command.CanExecute(null)).Select(x => { x.Prompt = Input; return x; });
+    }
+
+    public void Navigate(string[] args)
+    {
+        if (!Enum.TryParse<ItemType>(args[0], true, out var type) || Items.FirstOrDefault(x => x.Type == type) is not { } nav) return;
+
+        Input = args[1];
+        if (nav.Command.CanExecute(null))
+            nav.Command.Execute(null);
     }
 }
 
 public partial class AutoCompleteBoxItemViewModel : ViewModelBase
 {
-    public AutoCompleteBoxItemViewModel()
+    public AutoCompleteBoxItemViewModel(ItemType type)
     {
+        Type = type;
+        TextTemplate = $"转到{type.GetNameCn()} {{0}} >";
         this.WhenAnyValue(x => x.Prompt).Subscribe(x => Text = TextTemplate?.Replace("{0}", Prompt?.Trim()));
     }
 
     public required ICommand Command { get; init; }
-    public required string Name { get; init; }
-    public required string TextTemplate { get; init; }
+    public ItemType Type { get; init; }
+    public string TextTemplate { get; init; }
 
     [Reactive] public partial string? Prompt { get; set; }
     [Reactive] public partial string? Text { get; private set; }
