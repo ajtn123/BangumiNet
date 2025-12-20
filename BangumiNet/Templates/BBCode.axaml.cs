@@ -50,7 +50,8 @@ public class BBCode : TemplatedControl
             if (src.StartsWith("http") || src.StartsWith("//"))
             {
                 var bitmap = await ApiC.GetImageAsync(e.Event.Src, fallback: true);
-                bitmap?.DisposeWith(disposables);
+                if (bitmap != null && !bitmap.IsShared())
+                    bitmap.DisposeWith(disposables);
                 e.Event.Callback(bitmap);
             }
             else if (src.StartsWith("bn://emoji/") && int.TryParse(src[11..], out var emojiIndex))
