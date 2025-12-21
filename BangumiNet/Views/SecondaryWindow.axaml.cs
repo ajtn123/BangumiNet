@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
 using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
@@ -28,6 +29,8 @@ public partial class SecondaryWindow : AppWindow
             .OfType<ViewModelBase>()
             .Select(x => x.WhenAnyValue(x => x.Title))
             .Switch());
+
+        SecWindowTabView.Bind(TabView.TabItemsProperty, this.WhenAnyValue(x => x.Tabs));
 
         Instances.Add(this);
         Closed += (s, e) => Instances.Remove(this);
@@ -60,13 +63,12 @@ public partial class SecondaryWindow : AppWindow
     private static ViewModelBase? GetVm(TabViewItem tab)
         => (tab.Content as ContentControl)?.Content as ViewModelBase;
 
-
     public static List<SecondaryWindow> Instances { get; } = [];
-    public static SecondaryWindow Show(ViewModelBase? vm, bool inNewWindow = false)
+    public static SecondaryWindow Show(ViewModelBase? vm, SecondaryWindow? window = null)
     {
         ArgumentNullException.ThrowIfNull(vm);
 
-        var window = inNewWindow ? null : Instances.LastOrDefault();
+        window ??= Instances.LastOrDefault();
         window ??= new SecondaryWindow();
 
         if (vm is not ItemViewModelBase item ||
@@ -112,14 +114,15 @@ public partial class SecondaryWindow : AppWindow
 
     private void TabStripDrop(object? sender, DragEventArgs e)
     {
-        if (!e.Data.Contains(DataIdentifier) || e.Data.Get(DataIdentifier) is not TabViewItem tvi) return;
-        var desTabView = (TabView)sender!;
-        var srcTabView = tvi.FindAncestorOfType<TabView>()!;
+        if (!e.Data.Contains(DataIdentifier) || e.Data.Get(DataIdentifier) is not TabViewItem srcTab) return;
+        if ((srcTab.Content as ContentControl)?.GetLogicalChildren().OfType<UserControl>().FirstOrDefault()?.DataContext is not ViewModelBase vm) return;
+        var desWindow = ((TabView)sender!).FindAncestorOfType<SecondaryWindow>()!;
+        var srcWindow = srcTab.FindAncestorOfType<SecondaryWindow>()!;
 
         int index = -1;
-        for (int i = 0; i < desTabView.TabItems.Count(); i++)
+        for (int i = 0; i < desWindow.Tabs.Count; i++)
         {
-            var item = (TabViewItem)desTabView.ContainerFromIndex(i);
+            var item = desWindow.SecWindowTabView.ContainerFromIndex(i);
             if (e.GetPosition(item).X - item.Bounds.Width < 0)
             {
                 index = i;
@@ -127,25 +130,26 @@ public partial class SecondaryWindow : AppWindow
             }
         }
 
-        ((IList)srcTabView.TabItems).Remove(tvi);
-        if (index < 0 || index >= desTabView.TabItems.Count())
-            ((IList)desTabView.TabItems).Add(tvi);
-        else if (index < desTabView.TabItems.Count())
-            ((IList)desTabView.TabItems).Insert(index, tvi);
-        desTabView.SelectedItem = tvi;
+        var desTab = CreateTab(vm);
+        if (index >= 0 && index < desWindow.Tabs.Count)
+            desWindow.Tabs.Insert(index, desTab);
+        else
+            desWindow.Tabs.Add(desTab);
+        desWindow.SecWindowTabView.SelectedItem = desTab;
 
         e.Handled = true;
 
-        // TabItemsChanged won't fire during DragDrop so we need to check
-        if (srcTabView.TabItems.Count() == 0)
-            srcTabView.FindAncestorOfType<SecondaryWindow>()?.Close();
+        Avalonia.Threading.Dispatcher.UIThread.Post(() => srcWindow.Tabs.Remove(srcTab), Avalonia.Threading.DispatcherPriority.Background);
     }
 
     private void TabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)
     {
-        ((IList)sender.TabItems).Remove(args.Tab);
-        var vm = GetVm(args.Tab);
-        if (vm != null) Show(vm, inNewWindow: true);
+        var srcTab = args.Tab;
+        if ((srcTab.Content as ContentControl)?.GetLogicalChildren().OfType<UserControl>().FirstOrDefault()?.DataContext is not ViewModelBase vm) return;
+
+        Show(vm, new());
+
+        Avalonia.Threading.Dispatcher.UIThread.Post(() => ((IList)sender.TabItems).Remove(srcTab), Avalonia.Threading.DispatcherPriority.Background);
     }
 
 #pragma warning restore IDE0051

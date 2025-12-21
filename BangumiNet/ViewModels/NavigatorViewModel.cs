@@ -15,7 +15,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id, cancellationToken: ct);
-                if (svm != null) SecondaryWindow.Show(svm);
+                if (svm != null) SecondaryWindow.Show(svm, TargetWindow);
                 else MessageWindow.Show($"未找到项目 {id}");
             }
         }, canToId);
@@ -25,7 +25,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id, cancellationToken: ct);
-                if (cvm != null) SecondaryWindow.Show(cvm);
+                if (cvm != null) SecondaryWindow.Show(cvm, TargetWindow);
                 else MessageWindow.Show($"未找到角色 {id}");
             }
         }, canToId);
@@ -35,7 +35,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id, cancellationToken: ct);
-                if (pvm != null) SecondaryWindow.Show(pvm);
+                if (pvm != null) SecondaryWindow.Show(pvm, TargetWindow);
                 else MessageWindow.Show($"未找到人物 {id}");
             }
         }, canToId);
@@ -45,7 +45,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id, cancellationToken: ct);
-                if (evm != null) SecondaryWindow.Show(evm);
+                if (evm != null) SecondaryWindow.Show(evm, TargetWindow);
                 else MessageWindow.Show($"未找到话 {id}");
             }
         }, canToId);
@@ -56,7 +56,7 @@ public partial class NavigatorViewModel : ViewModelBase
             {
                 var tvm = await ApiC.GetTopicViewModelAsync(ItemType.Subject, id, cancellationToken: ct);
                 tvm ??= await ApiC.GetTopicViewModelAsync(ItemType.Group, id, cancellationToken: ct);
-                if (tvm != null) SecondaryWindow.Show(tvm);
+                if (tvm != null) SecondaryWindow.Show(tvm, TargetWindow);
                 else MessageWindow.Show($"未找到话题 {id}");
             }
         }, canToId);
@@ -66,7 +66,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var bvm = await ApiC.GetViewModelAsync<BlogViewModel>(id, cancellationToken: ct);
-                if (bvm != null) SecondaryWindow.Show(bvm);
+                if (bvm != null) SecondaryWindow.Show(bvm, TargetWindow);
                 else MessageWindow.Show($"未找到日志 {id}");
             }
         }, canToId);
@@ -76,7 +76,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (int.TryParse(Input, out var id))
             {
                 var ivm = await ApiC.GetViewModelAsync<IndexViewModel>(id, cancellationToken: ct);
-                if (ivm != null) SecondaryWindow.Show(ivm);
+                if (ivm != null) SecondaryWindow.Show(ivm, TargetWindow);
                 else MessageWindow.Show($"未找到目录 {id}");
             }
         }, canToId);
@@ -87,7 +87,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (CommonUtils.IsAlphaNumeric(username))
             {
                 var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username, cancellationToken: ct);
-                if (uvm != null) SecondaryWindow.Show(uvm);
+                if (uvm != null) SecondaryWindow.Show(uvm, TargetWindow);
                 else MessageWindow.Show($"未找到用户 {Input}");
             }
         }, canToUser);
@@ -98,7 +98,7 @@ public partial class NavigatorViewModel : ViewModelBase
             if (CommonUtils.IsAlphaNumeric(groupname))
             {
                 var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname, cancellationToken: ct);
-                if (gvm != null) SecondaryWindow.Show(gvm);
+                if (gvm != null) SecondaryWindow.Show(gvm, TargetWindow);
                 else MessageWindow.Show($"未找到小组 {Input}");
             }
         }, canToUser);
@@ -118,6 +118,7 @@ public partial class NavigatorViewModel : ViewModelBase
 
     [Reactive] public partial string? Input { get; set; }
 
+    public SecondaryWindow? TargetWindow { get; set; }
     public AutoCompleteBoxItemViewModel[] Items { get; init; }
 
     public async Task<IEnumerable<object>> PopulateAsync(string? searchText, CancellationToken cancellationToken)

@@ -8,7 +8,6 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="BangumiNet.Views.SecondaryWindow">
     <ui:TabView Name="SecWindowTabView"
-                TabItems="{Binding $parent[bn:SecondaryWindow].Tabs}"
                 VerticalAlignment="Stretch"
                 AllowDropTabs="True"
                 CanReorderTabs="True"
