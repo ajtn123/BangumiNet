@@ -37,9 +37,9 @@
                                     <ItemsControl.DataTemplates>
                                         <DataTemplate DataType="bn:UserViewModel">
                                             <WrapPanel Classes="InfoBar">
-                                                <HyperlinkButton Content="{Binding Nickname}" Classes="Pri"
+                                                <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
                                                                  Command="{Binding OpenInNewWindowCommand}"
-                                                                 ToolTip.Tip="在新窗口显示用户"
+                                                                 Content="{Binding Name}" Classes="Pri"
                                                                  Margin="0,-1,0,0" Height="19"/>
                                                 <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                                             </WrapPanel>

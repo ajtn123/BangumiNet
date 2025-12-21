@@ -16,8 +16,8 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding Nickname}"
-                            Classes="Title" FontSize="30"/>
+                <TextBlock Text="{Binding Name}"
+                           Classes="Title" FontSize="30"/>
                 <WrapPanel Classes="InfoBar">
                     <InfoItem Tip="用户名" Text="{Binding Username}"/>
                     <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>

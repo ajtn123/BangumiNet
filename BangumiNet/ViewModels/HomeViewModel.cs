@@ -34,7 +34,7 @@ public partial class HomeViewModel : ViewModelBase
         if (Me is null)
             greeting += $"你好！";
         else
-            greeting += $"你好，{Me.Nickname}！";
+            greeting += $"你好，{Me.Name}！";
 
         greeting += $"今天是{DateTime.Now:D}。";
 

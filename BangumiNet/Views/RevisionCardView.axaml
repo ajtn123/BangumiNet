@@ -24,9 +24,9 @@
                              Command="{Binding OpenInNewWindowCommand}"
                              IsVisible="{Binding Summary,Converter={StaticResource NEWCvt}}"/>
             <WrapPanel Classes="InfoBar">
-                <HyperlinkButton ToolTip.Tip="在新窗口显示用户" Command="{Binding Creator.OpenInNewWindowCommand}"
-                                 Content="{Binding Creator.Nickname}" Classes="Pri"
-                                 IsVisible="{Binding Creator.Nickname,Converter={StaticResource NEWCvt}}"/>
+                <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
+                                 Command="{Binding Creator.OpenInNewWindowCommand}"
+                                 Content="{Binding Creator.Name}" Classes="Pri"/>
                 <InfoItem Tip="用户名" Text="{Binding Creator.Username}" Classes="Sec"/>
                 <InfoItem Tip="类型" Icon="Class" EnumText="{Binding Type}"/>
                 <InfoItem Tip="创建时间" Icon="Calendar" CommonText="{Binding CreationTime}"/>

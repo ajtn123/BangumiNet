@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
 using Avalonia.VisualTree;
+using BangumiNet.Converters;
 using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
@@ -56,7 +57,7 @@ public partial class SecondaryWindow : AppWindow
     private static TabViewItem CreateTab(ViewModelBase vm) => new()
     {
         Content = new ContentControl { Content = vm },
-        Header = vm.Title,
+        Header = NameCnCvt.Convert(vm) ?? vm.Title,
         IconSource = vm is ItemViewModelBase ivm ? IconHelper.GetIconSource(ivm.ItemType)
                                                  : Utils.IconSource.FromIcon(FluentIcons.Common.Icon.Document),
     };
@@ -68,6 +69,7 @@ public partial class SecondaryWindow : AppWindow
     {
         ArgumentNullException.ThrowIfNull(vm);
 
+        window ??= Instances.LastOrDefault(x => x.IsActive);
         window ??= Instances.LastOrDefault();
         window ??= new SecondaryWindow();
 

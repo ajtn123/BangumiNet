@@ -16,7 +16,7 @@ public partial class RevisionViewModel : ItemViewModelBase
         Summary = revision.Summary;
         CreationTime = revision.CreatedAt;
         if (!string.IsNullOrWhiteSpace(revision.Creator?.Username))
-            Creator = new(revision.Creator.Username) { Nickname = revision.Creator?.Nickname };
+            Creator = new(revision.Creator.Username) { Name = revision.Creator?.Nickname };
         Type = (RevisionType?)revision.Type;
         Parent = parent;
 

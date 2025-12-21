@@ -16,9 +16,8 @@
             <WrapPanel Classes="InfoBar">
                 <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
                 <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
-                                 Content="{Binding User.Nickname}"
-                                 IsVisible="{Binding User.Nickname,Converter={StaticResource NEWCvt}}"
-                                 Classes="Pri" Command="{Binding User.OpenInNewWindowCommand}"/>
+                                 Command="{Binding User.OpenInNewWindowCommand}"
+                                 Content="{Binding User.Name}" Classes="Pri"/>
                 <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
                 <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
                 <TextBlock>

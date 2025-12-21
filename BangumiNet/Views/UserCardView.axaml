@@ -15,8 +15,8 @@
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
-                             Content="{Binding Nickname}" Classes="Title" 
-                             Command="{Binding OpenInNewWindowCommand}"/>
+                             Command="{Binding OpenInNewWindowCommand}"
+                             Content="{Binding Name}" Classes="Title"/>
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                 <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>

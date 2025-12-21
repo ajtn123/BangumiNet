@@ -15,7 +15,7 @@ public partial class UserViewModel : ItemViewModelBase
         Avatar = user.Avatar;
         Sign = user.Sign;
         Username = user.Username;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Id = user.Id;
         UserGroup = (UserGroup?)user.UserGroup;
 
@@ -27,7 +27,7 @@ public partial class UserViewModel : ItemViewModelBase
         Source = user;
         Avatar = user.Avatar;
         Sign = user.Sign;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Username = user.Username;
         Id = user.Id;
         UserGroup = (UserGroup?)user.UserGroup;
@@ -43,7 +43,7 @@ public partial class UserViewModel : ItemViewModelBase
         Source = user;
         Avatar = user.Avatar;
         Sign = user.Sign;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Username = user.Username;
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
@@ -53,7 +53,7 @@ public partial class UserViewModel : ItemViewModelBase
     {
         Source = user;
         Username = user.Username;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Avatar = user.Avatar;
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
@@ -64,7 +64,7 @@ public partial class UserViewModel : ItemViewModelBase
     {
         Source = user;
         Username = user.Username;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Avatar = user.Avatar;
         Id = user.Id;
         UserGroup = (UserGroup?)user.Group;
@@ -76,7 +76,7 @@ public partial class UserViewModel : ItemViewModelBase
     {
         Source = user;
         Username = user.Username;
-        Nickname = user.Nickname;
+        Name = user.Nickname;
         Id = user.Id;
     }
     public UserViewModel(string? username)
@@ -94,11 +94,10 @@ public partial class UserViewModel : ItemViewModelBase
         }
 
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
-        Title = Nickname ?? $"{ItemType.GetNameCn()} {Username}";
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe))).DisposeWith(disposables);
 
-        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Nickname)).DisposeWith(disposables);
+        SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name)).DisposeWith(disposables);
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username)).DisposeWith(disposables);
     }
 
@@ -107,7 +106,6 @@ public partial class UserViewModel : ItemViewModelBase
     [Reactive] public partial string? Summary { get; set; }
     [Reactive] public partial string? Url { get; set; }
     [Reactive] public partial string? Username { get; set; }
-    [Reactive] public partial string? Nickname { get; set; }
     [Reactive] public partial UserGroup? UserGroup { get; set; }
     [Reactive] public partial DateTimeOffset? RegistrationTime { get; set; }
     [Reactive] public partial string? Email { get; set; }
