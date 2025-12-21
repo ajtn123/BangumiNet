@@ -4,7 +4,6 @@ using Avalonia.VisualTree;
 using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
-using FluentIcons.Avalonia;
 using System.Collections;
 using System.Reactive.Linq;
 
@@ -55,7 +54,8 @@ public partial class SecondaryWindow : AppWindow
     {
         Content = new ContentControl { Content = vm },
         Header = vm.Title,
-        IconSource = new ImageIconSource { Source = new FluentImage { Icon = FluentIcons.Common.Icon.Document } }
+        IconSource = vm is ItemViewModelBase ivm ? IconHelper.GetIconSource(ivm.ItemType)
+                                                 : Utils.IconSource.FromIcon(FluentIcons.Common.Icon.Document),
     };
     private static ViewModelBase? GetVm(TabViewItem tab)
         => (tab.Content as ContentControl)?.Content as ViewModelBase;
@@ -82,6 +82,11 @@ public partial class SecondaryWindow : AppWindow
         return window;
     }
 
+#pragma warning disable IDE0051
+#pragma warning disable CS0618
+#pragma warning disable IDE0060
+#pragma warning disable CA1822
+
     private void TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
         => Tabs.Remove(args.Tab);
 
@@ -99,7 +104,6 @@ public partial class SecondaryWindow : AppWindow
         args.Data.RequestedOperation = DragDropEffects.Move;
     }
 
-#pragma warning disable CS0618 // 类型或成员已过时
     private void TabStripDragOver(object? sender, DragEventArgs e)
     {
         if (!e.Data.Contains(DataIdentifier)) return;
@@ -136,14 +140,18 @@ public partial class SecondaryWindow : AppWindow
         if (srcTabView.TabItems.Count() == 0)
             srcTabView.FindAncestorOfType<SecondaryWindow>()?.Close();
     }
-#pragma warning restore CS0618 // 类型或成员已过时
 
     private void TabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)
     {
         ((IList)sender.TabItems).Remove(args.Tab);
-        var vm = GetVm((TabViewItem)args.Tab);
+        var vm = GetVm(args.Tab);
         if (vm != null) Show(vm, inNewWindow: true);
     }
+
+#pragma warning restore IDE0051
+#pragma warning restore CS0618
+#pragma warning restore IDE0060
+#pragma warning restore CA1822
 
     public const string DataIdentifier = "SecWindowTabItem";
 }

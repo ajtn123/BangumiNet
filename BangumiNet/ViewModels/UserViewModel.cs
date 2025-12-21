@@ -94,6 +94,7 @@ public partial class UserViewModel : ItemViewModelBase
         }
 
         Url ??= UrlProvider.BangumiTvUserUrlBase + Username;
+        Title = Nickname ?? $"{ItemType.GetNameCn()} {Username}";
 
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe))).DisposeWith(disposables);
 
