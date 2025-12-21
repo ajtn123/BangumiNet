@@ -10,7 +10,7 @@
              x:DataType="bn:TimelineViewModel"
              x:Class="BangumiNet.Views.TimelineView">
     <UserControl.Styles>
-        <Style Selector="bn|TimelineView.Streaming #TimelineList > ItemsControl">
+        <Style Selector="bn|TimelineView #TimelineList > ItemsControl">
             <Setter Property="ClipToBounds" Value="True"/>
             <Style Selector="^ > ContentPresenter">
 			    <Setter Property="bn:MoveTransitions.Transition">

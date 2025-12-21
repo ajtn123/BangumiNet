@@ -21,7 +21,7 @@ public class CalendarViewModel : ViewModelBase
         DayOfWeek = calendar.Key;
         Weekday = new WeekdayNames(calendar.Key);
         Subjects = calendar.Value?
-            .Select(c => new SubjectViewModel(c.Subject!) { Collection = new CollectionStatusCounts() { Doing = c.Watchers } })
+            .Select(c => new SubjectViewModel(c.Subject!) { Collection = new CollectionStatusCounts { Doing = c.Watchers } })
             .ToObservableCollection();
     }
 
