@@ -6,6 +6,6 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('Windows'))">win-x64</RuntimeIdentifier>
     </PropertyGroup>
 </Project>
