@@ -24,9 +24,10 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     vm.EpisodeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.PersonBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.CharacterBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();

@@ -22,9 +22,10 @@ public partial class GroupView : ReactiveUserControl<GroupViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     _ = vm.Members?.LoadPageCommand.Execute(1).Subscribe();
                     _ = vm.Topics?.LoadPageCommand.Execute(1).Subscribe();
                 }).DisposeWith(disposables);

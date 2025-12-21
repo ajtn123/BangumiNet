@@ -4,12 +4,16 @@ public partial class ViewModelBase : ReactiveObject
 {
     public ViewModelBase()
     {
-        Title = Shared.Constants.ApplicationName;
+        Title = Constants.ApplicationName;
         IsVisible = true;
         IsEmphasized = false;
+        IsLoaded = false;
     }
+
     public static Settings CurrentSettings => SettingProvider.CurrentSettings;
+
     [Reactive] public partial string Title { get; set; }
     [Reactive] public partial bool IsVisible { get; set; }
     [Reactive] public partial bool IsEmphasized { get; set; }
+    [Reactive] public partial bool IsLoaded { get; set; }
 }

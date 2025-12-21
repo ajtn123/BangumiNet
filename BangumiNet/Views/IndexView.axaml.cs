@@ -22,9 +22,10 @@ public partial class IndexView : ReactiveUserControl<IndexViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     vm.Comments?.LoadPageCommand.Execute().Subscribe();
                     vm.RelatedItems?.ProceedPageCommand.Execute().Subscribe();
                 }).DisposeWith(disposables);

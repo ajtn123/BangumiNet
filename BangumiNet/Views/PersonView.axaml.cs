@@ -22,9 +22,10 @@ public partial class PersonView : ReactiveUserControl<PersonViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     vm.SubjectBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.CharacterBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();

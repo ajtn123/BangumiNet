@@ -22,9 +22,10 @@ public partial class BlogView : ReactiveUserControl<BlogViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     _ = vm.RelatedSubjects?.LoadAsync();
                     vm.Photos?.ProceedPageCommand.Execute().Subscribe();
                     vm.Comments?.LoadPageCommand.Execute().Subscribe();

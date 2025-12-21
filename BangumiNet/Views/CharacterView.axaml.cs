@@ -22,9 +22,10 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
                 }).DisposeWith(disposables);
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Where(vm => vm.IsFull)
+                .Where(vm => vm.IsFull && !vm.IsLoaded)
                 .Subscribe(async vm =>
                 {
+                    vm.IsLoaded = true;
                     vm.SubjectBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
                     vm.IndexCardListViewModel?.ProceedPageCommand.Execute().Subscribe();
