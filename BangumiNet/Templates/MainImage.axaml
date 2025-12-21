@@ -14,7 +14,8 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border ClipToBounds="True" CornerRadius="10">
-                    <Image Source="{TemplateBinding Source}">
+                    <Image Source="{TemplateBinding Source}"
+                           RenderOptions.BitmapInterpolationMode="None">
                         <Image.ContextFlyout>
                             <Flyout>
                                 <StackPanel>
