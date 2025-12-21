@@ -2,6 +2,7 @@
 
 [![license](https://img.shields.io/github/license/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/blob/master/LICENSE.txt)
 [![release](https://img.shields.io/github/release/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/releases)
+![code size](https://img.shields.io/github/languages/code-size/ajtn123/BangumiNet)
 [![framework](https://img.shields.io/badge/.NET-10-blue)](https://dotnet.microsoft.com/zh-cn/)
 [![framework](https://img.shields.io/badge/Avalonia-11-blue)](https://avaloniaui.net/)
 [![ci](https://github.com/ajtn123/BangumiNet/actions/workflows/build.yml/badge.svg)](https://github.com/ajtn123/BangumiNet/actions/workflows/build.yml)
@@ -12,7 +13,7 @@ BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组�
 
 ## 预览
 
-<img width="2559" height="1525" alt="屏幕截图" src="https://github.com/user-attachments/assets/a66c77c1-7a0a-4af9-bcf6-a58e6ae6a8e6" />
+<img width="3828" height="2035" alt="屏幕截图" src="https://github.com/user-attachments/assets/006bc927-8708-491a-bf80-205a745a1a74" />
 
 ## 安装
 
