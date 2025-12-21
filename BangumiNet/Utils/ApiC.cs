@@ -33,11 +33,12 @@ public static partial class ApiC
            ReferenceEquals(bitmap, FallbackImage) ||
            ReferenceEquals(bitmap, InternetErrorFallbackImage);
 
-    private static readonly SemaphoreSlim semaphore = new(128);
+    private static readonly SemaphoreSlim semaphore = new(32);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
     public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, bool fallback = false, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(url)) return null;
+        if (string.IsNullOrWhiteSpace(url))
+            return null;
         if (DefaultUserAvatarUrl().IsMatch(url))
             return DefaultUserAvatar;
         if (NoPhotoUrl().IsMatch(url))
@@ -54,17 +55,13 @@ public static partial class ApiC
             {
                 await using var cacheStream = CacheProvider.ReadCache(url);
                 if (cacheStream is not null)
-                {
-                    var cacheBitmap = new Bitmap(cacheStream);
-                    return cacheBitmap;
-                }
+                    return new Bitmap(cacheStream);
             }
 
             await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
             await using var responseStream = await response.Clone(cancellationToken: cancellationToken);
             if (useCache) await CacheProvider.WriteCache(url, responseStream);
-            var responseBitmap = new Bitmap(responseStream);
-            return responseBitmap;
+            return new Bitmap(responseStream);
         }
         catch (Exception e)
         {
