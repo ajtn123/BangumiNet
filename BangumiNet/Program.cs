@@ -1,13 +1,4 @@
-﻿global using BangumiNet.Shared;
-global using BangumiNet.Utils;
-global using BangumiNet.ViewModels;
-global using BangumiNet.Views;
-global using ReactiveUI;
-global using ReactiveUI.Avalonia;
-global using ReactiveUI.SourceGenerators;
-global using System.Collections.ObjectModel;
-global using System.Diagnostics;
-using Avalonia;
+﻿using Avalonia;
 
 namespace BangumiNet;
 

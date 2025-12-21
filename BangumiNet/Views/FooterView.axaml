@@ -24,6 +24,7 @@
                     <TextBlock><ic:FluentIcon Icon="Code" FontSize="15"/><Run Text="GitHub"/></TextBlock>
                 </Button>
             </WrapPanel>
+
             <TextBlock Classes="Title" FontSize="30" Text="{x:Static shared:Constants.BangumiName}"/>
             <WrapPanel Classes="InfoBar" ItemSpacing="10">
                 <Button ToolTip.Tip="打开 bangumi.tv" Click="OpenBangumi"
@@ -40,7 +41,7 @@
                 </Button>
             </WrapPanel>
             <TextBlock ToolTip.Tip="版权声明">
-                © 2008-2025 Bangumi (a.k.a.Chobits), some rights reserved | r698
+                © 2008-2025 Bangumi (a.k.a.Chobits), some rights reserved
             </TextBlock>
         </StackPanel>
     </Grid>

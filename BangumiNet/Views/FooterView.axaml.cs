@@ -12,7 +12,7 @@ public partial class FooterView : UserControl
         VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
     }
     private void OpenGitHub(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(Shared.Constants.SourceRepository);
+        => CommonUtils.OpenUrlInBrowser(Constants.SourceRepository);
     private void OpenBangumi(object? sender, RoutedEventArgs e)
         => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiUrl);
     private void OpenBgm(object? sender, RoutedEventArgs e)
