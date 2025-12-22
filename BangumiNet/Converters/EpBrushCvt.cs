@@ -17,14 +17,14 @@ public class EpBrushCvt : IValueConverter
     public static IBrush? Convert(object? obj)
         => (obj as EpisodeType?) switch
         {
-            EpisodeType.Mainline => Brush.Parse(SettingProvider.CurrentSettings.EpMainBg),
-            EpisodeType.Special => Brush.Parse(SettingProvider.CurrentSettings.EpSpBg),
-            EpisodeType.Opening => Brush.Parse(SettingProvider.CurrentSettings.EpOpBg),
-            EpisodeType.Ending => Brush.Parse(SettingProvider.CurrentSettings.EpEdBg),
-            EpisodeType.Advertisement => Brush.Parse(SettingProvider.CurrentSettings.EpCmBg),
-            EpisodeType.Mad => Brush.Parse(SettingProvider.CurrentSettings.EpMadBg),
-            EpisodeType.Other => Brush.Parse(SettingProvider.CurrentSettings.EpOtherBg),
-            null => Brush.Parse(SettingProvider.CurrentSettings.ErrorBg),
+            EpisodeType.Mainline => Brush.Parse(SettingProvider.Current.EpMainBg),
+            EpisodeType.Special => Brush.Parse(SettingProvider.Current.EpSpBg),
+            EpisodeType.Opening => Brush.Parse(SettingProvider.Current.EpOpBg),
+            EpisodeType.Ending => Brush.Parse(SettingProvider.Current.EpEdBg),
+            EpisodeType.Advertisement => Brush.Parse(SettingProvider.Current.EpCmBg),
+            EpisodeType.Mad => Brush.Parse(SettingProvider.Current.EpMadBg),
+            EpisodeType.Other => Brush.Parse(SettingProvider.Current.EpOtherBg),
+            null => Brush.Parse(SettingProvider.Current.ErrorBg),
             _ => throw new NotImplementedException(),
         };
 }

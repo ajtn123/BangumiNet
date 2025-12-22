@@ -10,7 +10,7 @@ public partial class MainWindow : AppWindow
     {
         InitializeComponent();
 
-        if (SettingProvider.CurrentSettings.ShowSplashScreenOnAppStartup)
+        if (SettingProvider.Current.ShowSplashScreenOnAppStartup)
             SplashScreen = new WindowSplashScreen(this);
 
         homeVM = new();
@@ -38,7 +38,7 @@ public partial class MainWindow : AppWindow
             "分类浏览" => subjectBrowserVM ??= new(),
             "番组索引" => bangumiDataIndexVM ??= new(),
             "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
-            "设置" => new SettingViewModel(SettingProvider.CurrentSettings),
+            "设置" => new SettingViewModel(SettingProvider.Current),
             _ => throw new NotImplementedException(),
         };
     }

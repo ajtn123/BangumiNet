@@ -10,7 +10,7 @@ public partial class ViewModelBase : ReactiveObject
         IsLoaded = false;
     }
 
-    public static Settings CurrentSettings => SettingProvider.CurrentSettings;
+    public static Settings Settings => SettingProvider.Current;
 
     [Reactive] public partial string Title { get; set; }
     [Reactive] public partial bool IsVisible { get; set; }

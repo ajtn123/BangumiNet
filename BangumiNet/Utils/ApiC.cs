@@ -12,7 +12,7 @@ namespace BangumiNet.Utils;
 
 public static partial class ApiC
 {
-    public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.CurrentSettings);
+    public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.Current);
     public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
     public static Api.V0.V0.V0RequestBuilder V0 => Clients.V0Client.V0;
     public static HttpClient HttpClient => Clients.HttpClient;
@@ -49,7 +49,7 @@ public static partial class ApiC
         await semaphore.WaitAsync(cancellationToken);
         try
         {
-            useCache = useCache && SettingProvider.CurrentSettings.IsDiskCacheEnabled;
+            useCache = useCache && SettingProvider.Current.IsDiskCacheEnabled;
 
             if (useCache)
             {
@@ -79,7 +79,7 @@ public static partial class ApiC
     }
 
     public static void RebuildClients()
-        => Clients = ClientBuilder.Build(SettingProvider.CurrentSettings);
+        => Clients = ClientBuilder.Build(SettingProvider.Current);
 
     /// <summary>
     /// 发起请求并转换为相应的 ViewModel 类型

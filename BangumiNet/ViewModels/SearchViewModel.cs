@@ -179,7 +179,7 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         PageNavigator.UpdatePageInfo(response);
     }
 
-    public override int Limit => SettingProvider.CurrentSettings.SearchPageSize;
+    public override int Limit => SettingProvider.Current.SearchPageSize;
 
     [Reactive] public partial string? SubjectErrorMessage { get; set; }
     [Reactive] public partial string? PersonErrorMessage { get; set; }

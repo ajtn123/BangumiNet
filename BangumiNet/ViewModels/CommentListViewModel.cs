@@ -150,5 +150,5 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
     [Reactive] public partial CollectionType? CollectionType { get; set; }
     [Reactive] public partial ReplyViewModel ReplyViewModel { get; set; }
 
-    public override int Limit => CurrentSettings.CommentPageSize;
+    public override int Limit => Settings.CommentPageSize;
 }

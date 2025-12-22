@@ -7,22 +7,25 @@ public partial class SettingViewModel : ViewModelBase
     public SettingViewModel(Settings settings)
     {
         DefaultSettings = new();
-        Settings = settings;
+        Source = settings;
         Overrides = settings.GetOverrides();
 
-        UserAgent = GetOverride(nameof(Settings.UserAgent));
+        Title = $"设置 - {Title}";
+        SearchEngineSuggestions = [];
+
+        UserAgent = GetOverride(nameof(Source.UserAgent));
         AuthToken = settings.AuthToken;
-        BangumiTvUrlBase = GetOverride(nameof(Settings.BangumiTvUrlBase));
+        BangumiTvUrlBase = GetOverride(nameof(Source.BangumiTvUrlBase));
         DefaultSearchEngine = settings.DefaultSearchEngine;
-        LocalDataDirectory = GetOverride(nameof(Settings.LocalDataDirectory));
+        LocalDataDirectory = GetOverride(nameof(Source.LocalDataDirectory));
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
-        DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Settings.DiskCacheSizeLimit));
-        CollectionPageSize = (int?)Overrides.TryGet(nameof(Settings.CollectionPageSize));
-        RevisionPageSize = (int?)Overrides.TryGet(nameof(_settings.RevisionPageSize));
+        DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Source.DiskCacheSizeLimit));
+        CollectionPageSize = (int?)Overrides.TryGet(nameof(Source.CollectionPageSize));
+        RevisionPageSize = (int?)Overrides.TryGet(nameof(Source.RevisionPageSize));
         CommentPageSize = (int?)Overrides.TryGet(nameof(settings.CommentPageSize));
-        SearchPageSize = (int?)Overrides.TryGet(nameof(Settings.SearchPageSize));
-        EpisodePageSize = (int?)Overrides.TryGet(nameof(Settings.EpisodePageSize));
-        SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Settings.SubjectBrowserPageSize));
+        SearchPageSize = (int?)Overrides.TryGet(nameof(Source.SearchPageSize));
+        EpisodePageSize = (int?)Overrides.TryGet(nameof(Source.EpisodePageSize));
+        SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Source.SubjectBrowserPageSize));
         PreferChineseNames = settings.PreferChineseNames;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
@@ -41,12 +44,12 @@ public partial class SettingViewModel : ViewModelBase
 
         UndoChangesCommand = ReactiveCommand.Create(() => { });
         RestoreCommand = ReactiveCommand.Create(() => { });
-        GetTokenCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Shared.Constants.BangumiTokenManagerUrl));
+        GetTokenCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Constants.BangumiTokenManagerUrl));
         SaveCommand = ReactiveCommand.Create(() =>
         {
             var newSettings = ToSettings();
             SettingProvider.UpdateSettings(newSettings);
-            if (newSettings.AuthToken != Settings.AuthToken || newSettings.UserAgent != Settings.UserAgent)
+            if (newSettings.AuthToken != Source.AuthToken || newSettings.UserAgent != Source.UserAgent)
             {
                 ApiC.RebuildClients();
                 var mainWindow = MainWindow.Instance;
@@ -60,9 +63,7 @@ public partial class SettingViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(CacheSizeString));
         });
 
-        Title = $"设置 - {Title}";
-        SearchEngineSuggestions = [];
-        this.WhenAnyValue(x => x.Settings).Subscribe(x => SearchEngineSuggestions = [.. x.SearchQueryUrlBases.Keys]);
+        this.WhenAnyValue(x => x.Source).Subscribe(x => SearchEngineSuggestions = [.. x.SearchQueryUrlBases.Keys]);
     }
 
     public Settings ToSettings() => new()
@@ -83,16 +84,16 @@ public partial class SettingViewModel : ViewModelBase
         PreferChineseNames = PreferChineseNames,
         ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
         ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
-        EpMainBg = GetColor(nameof(Settings.EpMainBg)),
-        EpSpBg = GetColor(nameof(Settings.EpSpBg)),
-        EpOpBg = GetColor(nameof(Settings.EpOpBg)),
-        EpEdBg = GetColor(nameof(Settings.EpEdBg)),
-        EpCmBg = GetColor(nameof(Settings.EpCmBg)),
-        EpMadBg = GetColor(nameof(Settings.EpMadBg)),
-        EpOtherBg = GetColor(nameof(Settings.EpOtherBg)),
-        ErrorBg = GetColor(nameof(Settings.ErrorBg)),
-        OkBg = GetColor(nameof(Settings.OkBg)),
-        SearchQueryUrlBases = Settings.SearchQueryUrlBases,
+        EpMainBg = GetColor(nameof(Source.EpMainBg)),
+        EpSpBg = GetColor(nameof(Source.EpSpBg)),
+        EpOpBg = GetColor(nameof(Source.EpOpBg)),
+        EpEdBg = GetColor(nameof(Source.EpEdBg)),
+        EpCmBg = GetColor(nameof(Source.EpCmBg)),
+        EpMadBg = GetColor(nameof(Source.EpMadBg)),
+        EpOtherBg = GetColor(nameof(Source.EpOtherBg)),
+        ErrorBg = GetColor(nameof(Source.ErrorBg)),
+        OkBg = GetColor(nameof(Source.OkBg)),
+        SearchQueryUrlBases = Source.SearchQueryUrlBases,
     };
 
     public string GetColor(string key)
@@ -102,7 +103,7 @@ public partial class SettingViewModel : ViewModelBase
     public string GetOverride(string key)
         => Overrides.TryGet(key)?.ToString() ?? "";
 
-    [Reactive] public partial Settings Settings { get; set; }
+    [Reactive] public partial Settings Source { get; set; }
     [Reactive] public partial Dictionary<string, object?> Overrides { get; set; }
     [Reactive] public partial Settings DefaultSettings { get; set; }
     [Reactive] public partial string UserAgent { get; set; }

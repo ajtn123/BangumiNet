@@ -4,12 +4,12 @@ namespace BangumiNet.Shared;
 
 public static class SettingProvider
 {
-    public static Settings CurrentSettings { get; private set; } = LoadSettings();
+    public static Settings Current { get; private set; } = LoadSettings();
 
     public static void UpdateSettings(Settings settings)
     {
-        CurrentSettings = settings;
-        CurrentSettings.Save();
+        Current = settings;
+        Current.Save();
     }
 
     private static readonly JsonSerializerOptions options = new()

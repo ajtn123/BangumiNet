@@ -41,8 +41,8 @@ public static partial class CommonUtils
     public static void SearchWeb(string? keyword, string? searchEngine = null)
     {
         if (string.IsNullOrEmpty(keyword)) return;
-        searchEngine ??= SettingProvider.CurrentSettings.DefaultSearchEngine;
-        if (!SettingProvider.CurrentSettings.SearchQueryUrlBases.TryGetValue(searchEngine, out var ub)) return;
+        searchEngine ??= SettingProvider.Current.DefaultSearchEngine;
+        if (!SettingProvider.Current.SearchQueryUrlBases.TryGetValue(searchEngine, out var ub)) return;
         OpenUrlInBrowser(ub + WebUtility.UrlEncode(keyword));
     }
 

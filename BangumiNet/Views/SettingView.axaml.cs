@@ -12,7 +12,7 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
     private readonly CompositeDisposable commandSubs = [];
     public SettingView()
     {
-        if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
+        if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.Current);
 
         InitializeComponent();
 
@@ -25,9 +25,9 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
                 .Subscribe(vm =>
                 {
                     commandSubs.Clear();
-                    vm.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.CurrentSettings.AuthToken })).DisposeWith(commandSubs);
-                    vm.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
-                    vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
+                    vm.RestoreCommand.Subscribe(a => DataContext = new SettingViewModel(new() { AuthToken = SettingProvider.Current.AuthToken })).DisposeWith(commandSubs);
+                    vm.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.Current)).DisposeWith(commandSubs);
+                    vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.Current)).DisposeWith(commandSubs);
                 }).DisposeWith(disposables);
 
             if (!isUpdateChecked)

@@ -17,7 +17,7 @@ public partial class SecondaryWindow : AppWindow
     {
         InitializeComponent();
 
-        if (SettingProvider.CurrentSettings.ShowSplashScreenOnWindowStartup)
+        if (SettingProvider.Current.ShowSplashScreenOnWindowStartup)
             SplashScreen = new WindowSplashScreen(this);
 
         Bind(TitleProperty, this.WhenAnyValue(x => x.SecWindowTabView.SelectedItem)

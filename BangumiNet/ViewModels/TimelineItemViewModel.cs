@@ -24,7 +24,7 @@ public partial class TimelineItemViewModel : ItemViewModelBase
 
         List<ViewModelBase> subjects = [];
         if (OperationSource == "web" && string.IsNullOrWhiteSpace(OperationSourceUrl))
-            OperationSourceUrl = CurrentSettings.BangumiTvUrlBase;
+            OperationSourceUrl = Settings.BangumiTvUrlBase;
         if (timeline.User != null)
             subjects.Add(User = new(timeline.User));
         if (timeline.Memo is { } memo)

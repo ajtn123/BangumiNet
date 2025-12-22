@@ -9,18 +9,18 @@ public static class CacheProvider
     public static long CacheSize { get; set; } = 0;
     static CacheProvider()
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) DumpCache();
+        if (!SettingProvider.Current.IsDiskCacheEnabled) DumpCache();
         else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
         else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
     }
 
     public static async Task WriteCache(string id, Stream content)
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return;
+        if (!SettingProvider.Current.IsDiskCacheEnabled) return;
 
         var l = content.Length;
-        if (l > SettingProvider.CurrentSettings.DiskCacheSizeLimit) return;
-        if (CacheSize + l > SettingProvider.CurrentSettings.DiskCacheSizeLimit) CleanUpCache();
+        if (l > SettingProvider.Current.DiskCacheSizeLimit) return;
+        if (CacheSize + l > SettingProvider.Current.DiskCacheSizeLimit) CleanUpCache();
 
         var idHash = Utils.GetHash(id);
         var path = GetAbsolutePath(idHash);
@@ -37,7 +37,7 @@ public static class CacheProvider
 
     public static FileStream? ReadCache(string id)
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return null;
+        if (!SettingProvider.Current.IsDiskCacheEnabled) return null;
 
         var idHash = Utils.GetHash(id);
         var path = GetAbsolutePath(idHash);
@@ -49,7 +49,7 @@ public static class CacheProvider
 
     public static string? GetCacheFile(string id)
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled) return null;
+        if (!SettingProvider.Current.IsDiskCacheEnabled) return null;
 
         var idHash = Utils.GetHash(id);
         var path = GetAbsolutePath(idHash);
@@ -69,7 +69,7 @@ public static class CacheProvider
 
     public static void CleanUpCache()
     {
-        if (!SettingProvider.CurrentSettings.IsDiskCacheEnabled)
+        if (!SettingProvider.Current.IsDiskCacheEnabled)
         {
             DumpCache();
             return;
@@ -80,7 +80,7 @@ public static class CacheProvider
             file.Delete();
 
         CacheSize = files.Sum(f => f.Length);
-        if (CacheSize > SettingProvider.CurrentSettings.DiskCacheSizeLimit)
+        if (CacheSize > SettingProvider.Current.DiskCacheSizeLimit)
             CleanUpCache();
     }
 

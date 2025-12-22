@@ -25,7 +25,7 @@ public class NameCnCvt : IValueConverter
         return Convert(name, nameCn);
     }
     public static string? Convert(string? name, string? nameCn)
-        => string.IsNullOrWhiteSpace(nameCn) ? name : SettingProvider.CurrentSettings.PreferChineseNames ? nameCn : name;
+        => string.IsNullOrWhiteSpace(nameCn) ? name : SettingProvider.Current.PreferChineseNames ? nameCn : name;
 }
 public class NameAltCvt : IValueConverter
 {
@@ -47,5 +47,5 @@ public class NameAltCvt : IValueConverter
         return Convert(name, nameCn);
     }
     public static string? Convert(string? name, string? nameCn)
-        => string.IsNullOrWhiteSpace(nameCn) ? null : SettingProvider.CurrentSettings.PreferChineseNames ? name : nameCn;
+        => string.IsNullOrWhiteSpace(nameCn) ? null : SettingProvider.Current.PreferChineseNames ? name : nameCn;
 }

@@ -97,5 +97,5 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             .ToObservableCollection();
     }
 
-    public override int Limit => CurrentSettings.SubjectBrowserPageSize;
+    public override int Limit => Settings.SubjectBrowserPageSize;
 }

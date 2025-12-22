@@ -23,8 +23,8 @@ public partial class App : Application
                 window.navigatorViewModel.Navigate(args);
         }
 
-        Resources["ErrorBg"] = Brush.Parse(SettingProvider.CurrentSettings.ErrorBg);
-        Resources["OkBg"] = Brush.Parse(SettingProvider.CurrentSettings.OkBg);
+        Resources["ErrorBg"] = Brush.Parse(SettingProvider.Current.ErrorBg);
+        Resources["OkBg"] = Brush.Parse(SettingProvider.Current.OkBg);
 
         _ = BangumiDataProvider.LoadBangumiDataObject();
 

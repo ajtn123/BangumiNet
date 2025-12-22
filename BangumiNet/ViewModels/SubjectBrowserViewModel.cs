@@ -103,7 +103,7 @@ public partial class SubjectBrowserViewModel : SubjectListPagedViewModel
     public bool IsBrowsingReal => Type == SubjectType.Real;
     public bool IsBrowsingMusic => Type == SubjectType.Music;
 
-    public override int Limit => SettingProvider.CurrentSettings.SubjectBrowserPageSize;
+    public override int Limit => SettingProvider.Current.SubjectBrowserPageSize;
 
     public int? GetCategory()
         => Type switch

@@ -237,6 +237,6 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
     [Reactive] public partial string? PageInfoMessage { get; set; }
 
     public bool IsSubject => ItemType == ItemType.Subject;
-    public override int Limit => SettingProvider.CurrentSettings.CollectionPageSize;
+    public override int Limit => SettingProvider.Current.CollectionPageSize;
     public ViewModelActivator Activator { get; } = new();
 }

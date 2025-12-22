@@ -81,7 +81,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                     RelatedItemType.Character => await ApiC.P1.Subjects[id].Characters.GetAsync(c => c.Paging(limit, Offset), ct),
                     RelatedItemType.Collector => await ApiC.P1.Subjects[id].Collects.GetAsync(c => c.Paging(limit, Offset), ct),
                     RelatedItemType.Comment => await ApiC.P1.Subjects[id].Comments.GetAsync(c => c.Paging(limit, Offset), ct),
-                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(limit = CurrentSettings.EpisodePageSize, Offset), ct),
+                    RelatedItemType.Episode => await ApiC.P1.Subjects[id].Episodes.GetAsync(c => c.Paging(limit = Settings.EpisodePageSize, Offset), ct),
                     RelatedItemType.Index => await ApiC.P1.Subjects[id].Indexes.GetAsync(c => c.Paging(limit, Offset), ct),
                     RelatedItemType.Recommendation => await ApiC.P1.Subjects[id].Recs.GetAsync(c => c.Paging(limit = 10, Offset), ct),
                     RelatedItemType.Subject => await ApiC.P1.Subjects[id].Relations.GetAsync(c => c.Paging(limit, Offset), ct),

@@ -58,5 +58,5 @@ public partial class RevisionListViewModel : SubjectListPagedViewModel
     [Reactive] public partial ItemType ParentItemType { get; set; }
     [Reactive] public partial int? ParentId { get; set; }
 
-    public override int Limit => CurrentSettings.RevisionPageSize;
+    public override int Limit => Settings.RevisionPageSize;
 }
