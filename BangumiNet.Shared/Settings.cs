@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Api;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace BangumiNet.Shared;
@@ -46,16 +47,26 @@ public record class Settings : IApiSettings
 
     // 所有颜色选项以 Color 开头，反之则不可以 Color 开头
 
+    [Description("自定义强调色")]
     public string ColorCustomAccent { get; init; } = "#fff09199";
 
+    [Description("章节背景 主线")]
     public string ColorEpMainBg { get; init; } = "#7f7fff7f";
+    [Description("章节背景 SP")]
     public string ColorEpSpBg { get; init; } = "#7fffff7f";
+    [Description("章节背景 OP")]
     public string ColorEpOpBg { get; init; } = "#7f7fffff";
+    [Description("章节背景 ED")]
     public string ColorEpEdBg { get; init; } = "#7f7fffff";
+    [Description("章节背景 CM")]
     public string ColorEpCmBg { get; init; } = "#7f7f7f7f";
+    [Description("章节背景 MAD")]
     public string ColorEpMadBg { get; init; } = "#7f7f7f7f";
+    [Description("章节背景 其他")]
     public string ColorEpOtherBg { get; init; } = "#7f7f7f7f";
 
+    [Description("错误背景")]
     public string ColorErrorBg { get; init; } = "#7fff7f7f";
+    [Description("成功背景")]
     public string ColorOkBg { get; init; } = "#7f7fff7f";
 }

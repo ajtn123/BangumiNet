@@ -90,6 +90,55 @@
                         </StackPanel>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
+                <ui:SettingsExpander Header="外观" IsExpanded="False"
+                                     IconSource="{bn:IconSource AppGeneric}">
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
+                        <TextBlock>浅色/深色模式</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <ComboBox SelectedItem="{Binding ApplicationTheme}"
+                                      Name="ApplicationThemeComboBox">
+								<ComboBox.DataTemplates>
+									<DataTemplate DataType="shared:ApplicationTheme">
+										<TextBlock Text="{Binding Converter={StaticResource EnumCvt}}"/>
+                                    </DataTemplate>
+                                </ComboBox.DataTemplates>
+                            </ComboBox>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
+                        <TextBlock>使用系统强调色</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding UseSystemAccentColor}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
+                        <TextBlock>主窗口显示启动画面</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
+                        <TextBlock>次要窗口显示启动画面</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
+                                     IconSource="{bn:IconSource Color}"
+                                     ItemsSource="{Binding Palette}">
+                    <ui:SettingsExpander.DataTemplates>
+                        <DataTemplate DataType="bn:PaletteItemViewModel">
+                            <ui:SettingsExpanderItem>
+                                <TextBlock Text="{Binding Name}"/>
+                                <ui:SettingsExpanderItem.Footer>
+                                    <ColorPicker Color="{Binding Color,Converter={StaticResource HexColorCvt}}"
+                                                 ColorModel="Rgba"/>
+                                </ui:SettingsExpanderItem.Footer>
+                            </ui:SettingsExpanderItem>
+                        </DataTemplate>
+                    </ui:SettingsExpander.DataTemplates>
+                </ui:SettingsExpander>
                 <ui:SettingsExpander Header="Bangumi 地址" IconSource="{bn:IconSource Server}">
                     <ui:SettingsExpander.Footer>
                         <TextBox Text="{Binding BangumiTvUrlBase}"
@@ -217,55 +266,6 @@
                     <ui:SettingsExpander.Footer>
                         <CheckBox IsChecked="{Binding SaveLogFile}"/>
                     </ui:SettingsExpander.Footer>
-                </ui:SettingsExpander>
-                <ui:SettingsExpander Header="外观" IsExpanded="False"
-                                     IconSource="{bn:IconSource AppGeneric}">
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
-                        <TextBlock>浅色/深色模式</TextBlock>
-                        <ui:SettingsExpanderItem.Footer>
-                            <ComboBox SelectedItem="{Binding ApplicationTheme}"
-                                      Name="ApplicationThemeComboBox">
-								<ComboBox.DataTemplates>
-									<DataTemplate DataType="shared:ApplicationTheme">
-										<TextBlock Text="{Binding Converter={StaticResource EnumCvt}}"/>
-                                    </DataTemplate>
-                                </ComboBox.DataTemplates>
-                            </ComboBox>
-                        </ui:SettingsExpanderItem.Footer>
-                    </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
-                        <TextBlock>使用系统强调色</TextBlock>
-                        <ui:SettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding UseSystemAccentColor}"/>
-                        </ui:SettingsExpanderItem.Footer>
-                    </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
-                        <TextBlock>主窗口显示启动画面</TextBlock>
-                        <ui:SettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}"/>
-                        </ui:SettingsExpanderItem.Footer>
-                    </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
-                        <TextBlock>次要窗口显示启动画面</TextBlock>
-                        <ui:SettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}"/>
-                        </ui:SettingsExpanderItem.Footer>
-                    </ui:SettingsExpanderItem>
-                </ui:SettingsExpander>
-                <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
-                                     IconSource="{bn:IconSource Color}"
-                                     ItemsSource="{Binding Palette}">
-                    <ui:SettingsExpander.DataTemplates>
-                        <DataTemplate DataType="bn:PaletteItemViewModel">
-                            <ui:SettingsExpanderItem>
-                                <TextBlock Text="{Binding Name}"/>
-                                <ui:SettingsExpanderItem.Footer>
-                                    <ColorPicker Color="{Binding Color,Converter={StaticResource HexColorCvt}}"
-                                                 ColorModel="Rgba"/>
-                                </ui:SettingsExpanderItem.Footer>
-                            </ui:SettingsExpanderItem>
-                        </DataTemplate>
-                    </ui:SettingsExpander.DataTemplates>
                 </ui:SettingsExpander>
             </StackPanel>
         </ScrollViewer>
