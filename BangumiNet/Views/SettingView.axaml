@@ -7,7 +7,6 @@
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
              xmlns:shared="using:BangumiNet.Shared"
-             xmlns:refl="using:System.Reflection"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1600"
              x:DataType="bn:SettingViewModel"
              x:Class="BangumiNet.Views.SettingView">
@@ -74,6 +73,7 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
+
                 <ui:SettingsExpander Header="User Agent" IconSource="{bn:IconSource Agents}">
                     <ui:SettingsExpander.Footer>
                         <TextBox Text="{Binding UserAgent}"
@@ -123,64 +123,80 @@
                         <TextBlock>本地缓存大小</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                <Button Command="{Binding DumpCacheCommand}" Content="{ice:FluentIcon Icon=Delete,FontSize=18}"
+                                <Button Command="{Binding DumpCacheCommand}"
+                                        Content="{ice:FluentIcon Icon=Delete,FontSize=18}"
                                         ToolTip.Tip="清空缓存" Padding="5"/>
-                                <TextBox Text="{Binding DiskCacheSizeLimit}"
-                                            Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}">
-                                    <TextBox.InnerLeftContent>
-                                        <TextBlock Text="{Binding CacheSizeString}" ToolTip.Tip="已使用磁盘空间"
-                                                   VerticalAlignment="Center" Margin="5,0,-5,0"/>
-                                    </TextBox.InnerLeftContent>
-                                    <TextBox.InnerRightContent>
-                                        <TextBlock VerticalAlignment="Center" Margin="0,0,5,0">字节</TextBlock>
-                                    </TextBox.InnerRightContent>
-                                </TextBox>
+                                <NumericUpDown Value="{Binding DiskCacheSizeLimit}"
+                                               Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}"
+                                               MinWidth="300">
+                                    <NumericUpDown.Styles>
+										<Style Selector="NumericUpDown /template/ ButtonSpinner /template/ RepeatButton">
+											<Setter Property="IsVisible" Value="False"/>
+                                        </Style>
+                                    </NumericUpDown.Styles>
+                                    <NumericUpDown.InnerLeftContent>
+                                        <TextBlock Text="{Binding CacheSizeString}"
+                                                   ToolTip.Tip="已使用磁盘空间"
+                                                   VerticalAlignment="Center"
+                                                   Margin="5,0,-5,0"/>
+                                    </NumericUpDown.InnerLeftContent>
+                                    <NumericUpDown.InnerRightContent>
+										<TextBlock Text="字节"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,5,0"/>
+                                    </NumericUpDown.InnerRightContent>
+                                </NumericUpDown>
                             </StackPanel>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="请求页大小" IsExpanded="False"
                                      IconSource="{bn:IconSource AppsList}">
+                    <ui:SettingsExpander.Styles>
+						<Style Selector="NumericUpDown">
+							<Setter Property="MinWidth" Value="150"/>
+                        </Style>
+                    </ui:SettingsExpander.Styles>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Collections}">
                         <TextBlock>收藏项目</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding CollectionPageSize}"
-                                     Watermark="{Binding DefaultSettings.CollectionPageSize}"/>
+                            <NumericUpDown Value="{Binding CollectionPageSize}"
+                                           Watermark="{Binding DefaultSettings.CollectionPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Circle}">
                         <TextBlock>修订</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding RevisionPageSize}"
-                                     Watermark="{Binding DefaultSettings.RevisionPageSize}"/>
+                            <NumericUpDown Value="{Binding RevisionPageSize}"
+                                           Watermark="{Binding DefaultSettings.RevisionPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Comment}">
                         <TextBlock>评论</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding CommentPageSize}"
-                                     Watermark="{Binding DefaultSettings.CommentPageSize}"/>
+                            <NumericUpDown Value="{Binding CommentPageSize}"
+                                           Watermark="{Binding DefaultSettings.CommentPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Search}">
                         <TextBlock>搜索结果</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding SearchPageSize}"
-                                     Watermark="{Binding DefaultSettings.SearchPageSize}"/>
+                            <NumericUpDown Value="{Binding SearchPageSize}"
+                                           Watermark="{Binding DefaultSettings.SearchPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Layer}">
                         <TextBlock>章节列表</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding EpisodePageSize}"
-                                     Watermark="{Binding DefaultSettings.EpisodePageSize}"/>
+                            <NumericUpDown Value="{Binding EpisodePageSize}"
+                                           Watermark="{Binding DefaultSettings.EpisodePageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource TextNumberList}">
                         <TextBlock>索引结果</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
-                            <TextBox Text="{Binding SubjectBrowserPageSize}"
-                                     Watermark="{Binding DefaultSettings.SubjectBrowserPageSize}"/>
+                            <NumericUpDown Value="{Binding SubjectBrowserPageSize}"
+                                           Watermark="{Binding DefaultSettings.SubjectBrowserPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
@@ -207,14 +223,11 @@
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
                                      IconSource="{bn:IconSource Color}"
-                                     ItemsSource="{Binding PaletteItems}">
+                                     ItemsSource="{Binding Palette}">
                     <ui:SettingsExpander.DataTemplates>
                         <DataTemplate DataType="bn:PaletteItemViewModel">
                             <ui:SettingsExpanderItem>
-                                <TextBlock>
-                                    <Run Text="{Binding Name}"/>
-                                    <Run Text="{Binding Key}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                                </TextBlock>
+                                <TextBlock Text="{Binding Name}"/>
                                 <ui:SettingsExpanderItem.Footer>
                                     <ColorPicker Color="{Binding Color,Converter={StaticResource HexColorCvt}}"
                                                  ColorModel="Rgba"/>
@@ -225,6 +238,7 @@
                 </ui:SettingsExpander>
             </StackPanel>
         </ScrollViewer>
+
         <Border Grid.Row="1" HorizontalAlignment="Right"
                 Margin="10" Padding="10"
                 BorderThickness="1" CornerRadius="10"

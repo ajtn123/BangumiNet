@@ -38,14 +38,16 @@ public record class Settings : IApiSettings
     public int EpisodePageSize { get; init; } = 100;
     public int SubjectBrowserPageSize { get; init; } = 30;
 
-    public string EpMainBg { get; init; } = "#7f7fff7f";
-    public string EpSpBg { get; init; } = "#7fffff7f";
-    public string EpOpBg { get; init; } = "#7f7fffff";
-    public string EpEdBg { get; init; } = "#7f7fffff";
-    public string EpCmBg { get; init; } = "#7f7f7f7f";
-    public string EpMadBg { get; init; } = "#7f7f7f7f";
-    public string EpOtherBg { get; init; } = "#7f7f7f7f";
+    // 所有颜色选项以 Color 开头，反之则不可以 Color 开头
 
-    public string ErrorBg { get; init; } = "#7fff7f7f";
-    public string OkBg { get; init; } = "#7f7fff7f";
+    public string ColorEpMainBg { get; init; } = "#7f7fff7f";
+    public string ColorEpSpBg { get; init; } = "#7fffff7f";
+    public string ColorEpOpBg { get; init; } = "#7f7fffff";
+    public string ColorEpEdBg { get; init; } = "#7f7fffff";
+    public string ColorEpCmBg { get; init; } = "#7f7f7f7f";
+    public string ColorEpMadBg { get; init; } = "#7f7f7f7f";
+    public string ColorEpOtherBg { get; init; } = "#7f7f7f7f";
+
+    public string ColorErrorBg { get; init; } = "#7fff7f7f";
+    public string ColorOkBg { get; init; } = "#7f7fff7f";
 }

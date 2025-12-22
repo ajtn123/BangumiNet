@@ -1,4 +1,7 @@
-﻿using System.Reactive;
+﻿using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Reactive;
+using System.Reflection;
 
 namespace BangumiNet.ViewModels;
 
@@ -11,36 +14,26 @@ public partial class SettingViewModel : ViewModelBase
         Overrides = settings.GetOverrides();
 
         Title = $"设置 - {Title}";
-        SearchEngineSuggestions = [];
+        SearchEngineSuggestions = [.. settings.SearchQueryUrlBases.Keys];
 
-        UserAgent = GetOverride(nameof(Source.UserAgent));
+        UserAgent = GetOverride(x => x.UserAgent) ?? "";
         AuthToken = settings.AuthToken;
-        BangumiTvUrlBase = GetOverride(nameof(Source.BangumiTvUrlBase));
+        BangumiTvUrlBase = GetOverride(x => x.BangumiTvUrlBase) ?? "";
         DefaultSearchEngine = settings.DefaultSearchEngine;
-        LocalDataDirectory = GetOverride(nameof(Source.LocalDataDirectory));
+        LocalDataDirectory = GetOverride(x => x.LocalDataDirectory) ?? "";
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
-        DiskCacheSizeLimit = (long?)Overrides.TryGet(nameof(Source.DiskCacheSizeLimit));
-        CollectionPageSize = (int?)Overrides.TryGet(nameof(Source.CollectionPageSize));
-        RevisionPageSize = (int?)Overrides.TryGet(nameof(Source.RevisionPageSize));
-        CommentPageSize = (int?)Overrides.TryGet(nameof(settings.CommentPageSize));
-        SearchPageSize = (int?)Overrides.TryGet(nameof(Source.SearchPageSize));
-        EpisodePageSize = (int?)Overrides.TryGet(nameof(Source.EpisodePageSize));
-        SubjectBrowserPageSize = (int?)Overrides.TryGet(nameof(Source.SubjectBrowserPageSize));
+        DiskCacheSizeLimit = GetOverrideValue(x => x.DiskCacheSizeLimit);
+        CollectionPageSize = GetOverrideValue(x => x.CollectionPageSize);
+        RevisionPageSize = GetOverrideValue(x => x.RevisionPageSize);
+        CommentPageSize = GetOverrideValue(x => x.CommentPageSize);
+        SearchPageSize = GetOverrideValue(x => x.SearchPageSize);
+        EpisodePageSize = GetOverrideValue(x => x.EpisodePageSize);
+        SubjectBrowserPageSize = GetOverrideValue(x => x.SubjectBrowserPageSize);
         PreferChineseNames = settings.PreferChineseNames;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
 
-        PaletteItems = [
-            new() { Name = "", Color = settings.EpMainBg, Key = nameof(settings.EpMainBg) },
-            new() { Name = "", Color = settings.EpSpBg, Key = nameof(settings.EpSpBg) },
-            new() { Name = "", Color = settings.EpOpBg, Key = nameof(settings.EpOpBg) },
-            new() { Name = "", Color = settings.EpEdBg, Key = nameof(settings.EpEdBg) },
-            new() { Name = "", Color = settings.EpCmBg, Key = nameof(settings.EpCmBg) },
-            new() { Name = "", Color = settings.EpMadBg, Key = nameof(settings.EpMadBg) },
-            new() { Name = "", Color = settings.EpOtherBg, Key = nameof(settings.EpOtherBg) },
-            new() { Name = "", Color = settings.ErrorBg, Key = nameof(settings.ErrorBg) },
-            new() { Name = "", Color = settings.OkBg, Key = nameof(settings.OkBg) },
-        ];
+        Palette = [.. PaletteItemViewModel.GetPalette(settings)];
 
         UndoChangesCommand = ReactiveCommand.Create(() => { });
         RestoreCommand = ReactiveCommand.Create(() => { });
@@ -62,46 +55,50 @@ public partial class SettingViewModel : ViewModelBase
             CacheProvider.DumpCache();
             this.RaisePropertyChanged(nameof(CacheSizeString));
         });
-
-        this.WhenAnyValue(x => x.Source).Subscribe(x => SearchEngineSuggestions = [.. x.SearchQueryUrlBases.Keys]);
     }
 
-    public Settings ToSettings() => new()
+    public Settings ToSettings()
     {
-        UserAgent = GetValue(UserAgent, DefaultSettings.UserAgent),
-        AuthToken = AuthToken,
-        BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
-        DefaultSearchEngine = DefaultSearchEngine,
-        LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
-        IsDiskCacheEnabled = IsDiskCacheEnabled,
-        DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
-        CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
-        RevisionPageSize = RevisionPageSize ?? DefaultSettings.RevisionPageSize,
-        CommentPageSize = CommentPageSize ?? DefaultSettings.CommentPageSize,
-        SearchPageSize = SearchPageSize ?? DefaultSettings.SearchPageSize,
-        EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
-        SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
-        PreferChineseNames = PreferChineseNames,
-        ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
-        ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
-        EpMainBg = GetColor(nameof(Source.EpMainBg)),
-        EpSpBg = GetColor(nameof(Source.EpSpBg)),
-        EpOpBg = GetColor(nameof(Source.EpOpBg)),
-        EpEdBg = GetColor(nameof(Source.EpEdBg)),
-        EpCmBg = GetColor(nameof(Source.EpCmBg)),
-        EpMadBg = GetColor(nameof(Source.EpMadBg)),
-        EpOtherBg = GetColor(nameof(Source.EpOtherBg)),
-        ErrorBg = GetColor(nameof(Source.ErrorBg)),
-        OkBg = GetColor(nameof(Source.OkBg)),
-        SearchQueryUrlBases = Source.SearchQueryUrlBases,
-    };
+        var newSettings = new Settings()
+        {
+            UserAgent = GetValue(UserAgent, DefaultSettings.UserAgent),
+            AuthToken = AuthToken,
+            BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
+            DefaultSearchEngine = DefaultSearchEngine,
+            LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
+            IsDiskCacheEnabled = IsDiskCacheEnabled,
+            DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
+            CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
+            RevisionPageSize = RevisionPageSize ?? DefaultSettings.RevisionPageSize,
+            CommentPageSize = CommentPageSize ?? DefaultSettings.CommentPageSize,
+            SearchPageSize = SearchPageSize ?? DefaultSettings.SearchPageSize,
+            EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
+            SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
+            PreferChineseNames = PreferChineseNames,
+            ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
+            ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
+            SearchQueryUrlBases = Source.SearchQueryUrlBases,
+        };
 
-    public string GetColor(string key)
-        => PaletteItems.First(x => x.Key == key).Color;
+        foreach (var item in Palette)
+            item.Set(newSettings);
+
+        return newSettings;
+    }
+
     public static string GetValue(string? value, string defaultValue)
         => string.IsNullOrWhiteSpace(value) ? defaultValue : value;
-    public string GetOverride(string key)
-        => Overrides.TryGet(key)?.ToString() ?? "";
+    private T? GetOverride<T>(Expression<Func<Settings, T>> selector) where T : class
+    {
+        var name = ((MemberExpression)selector.Body).Member.Name;
+        return Overrides.TryGet(name) as T;
+    }
+
+    private T? GetOverrideValue<T>(Expression<Func<Settings, T>> selector) where T : struct
+    {
+        var name = ((MemberExpression)selector.Body).Member.Name;
+        return (T?)Overrides.TryGet(name);
+    }
 
     [Reactive] public partial Settings Source { get; set; }
     [Reactive] public partial Dictionary<string, object?> Overrides { get; set; }
@@ -124,7 +121,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
 
     [Reactive] public partial List<string> SearchEngineSuggestions { get; set; }
-    [Reactive] public partial List<PaletteItemViewModel> PaletteItems { get; set; }
+    [Reactive] public partial List<PaletteItemViewModel> Palette { get; set; }
 
     public ReactiveCommand<Unit, Unit> SaveCommand { get; set; }
     public ReactiveCommand<Unit, Unit> UndoChangesCommand { get; set; }
@@ -134,9 +131,25 @@ public partial class SettingViewModel : ViewModelBase
 
     public static string CacheSizeString => $"{CacheProvider.CacheSize} /";
 }
-public class PaletteItemViewModel : ViewModelBase
+
+public partial class PaletteItemViewModel : ViewModelBase
 {
-    public required string Name { get; set; }
-    public required string Color { get; set; }
-    public required string Key { get; set; }
+    public static IEnumerable<PaletteItemViewModel> GetPalette(Settings settings) => settings
+        .GetType().GetProperties()
+        .Where(prop => prop.Name.StartsWith("Color"))
+        .Select(prop =>
+        {
+            var item = new PaletteItemViewModel
+            {
+                Color = (string)prop.GetValue(settings)!,
+                Name = prop.GetCustomAttribute<DescriptionAttribute>()?.Description ?? prop.Name,
+            };
+            item.Set = s => prop.SetValue(s, item.Color);
+            return item;
+        });
+
+    [Reactive] public required partial string Name { get; set; }
+    [Reactive] public required partial string Color { get; set; }
+
+    public Action<Settings> Set { get; private set; } = null!;
 }
