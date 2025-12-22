@@ -6,4 +6,6 @@ public static class PathProvider
         => Path.Combine(SettingProvider.Current.LocalDataDirectory, relPath);
     public static string TempFolderPath
         => Path.Combine(Path.GetTempPath(), Constants.ApplicationName);
+    public static string LogFilePath
+        => Path.Combine(SettingProvider.Current.LocalDataDirectory, Constants.LogFileName);
 }

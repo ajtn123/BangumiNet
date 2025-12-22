@@ -1,4 +1,5 @@
 ﻿using BangumiNet.Common.Attributes;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -23,4 +24,23 @@ public static class Utils
     public static string GetNameCn(this ItemType value) => AttributeHelpers.GetNameCn(value)!;
     public static string GetNameCn(this RelatedItemType value) => AttributeHelpers.GetNameCn(value)!;
     public static string GetNameCn(this ApplicationTheme value) => AttributeHelpers.GetNameCn(value)!;
+
+    private static readonly TextWriterTraceListener listener = new(PathProvider.LogFilePath);
+    public static void SetupLogging(Settings settings)
+    {
+        var file = new FileInfo(PathProvider.LogFilePath);
+        if (file.Exists && file.Length >= 1 << 20)
+            file.MoveTo(file.FullName + ".old", true);
+
+        if (settings.SaveLogFile && !Trace.Listeners.Contains(listener))
+        {
+            Trace.Listeners.Add(listener);
+            Trace.AutoFlush = true;
+        }
+        else if (!settings.SaveLogFile && Trace.Listeners.Contains(listener))
+        {
+            Trace.Listeners.Add(listener);
+            Trace.AutoFlush = false;
+        }
+    }
 }

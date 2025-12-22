@@ -12,6 +12,7 @@ public static class Constants
     //public const string BangumiDataJsonUrl = "http://localhost:8000/data.json";
     public const string BangumiDataJsonUrl = "https://unpkg.com/bangumi-data@0.3/dist/data.json";
     public const string BangumiDataJsonName = "data.json";
+    public const string LogFileName = "BangumiNet.log";
     public const string License = """
         MIT License
 

@@ -32,6 +32,7 @@ public partial class SettingViewModel : ViewModelBase
         SubjectBrowserPageSize = GetOverrideValue(x => x.SubjectBrowserPageSize);
         PreferChineseNames = settings.PreferChineseNames;
         CheckUpdateOnStartup = settings.CheckUpdateOnStartup;
+        SaveLogFile = settings.SaveLogFile;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
         ApplicationTheme = settings.ApplicationTheme;
@@ -81,6 +82,7 @@ public partial class SettingViewModel : ViewModelBase
             SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
             PreferChineseNames = PreferChineseNames,
             CheckUpdateOnStartup = CheckUpdateOnStartup,
+            SaveLogFile = SaveLogFile,
             ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
             ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
             ApplicationTheme = ApplicationTheme,
@@ -126,6 +128,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial int? SubjectBrowserPageSize { get; set; }
     [Reactive] public partial bool PreferChineseNames { get; set; }
     [Reactive] public partial bool CheckUpdateOnStartup { get; set; }
+    [Reactive] public partial bool SaveLogFile { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnAppStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
     [Reactive] public partial ApplicationTheme ApplicationTheme { get; set; }

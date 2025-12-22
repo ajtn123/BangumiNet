@@ -27,6 +27,7 @@ public record class Settings : IApiSettings
     public bool IsDiskCacheEnabled { get; init; } = true;
     public long DiskCacheSizeLimit { get; init; } = 1 << 27;
 
+    public bool SaveLogFile { get; init; } = false;
     public bool CheckUpdateOnStartup { get; init; } = true;
 
     public bool PreferChineseNames { get; init; } = false;

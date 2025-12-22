@@ -212,6 +212,12 @@
                         <CheckBox IsChecked="{Binding CheckUpdateOnStartup}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
+                <ui:SettingsExpander Header="保存日志"
+                                     IconSource="{bn:IconSource DocumentTextClock}">
+                    <ui:SettingsExpander.Footer>
+                        <CheckBox IsChecked="{Binding SaveLogFile}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
                 <ui:SettingsExpander Header="外观" IsExpanded="False"
                                      IconSource="{bn:IconSource AppGeneric}">
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">

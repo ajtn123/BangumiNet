@@ -15,6 +15,7 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         UpdateThemeSettings(SettingProvider.Current);
+        Shared.Utils.SetupLogging(SettingProvider.Current);
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
