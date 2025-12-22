@@ -5,6 +5,7 @@ public static class Constants
     public const string BangumiName = "Bangumi 番组计划";
     public const string ApplicationName = "BangumiNet";
     public const string SourceRepository = "https://github.com/ajtn123/BangumiNet";
+    public const string SourceRepositoryLatestRelease = SourceRepository + "/releases/latest";
     public const string SettingJsonName = "BNSettings.json";
     public const string DiskCacheDirectory = "Cache";
     public const string BangumiTokenManagerUrl = "https://next.bgm.tv/demo/access-token";

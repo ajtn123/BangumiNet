@@ -13,21 +13,10 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
     public SettingView()
     {
         if (Design.IsDesignMode) DataContext = new SettingViewModel(SettingProvider.CurrentSettings);
+
         InitializeComponent();
-        VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
-        Credits.ItemsSource = ((CreditItem[])[
-            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
-            new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
-            new CreditItem() { Name = $"Fluent UI System Icons", Tooltip = "https://github.com/microsoft/fluentui-system-icons", Type = "资产" },
-            new CreditItem() { Name = $"はらぺこ 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
-            new CreditItem() { Name = $"MingCute Icon tv-2-line", Tooltip = "https://www.mingcute.com", Type = "资产" },
-        ]).Union(AppDomain.CurrentDomain.GetAssemblies().Select(x =>
-        {
-            var name = x.GetName();
-            return new CreditItem() { Name = $"{name.Name} - {name.Version}", Tooltip = name.FullName, Type = "依赖" };
-        }).Where(x => !x.Name.StartsWith("Anonymously")).OrderBy(x => x.Name));
+
+        VersionText.Text = Assembly.GetEntryAssembly()!.GetName().Version?.ToString();
 
         this.WhenActivated(disposables =>
         {
@@ -40,13 +29,39 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
                     vm.UndoChangesCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
                     vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.CurrentSettings)).DisposeWith(commandSubs);
                 }).DisposeWith(disposables);
+
+            if (!isUpdateChecked)
+            {
+                isUpdateChecked = true;
+#if !DEBUG
+                _ = CheckUpdate();
+#endif
+            }
+            else if (latestVersion != null)
+                ShowUpdate(latestVersion);
         });
+    }
+
+    private static bool isUpdateChecked;
+    private static Version? latestVersion;
+    private async Task CheckUpdate()
+    {
+        latestVersion = await Updater.CheckWith(ApiC.HttpClient);
+        if (latestVersion == null) return;
+        else ShowUpdate(latestVersion);
+    }
+    private void ShowUpdate(Version version)
+    {
+        LatestVersionText.Text = version.ToString();
+        UpdateInfo.IsVisible = true;
     }
 
     private void LocalDataPickDir(object? sender, RoutedEventArgs e)
         => _ = LocalDataPickDirAsync();
     private void OpenGitHub(object? sender, RoutedEventArgs e)
         => CommonUtils.OpenUrlInBrowser(Constants.SourceRepository);
+    private void OpenGitHubLatestRelease(object? sender, RoutedEventArgs e)
+        => CommonUtils.OpenUrlInBrowser(Constants.SourceRepositoryLatestRelease);
 
     private async Task LocalDataPickDirAsync()
     {
@@ -65,6 +80,25 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
 }
 public record class CreditItem()
 {
+    public static readonly CreditItem[] Items;
+    static CreditItem()
+    {
+        Items = [
+            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
+            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
+            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
+            new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
+            new CreditItem() { Name = $"Fluent UI System Icons", Tooltip = "https://github.com/microsoft/fluentui-system-icons", Type = "资产" },
+            new CreditItem() { Name = $"はらぺこ 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
+            new CreditItem() { Name = $"MingCute Icon tv-2-line", Tooltip = "https://www.mingcute.com", Type = "资产" },
+            .. AppDomain.CurrentDomain.GetAssemblies().Select(x =>
+            {
+                var name = x.GetName();
+                return new CreditItem() { Name = $"{name.Name} - {name.Version}", Tooltip = name.FullName, Type = "依赖" };
+            }).Where(x => !x.Name.StartsWith("Anonymously")).OrderBy(x => x.Name)
+        ];
+    }
+
     public required string Type { get; set; }
     public required string Name { get; set; }
     public required string Tooltip { get; set; }
