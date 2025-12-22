@@ -17,8 +17,7 @@
         <ic:FluentIcon Icon="{Binding Icon}" FontSize="60"
                        VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <ScrollViewer Grid.Column="1">
-            <SelectableTextBlock Text="{Binding Message}"
-                                 TextWrapping="Wrap"/>
+            <bn:TextView DataContext="{Binding Message}"/>
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">

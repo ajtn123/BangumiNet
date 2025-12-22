@@ -30,6 +30,7 @@ public partial class SettingViewModel : ViewModelBase
         EpisodePageSize = GetOverrideValue(x => x.EpisodePageSize);
         SubjectBrowserPageSize = GetOverrideValue(x => x.SubjectBrowserPageSize);
         PreferChineseNames = settings.PreferChineseNames;
+        CheckUpdateOnStartup = settings.CheckUpdateOnStartup;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
 
@@ -75,6 +76,7 @@ public partial class SettingViewModel : ViewModelBase
             EpisodePageSize = EpisodePageSize ?? DefaultSettings.EpisodePageSize,
             SubjectBrowserPageSize = SubjectBrowserPageSize ?? DefaultSettings.SubjectBrowserPageSize,
             PreferChineseNames = PreferChineseNames,
+            CheckUpdateOnStartup = CheckUpdateOnStartup,
             ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
             ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
             SearchQueryUrlBases = Source.SearchQueryUrlBases,
@@ -117,6 +119,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial int? EpisodePageSize { get; set; }
     [Reactive] public partial int? SubjectBrowserPageSize { get; set; }
     [Reactive] public partial bool PreferChineseNames { get; set; }
+    [Reactive] public partial bool CheckUpdateOnStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnAppStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
 

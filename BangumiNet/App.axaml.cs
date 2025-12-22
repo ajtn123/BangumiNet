@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using System.Net;
 
 namespace BangumiNet;
 
@@ -30,7 +29,12 @@ public partial class App : Application
 
         CommonUtils.CleanUpTempFolder();
 
-        TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = WebUtility.HtmlDecode(tb.Text));
+        if (SettingProvider.Current.CheckUpdateOnStartup)
+            _ = SettingView.CheckUpdate(v => MessageWindow.Show(
+                new TextViewModel(() => ["新版本可用\n", new HyperlinkButton { Content = v.ToString(), NavigateUri = new(Constants.SourceRepositoryLatestRelease) }]),
+                "有新版本", FluentIcons.Common.Icon.ArrowCircleUp));
+
+        //TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = System.Net.WebUtility.HtmlDecode(tb.Text));
 
         // 程序关闭时
         //((IClassicDesktopStyleApplicationLifetime?)Current?.ApplicationLifetime)?.ShutdownRequested += delegate (object? sender, ShutdownRequestedEventArgs e)

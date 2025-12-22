@@ -10,6 +10,6 @@ public partial class MessageWindowViewModel : ViewModelBase
         Icon = Icon.Info;
     }
 
-    [Reactive] public partial string? Message { get; set; }
-    [Reactive] public partial Icon Icon { get; set; }
+    [Reactive] public required partial TextViewModel Message { get; set; }
+    [Reactive] public required partial Icon Icon { get; set; }
 }

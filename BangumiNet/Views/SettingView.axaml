@@ -200,10 +200,16 @@
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="倾向中文标题" IsExpanded="True"
+                <ui:SettingsExpander Header="倾向中文标题"
                                      IconSource="{bn:IconSource Translate}">
                     <ui:SettingsExpander.Footer>
                         <CheckBox IsChecked="{Binding PreferChineseNames}"/>
+                    </ui:SettingsExpander.Footer>
+                </ui:SettingsExpander>
+                <ui:SettingsExpander Header="启动时检查更新"
+                                     IconSource="{bn:IconSource ArrowCircleUp}">
+                    <ui:SettingsExpander.Footer>
+                        <CheckBox IsChecked="{Binding CheckUpdateOnStartup}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="外观" IsExpanded="False"

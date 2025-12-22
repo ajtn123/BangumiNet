@@ -30,26 +30,27 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
                     vm.SaveCommand.Subscribe(a => DataContext = new SettingViewModel(SettingProvider.Current)).DisposeWith(commandSubs);
                 }).DisposeWith(disposables);
 
-            if (!isUpdateChecked)
-            {
-                isUpdateChecked = true;
-#if !DEBUG
-                _ = CheckUpdate();
-#endif
-            }
-            else if (latestVersion != null)
-                ShowUpdate(latestVersion);
+            _ = CheckUpdate(ShowUpdate);
         });
     }
 
+#if !DEBUG
     private static bool isUpdateChecked;
     private static Version? latestVersion;
-    private async Task CheckUpdate()
+#endif
+    public static async Task CheckUpdate(Action<Version> callback)
     {
-        latestVersion = await Updater.CheckWith(ApiC.HttpClient);
-        if (latestVersion == null) return;
-        else ShowUpdate(latestVersion);
+#if !DEBUG
+        if (!isUpdateChecked)
+        {
+            isUpdateChecked = true;
+            latestVersion = await Updater.CheckWith(ApiC.HttpClient);
+        }
+
+        if (latestVersion != null) callback(latestVersion);
+#endif
     }
+
     private void ShowUpdate(Version version)
     {
         LatestVersionText.Text = version.ToString();
