@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Avalonia;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive;
 using System.Reflection;
@@ -33,6 +34,8 @@ public partial class SettingViewModel : ViewModelBase
         CheckUpdateOnStartup = settings.CheckUpdateOnStartup;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
+        ApplicationTheme = settings.ApplicationTheme;
+        UseSystemAccentColor = settings.UseSystemAccentColor;
 
         Palette = [.. PaletteItemViewModel.GetPalette(settings)];
 
@@ -43,6 +46,7 @@ public partial class SettingViewModel : ViewModelBase
         {
             var newSettings = ToSettings();
             SettingProvider.UpdateSettings(newSettings);
+            ((App)Application.Current!).UpdateThemeSettings(newSettings);
             if (newSettings.AuthToken != Source.AuthToken || newSettings.UserAgent != Source.UserAgent)
             {
                 ApiC.RebuildClients();
@@ -79,6 +83,8 @@ public partial class SettingViewModel : ViewModelBase
             CheckUpdateOnStartup = CheckUpdateOnStartup,
             ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
             ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
+            ApplicationTheme = ApplicationTheme,
+            UseSystemAccentColor = UseSystemAccentColor,
             SearchQueryUrlBases = Source.SearchQueryUrlBases,
         };
 
@@ -122,6 +128,8 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial bool CheckUpdateOnStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnAppStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
+    [Reactive] public partial ApplicationTheme ApplicationTheme { get; set; }
+    [Reactive] public partial bool UseSystemAccentColor { get; set; }
 
     [Reactive] public partial List<string> SearchEngineSuggestions { get; set; }
     [Reactive] public partial List<PaletteItemViewModel> Palette { get; set; }

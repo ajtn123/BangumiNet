@@ -3,6 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
+using FluentAvalonia.Styling;
 
 namespace BangumiNet;
 
@@ -12,6 +14,8 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        UpdateThemeSettings(SettingProvider.Current);
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var window = new MainWindow { DataContext = new MainWindowViewModel() };
@@ -52,5 +56,25 @@ public partial class App : Application
         //    config.DefaultWebViewBackgroundColor = System.Drawing.Color.FromArgb(244, 244, 244);
         //    config.UserDataFolder = Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, "WebView");
         //});
+    }
+
+    public void UpdateThemeSettings(Settings settings)
+    {
+        if (Styles[0] is not FluentAvaloniaTheme theme) return;
+
+        theme.PreferSystemTheme = settings.ApplicationTheme == ApplicationTheme.System;
+        RequestedThemeVariant = settings.ApplicationTheme switch
+        {
+            ApplicationTheme.Light => ThemeVariant.Light,
+            ApplicationTheme.Dark => ThemeVariant.Dark,
+            ApplicationTheme.System => ThemeVariant.Default,
+            _ => throw new NotImplementedException(),
+        };
+
+        theme.PreferUserAccentColor = settings.UseSystemAccentColor;
+        if (settings.UseSystemAccentColor)
+            theme.CustomAccentColor = null;
+        else if (Color.TryParse(settings.ColorCustomAccent, out var color))
+            theme.CustomAccentColor = color;
     }
 }

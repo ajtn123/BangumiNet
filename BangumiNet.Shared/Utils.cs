@@ -22,4 +22,5 @@ public static class Utils
 
     public static string GetNameCn(this ItemType value) => AttributeHelpers.GetNameCn(value)!;
     public static string GetNameCn(this RelatedItemType value) => AttributeHelpers.GetNameCn(value)!;
+    public static string GetNameCn(this ApplicationTheme value) => AttributeHelpers.GetNameCn(value)!;
 }

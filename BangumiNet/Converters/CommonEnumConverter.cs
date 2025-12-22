@@ -43,6 +43,7 @@ public class CommonEnumConverter : IValueConverter
         BookType bookType => bookType.GetNameCn(),
         GameType gameType => gameType.GetNameCn(),
         RealType realType => realType.GetNameCn(),
+        ApplicationTheme applicationTheme => applicationTheme.GetNameCn(),
         TimelineTypes.Daily tDaily => tDaily.ToStringSC(),
         TimelineTypes.Doujin tDoujin => tDoujin.ToStringSC(),
         TimelineTypes.Mono tMono => tMono.ToStringSC(),

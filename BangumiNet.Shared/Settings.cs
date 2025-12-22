@@ -40,7 +40,12 @@ public record class Settings : IApiSettings
     public int EpisodePageSize { get; init; } = 100;
     public int SubjectBrowserPageSize { get; init; } = 30;
 
+    public ApplicationTheme ApplicationTheme { get; init; } = ApplicationTheme.System;
+    public bool UseSystemAccentColor { get; init; } = true;
+
     // 所有颜色选项以 Color 开头，反之则不可以 Color 开头
+
+    public string ColorCustomAccent { get; init; } = "#fff09199";
 
     public string ColorEpMainBg { get; init; } = "#7f7fff7f";
     public string ColorEpSpBg { get; init; } = "#7fffff7f";

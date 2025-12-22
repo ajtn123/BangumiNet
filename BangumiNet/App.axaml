@@ -45,7 +45,7 @@
     </Application.Resources>
 
     <Application.Styles>
-        <sty:FluentAvaloniaTheme PreferSystemTheme="True" PreferUserAccentColor="True"/>
+        <sty:FluentAvaloniaTheme/>
         <Style Selector=":is(Window)">
             <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
         </Style>
