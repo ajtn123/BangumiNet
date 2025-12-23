@@ -2,9 +2,9 @@ using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.Views;
 
-public partial class RevisionCardView : ReactiveUserControl<RevisionViewModel>
+public partial class ReactionFlyoutView : ReactiveUserControl<ReactionViewModel>
 {
-    public RevisionCardView()
+    public ReactionFlyoutView()
     {
         InitializeComponent();
 
@@ -12,7 +12,7 @@ public partial class RevisionCardView : ReactiveUserControl<RevisionViewModel>
         {
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Subscribe(vm => vm.Creator?.Activator.Activate().DisposeWith(disposables))
+                .Subscribe(vm => { foreach (var user in vm.Users) user.Activator.Activate().DisposeWith(disposables); })
                 .DisposeWith(disposables);
         });
     }

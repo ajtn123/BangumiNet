@@ -21,37 +21,7 @@
 
                     <Border.ContextFlyout>
                         <Flyout>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal" Spacing="5">
-                                    <Button ToolTip.Tip="点赞" Classes="Icon"
-                                            Command="{Binding ReactCommand}"
-                                            Content="{ice:FluentIcon Icon=Add}"
-                                            IsVisible="{Binding !HasMe}"/>
-                                    <Button ToolTip.Tip="取消点赞" Classes="Icon"
-                                            Command="{Binding ReactCommand}"
-                                            Content="{ice:FluentIcon Icon=Dismiss}"
-                                            IsVisible="{Binding HasMe}"/>
-                                </StackPanel>
-                                <Separator/>
-                                <ItemsControl ItemsSource="{Binding Users}">
-                                    <ItemsControl.DataTemplates>
-                                        <DataTemplate DataType="bn:UserViewModel">
-                                            <WrapPanel Classes="InfoBar">
-                                                <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
-                                                                 Command="{Binding OpenInNewWindowCommand}"
-                                                                 Content="{Binding Name}" Classes="Pri"
-                                                                 Margin="0,-1,0,0" Height="19"/>
-                                                <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
-                                            </WrapPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.DataTemplates>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Spacing="5"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-                            </StackPanel>
+                            <bn:ReactionFlyoutView/>
                         </Flyout>
                     </Border.ContextFlyout>
                 </Border>
