@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\Package.props" />
+
+  <PropertyGroup>
+    <Title>BangumiNet Library</Title>
+    <Description>Abstruction of library used by BangumiNet.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>BangumiNet.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\BangumiNet.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

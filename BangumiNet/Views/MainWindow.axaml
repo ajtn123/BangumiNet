@@ -35,6 +35,8 @@
             <ui:NavigationViewItem Content="分类浏览" IconSource="{bn:IconSource ListBar}"/>
 
             <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
+
+            <ui:NavigationViewItem Content="库" IconSource="{bn:IconSource Library}"/>
         </ui:NavigationView.MenuItems>
 
         <ui:NavigationView.FooterMenuItems>

@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BangumiNet.Api\BangumiNet.Api.csproj" />
     <ProjectReference Include="..\BangumiNet.BangumiData\BangumiNet.BangumiData.csproj" />
+    <ProjectReference Include="..\BangumiNet.Library\BangumiNet.Library.csproj" />
     <ProjectReference Include="..\BangumiNet.Shared\BangumiNet.Shared.csproj" />
   </ItemGroup>
 

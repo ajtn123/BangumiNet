@@ -8,6 +8,7 @@
   <Project Path="BangumiNet.Archive/BangumiNet.Archive.csproj" Id="1b39bd04-be18-4bda-a18a-57a5094082da" />
   <Project Path="BangumiNet.BangumiData/BangumiNet.BangumiData.csproj" Id="0b7be7e3-7999-4ac5-a18c-b4b0f2992939" />
   <Project Path="BangumiNet.Common/BangumiNet.Common.csproj" Id="ebbc2cda-4282-4bf4-8d3d-399f0f7a188b" />
+  <Project Path="BangumiNet.Library/BangumiNet.Library.csproj" Id="70891a3c-2a8d-4a4d-b7a9-1ded4aae7e8e" />
   <Project Path="BangumiNet.Shared/BangumiNet.Shared.csproj" Id="09d3f81b-0dc8-4982-8969-f0f98dec3bca" />
   <Project Path="BangumiNet/BangumiNet.csproj" />
 </Solution>

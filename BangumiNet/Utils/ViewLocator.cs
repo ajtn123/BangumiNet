@@ -20,6 +20,7 @@ public class ViewLocator : IDataTemplate
         CalendarViewModel => new CalendarView { DataContext = data },
         TrendingViewModel => new TrendingView { DataContext = data },
         GroupHomeViewModel => new GroupHomeView { DataContext = data },
+        LibraryHomeViewModel => new LibraryHomeView { DataContext = data },
         CommentListViewModel => new CommentListView { DataContext = data },
         RevisionListViewModel => new RevisionListView { DataContext = data },
         NotificationListViewModel => new NotificationListView { DataContext = data },

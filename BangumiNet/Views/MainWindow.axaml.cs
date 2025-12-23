@@ -37,6 +37,7 @@ public partial class MainWindow : AppWindow
             "搜索" => searchVM ??= new(),
             "分类浏览" => subjectBrowserVM ??= new(),
             "番组索引" => bangumiDataIndexVM ??= new(),
+            "库" => libraryVM ??= new(),
             "我" => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
             "设置" => new SettingViewModel(SettingProvider.Current),
             _ => throw new NotImplementedException(),
@@ -49,6 +50,7 @@ public partial class MainWindow : AppWindow
     public SearchViewModel? searchVM;
     public SubjectBrowserViewModel? subjectBrowserVM;
     public BangumiDataIndexViewModel? bangumiDataIndexVM;
+    public LibraryHomeViewModel? libraryVM;
     public AiringViewModel? airingVM;
     public MeViewModel? meVM;
 
