@@ -1,6 +1,6 @@
 ﻿namespace BangumiNet.Library;
 
-public class LibraryItem
+public abstract class LibraryItem
 {
     public DirectoryInfo? Directory { get; set; }
 }

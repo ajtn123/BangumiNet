@@ -1,8 +1,6 @@
-using Avalonia.Controls;
-
 namespace BangumiNet.Views;
 
-public partial class LibraryHomeView : UserControl
+public partial class LibraryHomeView : ReactiveUserControl<LibraryHomeViewModel>
 {
     public LibraryHomeView()
     {

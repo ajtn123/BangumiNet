@@ -22,6 +22,7 @@ public partial class SettingViewModel : ViewModelBase
         BangumiTvUrlBase = GetOverride(x => x.BangumiTvUrlBase) ?? "";
         DefaultSearchEngine = settings.DefaultSearchEngine;
         LocalDataDirectory = GetOverride(x => x.LocalDataDirectory) ?? "";
+        LibraryDirectories = settings.LibraryDirectories;
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
         DiskCacheSizeLimit = GetOverrideValue(x => x.DiskCacheSizeLimit);
         CollectionPageSize = GetOverrideValue(x => x.CollectionPageSize);
@@ -72,6 +73,7 @@ public partial class SettingViewModel : ViewModelBase
             BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
             DefaultSearchEngine = DefaultSearchEngine,
             LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
+            LibraryDirectories = GetValue(LibraryDirectories),
             IsDiskCacheEnabled = IsDiskCacheEnabled,
             DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
             CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
@@ -98,6 +100,8 @@ public partial class SettingViewModel : ViewModelBase
 
     public static string GetValue(string? value, string defaultValue)
         => string.IsNullOrWhiteSpace(value) ? defaultValue : value;
+    public static string? GetValue(string? value)
+        => string.IsNullOrWhiteSpace(value) ? null : value;
     private T? GetOverride<T>(Expression<Func<Settings, T>> selector) where T : class
     {
         var name = ((MemberExpression)selector.Body).Member.Name;
@@ -118,6 +122,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial string BangumiTvUrlBase { get; set; }
     [Reactive] public partial string DefaultSearchEngine { get; set; }
     [Reactive] public partial string LocalDataDirectory { get; set; }
+    [Reactive] public partial string? LibraryDirectories { get; set; }
     [Reactive] public partial bool IsDiskCacheEnabled { get; set; }
     [Reactive] public partial long? DiskCacheSizeLimit { get; set; }
     [Reactive] public partial int? CollectionPageSize { get; set; }

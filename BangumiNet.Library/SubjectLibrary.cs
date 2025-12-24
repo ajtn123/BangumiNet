@@ -8,8 +8,13 @@ public class SubjectLibrary
         if (!Directory.Exists) return;
 
         var topLevelItems = Directory.EnumerateDirectories();
-        List<DirectoryInfo> potentialItems = [.. topLevelItems];
-        Items = [.. potentialItems.Select(item => new LibraryItem { Directory = item })];
+        List<LibraryItem> items = [];
+        foreach (var topLevelItem in topLevelItems)
+        {
+            items.Add(new LibrarySubject { Directory = topLevelItem });
+        }
+
+        Items = items;
     }
 
     public DirectoryInfo Directory { get; set; }

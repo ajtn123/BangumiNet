@@ -6,8 +6,11 @@ public partial class LibraryHomeViewModel : ViewModelBase
 {
     public LibraryHomeViewModel()
     {
-        Library = new SubjectLibrary(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+        Libraries = Settings.LibraryDirectories?.Split('\r', '\n')
+            .Where(str => !string.IsNullOrWhiteSpace(str))
+            .Select(path => new LibraryViewModel(new SubjectLibrary(path)))
+            .ToObservableCollection() ?? [];
     }
 
-    [Reactive] public partial SubjectLibrary Library { get; set; }
+    [Reactive] public partial ObservableCollection<LibraryViewModel> Libraries { get; set; }
 }
