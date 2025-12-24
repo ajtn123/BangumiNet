@@ -8,7 +8,7 @@ public partial class LibraryHomeViewModel : ViewModelBase
     {
         Libraries = Settings.LibraryDirectories?.Split('\r', '\n')
             .Where(str => !string.IsNullOrWhiteSpace(str))
-            .Select(path => new LibraryViewModel(new SubjectLibrary(path)))
+            .Select(path => new LibraryViewModel(new SubjectLibrary { Directory = new(path) }))
             .ToObservableCollection() ?? [];
     }
 

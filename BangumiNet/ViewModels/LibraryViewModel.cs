@@ -2,12 +2,7 @@
 
 namespace BangumiNet.ViewModels;
 
-public partial class LibraryViewModel : ViewModelBase
+public partial class LibraryViewModel : LibraryDirectoryViewModel
 {
-    public LibraryViewModel(SubjectLibrary library)
-    {
-        Library = library;
-    }
-
-    [Reactive] public partial SubjectLibrary Library { get; set; }
+    public LibraryViewModel(SubjectLibrary library) : base(library) { }
 }

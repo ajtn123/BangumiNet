@@ -5,13 +5,14 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:LibraryDirectoryViewModel"
-             x:Class="BangumiNet.Views.LibraryView">
-    <ScrollViewer>
+             x:Class="BangumiNet.Views.LibraryDirectoryCardView">
+    <Expander Header="{Binding Name}"
+              IsExpanded="False">
         <StackPanel>
-            <ItemsControl ItemsSource="{Binding Directories}">
-                <ItemsControl.ItemTemplate>
-			        <DataTemplate DataType="bn:LibraryDirectoryViewModel">
-				        <bn:LibraryDirectoryCardView/>
+		    <ItemsControl ItemsSource="{Binding Directories}">
+			    <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="bn:LibraryDirectoryViewModel">
+                        <bn:LibraryDirectoryCardView/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -23,5 +24,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
-    </ScrollViewer>
+    </Expander>
 </UserControl>
