@@ -1,6 +1,5 @@
 ﻿using BangumiNet.Library;
 using System.Reactive.Disposables;
-using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -13,7 +12,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         Directory = directory;
         Name = directory.Directory.Name;
 
-        this.WhenActivated(disposables =>
+        this.WhenActivated((CompositeDisposable disposables) =>
         {
             if (Directories == null)
             {
@@ -22,8 +21,6 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
                 Directories = [.. Directory.Directories!.Select(dir => new LibraryDirectoryViewModel(dir))];
                 Files = [.. Directory.Files!.Select(file => new LibraryFileViewModel(file))];
             }
-
-            if (false) Disposable.Empty.DisposeWith(disposables);
         });
     }
 

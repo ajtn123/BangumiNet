@@ -8,7 +8,8 @@
              x:Class="BangumiNet.Views.LibraryView">
     <ScrollViewer>
         <StackPanel>
-            <ItemsControl ItemsSource="{Binding Directories}">
+            <ItemsControl ItemsSource="{Binding Directories}"
+                          ItemsPanel="{bn:SpacedStackPanel}">
                 <ItemsControl.ItemTemplate>
 			        <DataTemplate DataType="bn:LibraryDirectoryViewModel">
 				        <bn:LibraryDirectoryCardView/>

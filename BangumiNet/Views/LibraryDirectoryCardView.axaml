@@ -9,7 +9,8 @@
     <Expander Header="{Binding Name}"
               IsExpanded="False">
         <StackPanel>
-		    <ItemsControl ItemsSource="{Binding Directories}">
+		    <ItemsControl ItemsSource="{Binding Directories}"
+                          ItemsPanel="{bn:SpacedStackPanel}">
 			    <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="bn:LibraryDirectoryViewModel">
                         <bn:LibraryDirectoryCardView/>
