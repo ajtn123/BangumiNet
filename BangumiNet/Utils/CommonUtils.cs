@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Reactive;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
@@ -41,6 +42,9 @@ public static partial class CommonUtils
             FileName = uri,
             UseShellExecute = true,
         });
+
+    public static ReactiveCommand<Unit, Unit> GetOpenUriCommand(string uri)
+        => ReactiveCommand.Create(() => OpenUri(uri));
 
     public static void SearchWeb(string? keyword, string? searchEngine = null)
     {

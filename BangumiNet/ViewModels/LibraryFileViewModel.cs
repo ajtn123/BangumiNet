@@ -1,4 +1,8 @@
-﻿using BangumiNet.Library;
+﻿using Avalonia.Controls;
+using BangumiNet.Library;
+using BangumiNet.Templates;
+using System.Reactive;
+using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.ViewModels;
 
@@ -11,13 +15,34 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         File = file;
         FileInfo = file.File;
         Name = file.File.Name;
+
+        this.WhenActivated(disposables =>
+        {
+            OpenFileCommand = CommonUtils.GetOpenUriCommand(FileInfo.FullName).DisposeWith(disposables);
+        });
     }
 
     public async Task LoadItems()
     {
-        Items ??= File.Attachments?.Select(a => new TextViewModel(a.File.Name)).ToObservableCollection();
+        if (Items != null) return;
+        List<object> items = [];
+
+        if (await File.AnalyseAsync() is { } analysis)
+        {
+            items.Add(analysis);
+            items.AddRange(analysis.VideoStreams);
+            items.AddRange(analysis.AudioStreams);
+            items.AddRange(analysis.SubtitleStreams);
+        }
+
+        if (File.Attachments is { } ats)
+            items.AddRange(ats.Select(a => new TextViewModel(() => [new InfoBadge { Text = "附件" }, new HyperlinkButton { Content = a.File.Name, Command = CommonUtils.GetOpenUriCommand(a.File.FullName) }])).ToObservableCollection());
+
+        Items = [.. items];
     }
 
-    [Reactive] public partial FileInfo? FileInfo { get; set; }
-    [Reactive] public partial ObservableCollection<TextViewModel>? Items { get; set; }
+    [Reactive] public partial FileInfo? FileInfo { get; private set; }
+    [Reactive] public partial ObservableCollection<object>? Items { get; private set; }
+
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? OpenFileCommand { get; private set; }
 }

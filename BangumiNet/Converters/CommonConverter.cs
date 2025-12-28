@@ -29,6 +29,7 @@ public class CommonConverter : IValueConverter
             else
                 return $"{dateTimeOffset:F}";
         }
+        else if (value is TimeSpan timeSpan) return timeSpan.ToString("g");
         // 默认
         else return value.ToString();
     }

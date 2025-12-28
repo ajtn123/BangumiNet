@@ -12,12 +12,10 @@
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:ReactionViewModel">
                 <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">                  
-                    <Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="5">
+                    <StackPanel Spacing="5" Orientation="Horizontal">
                         <Image Source="{Binding ReactionImage}" Height="18"/>
-                        <TextBlock Grid.Column="1">
-                            <Run Text="{Binding Users.Count}" Classes="Count"/>
-                        </TextBlock>
-                    </Grid>
+                        <TextBlock Text="{Binding Users.Count}"/>
+                    </StackPanel>
 
                     <Border.ContextFlyout>
                         <Flyout>

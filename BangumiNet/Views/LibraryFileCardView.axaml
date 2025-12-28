@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ffc="using:FFMpegCore"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:LibraryFileViewModel"
              x:Class="BangumiNet.Views.LibraryFileCardView">
@@ -12,14 +13,57 @@
             <ToggleButton Grid.Column="0"
                           Name="ItemToggle"
                           Height="20"/>
-            <TextBlock Grid.Column="1"
-                       Name="FileName"
-                       Text="{Binding Name}"/>
+            <HyperlinkButton Grid.Column="1"
+                             Content="{Binding Name}"
+                             Command="{Binding OpenFileCommand}"/>
         </Grid>
 
         <ItemsControl DockPanel.Dock="Bottom"
                       ItemsSource="{Binding Items}"
                       IsVisible="{Binding ElementName=ItemToggle, Path=IsChecked}"
-                      Classes="Ref"/>
+                      Classes="Ref">
+            <ItemsControl.Styles>
+                <Style Selector="InfoItem">
+					<Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </ItemsControl.Styles>
+            <ItemsControl.DataTemplates>
+				<DataTemplate DataType="ffc:IMediaAnalysis">
+					<WrapPanel Classes="InfoBar">
+						<InfoItem Text="{Binding Format.FormatLongName}"/>
+                        <TextBlock Text="{Binding Chapters.Count, StringFormat='\{0} 个章节'}" IsVisible="{Binding Chapters.Count, Converter={StaticResource ZeroCvt}}"/>
+						<InfoItem CommonText="{Binding Duration}"/>
+                        <InfoBadge Label="比特率" Text="{Binding Format.BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding Format.BitRate, Converter={StaticResource ZeroCvt}}"/>
+                    </WrapPanel>
+                </DataTemplate>
+				<DataTemplate DataType="ffc:AudioStream">
+					<WrapPanel Classes="InfoBar">
+                        <InfoBadge Text="音频" IsHighlighted="{Binding Disposition[default]}"/>
+						<InfoItem Text="{Binding Language}"/>
+                        <InfoItem Text="{Binding CodecLongName}"/>
+                        <InfoBadge Label="位深度" Text="{Binding BitDepth, StringFormat='\{0} bit'}" IsVisible="{Binding BitDepth, Converter={StaticResource ZeroCvt}}"/>
+                        <InfoBadge Label="比特率" Text="{Binding BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding BitRate, Converter={StaticResource ZeroCvt}}"/>
+                    </WrapPanel>
+                </DataTemplate>
+				<DataTemplate DataType="ffc:VideoStream">
+					<WrapPanel Classes="InfoBar">
+                        <InfoBadge Text="视频" IsHighlighted="{Binding Disposition[default]}"/>
+						<InfoItem Text="{Binding Language}"/>
+                        <InfoItem Text="{Binding CodecLongName}"/>
+                        <InfoBadge Label="位深度" Text="{Binding BitDepth, StringFormat='\{0} bit'}" IsVisible="{Binding BitDepth, Converter={StaticResource ZeroCvt}}"/>
+                        <InfoBadge Label="比特率" Text="{Binding BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding BitRate, Converter={StaticResource ZeroCvt}}"/>
+                    </WrapPanel>
+                </DataTemplate>
+				<DataTemplate DataType="ffc:SubtitleStream">
+					<WrapPanel Classes="InfoBar">
+                        <InfoBadge Text="字幕" IsHighlighted="{Binding Disposition[default]}"/>
+						<InfoItem Text="{Binding Language}"/>
+                        <InfoItem Text="{Binding CodecLongName}"/>
+                        <InfoBadge Label="位深度" Text="{Binding BitDepth, StringFormat='\{0} bit'}" IsVisible="{Binding BitDepth, Converter={StaticResource ZeroCvt}}"/>
+                        <InfoBadge Label="比特率" Text="{Binding BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding BitRate, Converter={StaticResource ZeroCvt}}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ItemsControl.DataTemplates>
+        </ItemsControl>
     </DockPanel>
 </UserControl>

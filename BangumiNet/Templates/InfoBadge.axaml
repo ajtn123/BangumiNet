@@ -14,10 +14,10 @@
     <Setter Property="Template">
       <ControlTemplate>
         <Border Classes="Card TagBadge" Classes.Meta="{TemplateBinding IsHighlighted}">
-            <TextBlock>
-                <Run Text="{TemplateBinding Label}" Classes="Name"/>
-                <Run Text="{TemplateBinding Text}" Classes="Count"/>
-            </TextBlock>
+            <StackPanel Spacing="5" Orientation="Horizontal">
+                <TextBlock Text="{TemplateBinding Label}" IsVisible="{TemplateBinding Label, Converter={StaticResource NEWCvt}}" Classes="Name"/>
+                <TextBlock Text="{TemplateBinding Text}" IsVisible="{TemplateBinding Text, Converter={StaticResource NEWCvt}}"/>
+            </StackPanel>
         </Border>
       </ControlTemplate>
     </Setter>

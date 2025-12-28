@@ -197,18 +197,15 @@
         </Style>
         <Style Selector="Border.TagBadge">
             <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
-            <Style Selector="^ > TextBlock > Run.Name">
+            <Style Selector="^ TextBlock.Name">
                 <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}"/>
             </Style>
             <Style Selector="^.Meta">
                 <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
-                <Style Selector="^ > TextBlock, ^ > Grid > TextBlock">
+                <Style Selector="^ > TextBlock, ^ > StackPanel > TextBlock">
                     <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
-                    <Style Selector="^ > Run.Name">
+                    <Style Selector="^.Name">
                         <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}"/>
-                    </Style>
-                    <Style Selector="^ > Run.Count">
-                        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
                     </Style>
                 </Style>
             </Style>
