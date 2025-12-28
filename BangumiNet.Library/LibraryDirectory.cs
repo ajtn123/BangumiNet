@@ -21,11 +21,32 @@ public class LibraryDirectory : LibraryItem
             Directories ??= [.. EnumerateDirectories()];
     }
 
+    private static readonly string[] attachmentExtensions = [".ass", ".ssa", ".srt"];
     public void LoadFiles(bool refresh = false)
     {
+        List<LibraryFile> GetFiles()
+        {
+            var files = EnumerateFiles().ToList();
+            var attachments = files.Where(f => attachmentExtensions.Contains(f.File.Extension.ToLowerInvariant()));
+            var owners = files.Except(attachments).ToList();
+            foreach (var attachment in attachments)
+            {
+                if (owners.FirstOrDefault(f => attachment.File.Name.StartsWith(Path.GetFileNameWithoutExtension(f.File.Name))) is { } owner)
+                {
+                    owner.Attachments ??= [];
+                    owner.Attachments.Add(attachment);
+                }
+                else
+                {
+                    owners.Add(attachment);
+                }
+            }
+            return owners;
+        }
+
         if (refresh)
-            Files = [.. EnumerateFiles()];
+            Files = GetFiles();
         else
-            Files ??= [.. EnumerateFiles()];
+            Files ??= GetFiles();
     }
 }

@@ -34,6 +34,7 @@ public partial class SettingViewModel : ViewModelBase
         PreferChineseNames = settings.PreferChineseNames;
         CheckUpdateOnStartup = settings.CheckUpdateOnStartup;
         SaveLogFile = settings.SaveLogFile;
+        StartupTab = settings.StartupTab;
         ShowSplashScreenOnAppStartup = settings.ShowSplashScreenOnAppStartup;
         ShowSplashScreenOnWindowStartup = settings.ShowSplashScreenOnWindowStartup;
         ApplicationTheme = settings.ApplicationTheme;
@@ -85,6 +86,7 @@ public partial class SettingViewModel : ViewModelBase
             PreferChineseNames = PreferChineseNames,
             CheckUpdateOnStartup = CheckUpdateOnStartup,
             SaveLogFile = SaveLogFile,
+            StartupTab = StartupTab,
             ShowSplashScreenOnAppStartup = ShowSplashScreenOnAppStartup,
             ShowSplashScreenOnWindowStartup = ShowSplashScreenOnWindowStartup,
             ApplicationTheme = ApplicationTheme,
@@ -134,6 +136,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial bool PreferChineseNames { get; set; }
     [Reactive] public partial bool CheckUpdateOnStartup { get; set; }
     [Reactive] public partial bool SaveLogFile { get; set; }
+    [Reactive] public partial MainWindowTab StartupTab { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnAppStartup { get; set; }
     [Reactive] public partial bool ShowSplashScreenOnWindowStartup { get; set; }
     [Reactive] public partial ApplicationTheme ApplicationTheme { get; set; }

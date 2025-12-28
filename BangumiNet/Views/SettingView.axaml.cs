@@ -18,6 +18,7 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
 
         VersionText.Text = Assembly.GetEntryAssembly()!.GetName().Version?.ToString();
         ApplicationThemeComboBox.ItemsSource = Enum.GetValues<ApplicationTheme>();
+        DefaultTabComboBox.ItemsSource = Enum.GetValues<MainWindowTab>();
 
         this.WhenActivated(disposables =>
         {

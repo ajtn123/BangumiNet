@@ -23,8 +23,7 @@
         </ui:NavigationView.AutoCompleteBox>
 
         <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"
-                                   IsSelected="True"/>
+            <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"/>
 
             <ui:NavigationViewItem Content="每日放送" IconSource="{bn:IconSource Live}"/>
 

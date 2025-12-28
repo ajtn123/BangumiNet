@@ -111,6 +111,13 @@
                             <CheckBox IsChecked="{Binding UseSystemAccentColor}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Tab}">
+                        <TextBlock>主窗口默认标签页</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <ComboBox SelectedItem="{Binding StartupTab}"
+                                      Name="DefaultTabComboBox"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
                     <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
                         <TextBlock>主窗口显示启动画面</TextBlock>
                         <ui:SettingsExpanderItem.Footer>

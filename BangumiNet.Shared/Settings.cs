@@ -34,6 +34,7 @@ public record class Settings : IApiSettings
     public bool CheckUpdateOnStartup { get; init; } = true;
 
     public bool PreferChineseNames { get; init; } = false;
+    public MainWindowTab StartupTab { get; init; } = MainWindowTab.主页;
     public bool ShowSplashScreenOnAppStartup { get; init; } = false;
     public bool ShowSplashScreenOnWindowStartup { get; init; } = false;
 
