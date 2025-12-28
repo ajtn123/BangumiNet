@@ -87,7 +87,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
         this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString))).DisposeWith(disposables);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvEpisodeUrlBase + Id)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvEpisodeUrlBase + Id)).DisposeWith(disposables);
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null)).DisposeWith(disposables);
         ShowNextCommand = ReactiveCommand.Create(() => Next, this.WhenAnyValue(x => x.Next).Select(y => y != null)).DisposeWith(disposables);
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Uncollected), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Uncollected)).DisposeWith(disposables);

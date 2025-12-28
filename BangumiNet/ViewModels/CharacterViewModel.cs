@@ -131,7 +131,7 @@ public partial class CharacterViewModel : ItemViewModelBase
         CommentListViewModel ??= new(ItemType, Id);
         RevisionListViewModel ??= new(this);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvCharacterUrlBase + Id)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvCharacterUrlBase + Id)).DisposeWith(disposables);
         CollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(true), this.WhenAnyValue(x => x.IsCollected).Select(x => !x)).DisposeWith(disposables);
         UncollectCommand = ReactiveCommand.CreateFromTask(async () => await UpdateCollection(false), this.WhenAnyValue(x => x.IsCollected)).DisposeWith(disposables);
 

@@ -54,7 +54,7 @@ public partial class BlogViewModel : ItemViewModelBase
         Photos ??= new(RelatedItemType.Photo, ItemType, Id);
         Comments ??= new(ItemType, Id);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvBlogUrlBase + Id)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvBlogUrlBase + Id)).DisposeWith(disposables);
     }
 
     [Reactive] public partial string? Content { get; set; }

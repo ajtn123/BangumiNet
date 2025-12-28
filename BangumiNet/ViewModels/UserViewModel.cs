@@ -98,7 +98,7 @@ public partial class UserViewModel : ItemViewModelBase
         this.WhenAnyValue(x => x.Source).Subscribe(y => this.RaisePropertyChanged(nameof(IsMe))).DisposeWith(disposables);
 
         SearchWebCommand = ReactiveCommand.Create(() => CommonUtils.SearchWeb(Name)).DisposeWith(disposables);
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvUserUrlBase + Username)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(Url ?? UrlProvider.BangumiTvUserUrlBase + Username)).DisposeWith(disposables);
     }
 
     [Reactive] public partial IImages? Avatar { get; set; }

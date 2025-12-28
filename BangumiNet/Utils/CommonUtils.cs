@@ -31,10 +31,14 @@ public static partial class CommonUtils
         return DateTimeOffset.FromUnixTimeSeconds(t).ToLocalTime();
     }
 
-    public static void OpenUrlInBrowser(string url)
+    /// <summary>
+    /// Open Uri or File with system default app
+    /// </summary>
+    /// <param name="uri">Uri or file path</param>
+    public static void OpenUri(string uri)
         => Process.Start(new ProcessStartInfo()
         {
-            FileName = url,
+            FileName = uri,
             UseShellExecute = true,
         });
 
@@ -43,7 +47,7 @@ public static partial class CommonUtils
         if (string.IsNullOrEmpty(keyword)) return;
         searchEngine ??= SettingProvider.Current.DefaultSearchEngine;
         if (!SettingProvider.Current.SearchQueryUrlBases.TryGetValue(searchEngine, out var ub)) return;
-        OpenUrlInBrowser(ub + WebUtility.UrlEncode(keyword));
+        OpenUri(ub + WebUtility.UrlEncode(keyword));
     }
 
     public static bool IsAlphaNumeric(string? input)

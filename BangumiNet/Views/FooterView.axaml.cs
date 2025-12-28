@@ -12,11 +12,11 @@ public partial class FooterView : UserControl
         VersionText.Text = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
     }
     private void OpenGitHub(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(Constants.SourceRepository);
+        => CommonUtils.OpenUri(Constants.SourceRepository);
     private void OpenBangumi(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiUrl);
+        => CommonUtils.OpenUri(UrlProvider.BangumiUrl);
     private void OpenBgm(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(UrlProvider.BgmUrl);
+        => CommonUtils.OpenUri(UrlProvider.BgmUrl);
     private void OpenChii(object? sender, RoutedEventArgs e)
-        => CommonUtils.OpenUrlInBrowser(UrlProvider.ChiiUrl);
+        => CommonUtils.OpenUri(UrlProvider.ChiiUrl);
 }

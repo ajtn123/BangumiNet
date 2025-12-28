@@ -208,7 +208,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         CommentListViewModel ??= new(ItemType, Id);
         RevisionListViewModel ??= new(this);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(Url ?? UrlProvider.BangumiTvSubjectUrlBase + Id)).DisposeWith(disposables);
         CollectCommand = ReactiveCommand.Create(() => new SubjectCollectionEditWindow() { DataContext = new SubjectCollectionViewModel(this) }.Show(),
             this.WhenAnyValue(x => x.SubjectCollectionViewModel).Select(c => c == null)).DisposeWith(disposables);
         ShowCoversCommand = ReactiveCommand.Create(() =>

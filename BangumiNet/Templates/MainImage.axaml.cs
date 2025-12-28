@@ -65,11 +65,11 @@ public class MainImage : ContentControl
                 Directory.CreateDirectory(PathProvider.TempFolderPath);
                 if (!File.Exists(tempFilePath))
                     File.Copy(path, tempFilePath, true);
-                Process.Start(new ProcessStartInfo(tempFilePath) { UseShellExecute = true });
+                CommonUtils.OpenUri(tempFilePath);
             }
             else
             {
-                CommonUtils.OpenUrlInBrowser(url);
+                CommonUtils.OpenUri(url);
             }
     }
 

@@ -60,7 +60,7 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                 menu.Items.Add(new MenuItem
                 {
                     Header = meta.Title,
-                    Command = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(site.GetUrl(meta)!))
+                    Command = ReactiveCommand.Create(() => CommonUtils.OpenUri(site.GetUrl(meta)!))
                 });
             }
             return menu;

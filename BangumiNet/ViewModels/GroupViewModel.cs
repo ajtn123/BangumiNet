@@ -45,7 +45,7 @@ public partial class GroupViewModel : ItemViewModelBase
         Members ??= new(Groupname);
         Topics ??= new(Groupname);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvGroupUrlBase + Groupname)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvGroupUrlBase + Groupname)).DisposeWith(disposables);
     }
 
     [Reactive] public partial string? Groupname { get; set; }

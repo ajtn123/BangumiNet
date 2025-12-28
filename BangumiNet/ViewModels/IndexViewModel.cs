@@ -45,7 +45,7 @@ public partial class IndexViewModel : ItemViewModelBase
         RelatedItems ??= new(RelatedItemType.Subject, ItemType, Id);
         Comments ??= new(ItemType, Id);
 
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(UrlProvider.BangumiTvIndexUrlBase + Id)).DisposeWith(disposables);
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvIndexUrlBase + Id)).DisposeWith(disposables);
     }
 
     [Reactive] public partial UserViewModel? User { get; set; }

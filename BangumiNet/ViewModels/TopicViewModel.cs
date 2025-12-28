@@ -66,7 +66,7 @@ public partial class TopicViewModel : ItemViewModelBase
 
     protected override void Activate(CompositeDisposable disposables)
     {
-        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUrlInBrowser(ParentType switch
+        OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(ParentType switch
         {
             ItemType.Subject => UrlProvider.BangumiTvSubjectTopicUrlBase + Id,
             ItemType.Group => UrlProvider.BangumiTvGroupTopicUrlBase + Id,
