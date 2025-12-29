@@ -36,7 +36,7 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         }
 
         if (File.Attachments is { } ats)
-            items.AddRange(ats.Select(a => new TextViewModel(() => [new InfoBadge { Text = "附件" }, new HyperlinkButton { Content = a.File.Name, Command = CommonUtils.GetOpenUriCommand(a.File.FullName) }])).ToObservableCollection());
+            items.AddRange(ats.Select(a => new TextViewModel(() => [new InfoBadge { Text = "附件", Margin = new(0, 0, 5, 0) }, new HyperlinkButton { Content = a.File.Name, Command = CommonUtils.GetOpenUriCommand(a.File.FullName) }])));
 
         Items = [.. items];
     }
