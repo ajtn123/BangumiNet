@@ -3,6 +3,7 @@
 public class LibraryDirectory : LibraryItem
 {
     public required DirectoryInfo Directory { get; init; }
+    public LibraryDirectory? Parent { get; init; }
 
     public List<LibraryDirectory>? Directories { get; private set; }
     public List<LibraryFile>? Files { get; private set; }
@@ -10,7 +11,7 @@ public class LibraryDirectory : LibraryItem
     private static readonly string pattern = "*";
     private static readonly EnumerationOptions options = new() { AttributesToSkip = FileAttributes.Hidden | FileAttributes.System };
 
-    public IEnumerable<LibraryDirectory> EnumerateDirectories() => Directory.EnumerateDirectories(pattern, options).Select(dir => new LibraryDirectory { Directory = dir });
+    public IEnumerable<LibraryDirectory> EnumerateDirectories() => Directory.EnumerateDirectories(pattern, options).Select(dir => new LibraryDirectory { Directory = dir, Parent = this });
     public IEnumerable<LibraryFile> EnumerateFiles() => Directory.EnumerateFiles(pattern, options).Select(file => new LibraryFile { File = file });
 
     public void LoadDirectories(bool refresh = false)
@@ -49,4 +50,25 @@ public class LibraryDirectory : LibraryItem
         else
             Files ??= GetFiles();
     }
+
+    public DirectoryType Type
+    {
+        get
+        {
+            if (field != (DirectoryType)(-1)) return field;
+            var name = Directory.Name;
+            if (Patterns.ExtraDirectory().IsMatch(name)) return field = DirectoryType.Extra;
+            else if (Parent?.Type == DirectoryType.Extra)
+                if (Patterns.CDDirectoryLoose().IsMatch(name)) return field = DirectoryType.CD;
+                else if (Patterns.ScanDirectoryLoose().IsMatch(name)) return field = DirectoryType.Scan;
+                else if (Patterns.SPDirectoryLoose().IsMatch(name)) return field = DirectoryType.SP;
+                else return field = DirectoryType.Subject;
+            else
+                if (Patterns.CDDirectory().IsMatch(name)) return field = DirectoryType.CD;
+                else if (Patterns.ScanDirectory().IsMatch(name)) return field = DirectoryType.Scan;
+                else if (Patterns.SPDirectory().IsMatch(name)) return field = DirectoryType.SP;
+                else return field = DirectoryType.Subject;
+        }
+        private set => field = value;
+    } = (DirectoryType)(-1);
 }

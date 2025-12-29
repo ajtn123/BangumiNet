@@ -72,4 +72,15 @@ public record class Settings : IApiSettings
     public string ColorErrorBg { get; init; } = "#7fff7f7f";
     [Description("成功背景")]
     public string ColorOkBg { get; init; } = "#7f7fff7f";
+
+    [Description("库路径条目背景")]
+    public string ColorLibraryDirectorySubjectBg { get; init; } = "#3fffffff";
+    [Description("库路径Extra背景")]
+    public string ColorLibraryDirectoryExtraBg { get; init; } = "#3fffbfbf";
+    [Description("库路径CD背景")]
+    public string ColorLibraryDirectoryCDBg { get; init; } = "#3fffffbf";
+    [Description("库路径Scan背景")]
+    public string ColorLibraryDirectoryScanBg { get; init; } = "#3fbfffff";
+    [Description("库路径SP背景")]
+    public string ColorLibraryDirectorySPBg { get; init; } = "#3fbfbfff";
 }

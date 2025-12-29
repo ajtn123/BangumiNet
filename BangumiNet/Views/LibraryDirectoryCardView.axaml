@@ -3,11 +3,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
+             xmlns:ic="using:FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:LibraryDirectoryViewModel"
              x:Class="BangumiNet.Views.LibraryDirectoryCardView">
-    <Expander Header="{Binding Name}"
+    <Expander Header="{Binding}"
               IsExpanded="False">
+        <Expander.Styles>
+            <Style Selector="Expander /template/ ToggleButton#ExpanderHeader">
+                <Setter Property="Background" Value="{Binding HeaderBackgroundBrush}"/>
+            </Style>
+        </Expander.Styles>
+        <Expander.HeaderTemplate>
+			<DataTemplate DataType="bn:LibraryDirectoryViewModel">
+				<Panel>
+                    <ic:FluentIcon Icon="{Binding HeaderIcon}"
+                                   IconSize="Size16"
+                                   Foreground="LightGray">
+						<ic:FluentIcon.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="4" ScaleY="4" />
+                                <TranslateTransform X="-16" Y="16"/>
+                            </TransformGroup>
+                        </ic:FluentIcon.RenderTransform>
+                    </ic:FluentIcon>
+                    <TextBlock Text="{Binding Name}"/>
+                </Panel>
+            </DataTemplate>
+        </Expander.HeaderTemplate>
         <StackPanel Spacing="5">
 		    <ItemsControl ItemsSource="{Binding Directories}"
                           ItemsPanel="{bn:SpacedStackPanel}">
