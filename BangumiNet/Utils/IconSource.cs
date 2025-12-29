@@ -1,4 +1,6 @@
-﻿using Avalonia.Markup.Xaml;
+﻿using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using FluentAvalonia.UI.Controls;
 using FluentIcons.Avalonia;
 using FluentIcons.Common;
@@ -10,6 +12,12 @@ public class IconSource(Icon icon) : MarkupExtension
     private readonly Icon icon = icon;
     public override ImageIconSource ProvideValue(IServiceProvider provider)
         => FromIcon(icon);
-    public static ImageIconSource FromIcon(Icon icon)
-        => new() { Source = new FluentImage { Icon = icon } };
+    public static ImageIconSource FromIcon(Icon icon) => new()
+    {
+        Source = new FluentImage
+        {
+            Icon = icon,
+            [!FluentImage.ForegroundProperty] = App.Current!.GetResourceObservable("TextFillColorPrimaryBrush").ToBinding(),
+        }
+    };
 }
