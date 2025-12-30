@@ -15,31 +15,36 @@
         <bn:MainWindowViewModel/>
     </Design.DataContext>
 
-    <ui:NavigationView Grid.Column="1" Name="NavView"
-                       PaneDisplayMode="Left"
-                       IsPaneOpen="False">
-        <ui:NavigationView.AutoCompleteBox>
-            <AutoCompleteBox Name="Navigator"/>
-        </ui:NavigationView.AutoCompleteBox>
+    <Panel>
+        <ui:NavigationView Grid.Column="1" Name="NavView"
+                           PaneDisplayMode="Left"
+                           IsPaneOpen="False">
+            <ui:NavigationView.AutoCompleteBox>
+                <AutoCompleteBox Name="Navigator"/>
+            </ui:NavigationView.AutoCompleteBox>
 
-        <ui:NavigationView.MenuItems>
-            <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"/>
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"/>
 
-            <ui:NavigationViewItem Content="每日放送" IconSource="{bn:IconSource Live}"/>
+                <ui:NavigationViewItem Content="每日放送" IconSource="{bn:IconSource Live}"/>
 
-            <ui:NavigationViewItem Content="小组" IconSource="{bn:IconSource PeopleTeam}"/>
+                <ui:NavigationViewItem Content="小组" IconSource="{bn:IconSource PeopleTeam}"/>
 
-            <ui:NavigationViewItem Content="搜索" IconSource="{bn:IconSource Search}"/>
+                <ui:NavigationViewItem Content="搜索" IconSource="{bn:IconSource Search}"/>
 
-            <ui:NavigationViewItem Content="分类浏览" IconSource="{bn:IconSource ListBar}"/>
+                <ui:NavigationViewItem Content="分类浏览" IconSource="{bn:IconSource ListBar}"/>
 
-            <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
+                <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
 
-            <ui:NavigationViewItem Content="库" IconSource="{bn:IconSource Library}"/>
-        </ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="库" IconSource="{bn:IconSource Library}"/>
+            </ui:NavigationView.MenuItems>
 
-        <ui:NavigationView.FooterMenuItems>
-            <ui:NavigationViewItem Content="我" IconSource="{bn:IconSource Person}"/>
-        </ui:NavigationView.FooterMenuItems>
-    </ui:NavigationView>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="我" IconSource="{bn:IconSource Person}"/>
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
+
+        <ui:InfoBar Name="Info" IsOpen="False" IsClosable="True"
+                    VerticalAlignment="Bottom" Margin="20"/>
+    </Panel>
 </Window>

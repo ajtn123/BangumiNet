@@ -44,6 +44,7 @@
                         <InfoBadge Text="音频" IsHighlighted="{Binding Disposition[default]}"/>
 						<InfoItem Tip="语言" Icon="Translate" Text="{Binding Language}"/>
                         <InfoItem Tip="{Binding CodecLongName}" Icon="DataSunburst" Text="{Binding CodecName}"/>
+                        <InfoBadge Label="采样率" Text="{Binding SampleRateHz, StringFormat='\{0} Hz'}" IsVisible="{Binding SampleRateHz, Converter={StaticResource ZeroCvt}}"/>
                         <InfoBadge Label="位深度" Text="{Binding BitDepth, StringFormat='\{0} bit'}" IsVisible="{Binding BitDepth, Converter={StaticResource ZeroCvt}}"/>
                         <InfoBadge Label="比特率" Text="{Binding BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding BitRate, Converter={StaticResource ZeroCvt}}"/>
                     </WrapPanel>
@@ -53,6 +54,8 @@
                         <InfoBadge Text="视频" IsHighlighted="{Binding Disposition[default]}"/>
 						<InfoItem Tip="语言" Icon="Translate" Text="{Binding Language}"/>
                         <InfoItem Tip="{Binding CodecLongName}" Icon="DataSunburst" Text="{Binding CodecName}"/>
+                        <InfoBadge Label="分辨率" Text="{Binding Converter={StaticResource ResolutionCvt}}"/>
+                        <InfoBadge Label="帧速率" Text="{Binding AverageFrameRate, StringFormat='\{0} FPS'}" IsVisible="{Binding AverageFrameRate, Converter={StaticResource ZeroCvt}}"/>
                         <InfoBadge Label="位深度" Text="{Binding BitDepth, StringFormat='\{0} bit'}" IsVisible="{Binding BitDepth, Converter={StaticResource ZeroCvt}}"/>
                         <InfoBadge Label="比特率" Text="{Binding BitRate, StringFormat='\{0} bit/s'}" IsVisible="{Binding BitRate, Converter={StaticResource ZeroCvt}}"/>
                     </WrapPanel>

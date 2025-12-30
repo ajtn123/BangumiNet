@@ -83,4 +83,6 @@ public record class Settings : IApiSettings
     public string ColorLibraryDirectoryScanBg { get; init; } = "#3fbfffff";
     [Description("库路径SP背景")]
     public string ColorLibraryDirectorySPBg { get; init; } = "#3fbfbfff";
+    [Description("库路径字幕背景")]
+    public string ColorLibraryDirectorySubtitlesBg { get; init; } = "#3fbfbfbf";
 }

@@ -4,7 +4,7 @@ namespace BangumiNet.Library;
 
 public static partial class Patterns
 {
-    [GeneratedRegex("^(Extra|Bonuse?)s?$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex("(^(Extra|Bonuse?)s?$|特典)", RegexOptions.IgnoreCase)]
     public static partial Regex ExtraDirectory();
 
     [GeneratedRegex("^CDs?$", RegexOptions.IgnoreCase)]
@@ -19,9 +19,15 @@ public static partial class Patterns
     [GeneratedRegex("Scans?$", RegexOptions.IgnoreCase)]
     public static partial Regex ScanDirectoryLoose();
 
-    [GeneratedRegex("^SPs?$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex("^Sp(ecial)?s?$", RegexOptions.IgnoreCase)]
     public static partial Regex SPDirectory();
 
-    [GeneratedRegex("SPs?$", RegexOptions.IgnoreCase)]
+    [GeneratedRegex("Sp(ecial)?s?$", RegexOptions.IgnoreCase)]
     public static partial Regex SPDirectoryLoose();
+
+    [GeneratedRegex("^Sub(title)?s?$", RegexOptions.IgnoreCase)]
+    public static partial Regex SubtitlesDirectory();
+
+    [GeneratedRegex("Sub(title)?s?$", RegexOptions.IgnoreCase)]
+    public static partial Regex SubtitlesDirectoryLoose();
 }

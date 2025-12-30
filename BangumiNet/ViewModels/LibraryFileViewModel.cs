@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using BangumiNet.Library;
 using BangumiNet.Templates;
+using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Disposables.Fluent;
 
@@ -27,12 +28,23 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         if (Items != null) return;
         List<object> items = [];
 
-        if (await File.AnalyseAsync() is { } analysis)
+        try
         {
+            var analysis = await File.AnalyseAsync();
             items.Add(analysis);
             items.AddRange(analysis.VideoStreams);
             items.AddRange(analysis.AudioStreams);
             items.AddRange(analysis.SubtitleStreams);
+        }
+        catch (Win32Exception e)
+        {
+            Trace.TraceError(e.Message);
+            MainWindow.ShowInfo(FluentAvalonia.UI.Controls.InfoBarSeverity.Error, "未找到 FFProbe", e.Message, new HyperlinkButton { NavigateUri = new(UrlProvider.FFMpegDownloadUrl), Content = "前往下载" });
+        }
+        catch (Exception e)
+        {
+            Trace.TraceInformation(e.Message);
+            Trace.TraceInformation($"{File.File.FullName} is not a media file.");
         }
 
         if (File.Attachments is { } ats)

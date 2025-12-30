@@ -7,4 +7,5 @@ public enum DirectoryType
     CD,
     Scan,
     SP,
+    Subtitles,
 }

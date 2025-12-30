@@ -18,4 +18,5 @@ public static class UrlProvider
     public const string BangumiUrl = "https://bangumi.tv/";
     public const string BgmUrl = "https://bgm.tv/";
     public const string ChiiUrl = "https://chii.in/";
+    public const string FFMpegDownloadUrl = "https://www.ffmpeg.org/download.html#get-packages";
 }

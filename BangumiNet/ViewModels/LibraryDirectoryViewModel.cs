@@ -36,6 +36,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         DirectoryType.CD => Settings.ColorLibraryDirectoryCDBg,
         DirectoryType.Scan => Settings.ColorLibraryDirectoryScanBg,
         DirectoryType.SP => Settings.ColorLibraryDirectorySPBg,
+        DirectoryType.Subtitles => Settings.ColorLibraryDirectorySubtitlesBg,
         _ => Settings.ColorErrorBg,
     });
     public Icon HeaderIcon => Directory.Type switch
@@ -44,6 +45,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         DirectoryType.CD => Icon.Cd,
         DirectoryType.Scan => Icon.Image,
         DirectoryType.SP => Icon.MoviesAndTv,
+        DirectoryType.Subtitles => Icon.Subtitles,
         _ => Icon.Icons,
     };
 }

@@ -62,11 +62,13 @@ public class LibraryDirectory : LibraryItem
                 if (Patterns.CDDirectoryLoose().IsMatch(name)) return field = DirectoryType.CD;
                 else if (Patterns.ScanDirectoryLoose().IsMatch(name)) return field = DirectoryType.Scan;
                 else if (Patterns.SPDirectoryLoose().IsMatch(name)) return field = DirectoryType.SP;
+                else if (Patterns.SubtitlesDirectoryLoose().IsMatch(name)) return field = DirectoryType.Subtitles;
                 else return field = DirectoryType.Subject;
             else
                 if (Patterns.CDDirectory().IsMatch(name)) return field = DirectoryType.CD;
                 else if (Patterns.ScanDirectory().IsMatch(name)) return field = DirectoryType.Scan;
                 else if (Patterns.SPDirectory().IsMatch(name)) return field = DirectoryType.SP;
+                else if (Patterns.SubtitlesDirectory().IsMatch(name)) return field = DirectoryType.Subtitles;
                 else return field = DirectoryType.Subject;
         }
         private set => field = value;

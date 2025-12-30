@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
@@ -62,4 +63,14 @@ public partial class MainWindow : AppWindow
     public MeViewModel? meVM;
 
     public static MainWindow Instance => (MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current?.ApplicationLifetime!).MainWindow!;
+
+    public static void ShowInfo(InfoBarSeverity severity = InfoBarSeverity.Informational, string? title = "信息", string? message = null, Control? action = null)
+    {
+        var info = Instance.Info;
+        info.Severity = severity;
+        info.Title = title;
+        info.Message = message;
+        info.ActionButton = action;
+        info.IsOpen = true;
+    }
 }

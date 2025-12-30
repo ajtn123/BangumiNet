@@ -21,4 +21,5 @@
     <cvt:CommonEnumConverter x:Key="EnumCvt"/>
     <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
     <cvt:HexColorCvt x:Key="HexColorCvt"/>
+    <cvt:ResolutionCvt x:Key="ResolutionCvt"/>
 </ResourceDictionary>
