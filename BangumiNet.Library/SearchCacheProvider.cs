@@ -33,7 +33,7 @@ public static class SearchCacheProvider
         => SearchResults.GetValueOrDefault(keyword);
 
     private static readonly JsonSerializerOptions options = new() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
-    private static readonly FileInfo local = new(PathProvider.GetAbsolutePathForLocalData(Constants.LibraryCacheJsonName));
+    private static readonly FileInfo local = new(Path.Combine(Constants.AppData, Constants.LibraryCacheJsonName));
     private static ConcurrentDictionary<string, SearchResult?> Load()
     {
         if (!local.Exists) return [];
