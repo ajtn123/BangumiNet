@@ -11,7 +11,7 @@
              x:Class="BangumiNet.Views.SubjectCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
           Classes="PointoverTextHost" Name="CardGrid">
-        <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top">
+        <MainImage Url="{Binding Images?.Small}" VerticalAlignment="Top">
             <bn:SubjectFlyoutView/>
         </MainImage>
 

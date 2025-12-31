@@ -1,17 +1,57 @@
-﻿namespace BangumiNet.Library;
+﻿using BangumiNet.Api.Helpers;
+using BangumiNet.Api.P1.Models;
+using System.Diagnostics;
+
+namespace BangumiNet.Library;
 
 public class LibraryDirectory : LibraryItem
 {
-    public required DirectoryInfo Directory { get; init; }
-    public LibraryDirectory? Parent { get; init; }
+    public LibraryDirectory(DirectoryInfo directory, LibraryDirectory? parent = null)
+    {
+        Directory = directory;
+        Parent = parent;
+        Ancestor = parent?.Ancestor;
+
+        var dirName = Directory.Name;
+        if (Parent == null) Type = DirectoryType.Library;
+        else if (Patterns.ExtraDirectory().IsMatch(dirName)) Type = DirectoryType.Extra;
+        else if (Parent.Type is DirectoryType.Extra or DirectoryType.Other)
+            if (Patterns.CDDirectoryLoose().IsMatch(dirName)) Type = DirectoryType.CD;
+            else if (Patterns.ScanDirectoryLoose().IsMatch(dirName)) Type = DirectoryType.Scan;
+            else if (Patterns.SPDirectoryLoose().IsMatch(dirName)) Type = DirectoryType.SP;
+            else if (Patterns.SubtitlesDirectoryLoose().IsMatch(dirName)) Type = DirectoryType.Subtitles;
+            else Type = DirectoryType.Other;
+        else
+            if (Patterns.CDDirectory().IsMatch(dirName)) Type = DirectoryType.CD;
+            else if (Patterns.ScanDirectory().IsMatch(dirName)) Type = DirectoryType.Scan;
+            else if (Patterns.SPDirectory().IsMatch(dirName)) Type = DirectoryType.SP;
+            else if (Patterns.SubtitlesDirectory().IsMatch(dirName)) Type = DirectoryType.Subtitles;
+            else if (Parent.Type is DirectoryType.Subject or DirectoryType.Library &&
+                     Patterns.SubjectDirectory().IsMatch(dirName)) Type = DirectoryType.Subject;
+            else Type = DirectoryType.Other;
+
+        if (Type == DirectoryType.Subject)
+        {
+            var match = Patterns.SubjectDirectory().Match(dirName);
+            match.Groups.TryGetValue("Uploader", out var uploader);
+            match.Groups.TryGetValue("Title", out var title);
+            match.Groups.TryGetValue("Attribute", out var attribute);
+            var attributes = attribute?.Captures.Select(x => x.Value).ToArray();
+            SubjectInfo = new(uploader?.Value, title?.Value, attributes);
+        }
+    }
+
+    public DirectoryInfo Directory { get; private set; }
+    public LibraryDirectory? Parent { get; private set; }
+    public SubjectLibrary? Ancestor { get; protected set; }
 
     public List<LibraryDirectory>? Directories { get; private set; }
     public List<LibraryFile>? Files { get; private set; }
 
-    private static readonly string pattern = "*";
+    private const string pattern = "*";
     private static readonly EnumerationOptions options = new() { AttributesToSkip = FileAttributes.Hidden | FileAttributes.System };
 
-    public IEnumerable<LibraryDirectory> EnumerateDirectories() => Directory.EnumerateDirectories(pattern, options).Select(dir => new LibraryDirectory { Directory = dir, Parent = this });
+    public IEnumerable<LibraryDirectory> EnumerateDirectories() => Directory.EnumerateDirectories(pattern, options).Select(dir => new LibraryDirectory(dir, this));
     public IEnumerable<LibraryFile> EnumerateFiles() => Directory.EnumerateFiles(pattern, options).Select(file => new LibraryFile { File = file });
 
     public void LoadDirectories(bool refresh = false)
@@ -51,26 +91,31 @@ public class LibraryDirectory : LibraryItem
             Files ??= GetFiles();
     }
 
-    public DirectoryType Type
+    public DirectoryType Type { get; private set; }
+    public SubjectDirectoryInfo? SubjectInfo { get; private set; }
+
+    public record class SubjectDirectoryInfo(string? Uploader, string? Title, string[]? Attributes);
+
+    public async Task<SearchCacheProvider.SearchResult?> SearchBangumi(Api.P1.ApiClient client, CancellationToken cancellationToken = default)
     {
-        get
+        if (string.IsNullOrWhiteSpace(SubjectInfo?.Title)) return null;
+        var keyword = SubjectInfo.Title;
+        if (SearchCacheProvider.SearchResults.TryGetValue(keyword, out var result)) return result;
+        try
         {
-            if (field != (DirectoryType)(-1)) return field;
-            var name = Directory.Name;
-            if (Patterns.ExtraDirectory().IsMatch(name)) return field = DirectoryType.Extra;
-            else if (Parent?.Type == DirectoryType.Extra)
-                if (Patterns.CDDirectoryLoose().IsMatch(name)) return field = DirectoryType.CD;
-                else if (Patterns.ScanDirectoryLoose().IsMatch(name)) return field = DirectoryType.Scan;
-                else if (Patterns.SPDirectoryLoose().IsMatch(name)) return field = DirectoryType.SP;
-                else if (Patterns.SubtitlesDirectoryLoose().IsMatch(name)) return field = DirectoryType.Subtitles;
-                else return field = DirectoryType.Subject;
-            else
-                if (Patterns.CDDirectory().IsMatch(name)) return field = DirectoryType.CD;
-                else if (Patterns.ScanDirectory().IsMatch(name)) return field = DirectoryType.Scan;
-                else if (Patterns.SPDirectory().IsMatch(name)) return field = DirectoryType.SP;
-                else if (Patterns.SubtitlesDirectory().IsMatch(name)) return field = DirectoryType.Subtitles;
-                else return field = DirectoryType.Subject;
+            var response = await client.P1.Search.Subjects.PostAsync(new()
+            {
+                Keyword = SubjectInfo.Title,
+                Sort = SubjectSearchSort.Match,
+                Filter = new() { Type = Ancestor?.SubjectTypes.Select(x => (int?)x).ToList() },
+            }, config => config.Paging(1, 0), cancellationToken);
+            SearchCacheProvider.Add(keyword, response?.Data?.FirstOrDefault());
+            return SearchCacheProvider.Get(keyword);
         }
-        private set => field = value;
-    } = (DirectoryType)(-1);
+        catch (Exception e)
+        {
+            Trace.TraceError(e.Message);
+            return null;
+        }
+    }
 }

@@ -1,7 +1,6 @@
 ﻿using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers;
-using BangumiNet.Models;
 using System.Reactive.Disposables;
 
 namespace BangumiNet.ViewModels;

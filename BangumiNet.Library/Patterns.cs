@@ -30,4 +30,7 @@ public static partial class Patterns
 
     [GeneratedRegex("Sub(title)?s?$", RegexOptions.IgnoreCase)]
     public static partial Regex SubtitlesDirectoryLoose();
+
+    [GeneratedRegex(@"^(\p{Ps}(?<Uploader>.*?)\p{Pe}\s*)?(?<Title>.*?)(\s*\p{Ps}(?<Attribute>.*?)\p{Pe})*$")]
+    public static partial Regex SubjectDirectory();
 }

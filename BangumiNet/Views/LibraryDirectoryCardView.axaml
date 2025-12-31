@@ -7,30 +7,51 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:LibraryDirectoryViewModel"
              x:Class="BangumiNet.Views.LibraryDirectoryCardView">
-    <Expander Header="{Binding}"
+    <Expander Header="{Binding Header}"
+              ClipToBounds="True"
               IsExpanded="False">
         <Expander.Styles>
             <Style Selector="Expander /template/ ToggleButton#ExpanderHeader">
                 <Setter Property="Background" Value="{Binding HeaderBackgroundBrush}"/>
             </Style>
         </Expander.Styles>
-        <Expander.HeaderTemplate>
-			<DataTemplate DataType="bn:LibraryDirectoryViewModel">
+        <Expander.DataTemplates>
+			<DataTemplate DataType="bn:LibraryDirectoryIconHeaderViewModel">
 				<Panel>
-                    <ic:FluentIcon Icon="{Binding HeaderIcon}"
-                                   IconSize="Size16"
+                    <ic:FluentIcon Icon="{Binding Owner.HeaderIcon}"
+                                   IconSize="Size16" FontSize="16"
                                    Foreground="LightGray">
 						<ic:FluentIcon.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="4" ScaleY="4" />
+                                <ScaleTransform ScaleX="4" ScaleY="4"/>
                                 <TranslateTransform X="-16" Y="16"/>
                             </TransformGroup>
                         </ic:FluentIcon.RenderTransform>
                     </ic:FluentIcon>
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Owner.Name}"/>
                 </Panel>
             </DataTemplate>
-        </Expander.HeaderTemplate>
+			<DataTemplate DataType="bn:LibraryDirectoryImageHeaderViewModel">
+				<StackPanel Orientation="Horizontal" Spacing="5">
+                    <StackPanel.ContextFlyout>
+						<Flyout>
+							<ContentControl Content="{Binding Owner.Subject}"/>
+                        </Flyout>
+                    </StackPanel.ContextFlyout>
+                    <MainImage Url="{Binding Owner.Subject?.Images?.Small}"
+                               HorizontalAlignment="Left"
+                               Height="60" Margin="0,5"
+                               CornerRadius="5">
+                        <ContentControl Content="{Binding Owner.Subject}"/>
+                    </MainImage>
+                    <TextBlock Text="{Binding Owner.Name}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </DataTemplate>
+            <DataTemplate DataType="bn:SubjectViewModel">
+				<bn:SubjectFlyoutView/>
+            </DataTemplate>
+        </Expander.DataTemplates>
         <StackPanel Spacing="5">
 		    <ItemsControl ItemsSource="{Binding Directories}"
                           ItemsPanel="{bn:SpacedStackPanel}">

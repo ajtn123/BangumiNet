@@ -2,7 +2,6 @@ using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
-using Avalonia.Media;
 using BangumiNet.BangumiData.Models;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
@@ -94,19 +93,12 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
                     Padding = new(0),
                     Content = new FluentIcons.Avalonia.FluentIcon { Icon = FluentIcons.Common.Icon.Open, FontSize = 20 },
                     Command = ReactiveCommand.CreateFromTask(async () => SecondaryWindow.Show(await ApiC.GetViewModelAsync<SubjectViewModel>(int.Parse(bgm.Id)))),
-                    BorderBrush = Brushes.LightGray,
-                    BorderThickness = new(1),
-                    Background = Brushes.White,
                 });
             foreach (var site in sites)
                 sp.Children.Add(new HyperlinkButton
                 {
                     Content = Meta[site.Name].Title,
                     NavigateUri = new Uri(site.GetUrl(Meta)!),
-                    BorderBrush = Brushes.LightGray,
-                    BorderThickness = new(1),
-                    Background = Brushes.White,
-                    Padding = new(2, 0)
                 });
             Content = sp;
         }

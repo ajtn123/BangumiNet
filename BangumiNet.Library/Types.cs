@@ -2,6 +2,8 @@
 
 public enum DirectoryType
 {
+    Other,
+    Library,
     Subject,
     Extra,
     CD,

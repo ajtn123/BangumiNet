@@ -18,6 +18,15 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         {
             if (Directories == null)
             {
+                Header = Directory.Type switch
+                {
+                    DirectoryType.Subject => new LibraryDirectoryImageHeaderViewModel(this),
+                    _ => new LibraryDirectoryIconHeaderViewModel(this),
+                };
+
+                if (Directory.Type is DirectoryType.Subject)
+                    Task.Run(async () => Subject ??= await Directory.SearchBangumi(ApiC.Clients.P1Client) is { } result ? new(result) : null);
+
                 Directory.LoadDirectories();
                 Directory.LoadFiles();
                 Directories = [.. Directory.Directories!.Select(dir => new LibraryDirectoryViewModel(dir))];
@@ -28,6 +37,8 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
 
     [Reactive] public partial ObservableCollection<LibraryDirectoryViewModel>? Directories { get; private set; }
     [Reactive] public partial ObservableCollection<LibraryFileViewModel>? Files { get; private set; }
+    [Reactive] public partial SubjectViewModel? Subject { get; private set; }
+    [Reactive] public partial object? Header { get; private set; }
 
     public IBrush HeaderBackgroundBrush => Brush.Parse(Directory.Type switch
     {
@@ -37,6 +48,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         DirectoryType.Scan => Settings.ColorLibraryDirectoryScanBg,
         DirectoryType.SP => Settings.ColorLibraryDirectorySPBg,
         DirectoryType.Subtitles => Settings.ColorLibraryDirectorySubtitlesBg,
+        DirectoryType.Other => Settings.ColorLibraryDirectoryOtherBg,
         _ => Settings.ColorErrorBg,
     });
     public Icon HeaderIcon => Directory.Type switch
@@ -49,3 +61,6 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         _ => Icon.Icons,
     };
 }
+
+public record class LibraryDirectoryIconHeaderViewModel(LibraryDirectoryViewModel Owner);
+public record class LibraryDirectoryImageHeaderViewModel(LibraryDirectoryViewModel Owner);

@@ -5,6 +5,7 @@ using BangumiNet.Common;
 using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
+using BangumiNet.Library;
 using BangumiNet.Models;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -121,6 +122,14 @@ public partial class SubjectViewModel : ItemViewModelBase
         Relation = subject.Staff;
         if (!string.IsNullOrWhiteSpace(subject.Eps))
             Relation += $" < {subject.Eps}";
+    }
+    public SubjectViewModel(SearchCacheProvider.SearchResult subject)
+    {
+        Id = subject.Id;
+        Name = subject.Name;
+        NameCn = subject.NameCn;
+        Type = subject.Type;
+        Images = subject.Images;
     }
     public SubjectViewModel(SubjectBasic subject)
     {

@@ -11,9 +11,12 @@
     </Design.PreviewWith>
 
     <ControlTheme x:Key="{x:Type MainImage}" TargetType="MainImage">
+        <Setter Property="ClipToBounds" Value="True"/>
+        <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border ClipToBounds="True" CornerRadius="10">
+                <Border ClipToBounds="{TemplateBinding ClipToBounds}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                     <Image Source="{TemplateBinding Source}"
                            RenderOptions.BitmapInterpolationMode="None">
                         <Image.ContextFlyout>

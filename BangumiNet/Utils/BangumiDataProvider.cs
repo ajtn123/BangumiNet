@@ -28,7 +28,7 @@ public static class BangumiDataProvider
     }
 
     private static bool isUpdating = false;
-    public static async Task UpdateBangumiDataAsync(CancellationToken cancellationToken = default)
+    private static async Task UpdateBangumiDataAsync(CancellationToken cancellationToken = default)
     {
         if (isUpdating) return; else isUpdating = true;
         try
