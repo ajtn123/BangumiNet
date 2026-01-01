@@ -7,31 +7,31 @@ using System.Text.Json;
 
 namespace BangumiNet.Library;
 
-public static class SearchCacheProvider
+public static class LibrarySubjectProvider
 {
-    public record class SearchResult(int? Id, string? Name, string? NameCn, SubjectType? Type, ImageSet? Images);
+    public record class SubjectEntry(int? Id, string? Name, string? NameCn, SubjectType? Type, ImageSet? Images);
 
-    static SearchCacheProvider()
+    static LibrarySubjectProvider()
     {
-        SearchResults = Load();
+        Subjects = Load();
     }
 
-    public static ConcurrentDictionary<string, SearchResult?> SearchResults { get; private set; }
+    public static ConcurrentDictionary<string, SubjectEntry?> Subjects { get; private set; }
 
-    public static void Set(string keyword, SearchResult? result)
-        => SearchResults[keyword] = result;
-    public static SearchResult? Get(string keyword)
-        => SearchResults.GetValueOrDefault(keyword);
+    public static void Set(string keyword, SubjectEntry? result)
+        => Subjects[keyword] = result;
+    public static SubjectEntry? Get(string keyword)
+        => Subjects.GetValueOrDefault(keyword);
 
     private static readonly JsonSerializerOptions options = new() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
     private static readonly FileInfo local = new(Path.Combine(Constants.AppData, Constants.LibraryCacheJsonName));
-    private static ConcurrentDictionary<string, SearchResult?> Load()
+    private static ConcurrentDictionary<string, SubjectEntry?> Load()
     {
         if (!local.Exists) return [];
         try
         {
             using var fs = local.OpenRead();
-            return JsonSerializer.Deserialize<ConcurrentDictionary<string, SearchResult?>>(fs, options) ?? [];
+            return JsonSerializer.Deserialize<ConcurrentDictionary<string, SubjectEntry?>>(fs, options) ?? [];
         }
         catch (Exception e)
         {
@@ -41,7 +41,7 @@ public static class SearchCacheProvider
     }
     public static void Save()
     {
-        var json = JsonSerializer.SerializeToUtf8Bytes(SearchResults, options);
+        var json = JsonSerializer.SerializeToUtf8Bytes(Subjects, options);
         File.WriteAllBytes(local.FullName, json);
     }
 }

@@ -98,11 +98,11 @@ public class LibraryDirectory : LibraryItem
 
     public record class SubjectDirectoryInfo(string? Uploader, string? Title, string[]? Attributes);
 
-    public async Task<SearchCacheProvider.SearchResult?> SearchBangumi(Api.P1.ApiClient client, CancellationToken cancellationToken = default)
+    public async Task<LibrarySubjectProvider.SubjectEntry?> SearchBangumi(Api.P1.ApiClient client, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(SubjectInfo?.Title)) return null;
         var keyword = SubjectInfo.Title;
-        if (SearchCacheProvider.SearchResults.TryGetValue(keyword, out var result)) return result;
+        if (LibrarySubjectProvider.Subjects.TryGetValue(keyword, out var result)) return result;
         try
         {
             var response = await client.P1.Search.Subjects.PostAsync(new()
@@ -112,7 +112,7 @@ public class LibraryDirectory : LibraryItem
                 Filter = new() { Type = Ancestor?.SubjectTypes.Select(x => (int?)x).ToList() },
             }, config => config.Paging(1, 0), cancellationToken);
 
-            SearchCacheProvider.Set(keyword, response?.Data?.FirstOrDefault() is { } r ?
+            LibrarySubjectProvider.Set(keyword, response?.Data?.FirstOrDefault() is { } r ?
                 new(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet
                 {
                     Grid = images.Grid,
@@ -120,7 +120,7 @@ public class LibraryDirectory : LibraryItem
                     Medium = images.Medium,
                     Large = images.Large,
                 } : null) : null);
-            return SearchCacheProvider.Get(keyword);
+            return LibrarySubjectProvider.Get(keyword);
         }
         catch (Exception e)
         {
@@ -128,7 +128,7 @@ public class LibraryDirectory : LibraryItem
             return null;
         }
     }
-    public async Task<SearchCacheProvider.SearchResult?> SearchBangumi(int? id, Api.P1.ApiClient client, CancellationToken cancellationToken = default)
+    public async Task<LibrarySubjectProvider.SubjectEntry?> SearchBangumi(int? id, Api.P1.ApiClient client, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(SubjectInfo?.Title)) return null;
         var keyword = SubjectInfo.Title;
@@ -141,7 +141,7 @@ public class LibraryDirectory : LibraryItem
             }
             catch (Exception e) { Trace.TraceError(e.Message); }
 
-        SearchCacheProvider.Set(keyword, response is { } r ?
+        LibrarySubjectProvider.Set(keyword, response is { } r ?
             new(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet
             {
                 Grid = images.Grid,
@@ -149,6 +149,6 @@ public class LibraryDirectory : LibraryItem
                 Medium = images.Medium,
                 Large = images.Large,
             } : null) : null);
-        return SearchCacheProvider.Get(keyword);
+        return LibrarySubjectProvider.Get(keyword);
     }
 }

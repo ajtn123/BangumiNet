@@ -45,7 +45,7 @@ public partial class App : Application
         // 程序关闭时
         ((IClassicDesktopStyleApplicationLifetime)Current!.ApplicationLifetime!).ShutdownRequested += (s, e) =>
         {
-            SearchCacheProvider.Save();
+            LibrarySubjectProvider.Save();
         };
 
         base.OnFrameworkInitializationCompleted();

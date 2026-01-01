@@ -123,7 +123,7 @@ public partial class SubjectViewModel : ItemViewModelBase
         if (!string.IsNullOrWhiteSpace(subject.Eps))
             Relation += $" < {subject.Eps}";
     }
-    public SubjectViewModel(SearchCacheProvider.SearchResult subject)
+    public SubjectViewModel(LibrarySubjectProvider.SubjectEntry subject)
     {
         Id = subject.Id;
         Name = subject.Name;
