@@ -48,7 +48,7 @@ public partial class SettingViewModel : ViewModelBase
         SaveCommand = ReactiveCommand.Create(() =>
         {
             var newSettings = ToSettings();
-            SettingProvider.UpdateSettings(newSettings);
+            SettingProvider.Update(newSettings);
             ((App)Application.Current!).UpdateThemeSettings(newSettings);
             if (newSettings.AuthToken != Source.AuthToken || newSettings.UserAgent != Source.UserAgent)
             {

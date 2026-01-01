@@ -18,8 +18,12 @@ public static class LibrarySubjectProvider
 
     public static ConcurrentDictionary<string, SubjectEntry?> Subjects { get; private set; }
 
+    private static bool isChanged = false;
     public static void Set(string keyword, SubjectEntry? result)
-        => Subjects[keyword] = result;
+    {
+        Interlocked.Exchange(ref isChanged, true);
+        Subjects[keyword] = result;
+    }
     public static SubjectEntry? Get(string keyword)
         => Subjects.GetValueOrDefault(keyword);
 
@@ -41,7 +45,15 @@ public static class LibrarySubjectProvider
     }
     public static void Save()
     {
+        if (Interlocked.Exchange(ref isChanged, false) == false)
+            return;
+        if (Subjects.IsEmpty)
+        {
+            File.Delete(local.FullName);
+            return;
+        }
+
         var json = JsonSerializer.SerializeToUtf8Bytes(Subjects, options);
-        File.WriteAllBytes(local.FullName, json);
+        Utils.WriteAppData(local, json);
     }
 }

@@ -4,9 +4,14 @@ namespace BangumiNet.Shared;
 
 public static class SettingProvider
 {
-    public static Settings Current { get; private set; } = LoadSettings();
+    static SettingProvider()
+    {
+        Current = Load();
+    }
 
-    public static void UpdateSettings(Settings settings)
+    public static Settings Current { get; private set; }
+
+    public static void Update(Settings settings)
     {
         Current = settings;
         Current.Save();
@@ -19,13 +24,14 @@ public static class SettingProvider
         IgnoreReadOnlyFields = true,
         IgnoreReadOnlyProperties = true,
     };
-    private static Settings LoadSettings()
+    private static readonly FileInfo local = new(Constants.SettingJsonPath);
+    private static Settings Load()
     {
         Settings defaults = new();
 
-        if (!File.Exists(Constants.SettingJsonPath)) return defaults;
+        if (!local.Exists) return defaults;
 
-        var json = File.ReadAllText(Constants.SettingJsonPath);
+        using var json = local.OpenRead();
         var overrides = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json, options);
 
         if (overrides != null)
@@ -43,7 +49,7 @@ public static class SettingProvider
     }
 
     private static void Save(this Settings current)
-        => File.WriteAllText(Constants.SettingJsonPath, JsonSerializer.Serialize(current.GetOverrides(), options));
+        => Utils.WriteAppData(local, JsonSerializer.SerializeToUtf8Bytes(current.GetOverrides(), options));
     public static Dictionary<string, object?> GetOverrides(this Settings current)
     {
         Settings defaults = new();

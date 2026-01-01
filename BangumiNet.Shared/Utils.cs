@@ -43,4 +43,12 @@ public static class Utils
             Trace.AutoFlush = false;
         }
     }
+
+    public static void WriteAppData(FileInfo location, byte[] data)
+    {
+        location.Directory?.Create();
+        var tmp = location.FullName + ".tmp";
+        File.WriteAllBytes(tmp, data);
+        File.Move(tmp, location.FullName, true);
+    }
 }
