@@ -151,7 +151,7 @@ public partial class SettingViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> GetTokenCommand { get; set; }
     public ReactiveCommand<Unit, Unit> DumpCacheCommand { get; set; }
 
-    public static string CacheSizeString => $"{CacheProvider.CacheSize} /";
+    public static string CacheSizeString => $"{CacheProvider.CacheSize:N0} /";
 }
 
 public partial class PaletteItemViewModel : ViewModelBase

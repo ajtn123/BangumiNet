@@ -183,8 +183,8 @@
                                         Content="{ice:FluentIcon Icon=Delete,FontSize=18}"
                                         ToolTip.Tip="清空缓存" Padding="5"/>
                                 <NumericUpDown Value="{Binding DiskCacheSizeLimit}"
-                                               Watermark="{Binding DefaultSettings.DiskCacheSizeLimit}"
-                                               MinWidth="300">
+                                               Watermark="{Binding DefaultSettings.DiskCacheSizeLimit, StringFormat={}{0:N0}}"
+                                               MinWidth="300" FormatString="N0">
                                     <NumericUpDown.Styles>
 										<Style Selector="NumericUpDown /template/ ButtonSpinner /template/ RepeatButton">
 											<Setter Property="IsVisible" Value="False"/>
