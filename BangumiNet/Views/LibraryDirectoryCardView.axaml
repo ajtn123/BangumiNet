@@ -35,21 +35,53 @@
 				<StackPanel Orientation="Horizontal" Spacing="5">
                     <StackPanel.ContextFlyout>
 						<Flyout>
-							<ContentControl Content="{Binding Owner.Subject}"/>
+							<ContentControl Content="{Binding Owner}"/>
                         </Flyout>
                     </StackPanel.ContextFlyout>
+
                     <MainImage Url="{Binding Owner.Subject?.Images?.Small}"
                                HorizontalAlignment="Left"
                                Height="60" Margin="0,5"
                                CornerRadius="5">
-                        <ContentControl Content="{Binding Owner.Subject}"/>
+                        <ContentControl Content="{Binding Owner}"/>
                     </MainImage>
                     <TextBlock Text="{Binding Owner.Name}"
                                VerticalAlignment="Center"/>
+
+                    <StackPanel.DataTemplates>
+                        <DataTemplate DataType="bn:SubjectViewModel">
+							<bn:SubjectFlyoutView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="bn:LibraryDirectoryViewModel">
+                            <StackPanel Spacing="5" MinWidth="400">
+                                <ContentControl Content="{Binding Subject}" Name="SubjectFlyout"/>
+                                <Separator Margin="0" IsVisible="{Binding #SubjectFlyout.Content, Converter={StaticResource NullCvt}}"/>
+                                <NumericUpDown Name="IdBox" Watermark="ID (留空以声明为非条目)"
+                                               FormatString="F0" Increment="1">
+						            <NumericUpDown.InnerLeftContent>
+                                        <StackPanel Spacing="2" Margin="2,0,0,0"
+                                                    Orientation="Horizontal"
+                                                    VerticalAlignment="Center">
+							                <Button Command="{Binding SearchSubjectCommand}"
+                                                    ToolTip.Tip="搜索标题" Padding="3">
+                                                <TextBlock>
+                                                    <ic:FluentIcon Icon="Search"/>
+                                                </TextBlock>
+                                            </Button>
+							                <Button Command="{Binding RelateSubjectCommand}"
+                                                    CommandParameter="{Binding #IdBox.Value}"
+                                                    ToolTip.Tip="以 ID 指定路径关联的 Bangumi 条目" Padding="3">
+                                                <TextBlock>
+                                                    <ic:FluentIcon Icon="ArrowCircleUpRight"/>指定条目
+                                                </TextBlock>
+                                            </Button>
+                                        </StackPanel>
+                                    </NumericUpDown.InnerLeftContent>
+                                </NumericUpDown>
+                            </StackPanel>
+                        </DataTemplate>
+                    </StackPanel.DataTemplates>
                 </StackPanel>
-            </DataTemplate>
-            <DataTemplate DataType="bn:SubjectViewModel">
-				<bn:SubjectFlyoutView/>
             </DataTemplate>
         </Expander.DataTemplates>
         <StackPanel Spacing="5">

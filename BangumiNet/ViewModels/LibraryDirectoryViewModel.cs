@@ -1,7 +1,10 @@
 ﻿using Avalonia.Media;
+using BangumiNet.Common;
 using BangumiNet.Library;
 using FluentIcons.Common;
+using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
@@ -16,22 +19,38 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
 
         this.WhenActivated((CompositeDisposable disposables) =>
         {
-            if (Directories == null)
+            if (Directories != null) return;
+
+            Header = Directory.Type switch
             {
-                Header = Directory.Type switch
+                DirectoryType.Subject => new LibraryDirectoryImageHeaderViewModel(this),
+                _ => new LibraryDirectoryIconHeaderViewModel(this),
+            };
+
+            if (Directory.Type is DirectoryType.Subject)
+            {
+                Task.Run(async () =>
                 {
-                    DirectoryType.Subject => new LibraryDirectoryImageHeaderViewModel(this),
-                    _ => new LibraryDirectoryIconHeaderViewModel(this),
-                };
-
-                if (Directory.Type is DirectoryType.Subject)
-                    Task.Run(async () => Subject ??= await Directory.SearchBangumi(ApiC.Clients.P1Client) is { } result ? new(result) : null);
-
-                Directory.LoadDirectories();
-                Directory.LoadFiles();
-                Directories = [.. Directory.Directories!.Select(dir => new LibraryDirectoryViewModel(dir))];
-                Files = [.. Directory.Files!.Select(file => new LibraryFileViewModel(file))];
+                    Subject ??= await Directory.SearchBangumi(ApiC.Clients.P1Client) is { } result ? new(result) : null;
+                });
+                RelateSubjectCommand = ReactiveCommand.CreateFromTask<decimal?>(async (id, ct) =>
+                {
+                    Subject = await Directory.SearchBangumi(CommonUtils.ToInt32(id), ApiC.Clients.P1Client, ct) is { } result ? new(result) : null;
+                });
+                SearchSubjectCommand = ReactiveCommand.Create(() =>
+                {
+                    var vm = new SearchViewModel();
+                    vm.Type.FirstOrDefault(x => x.SubjectType == SubjectType.Anime)?.IsSelected = true;
+                    vm.Keyword = Directory.SubjectInfo?.Title;
+                    vm.SearchCommand.Execute().Subscribe();
+                    SecondaryWindow.Show(vm);
+                }, this.WhenAnyValue(x => x.Directory.SubjectInfo).Select(x => !string.IsNullOrWhiteSpace(x?.Title)));
             }
+
+            Directory.LoadDirectories();
+            Directory.LoadFiles();
+            Directories = [.. Directory.Directories!.Select(dir => new LibraryDirectoryViewModel(dir))];
+            Files = [.. Directory.Files!.Select(file => new LibraryFileViewModel(file))];
         });
     }
 
@@ -39,6 +58,9 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
     [Reactive] public partial ObservableCollection<LibraryFileViewModel>? Files { get; private set; }
     [Reactive] public partial SubjectViewModel? Subject { get; private set; }
     [Reactive] public partial object? Header { get; private set; }
+
+    [Reactive] public partial ReactiveCommand<decimal?, Unit>? RelateSubjectCommand { get; private set; }
+    [Reactive] public partial ReactiveCommand<Unit, Unit>? SearchSubjectCommand { get; private set; }
 
     public IBrush HeaderBackgroundBrush => Brush.Parse(Directory.Type switch
     {

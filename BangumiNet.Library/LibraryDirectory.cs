@@ -1,5 +1,7 @@
 ﻿using BangumiNet.Api.Helpers;
+using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Common;
 using System.Diagnostics;
 
 namespace BangumiNet.Library;
@@ -109,7 +111,15 @@ public class LibraryDirectory : LibraryItem
                 Sort = SubjectSearchSort.Match,
                 Filter = new() { Type = Ancestor?.SubjectTypes.Select(x => (int?)x).ToList() },
             }, config => config.Paging(1, 0), cancellationToken);
-            SearchCacheProvider.Add(keyword, response?.Data?.FirstOrDefault());
+
+            SearchCacheProvider.Set(keyword, response?.Data?.FirstOrDefault() is { } r ?
+                new(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet
+                {
+                    Grid = images.Grid,
+                    Small = images.Small,
+                    Medium = images.Medium,
+                    Large = images.Large,
+                } : null) : null);
             return SearchCacheProvider.Get(keyword);
         }
         catch (Exception e)
@@ -117,5 +127,28 @@ public class LibraryDirectory : LibraryItem
             Trace.TraceError(e.Message);
             return null;
         }
+    }
+    public async Task<SearchCacheProvider.SearchResult?> SearchBangumi(int? id, Api.P1.ApiClient client, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(SubjectInfo?.Title)) return null;
+        var keyword = SubjectInfo.Title;
+
+        Subject? response = null;
+        if (id is int subjectId and > 0)
+            try
+            {
+                response = await client.P1.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken);
+            }
+            catch (Exception e) { Trace.TraceError(e.Message); }
+
+        SearchCacheProvider.Set(keyword, response is { } r ?
+            new(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet
+            {
+                Grid = images.Grid,
+                Small = images.Small,
+                Medium = images.Medium,
+                Large = images.Large,
+            } : null) : null);
+        return SearchCacheProvider.Get(keyword);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using BangumiNet.Api.Interfaces;
-using BangumiNet.Api.P1.Models;
 using BangumiNet.Common;
 using BangumiNet.Shared;
 using System.Collections.Concurrent;
@@ -19,15 +18,7 @@ public static class SearchCacheProvider
 
     public static ConcurrentDictionary<string, SearchResult?> SearchResults { get; private set; }
 
-    public static void Add(string keyword, SlimSubject? result)
-        => Add(keyword, result is { } r ? new SearchResult(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet
-        {
-            Grid = images.Grid,
-            Small = images.Small,
-            Medium = images.Medium,
-            Large = images.Large,
-        } : null) : null);
-    public static void Add(string keyword, SearchResult? result)
+    public static void Set(string keyword, SearchResult? result)
         => SearchResults[keyword] = result;
     public static SearchResult? Get(string keyword)
         => SearchResults.GetValueOrDefault(keyword);
