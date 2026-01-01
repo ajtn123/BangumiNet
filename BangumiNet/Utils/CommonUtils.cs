@@ -65,7 +65,7 @@ public static partial class CommonUtils
         if (!Path.Exists(PathProvider.TempFolderPath)) return;
         foreach (var file in Directory.EnumerateFiles(PathProvider.TempFolderPath))
             try { File.Delete(file); }
-            catch (Exception e) { Trace.TraceWarning(e.Message); }
+            catch (Exception e) { Trace.TraceWarning(e.ToString()); }
     }
 
     public static Uri GetAssetUri(string path)

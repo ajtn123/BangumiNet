@@ -73,7 +73,7 @@ public partial class SearchViewModel : SubjectListPagedViewModel
         }
         catch (Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             Request = null;
         }
     }

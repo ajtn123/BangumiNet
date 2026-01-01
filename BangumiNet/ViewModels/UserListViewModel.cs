@@ -52,7 +52,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Limit = Limit;
             }, cancellationToken: cancellationToken));
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?
@@ -74,7 +74,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Limit = Limit;
             }, cancellationToken: cancellationToken));
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?
@@ -89,7 +89,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
         {
             blockList = (await ApiC.P1.Blocklist.GetAsync(cancellationToken: cancellationToken))?.Blocklist;
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (blockList == null) return;
 
         SubjectViewModels = blockList?

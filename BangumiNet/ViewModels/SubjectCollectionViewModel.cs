@@ -222,7 +222,7 @@ public partial class SubjectCollectionViewModel : ViewModelBase
         }
         catch (ErrorDetail e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             switch (e.ResponseStatusCode)
             {
                 case 400:

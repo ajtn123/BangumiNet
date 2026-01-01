@@ -83,7 +83,7 @@ public partial class ReplyViewModel : ViewModelBase
                 });
                 return true;
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
             return false;
         });
     }
@@ -171,7 +171,7 @@ public partial class ReplyViewModel : ViewModelBase
                 });
                 return true;
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
             return false;
         });
     }

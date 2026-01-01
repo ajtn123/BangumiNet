@@ -83,7 +83,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.QueryParameters.Type = (int?)CollectionType;
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -106,7 +106,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -124,7 +124,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -142,7 +142,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -162,7 +162,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.QueryParameters.Type = (int?)CollectionType;
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -185,7 +185,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -203,7 +203,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?
@@ -221,7 +221,7 @@ public partial class SubjectCollectionListViewModel : SubjectListPagedViewModel,
                 config.Paging(Limit, offset);
             }, ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?

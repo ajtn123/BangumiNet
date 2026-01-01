@@ -39,7 +39,7 @@ public static class LibrarySubjectProvider
         }
         catch (Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return [];
         }
     }

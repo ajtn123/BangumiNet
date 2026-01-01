@@ -27,7 +27,7 @@ public partial class AiringViewModel : ViewModelBase, IActivatableViewModel
         {
             response = await ApiC.P1.Calendar.GetAsync();
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         Calendars = response.Days.Select(calendar => new CalendarViewModel(calendar)).ToObservableCollection();

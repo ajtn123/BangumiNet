@@ -124,7 +124,7 @@ public class LibraryDirectory : LibraryItem
         }
         catch (Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return null;
         }
     }
@@ -139,7 +139,7 @@ public class LibraryDirectory : LibraryItem
             {
                 response = await client.P1.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
         LibrarySubjectProvider.Set(keyword, response is { } r ?
             new(r.Id, r.Name, r.NameCN, (SubjectType?)r.Type, r.Images is { } images ? new ImageSet

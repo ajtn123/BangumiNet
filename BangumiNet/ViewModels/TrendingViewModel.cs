@@ -42,7 +42,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
                     config.QueryParameters.Type = (int)SubjectType;
                 }, cancellationToken: ct);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
             if (response == null) return;
 
             SubjectViewModels = response.Data?
@@ -62,7 +62,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
                     config.QueryParameters.Offset = offset;
                 }, cancellationToken: ct);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
             if (response == null) return;
 
             SubjectViewModels = response.Data?

@@ -58,7 +58,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                 _ => throw new NotImplementedException(),
             };
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
         Total = Offset = response.Count();
         SubjectViewModels = [.. response.Select(ConvertToVM)];
@@ -115,7 +115,7 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
                 _ => throw new NotImplementedException(),
             };
         }
-        catch (Exception e) { Trace.TraceError(e.Message); return false; }
+        catch (Exception e) { Trace.TraceError(e.ToString()); return false; }
         Total = response?.Total;
         if (response?.Data == null) return false;
 

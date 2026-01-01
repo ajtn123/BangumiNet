@@ -47,7 +47,7 @@ public partial class RevisionListViewModel : SubjectListPagedViewModel
                 _ => throw new NotImplementedException(),
             };
         }
-        catch (ErrorDetail e) { Trace.TraceError(e.Message); }
+        catch (ErrorDetail e) { Trace.TraceError(e.ToString()); }
         if (response is null) return;
 
         SubjectViewModels = response.Data?.Select<Revision, ViewModelBase>(x => new RevisionViewModel(x, Parent)).ToObservableCollection();

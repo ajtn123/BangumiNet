@@ -39,7 +39,7 @@ public partial class SubjectBrowserViewModel : SubjectListPagedViewModel
         }
         catch (Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             QueryParameters = null;
         }
     }

@@ -37,7 +37,7 @@ public partial class GroupListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Sort = Sort;
             }, cancellationToken: ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?

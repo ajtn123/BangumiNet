@@ -66,7 +66,7 @@ public static partial class ApiC
         catch (Exception e)
         {
             Trace.TraceError($"Image Loading Failed: {url}");
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             CacheProvider.DeleteCache(url);
             if (fallback) return InternetErrorFallbackImage;
             else return null;
@@ -94,7 +94,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Subject? subject = null;
             try { subject = await P1.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (subject is null) return null;
             else return new SubjectViewModel(subject) as T;
@@ -103,7 +103,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Episode? episode = null;
             try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (episode is null) return null;
             else return new EpisodeViewModel(episode) as T;
@@ -112,7 +112,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Character? character = null;
             try { character = await P1.Characters[characterId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (character is null) return null;
             else return new CharacterViewModel(character) as T;
@@ -121,7 +121,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Person? person = null;
             try { person = await P1.Persons[personId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (person is null) return null;
             else return new PersonViewModel(person) as T;
@@ -130,7 +130,7 @@ public static partial class ApiC
         {
             Api.P1.Models.BlogEntry? blog = null;
             try { blog = await P1.Blogs[bid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (blog is null) return null;
             else return new BlogViewModel(blog) as T;
@@ -139,7 +139,7 @@ public static partial class ApiC
         {
             Api.P1.Models.IndexObject? index = null;
             try { index = await P1.Indexes[iid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (index is null) return null;
             else return new IndexViewModel(index) as T;
@@ -148,7 +148,7 @@ public static partial class ApiC
         {
             Api.P1.Models.User? user = null;
             try { user = await P1.Users[uid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (user is null) return null;
             else return new UserViewModel(user) as T;
@@ -157,7 +157,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Profile? me = null;
             try { me = await P1.Me.GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             CurrentUsername = me?.Username;
 
@@ -168,7 +168,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Group? group = null;
             try { group = await P1.Groups[gid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (group is null) return null;
             else return new GroupViewModel(group) as T;
@@ -179,7 +179,7 @@ public static partial class ApiC
             if (user is null) return null;
             UserSubjectCollection? subjectCollection = null;
             try { subjectCollection = await V0.Users[user].Collections[subjectId1].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (subjectCollection is null) return null;
             else return new SubjectCollectionViewModel(subjectCollection) { IsMy = username == null } as T;
@@ -188,7 +188,7 @@ public static partial class ApiC
         {
             Api.P1.Models.Calendar? calendars = null;
             try { calendars = await P1.Calendar.GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (calendars is null) return null;
             var day = (id as DayOfWeek?) ?? DateTime.Today.DayOfWeek;
@@ -210,7 +210,7 @@ public static partial class ApiC
                     _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemType}"),
                 };
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
 
             if (revision is null) return null;
             else return new RevisionViewModel(revision, rvm.Parent) as T;
@@ -243,7 +243,7 @@ public static partial class ApiC
                 _ => throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(ItemType)),
             };
         }
-        catch { } // (Exception e) { Trace.TraceError(e.Message); }
+        catch { } // (Exception e) { Trace.TraceError(e.ToString()); }
 
         return null;
     }
@@ -271,7 +271,7 @@ public static partial class ApiC
         }
         catch (ErrorDetail e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return e.ResponseStatusCode;
         }
     }
@@ -285,7 +285,7 @@ public static partial class ApiC
         }
         catch (ErrorDetail e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return e.ResponseStatusCode;
         }
     }
@@ -298,7 +298,7 @@ public static partial class ApiC
         }
         catch (ErrorDetail e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return e.ResponseStatusCode;
         }
     }
@@ -316,7 +316,7 @@ public static partial class ApiC
         }
         catch (Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             return null;
         }
     }

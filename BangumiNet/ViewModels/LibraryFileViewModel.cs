@@ -38,12 +38,12 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         }
         catch (Win32Exception e)
         {
-            Trace.TraceError(e.Message);
+            Trace.TraceError(e.ToString());
             MainWindow.ShowInfo(FluentAvalonia.UI.Controls.InfoBarSeverity.Error, "未找到 FFProbe", e.Message, new HyperlinkButton { NavigateUri = new(UrlProvider.FFMpegDownloadUrl), Content = "前往下载" });
         }
         catch (Exception e)
         {
-            Trace.TraceInformation(e.Message);
+            Trace.TraceInformation(e.ToString());
             Trace.TraceInformation($"{File.File.FullName} is not a media file.");
         }
 

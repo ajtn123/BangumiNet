@@ -38,7 +38,7 @@ public static class BangumiDataProvider
             await using var file = local.Create();
             await response.CopyToAsync(file, CancellationToken.None);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         finally { isUpdating = false; }
     }
 }

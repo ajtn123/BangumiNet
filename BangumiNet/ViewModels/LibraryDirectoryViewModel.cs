@@ -4,6 +4,7 @@ using BangumiNet.Library;
 using FluentIcons.Common;
 using System.Reactive;
 using System.Reactive.Disposables;
+using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
@@ -36,7 +37,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
                 RelateSubjectCommand = ReactiveCommand.CreateFromTask<decimal?>(async (id, ct) =>
                 {
                     Subject = await Directory.SearchBangumi(CommonUtils.ToInt32(id), ApiC.Clients.P1Client, ct) is { } result ? new(result) : null;
-                });
+                }).DisposeWith(disposables);
                 SearchSubjectCommand = ReactiveCommand.Create(() =>
                 {
                     var vm = new SearchViewModel();
@@ -44,7 +45,8 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
                     vm.Keyword = Directory.SubjectInfo?.Title;
                     vm.SearchCommand.Execute().Subscribe();
                     SecondaryWindow.Show(vm);
-                }, this.WhenAnyValue(x => x.Directory.SubjectInfo).Select(x => !string.IsNullOrWhiteSpace(x?.Title)));
+                }, this.WhenAnyValue(x => x.Directory.SubjectInfo).Select(x => !string.IsNullOrWhiteSpace(x?.Title)))
+                .DisposeWith(disposables);
             }
 
             Directory.LoadDirectories();

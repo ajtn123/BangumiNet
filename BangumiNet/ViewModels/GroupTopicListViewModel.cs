@@ -36,7 +36,7 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Offset = offset;
             }, cancellationToken: ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?
@@ -60,7 +60,7 @@ public partial class GroupTopicListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Mode = BriefFilter;
             }, cancellationToken: ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?

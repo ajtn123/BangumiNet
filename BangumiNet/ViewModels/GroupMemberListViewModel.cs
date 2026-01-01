@@ -25,7 +25,7 @@ public partial class GroupMemberListViewModel : SubjectListPagedViewModel
                 config.QueryParameters.Role = (int?)Role;
             }, cancellationToken: ct);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
         SubjectViewModels = response.Data?

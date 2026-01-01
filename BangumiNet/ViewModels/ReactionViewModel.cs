@@ -79,7 +79,7 @@ public partial class ReactionViewModel : ViewModelBase
 
                 await Parent.UpdateMyReaction(Reaction);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
         }
         else
         {
@@ -101,7 +101,7 @@ public partial class ReactionViewModel : ViewModelBase
 
                 await Parent.UpdateMyReaction(null);
             }
-            catch (Exception e) { Trace.TraceError(e.Message); }
+            catch (Exception e) { Trace.TraceError(e.ToString()); }
         }
     }
 

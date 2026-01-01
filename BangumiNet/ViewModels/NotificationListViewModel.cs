@@ -21,7 +21,7 @@ public partial class NotificationListViewModel : ViewModelBase
                 config.QueryParameters.Unread = Unread;
             });
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
         Source = response;
         Total = response.Total;

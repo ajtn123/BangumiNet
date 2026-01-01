@@ -60,7 +60,7 @@ public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewM
                     config.QueryParameters.Limit = Limit;
                 }, cancellationToken);
         }
-        catch (Exception e) { Trace.TraceError(e.Message); }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (timelines == null) return;
 
         SubjectViewModels = timelines.Select<Timeline, ViewModelBase>(t => new TimelineItemViewModel(t)).ToObservableCollection();
@@ -83,7 +83,7 @@ public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewM
             }
         }
         catch (TaskCanceledException) { Trace.WriteLine("Timeline SSE connection ended as requested."); }
-        catch (Exception e) { Trace.WriteLine(e.Message); }
+        catch (Exception e) { Trace.WriteLine(e.ToString()); }
     }
     private void Disconnect()
     {
