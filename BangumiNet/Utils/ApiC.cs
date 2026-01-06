@@ -1,16 +1,14 @@
 ﻿using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 using BangumiNet.Api;
 using BangumiNet.Api.ExtraEnums;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using System.Collections.Concurrent;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
 
-public static partial class ApiC
+public static class ApiC
 {
     public static Clients Clients { get; private set; } = ClientBuilder.Build(SettingProvider.Current);
     public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
@@ -21,28 +19,12 @@ public static partial class ApiC
     public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
     public static Task<UserViewModel?> RefreshAuthState() => GetViewModelAsync<UserViewModel>();
 
-    [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
-    private static partial Regex DefaultUserAvatarUrl();
-    [GeneratedRegex(@"^https?://lain\.bgm\.tv/pic/photo/[A-Za-z]/no_photo\.png$")]
-    private static partial Regex NoPhotoUrl();
-    public static Bitmap DefaultUserAvatar { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
-    public static Bitmap FallbackImage { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("FallbackImage.png")));
-    public static Bitmap InternetErrorFallbackImage { get; } = new(AssetLoader.Open(CommonUtils.GetAssetUri("InternetError.png")));
-    public static bool IsShared(this Bitmap bitmap)
-        => ReferenceEquals(bitmap, DefaultUserAvatar) ||
-           ReferenceEquals(bitmap, FallbackImage) ||
-           ReferenceEquals(bitmap, InternetErrorFallbackImage);
-
     private static readonly SemaphoreSlim semaphore = new(32);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
-    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, bool fallback = false, CancellationToken cancellationToken = default)
+    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url))
             return null;
-        if (DefaultUserAvatarUrl().IsMatch(url))
-            return DefaultUserAvatar;
-        if (NoPhotoUrl().IsMatch(url))
-            return FallbackImage;
 
         var urlLock = urlLocks.GetOrAdd(url, _ => new SemaphoreSlim(1, 1));
         await urlLock.WaitAsync(cancellationToken);
@@ -68,8 +50,7 @@ public static partial class ApiC
             Trace.TraceError($"Image Loading Failed: {url}");
             Trace.TraceError(e.ToString());
             CacheProvider.DeleteCache(url);
-            if (fallback) return InternetErrorFallbackImage;
-            else return null;
+            return null;
         }
         finally
         {

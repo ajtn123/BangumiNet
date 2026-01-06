@@ -3,13 +3,17 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using FluentIcons.Avalonia;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
+using System.Text.RegularExpressions;
 
 namespace BangumiNet.Templates;
 
-public class MainImage : ContentControl
+public partial class MainImage : ContentControl
 {
     public static readonly StyledProperty<IImage?> SourceProperty
         = AvaloniaProperty.Register<MainImage, IImage?>(nameof(Source));
@@ -27,14 +31,26 @@ public class MainImage : ContentControl
         set => SetValue(UrlProperty, value);
     }
 
+    private readonly CompositeDisposable images = [];
     private readonly CompositeDisposable disposables = [];
     public async Task LoadImageAsync()
     {
-        var bitmap = await ApiC.GetImageAsync(Url, fallback: true);
-        if (bitmap != null && !bitmap.IsShared())
-            bitmap.DisposeWith(disposables);
-        Source = bitmap;
-        IsVisible = bitmap != null;
+        images.Clear();
+
+        if (string.IsNullOrWhiteSpace(Url))
+            Source = null;
+        else if (DefaultUserAvatarUrl().IsMatch(Url))
+            Source = DefaultUserAvatar;
+        else if (NoPhotoUrl().IsMatch(Url))
+            Source = FallbackImage;
+        else
+        {
+            var bitmap = await ApiC.GetImageAsync(Url);
+            bitmap?.DisposeWith(images);
+            Source = bitmap;
+        }
+
+        IsVisible = Source != null;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -50,6 +66,7 @@ public class MainImage : ContentControl
         base.OnDetachedFromVisualTree(e);
         Source = null;
         disposables.Clear();
+        images.Clear();
     }
 
     public void OpenImageWithExternalProgram(object? sender, RoutedEventArgs e)
@@ -83,4 +100,13 @@ public class MainImage : ContentControl
         var ReloadBtn = e.NameScope.Find<Button>("PART_ReloadImageButton");
         ReloadBtn?.Click += ReloadImage;
     }
+
+    public static IImage DefaultUserAvatar { get; } = new Bitmap(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
+    public static IImage FallbackImage { get; } = new FluentImage { Icon = FluentIcons.Common.Icon.Image };
+    public static IImage InternetErrorFallbackImage { get; } = new FluentImage { Icon = FluentIcons.Common.Icon.GlobeError };
+
+    [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
+    private static partial Regex DefaultUserAvatarUrl();
+    [GeneratedRegex(@"^https?://lain\.bgm\.tv/pic/photo/[A-Za-z]/no_photo\.png$")]
+    private static partial Regex NoPhotoUrl();
 }

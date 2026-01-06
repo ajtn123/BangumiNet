@@ -39,7 +39,7 @@ public class BBCode : TemplatedControl
         disposables.Clear();
     }
 
-    public static HtmlPanel GetHtmlPanel(string? text, CompositeDisposable disposables)
+    public static HtmlPanel GetHtmlPanel(string? text, CompositeDisposable images)
     {
         HtmlPanel hp = new();
         hp.ImageLoad += async (s, e) =>
@@ -49,10 +49,12 @@ public class BBCode : TemplatedControl
             var src = e.Event.Src;
             if (src.StartsWith("http") || src.StartsWith("//"))
             {
-                var bitmap = await ApiC.GetImageAsync(e.Event.Src, fallback: true);
-                if (bitmap != null && !bitmap.IsShared())
-                    bitmap.DisposeWith(disposables);
-                e.Event.Callback(bitmap);
+                var bitmap = await ApiC.GetImageAsync(e.Event.Src);
+                if (bitmap != null)
+                {
+                    bitmap.DisposeWith(images);
+                    e.Event.Callback(bitmap);
+                }
             }
             else if (src.StartsWith("bn://emoji/") && int.TryParse(src[11..], out var emojiIndex))
                 e.Event.Callback(StickerProvider.GetStickerBitmap(emojiIndex + 1));
