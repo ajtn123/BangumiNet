@@ -33,19 +33,17 @@ public partial class MainImage : ContentControl
 
     private readonly CompositeDisposable images = [];
     private readonly CompositeDisposable disposables = [];
-    public async Task LoadImageAsync()
+    private async Task LoadImageAsync(string? url)
     {
-        images.Clear();
-
-        if (string.IsNullOrWhiteSpace(Url))
+        if (string.IsNullOrWhiteSpace(url))
             Source = null;
-        else if (DefaultUserAvatarUrl().IsMatch(Url))
+        else if (DefaultUserAvatarUrl().IsMatch(url))
             Source = DefaultUserAvatar;
-        else if (NoPhotoUrl().IsMatch(Url))
+        else if (NoPhotoUrl().IsMatch(url))
             Source = FallbackImage;
         else
         {
-            var bitmap = await ApiC.GetImageAsync(Url);
+            var bitmap = await ApiC.GetImageAsync(url);
             bitmap?.DisposeWith(images);
             Source = bitmap;
         }
@@ -57,7 +55,7 @@ public partial class MainImage : ContentControl
     {
         base.OnAttachedToVisualTree(e);
         this.WhenAnyValue(x => x.Url)
-            .Subscribe(url => _ = LoadImageAsync())
+            .Subscribe(url => _ = LoadImageAsync(url))
             .DisposeWith(disposables);
     }
 
