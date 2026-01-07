@@ -39,7 +39,7 @@ public static class Utils
         }
         else if (!settings.SaveLogFile && Trace.Listeners.Contains(listener))
         {
-            Trace.Listeners.Add(listener);
+            Trace.Listeners.Remove(listener);
             Trace.AutoFlush = false;
         }
     }
