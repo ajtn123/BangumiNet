@@ -1,5 +1,9 @@
-﻿using FluentAvalonia.UI.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
+using FluentAvalonia.UI.Controls;
+using FluentIcons.Avalonia;
 using FluentIcons.Common;
+using System.Collections.Concurrent;
 
 namespace BangumiNet.Utils;
 
@@ -25,4 +29,11 @@ public static class IconHelper
 
     public static ImageIconSource GetIconSource(ItemType type)
         => IconSource.FromIcon(GetIcon(type));
+
+    private static readonly ConcurrentDictionary<Icon, FluentImage> fluentImages = [];
+    public static FluentImage GetFluentImage(Icon icon) => fluentImages.GetOrAdd(icon, icon => new()
+    {
+        Icon = icon,
+        [!FluentImage.ForegroundProperty] = App.Current!.GetResourceObservable("TextFillColorPrimaryBrush").ToBinding(),
+    });
 }

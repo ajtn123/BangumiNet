@@ -3,9 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-using FluentIcons.Avalonia;
+using Avalonia.Svg.Skia;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
@@ -99,9 +97,13 @@ public partial class MainImage : ContentControl
         ReloadBtn?.Click += ReloadImage;
     }
 
-    public static IImage DefaultUserAvatar { get; } = new Bitmap(AssetLoader.Open(CommonUtils.GetAssetUri("DefaultAvatar.png")));
-    public static IImage FallbackImage { get; } = new FluentImage { Icon = FluentIcons.Common.Icon.Image };
-    public static IImage InternetErrorFallbackImage { get; } = new FluentImage { Icon = FluentIcons.Common.Icon.GlobeError };
+    public static IImage DefaultUserAvatar { get; } = new SvgImage()
+    {
+        Source = SvgSource.Load("DefaultAvatar.svg", CommonUtils.GetAssetUri("")),
+        [!SvgImage.CssProperty] = App.Current!.GetResourceObservable("TextFillColorPrimaryBrush").Select(color => $$"""path { color: {{(color as SolidColorBrush)?.Color.ToOpaqueString()}}; }""").ToBinding(),
+    };
+    public static IImage FallbackImage { get; } = IconHelper.GetFluentImage(FluentIcons.Common.Icon.Image);
+    public static IImage InternetErrorFallbackImage { get; } = IconHelper.GetFluentImage(FluentIcons.Common.Icon.GlobeError);
 
     [GeneratedRegex(@"^https?://lain\.bgm\.tv(/r/[0-9]+)?/pic/user/[A-Za-z]/icon\.jpg$")]
     private static partial Regex DefaultUserAvatarUrl();
