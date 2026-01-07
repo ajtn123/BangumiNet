@@ -89,7 +89,7 @@ public partial class MainImage : ContentControl
     }
 
     public async void ReloadImage(object? sender, RoutedEventArgs e)
-        => await LoadImageAsync();
+        => await LoadImageAsync(Url);
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
