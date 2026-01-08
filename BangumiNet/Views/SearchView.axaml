@@ -217,12 +217,9 @@
                   ColumnDefinitions="*,3*" ColumnSpacing="5"
                   IsVisible="{Binding IsSearchingPerson}">
                     <Border Classes="Card">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <TextBlock>
-                                <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
-                            </TextBlock>
-                            <ic:FluentIcon Icon="Warning" FontSize="16" ToolTip.Tip="由于 API 原因，此过滤器目前没有效果。" Grid.Column="1"/>
-                        </Grid>
+                        <TextBlock>
+                            <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
+                        </TextBlock>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Career}" Padding="5,0" Grid.Column="1">
                         <ItemsControl.DataTemplates>
