@@ -81,11 +81,8 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
 
         if (string.IsNullOrWhiteSpace(Name)) Name = null;
         if (string.IsNullOrWhiteSpace(NameCn)) NameCn = null;
-        if (Duration?.TotalSeconds == 0) Duration = null;
+        if (Duration == TimeSpan.Zero) Duration = null;
         if (Disc == 0) Disc = null;
-        if (Ep == 0) Ep = null;
-
-        this.WhenAnyValue(x => x.DurationString, x => x.Duration).Subscribe(x => this.RaisePropertyChanged(nameof(ShouldDisplayDurationString))).DisposeWith(disposables);
 
         OpenInBrowserCommand = ReactiveCommand.Create(() => CommonUtils.OpenUri(UrlProvider.BangumiTvEpisodeUrlBase + Id)).DisposeWith(disposables);
         ShowPrevCommand = ReactiveCommand.Create(() => Prev, this.WhenAnyValue(x => x.Prev).Select(y => y != null)).DisposeWith(disposables);
@@ -94,7 +91,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
         WishCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Wish), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Wish)).DisposeWith(disposables);
         DoneCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Done)).DisposeWith(disposables);
         DropCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatus(EpisodeCollectionType.Dropped), this.WhenAnyValue(x => x.Status).Select(y => y != EpisodeCollectionType.Dropped)).DisposeWith(disposables);
-        DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Ep, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done)).DisposeWith(disposables);
+        DoneUntilCommand = ReactiveCommand.CreateFromTask(async () => await UpdateStatusUntilThis(EpisodeCollectionType.Done), this.WhenAnyValue(x => x.Parent, x => x.Sort, x => x.Status).Select(y => y.Item1 != null && y.Item2 != null && y.Item3 != EpisodeCollectionType.Done)).DisposeWith(disposables);
     }
 
     [Reactive] public partial int? SubjectId { get; set; }
@@ -124,7 +121,6 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     [Reactive] public partial ReactiveCommand<Unit, Unit>? DropCommand { get; private set; }
     [Reactive] public partial ReactiveCommand<Unit, Unit>? DoneUntilCommand { get; private set; }
 
-    public bool ShouldDisplayDurationString => Duration == null && !string.IsNullOrWhiteSpace(DurationString);
     public override ItemType ItemType { get; init; } = ItemType.Episode;
 
     // 尽管对非正片或SP话更新收藏状态会导致完成度显示异常，还是应该允许这么做。
@@ -152,9 +148,9 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     }
     public async Task UpdateStatusUntilThis(EpisodeCollectionType type)
     {
-        if (Ep == null || Parent?.SubjectViewModels == null) return;
+        if (Sort == null || Parent?.SubjectViewModels == null) return;
 
-        var affectedEps = Parent.SubjectViewModels.OfType<EpisodeViewModel>().Where(x => x.Id != null && x.Ep != null && x.Ep <= Ep);
+        var affectedEps = Parent.SubjectViewModels.OfType<EpisodeViewModel>().Where(x => x.Id != null && x.Sort != null && x.Sort <= Sort);
 
         var result = await ApiC.UpdateEpisodeCollection((int)Parent.ParentId!, affectedEps.Select(x => (int)x.Id!), type);
         switch (result)

@@ -61,7 +61,6 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                             {
                                 Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
                                 Command = ReactiveCommand.Create(() => SecondaryWindow.Show(evm)),
-                                ContextFlyout = new Flyout() { Content = new EpisodeView() { DataContext = evm } }
                             }]
                         )
                     );

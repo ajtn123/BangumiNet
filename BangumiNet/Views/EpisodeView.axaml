@@ -20,13 +20,13 @@
                        IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
                        Classes="TitleAlt"/>
             <WrapPanel Classes="InfoBar">
-                <TextBlock ToolTip.Tip="时长" IsVisible="{Binding Duration,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding Duration}"/></TextBlock>
-                <TextBlock ToolTip.Tip="时长" IsVisible="{Binding ShouldDisplayDurationString}"><ic:FluentIcon Icon="Clock"/><Run Text="{Binding DurationString}"/></TextBlock>
-                <TextBlock ToolTip.Tip="放送日期" IsVisible="{Binding AirDate,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Calendar"/><Run Text="{Binding AirDate}"/></TextBlock>
-                <TextBlock ToolTip.Tip="评论" IsVisible="{Binding CommentCount,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Comment"/><Run Text="{Binding CommentCount}"/></TextBlock>
-                <TextBlock ToolTip.Tip="音乐碟片" IsVisible="{Binding Disc,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Cd" IconSize="Size16"/><Run Text="{Binding Disc}"/></TextBlock>
-                <TextBlock ToolTip.Tip="类型" IsVisible="{Binding Type,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Class"/><Run Text="{Binding Type,Converter={StaticResource EnumCvt},Mode=OneWay}"/></TextBlock>
-                <TextBlock ToolTip.Tip="话序" IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="NumberSymbolSquare"/><Run Text="{Binding Ep,StringFormat='第 {0} 话'}"/></TextBlock>
+                <InfoItem Tip="时长" Text="{Binding DurationString}" Icon="Clock"/>
+                <InfoItem Tip="放送日期" CommonText="{Binding AirDate}" Icon="Calendar"/>
+                <InfoItem Tip="评论数量" Text="{Binding CommentCount}" Icon="Comment"/>
+                <InfoItem Tip="碟片" Text="{Binding Disc}" Icon="Cd">
+                    <InfoItem.Styles><Style Selector="ic|FluentIcon"><Setter Property="IconSize" Value="Size16"/></Style></InfoItem.Styles>
+                </InfoItem>
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Comment"/>
                 <InfoItem Tip="章节编号" Text="{Binding Sort}" Icon="NumberSymbolSquare" IconVariant="Filled"/>
                 <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
                 <InfoItem Tip="所属项目 ID" Text="{Binding SubjectId}" Icon="SlideTextMultiple"/>
@@ -40,8 +40,7 @@
                     <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" BorderBrush="Transparent"/>
                     <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" BorderBrush="Transparent"/>
                     <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" BorderBrush="Transparent"
-                            IsVisible="{Binding Ep,Converter={StaticResource NullCvt}}"/>
+                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" BorderBrush="Transparent"/>
                 </WrapPanel>
             </Border>
             <BBCode Text="{Binding Description}" Margin="0,0,0,5"

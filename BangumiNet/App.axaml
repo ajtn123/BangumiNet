@@ -81,7 +81,7 @@
             <Setter Property="Margin" Value="4,0,0,0"/>
             <Setter Property="Padding" Value="4,0,0,0"/>
         </Style>
-        <Style Selector="Button.Icon">
+        <Style Selector="Button.Icon, ToggleButton.Icon">
             <Setter Property="Padding" Value="0"/>
             <Style Selector="^ ic|FluentIcon">
                 <Setter Property="FontSize" Value="24"/>
