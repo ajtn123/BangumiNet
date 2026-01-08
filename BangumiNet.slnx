@@ -1,8 +1,8 @@
 <Solution>
   <Folder Name="/Tests/">
-    <Project Path="BangumiNet.Archive.Test/BangumiNet.Archive.Test.csproj" Id="8108d36a-9e76-4904-a2ef-809d04eccb96" />
-    <Project Path="BangumiNet.BangumiData.Test/BangumiNet.BangumiData.Test.csproj" Id="06df710c-b5ea-4a5b-9bda-819495435ba3" />
-    <Project Path="BangumiNet.Common.Test/BangumiNet.Common.Test.csproj" Id="156c8295-eee1-47de-8603-567ced039e7d" />
+    <Project Path="Tests/BangumiNet.Archive.Test/BangumiNet.Archive.Test.csproj" Id="8108d36a-9e76-4904-a2ef-809d04eccb96" />
+    <Project Path="Tests/BangumiNet.BangumiData.Test/BangumiNet.BangumiData.Test.csproj" Id="06df710c-b5ea-4a5b-9bda-819495435ba3" />
+    <Project Path="Tests/BangumiNet.Common.Test/BangumiNet.Common.Test.csproj" Id="156c8295-eee1-47de-8603-567ced039e7d" />
   </Folder>
   <Project Path="BangumiNet.Api/BangumiNet.Api.csproj" Id="0f02ee07-9971-47e4-9316-604b52a61c26" />
   <Project Path="BangumiNet.Archive/BangumiNet.Archive.csproj" Id="1b39bd04-be18-4bda-a18a-57a5094082da" />

@@ -7,7 +7,7 @@ public sealed class MinimalDeserializationTest
 {
     private static string GetFileName(string fileName)
     {
-        var path = "../../../MinimalArchives/" + fileName;
+        var path = "../../../.minimalArchives/" + fileName;
         if (File.Exists(path)) return path;
         path = "../" + path;
         if (File.Exists(path)) return path;

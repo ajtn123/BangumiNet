@@ -8,7 +8,7 @@ public sealed class DeserializationTest
 {
     private static string GetFileName(string fileName)
     {
-        var path = "../../../Archives/" + fileName;
+        var path = "../../../.archives/" + fileName;
         if (File.Exists(path)) return path;
         path = "../" + path;
         if (File.Exists(path)) return path;

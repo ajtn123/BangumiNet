@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 !/BangumiNet.Api/P1/**
-BangumiNet.Archive.Test/Archives/
+Tests/BangumiNet.Archive.Test/.archives/

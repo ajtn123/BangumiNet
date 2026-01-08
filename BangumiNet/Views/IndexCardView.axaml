@@ -9,15 +9,15 @@
              x:DataType="bn:IndexViewModel"
              x:Class="BangumiNet.Views.IndexCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5">
-        <MainImage Url="{Binding User?.Avatar.Large}" VerticalAlignment="Top"/>
+        <MainImage Url="{Binding User?.Avatar?.Large}" VerticalAlignment="Top"/>
 
         <StackPanel Grid.Column="1">
             <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
                 <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
                 <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
-                                 Command="{Binding User.OpenInNewWindowCommand}"
-                                 Content="{Binding User.Name}" Classes="Pri"/>
+                                 Command="{Binding User?.OpenInNewWindowCommand}"
+                                 Content="{Binding User?.Name}" Classes="Pri"/>
                 <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps"/>
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <ic:FluentIcon ToolTip.Tip="私有目录" Icon="LockClosed" IsVisible="{Binding IsPrivate}"/>

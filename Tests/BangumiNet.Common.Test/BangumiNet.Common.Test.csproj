@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BangumiNet.Common\BangumiNet.Common.csproj" />
+    <ProjectReference Include="..\..\BangumiNet.Common\BangumiNet.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
