@@ -15,8 +15,7 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        UpdateThemeSettings(SettingProvider.Current);
-        Shared.Utils.SetupLogging(SettingProvider.Current);
+        ApplySettings(SettingProvider.Current);
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -43,7 +42,7 @@ public partial class App : Application
         //TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = System.Net.WebUtility.HtmlDecode(tb.Text));
 
         // 程序关闭时
-        ((IClassicDesktopStyleApplicationLifetime)Current!.ApplicationLifetime!).ShutdownRequested += (s, e) =>
+        ((IClassicDesktopStyleApplicationLifetime)Current.ApplicationLifetime!).ShutdownRequested += (s, e) =>
         {
             LibrarySubjectProvider.Save();
         };
@@ -61,7 +60,13 @@ public partial class App : Application
         //});
     }
 
-    public void UpdateThemeSettings(Settings settings)
+    public void ApplySettings(Settings settings)
+    {
+        UpdateThemeSettings(settings);
+        Shared.Utils.SetupLogger(settings);
+    }
+
+    private void UpdateThemeSettings(Settings settings)
     {
         if (Styles[0] is not FluentAvaloniaTheme theme) return;
 
@@ -80,4 +85,6 @@ public partial class App : Application
         else if (Color.TryParse(settings.ColorCustomAccent, out var color))
             theme.CustomAccentColor = color;
     }
+
+    public static new App Current => (App)Application.Current!;
 }

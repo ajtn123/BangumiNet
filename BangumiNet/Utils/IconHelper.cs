@@ -34,6 +34,6 @@ public static class IconHelper
     public static FluentImage GetFluentImage(Icon icon) => fluentImages.GetOrAdd(icon, icon => new()
     {
         Icon = icon,
-        [!FluentImage.ForegroundProperty] = App.Current!.GetResourceObservable("TextFillColorPrimaryBrush").ToBinding(),
+        [!FluentImage.ForegroundProperty] = App.Current.GetResourceObservable("TextFillColorPrimaryBrush").ToBinding(),
     });
 }

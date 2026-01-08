@@ -26,22 +26,17 @@ public static class Utils
     public static string GetNameCn(this ApplicationTheme value) => AttributeHelpers.GetNameCn(value)!;
 
     private static readonly TextWriterTraceListener listener = new(PathProvider.LogFilePath);
-    public static void SetupLogging(Settings settings)
+    public static void SetupLogger(Settings settings)
     {
         var file = new FileInfo(PathProvider.LogFilePath);
         if (file.Exists && file.Length >= 1 << 20)
             file.MoveTo(file.FullName + ".old", true);
 
+        Trace.AutoFlush = settings.SaveLogFile;
         if (settings.SaveLogFile && !Trace.Listeners.Contains(listener))
-        {
             Trace.Listeners.Add(listener);
-            Trace.AutoFlush = true;
-        }
         else if (!settings.SaveLogFile && Trace.Listeners.Contains(listener))
-        {
             Trace.Listeners.Remove(listener);
-            Trace.AutoFlush = false;
-        }
     }
 
     public static void WriteAppData(FileInfo location, byte[] data)

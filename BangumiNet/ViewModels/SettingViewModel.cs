@@ -1,5 +1,4 @@
-﻿using Avalonia;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive;
 using System.Reflection;
@@ -49,7 +48,7 @@ public partial class SettingViewModel : ViewModelBase
         {
             var newSettings = ToSettings();
             SettingProvider.Update(newSettings);
-            ((App)Application.Current!).UpdateThemeSettings(newSettings);
+            App.Current.ApplySettings(newSettings);
             if (newSettings.AuthToken != Source.AuthToken || newSettings.UserAgent != Source.UserAgent)
             {
                 ApiC.RebuildClients();

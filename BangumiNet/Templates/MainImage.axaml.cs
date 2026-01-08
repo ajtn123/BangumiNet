@@ -103,7 +103,7 @@ public partial class MainImage : ContentControl
     public static IImage DefaultUserAvatar { get; } = new SvgImage()
     {
         Source = SvgSource.Load("DefaultAvatar.svg", CommonUtils.GetAssetUri("")),
-        [!SvgImage.CssProperty] = App.Current!.GetResourceObservable("TextFillColorPrimaryBrush").Select(color => $$"""path { color: {{(color as SolidColorBrush)?.Color.ToOpaqueString()}}; }""").ToBinding(),
+        [!SvgImage.CssProperty] = App.Current.GetResourceObservable("TextFillColorPrimaryBrush").Select(color => $$"""path { color: {{(color as SolidColorBrush)?.Color.ToOpaqueString()}}; }""").ToBinding(),
     };
     public static IImage FallbackImage { get; } = IconHelper.GetFluentImage(FluentIcons.Common.Icon.Image);
     public static IImage InternetErrorFallbackImage { get; } = IconHelper.GetFluentImage(FluentIcons.Common.Icon.GlobeError);
