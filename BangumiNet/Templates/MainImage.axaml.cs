@@ -31,30 +31,33 @@ public partial class MainImage : ContentControl
 
     private readonly CompositeDisposable images = [];
     private readonly CompositeDisposable disposables = [];
-    private async Task LoadImageAsync(string? url)
+    private async Task<IImage?> LoadImageAsync(string? url)
     {
         if (string.IsNullOrWhiteSpace(url))
-            Source = null;
+            return null;
         else if (DefaultUserAvatarUrl().IsMatch(url))
-            Source = DefaultUserAvatar;
+            return DefaultUserAvatar;
         else if (NoPhotoUrl().IsMatch(url))
-            Source = FallbackImage;
+            return FallbackImage;
         else
         {
             var bitmap = await ApiC.GetImageAsync(url);
             bitmap?.DisposeWith(images);
-            Source = bitmap;
+            return bitmap;
         }
-
-        IsVisible = Source != null;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
         this.WhenAnyValue(x => x.Url)
-            .Subscribe(url => _ = LoadImageAsync(url))
-            .DisposeWith(disposables);
+            .SelectMany(LoadImageAsync)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(image =>
+            {
+                Source = image;
+                IsVisible = image != null;
+            }).DisposeWith(disposables);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)

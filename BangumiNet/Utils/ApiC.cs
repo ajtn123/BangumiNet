@@ -35,9 +35,9 @@ public static class ApiC
 
             if (useCache)
             {
-                await using var cacheStream = CacheProvider.ReadCache(url);
-                if (cacheStream is not null)
-                    return new Bitmap(cacheStream);
+                var cacheFile = CacheProvider.GetCacheFile(url);
+                if (cacheFile is not null)
+                    return new Bitmap(cacheFile);
             }
 
             await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
