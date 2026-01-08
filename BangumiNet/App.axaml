@@ -75,12 +75,6 @@
             <Setter Property="Stroke" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
             <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
         </Style>
-        <Style Selector=":is(TemplatedControl).Ref">
-            <Setter Property="BorderBrush" Value="{DynamicResource SurfaceStrokeColorDefault}"/>
-            <Setter Property="BorderThickness" Value="1,0,0,0"/>
-            <Setter Property="Margin" Value="4,0,0,0"/>
-            <Setter Property="Padding" Value="4,0,0,0"/>
-        </Style>
         <Style Selector="Button.Icon, ToggleButton.Icon">
             <Setter Property="Padding" Value="0"/>
             <Style Selector="^ ic|FluentIcon">

@@ -19,7 +19,7 @@
                 <TextBlock Text="{Binding Name}"
                            Classes="Title" FontSize="30"/>
                 <WrapPanel Classes="InfoBar">
-                    <InfoItem Tip="用户名" Text="{Binding Username}"/>
+                    <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                     <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
                     <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
                     <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
@@ -29,11 +29,8 @@
                         <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
                     </TextBlock>
                 </WrapPanel>
-                <Border Classes="Ref" Margin="5"
-                        IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}">
-                    <SelectableTextBlock Text="{Binding Sign}"
-                                         TextWrapping="Wrap"/>
-                </Border>
+                <SelectableTextBlock Text="{Binding Sign}" TextWrapping="Wrap" Classes="Sec"
+                                     IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>
                 <BBCode Text="{Binding Summary}"
                         IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
                 <StackPanel Orientation="Horizontal" Spacing="5">

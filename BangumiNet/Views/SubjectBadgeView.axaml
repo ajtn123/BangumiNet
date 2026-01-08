@@ -15,7 +15,7 @@
             <bn:SubjectFlyoutView/>
         </MainImage>
 
-        <Border Grid.Row="1" Classes="Ref"
+        <Border Grid.Row="1"
                 MaxWidth="{Binding #Img.Source.Size.Width,Converter={StaticResource MulCvt},ConverterParameter={StaticResource BadgeFactor}}">
             <StackPanel>
                 <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"

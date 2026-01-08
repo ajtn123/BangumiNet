@@ -13,9 +13,16 @@
             <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
             <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
         </StackPanel>
+        <TextBlock Text="{Binding Name}"
+                   IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
+                   Classes="Title"/>
         <WrapPanel Classes="InfoBar">
-            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+            <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
+            <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
             <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
+            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
         </WrapPanel>
+        <SelectableTextBlock Text="{Binding Sign}" TextWrapping="Wrap" Classes="Sec"
+                             IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>
     </StackPanel>
 </UserControl>
