@@ -31,6 +31,11 @@
                                                 ToolTip.Tip="重新载入图片"
                                                 Name="PART_ReloadImageButton"
                                                 IsEnabled="{TemplateBinding Url, Converter={StaticResource NEWCvt}}"/>
+                                        <Button Classes="Icon" Content="{ice:FluentIcon Icon=Copy}"
+                                                ToolTip.Tip="复制图片链接"
+                                                Name="PART_CopyUrlButton"/>
+                                        <TextBlock Text="{TemplateBinding Url}" Classes="Sec"
+                                                   VerticalAlignment="Center"/>
                                     </StackPanel>
                                     <Separator IsVisible="{TemplateBinding Content, Converter={StaticResource NullCvt}}"/>
                                     <ContentPresenter Content="{TemplateBinding Content}" />

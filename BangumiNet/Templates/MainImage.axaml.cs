@@ -92,6 +92,8 @@ public partial class MainImage : ContentControl
 
     public async void ReloadImage(object? sender, RoutedEventArgs e)
         => await LoadImageAsync(Url);
+    public async void CopyUrl(object? sender, RoutedEventArgs e)
+        => _ = TopLevel.GetTopLevel(this)?.Clipboard?.SetTextAsync(Url);
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -99,6 +101,8 @@ public partial class MainImage : ContentControl
         openBtn?.Click += OpenImageWithExternalProgram;
         var ReloadBtn = e.NameScope.Find<Button>("PART_ReloadImageButton");
         ReloadBtn?.Click += ReloadImage;
+        var CopyBtn = e.NameScope.Find<Button>("PART_CopyUrlButton");
+        CopyBtn?.Click += CopyUrl;
     }
 
     public static IImage DefaultUserAvatar { get; } = new SvgImage()
