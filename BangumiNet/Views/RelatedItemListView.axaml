@@ -13,8 +13,8 @@
         <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}}"/>
         <TextBlock Grid.Column="1" VerticalAlignment="Center"
                    Text="{Binding Total,StringFormat='共 {0} 个项目'}"/>
-        <Button Grid.Column="2" Content="{ice:FluentIcon Icon=ArrowWrap}"
-                Click="ChangeWrap" Name="WrapButton" Classes="Icon"/>
+        <ToggleButton Grid.Column="2" Click="ToggleWrap"
+                      Content="{ice:FluentIcon Icon=ArrowWrap}" Classes="Icon"/>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding SubjectViewModels}">
                 <ItemsControl.DataTemplates>

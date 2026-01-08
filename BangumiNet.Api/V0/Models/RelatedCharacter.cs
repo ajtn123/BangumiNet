@@ -26,6 +26,8 @@ namespace BangumiNet.Api.V0.Models
 
         public string? Relation { get; set; }
 
+        public string? Summary { get; set; }
+
         /// <summary>角色，机体，舰船，组织...</summary>
         public int? Type { get; set; }
 
@@ -61,6 +63,7 @@ namespace BangumiNet.Api.V0.Models
                 { "images", n => { Images = n.GetObjectValue<global::BangumiNet.Api.V0.Models.RelatedCharacter_images>(global::BangumiNet.Api.V0.Models.RelatedCharacter_images.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "relation", n => { Relation = n.GetStringValue(); } },
+                { "summary", n => { Summary = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetIntValue(); } },
             };
         }
@@ -77,6 +80,7 @@ namespace BangumiNet.Api.V0.Models
             writer.WriteObjectValue<global::BangumiNet.Api.V0.Models.RelatedCharacter_images>("images", Images);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("relation", Relation);
+            writer.WriteStringValue("summary", Summary);
             writer.WriteIntValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -1,5 +1,4 @@
 using Avalonia.Controls.Primitives;
-using FluentIcons.Avalonia;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
@@ -23,17 +22,8 @@ public partial class RelatedItemListView : ReactiveUserControl<RelatedItemListVi
         });
     }
 
-    private void ChangeWrap(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        if (BadgeScroll.HorizontalScrollBarVisibility == ScrollBarVisibility.Auto)
-        {
-            BadgeScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
-            WrapButton.Content = new FluentIcon() { Icon = FluentIcons.Common.Icon.ArrowWrapOff };
-        }
-        else
-        {
-            BadgeScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            WrapButton.Content = new FluentIcon() { Icon = FluentIcons.Common.Icon.ArrowWrap };
-        }
-    }
+    private void ToggleWrap(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        => BadgeScroll.HorizontalScrollBarVisibility = ((ToggleButton)sender!).IsChecked ?? false
+            ? ScrollBarVisibility.Disabled
+            : ScrollBarVisibility.Auto;
 }
