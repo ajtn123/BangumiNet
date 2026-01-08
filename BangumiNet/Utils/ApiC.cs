@@ -21,7 +21,7 @@ public static class ApiC
 
     private static readonly SemaphoreSlim semaphore = new(32);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
-    public static async Task<Bitmap?> GetImageAsync(string? url, bool useCache = true, CancellationToken cancellationToken = default)
+    public static async Task<Bitmap?> GetImageAsync(string url, bool useCache = true, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(url))
             return null;

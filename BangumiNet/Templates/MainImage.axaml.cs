@@ -39,12 +39,13 @@ public partial class MainImage : ContentControl
             return DefaultUserAvatar;
         else if (NoPhotoUrl().IsMatch(url))
             return FallbackImage;
-        else
+        else if (await ApiC.GetImageAsync(url) is { } bitmap)
         {
-            var bitmap = await ApiC.GetImageAsync(url);
-            bitmap?.DisposeWith(images);
+            bitmap.DisposeWith(images);
             return bitmap;
         }
+        else
+            return InternetErrorFallbackImage;
     }
 
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)

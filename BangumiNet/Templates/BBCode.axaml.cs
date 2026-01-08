@@ -49,7 +49,7 @@ public class BBCode : TemplatedControl
             var src = e.Event.Src;
             if (src.StartsWith("http") || src.StartsWith("//"))
             {
-                var bitmap = await ApiC.GetImageAsync(e.Event.Src);
+                var bitmap = await ApiC.GetImageAsync(src);
                 if (bitmap != null)
                 {
                     bitmap.DisposeWith(images);
