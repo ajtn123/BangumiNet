@@ -7,9 +7,14 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/ajtn123/BangumiNet</PackageProjectUrl>
         <RepositoryUrl>https://github.com/ajtn123/BangumiNet</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
 
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 </Project>
