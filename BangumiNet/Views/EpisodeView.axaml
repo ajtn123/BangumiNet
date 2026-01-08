@@ -11,50 +11,58 @@
              mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
              x:DataType="vm:EpisodeViewModel"
              x:Class="BangumiNet.Views.EpisodeView">
-    <ScrollViewer>
-        <StackPanel Margin="5">
-            <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
-                       IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
-                       Classes="Title" FontSize="30"/>
-            <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
-                       IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
-                       Classes="TitleAlt"/>
-            <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="时长" Text="{Binding DurationString}" Icon="Clock"/>
-                <InfoItem Tip="放送日期" CommonText="{Binding AirDate}" Icon="Calendar"/>
-                <InfoItem Tip="评论数量" Text="{Binding CommentCount}" Icon="Comment"/>
-                <InfoItem Tip="碟片" Text="{Binding Disc}" Icon="Cd">
-                    <InfoItem.Styles><Style Selector="ic|FluentIcon"><Setter Property="IconSize" Value="Size16"/></Style></InfoItem.Styles>
-                </InfoItem>
-                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Comment"/>
-                <InfoItem Tip="章节编号" Text="{Binding Sort}" Icon="NumberSymbolSquare" IconVariant="Filled"/>
-                <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                <InfoItem Tip="所属项目 ID" Text="{Binding SubjectId}" Icon="SlideTextMultiple"/>
-            </WrapPanel>
-            <Border Classes="Card" HorizontalAlignment="Left" Margin="0,5">
-                <WrapPanel Classes="InfoBar" IsVisible="{Binding Status,Converter={StaticResource NullCvt}}">
-                    <InfoItem Tip="收藏状态" EnumText="{Binding Status}" Icon="Bookmark"/>
-                    <InfoItem Tip="更新时间" CommonText="{Binding StatusUpdateTime}" Icon="Calendar"/>
-
-                    <Button Command="{Binding UncollectCommand}" ToolTip.Tip="取消收藏" Classes="Icon" Content="{ice:FluentIcon Icon=Delete,FontSize=16}" BorderBrush="Transparent"/>
-                    <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" BorderBrush="Transparent"/>
-                    <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" BorderBrush="Transparent"/>
-                </WrapPanel>
+    <StackPanel Margin="5">
+        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
+			<Border Grid.Column="0" VerticalAlignment="Top"
+                    CornerRadius="10" MinWidth="50" MinHeight="50"
+                    Background="{Binding Type,Converter={StaticResource EpBrushCvt}}">
+                <TextBlock Text="{Binding Sort}" HorizontalAlignment="Center"
+                           Classes="Title" FontSize="40" Margin="5,0" Opacity="0.8"/>
             </Border>
-            <BBCode Text="{Binding Description}" Margin="0,0,0,5"
-                    IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
-            <StackPanel>
-                <StackPanel Orientation="Horizontal" Spacing="5">
-                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
-                    <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
-                    <Button Classes="Icon" Command="{Binding ShowPrevCommand}" Content="{ice:FluentIcon Icon=ArrowLeft}" ToolTip.Tip="前一话"/>
-                    <Button Classes="Icon" Command="{Binding ShowNextCommand}" Content="{ice:FluentIcon Icon=ArrowRight}" ToolTip.Tip="后一话"/>
-                </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
+                           IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
+                           Classes="Title" FontSize="30"/>
+                <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
+                           IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
+                           Classes="TitleAlt"/>
+            </StackPanel>
+        </Grid>
+        <WrapPanel Classes="InfoBar">
+            <InfoItem Tip="时长" Text="{Binding DurationString}" Icon="Clock"/>
+            <InfoItem Tip="放送日期" CommonText="{Binding AirDate}" Icon="Calendar"/>
+            <InfoItem Tip="评论数量" Text="{Binding CommentCount}" Icon="Comment"/>
+            <InfoItem Tip="碟片" Text="{Binding Disc}" Icon="Cd">
+                <InfoItem.Styles><Style Selector="ic|FluentIcon"><Setter Property="IconSize" Value="Size16"/></Style></InfoItem.Styles>
+            </InfoItem>
+            <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Comment"/>
+            <InfoItem Tip="章节编号" Text="{Binding Sort}" Icon="NumberSymbolSquare" IconVariant="Filled"/>
+            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+            <InfoItem Tip="所属项目 ID" Text="{Binding SubjectId}" Icon="SlideTextMultiple"/>
+        </WrapPanel>
+        <Border Classes="Card" HorizontalAlignment="Left" Margin="0,5">
+            <WrapPanel Classes="InfoBar" IsVisible="{Binding Status,Converter={StaticResource NullCvt}}">
+                <InfoItem Tip="收藏状态" EnumText="{Binding Status}" Icon="Bookmark"/>
+                <InfoItem Tip="更新时间" CommonText="{Binding StatusUpdateTime}" Icon="Calendar"/>
+
+                <Button Command="{Binding UncollectCommand}" ToolTip.Tip="取消收藏" Classes="Icon" Content="{ice:FluentIcon Icon=Delete,FontSize=16}" BorderBrush="Transparent"/>
+                <Button Command="{Binding WishCommand}" ToolTip.Tip="想看" Classes="Icon" Content="{ice:FluentIcon Icon=AddSquare,FontSize=16}" BorderBrush="Transparent"/>
+                <Button Command="{Binding DoneCommand}" ToolTip.Tip="看过" Classes="Icon" Content="{ice:FluentIcon Icon=Checkmark,FontSize=16}" BorderBrush="Transparent"/>
+                <Button Command="{Binding DropCommand}" ToolTip.Tip="抛弃" Classes="Icon" Content="{ice:FluentIcon Icon=Dismiss,FontSize=16}" BorderBrush="Transparent"/>
+                <Button Command="{Binding DoneUntilCommand}" ToolTip.Tip="看到" Classes="Icon" Content="{ice:FluentIcon Icon=ArrowImport,FontSize=16}" BorderBrush="Transparent"/>
+            </WrapPanel>
+        </Border>
+        <BBCode Text="{Binding Description}" Margin="0,0,0,5"
+                IsVisible="{Binding Description,Converter={StaticResource NEWCvt}}"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="5">
+                <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
+                <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
+                <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
+                <Button Classes="Icon" Command="{Binding ShowPrevCommand}" Content="{ice:FluentIcon Icon=ArrowLeft}" ToolTip.Tip="前一话"/>
+                <Button Classes="Icon" Command="{Binding ShowNextCommand}" Content="{ice:FluentIcon Icon=ArrowRight}" ToolTip.Tip="后一话"/>
             </StackPanel>
         </StackPanel>
-    </ScrollViewer>
+    </StackPanel>
 </UserControl>

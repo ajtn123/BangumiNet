@@ -72,7 +72,7 @@
             <Setter Property="RadiusX" Value="5"/>
             <Setter Property="RadiusY" Value="5"/>
             <Setter Property="StrokeThickness" Value="1"/>
-            <Setter Property="Stroke" Value="{DynamicResource ControlElevationBorderBrush}"/>
+            <Setter Property="Stroke" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
             <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
         </Style>
         <Style Selector=":is(TemplatedControl).Ref">
