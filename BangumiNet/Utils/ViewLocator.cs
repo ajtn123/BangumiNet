@@ -1,5 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
+using Avalonia.Styling;
 
 namespace BangumiNet.Utils;
 
@@ -7,7 +9,9 @@ public class ViewLocator : IDataTemplate
 {
     public Control? Build(object? data) => data switch
     {
+        ITemplate template => template.Build() as Control,
         TextViewModel => new TextView { DataContext = data },
+        BBCodeViewModel => new BBCode { DataContext = data, [!BBCode.TextProperty] = new Binding("Text") },
         HomeViewModel => new HomeView { DataContext = data },
         AiringViewModel => new AiringView { DataContext = data },
         MeViewModel => new MeView { DataContext = data },

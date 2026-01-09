@@ -8,9 +8,6 @@
              x:Class="BangumiNet.App"
              RequestedThemeVariant="Default">
     <Application.DataTemplates>
-        <DataTemplate DataType="bn:BBCodeViewModel">
-            <BBCode Text="{Binding Text}"/>
-        </DataTemplate>
         <bn:ViewLocator/>
     </Application.DataTemplates>
     <Application.Resources>

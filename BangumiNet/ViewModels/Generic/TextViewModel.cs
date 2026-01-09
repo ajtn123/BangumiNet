@@ -1,11 +1,8 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 
-namespace BangumiNet.ViewModels;
+namespace BangumiNet.ViewModels.Generic;
 
-/// <summary>
-/// For <see cref="SubjectListViewModel.SubjectViewModels"/>
-/// </summary>
 public class TextViewModel : ViewModelBase
 {
     private Func<object[]> Builder { get; set; }

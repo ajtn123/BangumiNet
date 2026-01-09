@@ -87,14 +87,23 @@ public partial class TimelineItemViewModel : ItemViewModelBase
             if (memo.Wiki?.Subject is { } wikiSubject)
                 subjects.Add(new SubjectViewModel(wikiSubject));
         }
-        if (Category == TimelineCategory.Status || Replies > 0 || (timeline.Reactions != null && timeline.Reactions.Count > 0))
+
+        // 状态 / 条目评论 / 有贴贴 / 有回复
+        // Why the control is defined in cs not axaml? I don't really know, maybe it looks cool.
+        if (Category == TimelineCategory.Status ||
+            !string.IsNullOrWhiteSpace(subjects.OfType<SubjectCollectionViewModel>().FirstOrDefault()?.Comment) ||
+            Replies > 0 || (timeline.Reactions != null && timeline.Reactions.Count > 0))
         {
             Reactions = new ReactionListViewModel(timeline.Reactions, timeline.Id, ItemType.Timeline);
-            subjects.Add(
-                new TextViewModel(() => [
+            subjects.Add(new TemplateViewModel(() => new WrapPanel
+            {
+                ItemSpacing = 5,
+                LineSpacing = 5,
+                Children = {
                     new HyperlinkButton
                     {
                         Content = $"共 {Replies} 条回复",
+                        Classes = { "Pri" },
                         Command = ReactiveCommand.Create(() =>
                         {
                             if (RelationItems!.SubjectViewModels!.FirstOrDefault(vm => vm is CommentListViewModel) is CommentListViewModel replies)
@@ -107,16 +116,10 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                             }
                         }),
                     },
-                    new ReactionButtonView
-                    {
-                        DataContext = Reactions
-                    },
-                    new ReactionListView
-                    {
-                        DataContext = Reactions,
-                    }]
-                )
-            );
+                    new ReactionButtonView { DataContext = Reactions },
+                    new ReactionListView { DataContext = Reactions },
+                }
+            }));
         }
         RelationItems = new() { SubjectViewModels = [.. subjects] };
     }
