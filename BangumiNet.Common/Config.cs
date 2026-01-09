@@ -1,7 +1,10 @@
 ﻿namespace BangumiNet.Common;
 
-public static partial class Config
+public static class Config
 {
+    /// <summary>bangumi/common 仓库的最后 commit</summary>
+    public const string Commit = "6a8442c17143a870357a5ff812362e8b5cfe9f9d";
+
     public static Dictionary<string, string[]> AppTags => new()
     {
         ["功能增强"] = ["列表管理", "搜索与发现", "目录与标签", "评分与统计", "进度管理", "编辑器", "外部链接"],
