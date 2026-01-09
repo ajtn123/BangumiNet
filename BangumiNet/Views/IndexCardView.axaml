@@ -21,7 +21,6 @@
                 <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps"/>
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <ic:FluentIcon ToolTip.Tip="私有目录" Icon="LockClosed" IsVisible="{Binding IsPrivate}"/>
-                <!--<Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>-->
             </WrapPanel>
             <bn:IndexStatsView DataContext="{Binding Stats}"/>
         </StackPanel>

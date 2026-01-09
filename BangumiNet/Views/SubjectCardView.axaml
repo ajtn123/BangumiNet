@@ -18,13 +18,12 @@
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color"/>
+                <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color" IsVisible="{Binding Score,Converter={StaticResource ZeroCvt}}"/>
                 <InfoItem Tip="排名" Text="{Binding Rank}" Icon="NumberSymbol"/>
                 <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
                 <InfoItem Tip="在看" Text="{Binding Collection?.Doing}" Icon="Tv"/>
                 <InfoItem Tip="在看" Text="{Binding Hype}" Icon="Fire"/>
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
-                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"

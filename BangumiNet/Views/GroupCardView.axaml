@@ -20,7 +20,6 @@
                     <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
                     <ic:FluentIcon ToolTip.Tip="本小组不可访问" Icon="LockClosed" IsVisible="{Binding !Accessible}"/>
                 </TextBlock>
-                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
         </StackPanel>
         

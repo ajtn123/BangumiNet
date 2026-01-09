@@ -20,7 +20,6 @@
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                 <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
-                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Sign}" Classes="Sec PointoverText"
                                  IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>

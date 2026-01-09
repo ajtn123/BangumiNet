@@ -15,7 +15,7 @@
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
                 <InfoItem Tip="时间" CommonText="{Binding CreationTime}" Icon="Calendar"/>
                 <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                <HyperlinkButton ToolTip.Tip="源" Classes="Sec"
+                <HyperlinkButton ToolTip.Tip="源" Classes="Sec" IsTabStop="False"
                                  Content="{Binding OperationSource}"
                                  NavigateUri="{Binding OperationSourceUrl}"
                                  IsVisible="{Binding OperationSource, Converter={StaticResource NEWCvt}}"/>

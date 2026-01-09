@@ -23,7 +23,6 @@
                 <TextBlock>
                     <ic:FluentIcon ToolTip.Tip="本日志非公开" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
                 </TextBlock>
-                <Button Classes="Icon Distinct" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open,FontSize=16}" ToolTip.Tip="在新窗口显示"/>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Content}"
                                  IsVisible="{Binding Content, Converter={StaticResource NEWCvt}}"
