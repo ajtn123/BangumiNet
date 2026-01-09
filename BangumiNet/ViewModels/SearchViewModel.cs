@@ -11,7 +11,7 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
-public partial class SearchViewModel : SubjectListPagedViewModel
+public partial class SearchViewModel : SubjectListPagedViewModel, IHasIcon
 {
     public SearchViewModel()
     {
@@ -287,6 +287,8 @@ public partial class SearchViewModel : SubjectListPagedViewModel
     public bool IsSearchingSubject => SearchType == ItemType.Subject;
     public bool IsSearchingPerson => SearchType == ItemType.Person;
     public bool IsSearchingCharacter => SearchType == ItemType.Character;
+
+    public FluentIcons.Common.Icon Icon => FluentIcons.Common.Icon.Search;
 }
 
 public partial class SubjectTypeOptionViewModel : ViewModelBase

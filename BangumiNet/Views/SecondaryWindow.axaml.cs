@@ -58,8 +58,7 @@ public partial class SecondaryWindow : AppWindow
     {
         Content = new ContentControl { Content = vm },
         Header = NameCnCvt.Convert(vm) ?? vm.Title,
-        IconSource = vm is ItemViewModelBase ivm ? IconHelper.GetIconSource(ivm.ItemType)
-                                                 : Utils.IconSource.FromIcon(FluentIcons.Common.Icon.Document),
+        IconSource = Utils.IconSource.FromIcon(vm is IHasIcon ic ? ic.Icon : FluentIcons.Common.Icon.Document),
     };
     private static ViewModelBase? GetVm(TabViewItem tab)
         => (tab.Content as ContentControl)?.Content as ViewModelBase;
