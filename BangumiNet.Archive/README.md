@@ -19,3 +19,8 @@ var obj = await ArchiveLoader.Load<PersonCharacterRelation>(fs).ToArrayAsync();
 | 条目-角色 | `subject-characters.jsonlines` | `SubjectCharacterRelation` |
 | 条目-人物 | `subject-persons.jsonlines`    | `SubjectPersonRelation`    |
 | 人物-角色 | `person-characters.jsonlines`  | `PersonCharacterRelation`  |
+
+### NativeAOT 支持
+
+将 [`JsonContext.cs`](https://github.com/ajtn123/BangumiNet/blob/master/BangumiNet.Archive/JsonContext.cs) 中注释的代码添加到你的项目，即可使用 JSON 源生成。
+非 NativeAOT 编译不建议使用，会显著增加程序集大小，并且没有性能优势。
