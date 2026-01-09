@@ -88,9 +88,7 @@
         </Style>
         <Style Selector="FlyoutPresenter">
             <Setter Property="Padding" Value="5"/>
-            <Style Selector="^ > :is(TemplatedControl)">
-				<Setter Property="MaxWidth" Value="440"/>
-            </Style>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         </Style>
         <Style Selector="ToolTip">
             <Setter Property="Padding" Value="2,0"/>
@@ -98,7 +96,7 @@
         </Style>
         <Style Selector="HyperlinkButton">
             <Setter Property="ContentTemplate">
-                <DataTemplate>
+                <DataTemplate DataType="sys:String">
                     <TextBlock Text="{Binding}" TextDecorations="{x:Null}" TextWrapping="Wrap"/>
                 </DataTemplate>
             </Setter>

@@ -22,4 +22,5 @@
     <cvt:TimeZoneCvt x:Key="TimeZoneCvt"/>
     <cvt:HexColorCvt x:Key="HexColorCvt"/>
     <cvt:ResolutionCvt x:Key="ResolutionCvt"/>
+    <cvt:UriCvt x:Key="UriCvt"/>
 </ResourceDictionary>

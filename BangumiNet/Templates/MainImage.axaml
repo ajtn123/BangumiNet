@@ -22,21 +22,31 @@
                         <Image.ContextFlyout>
                             <Flyout>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="5">
-                                        <ic:FluentIcon Icon="Image" FontSize="24"/>
-                                        <Button Classes="Icon" Content="{ice:FluentIcon Icon=Open}"
-                                                ToolTip.Tip="使用外部程序打开图片"
-                                                Name="PART_OpenImageButton"/>
-                                        <Button Classes="Icon" Content="{ice:FluentIcon Icon=ArrowCounterclockwise}"
-                                                ToolTip.Tip="重新载入图片"
-                                                Name="PART_ReloadImageButton"
-                                                IsEnabled="{TemplateBinding Url, Converter={StaticResource NEWCvt}}"/>
-                                        <Button Classes="Icon" Content="{ice:FluentIcon Icon=Copy}"
-                                                ToolTip.Tip="复制图片链接"
-                                                Name="PART_CopyUrlButton"/>
-                                        <TextBlock Text="{TemplateBinding Url}" Classes="Sec"
-                                                   VerticalAlignment="Center"/>
-                                    </StackPanel>
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          ColumnSpacing="5">
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                            <ic:FluentIcon Icon="Image" FontSize="24"/>
+                                            <Button Classes="Icon" Content="{ice:FluentIcon Icon=Open}"
+                                                    ToolTip.Tip="使用外部程序打开图片"
+                                                    Name="PART_OpenImageButton"/>
+                                            <Button Classes="Icon" Content="{ice:FluentIcon Icon=ArrowCounterclockwise}"
+                                                    ToolTip.Tip="重新载入图片"
+                                                    Name="PART_ReloadImageButton"
+                                                    IsEnabled="{TemplateBinding Url, Converter={StaticResource NEWCvt}}"/>
+                                            <Button Classes="Icon" Content="{ice:FluentIcon Icon=Copy}"
+                                                    ToolTip.Tip="复制图片链接"
+                                                    Name="PART_CopyUrlButton"/>
+                                        </StackPanel>
+                                        <HyperlinkButton NavigateUri="{TemplateBinding Url, Converter={StaticResource UriCvt}}"
+                                                         ToolTip.Tip="{TemplateBinding Url}"
+                                                         ContentTemplate="{x:Null}"
+                                                         Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{TemplateBinding Url}" Classes="Sec"
+                                                       TextDecorations="{x:Null}"
+                                                       TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </HyperlinkButton>
+                                    </Grid>
                                     <Separator IsVisible="{TemplateBinding Content, Converter={StaticResource NullCvt}}"/>
                                     <ContentPresenter Content="{TemplateBinding Content}" />
                                 </StackPanel>
