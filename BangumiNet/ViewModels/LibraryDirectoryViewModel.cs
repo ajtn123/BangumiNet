@@ -3,7 +3,6 @@ using BangumiNet.Common;
 using BangumiNet.Library;
 using FluentIcons.Common;
 using System.Reactive;
-using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reactive.Linq;
 
@@ -18,7 +17,7 @@ public partial class LibraryDirectoryViewModel : LibraryItemViewModel
         Directory = directory;
         Name = directory.Directory.Name;
 
-        this.WhenActivated((CompositeDisposable disposables) =>
+        this.WhenActivated(disposables =>
         {
             if (Directories != null) return;
 

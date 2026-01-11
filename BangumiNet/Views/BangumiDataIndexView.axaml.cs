@@ -16,12 +16,15 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
 
         DataGridColumn[] columns = [
             new DataGridTextColumn { Header = "标题", Binding = new Binding(nameof(Item.Title)) },
-            new DataGridTemplateColumn { Header = "译名", CellTemplate = new CellTemplate<TranslationList>(nameof(Item.TitleTranslate)) },
+            new DataGridTemplateColumn { Header = "译名", CellTemplate = new TranslationsTemplate() },
             new DataGridTextColumn { Header = "类型", Binding = new Binding(nameof(Item.ItemType)) },
             new DataGridTextColumn { Header = "语言", Binding = new Binding(nameof(Item.Language)) },
-            new DataGridTextColumn { Header = "开始放送日期", Binding = new Binding(nameof(Item.Begin)) },
-            new DataGridTemplateColumn { Header = "官网", CellTemplate = new CellTemplate<OfficialSiteButton>(nameof(Item.OfficialSite)) },
-            new DataGridTemplateColumn { Header = "网站", CellTemplate = new CellTemplate<SiteList>(nameof(Item.Sites)) },
+            new DataGridTemplateColumn { Header = "放送开始", CellTemplate = new BeginTimeTemplate(), SortMemberPath = nameof(Item.Begin)  },
+            new DataGridTemplateColumn { Header = "放送结束", CellTemplate = new EndTimeTemplate(), SortMemberPath = nameof(Item.End)  },
+            new DataGridTemplateColumn { Header = "放送周期开始", CellTemplate = new BroadcastStartTemplate(), SortMemberPath = "Broadcast.Start"  },
+            new DataGridTemplateColumn { Header = "放送周期", CellTemplate = new BroadcastIntervalTemplate(), SortMemberPath = "Broadcast.Duration" },
+            new DataGridTemplateColumn { Header = "官网", CellTemplate = new OfficialSiteTemplate() },
+            new DataGridTemplateColumn { Header = "网站", CellTemplate = new SitesTemplate() },
         ];
 
         foreach (var column in columns)
@@ -40,69 +43,103 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
         });
     }
 
-    public class CellTemplate<TControl>(string bindingPath) : IDataTemplate where TControl : ContentControl, ICellTemplate, new()
+
+    public abstract class CellTemplate<T> : IDataTemplate
     {
-        private readonly string bindingPath = bindingPath;
-        public Control? Build(object? data)
-        {
-            var control = new TControl();
-            control.Bind(DataContextProperty, new Binding(bindingPath));
-            control.WhenAnyValue(x => x.DataContext).Skip(1).Take(1).Subscribe(x => control.Init());
-            return control;
-        }
-        public bool Match(object? data) => true;
+        protected abstract T? Select(Item item);
+        protected abstract Control? Build(T data);
+
+        public Control? Build(object? param) => Select((Item)param!) is { } data ? Build(data) : null;
+        public bool Match(object? data) => data is Item;
     }
-    public interface ICellTemplate { void Init(); }
-    public class OfficialSiteButton : ContentControl, ICellTemplate
+
+    public abstract class TextTemplate<T> : CellTemplate<T>
     {
-        public void Init()
+        protected abstract string? BuildString(T data);
+        protected override Control? Build(T data) => BuildString(data) is { } text ? new TextBlock
         {
-            if (DataContext is not string url || string.IsNullOrWhiteSpace(url)) return;
-            if (url.StartsWith("http://%")) return;
+            Text = text,
+            Margin = new(3),
+            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+        } : null;
+    }
+
+    public class OfficialSiteTemplate : CellTemplate<string>
+    {
+        protected override string? Select(Item item) => item.OfficialSite;
+        protected override Control? Build(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url) || url.StartsWith("http://%")) return null;
             var uri = new Uri(url);
-            Content = new HyperlinkButton
+            var btn = new HyperlinkButton
             {
                 Content = uri.Host,
                 NavigateUri = uri,
-                Padding = new(2, 0)
+                Padding = new(2, 0),
             };
-            ToolTip.SetTip(this, url);
+            ToolTip.SetTip(btn, url);
+            return btn;
         }
     }
-    public class TranslationList : ContentControl, ICellTemplate
+
+    public class TranslationsTemplate : TextTemplate<Dictionary<Language, string[]>>
     {
-        public void Init()
-        {
-            if (DataContext is not Dictionary<Language, string[]> trans) return;
-            Content = new TextBlock
-            {
-                Text = string.Join(Environment.NewLine, trans.SelectMany(x => x.Value)),
-                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-            };
-        }
+        protected override Dictionary<Language, string[]>? Select(Item item) => item.TitleTranslate;
+        protected override string? BuildString(Dictionary<Language, string[]> translations)
+            => string.Join(Environment.NewLine, translations.SelectMany(x => x.Value));
     }
-    public class SiteList : ContentControl, ICellTemplate
+
+    public class SitesTemplate : CellTemplate<Site[]>
     {
-        public void Init()
+        protected override Site[]? Select(Item item) => item.Sites;
+        protected override Control? Build(Site[] sites)
         {
-            if (DataContext is not Site[] sites) return;
-            StackPanel sp = new() { Orientation = Avalonia.Layout.Orientation.Horizontal, Spacing = 2 };
+            StackPanel panel = new() { Orientation = Avalonia.Layout.Orientation.Horizontal, Spacing = 2 };
             if (sites.FirstOrDefault(s => s.Name == "bangumi") is { Id: string } bgm)
-                sp.Children.Add(new Button
+                panel.Children.Add(new Button
                 {
                     Padding = new(0),
                     Content = new FluentIcons.Avalonia.FluentIcon { Icon = FluentIcons.Common.Icon.Open, FontSize = 20 },
                     Command = ReactiveCommand.CreateFromTask(async () => SecondaryWindow.Show(await ApiC.GetViewModelAsync<SubjectViewModel>(int.Parse(bgm.Id)))),
                 });
             foreach (var site in sites)
-                sp.Children.Add(new HyperlinkButton
+                panel.Children.Add(new HyperlinkButton
                 {
                     Content = Meta[site.Name].Title,
                     NavigateUri = new Uri(site.GetUrl(Meta)!),
                 });
-            Content = sp;
+            return panel;
         }
 
         private static Dictionary<string, SiteMeta> Meta => BangumiDataProvider.BangumiDataObject?.SiteMeta!;
+    }
+
+    public abstract class TimeTemplate : TextTemplate<DateTimeOffset?>
+    {
+        protected abstract override DateTimeOffset? Select(Item item);
+        protected override string? BuildString(DateTimeOffset? data)
+            => data?.ToString("F");
+    }
+
+    public class BeginTimeTemplate : TimeTemplate
+    {
+        protected override DateTimeOffset? Select(Item item) => item.Begin;
+    }
+
+    public class EndTimeTemplate : TimeTemplate
+    {
+        protected override DateTimeOffset? Select(Item item) => item.End;
+    }
+
+    public class BroadcastStartTemplate : TimeTemplate
+    {
+        protected override DateTimeOffset? Select(Item item) => item.Broadcast?.Start;
+    }
+
+    public class BroadcastIntervalTemplate : TextTemplate<TimeSpan?>
+    {
+        protected override TimeSpan? Select(Item item) => item.Broadcast?.Duration;
+        protected override string? BuildString(TimeSpan? data)
+            => data?.ToString("g");
     }
 }
