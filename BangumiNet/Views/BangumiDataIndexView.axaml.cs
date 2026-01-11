@@ -19,9 +19,9 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
             new DataGridTemplateColumn { Header = "译名", CellTemplate = new TranslationsTemplate() },
             new DataGridTextColumn { Header = "类型", Binding = new Binding(nameof(Item.ItemType)) },
             new DataGridTextColumn { Header = "语言", Binding = new Binding(nameof(Item.Language)) },
-            new DataGridTemplateColumn { Header = "放送开始", CellTemplate = new BeginTimeTemplate(), SortMemberPath = nameof(Item.Begin)  },
-            new DataGridTemplateColumn { Header = "放送结束", CellTemplate = new EndTimeTemplate(), SortMemberPath = nameof(Item.End)  },
-            new DataGridTemplateColumn { Header = "放送周期开始", CellTemplate = new BroadcastStartTemplate(), SortMemberPath = "Broadcast.Start"  },
+            new DataGridTemplateColumn { Header = "放送开始", CellTemplate = new TimeTemplate(item => item.Begin), SortMemberPath = nameof(Item.Begin)  },
+            new DataGridTemplateColumn { Header = "放送结束", CellTemplate = new TimeTemplate(item => item.End), SortMemberPath = nameof(Item.End)  },
+            new DataGridTemplateColumn { Header = "放送周期开始", CellTemplate = new TimeTemplate(item => item.Broadcast?.Start), SortMemberPath = "Broadcast.Start"  },
             new DataGridTemplateColumn { Header = "放送周期", CellTemplate = new BroadcastIntervalTemplate(), SortMemberPath = "Broadcast.Duration" },
             new DataGridTemplateColumn { Header = "官网", CellTemplate = new OfficialSiteTemplate() },
             new DataGridTemplateColumn { Header = "网站", CellTemplate = new SitesTemplate() },
@@ -49,8 +49,8 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
         protected abstract T? Select(Item item);
         protected abstract Control? Build(T data);
 
-        public Control? Build(object? param) => Select((Item)param!) is { } data ? Build(data) : null;
-        public bool Match(object? data) => data is Item;
+        public Control? Build(object? param) => Build(Select((Item)param!)!);
+        public bool Match(object? data) => data is Item item && Select(item) is not null;
     }
 
     public abstract class TextTemplate<T> : CellTemplate<T>
@@ -114,26 +114,13 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
         private static Dictionary<string, SiteMeta> Meta => BangumiDataProvider.BangumiDataObject?.SiteMeta!;
     }
 
-    public abstract class TimeTemplate : TextTemplate<DateTimeOffset?>
+    public class TimeTemplate(Func<Item, DateTimeOffset?> selector) : TextTemplate<DateTimeOffset?>
     {
-        protected abstract override DateTimeOffset? Select(Item item);
+        private readonly Func<Item, DateTimeOffset?> selector = selector;
+
+        protected override DateTimeOffset? Select(Item item) => selector(item);
         protected override string? BuildString(DateTimeOffset? data)
             => data?.ToString("F");
-    }
-
-    public class BeginTimeTemplate : TimeTemplate
-    {
-        protected override DateTimeOffset? Select(Item item) => item.Begin;
-    }
-
-    public class EndTimeTemplate : TimeTemplate
-    {
-        protected override DateTimeOffset? Select(Item item) => item.End;
-    }
-
-    public class BroadcastStartTemplate : TimeTemplate
-    {
-        protected override DateTimeOffset? Select(Item item) => item.Broadcast?.Start;
     }
 
     public class BroadcastIntervalTemplate : TextTemplate<TimeSpan?>
