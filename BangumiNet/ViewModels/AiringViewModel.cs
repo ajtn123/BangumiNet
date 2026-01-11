@@ -42,7 +42,7 @@ public partial class AiringViewModel : ViewModelBase, IActivatableViewModel
             var cids = s.Select(s => (s as SubjectCollectionViewModel)?.Parent?.Id).ToArray();
             if (cids == null || Calendars == null) return;
             foreach (var subject in Calendars.SelectMany(x => x.Subjects ?? []))
-                if (cids.Contains(subject.Id)) subject.IsEmphasized = true;
+                if (cids.Contains(subject.Id)) subject.IsHighlighted = true;
             disposable?.Dispose();
         });
         disposable = cl.Activator.Activate();

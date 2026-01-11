@@ -54,16 +54,14 @@ public partial class TimelineItemViewModel : ItemViewModelBase
                 if (single.Episode != null)
                 {
                     var evm = new EpisodeViewModel(single.Episode);
-                    subjects.Add(
-                        new TextViewModel(() => [
-                            $"已完成",
-                            new HyperlinkButton()
-                            {
-                                Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
-                                Command = ReactiveCommand.Create(() => SecondaryWindow.Show(evm)),
-                            }]
-                        )
-                    );
+                    subjects.Add(new TextViewModel(() => [
+                        $"已完成",
+                        new HyperlinkButton()
+                        {
+                            Content = $"第 {evm.Sort} 话 {NameCnCvt.Convert(evm)}",
+                            Command = ReactiveCommand.Create(() => SecondaryWindow.Show(evm)),
+                        }
+                    ]));
                 }
             }
             if (memo.Progress?.Batch is { } batch && batch.Subject != null)

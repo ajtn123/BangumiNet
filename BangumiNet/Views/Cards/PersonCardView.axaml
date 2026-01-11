@@ -27,7 +27,7 @@
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText"/>
+                                 Classes="Sec PointoverText NoFocus"/>
         </StackPanel>
         
         <Grid.ContextFlyout>

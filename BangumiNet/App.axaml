@@ -237,6 +237,7 @@
         <Style Selector=".PointoverTextHost:pointerover  :is(TextBlock).PointoverText,
                          .PointoverTextHost:focus-within :is(TextBlock).PointoverText,
                          FlyoutPresenter                 :is(TextBlock).PointoverText,
+                         :is(TextBlock).PointoverText:pointerover,
                          :is(TextBlock).PointoverText:focus">
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="TextTrimming" Value="None"/>
@@ -259,6 +260,9 @@
             <Setter Property="BorderThickness" Value="0,1,0,0"/>
             <Setter Property="Margin" Value="0,5,0,0"/>
             <Setter Property="Padding" Value="0,5,0,0"/>
+        </Style>
+        <Style Selector="SelectableTextBlock.NoFocus">
+            <Setter Property="Focusable" Value="False"/>
         </Style>
     </Application.Styles>
 </Application>

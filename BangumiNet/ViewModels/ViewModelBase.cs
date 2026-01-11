@@ -6,7 +6,7 @@ public partial class ViewModelBase : ReactiveObject
     {
         Title = Constants.ApplicationName;
         IsVisible = true;
-        IsEmphasized = false;
+        IsHighlighted = false;
         IsLoaded = false;
     }
 
@@ -14,6 +14,6 @@ public partial class ViewModelBase : ReactiveObject
 
     [Reactive] public partial string Title { get; set; }
     [Reactive] public partial bool IsVisible { get; set; }
-    [Reactive] public partial bool IsEmphasized { get; set; }
+    [Reactive] public partial bool IsHighlighted { get; set; }
     [Reactive] public partial bool IsLoaded { get; set; }
 }

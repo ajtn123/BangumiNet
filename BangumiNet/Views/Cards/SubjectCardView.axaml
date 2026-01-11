@@ -5,34 +5,34 @@
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ic="using:FluentIcons.Avalonia"
              xmlns:ice="using:FluentIcons.Avalonia.Markup"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="100"
-             x:DataType="bn:CharacterViewModel"
-             x:Class="BangumiNet.Views.CharacterCardView">
-    <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top">
-			<bn:CharacterFlyoutView/>
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="60"
+             Classes.Highlight="{Binding IsHighlighted}" CornerRadius="10"
+             x:DataType="bn:SubjectViewModel"
+             x:Class="BangumiNet.Views.SubjectCardView">
+    <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
+          Classes="PointoverTextHost" Name="CardGrid">
+        <MainImage Url="{Binding Images?.Small}" VerticalAlignment="Top">
+            <bn:SubjectFlyoutView/>
         </MainImage>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
             <WrapPanel Classes="InfoBar">
+                <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color" IsVisible="{Binding Score,Converter={StaticResource ZeroCvt}}"/>
+                <InfoItem Tip="排名" Text="{Binding Rank}" Icon="NumberSymbol"/>
                 <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
-                <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment"/>
-                <InfoItem Tip="生日" CommonText="{Binding Birthday}" Icon="Calendar"/>
+                <InfoItem Tip="在看" Text="{Binding Collection?.Doing}" Icon="Tv"/>
+                <InfoItem Tip="在看" Text="{Binding Hype}" Icon="Fire"/>
                 <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
-                <TextBlock>
-                    <ic:FluentIcon ToolTip.Tip="NSFW" Icon="CalendarDate" IsVisible="{Binding IsNsfw}"/>
-                    <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
-                </TextBlock>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText"/>
+                                 Classes="Sec PointoverText NoFocus"/>
         </StackPanel>
 
         <Grid.ContextFlyout>
             <Flyout>
-                <bn:CharacterFlyoutView/>
+                <bn:SubjectFlyoutView/>
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

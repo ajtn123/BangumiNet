@@ -21,8 +21,9 @@
                 <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
                 <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
             </WrapPanel>
-            <SelectableTextBlock Text="{Binding Sign}" Classes="Sec PointoverText"
-                                 IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>
+            <SelectableTextBlock Text="{Binding Sign}"
+                                 IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
+                                 Classes="Sec PointoverText NoFocus"/>
         </StackPanel>
 
         <Grid.ContextFlyout>

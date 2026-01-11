@@ -1,6 +1,5 @@
 ﻿using Avalonia.Controls;
 using BangumiNet.Library;
-using BangumiNet.Templates;
 using System.ComponentModel;
 using System.Reactive;
 using System.Reactive.Disposables.Fluent;
@@ -48,7 +47,15 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         }
 
         if (File.Attachments is { } ats)
-            items.AddRange(ats.Select(a => new TextViewModel(() => [new InfoBadge { Text = "附件", Margin = new(0, 0, 5, 0) }, new HyperlinkButton { Content = a.File.Name, Command = CommonUtils.GetOpenUriCommand(a.File.FullName) }])));
+            items.AddRange(ats.Select(a => new TemplateViewModel(() => new StackPanel
+            {
+                Orientation = Avalonia.Layout.Orientation.Horizontal,
+                Spacing = 5,
+                Children = {
+                    new InfoBadge { Text = "附件" },
+                    new HyperlinkButton { Content = a.File.Name, Command = CommonUtils.GetOpenUriCommand(a.File.FullName) },
+                }
+            })));
 
         Items = [.. items];
     }

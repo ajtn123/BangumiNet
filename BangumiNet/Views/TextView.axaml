@@ -14,5 +14,7 @@
 			<Setter Property="BaselineAlignment" Value="Center"/>
         </Style>
     </UserControl.Styles>
-    <SelectableTextBlock Inlines="{Binding Inlines}" TextWrapping="Wrap"/>
+    <SelectableTextBlock Inlines="{Binding Inlines}"
+                         Focusable="{Binding IsFocusable}"
+                         TextWrapping="Wrap"/>
 </UserControl>
