@@ -29,7 +29,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.9.1" />
+    <PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.9.2" />
     <!--<PackageReference Include="WebView.Avalonia" Version="11.0.0.1" />-->
     <!--<PackageReference Include="WebView.Avalonia.Desktop" Version="11.0.0.1" />-->
   </ItemGroup>
