@@ -5,7 +5,7 @@ namespace BangumiNet.Api.P1
     public partial class ApiClient : IApiClient
     {
         /// <summary>server-private 仓库的最后 commit</summary>
-        public const string Commit = "4100b014a4ab81534935f33cc617eb55ec196541";
+        public const string Commit = "572b1f0b579f2a7f3279bfdff528d63358614e18";
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://next.bgm.tv/p1/openapi.yaml";
         /// <summary>生成本 API 客户端的命令</summary>
@@ -17,7 +17,7 @@ namespace BangumiNet.Api.V0
     public partial class ApiClient : IApiClient
     {
         /// <summary>OpenAPI 定义文件的最后 commit</summary>
-        public const string Commit = "f30891c7f8d1cf720ce8202a7ca6b8e62fff1cf2";
+        public const string Commit = "88bd1376af22b416eaa9d1af854560316d924b9a";
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://github.com/bangumi/api/raw/refs/heads/master/open-api/v0.yaml";
         /// <summary>生成本 API 客户端的命令</summary>

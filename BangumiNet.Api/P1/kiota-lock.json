@@ -1,34 +1,34 @@
 {
-  "descriptionHash": "F4742ED31C7E14E88B678EC620C27BEE5DF8C93C969735E55F056CA1BB9355EFAD799247CBA2B8048B4AF0BDF80D215B0736A2567EF5438D88A4490E2F42C629",
-  "descriptionLocation": "https://next.bgm.tv/p1/openapi.yaml",
-  "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.29.0",
-  "clientClassName": "ApiClient",
-  "typeAccessModifier": "Public",
-  "clientNamespaceName": "BangumiNet.Api.P1",
-  "language": "CSharp",
-  "usesBackingStore": false,
-  "excludeBackwardCompatible": true,
-  "includeAdditionalData": true,
-  "disableSSLValidation": false,
-  "serializers": [
-    "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
-    "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
-    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory",
-    "Microsoft.Kiota.Serialization.Multipart.MultipartSerializationWriterFactory"
-  ],
-  "deserializers": [
-    "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
-    "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory",
-    "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
-  ],
-  "structuredMimeTypes": [
-    "application/json",
-    "text/plain;q=0.9",
-    "application/x-www-form-urlencoded;q=0.2",
-    "multipart/form-data;q=0.1"
-  ],
-  "includePatterns": [],
-  "excludePatterns": [],
-  "disabledValidationRules": []
+    "descriptionHash": "A4050179C5F213624BBDD42C9F2D8E567F373B15BB9A0B1AD16D68367FC46A23DBB18496536697681DDABCF872704788A001795D485A79FB65C53F0B43BBE30E",
+    "descriptionLocation": "https://next.bgm.tv/p1/openapi.yaml",
+    "lockFileVersion": "1.0.0",
+    "kiotaVersion": "1.29.0",
+    "clientClassName": "ApiClient",
+    "typeAccessModifier": "Public",
+    "clientNamespaceName": "BangumiNet.Api.P1",
+    "language": "CSharp",
+    "usesBackingStore": false,
+    "excludeBackwardCompatible": true,
+    "includeAdditionalData": true,
+    "disableSSLValidation": false,
+    "serializers": [
+        "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
+        "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
+        "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory",
+        "Microsoft.Kiota.Serialization.Multipart.MultipartSerializationWriterFactory"
+    ],
+    "deserializers": [
+        "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
+        "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory",
+        "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
+    ],
+    "structuredMimeTypes": [
+        "application/json",
+        "text/plain;q=0.9",
+        "application/x-www-form-urlencoded;q=0.2",
+        "multipart/form-data;q=0.1"
+    ],
+    "includePatterns": [],
+    "excludePatterns": [],
+    "disabledValidationRules": []
 }
