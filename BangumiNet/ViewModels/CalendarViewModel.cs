@@ -4,7 +4,7 @@ using BangumiNet.Models;
 
 namespace BangumiNet.ViewModels;
 
-public class CalendarViewModel : ViewModelBase
+public partial class CalendarViewModel : ViewModelBase
 {
     [Obsolete]
     public CalendarViewModel(Api.Legacy.Calendar.Calendar calendar)
@@ -25,10 +25,10 @@ public class CalendarViewModel : ViewModelBase
             .ToObservableCollection();
     }
 
-    [Reactive] public object? Source { get; set; }
-    [Reactive] public DayOfWeek? DayOfWeek { get; set; }
-    [Reactive] public IWeekday? Weekday { get; set; }
-    [Reactive] public ObservableCollection<SubjectViewModel>? Subjects { get; set; }
+    [Reactive] public partial object? Source { get; set; }
+    [Reactive] public partial DayOfWeek? DayOfWeek { get; set; }
+    [Reactive] public partial IWeekday? Weekday { get; set; }
+    [Reactive] public partial ObservableCollection<SubjectViewModel>? Subjects { get; set; }
 
     public bool IsToday => DayOfWeek == DateTime.Today.DayOfWeek;
 }

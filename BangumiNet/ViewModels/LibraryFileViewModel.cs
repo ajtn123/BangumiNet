@@ -60,7 +60,7 @@ public partial class LibraryFileViewModel : LibraryItemViewModel
         Items = [.. items];
     }
 
-    [Reactive] public partial FileInfo? FileInfo { get; private set; }
+    [Reactive] public partial FileInfo FileInfo { get; private set; }
     [Reactive] public partial ObservableCollection<object>? Items { get; private set; }
 
     [Reactive] public partial ReactiveCommand<Unit, Unit>? OpenFileCommand { get; private set; }

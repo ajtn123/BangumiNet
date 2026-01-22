@@ -21,7 +21,7 @@ public partial class UserListViewModel : SubjectListPagedViewModel
             UserRelationType.Friend => $"好友列表 - {Title}",
             UserRelationType.Follower => $"关注者列表 - {Title}",
             UserRelationType.Blocked => $"绝交列表 - {Title}",
-            _ => Title,
+            _ => $"{Title}",
         };
     }
 
