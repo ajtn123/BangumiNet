@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.21.1" />
+    <PackageReference Include="Microsoft.Kiota.Bundle" Version="1.21.2" />
     <PackageReference Include="SocketIOClient" Version="3.1.2" />
   </ItemGroup>
 

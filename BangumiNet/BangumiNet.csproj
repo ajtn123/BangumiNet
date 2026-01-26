@@ -22,7 +22,7 @@
     <PackageReference Include="Avalonia.Diagnostics" Version="11.3.11" Condition="'$(Configuration)' == 'Debug'" />
     <PackageReference Include="Avalonia.HtmlRenderer" Version="11.2.0" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.1" />
-    <PackageReference Include="FluentIcons.Avalonia" Version="2.0.316.1" />
+    <PackageReference Include="FluentIcons.Avalonia" Version="2.0.317" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc6.1" />
     <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
     <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.1">
