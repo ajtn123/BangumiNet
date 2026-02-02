@@ -39,10 +39,10 @@ public partial class App : Application
                 new TextViewModel(() => ["新版本可用\n", new HyperlinkButton { Content = v.ToString(), NavigateUri = new(Constants.SourceRepositoryLatestRelease) }]),
                 "有新版本", FluentIcons.Common.Icon.ArrowCircleUp));
 
-        //TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = System.Net.WebUtility.HtmlDecode(tb.Text));
+        EventHandlers.AddHandlers();
 
         // 程序关闭时
-        ((IClassicDesktopStyleApplicationLifetime)Current.ApplicationLifetime!).ShutdownRequested += (s, e) =>
+        (Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.ShutdownRequested += (s, e) =>
         {
             LibrarySubjectProvider.Save();
         };

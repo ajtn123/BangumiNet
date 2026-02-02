@@ -65,4 +65,22 @@ public static class Extensions
         var opaque = new Color(byte.MaxValue, color.R, color.G, color.B);
         return opaque.ToString().ToLower().Replace("#ff", "#");
     }
+
+    extension(Uri)
+    {
+        public static Uri? TryCreate(string? uriString) => Uri.TryCreate(uriString, UriKind.Absolute, out var uri) ? uri : null;
+    }
+
+    extension(double)
+    {
+        public static double? TryParse(object? obj)
+        {
+            if (obj is null) return null;
+            try
+            {
+                return Convert.ToDouble(obj);
+            }
+            catch { return null; }
+        }
+    }
 }

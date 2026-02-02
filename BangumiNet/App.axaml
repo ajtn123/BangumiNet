@@ -93,8 +93,15 @@
         </Style>
         <Style Selector="HyperlinkButton">
             <Setter Property="ContentTemplate">
-                <DataTemplate DataType="sys:String">
-                    <TextBlock Text="{Binding}" TextDecorations="{x:Null}" TextWrapping="Wrap"/>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding}">
+                        <ContentPresenter.Styles>
+                            <Style Selector="TextBlock">
+                                <Setter Property="TextDecorations" Value="{x:Null}"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </ContentPresenter.Styles>
+                    </ContentPresenter>
                 </DataTemplate>
             </Setter>
             <Setter Property="Padding" Value="0"/>
