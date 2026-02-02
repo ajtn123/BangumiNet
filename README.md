@@ -34,10 +34,10 @@ BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组�
 ```
 git clone https://github.com/ajtn123/BangumiNet.git
 cd ./BangumiNet/BangumiNet
-dotnet publish --configuration Release --runtime <RID>
+dotnet publish --configuration Release
 ```
 
-> 参见 [RID](https://learn.microsoft.com/zh-cn/dotnet/core/rid-catalog)、[dotnet publish](https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish)。
+> 参见 [dotnet publish](https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish)。
 
 ## NuGet
 
