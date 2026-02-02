@@ -2,6 +2,7 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Api.P1.P1.Wiki.Persons.Item.HistorySummary;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -18,6 +19,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPersonItemRequestBuilder : BaseRequestBuilder
     {
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonItemRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -37,7 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
         }
 
         /// <summary>
-        /// 获取当前的 wiki 信息
+        /// 获取人物当前的 wiki 信息
         /// </summary>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonWikiInfo"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -56,6 +63,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.PersonWikiInfo>(requestInfo, global::BangumiNet.Api.P1.Models.PersonWikiInfo.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 编辑人物
+        /// </summary>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -77,7 +88,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
         }
 
         /// <summary>
-        /// 获取当前的 wiki 信息
+        /// 获取人物当前的 wiki 信息
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -88,6 +99,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
+
+        /// <summary>
+        /// 编辑人物
+        /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

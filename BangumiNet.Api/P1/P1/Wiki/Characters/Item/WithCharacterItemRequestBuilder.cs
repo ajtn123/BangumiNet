@@ -65,6 +65,29 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         }
 
         /// <summary>
+        /// 编辑角色
+        /// </summary>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 400 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
+        public async Task<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse?> PatchAsync(global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 获取角色当前的 wiki 信息
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -74,6 +97,22 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+
+        /// <summary>
+        /// 编辑角色
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        public RequestInformation ToPatchRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
 

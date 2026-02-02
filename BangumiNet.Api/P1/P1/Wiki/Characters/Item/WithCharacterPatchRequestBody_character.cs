@@ -6,44 +6,27 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.Models
+namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PersonWikiInfo : IAdditionalDataHolder, IParsable
+    public partial class WithCharacterPatchRequestBody_character : IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-
-        public int? Id { get; set; }
 
         public string? Infobox { get; set; }
 
         public string? Name { get; set; }
 
-        public global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession? Profession { get; set; }
-
         public string? Summary { get; set; }
-
-        /// <summary>人物类型  - 1 = 个人  - 2 = 公司  - 3 = 组合</summary>
-        public int? TypeID { get; set; }
-
-        /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.PersonWikiInfo"/> and sets the default values.
-        /// </summary>
-        public PersonWikiInfo()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
 
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonWikiInfo"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.PersonWikiInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.PersonWikiInfo();
+            return new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character();
         }
 
         /// <summary>
@@ -54,12 +37,9 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "id", n => { Id = n.GetIntValue(); } },
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "profession", n => { Profession = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>(global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession.CreateFromDiscriminatorValue); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
-                { "typeID", n => { TypeID = n.GetIntValue(); } },
             };
         }
 
@@ -70,13 +50,9 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("id", Id);
             writer.WriteStringValue("infobox", Infobox);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>("profession", Profession);
             writer.WriteStringValue("summary", Summary);
-            writer.WriteIntValue("typeID", TypeID);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

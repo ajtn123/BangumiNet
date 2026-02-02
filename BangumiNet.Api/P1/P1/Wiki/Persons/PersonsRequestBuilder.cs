@@ -16,6 +16,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PersonsRequestBuilder : BaseRequestBuilder
     {
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Minus_RequestBuilder Minus
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Minus_RequestBuilder(PathParameters, RequestAdapter);
+        }
+
         /// <summary>Gets an item from the BangumiNet.Api.P1.p1.wiki.persons.item collection</summary>
         /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonItemRequestBuilder"/></returns>

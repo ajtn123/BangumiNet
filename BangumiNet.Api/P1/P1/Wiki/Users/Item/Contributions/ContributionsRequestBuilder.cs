@@ -2,6 +2,7 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters;
+using BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Persons;
 using BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
@@ -21,6 +22,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Persons.PersonsRequestBuilder Persons
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects.SubjectsRequestBuilder Subjects

@@ -9,28 +9,25 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PersonWikiInfo : IAdditionalDataHolder, IParsable
+    public partial class PersonRevisionWikiInfo : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        public int? Id { get; set; }
+        public global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_extra? Extra { get; set; }
 
         public string? Infobox { get; set; }
 
         public string? Name { get; set; }
 
-        public global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession? Profession { get; set; }
+        public global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_profession? Profession { get; set; }
 
         public string? Summary { get; set; }
 
-        /// <summary>人物类型  - 1 = 个人  - 2 = 公司  - 3 = 组合</summary>
-        public int? TypeID { get; set; }
-
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.PersonWikiInfo"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo"/> and sets the default values.
         /// </summary>
-        public PersonWikiInfo()
+        public PersonRevisionWikiInfo()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -38,12 +35,12 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonWikiInfo"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.PersonWikiInfo CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.PersonWikiInfo();
+            return new global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo();
         }
 
         /// <summary>
@@ -54,12 +51,11 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "id", n => { Id = n.GetIntValue(); } },
+                { "extra", n => { Extra = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_extra>(global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_extra.CreateFromDiscriminatorValue); } },
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "profession", n => { Profession = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>(global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession.CreateFromDiscriminatorValue); } },
+                { "profession", n => { Profession = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_profession>(global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_profession.CreateFromDiscriminatorValue); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
-                { "typeID", n => { TypeID = n.GetIntValue(); } },
             };
         }
 
@@ -70,12 +66,11 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("id", Id);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_extra>("extra", Extra);
             writer.WriteStringValue("infobox", Infobox);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>("profession", Profession);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonRevisionWikiInfo_profession>("profession", Profession);
             writer.WriteStringValue("summary", Summary);
-            writer.WriteIntValue("typeID", TypeID);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
