@@ -12,6 +12,6 @@ internal sealed class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .LogToTrace()
-            .UseReactiveUI();
+            .UseReactiveUI(builder => { });
     //      .UseDesktopWebView();
 }
