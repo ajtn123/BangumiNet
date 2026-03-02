@@ -53,7 +53,7 @@ public partial class MainImage : ContentControl
         base.OnAttachedToVisualTree(e);
         this.WhenAnyValue(x => x.Url)
             .SelectMany(LoadImageAsync)
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(image =>
             {
                 Source = image;
