@@ -14,7 +14,12 @@
         </MainImage>
 
         <StackPanel Grid.Column="1">
-            <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <HyperlinkButton Classes="Title" Command="{Binding OpenInNewWindowCommand}">
+				<TextBlock>
+					<Run Text="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}"/>
+                    <Run Text="{Binding Relation}" Classes="Sec"/>
+                </TextBlock>
+            </HyperlinkButton>
             <WrapPanel Classes="InfoBar">
                 <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
                 <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment"/>

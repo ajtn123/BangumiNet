@@ -4,6 +4,7 @@ using BangumiNet.Api.Helpers;
 using BangumiNet.Api.Interfaces;
 using BangumiNet.Api.V0.Models;
 using BangumiNet.Common;
+using BangumiNet.Common.Attributes;
 using BangumiNet.Common.Extras;
 using BangumiNet.Converters;
 using BangumiNet.Models;
@@ -158,6 +159,11 @@ public partial class PersonViewModel : ItemViewModelBase
         => new(staff.Staff!)
         {
             Relation = string.Join(' ', staff.Positions?.Select(x => x.Type?.ToLocalString()) ?? []),
+        };
+    public static PersonViewModel Init(Api.P1.Models.CharacterCast cast)
+        => new(cast.Person!)
+        {
+            Relation = $"{((PersonCharacterRelationType?)cast.Relation)?.GetNameCn()} {cast.Summary}".Trim(),
         };
 
     protected override void Activate(CompositeDisposable disposables)

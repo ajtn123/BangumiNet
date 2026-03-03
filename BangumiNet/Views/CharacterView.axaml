@@ -60,6 +60,7 @@
                 </StackPanel>
 
                 <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
+                <bn:RelatedItemListView DataContext="{Binding PersonBadgeListViewModel}"/>
 
                 <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
                     <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>

@@ -22,6 +22,12 @@ public partial class RelatedItemListViewModel : SubjectListViewModel
         ProceedPageCommand = ReactiveCommand.CreateFromTask(ProceedPageAsync, this.WhenAnyValue(x => x.IsFullyLoaded).Select(x => !x));
     }
 
+    public void Load(IEnumerable<ViewModelBase> items)
+    {
+        SubjectViewModels = [.. items];
+        Total = Offset = SubjectViewModels.Count;
+    }
+
     public async Task LoadAsync(CancellationToken cancellationToken = default)
     {
         if (ParentId is not int id) return;

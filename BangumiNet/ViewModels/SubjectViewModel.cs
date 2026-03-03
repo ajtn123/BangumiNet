@@ -181,8 +181,8 @@ public partial class SubjectViewModel : ItemViewModelBase
     public static SubjectViewModel Init(Api.P1.Models.CharacterSubject characterSubject)
         => new(characterSubject.Subject!)
         {
-            Relation = ((CharacterRole?)characterSubject.Type)?.GetNameCn() + "·" + string.Join('/', characterSubject.Actors?.Select(NameCnCvt.Convert) ?? []),
-            RelationItems = new() { SubjectViewModels = characterSubject.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() }
+            Relation = $"{((CharacterRole?)characterSubject.Type)?.GetNameCn()} {string.Join('/', characterSubject.Casts?.Select(x => NameCnCvt.Convert(x.Person)) ?? [])}",
+            RelationItems = new() { SubjectViewModels = characterSubject.Casts?.Select<Api.P1.Models.CharacterCast, ViewModelBase>(PersonViewModel.Init).ToObservableCollection() }
         };
     public static SubjectViewModel Init(Api.P1.Models.SubjectRec rec)
         => new(rec.Subject!)

@@ -18,6 +18,7 @@
                 <ResourceInclude Source="/Templates/InfoBadge.axaml"/>
                 <ResourceInclude Source="/Templates/InfoItem.axaml"/>
                 <ResourceInclude Source="/Templates/BBCode.axaml"/>
+                <ResourceInclude Source="/Templates/HyperlinkButton.axaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <FontFamily x:Key="ContentControlThemeFontFamily">Microsoft YaHei UI, Noto Sans CJK SC, PingFang SC, sans-serif</FontFamily>
@@ -92,11 +93,6 @@
             <Setter Property="CornerRadius" Value="5"/>
         </Style>
         <Style Selector="HyperlinkButton">
-            <Setter Property="ContentTemplate">
-                <DataTemplate DataType="sys:String">
-                    <TextBlock Text="{Binding}" TextDecorations="{x:Null}" TextWrapping="Wrap"/>
-                </DataTemplate>
-            </Setter>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="BorderThickness" Value="0"/>  
             <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
@@ -222,6 +218,12 @@
             <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
         </Style>
         <Style Selector="TextBlock.Sec, .Sec > TextBlock, SelectableTextBlock.Sec, .Sec > SelectableTextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </Style>
+        <Style Selector="Run.Pri">
+            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+        </Style>
+        <Style Selector="Run.Sec">
             <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
         </Style>
         <Style Selector="ItemsControl:empty">

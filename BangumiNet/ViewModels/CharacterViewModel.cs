@@ -113,7 +113,7 @@ public partial class CharacterViewModel : ItemViewModelBase
     public static CharacterViewModel Init(Api.P1.Models.SubjectCharacter subjectCharacter)
         => new(subjectCharacter.Character!)
         {
-            RelationItems = new() { SubjectViewModels = subjectCharacter.Actors?.Select<Api.P1.Models.SlimPerson, ViewModelBase>(x => new PersonViewModel(x)).ToObservableCollection() },
+            RelationItems = new() { SubjectViewModels = subjectCharacter.Casts?.Select<Api.P1.Models.CharacterCast, ViewModelBase>(PersonViewModel.Init).ToObservableCollection() },
             Order = subjectCharacter.Order,
             Relation = ((CharacterRole?)subjectCharacter.Type)?.GetNameCn(),
         };

@@ -26,6 +26,14 @@ public partial class CharacterView : ReactiveUserControl<CharacterViewModel>
                 .Subscribe(async vm =>
                 {
                     vm.IsLoaded = true;
+                    vm.SubjectBadgeListViewModel?.ProceedPageCommand.Subscribe(_ =>
+                        vm.PersonBadgeListViewModel?.Load(
+                            vm.SubjectBadgeListViewModel?.SubjectViewModels?
+                                .OfType<SubjectViewModel>()
+                                .SelectMany(x => x.RelationItems?.SubjectViewModels?.OfType<PersonViewModel>() ?? [])
+                                .DistinctBy(x => x.Id) ?? []
+                        )
+                    );
                     vm.SubjectBadgeListViewModel?.ProceedPageCommand.Execute().Subscribe();
                     vm.CommentListViewModel?.LoadPageCommand.Execute().Subscribe();
                     vm.IndexCardListViewModel?.ProceedPageCommand.Execute().Subscribe();
