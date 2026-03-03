@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "95E284A4A3ECC366FBB879E0C04B038F414290CE9C3E565AED9C17C0DFDF344DCDE99D75D17DAF3F7A227E8AE869799C5C9188447B794962FCFDA64EE5734DC6",
+  "descriptionHash": "2AB4E5714ACA40D54EE757C68E9212692F79DC88062241B6840ED08DA31F6BB6DBA2CCD5652A09531542AF72ADA719A360455B62C50670B365E3CD15A24845A6",
   "descriptionLocation": "https://next.bgm.tv/p1/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.29.0",
+  "kiotaVersion": "1.30.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "BangumiNet.Api.P1",

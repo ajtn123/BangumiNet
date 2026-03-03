@@ -11,11 +11,10 @@ namespace BangumiNet.Api.P1.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CharacterSubject : IAdditionalDataHolder, IParsable
     {
-
-        public List<global::BangumiNet.Api.P1.Models.SlimPerson>? Actors { get; set; }
-
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+
+        public List<global::BangumiNet.Api.P1.Models.CharacterCast>? Casts { get; set; }
 
         public global::BangumiNet.Api.P1.Models.SlimSubject? Subject { get; set; }
 
@@ -48,7 +47,7 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "actors", n => { Actors = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.SlimPerson>(global::BangumiNet.Api.P1.Models.SlimPerson.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "casts", n => { Casts = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>(global::BangumiNet.Api.P1.Models.CharacterCast.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "subject", n => { Subject = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimSubject>(global::BangumiNet.Api.P1.Models.SlimSubject.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetIntValue(); } },
             };
@@ -61,7 +60,7 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.SlimPerson>("actors", Actors);
+            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>("casts", Casts);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimSubject>("subject", Subject);
             writer.WriteIntValue("type", Type);
             writer.WriteAdditionalData(AdditionalData);

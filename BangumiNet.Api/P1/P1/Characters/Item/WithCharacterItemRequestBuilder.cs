@@ -6,6 +6,7 @@ using BangumiNet.Api.P1.P1.Characters.Item.Casts;
 using BangumiNet.Api.P1.P1.Characters.Item.Collects;
 using BangumiNet.Api.P1.P1.Characters.Item.Comments;
 using BangumiNet.Api.P1.P1.Characters.Item.Indexes;
+using BangumiNet.Api.P1.P1.Characters.Item.Relations;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -41,6 +42,11 @@ namespace BangumiNet.Api.P1.P1.Characters.Item
         public global::BangumiNet.Api.P1.P1.Characters.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Characters.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Characters.Item.Relations.RelationsRequestBuilder Relations
+        {
+            get => new global::BangumiNet.Api.P1.P1.Characters.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>

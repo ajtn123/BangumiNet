@@ -9,23 +9,25 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SubjectCharacter : IAdditionalDataHolder, IParsable
+    public partial class PersonRelation : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        public List<global::BangumiNet.Api.P1.Models.CharacterCast>? Casts { get; set; }
+        public string? Comment { get; set; }
 
-        public global::BangumiNet.Api.P1.Models.SlimCharacter? Character { get; set; }
+        public bool? Ended { get; set; }
 
-        public int? Order { get; set; }
+        public global::BangumiNet.Api.P1.Models.SlimPerson? Person { get; set; }
 
-        public int? Type { get; set; }
+        public global::BangumiNet.Api.P1.Models.PersonRelationType? Relation { get; set; }
+
+        public bool? Spoiler { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SubjectCharacter"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.PersonRelation"/> and sets the default values.
         /// </summary>
-        public SubjectCharacter()
+        public PersonRelation()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -33,12 +35,12 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.SubjectCharacter"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonRelation"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.SubjectCharacter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.Models.PersonRelation CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.SubjectCharacter();
+            return new global::BangumiNet.Api.P1.Models.PersonRelation();
         }
 
         /// <summary>
@@ -49,10 +51,11 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "casts", n => { Casts = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>(global::BangumiNet.Api.P1.Models.CharacterCast.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "character", n => { Character = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimCharacter>(global::BangumiNet.Api.P1.Models.SlimCharacter.CreateFromDiscriminatorValue); } },
-                { "order", n => { Order = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetIntValue(); } },
+                { "comment", n => { Comment = n.GetStringValue(); } },
+                { "ended", n => { Ended = n.GetBoolValue(); } },
+                { "person", n => { Person = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimPerson>(global::BangumiNet.Api.P1.Models.SlimPerson.CreateFromDiscriminatorValue); } },
+                { "relation", n => { Relation = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonRelationType>(global::BangumiNet.Api.P1.Models.PersonRelationType.CreateFromDiscriminatorValue); } },
+                { "spoiler", n => { Spoiler = n.GetBoolValue(); } },
             };
         }
 
@@ -63,10 +66,11 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>("casts", Casts);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimCharacter>("character", Character);
-            writer.WriteIntValue("order", Order);
-            writer.WriteIntValue("type", Type);
+            writer.WriteStringValue("comment", Comment);
+            writer.WriteBoolValue("ended", Ended);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimPerson>("person", Person);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonRelationType>("relation", Relation);
+            writer.WriteBoolValue("spoiler", Spoiler);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

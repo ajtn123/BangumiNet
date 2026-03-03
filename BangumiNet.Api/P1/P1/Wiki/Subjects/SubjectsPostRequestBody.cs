@@ -14,6 +14,8 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        public string? Date { get; set; }
+
         public string? Infobox { get; set; }
 
         public List<string>? MetaTags { get; set; }
@@ -58,6 +60,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "date", n => { Date = n.GetStringValue(); } },
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
                 { "metaTags", n => { MetaTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -76,6 +79,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("date", Date);
             writer.WriteStringValue("infobox", Infobox);
             writer.WriteCollectionOfPrimitiveValues<string>("metaTags", MetaTags);
             writer.WriteStringValue("name", Name);

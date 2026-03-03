@@ -5,7 +5,7 @@ namespace BangumiNet.Api.P1
     public partial class ApiClient : IApiClient
     {
         /// <summary>bangumi private api 版本</summary>
-        public const string Version = "v0.46.0";
+        public const string Version = "v0.48.1";
         /// <summary>OpenAPI 定义文件的 URL</summary>
         public const string DefinitionUrl = "https://next.bgm.tv/p1/openapi.yaml";
         /// <summary>生成本 API 客户端的命令</summary>

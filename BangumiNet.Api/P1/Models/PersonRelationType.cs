@@ -9,23 +9,27 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SubjectCharacter : IAdditionalDataHolder, IParsable
+    public partial class PersonRelationType : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        public List<global::BangumiNet.Api.P1.Models.CharacterCast>? Casts { get; set; }
+        public string? Cn { get; set; }
 
-        public global::BangumiNet.Api.P1.Models.SlimCharacter? Character { get; set; }
+        public string? Desc { get; set; }
 
-        public int? Order { get; set; }
+        public int? Id { get; set; }
 
-        public int? Type { get; set; }
+        public bool? Primary { get; set; }
+
+        public bool? SkipViceVersa { get; set; }
+
+        public int? ViceVersaTo { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.SubjectCharacter"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.PersonRelationType"/> and sets the default values.
         /// </summary>
-        public SubjectCharacter()
+        public PersonRelationType()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -33,12 +37,12 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.SubjectCharacter"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.PersonRelationType"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.SubjectCharacter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.Models.PersonRelationType CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.SubjectCharacter();
+            return new global::BangumiNet.Api.P1.Models.PersonRelationType();
         }
 
         /// <summary>
@@ -49,10 +53,12 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "casts", n => { Casts = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>(global::BangumiNet.Api.P1.Models.CharacterCast.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "character", n => { Character = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimCharacter>(global::BangumiNet.Api.P1.Models.SlimCharacter.CreateFromDiscriminatorValue); } },
-                { "order", n => { Order = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetIntValue(); } },
+                { "cn", n => { Cn = n.GetStringValue(); } },
+                { "desc", n => { Desc = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetIntValue(); } },
+                { "primary", n => { Primary = n.GetBoolValue(); } },
+                { "skipViceVersa", n => { SkipViceVersa = n.GetBoolValue(); } },
+                { "viceVersaTo", n => { ViceVersaTo = n.GetIntValue(); } },
             };
         }
 
@@ -63,10 +69,12 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CharacterCast>("casts", Casts);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimCharacter>("character", Character);
-            writer.WriteIntValue("order", Order);
-            writer.WriteIntValue("type", Type);
+            writer.WriteStringValue("cn", Cn);
+            writer.WriteStringValue("desc", Desc);
+            writer.WriteIntValue("id", Id);
+            writer.WriteBoolValue("primary", Primary);
+            writer.WriteBoolValue("skipViceVersa", SkipViceVersa);
+            writer.WriteIntValue("viceVersaTo", ViceVersaTo);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
