@@ -41,7 +41,7 @@ namespace BangumiNet.Api.P1
             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
             if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
             {
-                RequestAdapter.BaseUrl = "https://next.bgm.tv";
+                RequestAdapter.BaseUrl = BaseUrl;
             }
             PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
         }

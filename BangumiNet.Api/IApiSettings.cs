@@ -4,4 +4,5 @@ public interface IApiSettings
 {
     string UserAgent { get; }
     string? AuthToken { get; }
+    bool DevEnvironment { get; }
 }

@@ -8,6 +8,7 @@ public record class Settings : IApiSettings
 {
     public string UserAgent { get; init; } = $"ajtn123/{Constants.ApplicationName}/{Assembly.GetExecutingAssembly().GetName().Version} ({Environment.OSVersion.Platform}) ({Constants.SourceRepository})";
     public string? AuthToken { get; init; } = null;
+    public bool DevEnvironment { get; init; } = false;
 
     public string BangumiTvUrlBase { get; init; } = "https://bgm.tv";
     public Dictionary<string, string> SearchQueryUrlBases { get; init; } = new()
