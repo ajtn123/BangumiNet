@@ -39,13 +39,15 @@ public partial class SubjectView : ReactiveUserControl<SubjectViewModel>
                     vm.CommentListViewModel?.LoadPageCommand.Execute(1).Subscribe();
                     vm.SubjectCollectionViewModel = await ApiC.GetViewModelAsync<SubjectCollectionViewModel>(vm.Id);
                     vm.SubjectCollectionViewModel?.Parent = ViewModel;
-                    OpenInBrowserSplitButton.Flyout = GetOpenInBrowserFlyout((int)vm.Id!);
+                    OpenInBrowserSplitButton.Flyout = await GetOpenInBrowserFlyout((int)vm.Id!);
                 }).DisposeWith(disposables);
         });
     }
 
-    public static MenuFlyout? GetOpenInBrowserFlyout(int id)
+    public static async Task<MenuFlyout?> GetOpenInBrowserFlyout(int id)
     {
+        await BangumiDataProvider.LoadBangumiDataObject();
+
         if (BangumiDataProvider.BangumiDataObject?.Items.LastOrDefault(item =>
         {
             if (item.Sites.Length == 0) return false;

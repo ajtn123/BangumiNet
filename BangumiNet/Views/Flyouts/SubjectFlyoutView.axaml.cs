@@ -12,12 +12,12 @@ public partial class SubjectFlyoutView : ReactiveUserControl<SubjectViewModel>
         {
             this.WhenAnyValue(x => x.ViewModel)
                 .WhereNotNull()
-                .Subscribe(vm =>
+                .Subscribe(async vm =>
                 {
                     if (vm.Id is int id && id != initializedItem)
                     {
                         initializedItem = id;
-                        OpenInBrowserSplitButton.Flyout = SubjectView.GetOpenInBrowserFlyout(id);
+                        OpenInBrowserSplitButton.Flyout = await SubjectView.GetOpenInBrowserFlyout(id);
                     }
                 }).DisposeWith(disposables);
         });

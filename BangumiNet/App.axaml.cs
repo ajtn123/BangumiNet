@@ -30,8 +30,6 @@ public partial class App : Application
         Resources["ErrorBg"] = Brush.Parse(SettingProvider.Current.ColorErrorBg);
         Resources["OkBg"] = Brush.Parse(SettingProvider.Current.ColorOkBg);
 
-        _ = BangumiDataProvider.LoadBangumiDataObject();
-
         CommonUtils.CleanUpTempFolder();
 
         if (SettingProvider.Current.CheckUpdateOnStartup)
