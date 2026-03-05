@@ -18,6 +18,7 @@ public partial class SettingViewModel : ViewModelBase
 
         UserAgent = GetOverride(x => x.UserAgent) ?? "";
         AuthToken = settings.AuthToken;
+        DevEnvironment = settings.DevEnvironment;
         BangumiTvUrlBase = GetOverride(x => x.BangumiTvUrlBase) ?? "";
         DefaultSearchEngine = settings.DefaultSearchEngine;
         LocalDataDirectory = GetOverride(x => x.LocalDataDirectory) ?? "";
@@ -70,6 +71,7 @@ public partial class SettingViewModel : ViewModelBase
         {
             UserAgent = GetValue(UserAgent, DefaultSettings.UserAgent),
             AuthToken = AuthToken,
+            DevEnvironment = DevEnvironment,
             BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
             DefaultSearchEngine = DefaultSearchEngine,
             LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
@@ -120,6 +122,7 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial Settings DefaultSettings { get; set; }
     [Reactive] public partial string UserAgent { get; set; }
     [Reactive] public partial string? AuthToken { get; set; }
+    [Reactive] public partial bool DevEnvironment { get; set; }
     [Reactive] public partial string BangumiTvUrlBase { get; set; }
     [Reactive] public partial string DefaultSearchEngine { get; set; }
     [Reactive] public partial string LocalDataDirectory { get; set; }

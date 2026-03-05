@@ -277,11 +277,20 @@
                         <CheckBox IsChecked="{Binding CheckUpdateOnStartup}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="保存日志"
-                                     IconSource="{bn:IconSource DocumentTextClock}">
-                    <ui:SettingsExpander.Footer>
-                        <CheckBox IsChecked="{Binding SaveLogFile}"/>
-                    </ui:SettingsExpander.Footer>
+                <ui:SettingsExpander Header="开发者选项"
+                                     IconSource="{bn:IconSource DeveloperBoard}">
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource DocumentTextClock}">
+                        <TextBlock>保存日志</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding SaveLogFile}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
+                    <ui:SettingsExpanderItem IconSource="{bn:IconSource ServerMultiple}">
+                        <TextBlock>开发环境 API</TextBlock>
+                        <ui:SettingsExpanderItem.Footer>
+                            <CheckBox IsChecked="{Binding DevEnvironment}"/>
+                        </ui:SettingsExpanderItem.Footer>
+                    </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
             </StackPanel>
         </ScrollViewer>
