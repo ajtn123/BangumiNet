@@ -46,4 +46,13 @@ public static class Utils
         File.WriteAllBytes(tmp, data);
         File.Move(tmp, location.FullName, true);
     }
+
+    public static async Task WriteAppData(FileInfo location, Stream data)
+    {
+        location.Directory?.Create();
+        var tmp = location.FullName + ".tmp";
+        await using (var tmpFS = File.Create(tmp))
+            await data.CopyToAsync(tmpFS);
+        File.Move(tmp, location.FullName, true);
+    }
 }

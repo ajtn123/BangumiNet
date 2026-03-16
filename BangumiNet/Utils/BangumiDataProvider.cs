@@ -34,9 +34,7 @@ public static class BangumiDataProvider
         try
         {
             await using var response = await ApiC.HttpClient.GetStreamAsync(Constants.BangumiDataJsonUrl, cancellationToken);
-            local.Directory?.Create();
-            await using var file = local.Create();
-            await response.CopyToAsync(file, CancellationToken.None);
+            await Shared.Utils.WriteAppData(local, response);
         }
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         finally { isUpdating = false; }
