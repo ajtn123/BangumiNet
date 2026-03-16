@@ -43,7 +43,7 @@ namespace BangumiNet.Api.P1.P1.Groups
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GroupsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups{?limit*,mode*,offset*,sort*}", pathParameters)
+        public GroupsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups?sort={sort}{&limit*,mode*,offset*}", pathParameters)
         {
         }
 
@@ -52,7 +52,7 @@ namespace BangumiNet.Api.P1.P1.Groups
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GroupsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups{?limit*,mode*,offset*,sort*}", rawUrl)
+        public GroupsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups?sort={sort}{&limit*,mode*,offset*}", rawUrl)
         {
         }
 

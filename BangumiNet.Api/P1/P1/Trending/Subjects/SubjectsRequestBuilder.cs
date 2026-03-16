@@ -30,7 +30,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects{?limit*,offset*,type*}", pathParameters)
+        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects?type={type}{&limit*,offset*}", pathParameters)
         {
         }
 
@@ -39,7 +39,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects{?limit*,offset*,type*}", rawUrl)
+        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects?type={type}{&limit*,offset*}", rawUrl)
         {
         }
 

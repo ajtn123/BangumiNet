@@ -2,9 +2,12 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Characters;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep;
 using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary;
+using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Persons;
+using BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Relations;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -22,6 +25,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
     public partial class WithSubjectItemRequestBuilder : BaseRequestBuilder
     {
 
+        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Characters.CharactersRequestBuilder Characters
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder Covers
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder(PathParameters, RequestAdapter);
@@ -35,6 +43,16 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Persons.PersonsRequestBuilder Persons
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Relations.RelationsRequestBuilder Relations
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>

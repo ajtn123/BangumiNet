@@ -2,7 +2,9 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts;
 using BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary;
+using BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -20,9 +22,19 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
     public partial class WithCharacterItemRequestBuilder : BaseRequestBuilder
     {
 
+        public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts.CastsRequestBuilder Casts
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts.CastsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects.SubjectsRequestBuilder Subjects
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>

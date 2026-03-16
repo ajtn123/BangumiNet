@@ -37,7 +37,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics{?limit*,mode*,offset*}", pathParameters)
+        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics?mode={mode}{&limit*,offset*}", pathParameters)
         {
         }
 
@@ -46,7 +46,7 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics{?limit*,mode*,offset*}", rawUrl)
+        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/groups/-/topics?mode={mode}{&limit*,offset*}", rawUrl)
         {
         }
 

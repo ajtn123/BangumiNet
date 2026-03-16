@@ -43,7 +43,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects{?cat*,month*,page*,series*,sort*,tags*,tagsCat*,type*,year*}", pathParameters)
+        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects?sort={sort}&type={type}{&cat*,month*,page*,series*,tags*,tagsCat*,year*}", pathParameters)
         {
         }
 
@@ -52,7 +52,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects{?cat*,month*,page*,series*,sort*,tags*,tagsCat*,type*,year*}", rawUrl)
+        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/subjects?sort={sort}&type={type}{&cat*,month*,page*,series*,tags*,tagsCat*,year*}", rawUrl)
         {
         }
 
