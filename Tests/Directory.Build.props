@@ -15,4 +15,8 @@
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
     </ItemGroup>
 
+    <ItemGroup>
+        <Compile Include="..\MSTestSettings.cs" Link="MSTestSettings.cs" />
+    </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Tests/">
+    <Project Path="Tests/BangumiNet.Api.Test/BangumiNet.Api.Test.csproj" Id="a88819c6-c977-43cd-8e62-3801f5fc77e0" />
     <Project Path="Tests/BangumiNet.Archive.Test/BangumiNet.Archive.Test.csproj" Id="8108d36a-9e76-4904-a2ef-809d04eccb96" />
     <Project Path="Tests/BangumiNet.BangumiData.Test/BangumiNet.BangumiData.Test.csproj" Id="06df710c-b5ea-4a5b-9bda-819495435ba3" />
     <Project Path="Tests/BangumiNet.Common.Test/BangumiNet.Common.Test.csproj" Id="156c8295-eee1-47de-8603-567ced039e7d" />
