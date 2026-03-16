@@ -5,7 +5,7 @@ public class SocketIoNotificationClient : IDisposable
 {
     public record NotifyEvent(int Count);
 
-    public static readonly Uri Host = new("https://next.bgm.tv/");
+    public static readonly Uri Host = new(P1.ApiClient.BaseUrl);
     public const string Path = "/p1/socket-io/";
     public const string NotifyEventName = "notify";
     public const string ErrorEventName = "connect_error";

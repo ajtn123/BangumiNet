@@ -14,7 +14,7 @@ namespace BangumiNet.Api.Misc;
 /// </summary>
 public class TimelineEventStream(HttpClient httpClient, string? authToken)
 {
-    private const string Endpoint = "https://next.bgm.tv/p1/timeline/-/events";
+    private const string Endpoint = $"{P1.ApiClient.BaseUrl}/p1/timeline/-/events";
     private readonly HttpClient client = httpClient;
     private readonly string? token = authToken;
     private static readonly JsonParseNodeFactory factory = new();

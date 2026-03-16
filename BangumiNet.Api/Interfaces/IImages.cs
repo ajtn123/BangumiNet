@@ -1,10 +1,16 @@
-﻿namespace BangumiNet.Api.Interfaces;
+﻿using BangumiNet.Api.Misc;
+
+namespace BangumiNet.Api.Interfaces;
 
 public interface IImages
 {
     string? Large { get; }
     string? Medium { get; }
     string? Small { get; }
+
+    /// <inheritdoc cref="BangumiImage.GetResizedImage(string, int, int)"/>
+    string Resize(int width = 0, int height = 0) => BangumiImage.GetResizedImage(Large ?? Medium ?? Small!, width, height);
+    string Original() => BangumiImage.GetOriginalImage(Large ?? Medium ?? Small!);
 }
 public interface IImagesGrid : IImages
 {
