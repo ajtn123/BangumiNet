@@ -9,14 +9,16 @@
 
     <ItemGroup>
         <PackageReference Include="MSTest" Version="4.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
         <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+        <Compile Include="..\MSTestSettings.cs" Link="MSTestSettings.cs" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <SourceProjectName>$(MSBuildProjectName.Replace('.Test', ''))</SourceProjectName>
+    </PropertyGroup>
+
     <ItemGroup>
-        <Compile Include="..\MSTestSettings.cs" Link="MSTestSettings.cs" />
+        <ProjectReference Include="..\..\$(SourceProjectName)\$(SourceProjectName).csproj" />
     </ItemGroup>
 
 </Project>
