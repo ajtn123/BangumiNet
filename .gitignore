@@ -18,6 +18,10 @@ artifacts/
 *~
 CodeCoverage/
 
+# Visual Studio
+.vs/
+*.user
+
 # MSBuild Binary and Structured Log
 *.binlog
 
