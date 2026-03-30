@@ -18,9 +18,13 @@ namespace BangumiNet.Api.P1.Models
 
         public string? Infobox { get; set; }
 
+        public bool? Locked { get; set; }
+
         public string? Name { get; set; }
 
         public global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession? Profession { get; set; }
+
+        public int? Redirect { get; set; }
 
         public string? Summary { get; set; }
 
@@ -56,8 +60,10 @@ namespace BangumiNet.Api.P1.Models
             {
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
+                { "locked", n => { Locked = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "profession", n => { Profession = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>(global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession.CreateFromDiscriminatorValue); } },
+                { "redirect", n => { Redirect = n.GetIntValue(); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
                 { "typeID", n => { TypeID = n.GetIntValue(); } },
             };
@@ -72,8 +78,10 @@ namespace BangumiNet.Api.P1.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("infobox", Infobox);
+            writer.WriteBoolValue("locked", Locked);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonWikiInfo_profession>("profession", Profession);
+            writer.WriteIntValue("redirect", Redirect);
             writer.WriteStringValue("summary", Summary);
             writer.WriteIntValue("typeID", TypeID);
             writer.WriteAdditionalData(AdditionalData);

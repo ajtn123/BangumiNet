@@ -20,6 +20,8 @@ namespace BangumiNet.Api.P1.Models
 
         public string? Infobox { get; set; }
 
+        public bool? Locked { get; set; }
+
         public List<string>? MetaTags { get; set; }
 
         public string? Name { get; set; }
@@ -27,6 +29,8 @@ namespace BangumiNet.Api.P1.Models
         public bool? Nsfw { get; set; }
 
         public int? Platform { get; set; }
+
+        public int? Redirect { get; set; }
 
         public bool? Series { get; set; }
 
@@ -65,10 +69,12 @@ namespace BangumiNet.Api.P1.Models
                 { "availablePlatform", n => { AvailablePlatform = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WikiPlatform>(global::BangumiNet.Api.P1.Models.WikiPlatform.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
+                { "locked", n => { Locked = n.GetBoolValue(); } },
                 { "metaTags", n => { MetaTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
                 { "platform", n => { Platform = n.GetIntValue(); } },
+                { "redirect", n => { Redirect = n.GetIntValue(); } },
                 { "series", n => { Series = n.GetBoolValue(); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
                 { "typeID", n => { TypeID = n.GetIntValue(); } },
@@ -85,10 +91,12 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WikiPlatform>("availablePlatform", AvailablePlatform);
             writer.WriteIntValue("id", Id);
             writer.WriteStringValue("infobox", Infobox);
+            writer.WriteBoolValue("locked", Locked);
             writer.WriteCollectionOfPrimitiveValues<string>("metaTags", MetaTags);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("nsfw", Nsfw);
             writer.WriteIntValue("platform", Platform);
+            writer.WriteIntValue("redirect", Redirect);
             writer.WriteBoolValue("series", Series);
             writer.WriteStringValue("summary", Summary);
             writer.WriteIntValue("typeID", TypeID);

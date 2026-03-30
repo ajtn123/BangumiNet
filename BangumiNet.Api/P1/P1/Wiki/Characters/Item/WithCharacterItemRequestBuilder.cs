@@ -4,6 +4,7 @@
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts;
 using BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary;
+using BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits;
 using BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -30,6 +31,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsRequestBuilder Potraits
+        {
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects.SubjectsRequestBuilder Subjects
@@ -85,6 +91,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 400 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
         public async Task<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse?> PatchAsync(global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
@@ -94,6 +101,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
             {
                 { "400", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);

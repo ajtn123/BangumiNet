@@ -1,0 +1,6 @@
+Warning: KiotaBuilder OpenAPI warning: #/ - A servers entry (v3) or host + basePath + schemes properties (v2) was not present in the OpenAPI description. The root URL will need to be set manually with the request adapter.
+Warning: KiotaBuilder OpenAPI warning: #/paths/~1v0~1me/get/responses/200/content/application~1json/schema/allOf/2/properties/email - The format email is not supported by Kiota and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Avatar/properties/large - The format url is not supported by Kiota for the type String and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Avatar/properties/medium - The format url is not supported by Kiota for the type String and the string type will be used.
+Warning: KiotaBuilder OpenAPI warning: #/components/schemas/Avatar/properties/small - The format url is not supported by Kiota for the type String and the string type will be used.
+Warning: KiotaBuilder No server url found in the OpenAPI document. The base url will need to be set when using the client.
