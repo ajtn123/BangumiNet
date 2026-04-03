@@ -26,6 +26,7 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>评分，0 表示删除评分</summary>
         public int? Rate { get; set; }
 
+        /// <summary>The tags property</summary>
         public List<string>? Tags { get; set; }
 
         /// <summary>条目收藏状态  - 1 = 想看  - 2 = 看过  - 3 = 在看  - 4 = 搁置  - 5 = 抛弃</summary>

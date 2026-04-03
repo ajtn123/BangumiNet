@@ -14,15 +14,19 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The award property</summary>
         public string? Award { get; set; }
 
         /// <summary>目录关联类型  - 0 = 条目  - 1 = 角色  - 2 = 人物  - 3 = 章节  - 4 = 日志  - 5 = 小组话题  - 6 = 条目讨论</summary>
         public int? Cat { get; set; }
 
+        /// <summary>The comment property</summary>
         public string? Comment { get; set; }
 
+        /// <summary>The order property</summary>
         public int? Order { get; set; }
 
+        /// <summary>The sid property</summary>
         public int? Sid { get; set; }
 
         /// <summary>

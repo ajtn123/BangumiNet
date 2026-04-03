@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Casts
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CastsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The historySummary property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Casts.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Casts.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);

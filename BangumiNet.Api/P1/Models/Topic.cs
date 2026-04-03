@@ -17,21 +17,28 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>发帖时间，unix time stamp in seconds</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The creator property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? Creator { get; set; }
 
+        /// <summary>The creatorID property</summary>
         public int? CreatorID { get; set; }
 
+        /// <summary>The display property</summary>
         public int? Display { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>小组/条目ID</summary>
         public int? ParentID { get; set; }
 
+        /// <summary>The replyCount property</summary>
         public int? ReplyCount { get; set; }
 
+        /// <summary>The state property</summary>
         public int? State { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
         /// <summary>最后回复时间，unix time stamp in seconds</summary>

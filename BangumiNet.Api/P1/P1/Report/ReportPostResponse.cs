@@ -14,6 +14,7 @@ namespace BangumiNet.Api.P1.P1.Report
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The message property</summary>
         public string? Message { get; set; }
 
         /// <summary>

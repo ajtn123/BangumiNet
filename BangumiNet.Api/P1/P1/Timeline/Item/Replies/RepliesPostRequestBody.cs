@@ -14,6 +14,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The content property</summary>
         public string? Content { get; set; }
 
         /// <summary>被回复的回复 ID, `0` 代表发送顶层回复</summary>

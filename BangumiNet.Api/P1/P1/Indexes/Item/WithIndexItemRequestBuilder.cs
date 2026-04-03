@@ -20,12 +20,13 @@ namespace BangumiNet.Api.P1.P1.Indexes.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIndexItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The comments property</summary>
         public global::BangumiNet.Api.P1.P1.Indexes.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The related property</summary>
         public global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedRequestBuilder Related
         {
             get => new global::BangumiNet.Api.P1.P1.Indexes.Item.Related.RelatedRequestBuilder(PathParameters, RequestAdapter);

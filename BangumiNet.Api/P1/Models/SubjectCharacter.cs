@@ -14,12 +14,16 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The casts property</summary>
         public List<global::BangumiNet.Api.P1.Models.CharacterCast>? Casts { get; set; }
 
+        /// <summary>The character property</summary>
         public global::BangumiNet.Api.P1.Models.SlimCharacter? Character { get; set; }
 
+        /// <summary>The order property</summary>
         public int? Order { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
         /// <summary>

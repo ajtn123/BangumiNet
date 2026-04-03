@@ -14,14 +14,19 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The comment property</summary>
         public string? Comment { get; set; }
 
+        /// <summary>The ended property</summary>
         public bool? Ended { get; set; }
 
+        /// <summary>The person property</summary>
         public global::BangumiNet.Api.P1.Models.SlimPerson? Person { get; set; }
 
+        /// <summary>The relation property</summary>
         public global::BangumiNet.Api.P1.Models.PersonRelationType? Relation { get; set; }
 
+        /// <summary>The spoiler property</summary>
         public bool? Spoiler { get; set; }
 
         /// <summary>

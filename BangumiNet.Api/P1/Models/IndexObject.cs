@@ -14,35 +14,49 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The award property</summary>
         public int? Award { get; set; }
 
+        /// <summary>The collectedAt property</summary>
         public int? CollectedAt { get; set; }
 
+        /// <summary>The collects property</summary>
         public int? Collects { get; set; }
 
+        /// <summary>The createdAt property</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The desc property</summary>
         public string? Desc { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The private property</summary>
         public bool? Private { get; set; }
 
+        /// <summary>The replies property</summary>
         public int? Replies { get; set; }
 
+        /// <summary>The stats property</summary>
         public global::BangumiNet.Api.P1.Models.IndexStats? Stats { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
+        /// <summary>The total property</summary>
         public int? Total { get; set; }
 
         /// <summary>目录类型  - 0 = 用户  - 1 = 公共  - 2 = TBA</summary>
         public int? Type { get; set; }
 
+        /// <summary>The uid property</summary>
         public int? Uid { get; set; }
 
+        /// <summary>The updatedAt property</summary>
         public int? UpdatedAt { get; set; }
 
+        /// <summary>The user property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>

@@ -15,24 +15,34 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item.Comments
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The content property</summary>
         public string? Content { get; set; }
 
+        /// <summary>The createdAt property</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The creatorID property</summary>
         public int? CreatorID { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The mainID property</summary>
         public int? MainID { get; set; }
 
+        /// <summary>The reactions property</summary>
         public List<global::BangumiNet.Api.P1.Models.Reaction>? Reactions { get; set; }
 
+        /// <summary>The relatedID property</summary>
         public int? RelatedID { get; set; }
 
+        /// <summary>The replies property</summary>
         public List<global::BangumiNet.Api.P1.Models.CommentBase>? Replies { get; set; }
 
+        /// <summary>The state property</summary>
         public int? State { get; set; }
 
+        /// <summary>The user property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>

@@ -14,12 +14,16 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The date property</summary>
         public string? Date { get; set; }
 
+        /// <summary>The month property</summary>
         public int? Month { get; set; }
 
+        /// <summary>The weekday property</summary>
         public int? Weekday { get; set; }
 
+        /// <summary>The year property</summary>
         public int? Year { get; set; }
 
         /// <summary>

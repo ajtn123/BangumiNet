@@ -11,7 +11,7 @@ namespace BangumiNet.Api.P1.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Reply : global::BangumiNet.Api.P1.Models.ReplyBase, IParsable
     {
-
+        /// <summary>The replies property</summary>
         public List<global::BangumiNet.Api.P1.Models.ReplyBase>? Replies { get; set; }
 
         /// <summary>

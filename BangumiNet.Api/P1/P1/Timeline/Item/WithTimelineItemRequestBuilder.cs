@@ -20,12 +20,13 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTimelineItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The like property</summary>
         public global::BangumiNet.Api.P1.P1.Timeline.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The replies property</summary>
         public global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesRequestBuilder Replies
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);

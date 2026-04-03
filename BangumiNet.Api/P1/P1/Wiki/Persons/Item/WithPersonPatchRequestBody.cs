@@ -11,11 +11,13 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPersonPatchRequestBody : IParsable
     {
-
+        /// <summary>The commitMessage property</summary>
         public string? CommitMessage { get; set; }
 
+        /// <summary>The expectedRevision property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_expectedRevision? ExpectedRevision { get; set; }
 
+        /// <summary>The person property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person? Person { get; set; }
 
         /// <summary>

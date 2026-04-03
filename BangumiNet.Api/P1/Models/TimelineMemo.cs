@@ -14,20 +14,28 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The blog property</summary>
         public global::BangumiNet.Api.P1.Models.SlimBlogEntry? Blog { get; set; }
 
+        /// <summary>The daily property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_daily? Daily { get; set; }
 
+        /// <summary>The index property</summary>
         public global::BangumiNet.Api.P1.Models.SlimIndex? Index { get; set; }
 
+        /// <summary>The mono property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_mono? Mono { get; set; }
 
+        /// <summary>The progress property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_progress? Progress { get; set; }
 
+        /// <summary>The status property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_status? Status { get; set; }
 
+        /// <summary>The subject property</summary>
         public List<global::BangumiNet.Api.P1.Models.TimelineMemo_subject>? Subject { get; set; }
 
+        /// <summary>The wiki property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_wiki? Wiki { get; set; }
 
         /// <summary>

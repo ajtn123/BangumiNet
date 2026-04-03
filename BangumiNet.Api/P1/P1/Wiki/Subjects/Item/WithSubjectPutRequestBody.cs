@@ -15,10 +15,13 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The commitMessage property</summary>
         public string? CommitMessage { get; set; }
 
+        /// <summary>The expectedRevision property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision? ExpectedRevision { get; set; }
 
+        /// <summary>The subject property</summary>
         public global::BangumiNet.Api.P1.Models.SubjectEdit? Subject { get; set; }
 
         /// <summary>

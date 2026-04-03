@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The events property</summary>
         public global::BangumiNet.Api.P1.P1.Timeline.Events.EventsRequestBuilder Events
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Events.EventsRequestBuilder(PathParameters, RequestAdapter);

@@ -17,22 +17,31 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>职业</summary>
         public List<string>? Career { get; set; }
 
+        /// <summary>The comment property</summary>
         public int? Comment { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The images property</summary>
         public global::BangumiNet.Api.P1.Models.PersonImages? Images { get; set; }
 
+        /// <summary>The info property</summary>
         public string? Info { get; set; }
 
+        /// <summary>The lock property</summary>
         public bool? Lock { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The nameCN property</summary>
         public string? NameCN { get; set; }
 
+        /// <summary>The nsfw property</summary>
         public bool? Nsfw { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
         /// <summary>

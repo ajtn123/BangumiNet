@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Blogs
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The comments property</summary>
         public global::BangumiNet.Api.P1.P1.Blogs.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);

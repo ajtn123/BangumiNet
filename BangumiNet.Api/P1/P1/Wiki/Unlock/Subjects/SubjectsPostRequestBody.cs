@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The reason property</summary>
         public string? Reason { get; set; }
 
+        /// <summary>The subjectID property</summary>
         public int? SubjectID { get; set; }
 
         /// <summary>

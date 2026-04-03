@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The topics property</summary>
         public global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);

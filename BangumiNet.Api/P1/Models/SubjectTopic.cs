@@ -11,9 +11,10 @@ namespace BangumiNet.Api.P1.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectTopic : global::BangumiNet.Api.P1.Models.Topic, IParsable
     {
-
+        /// <summary>The replies property</summary>
         public List<global::BangumiNet.Api.P1.Models.Reply>? Replies { get; set; }
 
+        /// <summary>The subject property</summary>
         public global::BangumiNet.Api.P1.Models.SlimSubject? Subject { get; set; }
 
         /// <summary>

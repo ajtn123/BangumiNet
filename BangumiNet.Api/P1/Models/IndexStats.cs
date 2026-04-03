@@ -14,18 +14,25 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The blog property</summary>
         public int? Blog { get; set; }
 
+        /// <summary>The character property</summary>
         public int? Character { get; set; }
 
+        /// <summary>The episode property</summary>
         public int? Episode { get; set; }
 
+        /// <summary>The groupTopic property</summary>
         public int? GroupTopic { get; set; }
 
+        /// <summary>The person property</summary>
         public int? Person { get; set; }
 
+        /// <summary>The subject property</summary>
         public global::BangumiNet.Api.P1.Models.IndexStats_subject? Subject { get; set; }
 
+        /// <summary>The subjectTopic property</summary>
         public int? SubjectTopic { get; set; }
 
         /// <summary>

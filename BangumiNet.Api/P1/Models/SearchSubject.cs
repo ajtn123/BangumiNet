@@ -14,6 +14,7 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The filter property</summary>
         public global::BangumiNet.Api.P1.Models.SubjectSearchFilter? Filter { get; set; }
 
         /// <summary>搜索关键词</summary>

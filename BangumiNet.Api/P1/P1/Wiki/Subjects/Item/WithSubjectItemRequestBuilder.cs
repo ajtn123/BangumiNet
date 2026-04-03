@@ -24,32 +24,37 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithSubjectItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The covers property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder Covers
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The ep property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpRequestBuilder Ep
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Ep.EpRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The historySummary property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The relations property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Relations.RelationsRequestBuilder Relations
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);

@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The persons property</summary>
         public List<global::BangumiNet.Api.P1.Models.RecentWikiChange_persons>? Persons { get; set; }
 
+        /// <summary>The subject property</summary>
         public List<global::BangumiNet.Api.P1.Models.RecentWikiChange_subject>? Subject { get; set; }
 
         /// <summary>

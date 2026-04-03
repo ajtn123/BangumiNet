@@ -11,18 +11,22 @@ namespace BangumiNet.Api.P1.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class User_networkServices : IAdditionalDataHolder, IParsable
     {
-
+        /// <summary>The account property</summary>
         public string? Account { get; set; }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The color property</summary>
         public string? Color { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
+        /// <summary>The url property</summary>
         public string? Url { get; set; }
 
         /// <summary>

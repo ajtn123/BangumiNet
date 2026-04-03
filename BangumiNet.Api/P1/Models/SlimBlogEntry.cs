@@ -14,26 +14,37 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The createdAt property</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The icon property</summary>
         public string? Icon { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The public property</summary>
         public bool? Public { get; set; }
 
+        /// <summary>The replies property</summary>
         public int? Replies { get; set; }
 
+        /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
+        /// <summary>The uid property</summary>
         public int? Uid { get; set; }
 
+        /// <summary>The updatedAt property</summary>
         public int? UpdatedAt { get; set; }
 
+        /// <summary>The user property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>

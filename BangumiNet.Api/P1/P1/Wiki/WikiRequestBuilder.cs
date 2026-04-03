@@ -23,42 +23,49 @@ namespace BangumiNet.Api.P1.P1.Wiki
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WikiRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The ep property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Ep.EpRequestBuilder Ep
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Ep.EpRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The lock property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Lock.LockRequestBuilder Lock
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Lock.LockRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The recent property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.RecentRequestBuilder Recent
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Recent.RecentRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The unlock property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Unlock.UnlockRequestBuilder Unlock
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Unlock.UnlockRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The users property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Users.UsersRequestBuilder Users
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.UsersRequestBuilder(PathParameters, RequestAdapter);

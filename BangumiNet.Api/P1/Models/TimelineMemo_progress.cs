@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The batch property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_progress_batch? Batch { get; set; }
 
+        /// <summary>The single property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_progress_single? Single { get; set; }
 
         /// <summary>

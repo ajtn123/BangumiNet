@@ -14,14 +14,19 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The epsTotal property</summary>
         public string? EpsTotal { get; set; }
 
+        /// <summary>The epsUpdate property</summary>
         public int? EpsUpdate { get; set; }
 
+        /// <summary>The subject property</summary>
         public global::BangumiNet.Api.P1.Models.SlimSubject? Subject { get; set; }
 
+        /// <summary>The volsTotal property</summary>
         public string? VolsTotal { get; set; }
 
+        /// <summary>The volsUpdate property</summary>
         public int? VolsUpdate { get; set; }
 
         /// <summary>

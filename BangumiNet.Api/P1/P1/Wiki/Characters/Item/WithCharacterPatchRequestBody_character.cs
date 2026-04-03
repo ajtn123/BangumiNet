@@ -11,11 +11,13 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCharacterPatchRequestBody_character : IParsable
     {
-
+        /// <summary>The infobox property</summary>
         public string? Infobox { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
         /// <summary>

@@ -14,16 +14,22 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The cn property</summary>
         public string? Cn { get; set; }
 
+        /// <summary>The desc property</summary>
         public string? Desc { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The primary property</summary>
         public bool? Primary { get; set; }
 
+        /// <summary>The skipViceVersa property</summary>
         public bool? SkipViceVersa { get; set; }
 
+        /// <summary>The viceVersaTo property</summary>
         public int? ViceVersaTo { get; set; }
 
         /// <summary>

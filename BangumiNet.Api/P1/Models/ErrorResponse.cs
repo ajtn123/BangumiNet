@@ -18,15 +18,19 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The code property</summary>
         public string? Code { get; set; }
 
+        /// <summary>The error property</summary>
         public string? Error { get; set; }
 
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
 
+        /// <summary>The message property</summary>
         public string? MessageEscaped { get; set; }
 
+        /// <summary>The statusCode property</summary>
         public int? StatusCode { get; set; }
 
         /// <summary>

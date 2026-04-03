@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The after property</summary>
         public string? After { get; set; }
 
+        /// <summary>The before property</summary>
         public string? Before { get; set; }
 
         /// <summary>

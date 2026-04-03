@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Posts.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPostItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The like property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.Like.LikeRequestBuilder Like
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Posts.Item.Like.LikeRequestBuilder(PathParameters, RequestAdapter);

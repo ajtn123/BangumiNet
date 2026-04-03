@@ -21,6 +21,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Events
         /// <summary>事件类型: &apos;connected&apos; | &apos;timeline&apos;</summary>
         public string? Event { get; set; }
 
+        /// <summary>The timeline property</summary>
         public global::BangumiNet.Api.P1.Models.Timeline? Timeline { get; set; }
 
         /// <summary>

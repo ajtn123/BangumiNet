@@ -19,22 +19,25 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RecentRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The episodes property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Recent.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

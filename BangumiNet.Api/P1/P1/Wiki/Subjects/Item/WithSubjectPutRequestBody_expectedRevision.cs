@@ -14,14 +14,19 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The infobox property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox? Infobox { get; set; }
 
+        /// <summary>The metaTags property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags? MetaTags { get; set; }
 
+        /// <summary>The name property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name? Name { get; set; }
 
+        /// <summary>The platform property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform? Platform { get; set; }
 
+        /// <summary>The summary property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary? Summary { get; set; }
 
         /// <summary>

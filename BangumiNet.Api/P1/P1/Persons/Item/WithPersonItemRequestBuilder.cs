@@ -24,32 +24,37 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPersonItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The casts property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Casts.CastsRequestBuilder Casts
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Casts.CastsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The collects property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The comments property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The indexes property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The relations property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Relations.RelationsRequestBuilder Relations
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The works property</summary>
         public global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder Works
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Works.WorksRequestBuilder(PathParameters, RequestAdapter);

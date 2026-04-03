@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithUsernameItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The contributions property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.ContributionsRequestBuilder Contributions
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.ContributionsRequestBuilder(PathParameters, RequestAdapter);

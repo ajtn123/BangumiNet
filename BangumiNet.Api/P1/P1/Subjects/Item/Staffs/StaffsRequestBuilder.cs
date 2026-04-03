@@ -17,12 +17,13 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class StaffsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The positions property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder Positions
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions.PositionsRequestBuilder(PathParameters, RequestAdapter);

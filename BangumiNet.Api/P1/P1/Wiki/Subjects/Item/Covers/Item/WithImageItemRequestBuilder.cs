@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithImageItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The vote property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteRequestBuilder Vote
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteRequestBuilder(PathParameters, RequestAdapter);

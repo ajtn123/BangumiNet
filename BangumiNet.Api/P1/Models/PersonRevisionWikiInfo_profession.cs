@@ -11,22 +11,28 @@ namespace BangumiNet.Api.P1.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PersonRevisionWikiInfo_profession : IAdditionalDataHolder, IParsable
     {
-
+        /// <summary>The actor property</summary>
         public bool? Actor { get; set; }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The artist property</summary>
         public bool? Artist { get; set; }
 
+        /// <summary>The illustrator property</summary>
         public bool? Illustrator { get; set; }
 
+        /// <summary>The mangaka property</summary>
         public bool? Mangaka { get; set; }
 
+        /// <summary>The producer property</summary>
         public bool? Producer { get; set; }
 
+        /// <summary>The seiyu property</summary>
         public bool? Seiyu { get; set; }
 
+        /// <summary>The writer property</summary>
         public bool? Writer { get; set; }
 
         /// <summary>
