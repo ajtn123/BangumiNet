@@ -1,0 +1,40 @@
+name: Update API Client
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-p1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: microsoft/setup-kiota@v0.5.0
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download API Description
+        run: curl -L -o private.yaml https://next.bgm.tv/p1/openapi.yaml
+
+      - name: Pre-Process API Description
+        run: pwsh BangumiNet.Api/PreGeneration.ps1 private.yaml
+
+      - name: Update API Client
+        run: kiota update --clean-output -o BangumiNet.Api/P1
+
+      - name: Post-Process Generated Code
+        run: pwsh BangumiNet.Api/PostGeneration.ps1 BangumiNet.Api/P1
+
+      - name: Apply Patch
+        run: git apply BangumiNet.Api/private.patch
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: 'feat: update Bangumi Private API client'
+          title: Update Bangumi Private API Client
+          body: Update Bangumi Private API client to match API version `${{ env.PRIVATE_VERSION }}`
+          branch: feat/update-p1

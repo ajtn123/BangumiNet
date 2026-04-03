@@ -1,0 +1,81 @@
+diff --git a/BangumiNet.Api/P1/ApiClient.cs b/BangumiNet.Api/P1/ApiClient.cs
+index 5202174..a6725cb 100644
+--- a/BangumiNet.Api/P1/ApiClient.cs
++++ b/BangumiNet.Api/P1/ApiClient.cs
+@@ -39,6 +39,11 @@ namespace BangumiNet.Api.P1
+             ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
+             ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
+             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
++            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
++            {
++                RequestAdapter.BaseUrl = BaseUrl;
++            }
++            PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
+         }
+     }
+ }
+diff --git a/BangumiNet.Api/P1/Models/Calendar.cs b/BangumiNet.Api/P1/Models/Calendar.cs
+index df159d2..f634f4f 100644
+--- a/BangumiNet.Api/P1/Models/Calendar.cs
++++ b/BangumiNet.Api/P1/Models/Calendar.cs
+@@ -41,6 +41,13 @@ namespace BangumiNet.Api.P1.Models
+         {
+             return new Dictionary<string, Action<IParseNode>>
+             {
++                ["1"] = n => Days[DayOfWeek.Monday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["2"] = n => Days[DayOfWeek.Tuesday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["3"] = n => Days[DayOfWeek.Wednesday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["4"] = n => Days[DayOfWeek.Thursday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["5"] = n => Days[DayOfWeek.Friday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["6"] = n => Days[DayOfWeek.Saturday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
++                ["7"] = n => Days[DayOfWeek.Sunday] = n.GetCollectionOfObjectValues(CalendarItem.CreateFromDiscriminatorValue),
+             };
+         }
+ 
+diff --git a/BangumiNet.Api/P1/Models/SubjectCollection.cs b/BangumiNet.Api/P1/Models/SubjectCollection.cs
+index 2f4425b..826803a 100644
+--- a/BangumiNet.Api/P1/Models/SubjectCollection.cs
++++ b/BangumiNet.Api/P1/Models/SubjectCollection.cs
+@@ -41,6 +41,11 @@ namespace BangumiNet.Api.P1.Models
+         {
+             return new Dictionary<string, Action<IParseNode>>
+             {
++                ["1"] = n => Wish = n.GetIntValue(),
++                ["2"] = n => Collect = n.GetIntValue(),
++                ["3"] = n => Doing = n.GetIntValue(),
++                ["4"] = n => OnHold = n.GetIntValue(),
++                ["5"] = n => Dropped = n.GetIntValue(),
+             };
+         }
+ 
+diff --git a/BangumiNet.Api/P1/P1/Wiki/Subjects/Item/Covers/CoversGetResponse_covers.cs b/BangumiNet.Api/P1/P1/Wiki/Subjects/Item/Covers/CoversGetResponse_covers.cs
+index a608398..e6b80c2 100644
+--- a/BangumiNet.Api/P1/P1/Wiki/Subjects/Item/Covers/CoversGetResponse_covers.cs
++++ b/BangumiNet.Api/P1/P1/Wiki/Subjects/Item/Covers/CoversGetResponse_covers.cs
+@@ -15,7 +15,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
+         public IDictionary<string, object> AdditionalData { get; set; }
+ 
+         /// <summary>The creator property</summary>
+-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator? Creator { get; set; }
++        public global::BangumiNet.Api.P1.Models.SlimUser? Creator { get; set; }
+ 
+         /// <summary>The id property</summary>
+         public int? Id { get; set; }
+@@ -56,7 +56,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
+         {
+             return new Dictionary<string, Action<IParseNode>>
+             {
+-                { "creator", n => { Creator = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator.CreateFromDiscriminatorValue); } },
++                { "creator", n => { Creator = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
+                 { "id", n => { Id = n.GetIntValue(); } },
+                 { "raw", n => { Raw = n.GetStringValue(); } },
+                 { "thumbnail", n => { Thumbnail = n.GetStringValue(); } },
+@@ -71,7 +71,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
+         public virtual void Serialize(ISerializationWriter writer)
+         {
+             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+-            writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.CoversGetResponse_covers_creator>("creator", Creator);
++            writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>("creator", Creator);
+             writer.WriteIntValue("id", Id);
+             writer.WriteStringValue("raw", Raw);
+             writer.WriteStringValue("thumbnail", Thumbnail);
