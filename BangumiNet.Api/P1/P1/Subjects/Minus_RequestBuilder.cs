@@ -18,17 +18,19 @@ namespace BangumiNet.Api.P1.P1.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The collects property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The posts property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Posts.PostsRequestBuilder Posts
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Posts.PostsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The topics property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);

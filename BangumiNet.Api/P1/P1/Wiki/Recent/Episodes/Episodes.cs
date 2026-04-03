@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Episodes
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The createdAt property</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithEpisodeItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The comments property</summary>
         public global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);

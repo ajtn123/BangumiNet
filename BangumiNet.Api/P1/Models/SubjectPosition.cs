@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The position property</summary>
         public global::BangumiNet.Api.P1.Models.SubjectStaffPositionType? Position { get; set; }
 
+        /// <summary>The staffs property</summary>
         public List<global::BangumiNet.Api.P1.Models.SubjectPositionStaff>? Staffs { get; set; }
 
         /// <summary>

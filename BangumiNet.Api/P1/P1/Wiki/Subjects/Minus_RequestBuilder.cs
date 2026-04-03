@@ -19,22 +19,25 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The relations property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Relations.RelationsRequestBuilder Relations
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Relations.RelationsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The revisions property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder Revisions
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);

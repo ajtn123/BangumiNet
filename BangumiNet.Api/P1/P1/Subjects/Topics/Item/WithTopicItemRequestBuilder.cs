@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithTopicItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The replies property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Topics.Item.Replies.RepliesRequestBuilder Replies
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Topics.Item.Replies.RepliesRequestBuilder(PathParameters, RequestAdapter);

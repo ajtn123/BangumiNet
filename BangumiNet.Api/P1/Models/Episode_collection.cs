@@ -17,6 +17,7 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>章节收藏状态  - 0 = 撤消/删除  - 1 = 想看  - 2 = 看过  - 3 = 抛弃</summary>
         public int? Status { get; set; }
 
+        /// <summary>The updatedAt property</summary>
         public int? UpdatedAt { get; set; }
 
         /// <summary>

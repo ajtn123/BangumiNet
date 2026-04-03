@@ -18,17 +18,19 @@ namespace BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ContributionsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The persons property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Users.Item.Contributions.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

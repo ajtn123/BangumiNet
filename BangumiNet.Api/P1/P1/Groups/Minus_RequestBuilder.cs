@@ -17,12 +17,13 @@ namespace BangumiNet.Api.P1.P1.Groups
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Minus_RequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The posts property</summary>
         public global::BangumiNet.Api.P1.P1.Groups.Posts.PostsRequestBuilder Posts
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Posts.PostsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The topics property</summary>
         public global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder Topics
         {
             get => new global::BangumiNet.Api.P1.P1.Groups.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);

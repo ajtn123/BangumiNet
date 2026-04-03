@@ -14,13 +14,16 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The joinedAt property</summary>
         public int? JoinedAt { get; set; }
 
         /// <summary>小组成员角色  - -2 = 访客  - -1 = 游客  - 0 = 小组成员  - 1 = 小组长  - 2 = 小组管理员  - 3 = 禁言成员</summary>
         public int? Role { get; set; }
 
+        /// <summary>The uid property</summary>
         public int? Uid { get; set; }
 
+        /// <summary>The user property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>

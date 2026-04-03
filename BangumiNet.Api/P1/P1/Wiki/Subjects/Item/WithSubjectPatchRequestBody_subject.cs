@@ -14,20 +14,28 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The date property</summary>
         public string? Date { get; set; }
 
+        /// <summary>The infobox property</summary>
         public string? Infobox { get; set; }
 
+        /// <summary>The metaTags property</summary>
         public List<string>? MetaTags { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The nsfw property</summary>
         public bool? Nsfw { get; set; }
 
+        /// <summary>The platform property</summary>
         public int? Platform { get; set; }
 
+        /// <summary>The series property</summary>
         public bool? Series { get; set; }
 
+        /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
         /// <summary>

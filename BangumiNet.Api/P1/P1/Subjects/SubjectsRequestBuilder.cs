@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The minus property</summary>
         public global::BangumiNet.Api.P1.P1.Subjects.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Minus_RequestBuilder(PathParameters, RequestAdapter);

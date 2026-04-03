@@ -19,7 +19,7 @@ namespace BangumiNet.Api.P1.P1.Timeline
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TimelineRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The minus property</summary>
         public global::BangumiNet.Api.P1.P1.Timeline.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.P1.P1.Timeline.Minus_RequestBuilder(PathParameters, RequestAdapter);

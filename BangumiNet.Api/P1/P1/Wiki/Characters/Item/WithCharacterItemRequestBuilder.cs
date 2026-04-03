@@ -22,22 +22,25 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCharacterItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The casts property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts.CastsRequestBuilder Casts
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Casts.CastsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The historySummary property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder HistorySummary
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The potraits property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsRequestBuilder Potraits
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

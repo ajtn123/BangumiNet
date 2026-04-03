@@ -21,17 +21,19 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithEntryItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The comments property</summary>
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Comments.CommentsRequestBuilder Comments
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The photos property</summary>
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Photos.PhotosRequestBuilder Photos
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Photos.PhotosRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.P1.P1.Blogs.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.P1.P1.Blogs.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

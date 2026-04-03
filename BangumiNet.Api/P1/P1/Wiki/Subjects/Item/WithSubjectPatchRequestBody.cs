@@ -17,10 +17,13 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <summary>when header x-admin-token is provided, use this as author id.</summary>
         public int? AuthorID { get; set; }
 
+        /// <summary>The commitMessage property</summary>
         public string? CommitMessage { get; set; }
 
+        /// <summary>The expectedRevision property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision? ExpectedRevision { get; set; }
 
+        /// <summary>The subject property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_subject? Subject { get; set; }
 
         /// <summary>

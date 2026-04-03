@@ -15,6 +15,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item.Staffs.Positions
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The data property</summary>
         public List<global::BangumiNet.Api.P1.Models.SubjectPosition>? Data { get; set; }
 
         /// <summary>limit+offset 为参数的请求表示总条数，page 为参数的请求表示总页数</summary>

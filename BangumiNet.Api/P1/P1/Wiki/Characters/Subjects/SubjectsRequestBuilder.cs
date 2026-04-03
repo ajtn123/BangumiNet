@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Subjects
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SubjectsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The revisions property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Subjects.Revisions.RevisionsRequestBuilder Revisions
         {
             get => new global::BangumiNet.Api.P1.P1.Wiki.Characters.Subjects.Revisions.RevisionsRequestBuilder(PathParameters, RequestAdapter);

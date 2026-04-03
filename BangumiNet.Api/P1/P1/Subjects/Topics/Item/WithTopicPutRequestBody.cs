@@ -17,6 +17,7 @@ namespace BangumiNet.Api.P1.P1.Subjects.Topics.Item
         /// <summary>bbcode</summary>
         public string? Content { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
         /// <summary>

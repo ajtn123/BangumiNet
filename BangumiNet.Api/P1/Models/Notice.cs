@@ -14,8 +14,10 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The createdAt property</summary>
         public int? CreatedAt { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>对应的 topicID, episodeID, userID ...</summary>
@@ -24,13 +26,16 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>对应的 postID ...</summary>
         public int? RelatedID { get; set; }
 
+        /// <summary>The sender property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? Sender { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
         /// <summary>查看 `./lib/notify.ts` _settings</summary>
         public int? Type { get; set; }
 
+        /// <summary>The unread property</summary>
         public bool? Unread { get; set; }
 
         /// <summary>

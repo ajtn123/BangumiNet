@@ -14,10 +14,13 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The email property</summary>
         public string? Email { get; set; }
 
+        /// <summary>The password property</summary>
         public string? Password { get; set; }
 
+        /// <summary>The turnstileToken property</summary>
         public string? TurnstileToken { get; set; }
 
         /// <summary>

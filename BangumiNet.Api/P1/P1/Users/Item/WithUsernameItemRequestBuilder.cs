@@ -25,37 +25,43 @@ namespace BangumiNet.Api.P1.P1.Users.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithUsernameItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The blogs property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsRequestBuilder Blogs
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Blogs.BlogsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The collections property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Collections.CollectionsRequestBuilder Collections
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Collections.CollectionsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The followers property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Followers.FollowersRequestBuilder Followers
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Followers.FollowersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The friends property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Friends.FriendsRequestBuilder Friends
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Friends.FriendsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The groups property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Groups.GroupsRequestBuilder Groups
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Groups.GroupsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The indexes property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The timeline property</summary>
         public global::BangumiNet.Api.P1.P1.Users.Item.Timeline.TimelineRequestBuilder Timeline
         {
             get => new global::BangumiNet.Api.P1.P1.Users.Item.Timeline.TimelineRequestBuilder(PathParameters, RequestAdapter);

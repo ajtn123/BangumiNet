@@ -14,10 +14,13 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The raw property</summary>
         public string? Raw { get; set; }
 
+        /// <summary>The thumbnail property</summary>
         public string? Thumbnail { get; set; }
 
         /// <summary>

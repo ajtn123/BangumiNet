@@ -14,19 +14,25 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The comment property</summary>
         public string? Comment { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The rate property</summary>
         public int? Rate { get; set; }
 
+        /// <summary>The reactions property</summary>
         public List<global::BangumiNet.Api.P1.Models.Reaction>? Reactions { get; set; }
 
         /// <summary>条目收藏状态  - 1 = 想看  - 2 = 看过  - 3 = 在看  - 4 = 搁置  - 5 = 抛弃</summary>
         public int? Type { get; set; }
 
+        /// <summary>The updatedAt property</summary>
         public int? UpdatedAt { get; set; }
 
+        /// <summary>The user property</summary>
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>

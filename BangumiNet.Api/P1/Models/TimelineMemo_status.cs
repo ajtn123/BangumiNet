@@ -14,10 +14,13 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The nickname property</summary>
         public global::BangumiNet.Api.P1.Models.TimelineMemo_status_nickname? Nickname { get; set; }
 
+        /// <summary>The sign property</summary>
         public string? Sign { get; set; }
 
+        /// <summary>The tsukkomi property</summary>
         public string? Tsukkomi { get; set; }
 
         /// <summary>

@@ -14,10 +14,16 @@ namespace BangumiNet.Api.P1.P1.Wiki.Ep.Item
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
+        public int? AuthorID { get; set; }
+
+        /// <summary>The commitMessage property</summary>
         public string? CommitMessage { get; set; }
 
+        /// <summary>The episode property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_episode? Episode { get; set; }
 
+        /// <summary>The expectedRevision property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_expectedRevision? ExpectedRevision { get; set; }
 
         /// <summary>
@@ -47,6 +53,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Ep.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "authorID", n => { AuthorID = n.GetIntValue(); } },
                 { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
                 { "episode", n => { Episode = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_episode>(global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_episode.CreateFromDiscriminatorValue); } },
                 { "expectedRevision", n => { ExpectedRevision = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_expectedRevision>(global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_expectedRevision.CreateFromDiscriminatorValue); } },
@@ -60,6 +67,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Ep.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("authorID", AuthorID);
             writer.WriteStringValue("commitMessage", CommitMessage);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_episode>("episode", Episode);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Ep.Item.WithEpisodePatchRequestBody_expectedRevision>("expectedRevision", ExpectedRevision);
