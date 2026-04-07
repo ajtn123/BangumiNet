@@ -4,12 +4,12 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 条目与角色的关联
+/// 条目与角色的关联 <c>subject-characters</c>
 /// </summary>
 public readonly record struct SubjectCharacterRelation
 {
     /// <summary>
-    /// 对应条目中的角色 ID
+    /// 角色 ID
     /// </summary>
     [JsonPropertyName("character_id")]
     public int CharacterId { get; init; }

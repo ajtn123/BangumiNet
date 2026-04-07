@@ -19,6 +19,7 @@ var obj = await ArchiveLoader.Load<PersonCharacterRelation>(fs).ToArrayAsync();
 | 条目-角色 | `subject-characters.jsonlines` | `SubjectCharacterRelation` |
 | 条目-人物 | `subject-persons.jsonlines`    | `SubjectPersonRelation`    |
 | 人物-角色 | `person-characters.jsonlines`  | `PersonCharacterRelation`  |
+| 人物-人物 | `person-relations.jsonlines`   | `PersonRelation`           |
 
 ### NativeAOT 支持
 

@@ -3,15 +3,24 @@
 namespace BangumiNet.Archive.Test;
 
 [TestClass]
-[TestCategory("LargeData")]
 public sealed class DeserializationTest
 {
     private static string GetFileName(string fileName)
     {
-        var path = "../../../.archives/" + fileName;
-        if (File.Exists(path)) return path;
-        path = "../" + path;
-        if (File.Exists(path)) return path;
+        var locations = (string[])[
+            "../../../.archives/",
+            "../../../../.archives/",
+            "../../../.minimalArchives/",
+            "../../../../.minimalArchives/",
+        ];
+
+        foreach (var location in locations)
+        {
+            var path = Path.Combine(location, fileName);
+            if (File.Exists(path))
+                return path;
+        }
+
         throw new FileNotFoundException(fileName);
     }
 
@@ -38,6 +47,15 @@ public sealed class DeserializationTest
     {
         using var str = File.OpenRead(GetFileName("subject-characters.jsonlines"));
         var obj = await ArchiveLoader.Load<SubjectCharacterRelation>(str, TestContext.CancellationToken).ToArrayAsync(TestContext.CancellationToken);
+
+        Assert.IsPositive(obj.Length);
+    }
+
+    [TestMethod]
+    public async Task PersonRelations()
+    {
+        using var str = File.OpenRead(GetFileName("person-relations.jsonlines"));
+        var obj = await ArchiveLoader.Load<PersonRelation>(str, TestContext.CancellationToken).ToArrayAsync(TestContext.CancellationToken);
 
         Assert.IsPositive(obj.Length);
     }

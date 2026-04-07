@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 角色
+/// 角色 <c>character</c>
 /// </summary>
 public readonly record struct Character
 {
@@ -45,7 +45,7 @@ public readonly record struct Character
     public int CommentCount { get; init; }
 
     /// <summary>
-    /// 评论数
+    /// 收藏数
     /// </summary>
     [JsonPropertyName("collects")]
     public int CollectionCount { get; init; }

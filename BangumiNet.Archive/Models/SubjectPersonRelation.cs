@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 条目与人物的关联
+/// 条目与人物的关联 <c>subject-persons</c>
 /// </summary>
 public readonly record struct SubjectPersonRelation
 {

@@ -1,6 +1,7 @@
 ﻿using BangumiNet.Archive.Converters;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace BangumiNet.Archive;
 
@@ -9,6 +10,7 @@ public static class ArchiveLoader
     private static readonly JsonSerializerOptions options = new()
     {
         Converters = {
+            new JsonStringEnumConverter(),
             new DateOnlyConverter(),
             new NullableConverterFactory(),
         }

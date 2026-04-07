@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 章节
+/// 章节 <c>episode</c>
 /// </summary>
 public readonly record struct Episode
 {
@@ -57,7 +57,7 @@ public readonly record struct Episode
     public int SubjectId { get; init; }
 
     /// <summary>
-    /// 序话
+    /// 话序
     /// </summary>
     [JsonPropertyName("sort")]
     public double Sort { get; init; }

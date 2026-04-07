@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 人物
+/// 人物 <c>person</c>
 /// </summary>
 public readonly record struct Person
 {

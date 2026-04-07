@@ -3,7 +3,7 @@
 namespace BangumiNet.Archive.Models;
 
 /// <summary>
-/// 人物与角色的关联
+/// 人物与角色的关联 <c>person-characters</c>
 /// </summary>
 public readonly record struct PersonCharacterRelation
 {
@@ -20,7 +20,7 @@ public readonly record struct PersonCharacterRelation
     public int SubjectId { get; init; }
 
     /// <summary>
-    /// 对应条目中的角色 ID
+    /// 角色 ID
     /// </summary>
     [JsonPropertyName("character_id")]
     public int CharacterId { get; init; }

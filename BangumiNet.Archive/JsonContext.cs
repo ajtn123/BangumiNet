@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 namespace BangumiNet.Archive;
 
 [JsonSourceGenerationOptions(Converters = [
+    typeof(JsonStringEnumConverter<PersonCharacterType>),
     typeof(DateOnlyConverter),
     typeof(NullableConverterFactory)])]
 [JsonSerializable(typeof(Subject))]
@@ -21,6 +22,7 @@ namespace BangumiNet.Archive;
 [JsonSerializable(typeof(SubjectCharacterRelation))]
 [JsonSerializable(typeof(SubjectPersonRelation))]
 [JsonSerializable(typeof(PersonCharacterRelation))]
+[JsonSerializable(typeof(PersonRelation))]
 public partial class JsonContext : JsonSerializerContext;
 
 public static class Loader
