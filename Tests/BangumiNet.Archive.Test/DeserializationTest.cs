@@ -105,5 +105,13 @@ public sealed class DeserializationTest
         Assert.IsPositive(obj.Length);
     }
 
+    // [TestMethod]
+    // public async Task DumpInformation()
+    // {
+    //     var obj = await new HttpClient().GetFromJsonAsync<Auxiliary.DumpInformation>(Auxiliary.DumpInformation.LatestDumpInformationUrl, TestContext.CancellationToken);
+
+    //     Assert.IsNotNull(obj);
+    // }
+
     public TestContext TestContext { get; set; }
 }
