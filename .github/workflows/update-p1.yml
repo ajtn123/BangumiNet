@@ -1,4 +1,4 @@
-name: Update API Client
+name: Update Bangumi Private API Client
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  update-p1:
+  update:
     runs-on: ubuntu-latest
     steps:
       - uses: microsoft/setup-kiota@v0.5.0
