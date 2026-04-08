@@ -20,8 +20,7 @@ public static class ArchiveLoader
     {
         using var reader = new StreamReader(stream, leaveOpen: true);
 
-        string? line;
-        while ((line = await reader.ReadLineAsync(cancellationToken)) != null)
+        while (await reader.ReadLineAsync(cancellationToken) is string line)
         {
             if (string.IsNullOrEmpty(line))
                 continue;
