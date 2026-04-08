@@ -194,12 +194,12 @@ public readonly record struct Subject
         /// <summary>
         /// 平均分
         /// </summary>
-        public int Average()
+        public double Average()
         {
             var array = ToArray();
             var sum = array.Sum();
             if (sum != 0)
-                return array.Select(static (count, score) => count * (score + 1)).Sum() / sum;
+                return (double)array.Select(static (count, score) => count * (score + 1)).Sum() / sum;
             else
                 return 0;
         }
