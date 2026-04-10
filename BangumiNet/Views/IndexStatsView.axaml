@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:models="using:BangumiNet.Api.P1.Models"
-             xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.Markup"
+             xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+             xmlns:ice="using:FluentIcons.Avalonia.Fluent.Markup"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="models:IndexStats"
              x:Class="BangumiNet.Views.IndexStatsView">

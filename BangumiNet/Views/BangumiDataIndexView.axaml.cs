@@ -99,7 +99,7 @@ public partial class BangumiDataIndexView : ReactiveUserControl<BangumiDataIndex
                 panel.Children.Add(new Button
                 {
                     Padding = new(0),
-                    Content = new FluentIcons.Avalonia.FluentIcon { Icon = FluentIcons.Common.Icon.Open, FontSize = 20 },
+                    Content = new FluentIcons.Avalonia.Fluent.FluentIcon { Icon = FluentIcons.Common.Icon.Open, FontSize = 20 },
                     Command = ReactiveCommand.CreateFromTask(async () => SecondaryWindow.Show(await ApiC.GetViewModelAsync<SubjectViewModel>(int.Parse(bgm.Id)))),
                 });
             foreach (var site in sites)

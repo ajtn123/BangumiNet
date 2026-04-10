@@ -19,7 +19,7 @@ public static partial class BBCodeHelper
         <style>
             html, body, p { margin: 0; padding: 0; }
             body { {{ThemeTextColorPos}} }
-            p { word-break: break-all; white-space: pre-wrap; }
+            p { white-space: pre-wrap; }
             span.mask { background-color: #000; color: #000; corner-radius: 5px; }
             span.quote { border-left: 1px solid #777; color: #777; }
             div.code {

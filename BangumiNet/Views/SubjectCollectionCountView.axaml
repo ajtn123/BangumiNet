@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ai="using:BangumiNet.Api.Interfaces"
-             xmlns:ic="using:FluentIcons.Avalonia"
+             xmlns:ic="using:FluentIcons.Avalonia.Fluent"
              mc:Ignorable="d"
              MinWidth="400" MinHeight="10" Opacity="0.7" Name="View"
              x:DataType="ai:ICollection"

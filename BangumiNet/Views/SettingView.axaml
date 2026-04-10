@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:ui="using:FluentAvalonia.UI.Controls"
-             xmlns:ic="using:FluentIcons.Avalonia"
-             xmlns:ice="using:FluentIcons.Avalonia.Markup"
+             xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+             xmlns:ice="using:FluentIcons.Avalonia.Fluent.Markup"
              xmlns:shared="using:BangumiNet.Shared"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1600"
              x:DataType="bn:SettingViewModel"
@@ -74,13 +74,13 @@
                     </ScrollViewer>
                 </Grid>
 
-                <ui:SettingsExpander Header="User Agent" IconSource="{bn:IconSource Agents}">
+                <ui:SettingsExpander Header="User Agent" IconSource="{ice:FluentIconSource Agents}">
                     <ui:SettingsExpander.Footer>
                         <TextBox Text="{Binding UserAgent}"
                                  Watermark="{Binding DefaultSettings.UserAgent}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="用户个人令牌" IconSource="{bn:IconSource Key}">
+                <ui:SettingsExpander Header="用户个人令牌" IconSource="{ice:FluentIconSource Key}">
                     <ui:SettingsExpander.Footer>
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <Button Command="{Binding GetTokenCommand}">
@@ -91,8 +91,8 @@
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="外观" IsExpanded="False"
-                                     IconSource="{bn:IconSource AppGeneric}">
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
+                                     IconSource="{ice:FluentIconSource AppGeneric}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Color}">
                         <TextBlock>浅色/深色模式</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <ComboBox SelectedItem="{Binding ApplicationTheme}"
@@ -105,26 +105,26 @@
                             </ComboBox>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Color}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Color}">
                         <TextBlock>使用系统强调色</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <CheckBox IsChecked="{Binding UseSystemAccentColor}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Tab}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Tab}">
                         <TextBlock>主窗口默认标签页</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <ComboBox SelectedItem="{Binding StartupTab}"
                                       Name="DefaultTabComboBox"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource FullScreenMaximize}">
                         <TextBlock>主窗口显示启动画面</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource FullScreenMaximize}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource FullScreenMaximize}">
                         <TextBlock>次要窗口显示启动画面</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}"/>
@@ -132,7 +132,7 @@
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="颜色主题" IsExpanded="False"
-                                     IconSource="{bn:IconSource Color}"
+                                     IconSource="{ice:FluentIconSource Color}"
                                      ItemsSource="{Binding Palette}">
                     <ui:SettingsExpander.DataTemplates>
                         <DataTemplate DataType="bn:PaletteItemViewModel">
@@ -146,24 +146,24 @@
                         </DataTemplate>
                     </ui:SettingsExpander.DataTemplates>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="Bangumi 地址" IconSource="{bn:IconSource Server}">
+                <ui:SettingsExpander Header="Bangumi 地址" IconSource="{ice:FluentIconSource Server}">
                     <ui:SettingsExpander.Footer>
                         <TextBox Text="{Binding BangumiTvUrlBase}"
                                  Watermark="{Binding DefaultSettings.BangumiTvUrlBase}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="搜索引擎" IconSource="{bn:IconSource Search}">
+                <ui:SettingsExpander Header="搜索引擎" IconSource="{ice:FluentIconSource Search}">
                     <ui:SettingsExpander.Footer>
                         <ComboBox SelectedItem="{Binding DefaultSearchEngine}"
                                   ItemsSource="{Binding SearchEngineSuggestions}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="本地缓存" IsExpanded="True"
-                                     IconSource="{bn:IconSource Document}">
+                                     IconSource="{ice:FluentIconSource Document}">
                     <ui:SettingsExpander.Footer>
                         <CheckBox IsChecked="{Binding IsDiskCacheEnabled}"/>
                     </ui:SettingsExpander.Footer>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Location}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Location}">
                         <TextBlock>本地缓存位置</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <TextBox Text="{Binding LocalDataDirectory}"
@@ -175,7 +175,7 @@
                             </TextBox>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource HardDrive}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource HardDrive}">
                         <TextBlock>本地缓存大小</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <StackPanel Orientation="Horizontal" Spacing="5">
@@ -207,48 +207,48 @@
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="请求页大小" IsExpanded="False"
-                                     IconSource="{bn:IconSource AppsList}">
+                                     IconSource="{ice:FluentIconSource AppsList}">
                     <ui:SettingsExpander.Styles>
 						<Style Selector="NumericUpDown">
 							<Setter Property="MinWidth" Value="150"/>
                         </Style>
                     </ui:SettingsExpander.Styles>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Collections}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Collections}">
                         <TextBlock>收藏项目</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding CollectionPageSize}"
                                            Watermark="{Binding DefaultSettings.CollectionPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Circle}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Circle}">
                         <TextBlock>修订</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding RevisionPageSize}"
                                            Watermark="{Binding DefaultSettings.RevisionPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Comment}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Comment}">
                         <TextBlock>评论</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding CommentPageSize}"
                                            Watermark="{Binding DefaultSettings.CommentPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Search}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Search}">
                         <TextBlock>搜索结果</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding SearchPageSize}"
                                            Watermark="{Binding DefaultSettings.SearchPageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource Layer}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource Layer}">
                         <TextBlock>章节列表</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding EpisodePageSize}"
                                            Watermark="{Binding DefaultSettings.EpisodePageSize}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource TextNumberList}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource TextNumberList}">
                         <TextBlock>索引结果</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding SubjectBrowserPageSize}"
@@ -257,7 +257,7 @@
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="库"
-                                     IconSource="{bn:IconSource Library}">
+                                     IconSource="{ice:FluentIconSource Library}">
                     <ui:SettingsExpanderItem>
 						<ui:SettingsExpanderItem.Footer>
 							<TextBox Text="{Binding LibraryDirectories}"
@@ -266,26 +266,26 @@
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="倾向中文标题"
-                                     IconSource="{bn:IconSource Translate}">
+                                     IconSource="{ice:FluentIconSource Translate}">
                     <ui:SettingsExpander.Footer>
                         <CheckBox IsChecked="{Binding PreferChineseNames}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="启动时检查更新"
-                                     IconSource="{bn:IconSource ArrowCircleUp}">
+                                     IconSource="{ice:FluentIconSource ArrowCircleUp}">
                     <ui:SettingsExpander.Footer>
                         <CheckBox IsChecked="{Binding CheckUpdateOnStartup}"/>
                     </ui:SettingsExpander.Footer>
                 </ui:SettingsExpander>
                 <ui:SettingsExpander Header="开发者选项"
-                                     IconSource="{bn:IconSource DeveloperBoard}">
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource DocumentTextClock}">
+                                     IconSource="{ice:FluentIconSource DeveloperBoard}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource DocumentTextClock}">
                         <TextBlock>保存日志</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <CheckBox IsChecked="{Binding SaveLogFile}"/>
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
-                    <ui:SettingsExpanderItem IconSource="{bn:IconSource ServerMultiple}">
+                    <ui:SettingsExpanderItem IconSource="{ice:FluentIconSource ServerMultiple}">
                         <TextBlock>开发环境 API</TextBlock>
                         <ui:SettingsExpanderItem.Footer>
                             <CheckBox IsChecked="{Binding DevEnvironment}"/>

@@ -7,8 +7,8 @@
         x:Class="BangumiNet.Views.MainWindow"
         x:DataType="bn:MainWindowViewModel"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
-        xmlns:ic="using:FluentIcons.Avalonia"
-        xmlns:ice="using:FluentIcons.Avalonia.Markup"
+        xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+        xmlns:ice="using:FluentIcons.Avalonia.Fluent.Markup"
         Title="{Binding Title}">
 
     <Design.DataContext>
@@ -24,23 +24,23 @@
             </ui:NavigationView.AutoCompleteBox>
 
             <ui:NavigationView.MenuItems>
-                <ui:NavigationViewItem Content="主页" IconSource="{bn:IconSource News}"/>
+                <ui:NavigationViewItem Content="主页" IconSource="{ice:FluentIconSource News}"/>
 
-                <ui:NavigationViewItem Content="每日放送" IconSource="{bn:IconSource Live}"/>
+                <ui:NavigationViewItem Content="每日放送" IconSource="{ice:FluentIconSource Live}"/>
 
-                <ui:NavigationViewItem Content="小组" IconSource="{bn:IconSource PeopleTeam}"/>
+                <ui:NavigationViewItem Content="小组" IconSource="{ice:FluentIconSource PeopleTeam}"/>
 
-                <ui:NavigationViewItem Content="搜索" IconSource="{bn:IconSource Search}"/>
+                <ui:NavigationViewItem Content="搜索" IconSource="{ice:FluentIconSource Search}"/>
 
-                <ui:NavigationViewItem Content="分类浏览" IconSource="{bn:IconSource ListBar}"/>
+                <ui:NavigationViewItem Content="分类浏览" IconSource="{ice:FluentIconSource ListBar}"/>
 
-                <ui:NavigationViewItem Content="番组索引" IconSource="{bn:IconSource DatabaseLink}"/>
+                <ui:NavigationViewItem Content="番组索引" IconSource="{ice:FluentIconSource DatabaseLink}"/>
 
-                <ui:NavigationViewItem Content="库" IconSource="{bn:IconSource Library}"/>
+                <ui:NavigationViewItem Content="库" IconSource="{ice:FluentIconSource Library}"/>
             </ui:NavigationView.MenuItems>
 
             <ui:NavigationView.FooterMenuItems>
-                <ui:NavigationViewItem Content="我" IconSource="{bn:IconSource Person}"/>
+                <ui:NavigationViewItem Content="我" IconSource="{ice:FluentIconSource Person}"/>
             </ui:NavigationView.FooterMenuItems>
         </ui:NavigationView>
 

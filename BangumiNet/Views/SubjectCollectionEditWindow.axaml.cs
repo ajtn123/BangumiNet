@@ -1,6 +1,6 @@
 using Avalonia.Controls.Primitives;
 using BangumiNet.Api.ExtraEnums;
-using FluentIcons.Avalonia;
+using FluentIcons.Avalonia.Fluent;
 using System.Reactive.Disposables.Fluent;
 
 namespace BangumiNet.Views;

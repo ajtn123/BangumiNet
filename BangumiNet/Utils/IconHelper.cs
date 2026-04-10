@@ -1,6 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using FluentIcons.Avalonia;
+using Avalonia.Media;
+using FluentAvalonia.UI.Controls;
+using FluentIcons.Avalonia.Fluent;
 using FluentIcons.Common;
 using System.Collections.Concurrent;
 
@@ -27,11 +29,20 @@ public static class IconHelper
     };
 
     private static readonly ConcurrentDictionary<Icon, FluentImage> fluentImages = [];
-    public static FluentImage GetFluentImage(Icon icon) => fluentImages.GetOrAdd(icon, icon => new()
+    public static FluentImage GetFluentImage(Icon icon) => fluentImages.GetOrAdd(icon, icon => new(icon));
+
+    public class FluentImage(Icon icon) : IImage
     {
-        Icon = icon,
-        [!FluentImage.ForegroundProperty] = App.Current.GetResourceObservable("TextFillColorPrimaryBrush").ToBinding(),
-    });
+        public Size Size => new(16, 16);
+
+        public void Draw(DrawingContext context, Rect sourceRect, Rect destRect)
+        {
+            (brush.Visual as FAIconElement)?.Foreground = App.Current.FindResource(App.Current.ActualThemeVariant, "TextFillColorPrimaryBrush") as IBrush;
+            context.DrawRectangle(brush, null, destRect);
+        }
+
+        private readonly VisualBrush brush = new(new FluentIcon() { Icon = icon });
+    }
 }
 
 public interface IHasIcon
