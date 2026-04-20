@@ -9,7 +9,7 @@ using System;
 namespace BangumiNet.Api.P1.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Characters : IAdditionalDataHolder, IParsable
+    public partial class WithCharacter : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -18,12 +18,12 @@ namespace BangumiNet.Api.P1.Models
         public string? Key { get; set; }
 
         /// <summary>The values property</summary>
-        public List<global::BangumiNet.Api.P1.Models.Characters_values>? Values { get; set; }
+        public List<global::BangumiNet.Api.P1.Models.WithCharacter_values>? Values { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.Characters"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.WithCharacter"/> and sets the default values.
         /// </summary>
-        public Characters()
+        public WithCharacter()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -31,12 +31,12 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.Characters"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.WithCharacter"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.Characters CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.Models.WithCharacter CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.Characters();
+            return new global::BangumiNet.Api.P1.Models.WithCharacter();
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace BangumiNet.Api.P1.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "key", n => { Key = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Characters_values>(global::BangumiNet.Api.P1.Models.Characters_values.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "values", n => { Values = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WithCharacter_values>(global::BangumiNet.Api.P1.Models.WithCharacter_values.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
 
@@ -60,7 +60,7 @@ namespace BangumiNet.Api.P1.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("key", Key);
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Characters_values>("values", Values);
+            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WithCharacter_values>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

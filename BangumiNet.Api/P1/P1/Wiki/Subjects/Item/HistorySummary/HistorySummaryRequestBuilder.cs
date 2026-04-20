@@ -23,7 +23,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public HistorySummaryRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", pathParameters)
+        public HistorySummaryRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary{?limit*,offset*}", pathParameters)
         {
         }
 
@@ -32,19 +32,19 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public HistorySummaryRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary", rawUrl)
+        public HistorySummaryRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/subjects/{subjectID}/history-summary{?limit*,offset*}", rawUrl)
         {
         }
 
         /// <summary>
         /// 获取条目 wiki 历史编辑摘要
         /// </summary>
-        /// <returns>A List&lt;global::BangumiNet.Api.P1.Models.RevisionHistory&gt;</returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<List<global::BangumiNet.Api.P1.Models.RevisionHistory>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder.HistorySummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -52,8 +52,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
                 { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.RevisionHistory>(requestInfo, global::BangumiNet.Api.P1.Models.RevisionHistory.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
-            return collectionResult?.AsList();
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder.HistorySummaryRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -77,6 +76,21 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.HistorySummary.HistorySummaryRequestBuilder(rawUrl, RequestAdapter);
+        }
+
+        /// <summary>
+        /// 获取条目 wiki 历史编辑摘要
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class HistorySummaryRequestBuilderGetQueryParameters 
+        {
+            /// <summary>max 100</summary>
+            [QueryParameter("limit")]
+            public int? Limit { get; set; }
+
+            /// <summary>min 0</summary>
+            [QueryParameter("offset")]
+            public int? Offset { get; set; }
         }
     }
 }
