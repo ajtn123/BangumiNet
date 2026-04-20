@@ -17,6 +17,9 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
         /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The profession property</summary>
+        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person_profession? Profession { get; set; }
+
         /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
@@ -41,6 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             {
                 { "infobox", n => { Infobox = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "profession", n => { Profession = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person_profession>(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person_profession.CreateFromDiscriminatorValue); } },
                 { "summary", n => { Summary = n.GetStringValue(); } },
             };
         }
@@ -54,6 +58,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("infobox", Infobox);
             writer.WriteStringValue("name", Name);
+            writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person_profession>("profession", Profession);
             writer.WriteStringValue("summary", Summary);
         }
     }

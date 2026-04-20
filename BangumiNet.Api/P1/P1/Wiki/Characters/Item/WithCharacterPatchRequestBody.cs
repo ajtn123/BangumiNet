@@ -11,6 +11,9 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCharacterPatchRequestBody : IParsable
     {
+        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
+        public int? AuthorID { get; set; }
+
         /// <summary>The character property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character? Character { get; set; }
 
@@ -39,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "authorID", n => { AuthorID = n.GetIntValue(); } },
                 { "character", n => { Character = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character>(global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character.CreateFromDiscriminatorValue); } },
                 { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
                 { "expectedRevision", n => { ExpectedRevision = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_expectedRevision>(global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_expectedRevision.CreateFromDiscriminatorValue); } },
@@ -52,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("authorID", AuthorID);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_character>("character", Character);
             writer.WriteStringValue("commitMessage", CommitMessage);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.WithCharacterPatchRequestBody_expectedRevision>("expectedRevision", ExpectedRevision);

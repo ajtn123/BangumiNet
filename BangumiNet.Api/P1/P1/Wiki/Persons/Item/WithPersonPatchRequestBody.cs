@@ -11,6 +11,9 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPersonPatchRequestBody : IParsable
     {
+        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
+        public int? AuthorID { get; set; }
+
         /// <summary>The commitMessage property</summary>
         public string? CommitMessage { get; set; }
 
@@ -39,6 +42,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "authorID", n => { AuthorID = n.GetIntValue(); } },
                 { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
                 { "expectedRevision", n => { ExpectedRevision = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_expectedRevision>(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_expectedRevision.CreateFromDiscriminatorValue); } },
                 { "person", n => { Person = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person>(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person.CreateFromDiscriminatorValue); } },
@@ -52,6 +56,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("authorID", AuthorID);
             writer.WriteStringValue("commitMessage", CommitMessage);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_expectedRevision>("expectedRevision", ExpectedRevision);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.WithPersonPatchRequestBody_person>("person", Person);
