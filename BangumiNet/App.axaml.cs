@@ -4,7 +4,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Styling;
-using BangumiNet.Library;
 using FluentAvalonia.Styling;
 
 namespace BangumiNet;
@@ -40,10 +39,7 @@ public partial class App : Application
         //TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = System.Net.WebUtility.HtmlDecode(tb.Text));
 
         // 程序关闭时
-        ((IClassicDesktopStyleApplicationLifetime)Current.ApplicationLifetime!).ShutdownRequested += (s, e) =>
-        {
-            LibrarySubjectProvider.Save();
-        };
+        //((IClassicDesktopStyleApplicationLifetime)Current.ApplicationLifetime!).ShutdownRequested += (s, e) => { };
 
         base.OnFrameworkInitializationCompleted();
     }

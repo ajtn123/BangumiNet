@@ -35,8 +35,6 @@
                 <ui:NavigationViewItem Content="分类浏览" IconSource="{ice:FluentIconSource ListBar}"/>
 
                 <ui:NavigationViewItem Content="番组索引" IconSource="{ice:FluentIconSource DatabaseLink}"/>
-
-                <ui:NavigationViewItem Content="库" IconSource="{ice:FluentIconSource Library}"/>
             </ui:NavigationView.MenuItems>
 
             <ui:NavigationView.FooterMenuItems>

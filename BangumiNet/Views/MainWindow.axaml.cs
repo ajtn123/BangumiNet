@@ -44,7 +44,6 @@ public partial class MainWindow : AppWindow
             MainWindowTab.搜索 => searchVM ??= new(),
             MainWindowTab.分类浏览 => subjectBrowserVM ??= new(),
             MainWindowTab.番组索引 => bangumiDataIndexVM ??= new(),
-            MainWindowTab.库 => libraryVM ??= new(),
 
             MainWindowTab.我 => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
             MainWindowTab.设置 => new SettingViewModel(SettingProvider.Current),
@@ -58,7 +57,6 @@ public partial class MainWindow : AppWindow
     public SearchViewModel? searchVM;
     public SubjectBrowserViewModel? subjectBrowserVM;
     public BangumiDataIndexViewModel? bangumiDataIndexVM;
-    public LibraryHomeViewModel? libraryVM;
     public AiringViewModel? airingVM;
     public MeViewModel? meVM;
 
