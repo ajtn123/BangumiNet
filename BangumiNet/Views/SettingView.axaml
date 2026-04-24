@@ -256,15 +256,6 @@
                         </ui:SettingsExpanderItem.Footer>
                     </ui:SettingsExpanderItem>
                 </ui:SettingsExpander>
-                <ui:SettingsExpander Header="库"
-                                     IconSource="{ice:FluentIconSource Library}">
-                    <ui:SettingsExpanderItem>
-						<ui:SettingsExpanderItem.Footer>
-							<TextBox Text="{Binding LibraryDirectories}"
-                                     AcceptsReturn="True"/>
-                        </ui:SettingsExpanderItem.Footer>
-                    </ui:SettingsExpanderItem>
-                </ui:SettingsExpander>
                 <ui:SettingsExpander Header="倾向中文标题"
                                      IconSource="{ice:FluentIconSource Translate}">
                     <ui:SettingsExpander.Footer>

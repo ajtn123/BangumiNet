@@ -26,8 +26,6 @@ public record class Settings : IApiSettings
 
     public string LocalDataDirectory { get; init; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Constants.ApplicationName);
 
-    public string? LibraryDirectories { get; init; } = null;
-
     public bool IsDiskCacheEnabled { get; init; } = true;
     public long DiskCacheSizeLimit { get; init; } = 1 << 27;
 

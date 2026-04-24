@@ -22,7 +22,6 @@ public partial class SettingViewModel : ViewModelBase
         BangumiTvUrlBase = GetOverride(x => x.BangumiTvUrlBase) ?? "";
         DefaultSearchEngine = settings.DefaultSearchEngine;
         LocalDataDirectory = GetOverride(x => x.LocalDataDirectory) ?? "";
-        LibraryDirectories = settings.LibraryDirectories;
         IsDiskCacheEnabled = settings.IsDiskCacheEnabled;
         DiskCacheSizeLimit = GetOverrideValue(x => x.DiskCacheSizeLimit);
         CollectionPageSize = GetOverrideValue(x => x.CollectionPageSize);
@@ -75,7 +74,6 @@ public partial class SettingViewModel : ViewModelBase
             BangumiTvUrlBase = GetValue(BangumiTvUrlBase, DefaultSettings.BangumiTvUrlBase),
             DefaultSearchEngine = DefaultSearchEngine,
             LocalDataDirectory = GetValue(LocalDataDirectory, DefaultSettings.LocalDataDirectory),
-            LibraryDirectories = GetValue(LibraryDirectories),
             IsDiskCacheEnabled = IsDiskCacheEnabled,
             DiskCacheSizeLimit = DiskCacheSizeLimit ?? DefaultSettings.DiskCacheSizeLimit,
             CollectionPageSize = CollectionPageSize ?? DefaultSettings.CollectionPageSize,
@@ -126,7 +124,6 @@ public partial class SettingViewModel : ViewModelBase
     [Reactive] public partial string BangumiTvUrlBase { get; set; }
     [Reactive] public partial string DefaultSearchEngine { get; set; }
     [Reactive] public partial string LocalDataDirectory { get; set; }
-    [Reactive] public partial string? LibraryDirectories { get; set; }
     [Reactive] public partial bool IsDiskCacheEnabled { get; set; }
     [Reactive] public partial long? DiskCacheSizeLimit { get; set; }
     [Reactive] public partial int? CollectionPageSize { get; set; }
