@@ -121,8 +121,8 @@
                             </Viewbox>
                         </Grid>
                     </Border>
-                    <ui:RangeSlider RangeStart="{Binding RatingLowerLimit}" RangeEnd="{Binding RatingUpperLimit}"
-                                    Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}"/>
+                    <ui:FARangeSlider RangeStart="{Binding RatingLowerLimit}" RangeEnd="{Binding RatingUpperLimit}"
+                                      Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}"/>
                     <!--<Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
                             <TextBlock><ic:FluentIcon Icon="People" FontSize="16" Margin="0,0,0,-3"/>评分人数</TextBlock>
@@ -159,7 +159,7 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Spacing="3">
-                    <TextBox Watermark="标签" Text="{Binding TagInput}"
+                    <TextBox PlaceholderText="标签" Text="{Binding TagInput}"
                              HorizontalAlignment="Stretch" Padding="2,0"
                              Name="TagInputBox">
                         <TextBox.InnerRightContent>
@@ -186,7 +186,7 @@
                     </ItemsControl>
                 </StackPanel>
                 <StackPanel Grid.Column="4" Spacing="3">
-                    <TextBox Watermark="元标签" Text="{Binding MetaTagInput}"
+                    <TextBox PlaceholderText="元标签" Text="{Binding MetaTagInput}"
                              HorizontalAlignment="Stretch" Padding="2,0"
                              Name="MetaTagInputBox">
                         <TextBox.InnerRightContent>

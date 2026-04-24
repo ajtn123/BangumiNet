@@ -3,7 +3,7 @@ using FluentAvalonia.UI.Windowing;
 
 namespace BangumiNet.Utils;
 
-public class WindowSplashScreen(AppWindow owner) : IApplicationSplashScreen
+public class WindowSplashScreen(FAAppWindow owner) : IFAApplicationSplashScreen
 {
     public string AppName => Constants.ApplicationName;
     public IImage? AppIcon => null;
@@ -15,5 +15,5 @@ public class WindowSplashScreen(AppWindow owner) : IApplicationSplashScreen
         return Task.CompletedTask;
     }
 
-    private readonly AppWindow owner = owner;
+    private readonly FAAppWindow owner = owner;
 }

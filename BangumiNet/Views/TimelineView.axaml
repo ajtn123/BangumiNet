@@ -52,7 +52,7 @@
                         </ComboBox>
                         <TextBox Text="{Binding Until}"
                                  Height="18" Padding="0"
-                                 Watermark="位置"/>
+                                 PlaceholderText="位置"/>
                         <Button ToolTip.Tip="前往" Classes="Icon" Height="18"
                                 Command="{Binding LoadCommand}"
                                 Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}"/>
