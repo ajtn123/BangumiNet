@@ -1,6 +1,6 @@
 # BangumiNet
 
-[![license](https://img.shields.io/github/license/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/blob/master/LICENSE.txt)
+[![license](https://img.shields.io/github/license/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/blob/main/LICENSE.txt)
 [![release](https://img.shields.io/github/release/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/releases)
 ![code size](https://img.shields.io/github/languages/code-size/ajtn123/BangumiNet)
 [![framework](https://img.shields.io/badge/.NET-10-blue)](https://dotnet.microsoft.com/zh-cn/)
