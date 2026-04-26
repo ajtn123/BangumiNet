@@ -33,7 +33,7 @@ namespace BangumiNet.Api.P1.Models
         public string? Info { get; set; }
 
         /// <summary>The infobox property</summary>
-        public List<global::BangumiNet.Api.P1.Models.WithCharacter>? Infobox { get; set; }
+        public List<global::BangumiNet.Api.P1.Models.Characters>? Infobox { get; set; }
 
         /// <summary>The lock property</summary>
         public bool? Lock { get; set; }
@@ -89,7 +89,7 @@ namespace BangumiNet.Api.P1.Models
                 { "id", n => { Id = n.GetIntValue(); } },
                 { "images", n => { Images = n.GetObjectValue<global::BangumiNet.Api.P1.Models.PersonImages>(global::BangumiNet.Api.P1.Models.PersonImages.CreateFromDiscriminatorValue); } },
                 { "info", n => { Info = n.GetStringValue(); } },
-                { "infobox", n => { Infobox = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WithCharacter>(global::BangumiNet.Api.P1.Models.WithCharacter.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "infobox", n => { Infobox = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Characters>(global::BangumiNet.Api.P1.Models.Characters.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lock", n => { Lock = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nameCN", n => { NameCN = n.GetStringValue(); } },
@@ -113,7 +113,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteIntValue("id", Id);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.PersonImages>("images", Images);
             writer.WriteStringValue("info", Info);
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.WithCharacter>("infobox", Infobox);
+            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Characters>("infobox", Infobox);
             writer.WriteBoolValue("lock", Lock);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("nameCN", NameCN);
