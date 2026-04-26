@@ -12,7 +12,7 @@ namespace BangumiNet.Api.P1.Models
     public partial class Subjects_values : IInfoboxKeyValuePair;
     public partial class Persons : IInfoboxItem<List<Persons_values>>;
     public partial class Persons_values : IInfoboxKeyValuePair;
-    public partial class Characters : IInfoboxItem<List<WithCharacter_values>>;
+    public partial class Characters : IInfoboxItem<List<Characters_values>>;
     public partial class Characters_values : IInfoboxKeyValuePair;
     public partial class Calendar
     {
