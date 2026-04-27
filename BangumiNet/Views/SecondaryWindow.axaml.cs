@@ -1,9 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.LogicalTree;
-using Avalonia.VisualTree;
 using BangumiNet.Converters;
-using FluentAvalonia.Core;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
 using System.Collections;
@@ -11,7 +9,7 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
 
-public partial class SecondaryWindow : AppWindow
+public partial class SecondaryWindow : FAAppWindow
 {
     public SecondaryWindow()
     {
@@ -45,7 +43,7 @@ public partial class SecondaryWindow : AppWindow
         if (TitleBar != null)
         {
             TitleBar.ExtendsContentIntoTitleBar = true;
-            TitleBar.TitleBarHitTestType = TitleBarHitTestType.Complex;
+            TitleBar.TitleBarHitTestType = FATitleBarHitTestType.Complex;
 
             var dragRegion = this.FindControl<Panel>("CustomDragRegion");
             dragRegion?.MinWidth = FlowDirection == Avalonia.Media.FlowDirection.LeftToRight ?
@@ -85,8 +83,6 @@ public partial class SecondaryWindow : AppWindow
         return window;
     }
 
-#pragma warning disable IDE0051
-#pragma warning disable CS0618
 #pragma warning disable IDE0060
 #pragma warning disable CA1822
 
@@ -153,8 +149,6 @@ public partial class SecondaryWindow : AppWindow
         Avalonia.Threading.Dispatcher.UIThread.Post(() => ((IList)sender.TabItems).Remove(srcTab), Avalonia.Threading.DispatcherPriority.Background);
     }
 
-#pragma warning restore IDE0051
-#pragma warning restore CS0618
 #pragma warning restore IDE0060
 #pragma warning restore CA1822
 

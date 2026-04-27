@@ -6,7 +6,7 @@ using FluentAvalonia.UI.Windowing;
 
 namespace BangumiNet.Views;
 
-public partial class MainWindow : AppWindow
+public partial class MainWindow : FAAppWindow
 {
     public MainWindow()
     {
@@ -19,9 +19,9 @@ public partial class MainWindow : AppWindow
 
         SwitchTab(SettingProvider.Current.StartupTab);
 
-        if (NavView.MenuItems.OfType<NavigationViewItemBase>().FirstOrDefault(x => x.Content as string == currentTab.ToString()) is { } item)
+        if (NavView.MenuItems.OfType<FANavigationViewItemBase>().FirstOrDefault(x => x.Content as string == currentTab.ToString()) is { } item)
             item.IsSelected = true;
-        else if (NavView.FooterMenuItems.OfType<NavigationViewItemBase>().FirstOrDefault(x => x.Content as string == currentTab.ToString()) is { } itemF)
+        else if (NavView.FooterMenuItems.OfType<FANavigationViewItemBase>().FirstOrDefault(x => x.Content as string == currentTab.ToString()) is { } itemF)
             itemF.IsSelected = true;
 
         NavView.ItemInvoked += (s, e) =>
@@ -62,7 +62,7 @@ public partial class MainWindow : AppWindow
 
     public static MainWindow Instance => (MainWindow)((IClassicDesktopStyleApplicationLifetime)Application.Current?.ApplicationLifetime!).MainWindow!;
 
-    public static void ShowInfo(InfoBarSeverity severity = InfoBarSeverity.Informational, string? title = "信息", string? message = null, Control? action = null)
+    public static void ShowInfo(FAInfoBarSeverity severity = FAInfoBarSeverity.Informational, string? title = "信息", string? message = null, Control? action = null)
     {
         var info = Instance.Info;
         info.Severity = severity;
