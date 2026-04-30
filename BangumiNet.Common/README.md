@@ -4,3 +4,5 @@
 
 定义来自：
 - [bangumi/common](https://github.com/bangumi/common)
+- [bangumi/server](https://github.com/bangumi/server)
+- [bangumi/server-private](https://github.com/bangumi/server-private)
