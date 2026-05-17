@@ -11,6 +11,9 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PotraitsPostRequestBody : IParsable
     {
+        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
+        public int? AuthorID { get; set; }
+
         /// <summary>base64 encoded raw bytes, 4mb size limit on **decoded** size</summary>
         public byte[]? Img { get; set; }
 
@@ -33,6 +36,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "authorID", n => { AuthorID = n.GetIntValue(); } },
                 { "img", n => { Img = n.GetByteArrayValue(); } },
             };
         }
@@ -44,6 +48,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("authorID", AuthorID);
             writer.WriteByteArrayValue("img", Img);
         }
     }

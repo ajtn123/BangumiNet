@@ -35,6 +35,9 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>The relatedID property</summary>
         public int? RelatedID { get; set; }
 
+        /// <summary>The relatedPhotoID property</summary>
+        public int? RelatedPhotoID { get; set; }
+
         /// <summary>The state property</summary>
         public int? State { get; set; }
 
@@ -75,6 +78,7 @@ namespace BangumiNet.Api.P1.Models
                 { "mainID", n => { MainID = n.GetIntValue(); } },
                 { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>(global::BangumiNet.Api.P1.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "relatedID", n => { RelatedID = n.GetIntValue(); } },
+                { "relatedPhotoID", n => { RelatedPhotoID = n.GetIntValue(); } },
                 { "state", n => { State = n.GetIntValue(); } },
                 { "user", n => { User = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
             };
@@ -94,6 +98,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteIntValue("mainID", MainID);
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>("reactions", Reactions);
             writer.WriteIntValue("relatedID", RelatedID);
+            writer.WriteIntValue("relatedPhotoID", RelatedPhotoID);
             writer.WriteIntValue("state", State);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>("user", User);
             writer.WriteAdditionalData(AdditionalData);

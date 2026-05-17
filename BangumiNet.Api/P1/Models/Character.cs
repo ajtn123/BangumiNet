@@ -50,7 +50,7 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>The redirect property</summary>
         public int? Redirect { get; set; }
 
-        /// <summary>The role property</summary>
+        /// <summary>角色类型  - 1 = 角色  - 2 = 机体  - 3 = 舰船  - 4 = 组织机构</summary>
         public int? Role { get; set; }
 
         /// <summary>The summary property</summary>
