@@ -6,26 +6,35 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
+namespace BangumiNet.Api.P1.P1.Wiki.Characters
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PotraitsPostRequestBody : IParsable
+    public partial class CharactersPostRequestBody_character : IParsable
     {
-        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
-        public int? AuthorID { get; set; }
-
         /// <summary>base64 encoded raw bytes, 4mb size limit on **decoded** size</summary>
         public byte[]? Img { get; set; }
+
+        /// <summary>The infobox property</summary>
+        public string? Infobox { get; set; }
+
+        /// <summary>The name property</summary>
+        public string? Name { get; set; }
+
+        /// <summary>The summary property</summary>
+        public string? Summary { get; set; }
+
+        /// <summary>角色类型  - 1 = 角色  - 2 = 机体  - 3 = 舰船  - 4 = 组织机构</summary>
+        public int? Type { get; set; }
 
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostRequestBody"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.CharactersPostRequestBody_character"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Wiki.Characters.CharactersPostRequestBody_character CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostRequestBody();
+            return new global::BangumiNet.Api.P1.P1.Wiki.Characters.CharactersPostRequestBody_character();
         }
 
         /// <summary>
@@ -36,8 +45,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "authorID", n => { AuthorID = n.GetIntValue(); } },
                 { "img", n => { Img = n.GetByteArrayValue(); } },
+                { "infobox", n => { Infobox = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "summary", n => { Summary = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetIntValue(); } },
             };
         }
 
@@ -48,8 +60,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("authorID", AuthorID);
             writer.WriteByteArrayValue("img", Img);
+            writer.WriteStringValue("infobox", Infobox);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("summary", Summary);
+            writer.WriteIntValue("type", Type);
         }
     }
 }

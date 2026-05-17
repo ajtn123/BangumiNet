@@ -7,7 +7,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.P1.Episodes.Item.Comments
+namespace BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class Comments : IAdditionalDataHolder, IParsable
@@ -49,7 +49,7 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item.Comments
         public global::BangumiNet.Api.P1.Models.SlimUser? User { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.Comments"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments.Comments"/> and sets the default values.
         /// </summary>
         public Comments()
         {
@@ -59,12 +59,12 @@ namespace BangumiNet.Api.P1.P1.Episodes.Item.Comments
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.Comments"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments.Comments"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.Comments CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments.Comments CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.P1.Episodes.Item.Comments.Comments();
+            return new global::BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments.Comments();
         }
 
         /// <summary>

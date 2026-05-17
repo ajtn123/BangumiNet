@@ -36,6 +36,9 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
         /// <summary>The relatedID property</summary>
         public int? RelatedID { get; set; }
 
+        /// <summary>The relatedPhotoID property</summary>
+        public int? RelatedPhotoID { get; set; }
+
         /// <summary>The replies property</summary>
         public List<global::BangumiNet.Api.P1.Models.CommentBase>? Replies { get; set; }
 
@@ -79,6 +82,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
                 { "mainID", n => { MainID = n.GetIntValue(); } },
                 { "reactions", n => { Reactions = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>(global::BangumiNet.Api.P1.Models.Reaction.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "relatedID", n => { RelatedID = n.GetIntValue(); } },
+                { "relatedPhotoID", n => { RelatedPhotoID = n.GetIntValue(); } },
                 { "replies", n => { Replies = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CommentBase>(global::BangumiNet.Api.P1.Models.CommentBase.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "state", n => { State = n.GetIntValue(); } },
                 { "user", n => { User = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>(global::BangumiNet.Api.P1.Models.SlimUser.CreateFromDiscriminatorValue); } },
@@ -99,6 +103,7 @@ namespace BangumiNet.Api.P1.P1.Characters.Item.Comments
             writer.WriteIntValue("mainID", MainID);
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Reaction>("reactions", Reactions);
             writer.WriteIntValue("relatedID", RelatedID);
+            writer.WriteIntValue("relatedPhotoID", RelatedPhotoID);
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.CommentBase>("replies", Replies);
             writer.WriteIntValue("state", State);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimUser>("user", User);
