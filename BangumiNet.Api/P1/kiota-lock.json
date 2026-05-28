@@ -1,6 +1,6 @@
 {
   "descriptionHash": "C8ACAB94A6984A9F4F8744A236B402CC92860EA69D00A3086A82AACEB85BC8C8C3C40EE26BF535312CD77701CFBE04B6397D89CFFBF06482C3D2F0A46DB61CFC",
-  "descriptionLocation": "../../private.yaml",
+  "descriptionLocation": "../../p1.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.31.1",
   "clientClassName": "ApiClient",

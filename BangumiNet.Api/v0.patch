@@ -1,0 +1,16 @@
+diff --git a/BangumiNet.Api/V0/ApiClient.cs b/BangumiNet.Api/V0/ApiClient.cs
+index dc05ce8..9c598cc 100644
+--- a/BangumiNet.Api/V0/ApiClient.cs
++++ b/BangumiNet.Api/V0/ApiClient.cs
+@@ -39,6 +39,11 @@ namespace BangumiNet.Api.V0
+             ApiClientBuilder.RegisterDefaultDeserializer<JsonParseNodeFactory>();
+             ApiClientBuilder.RegisterDefaultDeserializer<TextParseNodeFactory>();
+             ApiClientBuilder.RegisterDefaultDeserializer<FormParseNodeFactory>();
++            if (string.IsNullOrEmpty(RequestAdapter.BaseUrl))
++            {
++                RequestAdapter.BaseUrl = BaseUrl;
++            }
++            PathParameters.TryAdd("baseurl", RequestAdapter.BaseUrl);
+         }
+     }
+ }
