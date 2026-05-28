@@ -17,14 +17,19 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>参与章节/曲目</summary>
         public string? Eps { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The image property</summary>
         public string? Image { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The name_cn property</summary>
         public string? NameCn { get; set; }
 
+        /// <summary>The staff property</summary>
         public string? Staff { get; set; }
 
         /// <summary>条目类型- `1` 为 书籍- `2` 为 动画- `3` 为 音乐- `4` 为 游戏- `6` 为 三次元没有 `5`</summary>

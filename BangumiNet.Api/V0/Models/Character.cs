@@ -29,6 +29,7 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>parsed from wiki, maybe null</summary>
         public string? Gender { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>object with some size of images, this object maybe `null`</summary>
@@ -37,12 +38,16 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>server parsed infobox, a map from key to string or tuplenull if server infobox is not valid</summary>
         public List<global::BangumiNet.Api.V0.Models.Character_infobox>? Infobox { get; set; }
 
+        /// <summary>The locked property</summary>
         public bool? Locked { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The stat property</summary>
         public global::BangumiNet.Api.V0.Models.Stat? Stat { get; set; }
 
+        /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
         /// <summary>角色，机体，舰船，组织...</summary>

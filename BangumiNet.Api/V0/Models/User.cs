@@ -17,10 +17,13 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The avatar property</summary>
         public global::BangumiNet.Api.V0.Models.Avatar? Avatar { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The nickname property</summary>
         public string? Nickname { get; set; }
 
         /// <summary>个人签名</summary>

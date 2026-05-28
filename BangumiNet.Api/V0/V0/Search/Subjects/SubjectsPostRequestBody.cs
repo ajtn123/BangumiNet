@@ -17,6 +17,7 @@ namespace BangumiNet.Api.V0.V0.Search.Subjects
         /// <summary>不同条件之间是 `且` 的关系</summary>
         public global::BangumiNet.Api.V0.V0.Search.Subjects.SubjectsPostRequestBody_filter? Filter { get; set; }
 
+        /// <summary>The keyword property</summary>
         public string? Keyword { get; set; }
 
         /// <summary>排序规则- `match` meilisearch 的默认排序，按照匹配程度- `heat` 收藏人数- `rank` 排名由高到低- `score` 评分</summary>

@@ -18,25 +18,31 @@ namespace BangumiNet.Api.V0.Models
         [Obsolete("")]
         public bool? Ban { get; set; }
 
+        /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
 
         /// <summary>意义同&lt;a href=&quot;#model-Me&quot;&gt;Me&lt;/a&gt;</summary>
         public global::BangumiNet.Api.V0.Models.Creator? Creator { get; set; }
 
+        /// <summary>The desc property</summary>
         public string? Desc { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The nsfw property</summary>
         public bool? Nsfw { get; set; }
 
         /// <summary>目录评论及收藏数</summary>
         public global::BangumiNet.Api.V0.Models.Index_stat? Stat { get; set; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
         /// <summary>收录条目总数</summary>
         public int? Total { get; set; }
 
+        /// <summary>The updated_at property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
 
         /// <summary>

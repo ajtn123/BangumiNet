@@ -23,12 +23,16 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>由旧服务端从wiki中解析，对于书籍条目为`话数`</summary>
         public int? Eps { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The images property</summary>
         public global::BangumiNet.Api.V0.Models.Images? Images { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The name_cn property</summary>
         public string? NameCn { get; set; }
 
         /// <summary>排名</summary>
@@ -43,6 +47,7 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>前 10 个 tag</summary>
         public List<global::BangumiNet.Api.V0.Models.Collections>? Tags { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
         /// <summary>书籍条目的册数，由旧服务端从wiki中解析</summary>

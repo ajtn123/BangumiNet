@@ -22,22 +22,25 @@ namespace BangumiNet.Api.V0.V0.Persons.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPerson_ItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The characters property</summary>
         public global::BangumiNet.Api.V0.V0.Persons.Item.Characters.CharactersRequestBuilder Characters
         {
             get => new global::BangumiNet.Api.V0.V0.Persons.Item.Characters.CharactersRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The collect property</summary>
         public global::BangumiNet.Api.V0.V0.Persons.Item.Collect.CollectRequestBuilder Collect
         {
             get => new global::BangumiNet.Api.V0.V0.Persons.Item.Collect.CollectRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The image property</summary>
         public global::BangumiNet.Api.V0.V0.Persons.Item.Image.ImageRequestBuilder Image
         {
             get => new global::BangumiNet.Api.V0.V0.Persons.Item.Image.ImageRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.V0.V0.Persons.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Persons.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

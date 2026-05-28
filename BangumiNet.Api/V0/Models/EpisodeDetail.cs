@@ -14,8 +14,10 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The airdate property</summary>
         public string? Airdate { get; set; }
 
+        /// <summary>The comment property</summary>
         public int? Comment { get; set; }
 
         /// <summary>简介</summary>
@@ -24,20 +26,25 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>音乐曲目的碟片数</summary>
         public int? Disc { get; set; }
 
+        /// <summary>The duration property</summary>
         public string? Duration { get; set; }
 
         /// <summary>条目内的集数, 从`1`开始。非本篇剧集的此字段无意义</summary>
         public double? Ep { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The name_cn property</summary>
         public string? NameCn { get; set; }
 
         /// <summary>同类条目的排序和集数</summary>
         public double? Sort { get; set; }
 
+        /// <summary>The subject_id property</summary>
         public int? SubjectId { get; set; }
 
         /// <summary>本篇 = 0特别篇 = 1OP = 2ED = 3预告/宣传/广告 = 4MAD = 5其他 = 6</summary>
