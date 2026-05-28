@@ -11,7 +11,7 @@ namespace BangumiNet.Api.V0.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PersonRevision : global::BangumiNet.Api.V0.Models.Revision, IParsable
     {
-
+        /// <summary>The data property</summary>
         public global::BangumiNet.Api.V0.Models.PersonRevision_data? Data { get; set; }
 
         /// <summary>

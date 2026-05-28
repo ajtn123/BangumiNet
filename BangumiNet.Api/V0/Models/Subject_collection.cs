@@ -14,14 +14,19 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The collect property</summary>
         public int? Collect { get; set; }
 
+        /// <summary>The doing property</summary>
         public int? Doing { get; set; }
 
+        /// <summary>The dropped property</summary>
         public int? Dropped { get; set; }
 
+        /// <summary>The on_hold property</summary>
         public int? OnHold { get; set; }
 
+        /// <summary>The wish property</summary>
         public int? Wish { get; set; }
 
         /// <summary>

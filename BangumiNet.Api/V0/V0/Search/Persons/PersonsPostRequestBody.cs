@@ -17,6 +17,7 @@ namespace BangumiNet.Api.V0.V0.Search.Persons
         /// <summary>不同条件之间是 `且` 的关系</summary>
         public global::BangumiNet.Api.V0.V0.Search.Persons.PersonsPostRequestBody_filter? Filter { get; set; }
 
+        /// <summary>The keyword property</summary>
         public string? Keyword { get; set; }
 
         /// <summary>

@@ -14,8 +14,10 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The key property</summary>
         public string? Key { get; set; }
 
+        /// <summary>The value property</summary>
         public global::BangumiNet.Api.V0.Models.Subjects.Subjects_value? Value { get; set; }
 
         /// <summary>

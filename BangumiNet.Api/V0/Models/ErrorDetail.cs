@@ -15,13 +15,16 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The description property</summary>
         public string? Description { get; set; }
 
+        /// <summary>The details property</summary>
         public global::BangumiNet.Api.V0.Models.ErrorDetail.ErrorDetail_details? Details { get; set; }
 
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
 
+        /// <summary>The title property</summary>
         public string? Title { get; set; }
 
         /// <summary>

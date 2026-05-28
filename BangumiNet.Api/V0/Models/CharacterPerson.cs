@@ -14,19 +14,25 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>object with some size of images, this object maybe `null`</summary>
         public global::BangumiNet.Api.V0.Models.CharacterPerson_images? Images { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The staff property</summary>
         public string? Staff { get; set; }
 
+        /// <summary>The subject_id property</summary>
         public int? SubjectId { get; set; }
 
+        /// <summary>The subject_name property</summary>
         public string? SubjectName { get; set; }
 
+        /// <summary>The subject_name_cn property</summary>
         public string? SubjectNameCn { get; set; }
 
         /// <summary>条目类型- `1` 为 书籍- `2` 为 动画- `3` 为 音乐- `4` 为 游戏- `6` 为 三次元没有 `5`</summary>

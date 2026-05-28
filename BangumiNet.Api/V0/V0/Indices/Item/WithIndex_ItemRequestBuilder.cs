@@ -20,12 +20,13 @@ namespace BangumiNet.Api.V0.V0.Indices.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithIndex_ItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The collect property</summary>
         public global::BangumiNet.Api.V0.V0.Indices.Item.Collect.CollectRequestBuilder Collect
         {
             get => new global::BangumiNet.Api.V0.V0.Indices.Item.Collect.CollectRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The subjects property</summary>
         public global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder Subjects
         {
             get => new global::BangumiNet.Api.V0.V0.Indices.Item.Subjects.SubjectsRequestBuilder(PathParameters, RequestAdapter);

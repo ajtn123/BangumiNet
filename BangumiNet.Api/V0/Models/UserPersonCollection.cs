@@ -14,15 +14,19 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The career property</summary>
         public List<global::BangumiNet.Api.V0.Models.PersonCareer?>? Career { get; set; }
 
+        /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
         /// <summary>object with some size of images, this object maybe `null`</summary>
         public global::BangumiNet.Api.V0.Models.UserPersonCollection_images? Images { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
         /// <summary>`1`, `2`, `3` 表示 `个人`, `公司`, `组合`</summary>

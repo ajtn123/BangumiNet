@@ -14,6 +14,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The episode_id property</summary>
         public List<int?>? EpisodeId { get; set; }
 
         /// <summary>- `0`: 未收藏- `1`: 想看- `2`: 看过- `3`: 抛弃</summary>
