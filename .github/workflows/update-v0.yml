@@ -34,5 +34,5 @@ jobs:
         with:
           commit-message: 'feat: update Bangumi Open API client'
           title: Update Bangumi Open API Client
-          body: Update Bangumi Open API client to match API version `${{ env.OPEN_VERSION }}`
+          body: Update Bangumi Open API client to match API version `${{ env.API_VERSION }}`
           branch: feat/update-v0

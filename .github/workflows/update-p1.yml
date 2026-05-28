@@ -34,5 +34,5 @@ jobs:
         with:
           commit-message: 'feat: update Bangumi Private API client'
           title: Update Bangumi Private API Client
-          body: Update Bangumi Private API client to match API version `${{ env.PRIVATE_VERSION }}`
+          body: Update Bangumi Private API client to match API version `${{ env.API_VERSION }}`
           branch: feat/update-p1

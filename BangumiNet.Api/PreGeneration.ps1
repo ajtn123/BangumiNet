@@ -27,7 +27,7 @@ if ($api -eq 'P1') {
 }
 
 if ($version) {
-    "${api}_VERSION=${version}" >> $env:GITHUB_ENV
+    "API_VERSION=${version}" >> $env:GITHUB_ENV
 
     $client_extension_path = 'BangumiNet.Api/Extensions/ClientExtensions.cs'
     $client_extension = Get-Content $client_extension_path -Raw
