@@ -10,8 +10,8 @@ public sealed class DeserializationTest
         var locations = (string[])[
             "../../../.archives/",
             "../../../../.archives/",
-            "../../../.minimalArchives/",
-            "../../../../.minimalArchives/",
+            "../../../.minimal-archives/",
+            "../../../../.minimal-archives/",
         ];
 
         foreach (var location in locations)
