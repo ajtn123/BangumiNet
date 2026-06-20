@@ -23,7 +23,7 @@
                 </ComboBox>
                 <TextBox Text="{Binding Keyword}" x:Name="Input" Grid.Column="1">
                     <TextBox.InnerRightContent>
-                        <Button Content="{ice:FluentIcon Icon=Search}" Command="{Binding SearchCommand}" Classes="Icon" Margin="2"/>
+                        <Button Content="{ice:FluentIcon Icon=Search}" Command="{Binding SearchCommand}" Classes="Icon" Margin="2" />
                     </TextBox.InnerRightContent>
                 </TextBox>
             </Grid>
@@ -31,7 +31,7 @@
                   IsVisible="{Binding IsSearchingSubject}">
                 <Grid.Styles>
                     <Style Selector="StackPanel">
-                        <Setter Property="Spacing" Value="5"/>
+                        <Setter Property="Spacing" Value="5" />
                     </Style>
                 </Grid.Styles>
                 <Grid.Resources>
@@ -41,7 +41,7 @@
                 <StackPanel Grid.Column="0">
                     <Border Classes="Card" Padding="5,0,0,0">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3"/>排序</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="RowTriple" FontSize="16" Margin="0,0,0,-3" />排序</TextBlock>
                             <ComboBox Grid.Column="1" HorizontalAlignment="Right"
                                       x:Name="SortComboBox" SelectedItem="{Binding Sort}">
                                 <ComboBox.ItemTemplate>
@@ -54,14 +54,14 @@
                     </Border>
                     <Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3"/>包含 NSFW</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3" />包含 NSFW</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                <CheckBox IsChecked="{Binding Nsfw}" Padding="0"/>
+                                <CheckBox IsChecked="{Binding Nsfw}" Padding="0" />
                             </Viewbox>
                         </Grid>
                     </Border>
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding SubjectErrorMessage,Converter={StaticResource NEWCvt}}">
-                        <TextBlock Text="{Binding SubjectErrorMessage}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding SubjectErrorMessage}" TextWrapping="Wrap" />
                     </Border>
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding !IsAirDateValid}">
                         <TextBlock TextWrapping="Wrap">结束日期必须大于开始日期。</TextBlock>
@@ -77,22 +77,22 @@
                     </Border>
                     <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
+                            <ic:FluentIcon Icon="Checkmark" />
+                            共 <Run Text="{Binding PageNavigator.TotalItems}" /> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Border Classes="Card">
-                        <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3"/>类型</TextBlock>
+                        <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3" />类型</TextBlock>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Type}" Padding="5,0">
                         <ItemsControl.DataTemplates>
                             <DataTemplate DataType="vm:SubjectTypeOptionViewModel">
                                 <Grid ColumnDefinitions="Auto,*">
-                                    <TextBlock Text="{Binding DisplayName}"/>
+                                    <TextBlock Text="{Binding DisplayName}" />
                                     <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                        <CheckBox IsChecked="{Binding IsSelected}" Padding="0"/>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Padding="0" />
                                     </Viewbox>
                                 </Grid>
                             </DataTemplate>
@@ -102,60 +102,60 @@
                 <StackPanel Grid.Column="2" Spacing="3">
                     <Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="Calendar" FontSize="16" Margin="0,0,0,-3"/>放送开始</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="Calendar" FontSize="16" Margin="0,0,0,-3" />放送开始</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                <CheckBox IsChecked="{Binding IsAirDateEnabled}" Padding="0"/>
+                                <CheckBox IsChecked="{Binding IsAirDateEnabled}" Padding="0" />
                             </Viewbox>
                         </Grid>
                     </Border>
                     <Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsAirDateEnabled}">
-                        <DatePicker SelectedDate="{Binding AirDateStart}" Padding="0" HorizontalAlignment="Stretch"/>
+                        <DatePicker SelectedDate="{Binding AirDateStart}" Padding="0" HorizontalAlignment="Stretch" />
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0">-</TextBlock>
-                        <DatePicker SelectedDate="{Binding AirDateEnd}" Padding="0" HorizontalAlignment="Stretch" Grid.Column="2"/>
+                        <DatePicker SelectedDate="{Binding AirDateEnd}" Padding="0" HorizontalAlignment="Stretch" Grid.Column="2" />
                     </Grid>
                     <Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="Star" FontSize="16" Margin="0,0,0,-3"/>评分</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="Star" FontSize="16" Margin="0,0,0,-3" />评分</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                <CheckBox IsChecked="{Binding IsRatingEnabled}" Padding="0"/>
+                                <CheckBox IsChecked="{Binding IsRatingEnabled}" Padding="0" />
                             </Viewbox>
                         </Grid>
                     </Border>
                     <ui:FARangeSlider RangeStart="{Binding RatingLowerLimit}" RangeEnd="{Binding RatingUpperLimit}"
-                                      Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}"/>
+                                      Minimum="1" Maximum="10" StepFrequency="0.1" IsEnabled="{Binding IsRatingEnabled}" />
                     <!--<Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="People" FontSize="16" Margin="0,0,0,-3"/>评分人数</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="People" FontSize="16" Margin="0,0,0,-3" />评分人数</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                <CheckBox IsChecked="{Binding IsRatingCountEnabled}" Padding="0"/>
+                                <CheckBox IsChecked="{Binding IsRatingCountEnabled}" Padding="0" />
                             </Viewbox>
                         </Grid>
                     </Border>-->
                     <!--<Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsRatingCountEnabled}">
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer"
-                                       Value="{Binding RatingCountLowerLimit}" Minimum="1"/>
+                                       Value="{Binding RatingCountLowerLimit}" Minimum="1" />
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0">-</TextBlock>
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer" Grid.Column="2"
-                                       Value="{Binding RatingCountUpperLimit}" Minimum="0"/>
+                                       Value="{Binding RatingCountUpperLimit}" Minimum="0" />
                     </Grid>-->
                     <Border Classes="Card">
                         <Grid ColumnDefinitions="Auto,*">
-                            <TextBlock><ic:FluentIcon Icon="NumberSymbol" FontSize="16" Margin="0,0,0,-3"/>排名</TextBlock>
+                            <TextBlock><ic:FluentIcon Icon="NumberSymbol" FontSize="16" Margin="0,0,0,-3" />排名</TextBlock>
                             <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                                <CheckBox IsChecked="{Binding IsRankEnabled}" Padding="0"/>
+                                <CheckBox IsChecked="{Binding IsRankEnabled}" Padding="0" />
                             </Viewbox>
                         </Grid>
                     </Border>
                     <Grid ColumnDefinitions="*,Auto,*" IsEnabled="{Binding IsRankEnabled}">
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer"
-                                       Value="{Binding RankLowerLimit}" Minimum="1"/>
+                                       Value="{Binding RankLowerLimit}" Minimum="1" />
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="5,0">-</TextBlock>
                         <NumericUpDown Padding="0" HorizontalAlignment="Stretch" Height="20" MinHeight="0"
                                        FormatString="N0" ParsingNumberStyle="Integer" Grid.Column="2"
-                                       Value="{Binding RankUpperLimit}" Minimum="1"/>
+                                       Value="{Binding RankUpperLimit}" Minimum="1" />
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Spacing="3">
@@ -171,16 +171,16 @@
                             <DataTemplate>
                                 <Border Classes="Card TagBadge">
                                     <StackPanel Spacing="5" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
-                                                Command="{Binding ViewModel.DelTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>
+                                                Command="{Binding ViewModel.DelTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                                <WrapPanel ItemSpacing="3" LineSpacing="3" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
@@ -198,16 +198,16 @@
                             <DataTemplate>
                                 <Border Classes="Card TagBadge Meta">
                                     <StackPanel Spacing="5" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding}" VerticalAlignment="Center" />
                                         <Button Content="{ice:FluentIcon Icon=Dismiss}" Grid.Column="1" CommandParameter="{Binding}" Padding="0"
-                                                Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}"/>
+                                                Command="{Binding ViewModel.DelMetaTagCommand, RelativeSource={RelativeSource AncestorType=v:SearchView}}" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                                <WrapPanel ItemSpacing="3" LineSpacing="3" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
@@ -218,16 +218,16 @@
                   IsVisible="{Binding IsSearchingPerson}">
                     <Border Classes="Card">
                         <TextBlock>
-                            <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3"/>职业
+                            <ic:FluentIcon Icon="LayerDiagonalPerson" FontSize="16" Margin="0,0,0,-3" />职业
                         </TextBlock>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Career}" Padding="5,0" Grid.Column="1">
                         <ItemsControl.DataTemplates>
                             <DataTemplate DataType="vm:PersonCareerOptionViewModel">
                                 <StackPanel Spacing="5" Orientation="Horizontal" Margin="10,0,0,0">
-                                    <TextBlock Text="{Binding DisplayName}"/>
+                                    <TextBlock Text="{Binding DisplayName}" />
                                     <Viewbox Height="19">
-                                        <CheckBox IsChecked="{Binding IsSelected}" Padding="0"/>
+                                        <CheckBox IsChecked="{Binding IsSelected}" Padding="0" />
                                     </Viewbox>
                                 </StackPanel>
                             </DataTemplate>
@@ -240,12 +240,12 @@
                     </ItemsControl>
                 <StackPanel Spacing="5" Grid.Row="1" Grid.ColumnSpan="2">
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding PersonErrorMessage,Converter={StaticResource NEWCvt}}">
-                        <TextBlock Text="{Binding PersonErrorMessage}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding PersonErrorMessage}" TextWrapping="Wrap" />
                     </Border>
                     <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
+                            <ic:FluentIcon Icon="Checkmark" />
+                            共 <Run Text="{Binding PageNavigator.TotalItems}" /> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
@@ -255,27 +255,27 @@
                 <Border Classes="Card">
                     <Grid ColumnDefinitions="Auto,*">
                         <TextBlock>
-                            <ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3"/>包含 NSFW
+                            <ic:FluentIcon Icon="CalendarDate" FontSize="16" Margin="0,0,0,-3" />包含 NSFW
                         </TextBlock>
                         <Viewbox Height="19" Grid.Column="1" HorizontalAlignment="Right">
-                            <CheckBox IsChecked="{Binding Nsfw}" Padding="0"/>
+                            <CheckBox IsChecked="{Binding Nsfw}" Padding="0" />
                         </Viewbox>
                     </Grid>
                 </Border>
                 <StackPanel Spacing="5" Grid.Column="1">
                     <Border Classes="Card" Background="{StaticResource ErrorBg}" IsVisible="{Binding CharacterErrorMessage,Converter={StaticResource NEWCvt}}">
-                        <TextBlock Text="{Binding CharacterErrorMessage}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding CharacterErrorMessage}" TextWrapping="Wrap" />
                     </Border>
                     <Border Classes="Card" Background="{StaticResource OkBg}" IsVisible="{Binding PageNavigator.TotalItems,Converter={StaticResource NullCvt}}">
                         <TextBlock TextWrapping="Wrap">
-                            <ic:FluentIcon Icon="Checkmark"/>
-                            共 <Run Text="{Binding PageNavigator.TotalItems}"/> 条结果
+                            <ic:FluentIcon Icon="Checkmark" />
+                            共 <Run Text="{Binding PageNavigator.TotalItems}" /> 条结果
                         </TextBlock>
                     </Border>
                 </StackPanel>
             </Grid>
-            
-            <v:SubjectListPagedView/>
+
+            <v:SubjectListPagedView />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

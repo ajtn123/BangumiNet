@@ -12,7 +12,7 @@
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto"
           RowSpacing="5" Name="BadgeGrid">
         <MainImage Url="{Binding Images?.Small}" Name="Img">
-            <bn:SubjectFlyoutView/>
+            <bn:SubjectFlyoutView />
         </MainImage>
 
         <Border Grid.Row="1"
@@ -20,15 +20,15 @@
             <StackPanel>
                 <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"
                                  Command="{Binding OpenInNewWindowCommand}"
-                                 Classes="Title"/>
+                                 Classes="Title" />
                 <TextBlock Text="{Binding Relation}" TextWrapping="Wrap"
-                           IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}"/>
+                           IsVisible="{Binding Relation,Converter={StaticResource NEWCvt}}" />
             </StackPanel>
         </Border>
 
         <Grid.ContextFlyout>
             <Flyout>
-                <bn:SubjectFlyoutView/>
+                <bn:SubjectFlyoutView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

@@ -12,19 +12,19 @@
     <StackPanel Spacing="5">
         <Border Classes="Card">
             <Grid ColumnDefinitions="Auto,*">
-                <TextBlock Text="{Binding Weekday.Cn}"/>
-                <TextBlock IsVisible="{Binding IsToday}" Grid.Column="1" HorizontalAlignment="Right"><ic:FluentIcon Icon="Pin"/> 今天</TextBlock>
+                <TextBlock Text="{Binding Weekday.Cn}" />
+                <TextBlock IsVisible="{Binding IsToday}" Grid.Column="1" HorizontalAlignment="Right"><ic:FluentIcon Icon="Pin" /> 今天</TextBlock>
             </Grid>
         </Border>
         <ItemsControl ItemsSource="{Binding Subjects}">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="vm:SubjectViewModel">
-                    <v:SubjectCardView DataContext="{Binding .}"/>
+                    <v:SubjectCardView DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.DataTemplates>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Spacing="3"/>
+                    <StackPanel Spacing="3" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

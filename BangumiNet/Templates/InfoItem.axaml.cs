@@ -59,7 +59,7 @@ public class InfoItem : TemplatedControl
     public static readonly StyledProperty<object?> CommonTextProperty =
         AvaloniaProperty.Register<InfoItem, object?>(nameof(CommonText));
     /// <summary>
-    /// Set <see cref="Text"/> with <see cref="CommonConverter.Convert(object?)"/>.
+    /// Set <see cref="Text" /> with <see cref="CommonConverter.Convert(object?)" />.
     /// </summary>
     public object? CommonText
     {
@@ -70,7 +70,7 @@ public class InfoItem : TemplatedControl
     public static readonly StyledProperty<Enum?> EnumTextProperty =
         AvaloniaProperty.Register<InfoItem, Enum?>(nameof(EnumText));
     /// <summary>
-    /// Set <see cref="Text"/> with <see cref="CommonEnumConverter.Convert(object?)"/>.
+    /// Set <see cref="Text" /> with <see cref="CommonEnumConverter.Convert(object?)" />.
     /// </summary>
     public Enum? EnumText
     {

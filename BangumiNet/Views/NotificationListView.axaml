@@ -7,6 +7,6 @@
              x:DataType="bn:NotificationListViewModel"
              x:Class="BangumiNet.Views.NotificationListView">
     <ScrollViewer>
-        <bn:SubjectListView DataContext="{Binding Notifications}" Margin="5"/>
+        <bn:SubjectListView DataContext="{Binding Notifications}" Margin="5" />
     </ScrollViewer>
 </UserControl>

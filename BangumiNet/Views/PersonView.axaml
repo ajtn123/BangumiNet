@@ -14,57 +14,57 @@
         <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,Auto"
               Classes="ViewRoot">
             <StackPanel Spacing="5">
-                <MainImage Url="{Binding Images?.Large}"/>
-                <bn:InfoboxView DataContext="{Binding Infobox}"/>
-                <bn:SubjectListView DataContext="{Binding IndexCardListViewModel}"/>
+                <MainImage Url="{Binding Images?.Large}" />
+                <bn:InfoboxView DataContext="{Binding Infobox}" />
+                <bn:SubjectListView DataContext="{Binding IndexCardListViewModel}" />
                 <Button Content="{ice:FluentIcon Icon=Add}"
                         Command="{Binding IndexCardListViewModel.ProceedPageCommand}"
                         IsVisible="{Binding !IndexCardListViewModel.IsFullyLoaded}"
-                        HorizontalAlignment="Stretch"/>
+                        HorizontalAlignment="Stretch" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <TextBlock Text="{Binding Converter={StaticResource NameCnCvt}}"
-                           Classes="Title" FontSize="30"/>
+                           Classes="Title" FontSize="30" />
                 <TextBlock Text="{Binding Converter={StaticResource NameAltCvt}}"
                            IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
-                           Classes="TitleAlt"/>
+                           Classes="TitleAlt" />
                 <WrapPanel Classes="InfoBar">
-                    <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
-                    <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment"/>
-                    <InfoItem Tip="生日" CommonText="{Binding Birthday}" Icon="Calendar"/>
-                    <InfoItem Tip="血型" Text="{Binding BloodType}" Icon="Doctor"/>
-                    <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
-                    <InfoItem Tip="职业" Text="{Binding CareerString}" Icon="LayerDiagonalPerson"/>
-                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections" />
+                    <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment" />
+                    <InfoItem Tip="生日" CommonText="{Binding Birthday}" Icon="Calendar" />
+                    <InfoItem Tip="血型" Text="{Binding BloodType}" Icon="Doctor" />
+                    <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class" />
+                    <InfoItem Tip="职业" Text="{Binding CareerString}" Icon="LayerDiagonalPerson" />
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
                     <TextBlock>
-                        <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected}"/>
-                        <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
+                        <ic:FluentIcon ToolTip.Tip="已收藏" Icon="Heart" IconVariant="Color" IsVisible="{Binding IsCollected}" />
+                        <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}" />
                     </TextBlock>
                 </WrapPanel>
                 <BBCode Text="{Binding Summary}" Margin="0,0,0,5"
-                        IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}"/>
+                        IsVisible="{Binding Summary,Converter={StaticResource NullCvt}}" />
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
-                    <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史"/>
-                    <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络"/>
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
+                    <Button Classes="Icon" Command="{Binding ShowRevisionsCommand}" Content="{ice:FluentIcon Icon=History}" ToolTip.Tip="显示条目修订历史" />
+                    <Button Classes="Icon" Command="{Binding ShowNetworkCommand}" Content="{ice:FluentIcon Icon=TextAsterisk}" ToolTip.Tip="显示条目网络" />
                     <Button Command="{Binding CollectCommand}"
                             IsVisible="{Binding !IsCollected}"
                             Content="{ice:FluentIcon Icon=Collections}"
-                            ToolTip.Tip="收藏" Classes="Icon"/>
+                            ToolTip.Tip="收藏" Classes="Icon" />
                     <Button Command="{Binding UncollectCommand}"
                             IsVisible="{Binding IsCollected}"
                             Content="{ice:FluentIcon Icon=DismissSquareMultiple}"
-                            ToolTip.Tip="取消收藏" Classes="Icon"/>
+                            ToolTip.Tip="取消收藏" Classes="Icon" />
                 </StackPanel>
 
-                <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}"/>
-                <bn:RelatedItemListView DataContext="{Binding CharacterBadgeListViewModel}"/>
+                <bn:RelatedItemListView DataContext="{Binding SubjectBadgeListViewModel}" />
+                <bn:RelatedItemListView DataContext="{Binding CharacterBadgeListViewModel}" />
 
                 <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
-                    <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>
+                    <bn:CommentListView DataContext="{Binding CommentListViewModel}" />
                 </Expander>
             </StackPanel>
         </Grid>

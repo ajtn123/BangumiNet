@@ -10,34 +10,34 @@
              x:Class="BangumiNet.Views.PersonCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
         <MainImage Url="{Binding Images?.Grid}" VerticalAlignment="Top">
-			<bn:PersonFlyoutView/>
+            <bn:PersonFlyoutView />
         </MainImage>
 
         <StackPanel Grid.Column="1">
             <HyperlinkButton Classes="Title" Command="{Binding OpenInNewWindowCommand}">
-				<TextBlock>
-					<Run Text="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}"/>
-                    <Run Text="{Binding Relation}" Classes="Sec"/>
+                <TextBlock>
+                    <Run Text="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" />
+                    <Run Text="{Binding Relation}" Classes="Sec" />
                 </TextBlock>
             </HyperlinkButton>
             <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
-                <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment"/>
-                <InfoItem Tip="生日" CommonText="{Binding Birthday}" Icon="Calendar"/>
-                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
-                <InfoItem Tip="职业" Text="{Binding CareerString}" Icon="LayerDiagonalPerson"/>
+                <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections" />
+                <InfoItem Tip="评论数" Text="{Binding CommentCount}" Icon="Comment" />
+                <InfoItem Tip="生日" CommonText="{Binding Birthday}" Icon="Calendar" />
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class" />
+                <InfoItem Tip="职业" Text="{Binding CareerString}" Icon="LayerDiagonalPerson" />
                 <TextBlock>
-                    <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}"/>
+                    <ic:FluentIcon ToolTip.Tip="本条目已锁定" Icon="LockClosed" IsVisible="{Binding IsLocked}" />
                 </TextBlock>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText NoFocus"/>
+                                 Classes="Sec PointoverText NoFocus" />
         </StackPanel>
-        
+
         <Grid.ContextFlyout>
             <Flyout>
-                <bn:PersonFlyoutView/>
+                <bn:PersonFlyoutView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

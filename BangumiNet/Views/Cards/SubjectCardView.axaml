@@ -12,27 +12,27 @@
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5"
           Classes="PointoverTextHost" Name="CardGrid">
         <MainImage Url="{Binding Images?.Small}" VerticalAlignment="Top">
-            <bn:SubjectFlyoutView/>
+            <bn:SubjectFlyoutView />
         </MainImage>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
-            <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt},Mode=OneWay}" Classes="Title" Command="{Binding OpenInNewWindowCommand}" />
             <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color" IsVisible="{Binding Score,Converter={StaticResource ZeroCvt}}"/>
-                <InfoItem Tip="排名" Text="{Binding Rank}" Icon="NumberSymbol"/>
-                <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections"/>
-                <InfoItem Tip="在看" Text="{Binding Collection?.Doing}" Icon="Tv"/>
-                <InfoItem Tip="在看" Text="{Binding Hype}" Icon="Fire"/>
-                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
+                <InfoItem Tip="用户评价" Text="{Binding Score}" Icon="Star" IconVariant="Color" IsVisible="{Binding Score,Converter={StaticResource ZeroCvt}}" />
+                <InfoItem Tip="排名" Text="{Binding Rank}" Icon="NumberSymbol" />
+                <InfoItem Tip="收藏" Text="{Binding CollectionTotal}" Icon="Collections" />
+                <InfoItem Tip="在看" Text="{Binding Collection?.Doing}" Icon="Tv" />
+                <InfoItem Tip="在看" Text="{Binding Hype}" Icon="Fire" />
+                <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class" />
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Info}"
                                  IsVisible="{Binding Info, Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText NoFocus"/>
+                                 Classes="Sec PointoverText NoFocus" />
         </StackPanel>
 
         <Grid.ContextFlyout>
             <Flyout>
-                <bn:SubjectFlyoutView/>
+                <bn:SubjectFlyoutView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

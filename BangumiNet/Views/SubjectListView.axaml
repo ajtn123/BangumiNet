@@ -9,54 +9,54 @@
     <ItemsControl ItemsSource="{Binding SubjectViewModels}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:SubjectViewModel">
-                <bn:SubjectCardView/>
+                <bn:SubjectCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:SubjectCollectionViewModel">
-                <bn:SubjectCollectionCardView/>
+                <bn:SubjectCollectionCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:CharacterViewModel">
-                <bn:CharacterCardView/>
+                <bn:CharacterCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:PersonViewModel">
-                <bn:PersonCardView/>
+                <bn:PersonCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:GroupViewModel">
-                <bn:GroupCardView/>
+                <bn:GroupCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:GroupMemberViewModel">
-                <bn:GroupMemberCardView/>
+                <bn:GroupMemberCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:UserViewModel">
-                <bn:UserCardView/>
+                <bn:UserCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:TopicViewModel">
-                <bn:TopicCardView/>
+                <bn:TopicCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:FriendViewModel">
-                <bn:FriendCardView/>
+                <bn:FriendCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:RevisionViewModel">
-                <bn:RevisionCardView/>
+                <bn:RevisionCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:NotificationViewModel">
-                <bn:NotificationCardView/>
+                <bn:NotificationCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:TimelineItemViewModel">
-                <bn:TimelineItemView/>
+                <bn:TimelineItemView />
             </DataTemplate>
             <DataTemplate DataType="bn:BlogViewModel">
-                <bn:BlogCardView/>
+                <bn:BlogCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:IndexViewModel">
-                <bn:IndexCardView/>
+                <bn:IndexCardView />
             </DataTemplate>
             <DataTemplate DataType="bn:TextViewModel">
-                <bn:TextView/>
+                <bn:TextView />
             </DataTemplate>
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Spacing="5"/>
+                <StackPanel Spacing="5" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

@@ -14,20 +14,20 @@
                           HorizontalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding InterestedItems}"
                               HorizontalAlignment="Left" Margin="5,0,5,5">
-				    <ItemsControl.DataTemplates>
-					    <DataTemplate DataType="bn:SubjectViewModel">
-						    <bn:SubjectCardView DataContext="{Binding}"/>
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate DataType="bn:SubjectViewModel">
+                            <bn:SubjectCardView DataContext="{Binding}" />
                         </DataTemplate>
-					    <DataTemplate DataType="bn:CharacterViewModel">
-						    <bn:CharacterCardView DataContext="{Binding}"/>
+                        <DataTemplate DataType="bn:CharacterViewModel">
+                            <bn:CharacterCardView DataContext="{Binding}" />
                         </DataTemplate>
-					    <DataTemplate DataType="bn:PersonViewModel">
-						    <bn:PersonCardView DataContext="{Binding}"/>
+                        <DataTemplate DataType="bn:PersonViewModel">
+                            <bn:PersonCardView DataContext="{Binding}" />
                         </DataTemplate>
                     </ItemsControl.DataTemplates>
                     <ItemsControl.ItemsPanel>
-					    <ItemsPanelTemplate>
-						    <StackPanel Spacing="5" Orientation="Horizontal" FlowDirection="RightToLeft"/>
+                        <ItemsPanelTemplate>
+                            <StackPanel Spacing="5" Orientation="Horizontal" FlowDirection="RightToLeft" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

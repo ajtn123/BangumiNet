@@ -33,12 +33,12 @@
             <bn:ItemViewLocator />
             <DataTemplate DataType="bn:UserListViewModel">
                 <ScrollViewer>
-                    <bn:SubjectListPagedView Margin="5"/>
+                    <bn:SubjectListPagedView Margin="5" />
                 </ScrollViewer>
             </DataTemplate>
             <DataTemplate DataType="bn:RelatedItemListViewModel">
                 <ScrollViewer>
-                    <bn:RelatedItemListView Margin="5"/>
+                    <bn:RelatedItemListView Margin="5" />
                 </ScrollViewer>
             </DataTemplate>
         </ui:FATabView.DataTemplates>

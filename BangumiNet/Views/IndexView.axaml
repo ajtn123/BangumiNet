@@ -13,38 +13,38 @@
               Classes="ViewRoot">
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <TextBlock Text="{Binding Name}"
-                           Classes="Title" FontSize="30"/>
+                           Classes="Title" FontSize="30" />
                 <WrapPanel Classes="InfoBar">
-                    <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps"/>
-                    <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
-                    <InfoItem Tip="收藏数" Text="{Binding CollectionCount}" Icon="AddSquare"/>
-                    <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class"/>
-                    <InfoItem Tip="Award" EnumText="{Binding Award}"/>
-                    <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
-                    <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
-                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <InfoItem Tip="项目数" Text="{Binding ItemCount}" Icon="Apps" />
+                    <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment" />
+                    <InfoItem Tip="收藏数" Text="{Binding CollectionCount}" Icon="AddSquare" />
+                    <InfoItem Tip="类型" EnumText="{Binding Type}" Icon="Class" />
+                    <InfoItem Tip="Award" EnumText="{Binding Award}" />
+                    <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp" />
+                    <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd" />
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
                     <TextBlock>
-                        <ic:FluentIcon ToolTip.Tip="私有目录" Icon="LockClosed" IsVisible="{Binding IsPrivate}"/>
+                        <ic:FluentIcon ToolTip.Tip="私有目录" Icon="LockClosed" IsVisible="{Binding IsPrivate}" />
                     </TextBlock>
                 </WrapPanel>
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
                 </StackPanel>
 
-                <BBCode Text="{Binding Summary}"/>
+                <BBCode Text="{Binding Summary}" />
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="0" Spacing="5">
-                <bn:CardView Content="{Binding User}"/>
-                <bn:IndexStatsView DataContext="{Binding Stats}"/>
+                <bn:CardView Content="{Binding User}" />
+                <bn:IndexStatsView DataContext="{Binding Stats}" />
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                <bn:RelatedItemListView DataContext="{Binding RelatedItems}"/>
+                <bn:RelatedItemListView DataContext="{Binding RelatedItems}" />
                 <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
-                    <bn:CommentListView DataContext="{Binding Comments}"/>
+                    <bn:CommentListView DataContext="{Binding Comments}" />
                 </Expander>
             </StackPanel>
         </Grid>

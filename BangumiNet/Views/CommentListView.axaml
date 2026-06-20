@@ -8,23 +8,23 @@
              x:DataType="bn:CommentListViewModel"
              x:Class="BangumiNet.Views.CommentListView">
     <StackPanel Spacing="5">
-        <bn:ReplyView DataContext="{Binding ReplyViewModel}"/>
-        <bn:PageNavigatorView DataContext="{Binding PageNavigator}"/>
+        <bn:ReplyView DataContext="{Binding ReplyViewModel}" />
+        <bn:PageNavigatorView DataContext="{Binding PageNavigator}" />
         <ItemsControl ItemsSource="{Binding SubjectViewModels}">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="bn:SubjectCollectionViewModel">
-                    <bn:SubjectCommentView DataContext="{Binding}"/>
+                    <bn:SubjectCommentView DataContext="{Binding}" />
                 </DataTemplate>
                 <DataTemplate DataType="bn:CommentViewModel">
-                    <bn:CommentView DataContext="{Binding}"/>
+                    <bn:CommentView DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.DataTemplates>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Spacing="5"/>
+                    <StackPanel Spacing="5" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <bn:PageNavigatorView DataContext="{Binding PageNavigator}"/>
+        <bn:PageNavigatorView DataContext="{Binding PageNavigator}" />
     </StackPanel>
 </UserControl>

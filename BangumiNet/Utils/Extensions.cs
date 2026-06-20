@@ -47,7 +47,7 @@ public static class Extensions
         };
 
     /// <summary>
-    /// 将 <see cref="DateOnly"/> 转换为Bangumi 的日期 string.
+    /// 将 <see cref="DateOnly" /> 转换为Bangumi 的日期 string.
     /// </summary>
     /// <returns><c>yyyy-MM-dd</c></returns>
     public static string ToBangumiString(this DateTimeOffset date)

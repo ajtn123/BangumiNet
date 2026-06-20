@@ -10,47 +10,47 @@
              x:Class="BangumiNet.Views.RelatedItemListView">
     <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto,Auto"
           ColumnSpacing="5">
-        <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}}"/>
+        <TextBlock FontSize="20" FontWeight="Bold" Text="{Binding Type, Converter={StaticResource EnumCvt}}" />
         <TextBlock Grid.Column="1" VerticalAlignment="Center"
-                   Text="{Binding Total,StringFormat='共 {0} 个项目'}"/>
+                   Text="{Binding Total,StringFormat='共 {0} 个项目'}" />
         <ToggleButton Grid.Column="2" Click="ToggleWrap"
-                      Content="{ice:FluentIcon Icon=ArrowWrap}" Classes="Icon"/>
+                      Content="{ice:FluentIcon Icon=ArrowWrap}" Classes="Icon" />
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Name="BadgeScroll">
             <ItemsControl ItemsSource="{Binding SubjectViewModels}">
                 <ItemsControl.DataTemplates>
                     <DataTemplate DataType="bn:SubjectViewModel">
-                        <bn:SubjectBadgeView DataContext="{Binding}"/>
+                        <bn:SubjectBadgeView DataContext="{Binding}" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:CharacterViewModel">
-                        <bn:CharacterBadgeView DataContext="{Binding}"/>
+                        <bn:CharacterBadgeView DataContext="{Binding}" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:PersonViewModel">
-                        <bn:PersonBadgeView DataContext="{Binding}"/>
+                        <bn:PersonBadgeView DataContext="{Binding}" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:TopicViewModel">
-                        <bn:TopicCardView DataContext="{Binding}" Width="400"/>
+                        <bn:TopicCardView DataContext="{Binding}" Width="400" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:BlogViewModel">
-                        <bn:BlogCardView DataContext="{Binding}" Width="400"/>
+                        <bn:BlogCardView DataContext="{Binding}" Width="400" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:PhotoViewModel">
                         <bn:PhotoView DataContext="{Binding}"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"
-                                      MaxHeight="800"/>
+                                      MaxHeight="800" />
                     </DataTemplate>
                     <DataTemplate DataType="bn:EpisodeViewModel">
                         <StackPanel>
                             <HyperlinkButton Content="{Binding Converter={StaticResource NameCnCvt}}"
                                              Command="{Binding OpenInNewWindowCommand}"
-                                             Classes="Title" MaxWidth="250"/>
-                            <bn:SubjectBadgeView DataContext="{Binding SubjectViewModel}"/>
+                                             Classes="Title" MaxWidth="250" />
+                            <bn:SubjectBadgeView DataContext="{Binding SubjectViewModel}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.DataTemplates>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal"/>
+                        <WrapPanel ItemSpacing="5" LineSpacing="10" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
@@ -59,6 +59,6 @@
                 VerticalAlignment="Bottom"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
                 Command="{Binding ProceedPageCommand}"
-                IsVisible="{Binding !IsFullyLoaded}"/>
+                IsVisible="{Binding !IsFullyLoaded}" />
     </Grid>
 </UserControl>

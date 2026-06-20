@@ -12,31 +12,31 @@
         <Grid ColumnDefinitions="250,*" RowDefinitions="Auto,Auto"
               Classes="ViewRoot">
             <StackPanel Spacing="5">
-                <MainImage Url="{Binding Avatar?.Large}"/>
+                <MainImage Url="{Binding Avatar?.Large}" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <TextBlock Text="{Binding Name}"
-                           Classes="Title" FontSize="30"/>
+                           Classes="Title" FontSize="30" />
                 <WrapPanel Classes="InfoBar">
-                    <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
-                    <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
-                    <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
-                    <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe"/>
-                    <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail"/>
-                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+                    <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec" />
+                    <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class" />
+                    <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar" />
+                    <InfoItem Tip="时区" Text="{Binding TimeOffset,Converter={StaticResource TimeZoneCvt},Mode=OneWay}" Icon="Globe" />
+                    <InfoItem Tip="电子邮件" Text="{Binding Email}" Icon="Mail" />
+                    <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
                     <TextBlock>
-                        <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}"/>
+                        <ic:FluentIcon ToolTip.Tip="这是我的用户页" Icon="PersonStarburst" IsVisible="{Binding IsMe}" />
                     </TextBlock>
                 </WrapPanel>
                 <SelectableTextBlock Text="{Binding Sign}" TextWrapping="Wrap" Classes="Sec"
-                                     IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>
+                                     IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}" />
                 <BBCode Text="{Binding Summary}"
-                        IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}"/>
+                        IsVisible="{Binding Summary, Converter={StaticResource NEWCvt}}" />
                 <StackPanel Orientation="Horizontal" Spacing="5">
-                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                    <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
+                    <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
+                    <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
                 </StackPanel>
             </StackPanel>
 
@@ -44,10 +44,10 @@
                         SelectedIndex="0" IsVisible="{Binding IsFull}"
                         Name="UserContentTabs">
                 <TabItem Header="时间线">
-                    <bn:TimelineView DataContext="{Binding Timeline}"/>
+                    <bn:TimelineView DataContext="{Binding Timeline}" />
                 </TabItem>
                 <TabItem Header="收藏">
-                    <bn:SubjectCollectionListView DataContext="{Binding CollectionList}"/>
+                    <bn:SubjectCollectionListView DataContext="{Binding CollectionList}" />
                 </TabItem>
             </TabControl>
         </Grid>

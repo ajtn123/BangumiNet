@@ -13,7 +13,7 @@
     <UserControl.Styles>
         <Style Selector="ui|FASettingsExpander">
             <Style Selector="^ TextBox">
-                <Setter Property="MinWidth" Value="200"/>
+                <Setter Property="MinWidth" Value="200" />
             </Style>
         </Style>
     </UserControl.Styles>
@@ -22,22 +22,22 @@
             <StackPanel Margin="10,10,10,100" Spacing="5">
                 <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*" Height="200">
                     <Svg Path="/Assets/BangumiNet.svg" Height="200" Width="200"
-                         VerticalAlignment="Top" Grid.RowSpan="2"/>
+                         VerticalAlignment="Top" Grid.RowSpan="2" />
                     <StackPanel Grid.Column="1">
-                        <TextBlock Classes="Title" FontSize="30" Text="{x:Static shared:Constants.ApplicationName}"/>
+                        <TextBlock Classes="Title" FontSize="30" Text="{x:Static shared:Constants.ApplicationName}" />
                         <WrapPanel Classes="InfoBar" ItemSpacing="10">
                             <WrapPanel.Styles>
-								<Style Selector="Button">
-									<Setter Property="Padding" Value="3,0"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Classes.Distinct" Value="True"/>
+                                <Style Selector="Button">
+                                    <Setter Property="Padding" Value="3,0" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Classes.Distinct" Value="True" />
                                     <Style Selector="^ ic|FluentIcon">
-										<Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="FontSize" Value="15" />
                                     </Style>
                                 </Style>
                             </WrapPanel.Styles>
                             <TextBlock ToolTip.Tip="应用程序版本">
-                                <ic:FluentIcon Icon="Info"/><Run Name="VersionText"/>
+                                <ic:FluentIcon Icon="Info" /><Run Name="VersionText" />
                             </TextBlock>
                             <Button ToolTip.Tip="应用程序更新"
                                     Name="UpdateInfo"
@@ -45,17 +45,17 @@
                                     Width="NaN"
                                     IsVisible="False">
                                 <TextBlock>
-                                    <ic:FluentIcon Icon="ArrowCircleUp"/><Run Name="LatestVersionText"/>
+                                    <ic:FluentIcon Icon="ArrowCircleUp" /><Run Name="LatestVersionText" />
                                 </TextBlock>
                             </Button>
                             <TextBlock ToolTip.Tip="{x:Static shared:Constants.License}">
-                                <Run Text="MIT © 2025 aoi"/>
+                                <Run Text="MIT © 2025 aoi" />
                             </TextBlock>
                             <Button ToolTip.Tip="打开 GitHub 仓库"
                                     Click="OpenGitHub"
                                     Width="NaN">
                                 <TextBlock>
-                                    <ic:FluentIcon Icon="Code"/>GitHub
+                                    <ic:FluentIcon Icon="Code" />GitHub
                                 </TextBlock>
                             </Button>
                         </WrapPanel>
@@ -65,8 +65,8 @@
                             <ItemsControl.DataTemplates>
                                 <DataTemplate DataType="bn:CreditItem">
                                     <SelectableTextBlock ToolTip.Tip="{Binding Tooltip}">
-                                        <Run Text="{Binding Type}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
-                                        <Run Text="{Binding Name}"/>
+                                        <Run Text="{Binding Type}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                        <Run Text="{Binding Name}" />
                                     </SelectableTextBlock>
                                 </DataTemplate>
                             </ItemsControl.DataTemplates>
@@ -77,14 +77,14 @@
                 <ui:FASettingsExpander Header="User Agent" IconSource="{ice:FluentIconSource Agents}">
                     <ui:FASettingsExpander.Footer>
                         <TextBox Text="{Binding UserAgent}"
-                                 PlaceholderText="{Binding DefaultSettings.UserAgent}"/>
+                                 PlaceholderText="{Binding DefaultSettings.UserAgent}" />
                     </ui:FASettingsExpander.Footer>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="用户个人令牌" IconSource="{ice:FluentIconSource Key}">
                     <ui:FASettingsExpander.Footer>
                         <StackPanel Orientation="Horizontal" Spacing="5">
                             <Button Command="{Binding GetTokenCommand}">
-                                <TextBlock><ic:FluentIcon Icon="Link"/>前往获取</TextBlock>
+                                <TextBlock><ic:FluentIcon Icon="Link" />前往获取</TextBlock>
                             </Button>
                             <TextBox Text="{Binding AuthToken}" />
                         </StackPanel>
@@ -97,9 +97,9 @@
                         <ui:FASettingsExpanderItem.Footer>
                             <ComboBox SelectedItem="{Binding ApplicationTheme}"
                                       Name="ApplicationThemeComboBox">
-								<ComboBox.DataTemplates>
-									<DataTemplate DataType="shared:ApplicationTheme">
-										<TextBlock Text="{Binding Converter={StaticResource EnumCvt}}"/>
+                                <ComboBox.DataTemplates>
+                                    <DataTemplate DataType="shared:ApplicationTheme">
+                                        <TextBlock Text="{Binding Converter={StaticResource EnumCvt}}" />
                                     </DataTemplate>
                                 </ComboBox.DataTemplates>
                             </ComboBox>
@@ -108,26 +108,26 @@
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Color}">
                         <TextBlock>使用系统强调色</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding UseSystemAccentColor}"/>
+                            <CheckBox IsChecked="{Binding UseSystemAccentColor}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Tab}">
                         <TextBlock>主窗口默认标签页</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <ComboBox SelectedItem="{Binding StartupTab}"
-                                      Name="DefaultTabComboBox"/>
+                                      Name="DefaultTabComboBox" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource FullScreenMaximize}">
                         <TextBlock>主窗口显示启动画面</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}"/>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnAppStartup}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource FullScreenMaximize}">
                         <TextBlock>次要窗口显示启动画面</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}"/>
+                            <CheckBox IsChecked="{Binding ShowSplashScreenOnWindowStartup}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                 </ui:FASettingsExpander>
@@ -137,10 +137,10 @@
                     <ui:FASettingsExpander.DataTemplates>
                         <DataTemplate DataType="bn:PaletteItemViewModel">
                             <ui:FASettingsExpanderItem>
-                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Name}" />
                                 <ui:FASettingsExpanderItem.Footer>
                                     <ColorPicker Color="{Binding Color,Converter={StaticResource HexColorCvt}}"
-                                                 ColorModel="Rgba"/>
+                                                 ColorModel="Rgba" />
                                 </ui:FASettingsExpanderItem.Footer>
                             </ui:FASettingsExpanderItem>
                         </DataTemplate>
@@ -149,19 +149,19 @@
                 <ui:FASettingsExpander Header="Bangumi 地址" IconSource="{ice:FluentIconSource Server}">
                     <ui:FASettingsExpander.Footer>
                         <TextBox Text="{Binding BangumiTvUrlBase}"
-                                 PlaceholderText="{Binding DefaultSettings.BangumiTvUrlBase}"/>
+                                 PlaceholderText="{Binding DefaultSettings.BangumiTvUrlBase}" />
                     </ui:FASettingsExpander.Footer>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="搜索引擎" IconSource="{ice:FluentIconSource Search}">
                     <ui:FASettingsExpander.Footer>
                         <ComboBox SelectedItem="{Binding DefaultSearchEngine}"
-                                  ItemsSource="{Binding SearchEngineSuggestions}"/>
+                                  ItemsSource="{Binding SearchEngineSuggestions}" />
                     </ui:FASettingsExpander.Footer>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="本地缓存" IsExpanded="True"
                                        IconSource="{ice:FluentIconSource Document}">
                     <ui:FASettingsExpander.Footer>
-                        <CheckBox IsChecked="{Binding IsDiskCacheEnabled}"/>
+                        <CheckBox IsChecked="{Binding IsDiskCacheEnabled}" />
                     </ui:FASettingsExpander.Footer>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Location}">
                         <TextBlock>本地缓存位置</TextBlock>
@@ -170,7 +170,7 @@
                                      PlaceholderText="{Binding DefaultSettings.LocalDataDirectory}">
                                 <TextBox.InnerLeftContent>
                                     <Button Click="LocalDataPickDir" Content="{ice:FluentIcon Icon=Folder,FontSize=13}"
-                                            Margin="2" Padding="5"/>
+                                            Margin="2" Padding="5" />
                                 </TextBox.InnerLeftContent>
                             </TextBox>
                         </ui:FASettingsExpanderItem.Footer>
@@ -181,25 +181,25 @@
                             <StackPanel Orientation="Horizontal" Spacing="5">
                                 <Button Command="{Binding DumpCacheCommand}"
                                         Content="{ice:FluentIcon Icon=Delete,FontSize=18}"
-                                        ToolTip.Tip="清空缓存" Padding="5"/>
+                                        ToolTip.Tip="清空缓存" Padding="5" />
                                 <NumericUpDown Value="{Binding DiskCacheSizeLimit}"
                                                PlaceholderText="{Binding DefaultSettings.DiskCacheSizeLimit, StringFormat={}{0:N0}}"
                                                MinWidth="300" FormatString="N0">
                                     <NumericUpDown.Styles>
-										<Style Selector="NumericUpDown /template/ ButtonSpinner /template/ RepeatButton">
-											<Setter Property="IsVisible" Value="False"/>
+                                        <Style Selector="NumericUpDown /template/ ButtonSpinner /template/ RepeatButton">
+                                            <Setter Property="IsVisible" Value="False" />
                                         </Style>
                                     </NumericUpDown.Styles>
                                     <NumericUpDown.InnerLeftContent>
                                         <TextBlock Text="{Binding CacheSizeString}"
                                                    ToolTip.Tip="已使用磁盘空间"
                                                    VerticalAlignment="Center"
-                                                   Margin="5,0,-5,0"/>
+                                                   Margin="5,0,-5,0" />
                                     </NumericUpDown.InnerLeftContent>
                                     <NumericUpDown.InnerRightContent>
-										<TextBlock Text="字节"
+                                        <TextBlock Text="字节"
                                                    VerticalAlignment="Center"
-                                                   Margin="0,0,5,0"/>
+                                                   Margin="0,0,5,0" />
                                     </NumericUpDown.InnerRightContent>
                                 </NumericUpDown>
                             </StackPanel>
@@ -209,63 +209,63 @@
                 <ui:FASettingsExpander Header="请求页大小" IsExpanded="False"
                                        IconSource="{ice:FluentIconSource AppsList}">
                     <ui:FASettingsExpander.Styles>
-						<Style Selector="NumericUpDown">
-							<Setter Property="MinWidth" Value="150"/>
+                        <Style Selector="NumericUpDown">
+                            <Setter Property="MinWidth" Value="150" />
                         </Style>
                     </ui:FASettingsExpander.Styles>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Collections}">
                         <TextBlock>收藏项目</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding CollectionPageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.CollectionPageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.CollectionPageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Circle}">
                         <TextBlock>修订</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding RevisionPageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.RevisionPageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.RevisionPageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Comment}">
                         <TextBlock>评论</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding CommentPageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.CommentPageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.CommentPageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Search}">
                         <TextBlock>搜索结果</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding SearchPageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.SearchPageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.SearchPageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Layer}">
                         <TextBlock>章节列表</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding EpisodePageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.EpisodePageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.EpisodePageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource TextNumberList}">
                         <TextBlock>索引结果</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
                             <NumericUpDown Value="{Binding SubjectBrowserPageSize}"
-                                           PlaceholderText="{Binding DefaultSettings.SubjectBrowserPageSize}"/>
+                                           PlaceholderText="{Binding DefaultSettings.SubjectBrowserPageSize}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="倾向中文标题"
                                        IconSource="{ice:FluentIconSource Translate}">
                     <ui:FASettingsExpander.Footer>
-                        <CheckBox IsChecked="{Binding PreferChineseNames}"/>
+                        <CheckBox IsChecked="{Binding PreferChineseNames}" />
                     </ui:FASettingsExpander.Footer>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="启动时检查更新"
                                        IconSource="{ice:FluentIconSource ArrowCircleUp}">
                     <ui:FASettingsExpander.Footer>
-                        <CheckBox IsChecked="{Binding CheckUpdateOnStartup}"/>
+                        <CheckBox IsChecked="{Binding CheckUpdateOnStartup}" />
                     </ui:FASettingsExpander.Footer>
                 </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="开发者选项"
@@ -273,13 +273,13 @@
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource DocumentTextClock}">
                         <TextBlock>保存日志</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding SaveLogFile}"/>
+                            <CheckBox IsChecked="{Binding SaveLogFile}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                     <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource ServerMultiple}">
                         <TextBlock>开发环境 API</TextBlock>
                         <ui:FASettingsExpanderItem.Footer>
-                            <CheckBox IsChecked="{Binding DevEnvironment}"/>
+                            <CheckBox IsChecked="{Binding DevEnvironment}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
                 </ui:FASettingsExpander>

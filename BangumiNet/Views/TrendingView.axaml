@@ -9,8 +9,8 @@
              x:Class="BangumiNet.Views.TrendingView">
     <StackPanel Spacing="5">
         <Border Classes="Card">
-			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Fire" Text="近期瞩目"/>
+            <Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Fire" Text="近期瞩目" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
@@ -34,6 +34,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-		<bn:SubjectListPagedView DataContext="{Binding}"/>
+        <bn:SubjectListPagedView DataContext="{Binding}" />
     </StackPanel>
 </UserControl>

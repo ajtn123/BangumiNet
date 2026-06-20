@@ -9,40 +9,40 @@
              x:DataType="bn:BlogViewModel"
              x:Class="BangumiNet.Views.BlogCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <MainImage Url="{Binding Image}" VerticalAlignment="Top"/>
+        <MainImage Url="{Binding Image}" VerticalAlignment="Top" />
 
         <StackPanel Grid.Column="1">
-            <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}"/>
+            <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}" />
             <WrapPanel Classes="InfoBar">
-                <TextBlock><ic:FluentIcon Icon="Person"/></TextBlock>
+                <TextBlock><ic:FluentIcon Icon="Person" /></TextBlock>
                 <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
                                  Command="{Binding User.OpenInNewWindowCommand}"
-                                 Content="{Binding User.Name}" Classes="Pri"/>
-                <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment"/>
-                <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class"/>
+                                 Content="{Binding User.Name}" Classes="Pri" />
+                <InfoItem Tip="评论数" Text="{Binding ReplyCount}" Icon="Comment" />
+                <InfoItem Tip="类型" Text="{Binding Type}" Icon="Class" />
                 <TextBlock>
-                    <ic:FluentIcon ToolTip.Tip="本日志非公开" Icon="LockClosed" IsVisible="{Binding !IsPublic}"/>
+                    <ic:FluentIcon ToolTip.Tip="本日志非公开" Icon="LockClosed" IsVisible="{Binding !IsPublic}" />
                 </TextBlock>
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Content}"
                                  IsVisible="{Binding Content, Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText"/>
+                                 Classes="Sec PointoverText" />
         </StackPanel>
-        
+
         <Grid.ContextFlyout>
             <Flyout>
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
+                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
+                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
                     </StackPanel>
                     <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
-                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp"/>
-                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd"/>
+                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
+                        <InfoItem Tip="更新时间" CommonText="{Binding UpdateTime}" Icon="DocumentArrowUp" />
+                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="DocumentAdd" />
                     </WrapPanel>
-                    <bn:CardView Content="{Binding User}"/>
+                    <bn:CardView Content="{Binding User}" />
                 </StackPanel>
             </Flyout>
         </Grid.ContextFlyout>

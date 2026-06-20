@@ -11,5 +11,5 @@
               CanUserResizeColumns="True"
               CanUserSortColumns="True"
               IsReadOnly="True"
-              GridLinesVisibility="Horizontal"/>
+              GridLinesVisibility="Horizontal" />
 </UserControl>

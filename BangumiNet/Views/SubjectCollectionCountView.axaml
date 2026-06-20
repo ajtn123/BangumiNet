@@ -10,64 +10,64 @@
              x:DataType="ai:ICollection"
              x:Class="BangumiNet.Views.SubjectCollectionCountView">
     <UserControl.Clip>
-		<RectangleGeometry Rect="{Binding #View.Bounds, Converter={StaticResource BoundCvt}}"
-                           RadiusX="5" RadiusY="5"/>
+        <RectangleGeometry Rect="{Binding #View.Bounds, Converter={StaticResource BoundCvt}}"
+                           RadiusX="5" RadiusY="5" />
     </UserControl.Clip>
     <UserControl.Styles>
-		<Style Selector="Grid#LayoutGird > Panel > TextBlock">
-            <Setter Property="Margin" Value="5,0"/>
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="IsVisible" Value="False"/>
-            <Setter Property="Opacity" Value="0"/>
+        <Style Selector="Grid#LayoutGird > Panel > TextBlock">
+            <Setter Property="Margin" Value="5,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="Opacity" Value="0" />
             <Setter Property="Transitions">
                 <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
                 </Transitions>
             </Setter>
             <Style Selector="^ ic|FluentIcon">
-				<Setter Property="Margin" Value="0,0,0,-1.5"/>
+                <Setter Property="Margin" Value="0,0,0,-1.5" />
             </Style>
         </Style>
-		<Style Selector="Grid#LayoutGird:pointerover > Panel > TextBlock">
-            <Setter Property="IsVisible" Value="True"/>
-            <Setter Property="Opacity" Value="1"/>
+        <Style Selector="Grid#LayoutGird:pointerover > Panel > TextBlock">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
     </UserControl.Styles>
 
     <Grid Name="LayoutGird">
         <Panel Name="Wish" Background="Pink" Grid.Column="0">
-			<TextBlock Name="WishTB">
-				<ic:FluentIcon Icon="AddSquare" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+            <TextBlock Name="WishTB">
+                <ic:FluentIcon Icon="AddSquare" FontSize="{Binding $parent[TextBlock].FontSize}" />
                 <Run>想看</Run>
-                <Run Name="WishRun"/>
+                <Run Name="WishRun" />
             </TextBlock>
         </Panel>
         <Panel Name="Doing" Background="LightGreen" Grid.Column="1">
-			<TextBlock Name="DoingTB">
-				<ic:FluentIcon Icon="Tv" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+            <TextBlock Name="DoingTB">
+                <ic:FluentIcon Icon="Tv" FontSize="{Binding $parent[TextBlock].FontSize}" />
                 <Run>在看</Run>
-                <Run Name="DoingRun"/>
+                <Run Name="DoingRun" />
             </TextBlock>
         </Panel>
         <Panel Name="Done" Background="LightBlue" Grid.Column="2">
-			<TextBlock Name="DoneTB">
-				<ic:FluentIcon Icon="Checkmark" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+            <TextBlock Name="DoneTB">
+                <ic:FluentIcon Icon="Checkmark" FontSize="{Binding $parent[TextBlock].FontSize}" />
                 <Run>看过</Run>
-                <Run Name="DoneRun"/>
+                <Run Name="DoneRun" />
             </TextBlock>
         </Panel>
         <Panel Name="OnHold" Background="LightGray" Grid.Column="3">
-			<TextBlock Name="OnHoldTB">
-				<ic:FluentIcon Icon="StackVertical" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+            <TextBlock Name="OnHoldTB">
+                <ic:FluentIcon Icon="StackVertical" FontSize="{Binding $parent[TextBlock].FontSize}" />
                 <Run>搁置</Run>
-                <Run Name="OnHoldRun"/>
+                <Run Name="OnHoldRun" />
             </TextBlock>
         </Panel>
         <Panel Name="Dropped" Background="Red" Grid.Column="4">
-			<TextBlock Name="DroppedTB">
-				<ic:FluentIcon Icon="Dismiss" FontSize="{Binding $parent[TextBlock].FontSize}"/>
+            <TextBlock Name="DroppedTB">
+                <ic:FluentIcon Icon="Dismiss" FontSize="{Binding $parent[TextBlock].FontSize}" />
                 <Run>抛弃</Run>
-                <Run Name="DroppedRun"/>
+                <Run Name="DroppedRun" />
             </TextBlock>
         </Panel>
     </Grid>

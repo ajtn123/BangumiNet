@@ -13,15 +13,15 @@
           ToolTip.Tip="{Binding .,Converter={StaticResource NameCnCvt}}">
         <Rectangle Classes="Card"
                    StrokeDashArray="{Binding Status,Converter={StaticResource EpDashCvt}}"
-                   Fill="{Binding Type,Converter={StaticResource EpBrushCvt}}"/>
+                   Fill="{Binding Type,Converter={StaticResource EpBrushCvt}}" />
         <Rectangle Fill="{StaticResource UnairedBrush}"
                    RadiusX="5" RadiusY="5"
-                   IsVisible="{Binding AirDate,Converter={StaticResource EpUnairedCvt}}"/>
+                   IsVisible="{Binding AirDate,Converter={StaticResource EpUnairedCvt}}" />
         <TextBlock Text="{Binding Sort}" Margin="2,0"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                   HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Grid.ContextFlyout>
             <Flyout>
-                <v:EpisodeView/>
+                <v:EpisodeView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

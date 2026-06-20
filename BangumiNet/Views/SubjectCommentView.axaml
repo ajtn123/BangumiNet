@@ -11,7 +11,7 @@
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
         <MainImage Url="{Binding User.Avatar?.Large}"
                    VerticalAlignment="Top" Width="50">
-            <bn:UserFlyoutView DataContext="{Binding User}"/>
+            <bn:UserFlyoutView DataContext="{Binding User}" />
         </MainImage>
 
         <Border Classes="Card Large" Grid.Column="1"
@@ -20,21 +20,21 @@
                 <WrapPanel Classes="InfoBar">
                     <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
                                      Command="{Binding User.OpenInNewWindowCommand}"
-                                     Content="{Binding User.Name}" Classes="Pri"/>
-                    <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec"/>
-                    <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"/>
-                    <InfoItem Tip="收藏状态" EnumText="{Binding Type}" Icon="Bookmark"/>
-                    <InfoItem Tip="收藏时间" CommonText="{Binding UpdateTime}" Icon="Calendar"/>
+                                     Content="{Binding User.Name}" Classes="Pri" />
+                    <InfoItem Tip="用户名" Text="{Binding User.Username}" Classes="Sec" />
+                    <InfoItem Tip="用户评价" Text="{Binding Rating}" Icon="Star" IconVariant="Color" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}" />
+                    <InfoItem Tip="收藏状态" EnumText="{Binding Type}" Icon="Bookmark" />
+                    <InfoItem Tip="收藏时间" CommonText="{Binding UpdateTime}" Icon="Calendar" />
                     <ContentControl Content="{Binding ReactionListViewModel}">
-						<ContentControl.DataTemplates>
-							<DataTemplate DataType="bn:ReactionListViewModel">
-								<bn:ReactionButtonView/>
+                        <ContentControl.DataTemplates>
+                            <DataTemplate DataType="bn:ReactionListViewModel">
+                                <bn:ReactionButtonView />
                             </DataTemplate>
                         </ContentControl.DataTemplates>
                     </ContentControl>
                 </WrapPanel>
-                <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap"/>
-                <bn:ReactionListView DataContext="{Binding ReactionListViewModel}"/>
+                <SelectableTextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                <bn:ReactionListView DataContext="{Binding ReactionListViewModel}" />
             </StackPanel>
         </Border>
     </Grid>

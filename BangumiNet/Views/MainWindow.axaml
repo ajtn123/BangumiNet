@@ -12,7 +12,7 @@
         Title="{Binding Title}">
 
     <Design.DataContext>
-        <bn:MainWindowViewModel/>
+        <bn:MainWindowViewModel />
     </Design.DataContext>
 
     <Panel>
@@ -20,29 +20,29 @@
                            PaneDisplayMode="Left"
                            IsPaneOpen="False">
             <ui:FANavigationView.AutoCompleteBox>
-                <AutoCompleteBox Name="Navigator"/>
+                <AutoCompleteBox Name="Navigator" />
             </ui:FANavigationView.AutoCompleteBox>
 
             <ui:FANavigationView.MenuItems>
-                <ui:FANavigationViewItem Content="主页" IconSource="{ice:FluentIconSource News}"/>
+                <ui:FANavigationViewItem Content="主页" IconSource="{ice:FluentIconSource News}" />
 
-                <ui:FANavigationViewItem Content="每日放送" IconSource="{ice:FluentIconSource Live}"/>
+                <ui:FANavigationViewItem Content="每日放送" IconSource="{ice:FluentIconSource Live}" />
 
-                <ui:FANavigationViewItem Content="小组" IconSource="{ice:FluentIconSource PeopleTeam}"/>
+                <ui:FANavigationViewItem Content="小组" IconSource="{ice:FluentIconSource PeopleTeam}" />
 
-                <ui:FANavigationViewItem Content="搜索" IconSource="{ice:FluentIconSource Search}"/>
+                <ui:FANavigationViewItem Content="搜索" IconSource="{ice:FluentIconSource Search}" />
 
-                <ui:FANavigationViewItem Content="分类浏览" IconSource="{ice:FluentIconSource ListBar}"/>
+                <ui:FANavigationViewItem Content="分类浏览" IconSource="{ice:FluentIconSource ListBar}" />
 
-                <ui:FANavigationViewItem Content="番组索引" IconSource="{ice:FluentIconSource DatabaseLink}"/>
+                <ui:FANavigationViewItem Content="番组索引" IconSource="{ice:FluentIconSource DatabaseLink}" />
             </ui:FANavigationView.MenuItems>
 
             <ui:FANavigationView.FooterMenuItems>
-                <ui:FANavigationViewItem Content="我" IconSource="{ice:FluentIconSource Person}"/>
+                <ui:FANavigationViewItem Content="我" IconSource="{ice:FluentIconSource Person}" />
             </ui:FANavigationView.FooterMenuItems>
         </ui:FANavigationView>
 
         <ui:FAInfoBar Name="Info" IsOpen="False" IsClosable="True"
-                    VerticalAlignment="Bottom" Margin="20"/>
+                    VerticalAlignment="Bottom" Margin="20" />
     </Panel>
 </Window>

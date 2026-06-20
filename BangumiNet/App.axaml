@@ -7,17 +7,17 @@
              x:Class="BangumiNet.App"
              RequestedThemeVariant="Default">
     <Application.DataTemplates>
-        <bn:ViewLocator/>
+        <bn:ViewLocator />
     </Application.DataTemplates>
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="/Converters/Converters.axaml"/>
-                <ResourceInclude Source="/Templates/MainImage.axaml"/>
-                <ResourceInclude Source="/Templates/InfoBadge.axaml"/>
-                <ResourceInclude Source="/Templates/InfoItem.axaml"/>
-                <ResourceInclude Source="/Templates/BBCode.axaml"/>
-                <ResourceInclude Source="/Templates/HyperlinkButton.axaml"/>
+                <ResourceInclude Source="/Converters/Converters.axaml" />
+                <ResourceInclude Source="/Templates/MainImage.axaml" />
+                <ResourceInclude Source="/Templates/InfoBadge.axaml" />
+                <ResourceInclude Source="/Templates/InfoItem.axaml" />
+                <ResourceInclude Source="/Templates/BBCode.axaml" />
+                <ResourceInclude Source="/Templates/HyperlinkButton.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         <FontFamily x:Key="ContentControlThemeFontFamily">Microsoft YaHei UI, Noto Sans CJK SC, PingFang SC, sans-serif</FontFamily>
@@ -31,236 +31,236 @@
         <DataTemplate x:Key="NavigatorTemplate" DataType="bn:AutoCompleteBoxItemViewModel">
             <Button Command="{Binding Command}" Content="{Binding Text}"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                    Padding="0" Margin="0" BorderBrush="Transparent" Background="Transparent"/>
+                    Padding="0" Margin="0" BorderBrush="Transparent" Background="Transparent" />
         </DataTemplate>
         <LinearGradientBrush x:Key="UnairedBrush" StartPoint="0%,0%" EndPoint="33.33%,33.33%" SpreadMethod="Repeat">
-            <GradientStop Color="Transparent" Offset="0.0"/>
-            <GradientStop Color="Transparent" Offset="0.5"/>
-            <GradientStop Color="#BFFFFFFF" Offset="0.5"/>
-            <GradientStop Color="#BFFFFFFF" Offset="1.0"/>
+            <GradientStop Color="Transparent" Offset="0.0" />
+            <GradientStop Color="Transparent" Offset="0.5" />
+            <GradientStop Color="#BFFFFFFF" Offset="0.5" />
+            <GradientStop Color="#BFFFFFFF" Offset="1.0" />
         </LinearGradientBrush>
     </Application.Resources>
 
     <Application.Styles>
-        <sty:FluentAvaloniaTheme/>
+        <sty:FluentAvaloniaTheme />
         <Style Selector=":is(Window)">
-            <Setter Property="Icon" Value="/Assets/BangumiNet.ico"/>
+            <Setter Property="Icon" Value="/Assets/BangumiNet.ico" />
         </Style>
         <Style Selector="Border.Card">
-            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Padding" Value="5,0"/>
-            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="5,0" />
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
             <Style Selector="^.Large">
-                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Padding" Value="5" />
             </Style>
             <Style Selector="^ ComboBox">
-                <Setter Property="Height" Value="19"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="19" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
             </Style>
         </Style>
         <Style Selector="Rectangle.Card">
-            <Setter Property="RadiusX" Value="5"/>
-            <Setter Property="RadiusY" Value="5"/>
-            <Setter Property="StrokeThickness" Value="1"/>
-            <Setter Property="Stroke" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
-            <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Setter Property="RadiusX" Value="5" />
+            <Setter Property="RadiusY" Value="5" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="{DynamicResource SystemFillColorAttentionBrush}" />
+            <Setter Property="Fill" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
         </Style>
         <Style Selector="Button.Icon, ToggleButton.Icon">
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Padding" Value="0" />
             <Style Selector="^ ic|FluentIcon">
-                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontSize" Value="24" />
             </Style>
         </Style>
         <Style Selector="SplitButton.Icon">
-            <Setter Property="Padding" Value="5,0"/>
-            <Setter Property="MinHeight" Value="0"/>
-            <Setter Property="Height" Value="26"/>
+            <Setter Property="Padding" Value="5,0" />
+            <Setter Property="MinHeight" Value="0" />
+            <Setter Property="Height" Value="26" />
         </Style>
         <Style Selector="FlyoutPresenter">
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         </Style>
         <Style Selector="ToolTip">
-            <Setter Property="Padding" Value="2,0"/>
-            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="2,0" />
+            <Setter Property="CornerRadius" Value="5" />
         </Style>
         <Style Selector="HyperlinkButton">
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="BorderThickness" Value="0"/>  
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
             <Style Selector="^:pointerover /template/ ContentPresenter#ContentPresenter">
-                <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
             </Style>
         </Style>
         <Style Selector="HyperlinkButton.Title">
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
         <Style Selector="TextBlock.Title">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
         <Style Selector="TextBlock.TitleAlt">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="Expander /template/ ToggleButton /template/ TextBlock#ExpandCollapseChevron">
-            <Setter Property="Text" Value="&#xe70d;"/>
-            <Setter Property="FontFamily" Value="Segoe Fluent Icons"/>
+            <Setter Property="Text" Value="&#xe70d;" />
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
         </Style>
         <Style Selector="Button.Cancel">
-            <Setter Property="Background" Value="#1FFF0000"/>
-            <Setter Property="BorderBrush" Value="#BFFF7F7F"/>
+            <Setter Property="Background" Value="#1FFF0000" />
+            <Setter Property="BorderBrush" Value="#BFFF7F7F" />
         </Style>
         <Style Selector="Button.Cancel:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#BFFF7F7F"/>
+            <Setter Property="Background" Value="#BFFF7F7F" />
         </Style>
         <Style Selector="Button.Confirm">
-            <Setter Property="Background" Value="#1F00FF00"/>
-            <Setter Property="BorderBrush" Value="#BF7FFF7F"/>
+            <Setter Property="Background" Value="#1F00FF00" />
+            <Setter Property="BorderBrush" Value="#BF7FFF7F" />
         </Style>
         <Style Selector="Button.Confirm:pointerover /template/ ContentPresenter">
-            <Setter Property="Background" Value="#BF7FFF7F"/>
+            <Setter Property="Background" Value="#BF7FFF7F" />
         </Style>
         <Style Selector="WrapPanel.InfoBar">
-            <Setter Property="ItemSpacing" Value="5"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="ItemSpacing" Value="5" />
+            <Setter Property="Orientation" Value="Horizontal" />
             <Style Selector="^ > TextBlock">
                 <Style Selector="^ ic|FluentIcon">
-                    <Setter Property="FontSize" Value="16"/>
-                    <Setter Property="Margin" Value="0,0,2,-3"/>
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="Margin" Value="0,0,2,-3" />
                 </Style>
             </Style>
             <Style Selector="^ > Button">
-                <Setter Property="Height" Value="18"/>
-                <Setter Property="Width" Value="18"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Height" Value="18" />
+                <Setter Property="Width" Value="18" />
+                <Setter Property="BorderBrush" Value="Transparent" />
                 <Style Selector="^.Distinct">
-                    <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource ControlElevationBorderBrush}" />
                 </Style>
             </Style>
             <Style Selector="^ > Separator">
-                <Setter Property="Height" Value="15"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="Width" Value="1"/>
+                <Setter Property="Height" Value="15" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Width" Value="1" />
             </Style>
             <Style Selector="^ > HyperlinkButton">
-                <Setter Property="Margin" Value="0,-2,0,0"/>
+                <Setter Property="Margin" Value="0,-2,0,0" />
             </Style>
         </Style>
         <Style Selector="Separator">
-            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Margin" Value="0,5" />
         </Style>
         <Style Selector="AutoCompleteBox#Navigator">
-            <Setter Property="FilterMode" Value="None"/>
-            <Setter Property="ItemTemplate" Value="{StaticResource NavigatorTemplate}"/>
+            <Setter Property="FilterMode" Value="None" />
+            <Setter Property="ItemTemplate" Value="{StaticResource NavigatorTemplate}" />
             <Style Selector="^ /template/ ListBox ListBoxItem">
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="MinHeight" Value="0"/>
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="MinHeight" Value="0" />
             </Style>
         </Style>
         <Style Selector="Grid.ViewRoot">
-            <Setter Property="Margin" Value="10,10,10,100"/>
-            <Setter Property="ColumnSpacing" Value="10"/>
-            <Setter Property="RowSpacing" Value="10"/>
+            <Setter Property="Margin" Value="10,10,10,100" />
+            <Setter Property="ColumnSpacing" Value="10" />
+            <Setter Property="RowSpacing" Value="10" />
         </Style>
         <Style Selector="Button > TextBlock ic|FluentIcon">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Margin" Value="0,0,2,-3"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,2,-3" />
         </Style>
         <Style Selector="Border.TagBadge">
-            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorSecondaryBrush}" />
             <Style Selector="^ TextBlock.Name">
-                <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}" />
             </Style>
             <Style Selector="^.Meta">
-                <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}"/>
+                <Setter Property="Background" Value="{DynamicResource SystemFillColorAttentionBrush}" />
                 <Style Selector="^ > TextBlock, ^ > StackPanel > TextBlock">
-                    <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
                     <Style Selector="^.Name">
-                        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorSecondaryBrush}" />
                     </Style>
                 </Style>
             </Style>
         </Style>
         <Style Selector=":is(UserControl), ItemsControl">
-            <Setter Property="ClipToBounds" Value="False"/>
+            <Setter Property="ClipToBounds" Value="False" />
         </Style>
         <Style Selector="ScrollViewer#BadgeScroll">
-            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="VerticalScrollBarVisibility" Value="Disabled"/>
-            <Setter Property="Margin" Value="-10,0"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="Margin" Value="-10,0" />
             <Style Selector="^ > ItemsControl">
-                <Setter Property="Margin" Value="10,5,10,10"/>
+                <Setter Property="Margin" Value="10,5,10,10" />
             </Style>
         </Style>
         <Style Selector=".BadgeView MainImage#Img">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
         <Style Selector="HyperlinkButton.Pri">
-            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
         </Style>
         <Style Selector="HyperlinkButton.Sec">
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="TextBlock.Pri, .Pri > TextBlock, SelectableTextBlock.Pri, .Pri > SelectableTextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
         </Style>
         <Style Selector="TextBlock.Sec, .Sec > TextBlock, SelectableTextBlock.Sec, .Sec > SelectableTextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="Run.Pri">
-            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
         </Style>
         <Style Selector="Run.Sec">
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
         </Style>
         <Style Selector="ItemsControl:empty">
-            <Setter Property="IsVisible" Value="False"/>
+            <Setter Property="IsVisible" Value="False" />
         </Style>
         <Style Selector="Label">
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Padding" Value="0" />
         </Style>
         <Style Selector=":is(TextBlock).PointoverText">
-            <Setter Property="TextWrapping" Value="NoWrap"/>
-            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="TextTrimming" Value="WordEllipsis" />
         </Style>
         <Style Selector=".PointoverTextHost:pointerover  :is(TextBlock).PointoverText,
                          .PointoverTextHost:focus-within :is(TextBlock).PointoverText,
                          FlyoutPresenter                 :is(TextBlock).PointoverText,
                          :is(TextBlock).PointoverText:pointerover,
                          :is(TextBlock).PointoverText:focus">
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="TextTrimming" Value="None"/>
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextTrimming" Value="None" />
         </Style>
         <Style Selector=":is(Panel).PointoverTextHost">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="IsHitTestVisible" Value="True" />
         </Style>
         <Style Selector="AutoCompleteBox#Navigator">
-            <Setter Property="PlaceholderText" Value="键入项目 ID 或用户名"/>
+            <Setter Property="PlaceholderText" Value="键入项目 ID 或用户名" />
         </Style>
         <Style Selector=":is(Panel).Highlight">
-            <Setter Property="Background" Value="#3F7FFF7F"/>
+            <Setter Property="Background" Value="#3F7FFF7F" />
         </Style>
         <Style Selector=":is(TemplatedControl).Highlight">
-            <Setter Property="Background" Value="#3F7FFF7F"/>
+            <Setter Property="Background" Value="#3F7FFF7F" />
         </Style>
         <Style Selector=".ViewRoot > StackPanel > bn|RelatedItemListView, :is(TemplatedControl).SepTop">
-            <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}"/>
-            <Setter Property="BorderThickness" Value="0,1,0,0"/>
-            <Setter Property="Margin" Value="0,5,0,0"/>
-            <Setter Property="Padding" Value="0,5,0,0"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DividerStrokeColorDefault}" />
+            <Setter Property="BorderThickness" Value="0,1,0,0" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+            <Setter Property="Padding" Value="0,5,0,0" />
         </Style>
         <Style Selector="SelectableTextBlock.NoFocus">
-            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Focusable" Value="False" />
         </Style>
     </Application.Styles>
 </Application>

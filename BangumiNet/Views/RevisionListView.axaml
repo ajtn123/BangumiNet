@@ -7,6 +7,6 @@
              x:DataType="bn:RevisionListViewModel"
              x:Class="BangumiNet.Views.RevisionListView">
     <ScrollViewer Padding="5">
-        <bn:SubjectListPagedView/>
+        <bn:SubjectListPagedView />
     </ScrollViewer>
 </UserControl>

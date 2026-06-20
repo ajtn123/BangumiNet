@@ -11,15 +11,15 @@
     <ItemsControl ItemsSource="{Binding Reactions}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:ReactionViewModel">
-                <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">                  
+                <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">
                     <StackPanel Spacing="5" Orientation="Horizontal">
-                        <Image Source="{Binding ReactionImage}" Height="18"/>
-                        <TextBlock Text="{Binding Users.Count}"/>
+                        <Image Source="{Binding ReactionImage}" Height="18" />
+                        <TextBlock Text="{Binding Users.Count}" />
                     </StackPanel>
 
                     <Border.ContextFlyout>
                         <Flyout>
-                            <bn:ReactionFlyoutView/>
+                            <bn:ReactionFlyoutView />
                         </Flyout>
                     </Border.ContextFlyout>
                 </Border>
@@ -27,7 +27,7 @@
         </ItemsControl.DataTemplates>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapPanel ItemSpacing="5" LineSpacing="5"/>
+                <WrapPanel ItemSpacing="5" LineSpacing="5" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

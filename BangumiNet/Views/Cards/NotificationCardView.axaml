@@ -10,16 +10,16 @@
     <Grid ColumnDefinitions="Auto,*" ColumnSpacing="5">
         <MainImage Url="{Binding User.Avatar?.Small}"
                    VerticalAlignment="Top" Width="50">
-            <bn:UserFlyoutView DataContext="{Binding User}"/>
+            <bn:UserFlyoutView DataContext="{Binding User}" />
         </MainImage>
 
         <StackPanel Grid.Column="1">
-            <TextBlock Text="{Binding User.Username}"/>
-            <TextBlock Text="{Binding CreationTime}"/>
-            <TextBlock Text="{Binding NoticeTitle}"/>
+            <TextBlock Text="{Binding User.Username}" />
+            <TextBlock Text="{Binding CreationTime}" />
+            <TextBlock Text="{Binding NoticeTitle}" />
             <TextBlock IsVisible="{Binding Unread}">未读</TextBlock>
-            <TextBlock Text="{Binding Type}"/>
-            <Separator/>
+            <TextBlock Text="{Binding Type}" />
+            <Separator />
         </StackPanel>
     </Grid>
 </UserControl>

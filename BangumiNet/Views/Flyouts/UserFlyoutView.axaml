@@ -10,22 +10,22 @@
              x:Class="BangumiNet.Views.UserFlyoutView">
     <StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="5">
-            <ic:FluentIcon Icon="{Binding Icon}" FontSize="24"/>
-            <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示"/>
-            <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web"/>
-            <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示"/>
+            <ic:FluentIcon Icon="{Binding Icon}" FontSize="24" />
+            <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
+            <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
+            <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
         </StackPanel>
-        <Separator/>
+        <Separator />
         <TextBlock Text="{Binding Name}"
                    IsVisible="{Binding $self.Text,Converter={StaticResource NEWCvt}}"
-                   Classes="Title"/>
+                   Classes="Title" />
         <WrapPanel Classes="InfoBar">
-            <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
-            <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
-            <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar"/>
-            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText"/>
+            <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec" />
+            <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class" />
+            <InfoItem Tip="注册时间" CommonText="{Binding RegistrationTime}" Icon="Calendar" />
+            <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
         </WrapPanel>
         <SelectableTextBlock Text="{Binding Sign}" TextWrapping="Wrap" Classes="Sec"
-                             IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"/>
+                             IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}" />
     </StackPanel>
 </UserControl>

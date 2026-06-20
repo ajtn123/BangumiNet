@@ -7,7 +7,7 @@ namespace BangumiNet.Utils;
 public static partial class CommonUtils
 {
     /// <summary>
-    /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly"/>.
+    /// 将 Bangumi 的日期 string 转换为 <see cref="DateOnly" />.
     /// </summary>
     /// <param name="date"><c>yyyy-MM-dd</c></param>
     public static DateOnly? ParseBangumiDate(string? date)

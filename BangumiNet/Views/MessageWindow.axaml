@@ -15,15 +15,15 @@
     <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto"
           ColumnSpacing="5" RowSpacing="5" Margin="10">
         <ic:FluentIcon Icon="{Binding Icon}" FontSize="60"
-                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                       VerticalAlignment="Top" HorizontalAlignment="Left" />
         <ScrollViewer Grid.Column="1">
-            <bn:TextView DataContext="{Binding Message}"/>
+            <bn:TextView DataContext="{Binding Message}" />
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     Grid.Row="1" Grid.ColumnSpan="2" Spacing="5">
             <Button Name="OkButton">
                 <TextBlock>
-                    <ic:FluentIcon Icon="Checkmark"/>确定
+                    <ic:FluentIcon Icon="Checkmark" />确定
                 </TextBlock>
             </Button>
         </StackPanel>

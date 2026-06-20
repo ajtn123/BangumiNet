@@ -12,7 +12,7 @@
         <Grid RowDefinitions="Auto,Auto"
               Classes="ViewRoot">
             <Border Classes="Card Large">
-                <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4"/> 每日放送</TextBlock>
+                <TextBlock FontSize="30"><ic:FluentIcon Icon="Live" FontSize="30" Margin="0,0,0,-4" /> 每日放送</TextBlock>
             </Border>
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
@@ -21,12 +21,12 @@
                 <ItemsControl ItemsSource="{Binding Calendars}" Margin="10,0">
                     <ItemsControl.DataTemplates>
                         <DataTemplate DataType="vm:CalendarViewModel">
-                            <v:CalendarView DataContext="{Binding .}" Width="230"/>
+                            <v:CalendarView DataContext="{Binding}" Width="230" />
                         </DataTemplate>
                     </ItemsControl.DataTemplates>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="5"/>
+                            <StackPanel Orientation="Horizontal" Spacing="5" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

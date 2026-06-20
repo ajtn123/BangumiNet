@@ -1,7 +1,7 @@
 <Project>
 
     <Import Project="..\Directory.Build.props" />
-    
+
     <PropertyGroup>
         <EnableMSTestRunner>true</EnableMSTestRunner>
         <OutputType>Exe</OutputType>

@@ -11,18 +11,18 @@
              x:Class="BangumiNet.Views.SubjectCollectionView">
     <Border Classes="Card Large">
         <StackPanel Spacing="5">
-            <WrapPanel Classes="InfoBar">                
-                <InfoItem Tip="收藏状态" EnumText="{Binding Type}" Icon="Bookmark"/>
-                <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color"/><Run Text="{Binding Rating}"/></TextBlock>
-                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer"/><Run Text="{Binding EpisodeStatus}"/>/<Run Text="{Binding Parent.EpisodeCount}"/> 话</TextBlock>
-                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book"/><Run Text="{Binding VolumeStatus}"/>/<Run Text="{Binding Parent.VolumeCount}"/> 册</TextBlock>
-                <InfoItem Tip="修改时间" Text="{Binding UpdateTime}" Icon="Clock"/>
+            <WrapPanel Classes="InfoBar">
+                <InfoItem Tip="收藏状态" EnumText="{Binding Type}" Icon="Bookmark" />
+                <TextBlock ToolTip.Tip="用户评价" IsVisible="{Binding Rating,Converter={StaticResource ZeroCvt}}"><ic:FluentIcon Icon="Star" IconVariant="Color" /><Run Text="{Binding Rating}" /></TextBlock>
+                <TextBlock ToolTip.Tip="话数" IsVisible="{Binding EpisodeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Layer" /><Run Text="{Binding EpisodeStatus}" />/<Run Text="{Binding Parent.EpisodeCount}" /> 话</TextBlock>
+                <TextBlock ToolTip.Tip="册数" IsVisible="{Binding VolumeStatus,Converter={StaticResource NullCvt}}"><ic:FluentIcon Icon="Book" /><Run Text="{Binding VolumeStatus}" />/<Run Text="{Binding Parent.VolumeCount}" /> 册</TextBlock>
+                <InfoItem Tip="修改时间" Text="{Binding UpdateTime}" Icon="Clock" />
                 <TextBlock>
-                    <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}"/>
+                    <ic:FluentIcon ToolTip.Tip="私有收藏" Icon="Incognito" IsVisible="{Binding IsPrivate}" />
                 </TextBlock>
                 <Button ToolTip.Tip="编辑收藏信息" Command="{Binding OpenEditWindowCommand}"
                         Classes="Icon Distinct" Content="{ice:FluentIcon Icon=Edit,FontSize=16}"
-                        IsVisible="{Binding IsMy}"/>
+                        IsVisible="{Binding IsMy}" />
             </WrapPanel>
             <ItemsControl ItemsSource="{Binding Tags}">
                 <ItemsControl.ItemTemplate>
@@ -36,14 +36,14 @@
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel ItemSpacing="3" LineSpacing="3"/>
+                        <WrapPanel ItemSpacing="3" LineSpacing="3" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-            <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NEWCvt}}"/>
+            <Separator Margin="0" IsVisible="{Binding Comment,Converter={StaticResource NEWCvt}}" />
             <SelectableTextBlock TextWrapping="Wrap" IsVisible="{Binding Comment,Converter={StaticResource NEWCvt}}">
-                <ic:FluentIcon Icon="Status" Margin="0,0,0,-3" FontSize="16"/>
-                <Run Text="{Binding Comment}"/>
+                <ic:FluentIcon Icon="Status" Margin="0,0,0,-3" FontSize="16" />
+                <Run Text="{Binding Comment}" />
             </SelectableTextBlock>
             <v:ReactionListView DataContext="{Binding ReactionListViewModel}" />
         </StackPanel>

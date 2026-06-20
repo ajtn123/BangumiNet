@@ -8,10 +8,10 @@
              x:Class="BangumiNet.Views.EpisodeFullView">
     <ScrollViewer>
         <StackPanel Margin="5" Spacing="5">
-            <bn:EpisodeView DataContext="{Binding}"/>
+            <bn:EpisodeView DataContext="{Binding}" />
 
             <Expander Header="吐槽箱" HorizontalAlignment="Stretch" IsExpanded="True">
-                <bn:CommentListView DataContext="{Binding CommentListViewModel}"/>
+                <bn:CommentListView DataContext="{Binding CommentListViewModel}" />
             </Expander>
         </StackPanel>
     </ScrollViewer>

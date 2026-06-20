@@ -8,8 +8,8 @@
              x:Class="BangumiNet.Views.GroupListView">
     <StackPanel Spacing="5">
         <Border Classes="Card">
-			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Layer" Text="小组列表"/>
+            <Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Layer" Text="小组列表" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
@@ -33,6 +33,6 @@
             </Grid>
         </Border>
 
-        <bn:SubjectListPagedView/>
+        <bn:SubjectListPagedView />
     </StackPanel>
 </UserControl>

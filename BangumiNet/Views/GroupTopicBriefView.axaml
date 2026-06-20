@@ -8,8 +8,8 @@
              x:Class="BangumiNet.Views.GroupTopicBriefView">
     <StackPanel Spacing="5">
         <Border Classes="Card">
-			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Comment" Text="近期话题"/>
+            <Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Comment" Text="近期话题" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
@@ -25,6 +25,6 @@
             </Grid>
         </Border>
 
-        <bn:SubjectListPagedView/>
+        <bn:SubjectListPagedView />
     </StackPanel>
 </UserControl>

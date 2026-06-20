@@ -10,13 +10,13 @@
              x:Class="BangumiNet.Views.SubjectCollectionListView">
     <StackPanel Spacing="5">
         <Border Classes="Card">
-			<Grid ColumnDefinitions="Auto,*">
-                <InfoItem Icon="Heart" Text="收藏"/>
+            <Grid ColumnDefinitions="Auto,*">
+                <InfoItem Icon="Heart" Text="收藏" />
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             Grid.Column="1" Spacing="5">
-                    <TextBlock Text="{Binding PageNavigator.RangeAndTotalMessage}" Grid.Column="1"/>
-                    <Separator Height="15" Width="1" Margin="0"/>
+                    <TextBlock Text="{Binding PageNavigator.RangeAndTotalMessage}" Grid.Column="1" />
+                    <Separator Height="15" Width="1" Margin="0" />
                     <ComboBox Grid.Column="1" x:Name="ItemTypeComboBox"
                               SelectedItem="{Binding ItemType}">
                         <ComboBox.ItemTemplate>
@@ -44,6 +44,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <bn:SubjectListPagedView/>
+        <bn:SubjectListPagedView />
     </StackPanel>
 </UserControl>

@@ -12,5 +12,5 @@
         ExtendClientAreaToDecorationsHint="True"
         WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
-    <AutoCompleteBox Name="Navigator" Margin="5"/>
+    <AutoCompleteBox Name="Navigator" Margin="5" />
 </Window>

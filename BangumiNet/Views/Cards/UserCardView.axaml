@@ -10,25 +10,25 @@
              x:Class="BangumiNet.Views.UserCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
         <MainImage Url="{Binding Avatar?.Large}" VerticalAlignment="Top">
-			<bn:UserFlyoutView/>
+            <bn:UserFlyoutView />
         </MainImage>
 
         <StackPanel Grid.Column="1" Name="MainStackPanel">
             <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
                              Command="{Binding OpenInNewWindowCommand}"
-                             Content="{Binding Name}" Classes="Title"/>
+                             Content="{Binding Name}" Classes="Title" />
             <WrapPanel Classes="InfoBar">
-                <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec"/>
-                <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class"/>
+                <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec" />
+                <InfoItem Tip="用户组" EnumText="{Binding UserGroup}" Icon="Class" />
             </WrapPanel>
             <SelectableTextBlock Text="{Binding Sign}"
                                  IsVisible="{Binding Sign,Converter={StaticResource NEWCvt}}"
-                                 Classes="Sec PointoverText NoFocus"/>
+                                 Classes="Sec PointoverText NoFocus" />
         </StackPanel>
 
         <Grid.ContextFlyout>
             <Flyout>
-                <bn:UserFlyoutView/>
+                <bn:UserFlyoutView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>

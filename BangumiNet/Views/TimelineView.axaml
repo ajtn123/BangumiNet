@@ -11,35 +11,35 @@
              x:Class="BangumiNet.Views.TimelineView">
     <UserControl.Styles>
         <Style Selector="bn|TimelineView #TimelineList > ItemsControl">
-            <Setter Property="ClipToBounds" Value="True"/>
+            <Setter Property="ClipToBounds" Value="True" />
             <Style Selector="^ > ContentPresenter">
-			    <Setter Property="bn:MoveTransitions.Transition">
-				    <bn:MoveTransition Duration="0:0:0.5" Easing="QuarticEaseInOut"/>
-			    </Setter>
+                <Setter Property="bn:MoveTransitions.Transition">
+                    <bn:MoveTransition Duration="0:0:0.5" Easing="QuarticEaseInOut" />
+                </Setter>
             </Style>
         </Style>
     </UserControl.Styles>
 
     <StackPanel Spacing="5">
-        <ContentControl Content="{Binding}"/>
-		<bn:SubjectListView DataContext="{Binding}" Name="TimelineList"/>
-        <ContentControl Content="{Binding}"/>
+        <ContentControl Content="{Binding}" />
+        <bn:SubjectListView DataContext="{Binding}" Name="TimelineList" />
+        <ContentControl Content="{Binding}" />
     </StackPanel>
 
     <UserControl.DataTemplates>
         <DataTemplate DataType="bn:TimelineViewModel">
             <Border Classes="Card">
-			    <Grid ColumnDefinitions="Auto,*">
-                    <InfoItem Icon="Timeline" Text="时间线"/>
+                <Grid ColumnDefinitions="Auto,*">
+                    <InfoItem Icon="Timeline" Text="时间线" />
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Grid.Column="1" Spacing="5">
                         <Label Target="IsEventStreamingCheckBox" Content="实时"
-                               IsVisible="{Binding Username,Converter={StaticResource InNullCvt}}"/>
+                               IsVisible="{Binding Username,Converter={StaticResource InNullCvt}}" />
                         <Viewbox Height="18" Grid.Column="1"
                                  IsVisible="{Binding Username,Converter={StaticResource InNullCvt}}">
                             <CheckBox IsChecked="{Binding IsEventStreaming}"
-                                      Name="IsEventStreamingCheckBox" Padding="0"/>
+                                      Name="IsEventStreamingCheckBox" Padding="0" />
                         </Viewbox>
                         <ComboBox Grid.Column="1" ItemsSource="{x:Static bn:TimelineView.Modes}"
                                   SelectedItem="{Binding Mode}"
@@ -52,16 +52,16 @@
                         </ComboBox>
                         <TextBox Text="{Binding Until}"
                                  Height="18" Padding="0"
-                                 PlaceholderText="位置"/>
+                                 PlaceholderText="位置" />
                         <Button ToolTip.Tip="前往" Classes="Icon" Height="18"
                                 Command="{Binding LoadCommand}"
-                                Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}"/>
+                                Content="{ice:FluentIcon Icon=Checkmark, FontSize=16}" />
                         <Button ToolTip.Tip="返回顶部" Classes="Icon" Height="18"
                                 Command="{Binding LoadTopCommand}"
-                                Content="{ice:FluentIcon Icon=ArrowUpload, FontSize=16}"/>
+                                Content="{ice:FluentIcon Icon=ArrowUpload, FontSize=16}" />
                         <Button ToolTip.Tip="下一页" Classes="Icon" Height="18"
                                 Command="{Binding LoadNextCommand}"
-                                Content="{ice:FluentIcon Icon=ArrowDown, FontSize=16}"/>
+                                Content="{ice:FluentIcon Icon=ArrowDown, FontSize=16}" />
                     </StackPanel>
                 </Grid>
             </Border>

@@ -7,14 +7,14 @@
              x:DataType="bn:TextViewModel"
              x:Class="BangumiNet.Views.TextView">
     <UserControl.Styles>
-		<Style Selector="HyperlinkButton">
-            <Setter Property="Classes.Pri" Value="True"/>
+        <Style Selector="HyperlinkButton">
+            <Setter Property="Classes.Pri" Value="True" />
         </Style>
         <Style Selector=":is(Inline)">
-			<Setter Property="BaselineAlignment" Value="Center"/>
+            <Setter Property="BaselineAlignment" Value="Center" />
         </Style>
     </UserControl.Styles>
     <SelectableTextBlock Inlines="{Binding Inlines}"
                          Focusable="{Binding IsFocusable}"
-                         TextWrapping="Wrap"/>
+                         TextWrapping="Wrap" />
 </UserControl>

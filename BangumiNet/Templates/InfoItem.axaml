@@ -5,7 +5,7 @@
     <Design.PreviewWith>
         <StackPanel Width="400" Spacing="10">
             <WrapPanel Classes="InfoBar" Background="{DynamicResource SystemRegionBrush}">
-                <InfoItem Icon="Home" Text="信息" Tip="提示"/>
+                <InfoItem Icon="Home" Text="信息" Tip="提示" />
             </WrapPanel>
         </StackPanel>
     </Design.PreviewWith>
@@ -19,7 +19,7 @@
                                    IsVisible="{TemplateBinding Icon,Converter={StaticResource NullCvt}}"
                                    Margin="0,0,3,-3"
                                    FontSize="16"
-                    /><Run Text="{TemplateBinding Text}"/>
+                    /><Run Text="{TemplateBinding Text}" />
                 </TextBlock>
             </ControlTemplate>
         </Setter>

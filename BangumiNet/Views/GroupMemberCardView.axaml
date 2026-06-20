@@ -9,10 +9,10 @@
     <Border Classes="Card Large">
         <StackPanel>
             <WrapPanel Classes="InfoBar">
-				<InfoItem Tip="{Binding JoinTime,Converter={StaticResource CommonCvt},StringFormat='加入时间：{0}'}"
-                          EnumText="{Binding Role}" Classes="Pri"/>
+                <InfoItem Tip="{Binding JoinTime,Converter={StaticResource CommonCvt},StringFormat='加入时间：{0}'}"
+                          EnumText="{Binding Role}" Classes="Pri" />
             </WrapPanel>
-		    <bn:UserCardView/>
+            <bn:UserCardView />
         </StackPanel>
     </Border>
 </UserControl>

@@ -19,10 +19,10 @@
                                     Background="{DynamicResource ControlSolidFillColorDefaultBrush}"
                                     Margin="0,0,0,-15" ClipToBounds="True">
                     <lvc:CartesianChart.XAxes>
-                        <lvc:XamlAxis Labels="{x:Static v:SubjectRatingView.Labels}" MinStep="1" ForceStepToMin="True"/>
+                        <lvc:XamlAxis Labels="{x:Static v:SubjectRatingView.Labels}" MinStep="1" ForceStepToMin="True" />
                     </lvc:CartesianChart.XAxes>
                     <lvc:CartesianChart.YAxes>
-                        <lvc:XamlAxis IsVisible="False"/>
+                        <lvc:XamlAxis IsVisible="False" />
                     </lvc:CartesianChart.YAxes>
                 </lvc:CartesianChart>
             </Border>
@@ -32,11 +32,11 @@
             <Grid ColumnDefinitions="*,Auto">
                 <TextBlock ToolTip.Tip="{Binding StandardDeviation,StringFormat='σ = {0:N3}'}">
                     平均
-                    <ic:FluentIcon Icon="Star" IconVariant="Color" Margin="0,0,0,-3" FontSize="16"/>
-                    <Run Text="{Binding Average,StringFormat={}{0:N3}}"/>
+                    <ic:FluentIcon Icon="Star" IconVariant="Color" Margin="0,0,0,-3" FontSize="16" />
+                    <Run Text="{Binding Average,StringFormat={}{0:N3}}" />
                 </TextBlock>
                 <TextBlock Text="{Binding Total,StringFormat='共 {0} 人评分'}"
-                           Grid.Column="1"/>
+                           Grid.Column="1" />
             </Grid>
         </Border>
     </Grid>

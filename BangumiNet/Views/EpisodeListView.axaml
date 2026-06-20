@@ -13,12 +13,12 @@
         <ItemsControl ItemsSource="{Binding SubjectViewModels}" Grid.ColumnSpan="2">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="vm:EpisodeViewModel">
-                    <v:EpisodeBadgeView DataContext="{Binding}"/>
+                    <v:EpisodeBadgeView DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.DataTemplates>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5"/>
+                    <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
@@ -27,6 +27,6 @@
                 Height="{Binding $self.Bounds.Width}"
                 Content="{ice:FluentIcon Icon=Add}" Classes="Icon"
                 Command="{Binding ProceedPageCommand}"
-                IsVisible="{Binding !IsFullyLoaded}"/>
+                IsVisible="{Binding !IsFullyLoaded}" />
     </Grid>
 </UserControl>
