@@ -4,7 +4,7 @@
 [![release](https://img.shields.io/github/release/ajtn123/BangumiNet)](https://github.com/ajtn123/BangumiNet/releases)
 ![code size](https://img.shields.io/github/languages/code-size/ajtn123/BangumiNet)
 [![framework](https://img.shields.io/badge/.NET-10-blue)](https://dotnet.microsoft.com/zh-cn/)
-[![framework](https://img.shields.io/badge/Avalonia-11-blue)](https://avaloniaui.net/)
+[![framework](https://img.shields.io/badge/Avalonia-12-blue)](https://avaloniaui.net/)
 [![ci](https://github.com/ajtn123/BangumiNet/actions/workflows/build.yml/badge.svg)](https://github.com/ajtn123/BangumiNet/actions/workflows/build.yml)
 
 BangumiNet 是一个基于 .NET 与 Avalonia 开发的第三方 [Bangumi 番组计划](https://bgm.tv/) 桌面客户端，支持 Windows、Linux 和 MacOS。
@@ -44,7 +44,7 @@ dotnet publish --configuration Release
 90 天以内提交的 commit 可以在与其对应的 [测试 workflow](https://github.com/ajtn123/BangumiNet/actions/workflows/build.yml) 页面找到 `app-archive.zip`，内含自动构建的所有项目。如果附带的可执行文件与操作系统不符，可以使用以下命令直接运行 `dll` 文件。
 
 ```
-dotnet BangumiNet.dll
+dotnet ./BangumiNet.dll
 ```
 
 ## NuGet

@@ -11,7 +11,7 @@
     <StackPanel Spacing="5" Name="MainVertical">
         <TextBox Text="{Binding Content}" AcceptsReturn="True"
                  MinHeight="60" HorizontalAlignment="Stretch"
-                 Watermark="{Binding ReplyHint}"/>
+                 PlaceholderText="{Binding ReplyHint}"/>
         <StackPanel Spacing="5" Orientation="Horizontal">
             <Button Command="{Binding SendCommand}">
                 <TextBlock>

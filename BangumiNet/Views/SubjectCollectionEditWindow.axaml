@@ -40,7 +40,7 @@
                 <TextBox Padding="2,0" Height="18" MinWidth="20"
                          IsVisible="{Binding IsEpStatusEditable}"
                          Text="{Binding EpisodeStatus,Converter={StaticResource NullIntCvt}}"
-                         Watermark="{Binding EpisodeStatus,Mode=OneTime}"
+                         PlaceholderText="{Binding EpisodeStatus,Mode=OneTime}"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 <TextBlock IsVisible="{Binding IsEpStatusEditable}">
                     /<Run Text="{Binding Parent.EpisodeCount}"/> 话
@@ -53,7 +53,7 @@
                 <TextBox Padding="2,0" Height="18" MinWidth="20"
                          IsVisible="{Binding IsVolStatusEditable}"
                          Text="{Binding VolumeStatus,Converter={StaticResource NullIntCvt}}"
-                         Watermark="{Binding VolumeStatus,Mode=OneTime}"
+                         PlaceholderText="{Binding VolumeStatus,Mode=OneTime}"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                 <TextBlock IsVisible="{Binding IsVolStatusEditable}">
                     /<Run Text="{Binding Parent.VolumeCount}"/> 册
@@ -91,7 +91,7 @@
         </Grid>
 
         <Separator Margin="0"/>
-        <TextBox Watermark="标签" Text="{Binding TagInput}" Name="TagInputBox"
+        <TextBox PlaceholderText="标签" Text="{Binding TagInput}" Name="TagInputBox"
                  HorizontalAlignment="Stretch" Padding="2,0">
             <TextBox.InnerRightContent>
                 <Button Content="{ice:FluentIcon Icon=Add}" Name="TagAddButton"

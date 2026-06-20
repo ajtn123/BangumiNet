@@ -10,7 +10,6 @@
         SizeToContent="WidthAndHeight"
         Topmost="True"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="NoChrome"
         WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
     <AutoCompleteBox Name="Navigator" Margin="5"/>

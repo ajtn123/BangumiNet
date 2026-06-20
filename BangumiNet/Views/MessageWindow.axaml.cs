@@ -3,7 +3,7 @@ using FluentIcons.Common;
 
 namespace BangumiNet.Views;
 
-public partial class MessageWindow : AppWindow
+public partial class MessageWindow : FAAppWindow
 {
     public MessageWindow()
     {

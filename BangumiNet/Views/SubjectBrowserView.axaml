@@ -128,7 +128,7 @@
                             </Viewbox>
                         </Grid>
                     </Border>
-                    <TextBox Watermark="平台" Text="{Binding Platform}"
+                    <TextBox PlaceholderText="平台" Text="{Binding Platform}"
                              HorizontalAlignment="Stretch" Padding="2,0"
                              IsVisible="{Binding IsBrowsingGame}"/>
                 </StackPanel>
