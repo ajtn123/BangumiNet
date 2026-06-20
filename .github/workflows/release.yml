@@ -25,7 +25,8 @@ jobs:
           for i in BangumiNet/bin/Release/net10.0/*/publish/; do
             (
               cd $i || exit
-              zip -r "../../../../../../${{ github.event.repository.name }}-${{ github.ref_name }}-${i:31:(${#i}-31-9)}.zip" .
+              rid=$(basename "$(dirname "$i")")
+              zip -r "../../../../../../${{ github.event.repository.name }}-${{ github.ref_name }}-${rid}.zip" . -x "*.pdb"
             )
           done
 
