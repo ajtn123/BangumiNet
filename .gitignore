@@ -30,4 +30,5 @@ CodeCoverage/
 [Bb]uild[Ll]og.*
 
 Tests/BangumiNet.Archive.Test/.archives/
-private.yaml
+p1.yaml
+v0.yaml

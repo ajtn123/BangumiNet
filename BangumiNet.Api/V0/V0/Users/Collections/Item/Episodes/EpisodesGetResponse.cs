@@ -12,7 +12,7 @@ namespace BangumiNet.Api.V0.V0.Users.Collections.Item.Episodes
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class EpisodesGetResponse : global::BangumiNet.Api.V0.Models.Page, IParsable
     {
-
+        /// <summary>The data property</summary>
         public List<global::BangumiNet.Api.V0.Models.UserEpisodeCollection>? Data { get; set; }
 
         /// <summary>

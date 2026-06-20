@@ -56,7 +56,7 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
-        /// <summary>The type property</summary>
+        /// <summary>人物类型  - 1 = 个人  - 2 = 公司  - 3 = 组合</summary>
         public int? Type { get; set; }
 
         /// <summary>

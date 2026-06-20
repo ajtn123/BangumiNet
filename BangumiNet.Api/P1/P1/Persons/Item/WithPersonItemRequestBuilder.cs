@@ -6,6 +6,7 @@ using BangumiNet.Api.P1.P1.Persons.Item.Casts;
 using BangumiNet.Api.P1.P1.Persons.Item.Collects;
 using BangumiNet.Api.P1.P1.Persons.Item.Comments;
 using BangumiNet.Api.P1.P1.Persons.Item.Indexes;
+using BangumiNet.Api.P1.P1.Persons.Item.Photos;
 using BangumiNet.Api.P1.P1.Persons.Item.Relations;
 using BangumiNet.Api.P1.P1.Persons.Item.Works;
 using Microsoft.Kiota.Abstractions.Extensions;
@@ -46,6 +47,12 @@ namespace BangumiNet.Api.P1.P1.Persons.Item
         public global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder Indexes
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.Item.Indexes.IndexesRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The photos property</summary>
+        public global::BangumiNet.Api.P1.P1.Persons.Item.Photos.PhotosRequestBuilder Photos
+        {
+            get => new global::BangumiNet.Api.P1.P1.Persons.Item.Photos.PhotosRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The relations property</summary>

@@ -14,6 +14,7 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The created_at property</summary>
         public DateTimeOffset? CreatedAt { get; set; }
 
         /// <summary>意义同&lt;a href=&quot;#model-Me&quot;&gt;Me&lt;/a&gt;</summary>
@@ -22,10 +23,13 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>编辑修改内容，响应类型不固定</summary>
         public global::BangumiNet.Api.V0.Models.DetailedRevision_data? Data { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The summary property</summary>
         public string? Summary { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
         /// <summary>

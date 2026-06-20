@@ -19,7 +19,7 @@ namespace BangumiNet.Api.V0.V0.Users.Item.Collections
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CollectionsRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The minus property</summary>
         public global::BangumiNet.Api.V0.V0.Users.Item.Collections.Minus_RequestBuilder Minus
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Collections.Minus_RequestBuilder(PathParameters, RequestAdapter);

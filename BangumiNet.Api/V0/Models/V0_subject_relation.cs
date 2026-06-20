@@ -14,16 +14,22 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
+        /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>The images property</summary>
         public global::BangumiNet.Api.V0.Models.Images? Images { get; set; }
 
+        /// <summary>The name property</summary>
         public string? Name { get; set; }
 
+        /// <summary>The name_cn property</summary>
         public string? NameCn { get; set; }
 
+        /// <summary>The relation property</summary>
         public string? Relation { get; set; }
 
+        /// <summary>The type property</summary>
         public int? Type { get; set; }
 
         /// <summary>

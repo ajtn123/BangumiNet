@@ -20,12 +20,13 @@ namespace BangumiNet.Api.V0.V0.Users.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithUsernameItemRequestBuilder : BaseRequestBuilder
     {
-
+        /// <summary>The avatar property</summary>
         public global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder Avatar
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Avatar.AvatarRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The collections property</summary>
         public global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder Collections
         {
             get => new global::BangumiNet.Api.V0.V0.Users.Item.Collections.CollectionsRequestBuilder(PathParameters, RequestAdapter);
