@@ -1,10 +1,10 @@
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.LogicalTree;
+using Avalonia.VisualTree;
 using BangumiNet.Converters;
 using FluentAvalonia.UI.Controls;
 using FluentAvalonia.UI.Windowing;
-using System.Collections;
+using System.Collections.Specialized;
 using System.Reactive.Linq;
 
 namespace BangumiNet.Views;
@@ -13,13 +13,15 @@ public partial class SecondaryWindow : FAAppWindow
 {
     public SecondaryWindow()
     {
+        DataContext = new SecondaryWindowViewModel();
+
         InitializeComponent();
 
         if (SettingProvider.Current.ShowSplashScreenOnWindowStartup)
             SplashScreen = new WindowSplashScreen(this);
 
         Bind(TitleProperty, this.WhenAnyValue(x => x.SecWindowTabView.SelectedItem)
-            .OfType<TabViewItem>()
+            .OfType<FATabViewItem>()
             .Select(x => x.Content)
             .WhereNotNull()
             .OfType<ContentControl>()
@@ -29,36 +31,26 @@ public partial class SecondaryWindow : FAAppWindow
             .Select(x => x.WhenAnyValue(x => x.Title))
             .Switch());
 
-        SecWindowTabView.Bind(TabView.TabItemsProperty, this.WhenAnyValue(x => x.Tabs));
-
         Instances.Add(this);
         Closed += (s, e) => Instances.Remove(this);
+
+        DraggableHelper.SetIsDraggable(CustomDragRegion);
     }
 
-    // https://github.com/amwx/FluentAvalonia/blob/master/samples/FAControlsGallery/Pages/FAControlsPages/TabViewWindowingSample.axaml.cs
     protected override void OnOpened(EventArgs e)
     {
         base.OnOpened(e);
-
-        if (TitleBar != null)
-        {
-            TitleBar.ExtendsContentIntoTitleBar = true;
-            TitleBar.TitleBarHitTestType = FATitleBarHitTestType.Complex;
-
-            var dragRegion = this.FindControl<Panel>("CustomDragRegion");
-            dragRegion?.MinWidth = FlowDirection == Avalonia.Media.FlowDirection.LeftToRight ?
-                TitleBar.RightInset : TitleBar.LeftInset;
-        }
+        TitleBar?.ExtendsContentIntoTitleBar = true;
     }
 
-    public ObservableCollection<TabViewItem> Tabs { get; } = [];
-    private static TabViewItem CreateTab(ViewModelBase vm) => new()
+    public ObservableCollection<ViewModelBase> Tabs => (DataContext as SecondaryWindowViewModel)!.Tabs;
+    private static FATabViewItem CreateTab(ViewModelBase vm) => new()
     {
         Content = new ContentControl { Content = vm },
         Header = NameCnCvt.Convert(vm) ?? vm.Title,
         IconSource = new FluentIcons.Avalonia.Fluent.FluentIconSource() { Icon = vm is IHasIcon ic ? ic.Icon : FluentIcons.Common.Icon.Document },
     };
-    private static ViewModelBase? GetVm(TabViewItem tab)
+    private static ViewModelBase? GetVm(FATabViewItem tab)
         => (tab.Content as ContentControl)?.Content as ViewModelBase;
 
     public static List<SecondaryWindow> Instances { get; } = [];
@@ -70,14 +62,12 @@ public partial class SecondaryWindow : FAAppWindow
         window ??= Instances.LastOrDefault();
         window ??= new SecondaryWindow();
 
-        if (vm is not ItemViewModelBase item ||
-            !(window.Tabs.FirstOrDefault(t => GetVm(t) is ItemViewModelBase i && i.ItemType == item.ItemType && i.Id == item.Id) is { } tab))
+        if (vm is not ItemViewModelBase item || window.Tabs.FirstOrDefault(t => t is ItemViewModelBase i && i.ItemType == item.ItemType && i.Id == item.Id) is not { } tab)
         {
-            tab = CreateTab(vm);
-            window.Tabs.Add(tab);
+            window.Tabs.Add(vm);
         }
 
-        window.SecWindowTabView.SelectedItem = tab;
+        window.SecWindowTabView.SelectedItem = vm;
         window.Show();
         window.Activate();
         return window;
@@ -86,71 +76,81 @@ public partial class SecondaryWindow : FAAppWindow
 #pragma warning disable IDE0060
 #pragma warning disable CA1822
 
-    private void TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
-        => Tabs.Remove(args.Tab);
-
-    private void AddTabButtonClick(TabView sender, EventArgs args)
+    private void AddTabButtonClick(FATabView sender, EventArgs args)
         => new NavigatorWindow().Show(this);
 
-    private void TabItemsChanged(TabView sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args)
+    private void TabCloseRequested(FATabView sender, FATabViewTabCloseRequestedEventArgs args)
+        => Tabs.Remove((ViewModelBase)args.Item);
+
+    private void TabItemsChanged(FATabView sender, NotifyCollectionChangedEventArgs args)
     {
-        if (sender.TabItems.Count() == 0) Close();
+        if (sender.TabItems.Count == 0) Close();
     }
 
-    private void TabDragStarting(TabView sender, TabViewTabDragStartingEventArgs args)
+    // DataTransfer is not properly implemented in FA 3.0.0-preview-4.
+    private static (ObservableCollection<ViewModelBase> Source, ViewModelBase Item)? dragging;
+
+    private void TabDragStarting(FATabView sender, FATabViewTabDragStartingEventArgs args)
     {
-        args.Data.SetData(DataIdentifier, args.Tab);
+        dragging = null;
+        if (sender.TabItemsSource is not ObservableCollection<ViewModelBase> source ||
+            args.Item is not ViewModelBase item)
+            return;
+        dragging = (source, item);
         args.Data.RequestedOperation = DragDropEffects.Move;
     }
 
     private void TabStripDragOver(object? sender, DragEventArgs e)
     {
-        if (!e.Data.Contains(DataIdentifier)) return;
+        if (dragging is null) return;
         e.DragEffects = DragDropEffects.Move;
     }
 
     private void TabStripDrop(object? sender, DragEventArgs e)
     {
-        if (!e.Data.Contains(DataIdentifier) || e.Data.Get(DataIdentifier) is not TabViewItem srcTab) return;
-        if ((srcTab.Content as ContentControl)?.GetLogicalChildren().OfType<UserControl>().FirstOrDefault()?.DataContext is not ViewModelBase vm) return;
-        var desWindow = ((TabView)sender!).FindAncestorOfType<SecondaryWindow>()!;
-        var srcWindow = srcTab.FindAncestorOfType<SecondaryWindow>()!;
+        if (dragging is not { } src) return;
+        dragging = null;
+        if (sender is not FATabView des ||
+            des.FindAncestorOfType<SecondaryWindow>() is not { } desWindow ||
+            des.TabItemsSource is not ObservableCollection<ViewModelBase> desTabs ||
+            src.Source == desTabs)
+            return;
 
         int index = -1;
         for (int i = 0; i < desWindow.Tabs.Count; i++)
         {
-            var item = desWindow.SecWindowTabView.ContainerFromIndex(i);
-            if (e.GetPosition(item).X - item.Bounds.Width < 0)
+            if (desWindow.SecWindowTabView.ContainerFromIndex(i) is not { } container)
+                continue;
+            if (e.GetPosition(container).X - container.Bounds.Width < 0)
             {
                 index = i;
                 break;
             }
         }
 
-        var desTab = CreateTab(vm);
+        src.Source.Remove(src.Item);
         if (index >= 0 && index < desWindow.Tabs.Count)
-            desWindow.Tabs.Insert(index, desTab);
+            desTabs.Insert(index, src.Item);
         else
-            desWindow.Tabs.Add(desTab);
-        desWindow.SecWindowTabView.SelectedItem = desTab;
+            desWindow.Tabs.Add(src.Item);
+        desWindow.SecWindowTabView.SelectedItem = src.Item;
 
         e.Handled = true;
-
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => srcWindow.Tabs.Remove(srcTab), Avalonia.Threading.DispatcherPriority.Background);
     }
 
-    private void TabDroppedOutside(TabView sender, TabViewTabDroppedOutsideEventArgs args)
+    private void TabDroppedOutside(FATabView sender, FATabViewTabDroppedOutsideEventArgs args)
     {
-        var srcTab = args.Tab;
-        if ((srcTab.Content as ContentControl)?.GetLogicalChildren().OfType<UserControl>().FirstOrDefault()?.DataContext is not ViewModelBase vm) return;
+        dragging = null;
+        if (sender.TabItemsSource is not ObservableCollection<ViewModelBase> source ||
+            args.Item is not ViewModelBase item ||
+            source.Count <= 1)
+            return;
 
-        Show(vm, new());
-
-        Avalonia.Threading.Dispatcher.UIThread.Post(() => ((IList)sender.TabItems).Remove(srcTab), Avalonia.Threading.DispatcherPriority.Background);
+        source.Remove(item);
+        Show(item, new());
     }
 
 #pragma warning restore IDE0060
 #pragma warning restore CA1822
 
-    public const string DataIdentifier = "SecWindowTabItem";
 }

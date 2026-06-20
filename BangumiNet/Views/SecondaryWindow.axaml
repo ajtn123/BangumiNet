@@ -6,24 +6,31 @@
         xmlns:sd="using:BangumiNet.Shared"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:DataType="bn:SecondaryWindowViewModel"
         x:Class="BangumiNet.Views.SecondaryWindow">
-    <ui:TabView Name="SecWindowTabView"
-                VerticalAlignment="Stretch"
-                AllowDropTabs="True"
-                CanReorderTabs="True"
-                CanDragTabs="True"
-                AddTabButtonClick="AddTabButtonClick"
-                TabCloseRequested="TabCloseRequested"
-                TabItemsChanged="TabItemsChanged"
-                TabDragStarting="TabDragStarting"
-                TabStripDragOver="TabStripDragOver"
-                TabStripDrop="TabStripDrop"
-                TabDroppedOutside="TabDroppedOutside">
-        <ui:TabView.TabStripFooter>
+    <ui:FATabView Name="SecWindowTabView"
+                  TabItemsSource="{Binding Tabs}"
+                  AllowDropTabs="True"
+                  CanReorderTabs="True"
+                  CanDragTabs="True"
+                  AddTabButtonClick="AddTabButtonClick"
+                  TabCloseRequested="TabCloseRequested"
+                  TabItemsChanged="TabItemsChanged"
+                  TabDragStarting="TabDragStarting"
+                  TabStripDragOver="TabStripDragOver"
+                  TabStripDrop="TabStripDrop"
+                  TabDroppedOutside="TabDroppedOutside">
+        <ui:FATabView.TabStripFooter>
             <Panel Name="CustomDragRegion" Background="Transparent" />
-        </ui:TabView.TabStripFooter>
-        <ui:TabView.DataTemplates>
-            <bn:ItemViewLocator/>
+        </ui:FATabView.TabStripFooter>
+        <ui:FATabView.TabItemTemplate>
+            <DataTemplate DataType="bn:ViewModelBase">
+                <ui:FATabViewItem Header="{Binding Converter={StaticResource NameCnCvt}}"
+                                  Content="{Binding}" />
+            </DataTemplate>
+        </ui:FATabView.TabItemTemplate>
+        <ui:FATabView.DataTemplates>
+            <bn:ItemViewLocator />
             <DataTemplate DataType="bn:UserListViewModel">
                 <ScrollViewer>
                     <bn:SubjectListPagedView Margin="5"/>
@@ -34,6 +41,6 @@
                     <bn:RelatedItemListView Margin="5"/>
                 </ScrollViewer>
             </DataTemplate>
-        </ui:TabView.DataTemplates>
-    </ui:TabView>
+        </ui:FATabView.DataTemplates>
+    </ui:FATabView>
 </Window>
