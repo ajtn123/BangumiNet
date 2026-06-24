@@ -1,4 +1,5 @@
-﻿using Microsoft.Kiota.Abstractions;
+﻿using BangumiNet.Api.Helpers;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 
@@ -12,8 +13,10 @@ public static class ClientBuilder
     /// <param name="setting">自定义的 <see cref="IApiSettings"/>。</param>
     public static Clients Build(IApiSettings setting)
     {
-        var authProvider = new BangumiAuthenticationProvider(setting.AuthToken);
-        var httpClient = new HttpClient();
+        var authContext = BangumiAuthenticationProvider.AuthenticationContext.FromToken(setting.AuthToken);
+        var authProvider = new BangumiAuthenticationProvider(authContext);
+        var handler = new TextErrorHandler(new HttpClientHandler());
+        var httpClient = new HttpClient(handler);
         httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", setting.UserAgent);
 
         return Build(authProvider, httpClient, setting.DevEnvironment);

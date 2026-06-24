@@ -61,7 +61,7 @@ public partial class ReplyViewModel : ViewModelBase
                             TurnstileToken = token
                         }, cancellationToken: ct))?.Id;
                     else if (Parent.ParentItemType == ItemType.Group)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Parent.MainId].Replies.PostAsync(new()
+                        ncid = (await ApiC.P1.Groups.Minus.Topics[(int)Parent.MainId].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = Parent.Id,
@@ -78,9 +78,11 @@ public partial class ReplyViewModel : ViewModelBase
                     Content = Content,
                     MainId = Parent.MainId,
                     ItemType = Parent.ItemType,
+                    ParentItemType = Parent.ParentItemType,
                     Parent = Parent,
-                    User = await ApiC.GetViewModelAsync<UserViewModel>(cancellationToken: ct),
+                    User = await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: ct),
                 });
+                Content = string.Empty;
                 return true;
             }
             catch (Exception e) { Trace.TraceError(e.ToString()); }
@@ -143,7 +145,7 @@ public partial class ReplyViewModel : ViewModelBase
                             TurnstileToken = token
                         }, cancellationToken: ct))?.Id;
                     else if (Ancestor.ParentItemType == ItemType.Group)
-                        ncid = (await ApiC.P1.Subjects.Minus.Topics[(int)Ancestor.Id].Replies.PostAsync(new()
+                        ncid = (await ApiC.P1.Groups.Minus.Topics[(int)Ancestor.Id].Replies.PostAsync(new()
                         {
                             Content = Content,
                             ReplyTo = 0,
@@ -167,8 +169,10 @@ public partial class ReplyViewModel : ViewModelBase
                     Content = Content,
                     MainId = Ancestor.Id,
                     ItemType = (ItemType)Ancestor.ItemType,
-                    User = await ApiC.GetViewModelAsync<UserViewModel>(cancellationToken: ct),
+                    ParentItemType = Ancestor.ParentItemType,
+                    User = await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: ct),
                 });
+                Content = string.Empty;
                 return true;
             }
             catch (Exception e) { Trace.TraceError(e.ToString()); }

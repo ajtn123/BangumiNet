@@ -14,17 +14,16 @@ public partial class ReplyView : ReactiveUserControl<ReplyViewModel>
                 .Subscribe(vm =>
                 {
                     getTurnstileInteractionHandler?.Dispose();
-                    getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(i => i.SetOutput(null));
-                    //getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
-                    //{
-                    //    var tv = new TurnstileView();
-                    //    MainVertical.Children.Add(tv);
+                    getTurnstileInteractionHandler = ViewModel?.GetTurnstileInteraction.RegisterHandler(async i =>
+                    {
+                        var tv = new TurnstileView();
+                        MainVertical.Children.Add(tv);
 
-                    //    var token = await tv.GetToken();
-                    //    i.SetOutput(token);
+                        var token = await tv.GetToken();
+                        i.SetOutput(token);
 
-                    //    MainVertical.Children.RemoveAll(MainVertical.Children.Where(c => c is TurnstileView));
-                    //});
+                        MainVertical.Children.RemoveAll(MainVertical.Children.Where(c => c is TurnstileView));
+                    });
                 }).DisposeWith(disposables);
         });
     }

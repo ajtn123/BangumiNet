@@ -92,7 +92,7 @@ public partial class MainImage : ContentControl
     }
 
     public async void ReloadImage(object? sender, RoutedEventArgs e)
-        => await LoadImageAsync(Url);
+        => Source = await LoadImageAsync(Url);
     public async void CopyUrl(object? sender, RoutedEventArgs e)
         => _ = TopLevel.GetTopLevel(this)?.Clipboard?.SetTextAsync(Url);
 

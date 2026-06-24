@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace BangumiNet.Api.Misc;
+namespace BangumiNet.Api.Helpers;
 
-public static partial class BangumiImage
+public static partial class BangumiImageHelper
 {
     public const string Host = "https://lain.bgm.tv";
 

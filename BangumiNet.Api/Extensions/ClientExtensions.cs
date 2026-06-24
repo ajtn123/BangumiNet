@@ -13,6 +13,8 @@ namespace BangumiNet.Api.P1
 
         public const string BaseUrl = "https://next.bgm.tv";
         public const string BaseUrlDev = "https://next.bgm38.tv";
+        public const string BaseUrlTrailing = BaseUrl + "/";
+        public const string BaseUrlDevTrailing = BaseUrlDev + "/";
     }
 }
 
@@ -29,6 +31,8 @@ namespace BangumiNet.Api.V0
 
         public const string BaseUrl = "https://api.bgm.tv";
         public const string BaseUrlDev = "https://api.bgm38.tv";
+        public const string BaseUrlTrailing = BaseUrl + "/";
+        public const string BaseUrlDevTrailing = BaseUrlDev + "/";
     }
 }
 
@@ -45,5 +49,6 @@ namespace BangumiNet.Api.Legacy
         public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.Legacy -o .\Legacy --co --ebc";
 
         public const string BaseUrl = "https://api.bgm.tv";
+        public const string BaseUrlTrailing = BaseUrl + "/";
     }
 }

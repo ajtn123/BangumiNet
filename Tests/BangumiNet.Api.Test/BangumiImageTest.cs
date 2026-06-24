@@ -1,4 +1,4 @@
-﻿using BangumiNet.Api.Misc;
+﻿using BangumiNet.Api.Helpers;
 
 namespace BangumiNet.Api.Test;
 
@@ -15,56 +15,56 @@ public sealed class BangumiImageTest
     [TestMethod]
     public void IsBangumiImage()
     {
-        var r = BangumiImage.IsBangumiImage(ResizedImage);
+        var r = BangumiImageHelper.IsBangumiImage(ResizedImage);
         Assert.IsTrue(r);
 
-        var o = BangumiImage.IsBangumiImage(OriginalImage);
+        var o = BangumiImageHelper.IsBangumiImage(OriginalImage);
         Assert.IsTrue(o);
 
-        var i = BangumiImage.IsBangumiImage(InvalidImage);
+        var i = BangumiImageHelper.IsBangumiImage(InvalidImage);
         Assert.IsFalse(i);
     }
 
     [TestMethod]
     public void IsBangumiResizedImage()
     {
-        var r = BangumiImage.IsBangumiResizedImage(ResizedImage);
+        var r = BangumiImageHelper.IsBangumiResizedImage(ResizedImage);
         Assert.IsTrue(r);
 
-        var o = BangumiImage.IsBangumiResizedImage(OriginalImage);
+        var o = BangumiImageHelper.IsBangumiResizedImage(OriginalImage);
         Assert.IsFalse(o);
 
-        var i = BangumiImage.IsBangumiResizedImage(InvalidImage);
+        var i = BangumiImageHelper.IsBangumiResizedImage(InvalidImage);
         Assert.IsFalse(i);
     }
 
     [TestMethod]
     public void GetOriginal()
     {
-        var r = BangumiImage.GetOriginalImage(ResizedImage);
+        var r = BangumiImageHelper.GetOriginalImage(ResizedImage);
         Assert.AreEqual(OriginalImage, r);
 
-        var o = BangumiImage.GetOriginalImage(OriginalImage);
+        var o = BangumiImageHelper.GetOriginalImage(OriginalImage);
         Assert.AreEqual(OriginalImage, o);
 
         Assert.Throws<ArgumentException>(() =>
         {
-            BangumiImage.GetOriginalImage(InvalidImage);
+            BangumiImageHelper.GetOriginalImage(InvalidImage);
         });
     }
 
     [TestMethod]
     public void GetResized()
     {
-        var r = BangumiImage.GetResizedImage(ResizedImage, TargetWidth, TargetHeight);
+        var r = BangumiImageHelper.GetResizedImage(ResizedImage, TargetWidth, TargetHeight);
         Assert.AreEqual(ResizedImage, r);
 
-        var o = BangumiImage.GetResizedImage(OriginalImage, TargetWidth, TargetHeight);
+        var o = BangumiImageHelper.GetResizedImage(OriginalImage, TargetWidth, TargetHeight);
         Assert.AreEqual(ResizedImage, o);
 
         Assert.Throws<ArgumentException>(() =>
         {
-            BangumiImage.GetResizedImage(InvalidImage, TargetWidth, TargetHeight);
+            BangumiImageHelper.GetResizedImage(InvalidImage, TargetWidth, TargetHeight);
         });
     }
 }
