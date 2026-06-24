@@ -18,7 +18,7 @@ public partial class TurnstileView : UserControl
         TimeoutAsync(cts.Token);
     }
 
-    private static Uri TurnstileUri => new("https://next.bgm.tv/p1/turnstile?theme=auto&redirect_uri=bangumi%3A%2F%2F");
+    private static Uri TurnstileUri => new($"{Api.P1.ApiClient.BaseUrl}/p1/turnstile?theme=auto&redirect_uri=bangumi%3A%2F%2F");
     private const string QueryLeading = "?token=";
 
     private async void OnNavigationStarted(object? sender, WebViewNavigationStartingEventArgs e)
