@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: microsoft/setup-kiota@v0.5.0
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Download API Description
         run: curl -L -o p1.yaml https://next.bgm.tv/p1/openapi.yaml
