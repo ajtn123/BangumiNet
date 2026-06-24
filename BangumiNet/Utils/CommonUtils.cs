@@ -43,6 +43,9 @@ public static partial class CommonUtils
             UseShellExecute = true,
         });
 
+    /// <inheritdoc cref="OpenUri(string)"/>
+    public static void OpenUri(Uri uri) => OpenUri(uri.OriginalString);
+
     public static ReactiveCommand<Unit, Unit> GetOpenUriCommand(string uri)
         => ReactiveCommand.Create(() => OpenUri(uri));
 

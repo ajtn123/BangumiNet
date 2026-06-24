@@ -56,16 +56,14 @@ public partial class SecondaryWindow : FAAppWindow
     public static List<SecondaryWindow> Instances { get; } = [];
     public static SecondaryWindow Show(ViewModelBase? vm, SecondaryWindow? window = null)
     {
-        ArgumentNullException.ThrowIfNull(vm);
+        vm ??= new();
 
         window ??= Instances.LastOrDefault(x => x.IsActive);
         window ??= Instances.LastOrDefault();
         window ??= new SecondaryWindow();
 
-        if (vm is not ItemViewModelBase item || window.Tabs.FirstOrDefault(t => t is ItemViewModelBase i && i.ItemType == item.ItemType && i.Id == item.Id) is not { } tab)
-        {
+        if (!window.Tabs.Contains(vm))
             window.Tabs.Add(vm);
-        }
 
         window.SecWindowTabView.SelectedItem = vm;
         window.Show();
@@ -87,7 +85,7 @@ public partial class SecondaryWindow : FAAppWindow
         if (sender.TabItems.Count == 0) Close();
     }
 
-    // DataTransfer is not properly implemented in FA 3.0.0-preview-4.
+    // DataTransfer is not properly implemented in FA 3.0.0
     private static (ObservableCollection<ViewModelBase> Source, ViewModelBase Item)? dragging;
 
     private void TabDragStarting(FATabView sender, FATabViewTabDragStartingEventArgs args)

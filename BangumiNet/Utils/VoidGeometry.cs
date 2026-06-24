@@ -4,4 +4,6 @@ using LiveChartsCore.SkiaSharpView.Drawing;
 namespace BangumiNet.Utils;
 
 public class VoidGeometry() : BoundedDrawnGeometry, IDrawnElement<SkiaSharpDrawingContext>
-{ public void Draw(SkiaSharpDrawingContext context) { } }
+{
+    public void Draw(SkiaSharpDrawingContext context) { }
+}
