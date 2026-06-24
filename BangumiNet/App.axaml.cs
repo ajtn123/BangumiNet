@@ -39,26 +39,12 @@ public partial class App : Application
         CommonUtils.CleanUpTempFolder();
 
         if (SettingProvider.Current.CheckUpdateOnStartup)
-            _ = SettingView.CheckUpdate(v => MessageWindow.Show(
-                new TextViewModel(() => ["新版本可用\n", new HyperlinkButton { Content = v.ToString(), NavigateUri = new(Constants.SourceRepositoryLatestRelease) }]),
-                "有新版本", FluentIcons.Common.Icon.ArrowCircleUp));
-
-        //TextBlock.TextProperty.Changed.AddClassHandler<TextBlock>((tb, e) => tb.Text = System.Net.WebUtility.HtmlDecode(tb.Text));
+            _ = SettingView.CheckUpdate(v => MessageWindow.Show(new TextViewModel(() => ["新版本可用\n", new HyperlinkButton { Content = v.ToString(), NavigateUri = new(Constants.SourceRepositoryLatestRelease) }]), "有新版本", FluentIcons.Common.Icon.ArrowCircleUp));
 
         // 程序关闭时
         //((IClassicDesktopStyleApplicationLifetime)Current.ApplicationLifetime!).ShutdownRequested += (s, e) => { };
 
         base.OnFrameworkInitializationCompleted();
-    }
-
-    public override void RegisterServices()
-    {
-        base.RegisterServices();
-        //AvaloniaWebViewBuilder.Initialize(config =>
-        //{
-        //    config.DefaultWebViewBackgroundColor = System.Drawing.Color.FromArgb(244, 244, 244);
-        //    config.UserDataFolder = Path.Combine(SettingProvider.CurrentSettings.LocalDataDirectory, "WebView");
-        //});
     }
 
     public void ApplySettings(Settings settings)

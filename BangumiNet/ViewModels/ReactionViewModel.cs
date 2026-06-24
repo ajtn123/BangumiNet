@@ -136,22 +136,20 @@ public partial class ReactionListViewModel : ViewModelBase
     public async Task UpdateMyReaction(int? sid)
     {
         RemoveMeFromReactions();
+
         if (sid == null) return;
+        if (await ApiC.GetViewModelAsync<MeViewModel>() is not { } me) return;
+
+        Reactions ??= [];
+        if (Reactions.FirstOrDefault(x => x!.Reaction == sid, null) is { } reaction)
+        {
+            reaction.Users.Add(me);
+        }
         else
         {
-            var user = await ApiC.GetViewModelAsync<UserViewModel>();
-            user ??= new UserViewModel(ApiC.CurrentUsername);
-            Reactions ??= [];
-            if (Reactions.FirstOrDefault(x => x!.Reaction == sid, null) is { } reaction)
-            {
-                reaction.Users.Add(user);
-            }
-            else
-            {
-                var newReaction = new ReactionViewModel(sid) { Parent = this };
-                newReaction.Users.Add(user);
-                Reactions.Add(newReaction);
-            }
+            var newReaction = new ReactionViewModel(sid) { Parent = this };
+            newReaction.Users.Add(me);
+            Reactions.Add(newReaction);
         }
 
         this.RaisePropertyChanged(nameof(HasMe));

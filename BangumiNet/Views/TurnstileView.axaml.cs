@@ -11,6 +11,7 @@ public partial class TurnstileView : UserControl
     public TurnstileView()
     {
         InitializeComponent();
+        WebViewControl.EnvironmentRequested += WebViewEnivironment.Handler;
         WebViewControl.NavigationStarted += OnNavigationStarted;
         WebViewControl.WebMessageReceived += OnWebMessageReceived;
         WebViewControl.Source = TurnstileUri;
