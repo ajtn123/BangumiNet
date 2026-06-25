@@ -13,24 +13,28 @@ public static class BangumiDataProvider
     {
         if (!forceUpdate && BangumiDataObject != null) return;
 
-        if (!local.Exists || DateTime.UtcNow - local.LastWriteTimeUtc > TimeSpan.FromDays(7))
+        if (!local.Exists || DateTime.UtcNow - local.LastWriteTimeUtc > TimeSpan.FromDays(30))
             await UpdateBangumiDataAsync(cancellationToken);
 
         if (!local.Exists)
             return;
 
-        if (isLoading) return; else isLoading = true;
-
-        await using var json = local.OpenRead();
-        BangumiDataObject = await BangumiDataLoader.LoadAsync(json);
-
-        isLoading = false;
+        if (isLoading) return;
+        else isLoading = true;
+        try
+        {
+            await using var json = local.OpenRead();
+            BangumiDataObject = await BangumiDataLoader.LoadAsync(json);
+        }
+        catch (Exception e) { Trace.TraceError(e.ToString()); }
+        finally { isLoading = false; }
     }
 
     private static bool isUpdating = false;
     private static async Task UpdateBangumiDataAsync(CancellationToken cancellationToken = default)
     {
-        if (isUpdating) return; else isUpdating = true;
+        if (isUpdating) return;
+        else isUpdating = true;
         try
         {
             await using var response = await ApiC.HttpClient.GetStreamAsync(Constants.BangumiDataJsonUrl, cancellationToken);
