@@ -10,7 +10,3 @@
   - 实现新功能
 - [参与讨论](https://github.com/ajtn123/BangumiNet/discussions)
 - 或者以其他任何形式
-
-## 开发环境
-
-Visual Studio 2026
