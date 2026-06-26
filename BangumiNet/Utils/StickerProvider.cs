@@ -1,5 +1,6 @@
-﻿using Avalonia.Media.Imaging;
-using Avalonia.Platform;
+﻿using System.Collections.Concurrent;
+using Avalonia.Media.Imaging;
+using BangumiNet.Common;
 
 namespace BangumiNet.Utils;
 
@@ -7,48 +8,40 @@ namespace BangumiNet.Utils;
 // TODO: BMO:bmoji (https://bgm.tv/group/topic/438228)
 public static class StickerProvider
 {
-    private static readonly Dictionary<Uri, Bitmap> cachedStickerBitmaps = [];
-    public static Uri GetStickerUri(int? id)
+    private static readonly CacheProvider cache = new("Stickers", 1 << 24);
+    private static readonly ConcurrentDictionary<string, Bitmap> bitmaps = [];
+
+    public static async Task<Bitmap?> GetStickerById(int? id, CancellationToken ct = default)
     {
-        var defaultSticker = CommonUtils.GetAssetUri("bgm.tv/img/smiles/tv/44.gif");
-        if (id is not int sid)
-            return defaultSticker;
-        else if (sid == 0)
-        {
-            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/tv/44.gif");
-        }
-        else if (sid >= 1 && sid < 17)
-        {
-            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/{sid}.gif");
-        }
-        else if (sid >= 17 && sid < 40)
-        {
-            string bgmId = (sid - 16).ToString().PadLeft(2, '0');
+        if (id is not int n)
+            return null;
 
-            if (bgmId == "11")
-                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
-            if (bgmId == "23")
-                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.gif");
-            else
-                return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/bgm/{bgmId}.png");
-
-        }
-        else if (sid >= 40 && sid < 142)
-        {
-            string tvId = (sid - 39).ToString().PadLeft(2, '0');
-            return CommonUtils.GetAssetUri($"bgm.tv/img/smiles/tv/{tvId}.gif");
-        }
-        else return defaultSticker;
+        var url = StickerService.GetUrlById(n);
+        return await GetStickerByUrl(url, ct);
     }
-    public static Bitmap GetStickerBitmap(int? id)
-    {
-        var uri = GetStickerUri(id);
-        if (cachedStickerBitmaps.TryGetValue(uri, out Bitmap? value))
-            return value;
 
-        var bitmap = new Bitmap(AssetLoader.Open(uri));
-        cachedStickerBitmaps[uri] = bitmap;
-        return bitmap;
+    public static async Task<Bitmap?> GetStickerByCode(string code, CancellationToken ct = default)
+    {
+        var url = StickerService.GetUrlByCode(code);
+        return await GetStickerByUrl(url, ct);
+    }
+
+    public static async Task<Bitmap?> GetStickerByUrl(string? url, CancellationToken ct = default)
+    {
+        if (url is null)
+        {
+            return null;
+        }
+        else if (bitmaps.TryGetValue(url, out var bitmap))
+        {
+            return bitmap;
+        }
+        else
+        {
+            bitmap = await ApiC.GetImageAsync(url, cache: cache, ct: ct);
+            if (bitmap is null) return null;
+            return bitmaps.AddOrUpdate(url, bitmap, (s, b) => b);
+        }
     }
 
     public static ReactionViewModel[] SubjectCommentReactions => [
@@ -56,24 +49,5 @@ public static class StickerProvider
     ];
     public static ReactionViewModel[] CommonReactions => [
         new(0), new(79), new(54), new(140), new(62), new(122), new(104), new(80), new(141), new(88), new(85), new(90)
-    ];
-
-    public static readonly string[] Emojis = [
-        "(=A=)",
-        "(=w=)",
-        "(-w=)",
-        "(S_S)",
-        "(=v=)",
-        "(@_@)",
-        "(=W=)",
-        "(TAT)",
-        "(T_T)",
-        "(='=)",
-        "(=3=)",
-        "(= =')",
-        "(=///=)",
-        "(=.,=)",
-        "(:P)",
-        "(LOL)",
     ];
 }

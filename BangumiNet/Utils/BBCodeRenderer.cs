@@ -1,9 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
-using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Styling;
+using BangumiNet.Common;
 using System.Text.RegularExpressions;
 
 namespace BangumiNet.Utils;
@@ -25,7 +25,7 @@ public static partial class BBCodeRenderer
 
     // Regex
 
-    [GeneratedRegex(@"\[/?[biups]\]|\[/?(?:color|size|url|user|mask|quote|img|photo|code|center|right)(?:=[^\]]*)?\]|\[/?img(?:=\d+,\d+)?\]|\(bgm\d{1,3}\)|\n", RegexOptions.IgnoreCase)]
+    [GeneratedRegex(@"\[/?[biups]\]|\[/?(?:color|size|url|user|mask|quote|img|photo|code|center|right)(?:=[^\]]*)?\]|\[/?img(?:=\d+,\d+)?\]|\([a-z0-9_]+\)|\n", RegexOptions.IgnoreCase)]
     private static partial Regex TokenPattern();
 
     [GeneratedRegex(@"^img=(\d+),(\d+)$", RegexOptions.IgnoreCase)]
@@ -43,7 +43,7 @@ public static partial class BBCodeRenderer
     [GeneratedRegex(@"^size=(.+)$", RegexOptions.IgnoreCase)]
     private static partial Regex SizeTagPattern();
 
-    [GeneratedRegex(@"\(bgm(\d{1,3})\)")]
+    [GeneratedRegex(@"\([a-z0-9_]+\)")]
     private static partial Regex StickerPattern();
 
     // Tokenizer
@@ -135,7 +135,7 @@ public static partial class BBCodeRenderer
                     break;
 
                 case BbTokenType.Text:
-                    current.AddRange(ExpandTextEmojis(token.Value, stack));
+                    current.Add(MakeTextInline(token.Value, stack));
                     break;
             }
         }
@@ -287,62 +287,11 @@ public static partial class BBCodeRenderer
 
     private static Inline MakeStickerInline(string stickerText)
     {
-        var match = StickerPattern().Match(stickerText);
-        if (!match.Success) return new Run(stickerText);
-
-        var n = int.Parse(match.Groups[1].Value);
-        var bitmap = StickerProvider.GetStickerBitmap(n + StickerProvider.Emojis.Length);
-        var image = new Image { Source = bitmap, Width = 16, Height = 16, Margin = Thickness.Parse("0,-4,0,0") };
+        if (StickerService.GetUrlByCode(stickerText) is not { } url)
+            return new Run { Text = stickerText, Classes = { "Sec" } };
+        var bitmap = StickerProvider.GetStickerByUrl(url);
+        var image = new DelayedImage(bitmap) { Width = 16, Height = 16 };
         return new InlineUIContainer(image);
-    }
-
-    /// <summary>
-    /// Scans text for text emoji patterns like "(=A=)" and splits into
-    /// alternating <see cref="Run"/> and inline <see cref="Image"/> segments.
-    /// </summary>
-    private static List<Inline> ExpandTextEmojis(string text, Stack<FormatState> stack)
-    {
-        var result = new List<Inline>();
-        var remaining = text;
-
-        while (remaining.Length > 0)
-        {
-            int earliest = int.MaxValue;
-            int earliestLen = 0;
-            int earliestIdx = -1;
-
-            // Find the earliest text emoji occurrence
-            for (int i = 0; i < StickerProvider.Emojis.Length; i++)
-            {
-                var pos = remaining.IndexOf(StickerProvider.Emojis[i], StringComparison.Ordinal);
-                if (pos >= 0 && pos < earliest)
-                {
-                    earliest = pos;
-                    earliestLen = StickerProvider.Emojis[i].Length;
-                    earliestIdx = i;
-                }
-            }
-
-            if (earliestIdx < 0)
-            {
-                // No more emojis — emit remaining as a single Run
-                result.Add(MakeTextInline(remaining, stack));
-                break;
-            }
-
-            // Text before emoji
-            if (earliest > 0)
-                result.Add(MakeTextInline(remaining[..earliest], stack));
-
-            // Emoji image (sticker ID = emoji index + 1)
-            var emojiBitmap = StickerProvider.GetStickerBitmap(earliestIdx + 1);
-            var emojiImage = new Image { Source = emojiBitmap, Width = 24, Height = 24, Margin = Thickness.Parse("0,-4,0,0") };
-            result.Add(new InlineUIContainer(emojiImage));
-
-            remaining = remaining[(earliest + earliestLen)..];
-        }
-
-        return result;
     }
 
     // Block builders

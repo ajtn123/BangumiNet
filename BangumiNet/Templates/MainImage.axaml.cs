@@ -72,23 +72,10 @@ public partial class MainImage : ContentControl
 
     public void OpenImageWithExternalProgram(object? sender, RoutedEventArgs e)
     {
-        if (Url is string url)
-            if (CacheProvider.GetCacheFile(url) is string path)
-            {
-                var extension = url.Contains("png") ? "png"
-                    : url.Contains("jpg") || url.Contains("jpeg") ? "jpg"
-                    : "jpg";
-                string tempFilePath = Path.Combine(PathProvider.TempFolderPath, Path.GetFileName(path) + "." + extension);
-
-                Directory.CreateDirectory(PathProvider.TempFolderPath);
-                if (!File.Exists(tempFilePath))
-                    File.Copy(path, tempFilePath, true);
-                CommonUtils.OpenUri(tempFilePath);
-            }
-            else
-            {
-                CommonUtils.OpenUri(url);
-            }
+        if (Uri.TryCreate(Url, UriKind.Absolute, out var uri))
+        {
+            CommonUtils.OpenUri(uri);
+        }
     }
 
     public async void ReloadImage(object? sender, RoutedEventArgs e)

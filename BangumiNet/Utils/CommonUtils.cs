@@ -44,7 +44,7 @@ public static partial class CommonUtils
         });
 
     /// <inheritdoc cref="OpenUri(string)"/>
-    public static void OpenUri(Uri uri) => OpenUri(uri.OriginalString);
+    public static void OpenUri(Uri uri) => OpenUri(uri.AbsoluteUri);
 
     public static ReactiveCommand<Unit, Unit> GetOpenUriCommand(string uri)
         => ReactiveCommand.Create(() => OpenUri(uri));

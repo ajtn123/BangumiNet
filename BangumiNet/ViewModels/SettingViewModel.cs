@@ -59,7 +59,7 @@ public partial class SettingViewModel : ViewModelBase
         });
         DumpCacheCommand = ReactiveCommand.Create(() =>
         {
-            CacheProvider.DumpCache();
+            ApiC.ImageCache.Clear();
             this.RaisePropertyChanged(nameof(CacheSizeString));
         });
     }
@@ -150,7 +150,7 @@ public partial class SettingViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> GetTokenCommand { get; set; }
     public ReactiveCommand<Unit, Unit> DumpCacheCommand { get; set; }
 
-    public static string CacheSizeString => $"{CacheProvider.CacheSize:N0} /";
+    public static string CacheSizeString => $"{ApiC.ImageCache.Size():N0} /";
 }
 
 public partial class PaletteItemViewModel : ViewModelBase

@@ -14,6 +14,7 @@ public static class ApiC
     public static Api.P1.P1.P1RequestBuilder P1 => Clients.P1Client.P1;
     public static Api.V0.V0.V0RequestBuilder V0 => Clients.V0Client.V0;
     public static HttpClient HttpClient => Clients.HttpClient;
+    public static CacheProvider ImageCache { get; private set; } = new("Images", SettingProvider.Current.DiskCacheSizeLimit);
 
     public static string? CurrentUsername { get; private set; }
     public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(CurrentUsername);
@@ -21,35 +22,36 @@ public static class ApiC
 
     private static readonly SemaphoreSlim semaphore = new(32);
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> urlLocks = new();
-    public static async Task<Bitmap?> GetImageAsync(string url, bool useCache = true, CancellationToken cancellationToken = default)
+    public static async Task<Bitmap?> GetImageAsync(string url, bool useCache = true, CacheProvider? cache = null, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(url))
             return null;
 
+        cache ??= ImageCache;
+        useCache = useCache && SettingProvider.Current.IsDiskCacheEnabled;
+
         var urlLock = urlLocks.GetOrAdd(url, _ => new SemaphoreSlim(1, 1));
-        await urlLock.WaitAsync(cancellationToken);
-        await semaphore.WaitAsync(cancellationToken);
+        await urlLock.WaitAsync(ct);
+        await semaphore.WaitAsync(ct);
         try
         {
-            useCache = useCache && SettingProvider.Current.IsDiskCacheEnabled;
-
             if (useCache)
             {
-                var cacheFile = CacheProvider.GetCacheFile(url);
+                var cacheFile = cache.Get(url);
                 if (cacheFile is not null)
                     return new Bitmap(cacheFile);
             }
 
-            await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: cancellationToken);
-            await using var responseStream = await response.Clone(cancellationToken: cancellationToken);
-            if (useCache) await CacheProvider.WriteCache(url, responseStream);
+            await using var response = await HttpClient.GetStreamAsync(url, cancellationToken: ct);
+            await using var responseStream = await response.Clone(cancellationToken: ct);
+            if (useCache) await cache.Write(url, responseStream);
             return new Bitmap(responseStream);
         }
         catch (Exception e)
         {
-            Trace.TraceError($"Image Loading Failed: {url}");
+            Trace.TraceError($"Failed to load image: {url}");
             Trace.TraceError(e.ToString());
-            CacheProvider.DeleteCache(url);
+            cache.Delete(url);
             return null;
         }
         finally

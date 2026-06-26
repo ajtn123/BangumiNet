@@ -15,10 +15,11 @@ public static class Utils
         return memoryStream;
     }
 
-    public static string GetHash(string input)
+    public static string Hash(string input)
     {
-        byte[] hashBytes = MD5.HashData(Encoding.UTF8.GetBytes(input));
-        return Convert.ToHexStringLower(hashBytes);
+        var data = Encoding.UTF8.GetBytes(input);
+        var hash = SHA256.HashData(data);
+        return Convert.ToHexStringLower(hash)[0..32];
     }
 
     public static string GetNameCn(this ItemType value) => AttributeHelpers.GetNameCn(value)!;

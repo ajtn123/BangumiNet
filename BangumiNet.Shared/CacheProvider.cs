@@ -1,94 +1,69 @@
 ﻿namespace BangumiNet.Shared;
 
-public static class CacheProvider
+public class CacheProvider(string name, long maxSize)
 {
-    public static string CacheDirPath => PathProvider.GetAbsolutePathForLocalData(Constants.DiskCacheDirectory);
-    public static DirectoryInfo CacheDirInfo => new(CacheDirPath);
-    public static string GetAbsolutePath(string relativePath) => Path.Combine(CacheDirPath, relativePath);
+    private readonly DirectoryInfo dir = new(PathProvider.GetAbsolutePathForLocalData(Constants.DiskCacheDirectory, name));
 
-    public static long CacheSize { get; set; } = 0;
-    static CacheProvider()
+    private string GetAbsolutePath(string id) => Path.Combine(dir.FullName, Utils.Hash(id));
+
+    public long Size() => dir.EnumerateFiles().Sum(f => f.Length);
+
+    private long size = -1;
+
+    public async Task Write(string id, Stream content)
     {
-        if (!SettingProvider.Current.IsDiskCacheEnabled) DumpCache();
-        else if (!CacheDirInfo.Exists) CacheDirInfo.Create();
-        else CacheSize = CacheDirInfo.EnumerateFiles().Sum(f => f.Length);
-    }
+        dir.Create();
+        var path = GetAbsolutePath(id);
 
-    public static async Task WriteCache(string id, Stream content)
-    {
-        if (!SettingProvider.Current.IsDiskCacheEnabled) return;
+        var length = content.Length;
+        if (length > maxSize) return;
+        if (size == -1) size = Size();
+        if (size + length > maxSize) Clean();
+        size += length;
 
-        var l = content.Length;
-        if (l > SettingProvider.Current.DiskCacheSizeLimit) return;
-        if (CacheSize + l > SettingProvider.Current.DiskCacheSizeLimit) CleanUpCache();
-
-        var idHash = Utils.GetHash(id);
-        var path = GetAbsolutePath(idHash);
-        var dir = Path.GetDirectoryName(path);
-        if (string.IsNullOrWhiteSpace(path) || string.IsNullOrWhiteSpace(idHash) || string.IsNullOrWhiteSpace(dir)) return;
-
-        Directory.CreateDirectory(dir);
         await using var file = File.OpenWrite(path);
         await content.CopyToAsync(file, CancellationToken.None);
         content.Position = 0;
-
-        CacheSize += l;
     }
 
-    public static FileStream? ReadCache(string id)
+    public string? Get(string id)
     {
-        if (!SettingProvider.Current.IsDiskCacheEnabled) return null;
-
-        var idHash = Utils.GetHash(id);
-        var path = GetAbsolutePath(idHash);
-
-        if (File.Exists(path))
-            return File.OpenRead(path);
-        else return null;
-    }
-
-    public static string? GetCacheFile(string id)
-    {
-        if (!SettingProvider.Current.IsDiskCacheEnabled) return null;
-
-        var idHash = Utils.GetHash(id);
-        var path = GetAbsolutePath(idHash);
+        var path = GetAbsolutePath(id);
 
         if (File.Exists(path))
             return path;
-        else return null;
+        else
+            return null;
     }
 
-    public static void DeleteCache(string id)
+    public FileStream? Read(string id)
     {
-        var idHash = Utils.GetHash(id);
-        var path = GetAbsolutePath(idHash);
+        var path = GetAbsolutePath(id);
 
-        if (File.Exists(path)) File.Delete(path);
+        if (File.Exists(path))
+            return File.OpenRead(path);
+        else
+            return null;
     }
 
-    public static void CleanUpCache()
+    public void Delete(string id)
     {
-        if (!SettingProvider.Current.IsDiskCacheEnabled)
-        {
-            DumpCache();
-            return;
-        }
+        var path = GetAbsolutePath(id);
 
-        var files = CacheDirInfo.EnumerateFiles();
-        foreach (var file in files.OrderBy(c => c.LastAccessTimeUtc).Take(files.Count() / 4))
+        if (File.Exists(path))
+            File.Delete(path);
+    }
+
+    public void Clean()
+    {
+        var files = dir.GetFiles();
+        var dels = Math.Max(files.Length / 4, 1);
+        foreach (var file in files.OrderBy(f => f.LastAccessTimeUtc).Take(dels))
             file.Delete();
 
-        CacheSize = files.Sum(f => f.Length);
-        if (CacheSize > SettingProvider.Current.DiskCacheSizeLimit)
-            CleanUpCache();
+        if ((size = Size()) > maxSize)
+            Clean();
     }
 
-    public static void DumpCache()
-    {
-        var files = CacheDirInfo.EnumerateFiles();
-        foreach (var file in files)
-            file.Delete();
-        CacheSize = files.Sum(f => f.Length);
-    }
+    public void Clear() => dir.Delete(true);
 }

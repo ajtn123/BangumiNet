@@ -21,9 +21,9 @@ public partial class ReactionViewModel : ViewModelBase
         Init();
     }
 
-    public void Init()
+    public async void Init()
     {
-        ReactionImage = StickerProvider.GetStickerBitmap(Reaction);
+        ReactionImage = await StickerProvider.GetStickerById(Reaction);
         ReactCommand = ReactiveCommand.CreateFromTask(React);
         this.WhenAnyValue(x => x.Users).Subscribe(user =>
         {
