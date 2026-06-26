@@ -17,7 +17,7 @@ public static partial class StickerService
 
     private static readonly HashSet<int> gif500 = [500, 501, 505, 515, 516, 517, 518, 519, 521, 522, 523];
 
-    /// <summary>Get remote URL from N in (bgmN).</summary>
+    /// <summary>Get remote URL from <c>N</c> in <c>(bgmN)</c>.</summary>
     public static string? GetUrlByCode(int n) => n switch
     {
         >= 1 and <= 125 => GetUrlById(n + 16),
