@@ -43,7 +43,7 @@ public static partial class BBCodeRenderer
     [GeneratedRegex(@"^size=(.+)$", RegexOptions.IgnoreCase)]
     private static partial Regex SizeTagPattern();
 
-    [GeneratedRegex(@"\([a-z0-9_]+\)")]
+    [GeneratedRegex(@"^\([a-z0-9_]+\)$")]
     private static partial Regex StickerPattern();
 
     // Tokenizer
