@@ -6,26 +6,34 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
+namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Portraits
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PotraitsPostRequestBody : IParsable
+    public partial class PortraitsPostResponse : IAdditionalDataHolder, IParsable
     {
-        /// <summary>when header x-admin-token is provided, use this as author id.</summary>
-        public int? AuthorID { get; set; }
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
 
-        /// <summary>base64 encoded raw bytes, 4mb size limit on **decoded** size</summary>
-        public byte[]? Img { get; set; }
+        /// <summary>image filename</summary>
+        public string? Img { get; set; }
+
+        /// <summary>
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Portraits.PortraitsPostResponse"/> and sets the default values.
+        /// </summary>
+        public PortraitsPostResponse()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
 
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsPostRequestBody"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Portraits.PortraitsPostResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsPostRequestBody CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Portraits.PortraitsPostResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits.PotraitsPostRequestBody();
+            return new global::BangumiNet.Api.P1.P1.Wiki.Characters.Item.Portraits.PortraitsPostResponse();
         }
 
         /// <summary>
@@ -36,8 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "authorID", n => { AuthorID = n.GetIntValue(); } },
-                { "img", n => { Img = n.GetByteArrayValue(); } },
+                { "img", n => { Img = n.GetStringValue(); } },
             };
         }
 
@@ -48,8 +55,8 @@ namespace BangumiNet.Api.P1.P1.Wiki.Characters.Item.Potraits
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("authorID", AuthorID);
-            writer.WriteByteArrayValue("img", Img);
+            writer.WriteStringValue("img", Img);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

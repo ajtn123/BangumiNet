@@ -10,43 +10,43 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
+namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\wiki\persons\{personID}\potraits
+    /// Builds and executes requests for operations under \p1\wiki\persons\{personID}\portraits
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PotraitsRequestBuilder : BaseRequestBuilder
+    public partial class PortraitsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PotraitsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/persons/{personID}/potraits", pathParameters)
+        public PortraitsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/persons/{personID}/portraits", pathParameters)
         {
         }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PotraitsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/persons/{personID}/potraits", rawUrl)
+        public PortraitsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/persons/{personID}/portraits", rawUrl)
         {
         }
 
         /// <summary>
         /// 上传人物肖像
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostResponse"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostResponse"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 400 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostResponse?> PostAsync(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostResponse?> PostAsync(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
@@ -56,7 +56,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
                 { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToPostRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
@@ -78,11 +78,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder WithUrl(string rawUrl)
+        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder(rawUrl, RequestAdapter);
+            return new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

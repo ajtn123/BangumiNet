@@ -29,6 +29,7 @@ namespace BangumiNet.Api.P1.P1.Timeline.Item.Replies
         public RepliesPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
+            ReplyTo = 0;
         }
 
         /// <summary>

@@ -29,6 +29,9 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>The locked property</summary>
         public bool? Locked { get; set; }
 
+        /// <summary>The metaTags property</summary>
+        public List<string>? MetaTags { get; set; }
+
         /// <summary>The name property</summary>
         public string? Name { get; set; }
 
@@ -76,6 +79,7 @@ namespace BangumiNet.Api.P1.Models
                 { "info", n => { Info = n.GetStringValue(); } },
                 { "interest", n => { Interest = n.GetObjectValue<global::BangumiNet.Api.P1.Models.SlimSubjectInterest>(global::BangumiNet.Api.P1.Models.SlimSubjectInterest.CreateFromDiscriminatorValue); } },
                 { "locked", n => { Locked = n.GetBoolValue(); } },
+                { "metaTags", n => { MetaTags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nameCN", n => { NameCN = n.GetStringValue(); } },
                 { "nsfw", n => { Nsfw = n.GetBoolValue(); } },
@@ -96,6 +100,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteStringValue("info", Info);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.SlimSubjectInterest>("interest", Interest);
             writer.WriteBoolValue("locked", Locked);
+            writer.WriteCollectionOfPrimitiveValues<string>("metaTags", MetaTags);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("nameCN", NameCN);
             writer.WriteBoolValue("nsfw", Nsfw);

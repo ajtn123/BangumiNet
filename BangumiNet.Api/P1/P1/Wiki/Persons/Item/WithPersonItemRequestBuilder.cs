@@ -4,7 +4,7 @@
 using BangumiNet.Api.P1.Models;
 using BangumiNet.Api.P1.P1.Wiki.Persons.Item.Casts;
 using BangumiNet.Api.P1.P1.Wiki.Persons.Item.HistorySummary;
-using BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits;
+using BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits;
 using BangumiNet.Api.P1.P1.Wiki.Persons.Item.Subjects;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -34,10 +34,10 @@ namespace BangumiNet.Api.P1.P1.Wiki.Persons.Item
             get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.HistorySummary.HistorySummaryRequestBuilder(PathParameters, RequestAdapter);
         }
 
-        /// <summary>The potraits property</summary>
-        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder Potraits
+        /// <summary>The portraits property</summary>
+        public global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder Portraits
         {
-            get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Potraits.PotraitsRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::BangumiNet.Api.P1.P1.Wiki.Persons.Item.Portraits.PortraitsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The subjects property</summary>
