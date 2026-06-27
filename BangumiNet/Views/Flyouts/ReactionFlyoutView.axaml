@@ -19,8 +19,9 @@
                     IsVisible="{Binding HasMe}" />
         </StackPanel>
         <Separator />
-        <ItemsControl ItemsSource="{Binding Users}">
-            <ItemsControl.DataTemplates>
+        <ItemsControl ItemsSource="{Binding Users}"
+                      ItemsPanel="{StaticResource SpacedStackPanel}">
+            <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="bn:UserViewModel">
                     <WrapPanel Classes="InfoBar">
                         <HyperlinkButton ToolTip.Tip="在新窗口显示用户"
@@ -30,12 +31,7 @@
                         <InfoItem Tip="用户名" Text="{Binding Username}" Classes="Sec" />
                     </WrapPanel>
                 </DataTemplate>
-            </ItemsControl.DataTemplates>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="5" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
     </StackPanel>
 </UserControl>

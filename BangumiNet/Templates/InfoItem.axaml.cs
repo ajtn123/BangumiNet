@@ -21,7 +21,7 @@ public class InfoItem : TemplatedControl
     public Icon? Icon
     {
         get => GetValue(IconProperty);
-        set { IconR = value ?? FluentIcons.Common.Icon.Dismiss; SetValue(IconProperty, value); }
+        set { SetValue(IconProperty, value); IconR = value ?? FluentIcons.Common.Icon.Dismiss; }
     }
 
     public static readonly StyledProperty<Icon> IconRProperty =

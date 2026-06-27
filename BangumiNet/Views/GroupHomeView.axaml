@@ -28,11 +28,11 @@
                                     Grid.Column="0" />
                             <ItemsControl ItemsSource="{Binding SubjectViewModels}"
                                           Grid.Column="1">
-                                <ItemsControl.DataTemplates>
+                                <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="bn:GroupViewModel">
                                         <bn:GroupCardView DataContext="{Binding}" />
                                     </DataTemplate>
-                                </ItemsControl.DataTemplates>
+                                </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel LineSpacing="5" ItemSpacing="5" />

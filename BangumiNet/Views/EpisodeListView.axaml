@@ -11,11 +11,11 @@
              x:Class="BangumiNet.Views.EpisodeListView">
     <Grid ColumnDefinitions="*,Auto">
         <ItemsControl ItemsSource="{Binding SubjectViewModels}" Grid.ColumnSpan="2">
-            <ItemsControl.DataTemplates>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:EpisodeViewModel">
                     <v:EpisodeBadgeView DataContext="{Binding}" />
                 </DataTemplate>
-            </ItemsControl.DataTemplates>
+            </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" ItemSpacing="5" LineSpacing="5" />

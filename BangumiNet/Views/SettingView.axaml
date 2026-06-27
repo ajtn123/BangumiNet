@@ -62,14 +62,14 @@
                     </StackPanel>
                     <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch">
                         <ItemsControl ItemsSource="{x:Static bn:CreditItem.Items}">
-                            <ItemsControl.DataTemplates>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="bn:CreditItem">
                                     <SelectableTextBlock ToolTip.Tip="{Binding Tooltip}">
-                                        <Run Text="{Binding Type}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                        <Run Text="{Binding Type}" Classes="Sec" />
                                         <Run Text="{Binding Name}" />
                                     </SelectableTextBlock>
                                 </DataTemplate>
-                            </ItemsControl.DataTemplates>
+                            </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>

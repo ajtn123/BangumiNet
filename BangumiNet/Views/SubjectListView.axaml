@@ -6,7 +6,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="bn:SubjectListViewModel"
              x:Class="BangumiNet.Views.SubjectListView">
-    <ItemsControl ItemsSource="{Binding SubjectViewModels}">
+    <ItemsControl ItemsSource="{Binding SubjectViewModels}"
+                  ItemsPanel="{StaticResource SpacedStackPanel}">
         <ItemsControl.DataTemplates>
             <DataTemplate DataType="bn:SubjectViewModel">
                 <bn:SubjectCardView />
@@ -54,10 +55,5 @@
                 <bn:TextView />
             </DataTemplate>
         </ItemsControl.DataTemplates>
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <StackPanel Spacing="5" />
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
     </ItemsControl>
 </UserControl>

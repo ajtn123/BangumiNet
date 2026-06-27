@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bn="https://github.com/ajtn123/BangumiNet"
              xmlns:v="using:BangumiNet.Views"
              xmlns:vm="using:BangumiNet.ViewModels"
              xmlns:ic="using:FluentIcons.Avalonia.Fluent"
@@ -16,14 +17,14 @@
             </Border>
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-                          MaxWidth="1650" Margin="-20,0,0,0" ClipToBounds="False"
+                          MaxWidth="1670" Margin="-10,0" ClipToBounds="False"
                           Grid.Row="1" HorizontalAlignment="Center">
                 <ItemsControl ItemsSource="{Binding Calendars}" Margin="10,0">
-                    <ItemsControl.DataTemplates>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="vm:CalendarViewModel">
                             <v:CalendarView DataContext="{Binding}" Width="230" />
                         </DataTemplate>
-                    </ItemsControl.DataTemplates>
+                    </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="5" />

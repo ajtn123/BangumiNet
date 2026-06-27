@@ -10,7 +10,8 @@
     <StackPanel Spacing="5">
         <bn:ReplyView DataContext="{Binding ReplyViewModel}" />
         <bn:PageNavigatorView DataContext="{Binding PageNavigator}" />
-        <ItemsControl ItemsSource="{Binding SubjectViewModels}">
+        <ItemsControl ItemsSource="{Binding SubjectViewModels}"
+                      ItemsPanel="{StaticResource SpacedStackPanel}">
             <ItemsControl.DataTemplates>
                 <DataTemplate DataType="bn:SubjectCollectionViewModel">
                     <bn:SubjectCommentView DataContext="{Binding}" />
@@ -19,11 +20,6 @@
                     <bn:CommentView DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.DataTemplates>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Spacing="5" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
         </ItemsControl>
         <bn:PageNavigatorView DataContext="{Binding PageNavigator}" />
     </StackPanel>

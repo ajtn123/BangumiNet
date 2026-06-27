@@ -87,7 +87,7 @@
                         <TextBlock><ic:FluentIcon Icon="Class" FontSize="16" Margin="0,0,0,-3" />类型</TextBlock>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Type}" Padding="5,0">
-                        <ItemsControl.DataTemplates>
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="vm:SubjectTypeOptionViewModel">
                                 <Grid ColumnDefinitions="Auto,*">
                                     <TextBlock Text="{Binding DisplayName}" />
@@ -96,7 +96,7 @@
                                     </Viewbox>
                                 </Grid>
                             </DataTemplate>
-                        </ItemsControl.DataTemplates>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Spacing="3">
@@ -222,19 +222,19 @@
                         </TextBlock>
                     </Border>
                     <ItemsControl ItemsSource="{Binding Career}" Padding="5,0" Grid.Column="1">
-                        <ItemsControl.DataTemplates>
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="vm:PersonCareerOptionViewModel">
-                                <StackPanel Spacing="5" Orientation="Horizontal" Margin="10,0,0,0">
+                                <StackPanel Spacing="5" Orientation="Horizontal">
                                     <TextBlock Text="{Binding DisplayName}" />
                                     <Viewbox Height="19">
                                         <CheckBox IsChecked="{Binding IsSelected}" Padding="0" />
                                     </Viewbox>
                                 </StackPanel>
                             </DataTemplate>
-                        </ItemsControl.DataTemplates>
+                        </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" />
+                                <WrapPanel ItemSpacing="10" LineSpacing="3" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>

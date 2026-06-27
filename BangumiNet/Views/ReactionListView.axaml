@@ -9,7 +9,7 @@
              x:DataType="bn:ReactionListViewModel"
              x:Class="BangumiNet.Views.ReactionListView">
     <ItemsControl ItemsSource="{Binding Reactions}">
-        <ItemsControl.DataTemplates>
+        <ItemsControl.ItemTemplate>
             <DataTemplate DataType="bn:ReactionViewModel">
                 <Border Classes="Card TagBadge" Classes.Meta="{Binding HasMe}">
                     <StackPanel Spacing="5" Orientation="Horizontal">
@@ -24,7 +24,7 @@
                     </Border.ContextFlyout>
                 </Border>
             </DataTemplate>
-        </ItemsControl.DataTemplates>
+        </ItemsControl.ItemTemplate>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <WrapPanel ItemSpacing="5" LineSpacing="5" />

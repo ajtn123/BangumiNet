@@ -44,17 +44,13 @@
                     <bn:ReactionListView DataContext="{Binding Reactions}" />
                 </StackPanel>
             </Border>
-            <ItemsControl ItemsSource="{Binding Replies}">
-                <ItemsControl.DataTemplates>
+            <ItemsControl ItemsSource="{Binding Replies}"
+                          ItemsPanel="{StaticResource SpacedStackPanel}">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="bn:CommentViewModel">
                         <bn:CommentView DataContext="{Binding}" />
                     </DataTemplate>
-                </ItemsControl.DataTemplates>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Spacing="5" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+                </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
     </Grid>

@@ -39,6 +39,9 @@
             <GradientStop Color="#BFFFFFFF" Offset="0.5" />
             <GradientStop Color="#BFFFFFFF" Offset="1.0" />
         </LinearGradientBrush>
+        <ItemsPanelTemplate x:Key="SpacedStackPanel">
+            <StackPanel Spacing="5" />
+        </ItemsPanelTemplate>
     </Application.Resources>
 
     <Application.Styles>
