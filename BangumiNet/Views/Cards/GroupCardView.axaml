@@ -9,7 +9,9 @@
              x:DataType="bn:GroupViewModel"
              x:Class="BangumiNet.Views.GroupCardView">
     <Grid ColumnDefinitions="50,*" ColumnSpacing="5" Classes="PointoverTextHost">
-        <MainImage Url="{Binding Images?.Large}" VerticalAlignment="Top" />
+        <MainImage Url="{Binding Images?.Large}" VerticalAlignment="Top">
+            <bn:GroupFlyoutView />
+        </MainImage>
 
         <StackPanel Grid.Column="1">
             <HyperlinkButton Content="{Binding Name}" Classes="Title" Command="{Binding OpenInNewWindowCommand}" />
@@ -25,17 +27,7 @@
 
         <Grid.ContextFlyout>
             <Flyout>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="5">
-                        <Button Classes="Icon" Command="{Binding OpenInNewWindowCommand}" Content="{ice:FluentIcon Icon=Open}" ToolTip.Tip="在新窗口显示" />
-                        <Button Classes="Icon" Command="{Binding SearchWebCommand}" Content="{ice:FluentIcon Icon=Search}" ToolTip.Tip="搜索 Web" />
-                        <Button Classes="Icon" Command="{Binding OpenInBrowserCommand}" Content="{ice:FluentIcon Icon=Globe}" ToolTip.Tip="在 bangumi.tv 显示" />
-                    </StackPanel>
-                    <WrapPanel Classes="InfoBar">
-                        <InfoItem Tip="ID" Text="{Binding Id}" Icon="SlideText" />
-                        <InfoItem Tip="创建时间" CommonText="{Binding CreationTime}" Icon="Calendar" />
-                    </WrapPanel>
-                </StackPanel>
+                <bn:GroupFlyoutView />
             </Flyout>
         </Grid.ContextFlyout>
     </Grid>
