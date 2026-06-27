@@ -1,4 +1,5 @@
-﻿using BangumiNet.Api.Misc;
+﻿using BangumiNet.Api;
+using BangumiNet.Api.Misc;
 using BangumiNet.Api.P1.Models;
 using System.Reactive;
 using System.Reactive.Disposables.Fluent;
@@ -66,7 +67,7 @@ public partial class TimelineViewModel : SubjectListViewModel, IActivatableViewM
         SubjectViewModels = timelines.Select<Timeline, ViewModelBase>(t => new TimelineItemViewModel(t)).ToObservableCollection();
     }
 
-    private readonly TimelineEventStream events = new(ApiC.HttpClient, Settings.AuthToken);
+    private readonly TimelineEventStream events = new(ApiC.HttpClient, ApiC.Clients.AuthProvider as BangumiAuthenticationProvider);
     private CancellationTokenSource cts = new();
     private async Task Connect()
     {

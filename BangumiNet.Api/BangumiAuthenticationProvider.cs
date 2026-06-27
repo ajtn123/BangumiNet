@@ -1,10 +1,11 @@
+using BangumiNet.Api.Interfaces;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
 using static BangumiNet.Api.BangumiAuthenticationProvider;
 
 namespace BangumiNet.Api;
 
-public class BangumiAuthenticationProvider(AuthenticationContext context) : IAuthenticationProvider
+public class BangumiAuthenticationProvider(AuthenticationContext context) : IAuthenticationProvider, IHttpAuthenticationProvider
 {
     public BangumiAuthenticationProvider(string? token) : this(AuthenticationContext.FromToken(token)) { }
 
@@ -20,6 +21,18 @@ public class BangumiAuthenticationProvider(AuthenticationContext context) : IAut
             request.Headers.Add("Referer", referer);
 
         return Task.CompletedTask;
+    }
+
+    public void AuthenticateRequestAsync(HttpRequestMessage request)
+    {
+        if (context.Bearer is { } bearer)
+            request.Headers.Add("Authorization", $"Bearer {bearer}");
+
+        if (context.Cookie is { } cookie)
+            request.Headers.Add("Cookie", cookie);
+
+        if (context.Referer is { } referer)
+            request.Headers.Add("Referer", referer);
     }
 
     public class AuthenticationContext

@@ -5,7 +5,7 @@
 - Legacy API [//api.bgm.tv/](https://bangumi.github.io/api/#/%E6%9D%A1%E7%9B%AE/getCalendar)
 - Open API [//api.bgm.tv/v0/](https://bangumi.github.io/api/#/)
 - Private API [//next.bgm.tv/p1/](https://next.bgm.tv/p1/#/)
-  - socket.io 订阅通知
+  - 订阅通知 (socket.io)
   - 时间线事件流 (SSE)
 
 ## 使用
@@ -19,15 +19,17 @@ var authProvider = new BangumiAuthenticationProvider(Token);
 // 如无需登录，使用 AnonymousAuthenticationProvider
 // var authProvider = new AnonymousAuthenticationProvider();
 
-// 尽可能复用已有的 HttpClient，User-Agent 符合 bangumi 要求
+// HttpClient 可以复用
 var httpClient = new HttpClient();
+
+// User-Agent 符合 bangumi 要求
 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", UserAgent);
 
 var requestAdapter = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
 var client = new BangumiNet.Api.P1.ApiClient(requestAdapter);
 
-// 不要使用同一个 RequestAdapter
-// AuthenticationProvider 和 HttpClient 可以复用
+// RequestAdapter 不可复用
+// AuthenticationProvider 可以复用
 var requestAdapterV0 = new HttpClientRequestAdapter(authProvider, httpClient: httpClient);
 var client = new BangumiNet.Api.V0.ApiClient(requestAdapterV0);
 ```
@@ -67,13 +69,13 @@ var response = await client.V0.Users.Minus.Collections.Minus.Episodes[id].PutAsy
 ```csharp
 CancellationTokenSource cts = new();
 
-var events = new BangumiNet.Api.Misc.TimelineEventStream(httpClient, token);
-List<Timeline> items = [];
+var authProvider = new BangumiAuthenticationProvider(Token);
+var events = new BangumiNet.Api.Misc.TimelineEventStream(httpClient, authProvider);
 await foreach (var item in events.StartAsync(FilterMode.All, null, cts.Token))
 {
-    items.Add(item);
+    Console.WriteLine(item.Id);
 }
 
-// 请一定要在某处调用，否则连接将永远不会断开
+// 请在某处调用，否则连接不会断开
 cts.Cancel();
 ```
