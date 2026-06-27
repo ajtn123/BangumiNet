@@ -29,6 +29,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Photos.Item.Comments
         public CommentsPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
+            ReplyTo = 0;
         }
 
         /// <summary>
