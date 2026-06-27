@@ -1,4 +1,4 @@
-﻿using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
 using static BangumiNet.Api.BangumiAuthenticationProvider;
 
@@ -6,6 +6,8 @@ namespace BangumiNet.Api;
 
 public class BangumiAuthenticationProvider(AuthenticationContext context) : IAuthenticationProvider
 {
+    public BangumiAuthenticationProvider(string? token) : this(AuthenticationContext.FromToken(token)) { }
+
     public Task AuthenticateRequestAsync(RequestInformation request, Dictionary<string, object>? additionalAuthenticationContext = null, CancellationToken cancellationToken = default)
     {
         if (context.Bearer is { } bearer)
@@ -20,11 +22,17 @@ public class BangumiAuthenticationProvider(AuthenticationContext context) : IAut
         return Task.CompletedTask;
     }
 
-    public record AuthenticationContext(string? Bearer, string? Cookie, string? Referer)
+    public class AuthenticationContext
     {
-        public static AuthenticationContext FromToken(string? token) => new(
-            Bearer: token,
-            Cookie: $"chiiNextSessionID={token}",
-            Referer: P1.ApiClient.BaseUrlTrailing);
+        public static AuthenticationContext FromToken(string? token) => new()
+        {
+            Bearer = token,
+            Cookie = $"chiiNextSessionID={token}",
+            Referer = P1.ApiClient.BaseUrlTrailing,
+        };
+
+        public string? Bearer { get; set; }
+        public string? Cookie { get; set; }
+        public string? Referer { get; set; }
     }
 }
