@@ -6,7 +6,7 @@ public class CacheProvider(string name, long maxSize)
 
     private string GetAbsolutePath(string id) => Path.Combine(dir.FullName, Utils.Hash(id));
 
-    public long Size() => dir.EnumerateFiles().Sum(f => f.Length);
+    public long Size() => dir.Exists ? dir.EnumerateFiles().Sum(f => f.Length) : 0;
 
     private long size = -1;
 
