@@ -2,18 +2,13 @@
 
 public static class Constants
 {
-    public const string BangumiName = "Bangumi 番组计划";
     public const string ApplicationName = "BangumiNet";
     public const string SourceRepository = "https://github.com/ajtn123/BangumiNet";
     public const string SourceRepositoryLatestRelease = SourceRepository + "/releases/latest";
     public const string SettingJsonName = "BNSettings.json";
-    public const string DiskCacheDirectory = "Cache";
-    public const string BangumiTokenManagerUrl = "https://next.bgm.tv/demo/access-token";
-    //public const string BangumiDataJsonUrl = "http://localhost:8000/data.json";
-    public const string BangumiDataJsonUrl = "https://unpkg.com/bangumi-data@0.3/dist/data.json";
     public const string BangumiDataJsonName = "BangumiData.json";
-    public const string LibraryCacheJsonName = "LibrarySubjects.json";
     public const string LogFileName = "BangumiNet.log";
+    public const string DiskCacheDirectory = "Cache";
     public const string License = """
         MIT License
 
@@ -25,6 +20,12 @@ public static class Constants
 
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         """;
+
+    public const string BangumiName = "Bangumi 番组计划";
+    public const string BangumiTokenManagerUrl = "https://next.bgm.tv/demo/access-token";
+    public const string BangumiCopyright = "© 2008-2026 Bangumi (a.k.a.Chobits), some rights reserved";
+
+    public const string BangumiDataJsonUrl = "https://unpkg.com/bangumi-data@0.3/dist/data.json";
 
     public static string AppData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ApplicationName);
     public static string SettingJsonPath { get; } = Path.Combine(AppData, SettingJsonName);

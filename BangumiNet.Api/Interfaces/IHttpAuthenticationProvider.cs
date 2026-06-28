@@ -2,5 +2,5 @@ namespace BangumiNet.Api.Interfaces;
 
 public interface IHttpAuthenticationProvider
 {
-    void AuthenticateRequestAsync(HttpRequestMessage request);
+    Task AuthenticateRequestAsync(HttpRequestMessage request);
 }

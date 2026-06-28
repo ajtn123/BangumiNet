@@ -40,9 +40,7 @@
                     <TextBlock><ic:FluentIcon Icon="Globe" FontSize="15" /><Run Text="chii.in" /></TextBlock>
                 </Button>
             </WrapPanel>
-            <TextBlock ToolTip.Tip="版权声明">
-                © 2008-2025 Bangumi (a.k.a.Chobits), some rights reserved
-            </TextBlock>
+            <TextBlock ToolTip.Tip="版权声明" Text="{x:Static shared:Constants.BangumiCopyright}" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -1,34 +1,20 @@
 ## Modified from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
-# Builds
+# Builds and Tests
 bin/
 obj/
-
-# .NET Core
-project.lock.json
-project.fragment.lock.json
-artifacts/
+CodeCoverage/
+TestResult*/
 
 # NuGet Packages
 *.nupkg
 *.snupkg
 
-# Others
-~$*
-*~
-CodeCoverage/
-
 # Visual Studio
 .vs/
 *.user
 
-# MSBuild Binary and Structured Log
-*.binlog
-
-# MSTest test Results
-[Tt]est[Rr]esult*/
-[Bb]uild[Ll]og.*
-
+# Others
 Tests/BangumiNet.Archive.Test/.archives/
 p1.yaml
 v0.yaml

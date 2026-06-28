@@ -67,8 +67,13 @@ public partial class TimelineItemViewModel : ItemViewModelBase
             if (memo.Progress?.Batch is { } batch && batch.Subject != null)
             {
                 subjects.Add(new SubjectViewModel(batch.Subject));
-                subjects.Add(new TextViewModel($"已完成 {batch.EpsUpdate} / {batch.EpsTotal} 话"));
-                subjects.Add(new TextViewModel($"已完成 {batch.VolsUpdate} / {batch.VolsTotal} 卷"));
+                if (CreateString(batch.EpsUpdate, batch.EpsTotal, "话") is { } eps)
+                    subjects.Add(eps);
+                if (CreateString(batch.VolsUpdate, batch.VolsTotal, "卷") is { } vols)
+                    subjects.Add(vols);
+
+                static TextViewModel? CreateString(int? update, string? total, string unit)
+                    => !(update is null or 0 && total is null or "??") ? new($"已完成 {update?.ToString() ?? "未知"} / {total ?? "未知"} {unit}") : null;
             }
             if (memo.Status != null)
                 subjects.Add(new BBCodeViewModel(memo.Status.Tsukkomi));
@@ -87,7 +92,6 @@ public partial class TimelineItemViewModel : ItemViewModelBase
         }
 
         // 状态 / 条目评论 / 有贴贴 / 有回复
-        // Why the control is defined in cs not axaml? I don't really know, maybe it looks cool.
         if (Category == TimelineCategory.Status ||
             !string.IsNullOrWhiteSpace(subjects.OfType<SubjectCollectionViewModel>().FirstOrDefault()?.Comment) ||
             Replies > 0 || (timeline.Reactions != null && timeline.Reactions.Count > 0))

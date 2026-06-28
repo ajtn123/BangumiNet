@@ -23,7 +23,7 @@ public class BangumiAuthenticationProvider(AuthenticationContext context) : IAut
         return Task.CompletedTask;
     }
 
-    public void AuthenticateRequestAsync(HttpRequestMessage request)
+    public Task AuthenticateRequestAsync(HttpRequestMessage request)
     {
         if (context.Bearer is { } bearer)
             request.Headers.Add("Authorization", $"Bearer {bearer}");
@@ -33,6 +33,8 @@ public class BangumiAuthenticationProvider(AuthenticationContext context) : IAut
 
         if (context.Referer is { } referer)
             request.Headers.Add("Referer", referer);
+
+        return Task.CompletedTask;
     }
 
     public class AuthenticationContext
