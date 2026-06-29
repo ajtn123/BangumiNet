@@ -69,138 +69,124 @@ public static class ApiC
     /// </summary>
     /// <typeparam name="T">ViewModel 的类型</typeparam>
     /// <param name="id">ID (如果需求)</param>
-    /// <param name="username">用户名 (如果需求)</param>
+    /// <param name="name">用户名 (如果需求)</param>
     /// <returns>ViewModel</returns>
-    public static async Task<T?> GetViewModelAsync<T>(object? id = null, string? username = null, CancellationToken cancellationToken = default) where T : ViewModelBase
+    public static async Task<T?> GetViewModelAsync<T>(object? id = null, string? name = null, CancellationToken ct = default) where T : ViewModelBase
     {
-        if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
+        try
         {
-            Api.P1.Models.Subject? subject = null;
-            try { subject = await P1.Subjects[subjectId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
+            static void Throw() => throw new Exception("Invalid API Response");
 
-            if (subject is null) return null;
-            else return new SubjectViewModel(subject) as T;
-        }
-        else if (typeof(T) == typeof(EpisodeViewModel) && id is int episodeId)
-        {
-            Api.P1.Models.Episode? episode = null;
-            try { episode = await P1.Episodes[episodeId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (episode is null) return null;
-            else return new EpisodeViewModel(episode) as T;
-        }
-        else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
-        {
-            Api.P1.Models.Character? character = null;
-            try { character = await P1.Characters[characterId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (character is null) return null;
-            else return new CharacterViewModel(character) as T;
-        }
-        else if (typeof(T) == typeof(PersonViewModel) && id is int personId)
-        {
-            Api.P1.Models.Person? person = null;
-            try { person = await P1.Persons[personId].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (person is null) return null;
-            else return new PersonViewModel(person) as T;
-        }
-        else if (typeof(T) == typeof(BlogViewModel) && id is int bid)
-        {
-            Api.P1.Models.BlogEntry? blog = null;
-            try { blog = await P1.Blogs[bid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (blog is null) return null;
-            else return new BlogViewModel(blog) as T;
-        }
-        else if (typeof(T) == typeof(IndexViewModel) && id is int iid)
-        {
-            Api.P1.Models.IndexObject? index = null;
-            try { index = await P1.Indexes[iid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (index is null) return null;
-            else return new IndexViewModel(index) as T;
-        }
-        else if (typeof(T) == typeof(UserViewModel) && username is string uid)
-        {
-            Api.P1.Models.User? user = null;
-            try { user = await P1.Users[uid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (user is null) return null;
-            else return new UserViewModel(user) as T;
-        }
-        else if (typeof(T) == typeof(MeViewModel))
-        {
-            Api.P1.Models.Profile? me = null;
-            try { me = await P1.Me.GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            CurrentUsername = me?.Username;
-
-            if (me is null) return null;
-            else return new MeViewModel(me) as T;
-        }
-        else if (typeof(T) == typeof(GroupViewModel) && username is string gid)
-        {
-            Api.P1.Models.Group? group = null;
-            try { group = await P1.Groups[gid].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (group is null) return null;
-            else return new GroupViewModel(group) as T;
-        }
-        else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1)
-        {
-            var user = username ?? CurrentUsername;
-            if (user is null) return null;
-            UserSubjectCollection? subjectCollection = null;
-            try { subjectCollection = await V0.Users[user].Collections[subjectId1].GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (subjectCollection is null) return null;
-            else return new SubjectCollectionViewModel(subjectCollection) { IsMy = username == null } as T;
-        }
-        else if (typeof(T) == typeof(CalendarViewModel))
-        {
-            Api.P1.Models.Calendar? calendars = null;
-            try { calendars = await P1.Calendar.GetAsync(cancellationToken: cancellationToken); }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
-
-            if (calendars is null) return null;
-            var day = (id as DayOfWeek?) ?? DateTime.Today.DayOfWeek;
-            return new CalendarViewModel(calendars.Days.First(x => x.Key == day)) as T;
-        }
-        else if (typeof(T) == typeof(RevisionViewModel) && id is RevisionViewModel rvm)
-        {
-            IRevision? revision = null;
-            try
+            if (typeof(T) == typeof(SubjectViewModel) && id is int subjectId)
             {
-                if (rvm.Id is not int revisionId)
-                    throw new ArgumentException($"非法 RevisionId {rvm.Id}");
-                revision = rvm.Parent?.ItemType switch
-                {
-                    ItemType.Subject => revision = await V0.Revisions.Subjects[revisionId].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Episode => revision = await V0.Revisions.Episodes[revisionId].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Character => revision = await V0.Revisions.Characters[revisionId].GetAsync(cancellationToken: cancellationToken),
-                    ItemType.Person => revision = await V0.Revisions.Persons[revisionId].GetAsync(cancellationToken: cancellationToken),
-                    _ => throw new ArgumentException($"非法 ItemType {rvm.Parent?.ItemType}"),
-                };
-            }
-            catch (Exception e) { Trace.TraceError(e.ToString()); }
+                if (await P1.Subjects[subjectId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
 
-            if (revision is null) return null;
-            else return new RevisionViewModel(revision, rvm.Parent) as T;
+                return new SubjectViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(EpisodeViewModel) && id is int episodeId)
+            {
+                if (await P1.Episodes[episodeId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new EpisodeViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(CharacterViewModel) && id is int characterId)
+            {
+                if (await P1.Characters[characterId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new CharacterViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(PersonViewModel) && id is int personId)
+            {
+                if (await P1.Persons[personId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new PersonViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(BlogViewModel) && id is int blogId)
+            {
+                if (await P1.Blogs[blogId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new BlogViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(IndexViewModel) && id is int indexId)
+            {
+                if (await P1.Indexes[indexId].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new IndexViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(UserViewModel) && name is string username)
+            {
+                if (await P1.Users[username].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new UserViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(MeViewModel))
+            {
+                if (await P1.Me.GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                CurrentUsername = response.Username;
+                return new MeViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(GroupViewModel) && name is string groupname)
+            {
+                if (await P1.Groups[groupname].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new GroupViewModel(response) as T;
+            }
+            else if (typeof(T) == typeof(SubjectCollectionViewModel) && id is int subjectId1 && (name ?? CurrentUsername) is string username1)
+            {
+                if (await V0.Users[username1].Collections[subjectId1].GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                return new SubjectCollectionViewModel(response) { IsMy = username1 == CurrentUsername } as T;
+            }
+            else if (typeof(T) == typeof(CalendarViewModel))
+            {
+                if (await P1.Calendar.GetAsync(cancellationToken: ct) is not { } response)
+                    Throw();
+
+                var day = id as DayOfWeek? ?? DateTime.Today.DayOfWeek;
+                return new CalendarViewModel(response.Days.First(x => x.Key == day)) as T;
+            }
+            else if (typeof(T) == typeof(RevisionViewModel) && id is RevisionViewModel
+            {
+                Id: { } revisionId,
+                Parent:
+                {
+                    ItemType: ItemType.Subject or ItemType.Episode or ItemType.Character or ItemType.Person,
+                    ItemType: { } revisionType,
+                } revisionParent,
+            })
+            {
+                if ((IRevision?)(revisionType switch
+                {
+                    ItemType.Subject => await V0.Revisions.Subjects[revisionId].GetAsync(cancellationToken: ct),
+                    ItemType.Episode => await V0.Revisions.Episodes[revisionId].GetAsync(cancellationToken: ct),
+                    ItemType.Character => await V0.Revisions.Characters[revisionId].GetAsync(cancellationToken: ct),
+                    ItemType.Person => await V0.Revisions.Persons[revisionId].GetAsync(cancellationToken: ct),
+                    _ => null,
+                }) is not IRevision response) Throw();
+
+                return new RevisionViewModel(response, revisionParent) as T;
+            }
+            else
+            {
+                Trace.TraceError($"Invalid Request: Type/{typeof(T).FullName} ID/{id} Name/{name}");
+                return null;
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Trace.TraceWarning($"GetViewModelAsync Invalid Request: Type/{typeof(T).FullName} ID/{id} Username/{username}");
+            Trace.TraceError($"Request Failed: Type/{typeof(T).FullName} ID/{id} Name/{name}");
+            Trace.TraceError(ex.ToString());
             return null;
         }
     }

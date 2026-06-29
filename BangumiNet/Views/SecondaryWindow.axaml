@@ -3,7 +3,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bn="https://github.com/ajtn123/BangumiNet"
-        xmlns:sd="using:BangumiNet.Shared"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:DataType="bn:SecondaryWindowViewModel"
@@ -13,6 +12,7 @@
                   AllowDropTabs="True"
                   CanReorderTabs="True"
                   CanDragTabs="True"
+                  SelectionChanged="SelectionChanged"
                   AddTabButtonClick="AddTabButtonClick"
                   TabCloseRequested="TabCloseRequested"
                   TabItemsChanged="TabItemsChanged"
@@ -21,11 +21,12 @@
                   TabStripDrop="TabStripDrop"
                   TabDroppedOutside="TabDroppedOutside">
         <ui:FATabView.TabStripFooter>
-            <Panel Name="CustomDragRegion" Background="Transparent" />
+            <Panel bn:DraggableHelper.IsDraggable="True" Background="Transparent" />
         </ui:FATabView.TabStripFooter>
         <ui:FATabView.TabItemTemplate>
             <DataTemplate DataType="bn:ViewModelBase">
-                <ui:FATabViewItem Header="{Binding Converter={StaticResource NameCnCvt}}"
+                <ui:FATabViewItem Header="{Binding Title}"
+                                  IconSource="{Binding Icon,Converter={StaticResource IconSourceCvt}}"
                                   Content="{Binding}" />
             </DataTemplate>
         </ui:FATabView.TabItemTemplate>

@@ -121,7 +121,7 @@ public partial class EpisodeViewModel : ItemViewModelBase, INeighboring
     [Reactive] public partial ReactiveCommand<Unit, Unit>? DropCommand { get; private set; }
     [Reactive] public partial ReactiveCommand<Unit, Unit>? DoneUntilCommand { get; private set; }
 
-    public override ItemType ItemType { get; init; } = ItemType.Episode;
+    public override ItemType ItemType => ItemType.Episode;
 
     // 尽管对非正片或SP话更新收藏状态会导致完成度显示异常，还是应该允许这么做。
     public async Task UpdateStatus(EpisodeCollectionType type)

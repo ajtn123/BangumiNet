@@ -115,5 +115,5 @@ public partial class UserViewModel : ItemViewModelBase
 
     public bool IsMe => Username == ApiC.CurrentUsername;
     public bool IsFull => Source is Api.P1.Models.User;
-    public override ItemType ItemType { get; init; } = ItemType.User;
+    public override ItemType ItemType => ItemType.User;
 }

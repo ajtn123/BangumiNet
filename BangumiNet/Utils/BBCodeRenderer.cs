@@ -403,9 +403,9 @@ public static partial class BBCodeRenderer
         else if (path.StartsWith("ep/") && int.TryParse(path.Replace("ep/", ""), out id))
             SecondaryWindow.Show(await ApiC.GetViewModelAsync<EpisodeViewModel>(id));
         else if (path.StartsWith("user/") && path.Replace("user/", "") is string username && CommonUtils.IsAlphaNumeric(username))
-            SecondaryWindow.Show(await ApiC.GetViewModelAsync<UserViewModel>(username: username));
+            SecondaryWindow.Show(await ApiC.GetViewModelAsync<UserViewModel>(name: username));
         else if (path.StartsWith("group/") && path.Replace("group/", "") is string groupname && CommonUtils.IsAlphaNumeric(groupname))
-            SecondaryWindow.Show(await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname));
+            SecondaryWindow.Show(await ApiC.GetViewModelAsync<GroupViewModel>(name: groupname));
         else CommonUtils.OpenUri(uri);
     }
 

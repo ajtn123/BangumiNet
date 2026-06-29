@@ -164,7 +164,7 @@ public partial class CharacterViewModel : ItemViewModelBase
 
     public bool IsCollected => CollectionTime != null;
     public bool IsFull => Source is Api.P1.Models.Character;
-    public override ItemType ItemType { get; init; } = ItemType.Character;
+    public override ItemType ItemType => ItemType.Character;
 
     public async Task UpdateCollection(bool target)
     {

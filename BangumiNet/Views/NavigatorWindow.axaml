@@ -9,8 +9,9 @@
         x:Class="BangumiNet.Views.NavigatorWindow"
         SizeToContent="WidthAndHeight"
         Topmost="True"
+        WindowDecorations="BorderOnly"
         ExtendClientAreaToDecorationsHint="True"
         WindowStartupLocation="CenterOwner"
         Title="导航 - BangumiNet">
-    <AutoCompleteBox Name="Navigator" Margin="5" />
+    <AutoCompleteBox Name="Navigator" Margin="5" Width="400" />
 </Window>

@@ -33,8 +33,6 @@ public partial class SecondaryWindow : FAAppWindow
 
         Instances.Add(this);
         Closed += (s, e) => Instances.Remove(this);
-
-        DraggableHelper.SetIsDraggable(CustomDragRegion);
     }
 
     protected override void OnOpened(EventArgs e)
@@ -44,14 +42,6 @@ public partial class SecondaryWindow : FAAppWindow
     }
 
     public ObservableCollection<ViewModelBase> Tabs => (DataContext as SecondaryWindowViewModel)!.Tabs;
-    private static FATabViewItem CreateTab(ViewModelBase vm) => new()
-    {
-        Content = new ContentControl { Content = vm },
-        Header = NameCnCvt.Convert(vm) ?? vm.Title,
-        IconSource = new FluentIcons.Avalonia.Fluent.FluentIconSource() { Icon = vm is IHasIcon ic ? ic.Icon : FluentIcons.Common.Icon.Document },
-    };
-    private static ViewModelBase? GetVm(FATabViewItem tab)
-        => (tab.Content as ContentControl)?.Content as ViewModelBase;
 
     public static List<SecondaryWindow> Instances { get; } = [];
     public static SecondaryWindow Show(ViewModelBase? vm, SecondaryWindow? window = null)
@@ -71,8 +61,12 @@ public partial class SecondaryWindow : FAAppWindow
         return window;
     }
 
+#pragma warning disable IDE0051
 #pragma warning disable IDE0060
 #pragma warning disable CA1822
+
+    private void SelectionChanged(object? sender, SelectionChangedEventArgs args)
+        => Title = args.AddedItems is { Count: > 0 } selection && selection[0] is ViewModelBase vm ? vm.Title : Constants.ApplicationName;
 
     private void AddTabButtonClick(FATabView sender, EventArgs args)
         => new NavigatorWindow().Show(this);
@@ -148,6 +142,7 @@ public partial class SecondaryWindow : FAAppWindow
         Show(item, new());
     }
 
+#pragma warning restore IDE0051
 #pragma warning restore IDE0060
 #pragma warning restore CA1822
 

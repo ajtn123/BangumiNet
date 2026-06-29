@@ -10,7 +10,7 @@
         x:Class="BangumiNet.Views.MessageWindow"
         x:DataType="bn:MessageWindowViewModel"
         SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         Title="{Binding Title}">
     <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,Auto"
           ColumnSpacing="5" RowSpacing="5" Margin="10">

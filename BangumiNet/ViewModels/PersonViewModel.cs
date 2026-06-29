@@ -216,7 +216,7 @@ public partial class PersonViewModel : ItemViewModelBase
     public string? CareerString => Careers?.Where(x => x is not null).Aggregate("", (a, b) => $"{a}{b} ");
     public bool IsCollected => CollectionTime != null;
     public bool IsFull => Source is Api.P1.Models.Person;
-    public override ItemType ItemType { get; init; } = ItemType.Person;
+    public override ItemType ItemType => ItemType.Person;
 
     public async Task UpdateCollection(bool target)
     {

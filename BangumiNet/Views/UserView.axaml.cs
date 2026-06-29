@@ -16,7 +16,7 @@ public partial class UserView : ReactiveUserControl<UserViewModel>
                 .Where(vm => !vm.IsFull)
                 .Subscribe(async vm =>
                 {
-                    var fullItem = await ApiC.GetViewModelAsync<UserViewModel>(username: vm.Username);
+                    var fullItem = await ApiC.GetViewModelAsync<UserViewModel>(name: vm.Username);
                     if (fullItem == null) return;
                     ViewModel = fullItem;
                 }).DisposeWith(disposables);

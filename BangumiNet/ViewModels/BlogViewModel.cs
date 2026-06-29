@@ -77,5 +77,5 @@ public partial class BlogViewModel : ItemViewModelBase
     [Reactive] public partial int? ReviewId { get; set; }
 
     public bool IsFull => Source is BlogEntry;
-    public override ItemType ItemType { get; init; } = ItemType.Blog;
+    public override ItemType ItemType => ItemType.Blog;
 }

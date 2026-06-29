@@ -45,7 +45,7 @@ public partial class MainWindow : FAAppWindow
             MainWindowTab.分类浏览 => subjectBrowserVM ??= new(),
             MainWindowTab.番组索引 => bangumiDataIndexVM ??= new(),
 
-            MainWindowTab.我 => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: cancellationToken),
+            MainWindowTab.我 => meVM ??= await ApiC.GetViewModelAsync<MeViewModel>(ct: cancellationToken),
             MainWindowTab.设置 => new SettingViewModel(SettingProvider.Current),
             _ => throw new NotImplementedException(),
         };

@@ -87,5 +87,5 @@ public partial class TopicViewModel : ItemViewModelBase
     [Reactive] public partial bool IsFull { get; set; }
 
     public bool IsDisplayed => Display == TopicDisplay.Normal;
-    public override ItemType ItemType { get; init; } = ItemType.Topic;
+    public override ItemType ItemType => ItemType.Topic;
 }

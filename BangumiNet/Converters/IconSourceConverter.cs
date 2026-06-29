@@ -1,13 +1,14 @@
-﻿using Avalonia.Data.Converters;
 using System.Globalization;
+using Avalonia.Data.Converters;
+using FluentIcons.Avalonia.Fluent;
+using FluentIcons.Common;
 
 namespace BangumiNet.Converters;
 
-public class UriCvt : IValueConverter
+public class IconSourceConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => Uri.TryCreate(value as string, UriKind.RelativeOrAbsolute, out var uri) ? uri : null;
-
+        => value is Icon icon ? new FluentIconSource { Icon = icon } : null;
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => (value as Uri)?.OriginalString;
+        => throw new NotImplementedException();
 }

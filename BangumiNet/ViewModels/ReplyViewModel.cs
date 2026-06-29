@@ -80,7 +80,7 @@ public partial class ReplyViewModel : ViewModelBase
                     ItemType = Parent.ItemType,
                     ParentItemType = Parent.ParentItemType,
                     Parent = Parent,
-                    User = await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: ct),
+                    User = await ApiC.GetViewModelAsync<MeViewModel>(ct: ct),
                 });
                 Content = string.Empty;
                 return true;
@@ -170,7 +170,7 @@ public partial class ReplyViewModel : ViewModelBase
                     MainId = Ancestor.Id,
                     ItemType = (ItemType)Ancestor.ItemType,
                     ParentItemType = Ancestor.ParentItemType,
-                    User = await ApiC.GetViewModelAsync<MeViewModel>(cancellationToken: ct),
+                    User = await ApiC.GetViewModelAsync<MeViewModel>(ct: ct),
                 });
                 Content = string.Empty;
                 return true;

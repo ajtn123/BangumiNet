@@ -140,5 +140,5 @@ public partial class TimelineItemViewModel : ItemViewModelBase
     [Reactive] public partial string? OperationSourceUrl { get; set; }
     [Reactive] public partial ReactionListViewModel? Reactions { get; set; }
 
-    public override ItemType ItemType { get; init; } = ItemType.Timeline;
+    public override ItemType ItemType => ItemType.Timeline;
 }

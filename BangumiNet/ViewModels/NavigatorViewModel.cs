@@ -14,7 +14,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id, cancellationToken: ct);
+                var svm = await ApiC.GetViewModelAsync<SubjectViewModel>(id, ct: ct);
                 if (svm != null) SecondaryWindow.Show(svm, TargetWindow);
                 else MessageWindow.Show($"未找到项目 {id}");
             }
@@ -24,7 +24,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id, cancellationToken: ct);
+                var cvm = await ApiC.GetViewModelAsync<CharacterViewModel>(id, ct: ct);
                 if (cvm != null) SecondaryWindow.Show(cvm, TargetWindow);
                 else MessageWindow.Show($"未找到角色 {id}");
             }
@@ -34,7 +34,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id, cancellationToken: ct);
+                var pvm = await ApiC.GetViewModelAsync<PersonViewModel>(id, ct: ct);
                 if (pvm != null) SecondaryWindow.Show(pvm, TargetWindow);
                 else MessageWindow.Show($"未找到人物 {id}");
             }
@@ -44,7 +44,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id, cancellationToken: ct);
+                var evm = await ApiC.GetViewModelAsync<EpisodeViewModel>(id, ct: ct);
                 if (evm != null) SecondaryWindow.Show(evm, TargetWindow);
                 else MessageWindow.Show($"未找到话 {id}");
             }
@@ -65,7 +65,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var bvm = await ApiC.GetViewModelAsync<BlogViewModel>(id, cancellationToken: ct);
+                var bvm = await ApiC.GetViewModelAsync<BlogViewModel>(id, ct: ct);
                 if (bvm != null) SecondaryWindow.Show(bvm, TargetWindow);
                 else MessageWindow.Show($"未找到日志 {id}");
             }
@@ -75,7 +75,7 @@ public partial class NavigatorViewModel : ViewModelBase
         {
             if (int.TryParse(Input, out var id))
             {
-                var ivm = await ApiC.GetViewModelAsync<IndexViewModel>(id, cancellationToken: ct);
+                var ivm = await ApiC.GetViewModelAsync<IndexViewModel>(id, ct: ct);
                 if (ivm != null) SecondaryWindow.Show(ivm, TargetWindow);
                 else MessageWindow.Show($"未找到目录 {id}");
             }
@@ -86,7 +86,7 @@ public partial class NavigatorViewModel : ViewModelBase
             var username = Input?.Trim();
             if (CommonUtils.IsAlphaNumeric(username))
             {
-                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(username: username, cancellationToken: ct);
+                var uvm = await ApiC.GetViewModelAsync<UserViewModel>(name: username, ct: ct);
                 if (uvm != null) SecondaryWindow.Show(uvm, TargetWindow);
                 else MessageWindow.Show($"未找到用户 {Input}");
             }
@@ -97,7 +97,7 @@ public partial class NavigatorViewModel : ViewModelBase
             var groupname = Input?.Trim();
             if (CommonUtils.IsAlphaNumeric(groupname))
             {
-                var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(username: groupname, cancellationToken: ct);
+                var gvm = await ApiC.GetViewModelAsync<GroupViewModel>(name: groupname, ct: ct);
                 if (gvm != null) SecondaryWindow.Show(gvm, TargetWindow);
                 else MessageWindow.Show($"未找到小组 {Input}");
             }

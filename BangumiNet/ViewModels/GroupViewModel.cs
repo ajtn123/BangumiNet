@@ -64,5 +64,5 @@ public partial class GroupViewModel : ItemViewModelBase
     [Reactive] public partial GroupTopicListViewModel? Topics { get; set; }
 
     public bool IsFull => Source is Group;
-    public override ItemType ItemType { get; init; } = ItemType.Group;
+    public override ItemType ItemType => ItemType.Group;
 }

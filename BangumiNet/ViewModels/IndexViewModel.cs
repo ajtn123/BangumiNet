@@ -63,5 +63,5 @@ public partial class IndexViewModel : ItemViewModelBase
     [Reactive] public partial RelatedItemListViewModel? RelatedItems { get; set; }
 
     public bool IsFull => Source is IndexObject;
-    public override ItemType ItemType { get; init; } = ItemType.Index;
+    public override ItemType ItemType => ItemType.Index;
 }

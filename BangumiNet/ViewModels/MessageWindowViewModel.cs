@@ -11,5 +11,5 @@ public partial class MessageWindowViewModel : ViewModelBase
     }
 
     [Reactive] public required partial TextViewModel Message { get; set; }
-    [Reactive] public required partial Icon Icon { get; set; }
+    [Reactive] public override required partial Icon Icon { get; set; }
 }

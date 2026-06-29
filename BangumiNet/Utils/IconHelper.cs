@@ -44,8 +44,3 @@ public static class IconHelper
         private readonly VisualBrush brush = new(new FluentIcon() { Icon = icon });
     }
 }
-
-public interface IHasIcon
-{
-    Icon Icon { get; }
-}

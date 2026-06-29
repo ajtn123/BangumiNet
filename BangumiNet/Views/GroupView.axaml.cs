@@ -16,7 +16,7 @@ public partial class GroupView : ReactiveUserControl<GroupViewModel>
                 .Where(vm => !vm.IsFull)
                 .Subscribe(async vm =>
                 {
-                    var fullItem = await ApiC.GetViewModelAsync<GroupViewModel>(username: vm.Groupname);
+                    var fullItem = await ApiC.GetViewModelAsync<GroupViewModel>(name: vm.Groupname);
                     if (fullItem == null) return;
                     ViewModel = fullItem;
                 }).DisposeWith(disposables);

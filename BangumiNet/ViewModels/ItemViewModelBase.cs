@@ -7,7 +7,7 @@ using System.Reactive.Linq;
 
 namespace BangumiNet.ViewModels;
 
-public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableViewModel, IHasIcon
+public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableViewModel
 {
     public ItemViewModelBase()
     {
@@ -27,6 +27,7 @@ public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableVie
         });
     }
 
+    [Reactive] public virtual partial ItemType ItemType { get; protected set; }
     [Reactive] public partial object? Source { get; set; }
     [Reactive] public partial int? Id { get; set; }
     [Reactive] public partial int? Order { get; set; }
@@ -43,9 +44,7 @@ public abstract partial class ItemViewModelBase : ViewModelBase, IActivatableVie
     [Reactive] public partial ReactiveCommand<Unit, Unit>? ShowRevisionsCommand { get; set; }
     [Reactive] public partial ReactiveCommand<Unit, Unit>? ShowNetworkCommand { get; set; }
 
-    public abstract ItemType ItemType { get; init; }
-
-    public FluentIcons.Common.Icon Icon => IconHelper.GetIcon(ItemType);
+    public override FluentIcons.Common.Icon Icon => IconHelper.GetIcon(ItemType);
 
     protected abstract void Activate(CompositeDisposable disposables);
     public ViewModelActivator Activator { get; } = new();

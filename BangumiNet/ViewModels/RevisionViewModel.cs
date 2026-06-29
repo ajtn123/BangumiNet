@@ -39,5 +39,5 @@ public partial class RevisionViewModel : ItemViewModelBase
 
     // Should be changed after revision detail is done.
     public bool IsFull => Source is not IRevision;
-    public override ItemType ItemType { get; init; } = ItemType.Revision;
+    public override ItemType ItemType => ItemType.Revision;
 }
