@@ -83,8 +83,6 @@
 
 ## 贡献归属
 
-本行为准则改编自 贡献者公约 3.0 版，该公约永久可在此查阅：[https://www.contributor-covenant.org/version/3/0/](https://www.contributor-covenant.org/version/3/0/)。
+本行为准则改编自[贡献者公约 3.0 版](https://www.contributor-covenant.org/version/3/0/)。
 
-贡献者公约 由 Organization for Ethical Source 负责维护，并以 CC BY-SA 4.0 许可协议发布。查看该许可协议请访问：[https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/)。
-
-关于 贡献者公约 的常见问题解答，请参阅：[https://www.contributor-covenant.org/faq](https://www.contributor-covenant.org/faq)。各语言版本译文请见：[https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations)。更多执行与社区指南资源请见：[https://www.contributor-covenant.org/resources](https://www.contributor-covenant.org/resources)。本分级措施的灵感来源于 [Mozilla 行为准则团队](https://github.com/mozilla/inclusion) 的工作。
+贡献者公约由 Organization for Ethical Source 负责维护，并以 [CC BY-SA 4.0 许可协议](https://creativecommons.org/licenses/by-sa/4.0/)发布。关于贡献者公约，参见[常见问题解答](https://www.contributor-covenant.org/faq)、[各语言版本译文](https://www.contributor-covenant.org/translations)、[执行与社区指南资源](https://www.contributor-covenant.org/resources)。本分级措施的灵感来源于 [Mozilla 行为准则团队](https://github.com/mozilla/inclusion)的工作。
