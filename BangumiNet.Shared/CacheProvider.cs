@@ -6,7 +6,7 @@ public class CacheProvider(string name, long maxSize)
 
     private string GetAbsolutePath(string id) => Path.Combine(dir.FullName, Utils.Hash(id));
 
-    public long Size() => dir.Exists ? dir.EnumerateFiles().Sum(f => f.Length) : 0;
+    public long Size() => size = dir.Exists ? dir.EnumerateFiles().Sum(f => f.Length) : 0;
 
     private long size = -1;
 
@@ -17,7 +17,7 @@ public class CacheProvider(string name, long maxSize)
 
         var length = content.Length;
         if (length > maxSize) return;
-        if (size == -1) size = Size();
+        if (size == -1) Size();
         if (size + length > maxSize) Clean();
         size += length;
 
@@ -61,7 +61,7 @@ public class CacheProvider(string name, long maxSize)
         foreach (var file in files.OrderBy(f => f.LastAccessTimeUtc).Take(dels))
             file.Delete();
 
-        if ((size = Size()) > maxSize)
+        if (Size() > maxSize)
             Clean();
     }
 
