@@ -19,6 +19,7 @@ using BangumiNet.Api.P1.P1.Logout;
 using BangumiNet.Api.P1.P1.Me;
 using BangumiNet.Api.P1.P1.Notify;
 using BangumiNet.Api.P1.P1.Persons;
+using BangumiNet.Api.P1.P1.Privacy;
 using BangumiNet.Api.P1.P1.Report;
 using BangumiNet.Api.P1.P1.Search;
 using BangumiNet.Api.P1.P1.Subjects;
@@ -147,6 +148,12 @@ namespace BangumiNet.Api.P1.P1
         public global::BangumiNet.Api.P1.P1.Persons.PersonsRequestBuilder Persons
         {
             get => new global::BangumiNet.Api.P1.P1.Persons.PersonsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The privacy property</summary>
+        public global::BangumiNet.Api.P1.P1.Privacy.PrivacyRequestBuilder Privacy
+        {
+            get => new global::BangumiNet.Api.P1.P1.Privacy.PrivacyRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The report property</summary>
