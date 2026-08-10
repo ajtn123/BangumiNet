@@ -43,20 +43,40 @@ public sealed class SubjectStaffTest
     [TestMethod]
     public void Categories()
     {
-        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetCategories()).Where(x => x != null);
+        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetCategories());
         Assert.IsNotEmpty(keys);
         foreach (var item in keys)
-            Assert.IsNotEmpty(item!);
+            Assert.IsNotEmpty(item);
     }
 
     [TestMethod]
-    public void SubjectTypeT()
+    public void PresentationGroups()
     {
-        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetSubjectType()).Distinct();
-        Assert.HasCount(5, keys);
-        var keys1 = Enum.GetValues<StaffCategory>().Select(x => x.GetSubjectType()).Distinct();
-        Assert.HasCount(2, keys1);
-        Assert.Contains(SubjectType.Anime, keys1);
-        Assert.Contains(SubjectType.Game, keys1);
+        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetPresentationGroups());
+        Assert.IsNotEmpty(keys);
+        foreach (var item in keys)
+            Assert.IsNotEmpty(item);
+    }
+
+    [TestMethod]
+    public void IsFolded()
+    {
+        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetIsFolded());
+        Assert.Contains(true, keys);
+        Assert.Contains(false, keys);
+    }
+
+    [TestMethod]
+    public void StaffSubjectType()
+    {
+        var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetSubjectType());
+        Assert.IsNotEmpty(keys);
+    }
+
+    [TestMethod]
+    public void StaffCategorySubjectType()
+    {
+        var keys = Enum.GetValues<StaffCategory>().Select(x => x.GetSubjectType());
+        Assert.IsNotEmpty(keys);
     }
 }

@@ -12,8 +12,8 @@ public class ParentTypeAttribute<T>(T type) : Attribute where T : Enum
     public T ParentType { get; init; } = type;
 }
 
-[AttributeUsage(AttributeTargets.Field)]
-public class CategoriesAttribute<T>(params T[] type) : Attribute where T : Enum
+[AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
+public class CategoriesAttribute<T>(params T[] categories) : Attribute where T : Enum
 {
-    public T[] Categories { get; init; } = type;
+    public T[] Categories { get; init; } = categories;
 }

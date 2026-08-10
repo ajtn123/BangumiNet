@@ -192,8 +192,12 @@ public static class AttributeHelpers
         => value.GetAttribute<NameJpAttribute>()?.Name;
     public static string? GetDescription(this SubjectStaff value)
         => value.GetAttribute<DescriptionAttribute>()?.Description;
-    public static StaffCategory[]? GetCategories(this SubjectStaff value)
-        => value.GetAttribute<CategoriesAttribute<StaffCategory>>()?.Categories;
+    public static StaffCategory[] GetCategories(this SubjectStaff value)
+        => value.GetAttribute<CategoriesAttribute<StaffCategory>>()?.Categories ?? [];
+    public static PresentationGroup[] GetPresentationGroups(this SubjectStaff value)
+        => value.GetAttribute<CategoriesAttribute<PresentationGroup>>()?.Categories ?? [];
+    public static bool GetIsFolded(this SubjectStaff value)
+        => value.GetAttribute<FoldedAttribute>() != null;
     public static SubjectType GetSubjectType(this SubjectStaff value)
         => (int)value switch
         {
