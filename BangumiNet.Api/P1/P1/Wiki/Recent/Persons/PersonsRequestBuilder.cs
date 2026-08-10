@@ -23,7 +23,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Persons
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/persons", pathParameters)
+        public PersonsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/persons{?since*}", pathParameters)
         {
         }
 
@@ -32,7 +32,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Persons
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public PersonsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/persons", rawUrl)
+        public PersonsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/persons{?since*}", rawUrl)
         {
         }
 
@@ -44,7 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Persons
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<List<global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.Persons>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.Persons>?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder.PersonsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -61,7 +61,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Persons
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder.PersonsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -77,6 +77,17 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Persons
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Wiki.Recent.Persons.PersonsRequestBuilder(rawUrl, RequestAdapter);
+        }
+
+        /// <summary>
+        /// 获取最近两天的人物wiki更新
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class PersonsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>unix time stamp, only return last update time &gt;= sinceonly allow recent 2 days</summary>
+            [QueryParameter("since")]
+            public int? Since { get; set; }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/subjects", pathParameters)
+        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/subjects{?since*}", pathParameters)
         {
         }
 
@@ -32,7 +32,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/subjects", rawUrl)
+        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/subjects{?since*}", rawUrl)
         {
         }
 
@@ -44,7 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<global::BangumiNet.Api.P1.Models.RecentWikiChange?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.Models.RecentWikiChange?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -60,7 +60,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -76,6 +76,17 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
+        }
+
+        /// <summary>
+        /// 获取最近两天的wiki更新
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class SubjectsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>unix time stamp, only return last update time &gt;= sinceonly allow recent 2 days</summary>
+            [QueryParameter("since")]
+            public int? Since { get; set; }
         }
     }
 }

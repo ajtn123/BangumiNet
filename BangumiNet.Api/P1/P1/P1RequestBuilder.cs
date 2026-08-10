@@ -18,6 +18,7 @@ using BangumiNet.Api.P1.P1.Login;
 using BangumiNet.Api.P1.P1.Logout;
 using BangumiNet.Api.P1.P1.Me;
 using BangumiNet.Api.P1.P1.Notify;
+using BangumiNet.Api.P1.P1.Passkey;
 using BangumiNet.Api.P1.P1.Persons;
 using BangumiNet.Api.P1.P1.Privacy;
 using BangumiNet.Api.P1.P1.Report;
@@ -142,6 +143,12 @@ namespace BangumiNet.Api.P1.P1
         public global::BangumiNet.Api.P1.P1.Notify.NotifyRequestBuilder Notify
         {
             get => new global::BangumiNet.Api.P1.P1.Notify.NotifyRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The passkey property</summary>
+        public global::BangumiNet.Api.P1.P1.Passkey.PasskeyRequestBuilder Passkey
+        {
+            get => new global::BangumiNet.Api.P1.P1.Passkey.PasskeyRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The persons property</summary>

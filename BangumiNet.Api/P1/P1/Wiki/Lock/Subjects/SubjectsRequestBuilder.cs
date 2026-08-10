@@ -39,6 +39,8 @@ namespace BangumiNet.Api.P1.P1.Wiki.Lock.Subjects
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
         public async Task<global::BangumiNet.Api.P1.P1.Wiki.Lock.Subjects.SubjectsPostResponse?> PostAsync(global::BangumiNet.Api.P1.P1.Wiki.Lock.Subjects.SubjectsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
@@ -46,6 +48,8 @@ namespace BangumiNet.Api.P1.P1.Wiki.Lock.Subjects
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Lock.Subjects.SubjectsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Lock.Subjects.SubjectsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);

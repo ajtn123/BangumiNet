@@ -42,12 +42,16 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
         public async Task<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VoteDeleteResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
@@ -59,12 +63,16 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
         public async Task<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers.Item.Vote.VotePostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
