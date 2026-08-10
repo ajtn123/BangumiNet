@@ -10,54 +10,58 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects
+namespace BangumiNet.Api.P1.P1.Passkey.Login.Verify
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\wiki\unlock\subjects
+    /// Builds and executes requests for operations under \p1\passkey\login\verify
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class SubjectsRequestBuilder : BaseRequestBuilder
+    public partial class VerifyRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/unlock/subjects", pathParameters)
+        public VerifyRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/passkey/login/verify", pathParameters)
         {
         }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SubjectsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/unlock/subjects", rawUrl)
+        public VerifyRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/passkey/login/verify", rawUrl)
         {
         }
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostResponse"/></returns>
+
+        /// <summary>
+        /// 验证 Passkey 登录并签发 session
+        /// </summary>
+        /// <returns>A <see cref="UntypedNode"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
-        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 403 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostResponse?> PostAsync(global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<UntypedNode?> PostAsync(global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
-                { "403", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<UntypedNode>(requestInfo, UntypedNode.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// 验证 Passkey 登录并签发 session
+        /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToPostRequestInformation(global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
@@ -70,11 +74,11 @@ namespace BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder WithUrl(string rawUrl)
+        public global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::BangumiNet.Api.P1.P1.Wiki.Unlock.Subjects.SubjectsRequestBuilder(rawUrl, RequestAdapter);
+            return new global::BangumiNet.Api.P1.P1.Passkey.Login.Verify.VerifyRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

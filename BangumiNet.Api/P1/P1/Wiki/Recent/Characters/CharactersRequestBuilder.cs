@@ -23,7 +23,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Characters
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/characters", pathParameters)
+        public CharactersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/characters{?since*}", pathParameters)
         {
         }
 
@@ -32,7 +32,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Characters
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/characters", rawUrl)
+        public CharactersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/wiki/recent/characters{?since*}", rawUrl)
         {
         }
 
@@ -44,7 +44,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Characters
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<List<global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.Characters>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.Characters>?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder.CharactersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -61,7 +61,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Characters
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder.CharactersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -77,6 +77,17 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Characters
         public global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Wiki.Recent.Characters.CharactersRequestBuilder(rawUrl, RequestAdapter);
+        }
+
+        /// <summary>
+        /// 获取最近两天的角色wiki更新
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class CharactersRequestBuilderGetQueryParameters 
+        {
+            /// <summary>unix time stamp, only return last update time &gt;= sinceonly allow recent 2 days</summary>
+            [QueryParameter("since")]
+            public int? Since { get; set; }
         }
     }
 }
