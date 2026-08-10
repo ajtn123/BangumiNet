@@ -8,20 +8,20 @@ $api = [System.IO.Path]::GetFileNameWithoutExtension($apiDescriptionFile).ToUppe
 $content = Get-Content $apiDescriptionFile -Raw
 
 # mtigate kiota error
-$content = ($content -replace 'exclusiveMinimum: 0', 'minimum: 0')
+$content = ($content -replace 'exclusiveMinimum\s*:\s*(\d+)', 'minimum: $1')
+$content = ($content -replace '"exclusiveMinimum"\s*:\s*(\d+)', '"minimum": $1')
 
 # get version string
 if ($api -eq 'P1') {
-    if ($content -match 'version:\s*(.+)') {
-        $version = $Matches[1]
-    }
+    $obj = $content | ConvertFrom-Json
+    $version = $obj.info.version
 } elseif ($api -eq 'V0') {
-    $url = "https://api.github.com/repos/bangumi/api/commits?path=open-api/v0.yaml"
-    $response = Invoke-RestMethod -Uri $url -Method Get -Headers @{ "User-Agent" = "pwsh" }
+    $url = 'https://api.github.com/repos/bangumi/api/commits?path=open-api/v0.yaml'
+    $response = Invoke-RestMethod -Uri $url -Method Get -Headers @{ 'User-Agent' = 'pwsh' }
     if ($response) {
         $commit = $response[0]
-        $date = $commit.commit.author.date.ToString("yyyy-MM-dd")
-        $sha = $commit.sha.Substring(0, 6)
+        $date = $commit.commit.author.date.ToString('yyyy-MM-dd')
+        $sha = $commit.sha.Substring(0, 7)
         $version = "$date-$sha"
     }
 }

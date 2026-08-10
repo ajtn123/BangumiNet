@@ -7,7 +7,7 @@ namespace BangumiNet.Api.P1
         /// <summary>bangumi private api 版本</summary>
         public const string Version = "2026-07-05-01ac622"; // P1
         /// <summary>OpenAPI 定义文件的 URL</summary>
-        public const string DefinitionUrl = "https://next.bgm.tv/p1/openapi.yaml";
+        public const string DefinitionUrl = "https://next.bgm.tv/p1/openapi.json";
         /// <summary>生成本 API 客户端的命令</summary>
         public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.P1 -o .\P1 --co --ebc";
 

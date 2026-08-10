@@ -15,10 +15,10 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Download API Description
-        run: curl -L -o p1.yaml https://next.bgm.tv/p1/openapi.yaml
+        run: curl -L -o p1.json https://next.bgm.tv/p1/openapi.json
 
       - name: Pre-Process API Description
-        run: pwsh BangumiNet.Api/PreGeneration.ps1 p1.yaml
+        run: pwsh BangumiNet.Api/PreGeneration.ps1 p1.json
 
       - name: Update API Client
         run: kiota update --clean-output -o BangumiNet.Api/P1
