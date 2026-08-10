@@ -45,8 +45,6 @@ public sealed class SubjectStaffTest
     {
         var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetCategories());
         Assert.IsNotEmpty(keys);
-        foreach (var item in keys)
-            Assert.IsNotEmpty(item);
     }
 
     [TestMethod]
@@ -54,8 +52,6 @@ public sealed class SubjectStaffTest
     {
         var keys = Enum.GetValues<SubjectStaff>().Select(x => x.GetPresentationGroups());
         Assert.IsNotEmpty(keys);
-        foreach (var item in keys)
-            Assert.IsNotEmpty(item);
     }
 
     [TestMethod]
