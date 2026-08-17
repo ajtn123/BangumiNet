@@ -14,11 +14,14 @@ namespace BangumiNet.Api.V0.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        /// <summary>The count property</summary>
+        /// <summary>使用此标签标记本条目的用户数</summary>
         public int? Count { get; set; }
 
         /// <summary>The name property</summary>
         public string? Name { get; set; }
+
+        /// <summary>此标签在所有条目中的使用总次数</summary>
+        public int? TotalCount { get; set; }
 
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Collections"/> and sets the default values.
@@ -49,6 +52,7 @@ namespace BangumiNet.Api.V0.Models
             {
                 { "count", n => { Count = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "total_count", n => { TotalCount = n.GetIntValue(); } },
             };
         }
 
@@ -61,6 +65,7 @@ namespace BangumiNet.Api.V0.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("count", Count);
             writer.WriteStringValue("name", Name);
+            writer.WriteIntValue("total_count", TotalCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

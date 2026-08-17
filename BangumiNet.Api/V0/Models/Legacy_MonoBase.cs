@@ -8,44 +8,44 @@ using System.IO;
 using System;
 namespace BangumiNet.Api.V0.Models
 {
+    /// <summary>
+    /// 人物（基础模型）
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Paged_Revision : IAdditionalDataHolder, IParsable
+    public partial class Legacy_MonoBase : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        /// <summary>The data property</summary>
-        public List<global::BangumiNet.Api.V0.Models.Revision>? Data { get; set; }
+        /// <summary>人物 ID</summary>
+        public int? Id { get; set; }
 
-        /// <summary>The limit property</summary>
-        public int? Limit { get; set; }
+        /// <summary>肖像</summary>
+        public global::BangumiNet.Api.V0.Models.Legacy_MonoBase_images? Images { get; set; }
 
-        /// <summary>The offset property</summary>
-        public int? Offset { get; set; }
+        /// <summary>姓名</summary>
+        public string? Name { get; set; }
 
-        /// <summary>The total property</summary>
-        public int? Total { get; set; }
+        /// <summary>人物地址</summary>
+        public string? Url { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Paged_Revision"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Legacy_MonoBase"/> and sets the default values.
         /// </summary>
-        public Paged_Revision()
+        public Legacy_MonoBase()
         {
             AdditionalData = new Dictionary<string, object>();
-            Limit = 0;
-            Offset = 0;
-            Total = 0;
         }
 
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.V0.Models.Paged_Revision"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.V0.Models.Legacy_MonoBase"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.V0.Models.Paged_Revision CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.V0.Models.Legacy_MonoBase CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.V0.Models.Paged_Revision();
+            return new global::BangumiNet.Api.V0.Models.Legacy_MonoBase();
         }
 
         /// <summary>
@@ -56,10 +56,10 @@ namespace BangumiNet.Api.V0.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::BangumiNet.Api.V0.Models.Revision>(global::BangumiNet.Api.V0.Models.Revision.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "limit", n => { Limit = n.GetIntValue(); } },
-                { "offset", n => { Offset = n.GetIntValue(); } },
-                { "total", n => { Total = n.GetIntValue(); } },
+                { "id", n => { Id = n.GetIntValue(); } },
+                { "images", n => { Images = n.GetObjectValue<global::BangumiNet.Api.V0.Models.Legacy_MonoBase_images>(global::BangumiNet.Api.V0.Models.Legacy_MonoBase_images.CreateFromDiscriminatorValue); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "url", n => { Url = n.GetStringValue(); } },
             };
         }
 
@@ -70,10 +70,10 @@ namespace BangumiNet.Api.V0.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.V0.Models.Revision>("data", Data);
-            writer.WriteIntValue("limit", Limit);
-            writer.WriteIntValue("offset", Offset);
-            writer.WriteIntValue("total", Total);
+            writer.WriteIntValue("id", Id);
+            writer.WriteObjectValue<global::BangumiNet.Api.V0.Models.Legacy_MonoBase_images>("images", Images);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

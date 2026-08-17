@@ -95,11 +95,7 @@ namespace BangumiNet.Api.V0.Models
                 if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
                 var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
                 var result = new global::BangumiNet.Api.V0.Models.ErrorDetail.ErrorDetail_details();
-                if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    result.ErrorDetailDetailsMember1 = new global::BangumiNet.Api.V0.Models.ErrorDetail_detailsMember1();
-                }
-                else if(parseNode.GetStringValue() is string stringValue)
+                if(parseNode.GetStringValue() is string stringValue)
                 {
                     result.String = stringValue;
                 }
