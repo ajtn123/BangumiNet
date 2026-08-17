@@ -43,7 +43,7 @@ namespace BangumiNet.Api.P1.P1.Indexes
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IndexesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes", pathParameters)
+        public IndexesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes{?limit*,offset*,order*,type*}", pathParameters)
         {
         }
 
@@ -52,8 +52,25 @@ namespace BangumiNet.Api.P1.P1.Indexes
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IndexesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes", rawUrl)
+        public IndexesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/indexes{?limit*,offset*,order*,type*}", rawUrl)
         {
+        }
+
+        /// <summary>
+        /// 全站公开目录列表，支持排序、分页和类型过滤
+        /// </summary>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Indexes.IndexesGetResponse"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
+        public async Task<global::BangumiNet.Api.P1.P1.Indexes.IndexesGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Indexes.IndexesGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Indexes.IndexesGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -73,6 +90,19 @@ namespace BangumiNet.Api.P1.P1.Indexes
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Indexes.IndexesPostResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Indexes.IndexesPostResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// 全站公开目录列表，支持排序、分页和类型过滤
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder.IndexesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
 
         /// <summary>
@@ -99,6 +129,27 @@ namespace BangumiNet.Api.P1.P1.Indexes
         public global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder WithUrl(string rawUrl)
         {
             return new global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder(rawUrl, RequestAdapter);
+        }
+
+        /// <summary>
+        /// 全站公开目录列表，支持排序、分页和类型过滤
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class IndexesRequestBuilderGetQueryParameters 
+        {
+            /// <summary>max 100</summary>
+            [QueryParameter("limit")]
+            public int? Limit { get; set; }
+
+            /// <summary>min 0</summary>
+            [QueryParameter("offset")]
+            public int? Offset { get; set; }
+
+            /// <summary>排序方式：hot=按收藏数，latest=按创建时间</summary>
+            [QueryParameter("order")]
+            public global::BangumiNet.Api.P1.P1.Indexes.GetOrderQueryParameterType? Order { get; set; }
+            [QueryParameter("type")]
+            public int? Type { get; set; }
         }
     }
 }
