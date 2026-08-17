@@ -11,8 +11,10 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: microsoft/setup-kiota@v0.6.0
       - uses: actions/checkout@v7
+
+      - name: Restore .NET Tools
+        run: dotnet tool restore
 
       - name: Download API Description
         run: curl -L -o v0.yaml https://github.com/bangumi/api/raw/refs/heads/master/open-api/v0.yaml
@@ -21,7 +23,7 @@ jobs:
         run: pwsh BangumiNet.Api/PreGeneration.ps1 v0.yaml
 
       - name: Update API Client
-        run: kiota update --clean-output -o BangumiNet.Api/V0
+        run: dotnet kiota update --clean-output -o BangumiNet.Api/V0
 
       - name: Post-Process Generated Code
         run: pwsh BangumiNet.Api/PostGeneration.ps1 BangumiNet.Api/V0
