@@ -75,6 +75,29 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
         }
 
         /// <summary>
+        /// 编辑自己的日志，字段全可选；全部不传返回 400
+        /// </summary>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryPatchResponse"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 400 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 404 status code</exception>
+        /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
+        public async Task<global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryPatchResponse?> PatchAsync(global::BangumiNet.Api.P1.Models.UpdateBlog body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "404", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryPatchResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Blogs.Item.WithEntryPatchResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// 获取日志详情
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -84,6 +107,22 @@ namespace BangumiNet.Api.P1.P1.Blogs.Item
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+
+        /// <summary>
+        /// 编辑自己的日志，字段全可选；全部不传返回 400
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        public RequestInformation ToPatchRequestInformation(global::BangumiNet.Api.P1.Models.UpdateBlog body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
 

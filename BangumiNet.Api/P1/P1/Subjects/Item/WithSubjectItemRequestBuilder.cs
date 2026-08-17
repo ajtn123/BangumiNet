@@ -6,6 +6,7 @@ using BangumiNet.Api.P1.P1.Subjects.Item.Characters;
 using BangumiNet.Api.P1.P1.Subjects.Item.Collects;
 using BangumiNet.Api.P1.P1.Subjects.Item.Comments;
 using BangumiNet.Api.P1.P1.Subjects.Item.Episodes;
+using BangumiNet.Api.P1.P1.Subjects.Item.Home;
 using BangumiNet.Api.P1.P1.Subjects.Item.Indexes;
 using BangumiNet.Api.P1.P1.Subjects.Item.Recs;
 using BangumiNet.Api.P1.P1.Subjects.Item.Relations;
@@ -50,6 +51,12 @@ namespace BangumiNet.Api.P1.P1.Subjects.Item
         public global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder Episodes
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Episodes.EpisodesRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The home property</summary>
+        public global::BangumiNet.Api.P1.P1.Subjects.Item.Home.HomeRequestBuilder Home
+        {
+            get => new global::BangumiNet.Api.P1.P1.Subjects.Item.Home.HomeRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The indexes property</summary>

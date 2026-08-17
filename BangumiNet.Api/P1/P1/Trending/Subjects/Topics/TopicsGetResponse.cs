@@ -16,7 +16,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         public IDictionary<string, object> AdditionalData { get; set; }
 
         /// <summary>The data property</summary>
-        public List<global::BangumiNet.Api.P1.Models.SubjectTopic>? Data { get; set; }
+        public List<global::BangumiNet.Api.P1.Models.ChannelSubjectTopic>? Data { get; set; }
 
         /// <summary>limit+offset 为参数的请求表示总条数，page 为参数的请求表示总页数</summary>
         public int? Total { get; set; }
@@ -48,7 +48,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.SubjectTopic>(global::BangumiNet.Api.P1.Models.SubjectTopic.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.ChannelSubjectTopic>(global::BangumiNet.Api.P1.Models.ChannelSubjectTopic.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "total", n => { Total = n.GetIntValue(); } },
             };
         }
@@ -60,7 +60,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.SubjectTopic>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.ChannelSubjectTopic>("data", Data);
             writer.WriteIntValue("total", Total);
             writer.WriteAdditionalData(AdditionalData);
         }

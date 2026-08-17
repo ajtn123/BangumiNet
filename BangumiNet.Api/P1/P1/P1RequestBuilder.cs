@@ -4,6 +4,7 @@
 using BangumiNet.Api.P1.P1.Blocklist;
 using BangumiNet.Api.P1.P1.Blogs;
 using BangumiNet.Api.P1.P1.Calendar;
+using BangumiNet.Api.P1.P1.Channels;
 using BangumiNet.Api.P1.P1.Characters;
 using BangumiNet.Api.P1.P1.ClearNotify;
 using BangumiNet.Api.P1.P1.Collections;
@@ -13,6 +14,7 @@ using BangumiNet.Api.P1.P1.Followers;
 using BangumiNet.Api.P1.P1.Friendlist;
 using BangumiNet.Api.P1.P1.Friends;
 using BangumiNet.Api.P1.P1.Groups;
+using BangumiNet.Api.P1.P1.Home;
 using BangumiNet.Api.P1.P1.Indexes;
 using BangumiNet.Api.P1.P1.Login;
 using BangumiNet.Api.P1.P1.Logout;
@@ -21,6 +23,7 @@ using BangumiNet.Api.P1.P1.Notify;
 using BangumiNet.Api.P1.P1.Passkey;
 using BangumiNet.Api.P1.P1.Persons;
 using BangumiNet.Api.P1.P1.Privacy;
+using BangumiNet.Api.P1.P1.Rakuen;
 using BangumiNet.Api.P1.P1.Report;
 using BangumiNet.Api.P1.P1.Search;
 using BangumiNet.Api.P1.P1.Subjects;
@@ -59,6 +62,12 @@ namespace BangumiNet.Api.P1.P1
         public global::BangumiNet.Api.P1.P1.Calendar.CalendarRequestBuilder Calendar
         {
             get => new global::BangumiNet.Api.P1.P1.Calendar.CalendarRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The channels property</summary>
+        public global::BangumiNet.Api.P1.P1.Channels.ChannelsRequestBuilder Channels
+        {
+            get => new global::BangumiNet.Api.P1.P1.Channels.ChannelsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The characters property</summary>
@@ -115,6 +124,12 @@ namespace BangumiNet.Api.P1.P1
             get => new global::BangumiNet.Api.P1.P1.Groups.GroupsRequestBuilder(PathParameters, RequestAdapter);
         }
 
+        /// <summary>The home property</summary>
+        public global::BangumiNet.Api.P1.P1.Home.HomeRequestBuilder Home
+        {
+            get => new global::BangumiNet.Api.P1.P1.Home.HomeRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         /// <summary>The indexes property</summary>
         public global::BangumiNet.Api.P1.P1.Indexes.IndexesRequestBuilder Indexes
         {
@@ -161,6 +176,12 @@ namespace BangumiNet.Api.P1.P1
         public global::BangumiNet.Api.P1.P1.Privacy.PrivacyRequestBuilder Privacy
         {
             get => new global::BangumiNet.Api.P1.P1.Privacy.PrivacyRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The rakuen property</summary>
+        public global::BangumiNet.Api.P1.P1.Rakuen.RakuenRequestBuilder Rakuen
+        {
+            get => new global::BangumiNet.Api.P1.P1.Rakuen.RakuenRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The report property</summary>

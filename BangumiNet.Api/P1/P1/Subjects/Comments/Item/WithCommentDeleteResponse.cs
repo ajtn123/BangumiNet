@@ -6,24 +6,18 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.Models
+namespace BangumiNet.Api.P1.P1.Subjects.Comments.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Persons : IAdditionalDataHolder, IParsable
+    public partial class WithCommentDeleteResponse : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        /// <summary>The key property</summary>
-        public string? Key { get; set; }
-
-        /// <summary>The values property</summary>
-        public List<global::BangumiNet.Api.P1.Models.Persons_values>? Values { get; set; }
-
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.Models.Persons"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse"/> and sets the default values.
         /// </summary>
-        public Persons()
+        public WithCommentDeleteResponse()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -31,12 +25,12 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.Persons"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.Models.Persons CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.Models.Persons();
+            return new global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse();
         }
 
         /// <summary>
@@ -47,8 +41,6 @@ namespace BangumiNet.Api.P1.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "key", n => { Key = n.GetStringValue(); } },
-                { "values", n => { Values = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Persons_values>(global::BangumiNet.Api.P1.Models.Persons_values.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
 
@@ -59,8 +51,6 @@ namespace BangumiNet.Api.P1.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("key", Key);
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.Persons_values>("values", Values);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
