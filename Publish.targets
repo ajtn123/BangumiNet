@@ -34,6 +34,6 @@
             <AvaloniaResource Include="$(GeneratedLicensesFile)" />
         </ItemGroup>
         <MakeDir Directories="$(MSBuildProjectDirectory)\Assets\Licenses" />
-        <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass -File $(MSBuildThisFileDirectory)Tools\GenerateLicenses.ps1 -AssetsJson $(ProjectAssetsFile) -NuGetRoot $(NuGetPackageRoot) -Output $(GeneratedLicensesFile)" />
+        <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass -File $(MSBuildThisFileDirectory)Tools/GenerateLicenses.ps1 -AssetsJson $(ProjectAssetsFile) -NuGetRoot $(NuGetPackageRoot) -Output $(GeneratedLicensesFile)" />
     </Target>
 </Project>
