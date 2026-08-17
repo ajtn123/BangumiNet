@@ -2,7 +2,6 @@
 
 一个由 [Kiota](https://learn.microsoft.com/zh-cn/openapi/kiota/overview) 根据 [Bangumi](https://bgm.tv) 提供的 OpenAPI 定义生成的 API 客户端，来自 [BangumiNet](https://github.com/ajtn123/BangumiNet)。
 
-- Legacy API [//api.bgm.tv/](https://bangumi.github.io/api/#/%E6%9D%A1%E7%9B%AE/getCalendar)
 - Open API [//api.bgm.tv/v0/](https://bangumi.github.io/api/#/)
 - Private API [//next.bgm.tv/p1/](https://next.bgm.tv/p1/#/)
   - 订阅通知 (socket.io)

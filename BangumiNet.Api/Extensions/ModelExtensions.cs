@@ -48,14 +48,12 @@ namespace BangumiNet.Api.V0.Models
     public partial class PersonRevision : IRevision;
     public partial class DetailedRevision : IRevision;
     public partial class Revision : IRevision;
-}
-namespace BangumiNet.Api.Legacy.Models
-{
+
     public partial class Legacy_SubjectSmall_collection : ICollection;
     public partial class Legacy_SubjectSmall_images : IImagesFull;
     public partial class Legacy_SubjectSmall_rating_count : IRatingCount;
 }
-namespace BangumiNet.Api.Legacy.Calendar
+namespace BangumiNet.Api.V0.Calendar
 {
     public partial class Calendar_weekday : IWeekday;
 }

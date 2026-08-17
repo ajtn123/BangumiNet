@@ -35,20 +35,3 @@ namespace BangumiNet.Api.V0
         public const string BaseUrlDevTrailing = BaseUrlDev + "/";
     }
 }
-
-namespace BangumiNet.Api.Legacy
-{
-    [Obsolete]
-    public partial class ApiClient : IApiClient
-    {
-        /// <summary>OpenAPI 定义文件的最后 commit</summary>
-        public const string Commit = "9b4e4267c008218b51c275d640fab292637ca7ae";
-        /// <summary>OpenAPI 定义文件的 URL</summary>
-        public const string DefinitionUrl = "https://github.com/bangumi/api/raw/9b4e4267c008218b51c275d640fab292637ca7ae/open-api/api.yml";
-        /// <summary>生成本 API 客户端的命令</summary>
-        public const string KiotaCommand = $@"kiota generate -d {DefinitionUrl} -l csharp -n BangumiNet.Api.Legacy -o .\Legacy --co --ebc";
-
-        public const string BaseUrl = "https://api.bgm.tv";
-        public const string BaseUrlTrailing = BaseUrl + "/";
-    }
-}

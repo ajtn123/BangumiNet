@@ -28,8 +28,8 @@ jobs:
       - name: Post-Process Generated Code
         run: pwsh BangumiNet.Api/PostGeneration.ps1 BangumiNet.Api/V0
 
-      - name: Apply Patch
-        run: git apply BangumiNet.Api/v0.patch
+      # - name: Apply Patch
+      #   run: git apply BangumiNet.Api/v0.patch
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
