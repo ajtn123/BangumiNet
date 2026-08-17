@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:bn="https://github.com/ajtn123/BangumiNet"
+        xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+        mc:Ignorable="d"
+        x:Class="BangumiNet.Views.LicenseWindow"
+        x:DataType="bn:LicenseWindowViewModel"
+        Width="800" Height="600"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Title}">
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10" Margin="10">
+        <StackPanel Spacing="2">
+            <TextBlock Classes="Title" Text="{Binding Item.Name}" FontSize="18" />
+            <TextBlock Classes="Sec" Text="{Binding Subtitle}" TextWrapping="Wrap" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+            <SelectableTextBlock Text="{Binding Item.LicenseText}" TextWrapping="Wrap"
+                                 IsVisible="{Binding Item.LicenseText,Converter={StaticResource NullCvt}}" />
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="5">
+            <Button Name="CopyButton" IsVisible="{Binding Item.LicenseText,Converter={StaticResource NullCvt}}">
+                <TextBlock><ic:FluentIcon Icon="Copy" />复制</TextBlock>
+            </Button>
+            <Button Name="OpenUrlButton" IsVisible="{Binding Item.LicenseUrl,Converter={StaticResource NullCvt}}">
+                <TextBlock><ic:FluentIcon Icon="Open" />打开链接</TextBlock>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

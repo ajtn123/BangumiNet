@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using BangumiNet.Models;
 using System.Reactive.Disposables;
 using System.Reactive.Disposables.Fluent;
 using System.Reflection;
@@ -65,6 +66,11 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
         => CommonUtils.OpenUri(Constants.SourceRepository);
     private void OpenGitHubLatestRelease(object? sender, RoutedEventArgs e)
         => CommonUtils.OpenUri(Constants.SourceRepositoryLatestRelease);
+    private void OpenLicense(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button { DataContext: LicenseItem item })
+            LicenseWindow.Show(item);
+    }
 
     private async Task LocalDataPickDirAsync()
     {

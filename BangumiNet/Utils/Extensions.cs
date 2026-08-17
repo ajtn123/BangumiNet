@@ -65,4 +65,20 @@ public static class Extensions
         var opaque = new Color(byte.MaxValue, color.R, color.G, color.B);
         return opaque.ToString().ToLower().Replace("#ff", "#");
     }
+
+    public static void TraceError(this Exception ex, string? message = null)
+    {
+        Trace.TraceError(message);
+        Trace.TraceError(ex.ToString());
+    }
+    public static void TraceWarning(this Exception ex, string? message = null)
+    {
+        Trace.TraceWarning(message);
+        Trace.TraceWarning(ex.ToString());
+    }
+    public static void TraceInformation(this Exception ex, string? message = null)
+    {
+        Trace.TraceInformation(message);
+        Trace.TraceInformation(ex.ToString());
+    }
 }

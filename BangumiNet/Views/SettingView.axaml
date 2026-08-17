@@ -74,6 +74,29 @@
                     </ScrollViewer>
                 </Grid>
 
+                <ui:FASettingsExpander Header="第三方开源许可" IsExpanded="False"
+                                       IconSource="{ice:FluentIconSource DocumentLock}"
+                                       ItemsSource="{x:Static bn:LicenseProvider.Items}">
+                    <ui:FASettingsExpander.DataTemplates>
+                        <DataTemplate DataType="bn:LicenseItem">
+                            <ui:FASettingsExpanderItem>
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Classes="Sec" Text="{Binding Version}" />
+                                </StackPanel>
+                                <ui:FASettingsExpanderItem.Footer>
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="{Binding License}" Classes="Sec"
+                                                   VerticalAlignment="Center"
+                                                   ToolTip.Tip="{Binding RepositoryUrl}" />
+                                        <Button Click="OpenLicense" Content="查看许可" Padding="5" />
+                                    </StackPanel>
+                                </ui:FASettingsExpanderItem.Footer>
+                            </ui:FASettingsExpanderItem>
+                        </DataTemplate>
+                    </ui:FASettingsExpander.DataTemplates>
+                </ui:FASettingsExpander>
+
                 <ui:FASettingsExpander Header="User Agent" IconSource="{ice:FluentIconSource Agents}">
                     <ui:FASettingsExpander.Footer>
                         <TextBox Text="{Binding UserAgent}"
