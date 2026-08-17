@@ -32,6 +32,9 @@ namespace BangumiNet.Api.V0.Models
         public Paged_Revision()
         {
             AdditionalData = new Dictionary<string, object>();
+            Limit = 0;
+            Offset = 0;
+            Total = 0;
         }
 
         /// <summary>

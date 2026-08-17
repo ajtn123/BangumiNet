@@ -51,6 +51,7 @@ namespace BangumiNet.Api.V0.Models
         public IndexObject()
         {
             AdditionalData = new Dictionary<string, object>();
+            Total = 0;
         }
 
         /// <summary>
