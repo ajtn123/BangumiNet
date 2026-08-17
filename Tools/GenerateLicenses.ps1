@@ -97,10 +97,7 @@ foreach ($prop in $assets.libraries.PSObject.Properties) {
     $items += [pscustomobject]$item
 }
 
-$items = $items | Sort-Object Name
-$json = $items | ConvertTo-Json -Depth 5
-$dirOut = Split-Path $Output -Parent
+$json = $items | Sort-Object Name | ConvertTo-Json -Depth 4
+New-Item -Path $Output -ItemType File -Force -Value $json | Out-Null
 
-New-Item -Path $dirOut -ItemType Directory -Force
-New-Item -Path $Output -ItemType File -Force -Value $json
 Write-Output "GenerateLicenses: wrote $($items.Count) packages -> $Output"
