@@ -20,4 +20,4 @@ p1.json
 v0.json
 
 # Build Time Resources
-BangumiNet/Assets/Licenses/
+BangumiNet/Assets/Licenses/licenses*.json

@@ -28,9 +28,14 @@
     <Target Name="GenerateLicenses" BeforeTargets="GenerateAvaloniaResources;CoreCompile"
             Condition="'$(DesignTimeBuild)' != 'true' and Exists('$(ProjectAssetsFile)') and '$(NuGetPackageRoot)' != ''">
         <PropertyGroup>
-            <GeneratedLicensesFile>$(MSBuildProjectDirectory)\Assets\Licenses\licenses.$(RuntimeIdentifier).json</GeneratedLicensesFile>
+            <GeneratedLicensesFileName Condition="'$(RuntimeIdentifier)' != ''">licenses.$(RuntimeIdentifier).json</GeneratedLicensesFileName>
+            <GeneratedLicensesFileName Condition="'$(RuntimeIdentifier)' == ''">licenses.json</GeneratedLicensesFileName>
+            <GeneratedLicensesFile>$(MSBuildProjectDirectory)\Assets\Licenses\$(GeneratedLicensesFileName)</GeneratedLicensesFile>
         </PropertyGroup>
         <MakeDir Directories="$(MSBuildProjectDirectory)\Assets\Licenses" />
         <Exec Command="pwsh -NoProfile -ExecutionPolicy Bypass -File $(MSBuildThisFileDirectory)Tools/GenerateLicenses.ps1 -AssetsJson $(ProjectAssetsFile) -NuGetRoot $(NuGetPackageRoot) -Output $(GeneratedLicensesFile)" />
+        <ItemGroup>
+            <AvaloniaResource Include="Assets\**" />
+        </ItemGroup>
     </Target>
 </Project>
