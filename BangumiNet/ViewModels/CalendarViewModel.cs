@@ -6,15 +6,6 @@ namespace BangumiNet.ViewModels;
 
 public partial class CalendarViewModel : ViewModelBase
 {
-    [Obsolete]
-    public CalendarViewModel(Api.Legacy.Calendar.Calendar calendar)
-    {
-        Source = calendar;
-        DayOfWeek = CommonUtils.ParseDayOfWeek(calendar.Weekday?.Id);
-        Weekday = calendar.Weekday;
-        Subjects = calendar.Items?.Select(c => new SubjectViewModel(c)).ToObservableCollection();
-    }
-
     public CalendarViewModel(KeyValuePair<DayOfWeek, IEnumerable<CalendarItem>> calendar)
     {
         Source = calendar;

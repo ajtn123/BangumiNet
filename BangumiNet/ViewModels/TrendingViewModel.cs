@@ -66,7 +66,7 @@ public partial class TrendingViewModel : SubjectListPagedViewModel
             if (response == null) return;
 
             SubjectViewModels = response.Data?
-                .Select<SubjectTopic, ViewModelBase>(s => new TopicViewModel(s, false))
+                .Select<ChannelSubjectTopic, ViewModelBase>(s => new TopicViewModel(s, false))
                 .ToObservableCollection();
             PageNavigator.UpdatePageInfo(Limit, offset, response.Total);
         }

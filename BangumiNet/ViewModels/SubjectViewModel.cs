@@ -53,26 +53,6 @@ public partial class SubjectViewModel : ItemViewModelBase
         Tags = subject.Tags?.ToObservableCollection<ITag>();
         Images = subject.Images;
     }
-    [Obsolete]
-    public SubjectViewModel(Api.Legacy.Models.Legacy_SubjectSmall subject)
-    {
-        Source = subject;
-        Eps = subject.Eps;
-        Rank = subject.Rank;
-        Date = CommonUtils.ParseBangumiDate(subject.AirDate);
-        Id = subject.Id;
-        Url = subject.Url;
-        Type = (SubjectType?)subject.Type;
-        Images = subject.Images;
-        Summary = subject.Summary;
-        Name = subject.Name;
-        NameCn = subject.NameCn;
-        Collection = subject.Collection;
-        Weekday = CommonUtils.ParseDayOfWeek(subject.AirWeekday);
-        Score = subject.Rating?.Score;
-        RatingCount = (subject.Rating?.Count as IRatingCount)?.ToList();
-        RatingTotal = subject.Rating?.Total;
-    }
     public SubjectViewModel(Subject subject)
     {
         Source = subject;

@@ -27,6 +27,19 @@ public partial class TopicViewModel : ItemViewModelBase
         if (topic.Subject != null)
             Parent = new SubjectViewModel(topic.Subject);
     }
+    public TopicViewModel(ChannelSubjectTopic topic, bool isFull)
+    {
+        IsFull = isFull;
+        ParentType = ItemType.Subject;
+        UpdateTime = CommonUtils.ParseBangumiTime(topic.UpdatedAt);
+        Name = topic.Title;
+        Id = topic.Id;
+        ReplyCount = topic.ReplyCount;
+        if (topic.Creator != null)
+            User = new(topic.Creator);
+        if (topic.Subject != null)
+            Parent = new SubjectViewModel(topic.Subject);
+    }
     public TopicViewModel(GroupTopic topic, bool isFull)
     {
         IsFull = isFull;

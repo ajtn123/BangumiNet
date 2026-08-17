@@ -60,7 +60,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
     }
     private async Task LoadCharacterComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Characters.Item.Comments.Comments>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Characters[id].Comments.GetAsync(cancellationToken: cancellationToken);
@@ -68,12 +68,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Characters.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Character)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadPersonComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Persons.Item.Comments.Comments>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Persons[id].Comments.GetAsync(cancellationToken: cancellationToken);
@@ -81,12 +81,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Persons.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Person)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadEpisodeComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Episodes.Item.Comments.Comments>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Episodes[id].Comments.GetAsync(cancellationToken: cancellationToken);
@@ -94,12 +94,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Episodes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Episode)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadBlogComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Blogs.Item.Comments.Comments>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Blogs[id].Comments.GetAsync(cancellationToken: cancellationToken);
@@ -107,12 +107,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Blogs.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Blog)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadIndexComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Indexes.Item.Comments.Comments>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Indexes[id].Comments.GetAsync(cancellationToken: cancellationToken);
@@ -120,12 +120,12 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Indexes.Item.Comments.Comments, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Index)).ToObservableCollection();
         Sources.Add(response);
     }
     private async Task LoadTimelineComment(int id, CancellationToken cancellationToken = default)
     {
-        List<Api.P1.P1.Timeline.Item.Replies.Replies>? response = null;
+        List<Comment>? response = null;
         try
         {
             response = await ApiC.P1.Timeline[id].Replies.GetAsync(cancellationToken: cancellationToken);
@@ -133,7 +133,7 @@ public partial class CommentListViewModel : SubjectListPagedViewModel
         catch (Exception e) { Trace.TraceError(e.ToString()); }
         if (response == null) return;
 
-        SubjectViewModels = response.Select<Api.P1.P1.Timeline.Item.Replies.Replies, ViewModelBase>(c => new CommentViewModel(c)).ToObservableCollection();
+        SubjectViewModels = response.Select<Comment, ViewModelBase>(c => new CommentViewModel(c, Shared.ItemType.Timeline)).ToObservableCollection();
         Sources.Add(response);
     }
     public void LoadReplies(List<Reply> replies)

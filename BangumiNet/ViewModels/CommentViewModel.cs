@@ -20,65 +20,9 @@ public partial class CommentViewModel : ViewModelBase
             User = new(comment.User);
         CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
     }
-    public CommentViewModel(Api.P1.P1.Characters.Item.Comments.Comments comment)
+    public CommentViewModel(Comment comment, ItemType itemType)
     {
-        ItemType = ItemType.Character;
-        Content = comment.Content;
-        MainId = comment.MainID;
-        RelatedId = comment.RelatedID;
-        Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
-        State = (CommentState?)comment.State;
-        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
-        if (comment.User != null)
-            User = new(comment.User);
-        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-    }
-    public CommentViewModel(Api.P1.P1.Persons.Item.Comments.Comments comment)
-    {
-        ItemType = ItemType.Person;
-        Content = comment.Content;
-        MainId = comment.MainID;
-        RelatedId = comment.RelatedID;
-        Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
-        State = (CommentState?)comment.State;
-        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
-        if (comment.User != null)
-            User = new(comment.User);
-        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-    }
-    public CommentViewModel(Api.P1.P1.Episodes.Item.Comments.Comments comment)
-    {
-        ItemType = ItemType.Episode;
-        Content = comment.Content;
-        MainId = comment.MainID;
-        RelatedId = comment.RelatedID;
-        Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
-        State = (CommentState?)comment.State;
-        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
-        if (comment.User != null)
-            User = new(comment.User);
-        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-    }
-    public CommentViewModel(Api.P1.P1.Blogs.Item.Comments.Comments comment)
-    {
-        ItemType = ItemType.Blog;
-        Content = comment.Content;
-        MainId = comment.MainID;
-        RelatedId = comment.RelatedID;
-        Id = comment.Id;
-        Reactions = new(comment.Reactions, Id, ItemType);
-        State = (CommentState?)comment.State;
-        Replies = comment.Replies?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
-        if (comment.User != null)
-            User = new(comment.User);
-        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-    }
-    public CommentViewModel(Api.P1.P1.Indexes.Item.Comments.Comments comment)
-    {
-        ItemType = ItemType.Index;
+        ItemType = itemType;
         Content = comment.Content;
         MainId = comment.MainID;
         RelatedId = comment.RelatedID;
@@ -116,20 +60,6 @@ public partial class CommentViewModel : ViewModelBase
         if (comment.Creator != null)
             User = new(comment.Creator) { Id = comment.CreatorID };
         CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-    }
-    public CommentViewModel(Api.P1.P1.Timeline.Item.Replies.Replies comment)
-    {
-        ItemType = ItemType.Timeline;
-        Content = comment.Content;
-        Id = comment.Id;
-        MainId = comment.MainID;
-        RelatedId = comment.RelatedID;
-        Reactions = new(comment.Reactions, Id, ItemType) { ParentItemType = ParentItemType };
-        State = (CommentState?)comment.State;
-        CreationTime = CommonUtils.ParseBangumiTime(comment.CreatedAt);
-        Replies = comment.RepliesProp?.Select(r => new CommentViewModel(r, this)).ToObservableCollection();
-        if (comment.User != null)
-            User = new(comment.User) { Id = comment.CreatorID };
     }
 
     [Reactive] public partial ItemType ItemType { get; set; }
