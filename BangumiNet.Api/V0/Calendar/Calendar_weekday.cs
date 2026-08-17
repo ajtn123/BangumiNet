@@ -6,46 +6,43 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.V0.Models
+namespace BangumiNet.Api.V0.Calendar
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class Paged_Revision : IAdditionalDataHolder, IParsable
+    public partial class Calendar_weekday : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
-        /// <summary>The data property</summary>
-        public List<global::BangumiNet.Api.V0.Models.Revision>? Data { get; set; }
+        /// <summary>The cn property</summary>
+        public string? Cn { get; set; }
 
-        /// <summary>The limit property</summary>
-        public int? Limit { get; set; }
+        /// <summary>The en property</summary>
+        public string? En { get; set; }
 
-        /// <summary>The offset property</summary>
-        public int? Offset { get; set; }
+        /// <summary>The id property</summary>
+        public int? Id { get; set; }
 
-        /// <summary>The total property</summary>
-        public int? Total { get; set; }
+        /// <summary>The ja property</summary>
+        public string? Ja { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Models.Paged_Revision"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.V0.Calendar.Calendar_weekday"/> and sets the default values.
         /// </summary>
-        public Paged_Revision()
+        public Calendar_weekday()
         {
             AdditionalData = new Dictionary<string, object>();
-            Limit = 0;
-            Offset = 0;
-            Total = 0;
         }
 
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.V0.Models.Paged_Revision"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.V0.Calendar.Calendar_weekday"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.V0.Models.Paged_Revision CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.V0.Calendar.Calendar_weekday CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.V0.Models.Paged_Revision();
+            return new global::BangumiNet.Api.V0.Calendar.Calendar_weekday();
         }
 
         /// <summary>
@@ -56,10 +53,10 @@ namespace BangumiNet.Api.V0.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::BangumiNet.Api.V0.Models.Revision>(global::BangumiNet.Api.V0.Models.Revision.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "limit", n => { Limit = n.GetIntValue(); } },
-                { "offset", n => { Offset = n.GetIntValue(); } },
-                { "total", n => { Total = n.GetIntValue(); } },
+                { "cn", n => { Cn = n.GetStringValue(); } },
+                { "en", n => { En = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetIntValue(); } },
+                { "ja", n => { Ja = n.GetStringValue(); } },
             };
         }
 
@@ -70,10 +67,10 @@ namespace BangumiNet.Api.V0.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.V0.Models.Revision>("data", Data);
-            writer.WriteIntValue("limit", Limit);
-            writer.WriteIntValue("offset", Offset);
-            writer.WriteIntValue("total", Total);
+            writer.WriteStringValue("cn", Cn);
+            writer.WriteStringValue("en", En);
+            writer.WriteIntValue("id", Id);
+            writer.WriteStringValue("ja", Ja);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
