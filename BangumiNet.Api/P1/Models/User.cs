@@ -29,6 +29,9 @@ namespace BangumiNet.Api.P1.Models
         /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>Whether the authenticated user has added this user as a friend; false when unauthenticated</summary>
+        public bool? IsFriend { get; set; }
+
         /// <summary>The joinedAt property</summary>
         public int? JoinedAt { get; set; }
 
@@ -85,6 +88,7 @@ namespace BangumiNet.Api.P1.Models
                 { "group", n => { Group = n.GetIntValue(); } },
                 { "homepage", n => { Homepage = n.GetObjectValue<global::BangumiNet.Api.P1.Models.UserHomepage>(global::BangumiNet.Api.P1.Models.UserHomepage.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetIntValue(); } },
+                { "isFriend", n => { IsFriend = n.GetBoolValue(); } },
                 { "joinedAt", n => { JoinedAt = n.GetIntValue(); } },
                 { "location", n => { Location = n.GetStringValue(); } },
                 { "networkServices", n => { NetworkServices = n.GetCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.User_networkServices>(global::BangumiNet.Api.P1.Models.User_networkServices.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -108,6 +112,7 @@ namespace BangumiNet.Api.P1.Models
             writer.WriteIntValue("group", Group);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.UserHomepage>("homepage", Homepage);
             writer.WriteIntValue("id", Id);
+            writer.WriteBoolValue("isFriend", IsFriend);
             writer.WriteIntValue("joinedAt", JoinedAt);
             writer.WriteStringValue("location", Location);
             writer.WriteCollectionOfObjectValues<global::BangumiNet.Api.P1.Models.User_networkServices>("networkServices", NetworkServices);

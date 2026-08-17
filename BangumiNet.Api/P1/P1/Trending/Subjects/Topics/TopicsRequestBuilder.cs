@@ -23,7 +23,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*}", pathParameters)
+        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*,type*}", pathParameters)
         {
         }
 
@@ -32,12 +32,12 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*}", rawUrl)
+        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*,type*}", rawUrl)
         {
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取条目讨论
         /// </summary>
         /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -54,7 +54,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取条目讨论
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -77,7 +77,7 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取条目讨论
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TopicsRequestBuilderGetQueryParameters 
@@ -89,6 +89,8 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
             /// <summary>min 0</summary>
             [QueryParameter("offset")]
             public int? Offset { get; set; }
+            [QueryParameter("type")]
+            public int? Type { get; set; }
         }
     }
 }

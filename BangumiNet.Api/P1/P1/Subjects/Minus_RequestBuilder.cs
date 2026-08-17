@@ -2,6 +2,7 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.P1.Subjects.Collects;
+using BangumiNet.Api.P1.P1.Subjects.Comments;
 using BangumiNet.Api.P1.P1.Subjects.Posts;
 using BangumiNet.Api.P1.P1.Subjects.Topics;
 using Microsoft.Kiota.Abstractions.Extensions;
@@ -22,6 +23,12 @@ namespace BangumiNet.Api.P1.P1.Subjects
         public global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder Collects
         {
             get => new global::BangumiNet.Api.P1.P1.Subjects.Collects.CollectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The comments property</summary>
+        public global::BangumiNet.Api.P1.P1.Subjects.Comments.CommentsRequestBuilder Comments
+        {
+            get => new global::BangumiNet.Api.P1.P1.Subjects.Comments.CommentsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>The posts property</summary>

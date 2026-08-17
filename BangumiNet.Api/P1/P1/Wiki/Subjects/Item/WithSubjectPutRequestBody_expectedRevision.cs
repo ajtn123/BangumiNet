@@ -24,7 +24,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name? Name { get; set; }
 
         /// <summary>The platform property</summary>
-        public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform? Platform { get; set; }
+        public int? Platform { get; set; }
 
         /// <summary>The summary property</summary>
         public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary? Summary { get; set; }
@@ -59,7 +59,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 { "infobox", n => { Infobox = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox.CreateFromDiscriminatorValue); } },
                 { "metaTags", n => { MetaTags = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name.CreateFromDiscriminatorValue); } },
-                { "platform", n => { Platform = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform.CreateFromDiscriminatorValue); } },
+                { "platform", n => { Platform = n.GetIntValue(); } },
                 { "summary", n => { Summary = n.GetObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary>(global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary.CreateFromDiscriminatorValue); } },
             };
         }
@@ -74,7 +74,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_infobox>("infobox", Infobox);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_metaTags>("metaTags", MetaTags);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_name>("name", Name);
-            writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform>("platform", Platform);
+            writer.WriteIntValue("platform", Platform);
             writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_summary>("summary", Summary);
             writer.WriteAdditionalData(AdditionalData);
         }
@@ -258,67 +258,6 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
                 }
                 else {
                     writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_nameMember1>(null, WithSubjectPutRequestBodyExpectedRevisionNameMember1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_platformMember1"/>, <see cref="int"/>
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithSubjectPutRequestBody_expectedRevision_platform : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="int"/></summary>
-            public int? Integer { get; set; }
-
-            /// <summary>Composed type representation for type <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_platformMember1"/></summary>
-            public global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_platformMember1? WithSubjectPutRequestBodyExpectedRevisionPlatformMember1 { get; set; }
-
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var result = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision.WithSubjectPutRequestBody_expectedRevision_platform();
-                if(parseNode.GetIntValue() is int integerValue)
-                {
-                    result.Integer = integerValue;
-                }
-                else {
-                    result.WithSubjectPutRequestBodyExpectedRevisionPlatformMember1 = new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_platformMember1();
-                }
-                return result;
-            }
-
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                if(WithSubjectPutRequestBodyExpectedRevisionPlatformMember1 != null)
-                {
-                    return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(WithSubjectPutRequestBodyExpectedRevisionPlatformMember1);
-                }
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Integer != null)
-                {
-                    writer.WriteIntValue(null, Integer);
-                }
-                else {
-                    writer.WriteObjectValue<global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPutRequestBody_expectedRevision_platformMember1>(null, WithSubjectPutRequestBodyExpectedRevisionPlatformMember1);
                 }
             }
         }

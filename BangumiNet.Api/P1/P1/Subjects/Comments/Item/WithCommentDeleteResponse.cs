@@ -6,18 +6,18 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
+namespace BangumiNet.Api.P1.P1.Subjects.Comments.Item
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WithSubjectPatchRequestBody_expectedRevision_platformMember1 : IAdditionalDataHolder, IParsable
+    public partial class WithCommentDeleteResponse : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse"/> and sets the default values.
         /// </summary>
-        public WithSubjectPatchRequestBody_expectedRevision_platformMember1()
+        public WithCommentDeleteResponse()
         {
             AdditionalData = new Dictionary<string, object>();
         }
@@ -25,12 +25,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1 CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::BangumiNet.Api.P1.P1.Wiki.Subjects.Item.WithSubjectPatchRequestBody_expectedRevision_platformMember1();
+            return new global::BangumiNet.Api.P1.P1.Subjects.Comments.Item.WithCommentDeleteResponse();
         }
 
         /// <summary>

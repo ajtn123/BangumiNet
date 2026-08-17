@@ -24,6 +24,9 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
         /// <summary>The id property</summary>
         public int? Id { get; set; }
 
+        /// <summary>Whether the authenticated user has added this user as a friend; false when the endpoint does not populate viewer friendship</summary>
+        public bool? IsFriend { get; set; }
+
         /// <summary>The joinedAt property</summary>
         public int? JoinedAt { get; set; }
 
@@ -66,6 +69,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
                 { "avatar", n => { Avatar = n.GetObjectValue<global::BangumiNet.Api.P1.Models.Avatar>(global::BangumiNet.Api.P1.Models.Avatar.CreateFromDiscriminatorValue); } },
                 { "group", n => { Group = n.GetIntValue(); } },
                 { "id", n => { Id = n.GetIntValue(); } },
+                { "isFriend", n => { IsFriend = n.GetBoolValue(); } },
                 { "joinedAt", n => { JoinedAt = n.GetIntValue(); } },
                 { "nickname", n => { Nickname = n.GetStringValue(); } },
                 { "sign", n => { Sign = n.GetStringValue(); } },
@@ -83,6 +87,7 @@ namespace BangumiNet.Api.P1.P1.Wiki.Subjects.Item.Covers
             writer.WriteObjectValue<global::BangumiNet.Api.P1.Models.Avatar>("avatar", Avatar);
             writer.WriteIntValue("group", Group);
             writer.WriteIntValue("id", Id);
+            writer.WriteBoolValue("isFriend", IsFriend);
             writer.WriteIntValue("joinedAt", JoinedAt);
             writer.WriteStringValue("nickname", Nickname);
             writer.WriteStringValue("sign", Sign);

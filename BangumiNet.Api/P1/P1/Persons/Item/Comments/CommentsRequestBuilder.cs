@@ -39,12 +39,12 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Comments
         /// <summary>
         /// 获取人物的吐槽箱
         /// </summary>
-        /// <returns>A List&lt;global::BangumiNet.Api.P1.P1.Persons.Item.Comments.Comments&gt;</returns>
+        /// <returns>A List&lt;global::BangumiNet.Api.P1.Models.Comment&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 404 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<List<global::BangumiNet.Api.P1.P1.Persons.Item.Comments.Comments>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::BangumiNet.Api.P1.Models.Comment>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -52,7 +52,7 @@ namespace BangumiNet.Api.P1.P1.Persons.Item.Comments
                 { "404", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.P1.Persons.Item.Comments.Comments>(requestInfo, global::BangumiNet.Api.P1.P1.Persons.Item.Comments.Comments.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.Models.Comment>(requestInfo, global::BangumiNet.Api.P1.Models.Comment.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
 

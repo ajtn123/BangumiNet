@@ -2,6 +2,7 @@
 #nullable enable
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.Models;
+using BangumiNet.Api.P1.P1.Me.Friends;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -18,6 +19,12 @@ namespace BangumiNet.Api.P1.P1.Me
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class MeRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The friends property</summary>
+        public global::BangumiNet.Api.P1.P1.Me.Friends.FriendsRequestBuilder Friends
+        {
+            get => new global::BangumiNet.Api.P1.P1.Me.Friends.FriendsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
         /// <summary>
         /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Me.MeRequestBuilder"/> and sets the default values.
         /// </summary>

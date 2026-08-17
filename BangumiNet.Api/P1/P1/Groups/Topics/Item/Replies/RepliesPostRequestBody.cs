@@ -29,7 +29,6 @@ namespace BangumiNet.Api.P1.P1.Groups.Topics.Item.Replies
         public RepliesPostRequestBody()
         {
             AdditionalData = new Dictionary<string, object>();
-            ReplyTo = 0;
         }
 
         /// <summary>
