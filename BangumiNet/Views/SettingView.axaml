@@ -20,9 +20,9 @@
     <Grid RowDefinitions="*,Auto">
         <ScrollViewer Grid.RowSpan="2">
             <StackPanel Margin="10,10,10,100" Spacing="5">
-                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*" Height="200">
+                <Grid ColumnDefinitions="Auto,*" Height="200">
                     <Svg Path="/Assets/BangumiNet.svg" Height="200" Width="200"
-                         VerticalAlignment="Top" Grid.RowSpan="2" />
+                         VerticalAlignment="Top" />
                     <StackPanel Grid.Column="1">
                         <TextBlock Classes="Title" FontSize="30" Text="{x:Static shared:Constants.ApplicationName}" />
                         <WrapPanel Classes="InfoBar" ItemSpacing="10">
@@ -60,49 +60,8 @@
                             </Button>
                         </WrapPanel>
                     </StackPanel>
-                    <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch">
-                        <ItemsControl ItemsSource="{x:Static bn:CreditItem.Items}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="bn:CreditItem">
-                                    <SelectableTextBlock ToolTip.Tip="{Binding Tooltip}">
-                                        <Run Text="{Binding Type}" Classes="Sec" />
-                                        <Run Text="{Binding Name}" />
-                                    </SelectableTextBlock>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
                 </Grid>
 
-                <ui:FASettingsExpander Header="第三方开源许可" IsExpanded="False"
-                                       IconSource="{ice:FluentIconSource DocumentLock}"
-                                       ItemsSource="{x:Static bn:LicenseProvider.Items}">
-                    <ui:FASettingsExpander.DataTemplates>
-                        <DataTemplate DataType="bn:LicenseItem">
-                            <ui:FASettingsExpanderItem>
-                                <StackPanel Spacing="2">
-                                    <TextBlock Text="{Binding Name}" />
-                                    <TextBlock Classes="Sec" Text="{Binding Version}" />
-                                </StackPanel>
-                                <ui:FASettingsExpanderItem.Footer>
-                                    <StackPanel Orientation="Horizontal" Spacing="5">
-                                        <TextBlock Text="{Binding License}" Classes="Sec"
-                                                   VerticalAlignment="Center"
-                                                   ToolTip.Tip="{Binding RepositoryUrl}" />
-                                        <Button Click="OpenLicense" Content="查看许可" Padding="5" />
-                                    </StackPanel>
-                                </ui:FASettingsExpanderItem.Footer>
-                            </ui:FASettingsExpanderItem>
-                        </DataTemplate>
-                    </ui:FASettingsExpander.DataTemplates>
-                </ui:FASettingsExpander>
-
-                <ui:FASettingsExpander Header="User Agent" IconSource="{ice:FluentIconSource Agents}">
-                    <ui:FASettingsExpander.Footer>
-                        <TextBox Text="{Binding UserAgent}"
-                                 PlaceholderText="{Binding DefaultSettings.UserAgent}" />
-                    </ui:FASettingsExpander.Footer>
-                </ui:FASettingsExpander>
                 <ui:FASettingsExpander Header="用户个人令牌" IconSource="{ice:FluentIconSource Key}">
                     <ui:FASettingsExpander.Footer>
                         <StackPanel Orientation="Horizontal" Spacing="5">
@@ -305,6 +264,40 @@
                             <CheckBox IsChecked="{Binding DevEnvironment}" />
                         </ui:FASettingsExpanderItem.Footer>
                     </ui:FASettingsExpanderItem>
+                    <ui:FASettingsExpanderItem IconSource="{ice:FluentIconSource Agents}">
+                        <TextBlock>User Agent</TextBlock>
+                        <ui:FASettingsExpanderItem.Footer>
+                            <TextBox Text="{Binding UserAgent}"
+                                     PlaceholderText="{Binding DefaultSettings.UserAgent}" />
+                        </ui:FASettingsExpanderItem.Footer>
+                    </ui:FASettingsExpanderItem>
+                </ui:FASettingsExpander>
+
+                <ui:FASettingsExpander Header="第三方开源许可" IsExpanded="False"
+                                       IconSource="{ice:FluentIconSource DocumentLock}"
+                                       ItemsSource="{x:Static bn:LicenseProvider.Items}">
+                    <ui:FASettingsExpander.DataTemplates>
+                        <DataTemplate DataType="bn:LicenseItem">
+                            <ui:FASettingsExpanderItem>
+                                <StackPanel Spacing="2">
+                                    <StackPanel Orientation="Horizontal" Spacing="5">
+                                        <TextBlock Text="{Binding Name}" />
+                                        <TextBlock Classes="Sec" Text="{Binding Version}"
+                                                   IsVisible="{Binding Version, Converter={StaticResource NEWCvt}}" />
+                                    </StackPanel>
+                                    <TextBlock Classes="Sec" Text="{Binding Type}"
+                                               IsVisible="{Binding Type, Converter={StaticResource NEWCvt}}" />
+                                </StackPanel>
+                                <ui:FASettingsExpanderItem.Footer>
+                                    <StackPanel Orientation="Horizontal" Spacing="10">
+                                        <TextBlock Classes="Sec" Text="{Binding License}" VerticalAlignment="Center"
+                                                   IsVisible="{Binding License, Converter={StaticResource NEWCvt}}" />
+                                        <Button Click="OpenLicense" Content="详细信息" Padding="5" />
+                                    </StackPanel>
+                                </ui:FASettingsExpanderItem.Footer>
+                            </ui:FASettingsExpanderItem>
+                        </DataTemplate>
+                    </ui:FASettingsExpander.DataTemplates>
                 </ui:FASettingsExpander>
             </StackPanel>
         </ScrollViewer>

@@ -10,22 +10,30 @@
         Width="800" Height="600"
         WindowStartupLocation="CenterOwner"
         Title="{Binding Title}">
-    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10" Margin="10">
-        <StackPanel Spacing="2">
-            <TextBlock Classes="Title" Text="{Binding Item.Name}" FontSize="18" />
-            <TextBlock Classes="Sec" Text="{Binding Subtitle}" TextWrapping="Wrap" />
-        </StackPanel>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
-            <SelectableTextBlock Text="{Binding Item.LicenseText}" TextWrapping="Wrap"
-                                 IsVisible="{Binding Item.LicenseText,Converter={StaticResource NullCvt}}" />
-        </ScrollViewer>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="5">
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Margin="10">
+        <TextBlock Classes="Title" FontSize="30" Text="{Binding Item.Name}" />
+        <WrapPanel Classes="InfoBar" Grid.Row="1">
+            <InfoItem Tip="类别" Text="{Binding Item.Type}" Icon="Tag" />
+            <InfoItem Tip="版本" Text="{Binding Item.Version}" Icon="NumberSymbol" />
+            <InfoItem Tip="作者" Text="{Binding Item.Authors}" Icon="People" />
+            <InfoItem Tip="许可证" Text="{Binding Item.License}" Icon="DocumentLock" />
+            <InfoItem Tip="仓库仓库" Text="{Binding Item.RepositoryUrl}" Icon="Code" />
+            <InfoItem Tip="许可证链接" Text="{Binding Item.LicenseUrl}" Icon="Open" />
+        </WrapPanel>
+        <StackPanel Orientation="Horizontal" Spacing="5" Grid.Row="2">
             <Button Name="CopyButton" IsVisible="{Binding Item.LicenseText,Converter={StaticResource NullCvt}}">
-                <TextBlock><ic:FluentIcon Icon="Copy" />复制</TextBlock>
+                <TextBlock><ic:FluentIcon Icon="Copy" />复制许可证</TextBlock>
             </Button>
             <Button Name="OpenUrlButton" IsVisible="{Binding Item.LicenseUrl,Converter={StaticResource NullCvt}}">
-                <TextBlock><ic:FluentIcon Icon="Open" />打开链接</TextBlock>
+                <TextBlock><ic:FluentIcon Icon="Open" />打开许可证链接</TextBlock>
+            </Button>
+            <Button Name="OpenRepoButton" IsVisible="{Binding Item.RepositoryUrl,Converter={StaticResource NullCvt}}">
+                <TextBlock><ic:FluentIcon Icon="Code" />打开仓库链接</TextBlock>
             </Button>
         </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" Grid.Row="3"
+                      IsVisible="{Binding Item.LicenseText,Converter={StaticResource NullCvt}}">
+            <SelectableTextBlock Text="{Binding Item.LicenseText}" TextWrapping="Wrap" />
+        </ScrollViewer>
     </Grid>
 </Window>

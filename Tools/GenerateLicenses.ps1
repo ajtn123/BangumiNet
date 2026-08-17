@@ -51,6 +51,7 @@ foreach ($prop in $assets.libraries.PSObject.Properties) {
 
     $item = [ordered]@{
         Name          = $id
+        Type          = '依赖'
         Version       = $ver
         License       = $null
         LicenseUrl    = $null

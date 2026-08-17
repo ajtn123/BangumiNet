@@ -87,28 +87,3 @@ public partial class SettingView : ReactiveUserControl<SettingViewModel>
             ViewModel?.LocalDataDirectory = pickedL[0].TryGetLocalPath() ?? "";
     }
 }
-public record class CreditItem()
-{
-    public static readonly CreditItem[] Items;
-    static CreditItem()
-    {
-        Items = [
-            new CreditItem() { Name = $"Bangumi Open API", Tooltip = "https://bangumi.github.io/api/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Private API", Tooltip = "https://next.bgm.tv/p1/#/", Type = "服务" },
-            new CreditItem() { Name = $"Bangumi Stickers", Tooltip = "https://bgm.tv", Type = "资产" },
-            new CreditItem() { Name = $"Bangumi Data", Tooltip = "https://github.com/bangumi-data/bangumi-data", Type = "服务" },
-            new CreditItem() { Name = $"Fluent UI System Icons", Tooltip = "https://github.com/microsoft/fluentui-system-icons", Type = "资产" },
-            new CreditItem() { Name = $"はらぺこ 何番煎じだかわからないけど", Tooltip = "https://www.pixiv.net/artworks/22876424", Type = "资产" },
-            new CreditItem() { Name = $"MingCute Icon tv-2-line", Tooltip = "https://www.mingcute.com", Type = "资产" },
-            .. AppDomain.CurrentDomain.GetAssemblies().Select(x =>
-            {
-                var name = x.GetName();
-                return new CreditItem() { Name = $"{name.Name} - {name.Version}", Tooltip = name.FullName, Type = "依赖" };
-            }).Where(x => !x.Name.StartsWith("Anonymously")).OrderBy(x => x.Name)
-        ];
-    }
-
-    public required string Type { get; set; }
-    public required string Name { get; set; }
-    public required string Tooltip { get; set; }
-}
