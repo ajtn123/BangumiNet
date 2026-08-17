@@ -10,8 +10,8 @@ namespace BangumiNet.Api.P1.Models
     public partial class SubjectTag : ITag;
     public partial class Subjects : IInfoboxItem<List<Subjects_values>>;
     public partial class Subjects_values : IInfoboxKeyValuePair;
-    public partial class Persons : IInfoboxItem<List<Persons_values>>;
-    public partial class Persons_values : IInfoboxKeyValuePair;
+    public partial class WithPerson : IInfoboxItem<List<WithPerson_values>>;
+    public partial class WithPerson_values : IInfoboxKeyValuePair;
     public partial class WithCharacter : IInfoboxItem<List<WithCharacter_values>>;
     public partial class WithCharacter_values : IInfoboxKeyValuePair;
     public partial class Calendar

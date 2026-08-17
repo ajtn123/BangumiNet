@@ -403,7 +403,7 @@ namespace BangumiNet.Api.P1.P1.Trending
     }
     namespace Subjects.Topics
     {
-        public partial class TopicsGetResponse : IPagedResponse<List<SubjectTopic>>;
+        public partial class TopicsGetResponse : IPagedResponse<List<ChannelSubjectTopic>>;
         public partial class TopicsRequestBuilder
         {
             public partial class TopicsRequestBuilderGetQueryParameters : IPagedRequest;
