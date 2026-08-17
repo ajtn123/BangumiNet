@@ -17,10 +17,10 @@ jobs:
         run: dotnet tool restore
 
       - name: Download API Description
-        run: curl -L -o v0.yaml https://github.com/bangumi/api/raw/refs/heads/master/open-api/v0.yaml
+        run: curl -L -o v0.json https://bangumi.github.io/api/dist.json
 
       - name: Pre-Process API Description
-        run: pwsh BangumiNet.Api/PreGeneration.ps1 v0.yaml
+        run: pwsh BangumiNet.Api/PreGeneration.ps1 v0.json
 
       - name: Update API Client
         run: dotnet kiota update --clean-output -o BangumiNet.Api/V0

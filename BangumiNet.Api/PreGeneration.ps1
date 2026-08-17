@@ -12,19 +12,8 @@ $content = ($content -replace 'exclusiveMinimum\s*:\s*(\d+)', 'minimum: $1')
 $content = ($content -replace '"exclusiveMinimum"\s*:\s*(\d+)', '"minimum": $1')
 
 # get version string
-if ($api -eq 'P1') {
-    $obj = $content | ConvertFrom-Json
-    $version = $obj.info.version
-} elseif ($api -eq 'V0') {
-    $url = 'https://api.github.com/repos/bangumi/api/commits?path=open-api/v0.yaml'
-    $response = Invoke-RestMethod -Uri $url -Method Get -Headers @{ 'User-Agent' = 'pwsh' }
-    if ($response) {
-        $commit = $response[0]
-        $date = $commit.commit.author.date.ToString('yyyy-MM-dd')
-        $sha = $commit.sha.Substring(0, 7)
-        $version = "$date-$sha"
-    }
-}
+$obj = $content | ConvertFrom-Json
+$version = $obj.info.version
 
 if ($version) {
     "API_VERSION=${version}" >> $env:GITHUB_ENV
