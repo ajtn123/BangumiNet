@@ -10,55 +10,55 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
+namespace BangumiNet.Api.P1.P1.Channels.Item.Topics
 {
     /// <summary>
-    /// Builds and executes requests for operations under \p1\trending\subjects\topics
+    /// Builds and executes requests for operations under \p1\channels\{type}\topics
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TopicsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*}", pathParameters)
+        public TopicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/channels/{type}/topics{?limit*,offset*}", pathParameters)
         {
         }
 
         /// <summary>
-        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/trending/subjects/topics{?limit*,offset*}", rawUrl)
+        public TopicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/p1/channels/{type}/topics{?limit*,offset*}", rawUrl)
         {
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取频道条目讨论
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsGetResponse"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsGetResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsGetResponse?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsGetResponse>(requestInfo, global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsGetResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取频道条目讨论
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder.TopicsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
@@ -69,15 +69,15 @@ namespace BangumiNet.Api.P1.P1.Trending.Subjects.Topics
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder WithUrl(string rawUrl)
+        public global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::BangumiNet.Api.P1.P1.Trending.Subjects.Topics.TopicsRequestBuilder(rawUrl, RequestAdapter);
+            return new global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder(rawUrl, RequestAdapter);
         }
 
         /// <summary>
-        /// 获取热门条目讨论
+        /// 获取频道条目讨论
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TopicsRequestBuilderGetQueryParameters 

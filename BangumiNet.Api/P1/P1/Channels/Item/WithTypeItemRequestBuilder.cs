@@ -3,6 +3,7 @@
 #pragma warning disable CS0618
 using BangumiNet.Api.P1.P1.Channels.Item.Blogs;
 using BangumiNet.Api.P1.P1.Channels.Item.Tags;
+using BangumiNet.Api.P1.P1.Channels.Item.Topics;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using System.Collections.Generic;
@@ -27,6 +28,12 @@ namespace BangumiNet.Api.P1.P1.Channels.Item
         public global::BangumiNet.Api.P1.P1.Channels.Item.Tags.TagsRequestBuilder Tags
         {
             get => new global::BangumiNet.Api.P1.P1.Channels.Item.Tags.TagsRequestBuilder(PathParameters, RequestAdapter);
+        }
+
+        /// <summary>The topics property</summary>
+        public global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder Topics
+        {
+            get => new global::BangumiNet.Api.P1.P1.Channels.Item.Topics.TopicsRequestBuilder(PathParameters, RequestAdapter);
         }
 
         /// <summary>
