@@ -39,12 +39,12 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
         /// <summary>
         /// 获取最近两天的wiki更新
         /// </summary>
-        /// <returns>A <see cref="global::BangumiNet.Api.P1.Models.RecentWikiChange"/></returns>
+        /// <returns>A List&lt;global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.Subjects&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 401 status code</exception>
         /// <exception cref="global::BangumiNet.Api.P1.Models.ErrorResponse">When receiving a 500 status code</exception>
-        public async Task<global::BangumiNet.Api.P1.Models.RecentWikiChange?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.Subjects>?> GetAsync(Action<RequestConfiguration<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.SubjectsRequestBuilder.SubjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
             var requestInfo = ToGetRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
@@ -52,7 +52,8 @@ namespace BangumiNet.Api.P1.P1.Wiki.Recent.Subjects
                 { "401", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
                 { "500", global::BangumiNet.Api.P1.Models.ErrorResponse.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::BangumiNet.Api.P1.Models.RecentWikiChange>(requestInfo, global::BangumiNet.Api.P1.Models.RecentWikiChange.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.Subjects>(requestInfo, global::BangumiNet.Api.P1.P1.Wiki.Recent.Subjects.Subjects.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
 
         /// <summary>
